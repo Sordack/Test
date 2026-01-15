@@ -2,18 +2,32 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Willkommen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willkommen | Streetart Kids</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background: #2c3e50; color: white; font-family: sans-serif; text-align: center; }
-        .btn { background: #3498db; color: white; padding: 20px 40px; text-decoration: none; border-radius: 5px; font-size: 1.5rem; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #222; font-family: 'Permanent Marker', cursive; }
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 206, 209, 0.4), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1525358043132-4017f8670877?q=80&w=2070');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
+        }
+        h1 { font-size: 5rem; color: #00ced1; text-shadow: 4px 4px white; margin: 0; transform: rotate(-2deg); }
+        .tagline { font-family: 'Bangers', cursive; font-size: 1.5rem; color: #fff200; margin-bottom: 40px; }
+        .enter-btn {
+            padding: 20px 50px; border: 4px solid #ff00ff; color: white; text-decoration: none;
+            font-size: 2rem; background: rgba(0,0,0,0.5); box-shadow: 8px 8px 0px #ff00ff; transition: 0.3s;
+        }
+        .enter-btn:hover { transform: scale(1.1) rotate(2deg); background: #ff00ff; box-shadow: none; }
     </style>
 </head>
 <body>
-    <div>
-        <h1>Willkommen auf meiner Künstlerseite</h1>
-        <br><br>
-        <a href="Hauptseite.html" class="btn">Eintreten</a>
+    <div class="hero">
+        <h1>BÄM!</h1>
+        <p class="tagline">Check den Sound aus!</p>
+        <a href="Hauptseite" class="enter-btn">EINTRETEN</a>
     </div>
 </body>
-
 </html>
