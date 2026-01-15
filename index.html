@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willkommen | Streetart Kids</title>
+    <title>Willkommen | Kids Pop</title>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #222; font-family: 'Permanent Marker', cursive; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Permanent Marker', cursive; }
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 206, 209, 0.4), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1525358043132-4017f8670877?q=80&w=2070');
+            /* Helle Backsteinwand als Hintergrund */
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                        url('https://images.unsplash.com/photo-1523895665936-7bfe172b757d?q=80&w=2070');
             background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
-        h1 { font-size: 5rem; color: #00ced1; text-shadow: 4px 4px white; margin: 0; transform: rotate(-2deg); }
-        .tagline { font-family: 'Bangers', cursive; font-size: 1.5rem; color: #fff200; margin-bottom: 40px; }
+        h1 { font-size: 5rem; color: #00ced1; -webkit-text-stroke: 2px #333; text-shadow: 6px 6px 0px #fff200; margin: 0; transform: rotate(-3deg); }
+        .tagline { font-family: 'Bangers', cursive; font-size: 1.8rem; color: #ff00ff; margin-bottom: 40px; text-shadow: 2px 2px 0px #333; }
+        
         .enter-btn {
-            padding: 20px 50px; border: 4px solid #ff00ff; color: white; text-decoration: none;
-            font-size: 2rem; background: rgba(0,0,0,0.5); box-shadow: 8px 8px 0px #ff00ff; transition: 0.3s;
+            padding: 20px 50px; border: 5px solid #333; color: white; text-decoration: none;
+            font-size: 2.2rem; background: #00ced1; box-shadow: 10px 10px 0px #ff00ff; transition: 0.2s;
+            cursor: pointer;
         }
-        .enter-btn:hover { transform: scale(1.1) rotate(2deg); background: #ff00ff; box-shadow: none; }
+        .enter-btn:hover { transform: scale(1.1); box-shadow: 5px 5px 0px #ff00ff; }
     </style>
 </head>
 <body>
     <div class="hero">
-        <h1>BÄM!</h1>
-        <p class="tagline">Check den Sound aus!</p>
-        <a href="Hauptseite" class="enter-btn">EINTRETEN</a>
+        <h1>HEY YO!</h1>
+        <p class="tagline">Bist du bereit für den Beat?</p>
+        <a href="Hauptseite.html" class="enter-btn">EINTRETEN</a>
     </div>
 </body>
 </html>
