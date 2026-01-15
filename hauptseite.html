@@ -17,10 +17,11 @@
             margin: 0; padding: 0;
             font-family: 'Poppins', sans-serif;
             background: #fdfdfd;
-            color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* Moderner Header mit Glow */
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             padding: 40px 20px;
@@ -32,89 +33,81 @@
         .logo {
             font-family: 'Montserrat', sans-serif;
             font-size: 4rem;
-            margin: 0;
+            margin: 0 0 20px 0;
             text-transform: uppercase;
             letter-spacing: -2px;
-            animation: pulse 3s infinite ease-in-out;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
-
-        /* Die Button-Leiste (Navigation) */
+        /* NAVIGATION - Profi-Look */
         nav {
             display: flex;
             justify-content: center;
             gap: 12px;
-            margin-top: 25px;
             flex-wrap: wrap;
             max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
 
         nav a {
             text-decoration: none;
             color: white;
             font-weight: 700;
-            padding: 12px 20px;
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 15px;
-            font-size: 0.95rem;
+            padding: 10px 22px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
-        /* Verschiedene Farben beim rüber Sliden */
         nav a:hover {
-            transform: translateY(-5px);
             background: white;
+            color: var(--secondary);
+            transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        /* Individuelle Hover-Farben für die Buttons */
-        nav a[href="ueber-mich.html"]:hover { color: var(--secondary); }
-        nav a[href="konzerte.html"]:hover { color: var(--accent); }
-        nav a[href="social-media.html"]:hover { color: #f0932b; }
-        nav a[href="kontakt.html"]:hover { color: #6ab04c; }
-
-        /* Hauptbereich */
-        .content {
+        /* Hauptinhalt */
+        .main-content {
+            flex: 1;
             max-width: 900px;
             margin: 50px auto;
             padding: 0 20px;
             text-align: center;
         }
 
-        .hero-box {
+        .welcome-card {
             background: white;
             padding: 50px;
             border-radius: 30px;
-            border: 2px solid #eee;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
         }
 
-        h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: var(--secondary); }
+        h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: var(--secondary); margin-bottom: 10px; }
 
-        .btn-large {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 40px;
-            background: var(--accent);
-            color: white;
+        /* FOOTER für rechtliche Links */
+        footer {
+            background: #f1f1f1;
+            padding: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 50px;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #777;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.4s;
+            margin: 0 10px;
+            font-weight: 600;
         }
 
-        .btn-large:hover {
-            background: var(--dark);
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(77, 150, 255, 0.3);
-        }
+        .footer-links a:hover { color: var(--accent); }
+
     </style>
 </head>
 <body>
@@ -123,17 +116,31 @@
     <div class="logo">ANTON</div>
     <nav>
         <a href="index.html">Start</a>
-        <a href="hauptseite.html">Home</a>
+        <a href="hauptseite.html" style="background: white; color: var(--secondary);">Home</a>
         <a href="ueber-mich.html">Über mich</a>
         <a href="konzerte.html">Konzerte</a>
         <a href="social-media.html">Social Media</a>
         <a href="kontakt.html">Kontakt</a>
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
     </nav>
 </header>
 
-<div class="content">
-    <div class="hero-box">
-        <h2>Willkommen in meiner Welt!</h2>
-        <p style="
+<div class="main-content">
+    <div class="welcome-card">
+        <h2>Hey! Willkommen.</h2>
+        <p style="font-size: 1.2rem; color: #555;">Tauche ein in meine Welt des Kids-Pop. Hier findest du alles über meine Songs, meine Shows und vieles mehr!</p>
+        <div style="margin-top: 30px;">
+             <a href="konzerte.html" style="background: var(--accent); color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; transition: 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">ZU DEN KONZERTEN</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="impressum.html">Impressum</a> | 
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
+    <p>&copy; 2026 ANTON OFFICIAL | Professioneller Kids Pop Artist</p>
+</footer>
+
+</body>
+</html>
