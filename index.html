@@ -3,104 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willkommen | ANTON</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <title>ANTON | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FFD93D;   
-            --secondary: #FF6B6B; 
-            --accent: #4D96FF;    
+            --primary: #FFD93D;
+            --secondary: #FF6B6B;
+            --accent: #4D96FF;
+            --dark: #2D3436;
         }
 
-        body, html {
-            margin: 0; padding: 0; height: 100%;
+        body {
+            margin: 0; padding: 0;
             font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-            background: radial-gradient(circle at center, var(--primary) 0%, var(--secondary) 100%);
-            display: flex; justify-content: center; align-items: center;
+            background: #fdfdfd;
+            color: var(--dark);
         }
 
-        .portal-card {
-            background: white;
-            padding: 60px 40px;
-            border-radius: 40px;
+        /* Moderner Header mit Glow */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 40px 20px;
             text-align: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-            border: 8px solid rgba(255, 255, 255, 0.3);
-            max-width: 400px;
-            width: 85%;
-            animation: float 4s ease-in-out infinite;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .welcome-logo {
+        .logo {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(3rem, 10vw, 5rem);
-            color: var(--secondary);
+            font-size: 4rem;
             margin: 0;
-            line-height: 1;
-            letter-spacing: -2px;
-            background: linear-gradient(to bottom, var(--secondary), #ff4757);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tagline {
-            color: #888;
-            font-size: 1.1rem;
-            margin: 20px 0 40px 0;
-            letter-spacing: 1px;
             text-transform: uppercase;
+            letter-spacing: -2px;
+            animation: pulse 3s infinite ease-in-out;
         }
 
-        .start-btn {
-            display: inline-block;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* Die Button-Leiste (Navigation) */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        nav a {
             text-decoration: none;
+            color: white;
+            font-weight: 700;
+            padding: 12px 20px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Verschiedene Farben beim rüber Sliden */
+        nav a:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Individuelle Hover-Farben für die Buttons */
+        nav a[href="ueber-mich.html"]:hover { color: var(--secondary); }
+        nav a[href="konzerte.html"]:hover { color: var(--accent); }
+        nav a[href="social-media.html"]:hover { color: #f0932b; }
+        nav a[href="kontakt.html"]:hover { color: #6ab04c; }
+
+        /* Hauptbereich */
+        .content {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero-box {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            border: 2px solid #eee;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: var(--secondary); }
+
+        .btn-large {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
             background: var(--accent);
             color: white;
-            padding: 20px 50px;
-            border-radius: 20px;
-            font-size: 1.5rem;
+            text-decoration: none;
+            border-radius: 50px;
             font-weight: bold;
-            box-shadow: 0 10px 20px rgba(77, 150, 255, 0.4);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            transition: 0.4s;
         }
 
-        .start-btn:hover {
-            transform: scale(1.1);
-            background: #2e86de;
-            box-shadow: 0 15px 30px rgba(77, 150, 255, 0.6);
-        }
-
-        .start-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            transition: 0.5s;
-        }
-
-        .start-btn:hover::after {
-            left: 100%;
-            top: 100%;
+        .btn-large:hover {
+            background: var(--dark);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(77, 150, 255, 0.3);
         }
     </style>
 </head>
 <body>
-    <div class="portal-card">
-        <h1 class="welcome-logo">ANTON</h1>
-        <p class="tagline">Official Artist Page</p>
-        <a href="hauptseite.html" class="start-btn">ENTDECKEN</a>
-    </div>
-</body>
-</html>
+
+<header>
+    <div class="logo">ANTON</div>
+    <nav>
+        <a href="index.html">Start</a>
+        <a href="hauptseite.html">Home</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="konzerte.html">Konzerte</a>
+        <a href="social-media.html">Social Media</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+</header>
+
+<div class="content">
+    <div class="hero-box">
+        <h2>Willkommen in meiner Welt!</h2>
+        <p style="
