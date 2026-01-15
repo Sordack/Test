@@ -3,34 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willkommen | Kids Pop</title>
+    <title>Willkommen | Kids Pop Art</title>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Permanent Marker', cursive; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Der Sticker-Bomb Hintergrund über die ganze Seite */
         .hero {
             height: 100vh;
-            /* Helle Backsteinwand als Hintergrund */
-            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
-                        url('https://images.unsplash.com/photo-1523895665936-7bfe172b757d?q=80&w=2070');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            background: url('https://r.jina.ai/i/0530b77a79e44652a229a43a0e1074a3') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
-        h1 { font-size: 5rem; color: #00ced1; -webkit-text-stroke: 2px #333; text-shadow: 6px 6px 0px #fff200; margin: 0; transform: rotate(-3deg); }
-        .tagline { font-family: 'Bangers', cursive; font-size: 1.8rem; color: #ff00ff; margin-bottom: 40px; text-shadow: 2px 2px 0px #333; }
-        
+
+        /* Die Willkommens-Box */
+        .welcome-box {
+            background: rgba(255, 255, 255, 0.95);
+            border: 8px solid #000;
+            padding: 50px;
+            box-shadow: 20px 20px 0px #ff00ff; /* Pinker Schatten */
+            transform: rotate(1deg);
+        }
+
+        h1 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 5rem;
+            color: #00ced1;
+            -webkit-text-stroke: 2px black;
+            text-shadow: 6px 6px 0px #fff200;
+            margin: 0 0 20px 0;
+            transform: rotate(-3deg);
+        }
+
+        .tagline {
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        /* Der Eintreten-Button im Graffiti-Style */
         .enter-btn {
-            padding: 20px 50px; border: 5px solid #333; color: white; text-decoration: none;
-            font-size: 2.2rem; background: #00ced1; box-shadow: 10px 10px 0px #ff00ff; transition: 0.2s;
+            display: inline-block;
+            background: #ff00ff;
+            color: white;
+            padding: 25px 60px;
+            text-decoration: none;
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
+            border: 5px solid black;
+            box-shadow: 10px 10px 0px black;
+            transition: 0.2s;
             cursor: pointer;
         }
-        .enter-btn:hover { transform: scale(1.1); box-shadow: 5px 5px 0px #ff00ff; }
+
+        .enter-btn:hover {
+            transform: scale(1.1) rotate(2deg);
+            background: #fff200;
+            color: black;
+            box-shadow: 5px 5px 0px black;
+        }
+
+        /* Ein kleiner Sticker-Effekt unten */
+        .footer-tag {
+            position: absolute;
+            bottom: 20px;
+            background: white;
+            padding: 10px 20px;
+            font-family: 'Permanent Marker';
+            border: 3px solid black;
+            transform: rotate(-5deg);
+        }
     </style>
 </head>
 <body>
+
     <div class="hero">
-        <h1>HEY YO!</h1>
-        <p class="tagline">Bist du bereit für den Beat?</p>
-        <a href="Hauptseite.html" class="enter-btn">EINTRETEN</a>
+        <div class="welcome-box">
+            <h1>YO!</h1>
+            <p class="tagline">Bereit für den Sound?</p>
+            
+            <a href="Hauptseite" class="enter-btn">EINTRETEN</a>
+        </div>
+        
+        <div class="footer-tag">STAY REAL! ✌️</div>
     </div>
+
 </body>
 </html>
