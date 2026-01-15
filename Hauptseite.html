@@ -3,30 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hauptseite | Kids Pop Art</title>
+    <title>Hauptseite | Kids Pop</title>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
+        /* Der Hintergrund wird hier direkt mit Code "gemalt" */
         body {
-            margin: 0; padding: 0; background-color: #ff00ff;
-            background: url('https://images.unsplash.com/photo-1583244532610-2ae22e06184d?q=80&w=2070') no-repeat center center fixed;
-            background-size: cover; font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #00ced1;
+            background-image: 
+                radial-gradient(#ff00ff 15%, transparent 16%),
+                radial-gradient(#fff200 15%, transparent 16%),
+                linear-gradient(45deg, rgba(0,0,0,0.05) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0.05)),
+                linear-gradient(45deg, rgba(0,0,0,0.05) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0.05));
+            background-size: 40px 40px, 40px 40px, 80px 80px, 80px 80px;
+            background-position: 0 0, 20px 20px, 0 0, 40px 40px;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
         }
+
         nav {
-            background: #fff200; padding: 15px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; border-bottom: 5px solid black; position: sticky; top: 0; z-index: 1000;
+            background: #fff200;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 5px solid black;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+
         nav a {
-            font-family: 'Bangers', cursive; color: black; text-decoration: none; font-size: 1.1rem; padding: 8px 12px; border: 3px solid black; background: white;
+            font-family: 'Bangers', cursive;
+            color: black;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 5px 10px;
+            border: 3px solid black;
+            background: white;
         }
-        .main-container {
-            max-width: 800px; margin: 60px auto; background: rgba(255, 255, 255, 0.95); border: 8px solid #000; padding: 30px; box-shadow: 20px 20px 0px #00ced1;
+
+        .main-panel {
+            max-width: 600px;
+            margin: 80px auto 20px;
+            background: white;
+            border: 6px solid black;
+            padding: 30px;
+            box-shadow: 15px 15px 0px black;
+            text-align: center;
         }
+
         h1 {
-            font-family: 'Permanent Marker', cursive; font-size: 4rem; color: #00ced1; -webkit-text-stroke: 2px black; text-shadow: 4px 4px 0px #fff200; text-align: center; margin-top: -70px;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 4rem;
+            color: #00ced1;
+            -webkit-text-stroke: 2px black;
+            text-shadow: 4px 4px 0px #ff00ff;
+            margin: 0;
+            margin-top: -80px;
+            background: white;
+            display: inline-block;
+            padding: 0 15px;
+            border: 4px solid black;
+            transform: rotate(-3deg);
         }
-        .content-text { font-size: 1.3rem; line-height: 1.5; color: #222; margin-top: 20px; border: 3px dashed #ff00ff; padding: 20px; background: white; }
+
+        .text-area {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            border: 3px dashed #00ced1;
+            padding: 15px;
+            line-height: 1.4;
+        }
+
+        /* Die Symbole als "reiner Code" (keine Bilder nötig) */
+        .emoji-art { font-size: 4rem; margin: 10px; display: inline-block; filter: drop-shadow(3px 3px 0px #fff200); }
+
     </style>
 </head>
 <body>
+
     <nav>
         <a href="Hauptseite">Home</a>
         <a href="Über mich">Über mich</a>
@@ -36,12 +94,19 @@
         <a href="Datenschutz">Datenschutz</a>
         <a href="Impressum">Impressum</a>
     </nav>
-    <div class="main-container">
-        <h1>DEIN NAME</h1>
-        <div class="content-text">
-            <p><strong>BÄM! WILLKOMMEN!</strong></p>
-            <p>Hier geht die Post ab. Check meine Musik und meine Shows!</p>
+
+    <div class="main-panel">
+        <h1>ANTON</h1>
+        
+        <div class="emoji-art">🎧</div>
+        <div class="emoji-art">🧢</div>
+        <div class="emoji-art">🔊</div>
+
+        <div class="text-area">
+            <p><strong>YO! WILLKOMMEN!</strong></p>
+            <p>Hier ist die neue Base für Kids-Pop & HipHop. Schau dich um!</p>
         </div>
     </div>
+
 </body>
 </html>
