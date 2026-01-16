@@ -1,92 +1,45 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #FFD93D;
-            --secondary: #FF6B6B;
-            --accent: #4D96FF;
-            --dark: #2d3436;
-        }
+<style>
+  /* Styling für die Pop-Art Buttons */
+  .nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+  }
 
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Poppins', sans-serif;
-            /* Ein generiertes Streetart-Pattern (Doodles/Grafitti Style) */
-            background-color: #f0f0f0;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 86c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm66-3c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm-46-45c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm54 54c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM58 7c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM10 40c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm50-28c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm40 10c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM20 50c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm60 40c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM30 20c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm40 40c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM90 10c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM80 10c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ff6b6b' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+  .nav-button {
+    text-decoration: none;
+    color: #333;
+    background: #ffd1dc; /* Farbe 3 aus deinem Schema */
+    padding: 10px 20px;
+    border: 3px solid #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 5px 5px 0px #333; /* Harter Pop-Art Schatten */
+    transition: all 0.2s ease;
+  }
 
-        header {
-            background: white;
-            padding: 25px 20px;
-            text-align: center;
-            border-bottom: 6px solid var(--dark);
-            box-shadow: 0 10px 0px rgba(0,0,0,0.1);
-        }
+  .nav-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px #e0eafc; /* Schattenfarbe wechselt beim Hover */
+    background: #fff;
+  }
 
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            color: var(--dark);
-            margin: 0 0 15px 0;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-        }
+  .nav-button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px #333;
+  }
+</style>
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 800;
-            padding: 8px 18px;
-            background: var(--primary);
-            border: 3px solid var(--dark);
-            border-radius: 12px;
-            box-shadow: 4px 4px 0px var(--dark);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            transition: 0.1s;
-        }
-
-        nav a:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 0px 0px 0px var(--dark);
-        }
-
-        .main-content {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
-
-        .welcome-card {
-            background: white;
-            padding: 40px;
-            border: 6px solid var(--dark);
-            border-radius: 30px;
-            box-shadow: 15px 15px 0px var(--accent);
-            text-align: center;
-            max-width: 500px;
-            /* Der Comic-Twist */
-            transform: rotate(-1deg);
-        }
-
-        h2 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; color: var(--dark); margin: 0; }
-        
-        .cta-btn {
+<div class="nav-container">
+    <a href="index.html" class="nav-button">Home</a>
+    <a href="Hauptseite.html" class="nav-button">Hauptseite</a>
+    <a href="Über mich.html" class="nav-button">Über mich</a>
+    <a href="Konzerte.html" class="nav-button">Konzerte</a>
+    <a href="Social Media.html" class="nav-button">Social Media</a>
+    <a href="Kontakt.html" class="nav-button">Kontakt</a>
+    <a href="Impressum.html" class="nav-button">Impressum</a>
+    <a href="Datenschutz.html" class="nav-button">Datenschutz</a>
+</div>
