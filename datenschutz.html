@@ -11,7 +11,7 @@
             --secondary: #FF6B6B;
             --accent: #4D96FF;
             --dark: #1e272e;
-            --bg-dark: #0d1117;
+            --bg-medium: #1c2533; /* Etwas helleres Dunkelblau */
         }
 
         * { box-sizing: border-box; }
@@ -20,10 +20,10 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-medium);
             
-            /* INTENSIVE STREET ART SVG PATTERN */
-            background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3C!-- Anton Tags --%3E%3Ctext x='40' y='80' font-family='Montserrat' font-size='50' font-weight='900' transform='rotate(-15, 40, 80)'%3EANTON%3C/text%3E%3Ctext x='400' y='500' font-family='Montserrat' font-size='40' font-weight='900' transform='rotate(10, 400, 500)'%3EANTON%3C/text%3E%3C!-- Graffiti Elements --%3E%3Cpath d='M500 100l10 20h-20z'/%3E%3Crect x='498' y='125' width='4' height='20' rx='2'/%3E%3Crect x='506' y='125' width='3' height='10' rx='1.5'/%3E%3C!-- Splats --%3E%3Ccircle cx='100' cy='400' r='15'/%3E%3Ccircle cx='115' cy='425' r='5'/%3E%3Ccircle cx='90' cy='420' r='8'/%3E%3C!-- X Marks --%3E%3Cpath d='M250 50l20 20M270 50l-20 20' stroke='%23ffffff' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M50 500l15 15M65 500l-15 15' stroke='%23ffffff' stroke-width='5' stroke-linecap='round'/%3E%3C!-- Drips --%3E%3Cpath d='M300 0v30c0 5-5 5-5 0v-30zM315 0v50c0 5-5 5-5 0v-50z'/%3E%3C!-- Music & Vibes --%3E%3Ctext x='250' y='300' font-family='Montserrat' font-size='80' font-weight='900' fill-opacity='0.03'%3E♫%3C/text%3E%3Ccircle cx='550' cy='350' r='25' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M530 350h40' stroke='%23ffffff' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E");
+            /* STREET ART SVG MIT A-N-T-O-N, NOTENSCHLÜSSEL & MIKRO */
+            background-image: url("data:image/svg+xml,%3Csvg width='500' height='500' viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3C!-- Buchstaben ANTON --%3E%3Ctext x='40' y='100' font-family='Montserrat' font-size='80' font-weight='900'%3EA%3C/text%3E%3Ctext x='150' y='150' font-family='Montserrat' font-size='70' font-weight='900' transform='rotate(15, 150, 150)'%3EN%3C/text%3E%3Ctext x='280' y='80' font-family='Montserrat' font-size='90' font-weight='900' transform='rotate(-10, 280, 80)'%3ET%3C/text%3E%3Ctext x='380' y='160' font-family='Montserrat' font-size='75' font-weight='900'%3EO%3C/text%3E%3Ctext x='430' y='300' font-family='Montserrat' font-size='85' font-weight='900' transform='rotate(20, 430, 300)'%3EN%3C/text%3E%3C!-- Notenschlüssel (Symbolisiert) --%3E%3Ctext x='50' y='400' font-family='Arial' font-size='100'%3E%26%23119070;%3C/text%3E%3C!-- Mikrofon (Symbolisiert) --%3E%3Cpath d='M250 300c15 0 25-10 25-25V220c0-15-10-25-25-25s-25 10-25 25v55c0 15 10 25 25 25z'/%3E%3Cpath d='M220 250c0 15 15 30 30 30s30-15 30-30M250 280v20M235 305h30' stroke='%23ffffff' stroke-width='4' fill='none'/%3E%3C!-- Drips --%3E%3Ccircle cx='45' cy='120' r='4'/%3E%3Ccircle cx='55' cy='135' r='3'/%3E%3Ccircle cx='290' cy='110' r='5'/%3E%3C/g%3E%3C/svg%3E");
             color: var(--dark);
         }
 
@@ -39,11 +39,11 @@
             color: var(--dark);
             background: white;
             padding: 12px 30px;
-            border-radius: 10px;
+            border-radius: 50px;
             font-weight: 900;
             border: 4px solid var(--dark);
             box-shadow: 6px 6px 0px var(--secondary);
-            transition: 0.1s;
+            transition: 0.15s;
             display: inline-block;
             text-transform: uppercase;
         }
@@ -54,55 +54,51 @@
         }
 
         .legal-box {
-            background: white;
+            background: rgba(255, 255, 255, 0.97);
             padding: 50px;
-            border-radius: 30px;
+            border-radius: 35px;
             border: 5px solid var(--dark);
-            box-shadow: 25px 25px 0px rgba(0,0,0,0.7);
+            box-shadow: 20px 20px 0px rgba(0,0,0,0.5);
         }
 
         h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.8rem, 7vw, 3rem);
+            font-size: clamp(2rem, 8vw, 3rem);
             color: var(--secondary);
-            text-shadow: 4px 4px 0px var(--dark);
+            text-shadow: 3px 3px 0px var(--dark);
             text-transform: uppercase;
-            margin-bottom: 0;
+            margin-bottom: 20px;
         }
 
         h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-top: 40px;
             background: var(--primary);
-            display: inline-block;
-            padding: 0 10px;
+            padding: 5px 15px;
             border: 3px solid var(--dark);
-            box-shadow: 4px 4px 0px var(--dark);
+            display: inline-block;
+            transform: rotate(-1deg);
         }
 
         .contact-card {
-            background: #f0f4f8;
+            background: #f1f5f9;
             padding: 25px;
             border: 3px solid var(--dark);
             margin: 25px 0;
-            border-radius: 15px;
+            border-radius: 20px;
         }
 
         .opt-out-list {
-            background: #fff9db;
+            background: #fff3cd;
             padding: 20px;
-            border: 3px solid var(--dark);
             border-left: 10px solid var(--accent);
+            border-radius: 10px;
             margin: 20px 0;
         }
 
-        /* Styling der Links */
-        a { color: var(--accent); font-weight: 600; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-
         @media (max-width: 600px) {
-            .legal-box { padding: 30px 15px; }
+            .legal-box { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -115,7 +111,7 @@
 
         <main class="legal-box">
             <h1>Datenschutz</h1>
-            <p style="font-size: 0.8rem; opacity: 0.6;">Stand: 21. März 2023</p>
+            <p><strong>Stand: 21. März 2023</strong></p>
 
             <h2>Verantwortlicher</h2>
             <div class="contact-card">
@@ -126,16 +122,16 @@
             </div>
 
             <h2>Cookies & Werbung</h2>
-            <p>Hier können Sie die Nutzung zu Werbezwecken einschränken (Opt-Out):</p>
+            <p>Zur Verwaltung Ihrer Werbepräferenzen nutzen Sie bitte:</p>
             <div class="opt-out-list">
-                • <a href="https://www.youronlinechoices.eu" target="_blank">Europa (Choice)</a><br>
-                • <a href="https://optout.aboutads.info" target="_blank">Global (AboutAds)</a>
+                • <a href="https://www.youronlinechoices.eu" target="_blank">YourOnlineChoices (EU)</a><br>
+                • <a href="https://optout.aboutads.info" target="_blank">AboutAds (Global)</a>
             </div>
 
-            <h2>Deine Rechte</h2>
-            <p>Du hast jederzeit das Recht auf Auskunft, Löschung und Sperrung deiner Daten gemäß der DSGVO.</p>
+            <h2>Ihre Rechte</h2>
+            <p>Sie haben gemäß DSGVO Rechte auf Auskunft, Berichtigung, Löschung und Widerspruch Ihrer Daten.</p>
 
-            <p style="margin-top: 50px; text-align: center; font-size: 0.7rem; opacity: 0.4;">
+            <p style="margin-top: 50px; text-align: center; font-size: 0.75rem; opacity: 0.5;">
                 Erstellt mit Datenschutz-Generator.de
             </p>
         </main>
