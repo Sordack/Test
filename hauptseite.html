@@ -6,103 +6,130 @@
     <title>Hauptseite | ANTON</title>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-blue: #ade8f4;
+            --sidebar-width: 15%; /* Auf 15% verkleinert */
+            --accent-yellow: #FFD93D;
+        }
+
         body {
             margin: 0;
-            height: 100vh;
             display: flex;
-            background: #ade8f4; /* Das charakteristische Blau */
             font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f0f9ff;
+            height: 100vh;
             overflow: hidden;
-            position: relative;
         }
 
-        /* GRAFISCHE HINTERGRUND-ELEMENTE */
-        .bg-elements {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .bg-letter {
-            position: absolute;
-            font-family: 'Permanent Marker', cursive;
-            font-size: 30vw;
-            color: rgba(255, 255, 255, 0.1);
-            transform: rotate(-10deg);
-        }
-
-        .bg-symbol {
-            position: absolute;
-            font-size: 10vw;
-            color: rgba(255, 255, 255, 0.05);
-        }
-
-        /* SIDEBAR (15% BREITE) */
+        /* SCHMALE SIDEBAR (15%) */
         .sidebar {
-            width: 15%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 30px 15px;
+            width: var(--sidebar-width);
+            background: white;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 30px 15px;
             box-sizing: border-box;
-            z-index: 10;
+            border-right: 2px solid #e0e0e0;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.05);
+            z-index: 20;
+            min-width: 120px; /* Sicherstellung der Lesbarkeit */
         }
 
-        .sidebar-top { position: relative; }
+        .top-part {
+            position: relative;
+        }
 
+        /* Das neue X oben rechts */
         .close-x {
-            font-family: 'Permanent Marker', cursive;
-            color: #ff4d4d;
-            font-size: 1.5rem;
             position: absolute;
             top: -10px;
             right: 0;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.5rem;
+            color: #333;
             cursor: pointer;
         }
 
         .logo {
             font-family: 'Permanent Marker', cursive;
             font-size: 2rem;
-            margin-bottom: 40px;
+            text-align: left;
+            margin-bottom: 30px;
+            color: #333;
         }
 
-        nav ul { list-style: none; padding: 0; }
-        nav ul li { margin: 20px 0; }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 15px 0;
+        }
+
         nav ul li a {
             text-decoration: none;
             color: #333;
+            font-size: 1rem;
             font-weight: 700;
             transition: color 0.3s;
         }
-        nav ul li a:hover { color: #00b4d8; }
 
-        /* FENSTER-LAYOUT GRID */
-        .main-content {
-            width: 85%;
-            padding: 30px;
-            display: grid;
-            grid-template-columns: 2fr 1fr; /* News-Fenster breiter */
-            grid-template-rows: 1fr 1fr;
-            gap: 25px;
-            box-sizing: border-box;
-            z-index: 5;
+        nav ul li a:hover {
+            color: #00b4d8;
         }
 
-        .window {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 25px;
+        /* SOCIAL MEDIA ICONS */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Zeilenumbruch falls Sidebar zu schmal */
+            gap: 10px;
+            font-size: 1rem;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+        }
+
+        .social-media a {
+            text-decoration: none;
+            color: #555;
+            transition: transform 0.2s;
+        }
+
+        .social-media a:hover {
+            transform: scale(1.2);
+            color: #000;
+        }
+
+        /* MAIN CONTENT AREA (85%) */
+        .main-content {
+            width: calc(100% - var(--sidebar-width));
+            padding: 40px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 25px;
+        }
+
+        /* FENSTER-STYLING */
+        .content-window {
+            background: white;
+            border-radius: 20px;
             padding: 25px;
-            border: 4px solid #fff;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
             overflow-y: auto;
         }
 
         .news-window {
-            grid-row: span 2; /* Großes Fenster links */
+            grid-row: span 2;
+            border-top: 8px solid var(--accent-yellow);
+        }
+
+        .small-window {
+            border-top: 8px solid var(--primary-blue);
         }
 
         h2 {
@@ -111,46 +138,38 @@
             color: #333;
         }
 
-        /* SIDEBAR FOOTER & SOCIALS */
-        .sidebar-bottom { text-align: center; }
-
-        .social-icons {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-            font-family: 'Permanent Marker', cursive;
+        /* FOOTER MIT URL */
+        .sidebar-footer {
+            text-align: center;
         }
 
-        .social-icons a { text-decoration: none; color: #333; font-size: 0.9rem; }
+        .footer-links {
+            font-size: 0.75rem;
+            margin-bottom: 5px;
+        }
 
         .footer-links a {
-            font-size: 0.8rem;
-            color: #555;
+            color: #888;
             text-decoration: none;
-            display: block;
-            margin: 5px 0;
+            margin: 0 2px;
+            display: block; /* Untereinander in schmaler Sidebar */
         }
 
-        .url-footer {
+        .url-subtext {
             display: block;
-            font-size: 0.75rem;
-            color: rgba(0,0,0,0.4);
-            margin-top: 15px;
-            font-weight: 700;
+            font-size: 0.65rem;
+            color: #bbb;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+            word-break: break-all;
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-elements">
-        <div class="bg-letter" style="top: -5%; right: 5%;">A</div>
-        <div class="bg-symbol" style="bottom: 10%; left: 20%; transform: rotate(15deg);">♫</div>
-        <div class="bg-symbol" style="top: 40%; right: 25%;">★</div>
-    </div>
-
     <aside class="sidebar">
-        <div class="sidebar-top">
-            <span class="close-x">X</span>
+        <div class="top-part">
+            <div class="close-x">X</div>
             <div class="logo">ANTON</div>
             <nav>
                 <ul>
@@ -162,30 +181,39 @@
             </nav>
         </div>
 
-        <div class="sidebar-bottom">
-            <div class="social-icons">
-                <a href="#">YT</a> <a href="#">TT</a> <a href="#">IG</a> <a href="#">FB</a> <a href="#">@</a>
+        <div class="bottom-part">
+            <div class="social-media">
+                <a href="#" title="YouTube">YT</a>
+                <a href="#" title="TikTok">TT</a>
+                <a href="#" title="Instagram">IG</a>
+                <a href="#" title="Facebook">FB</a>
+                <a href="#" title="@">@</a>
             </div>
-            <div class="footer-links">
-                <a href="impressum.html">Impressum</a>
-                <a href="datenschutz.html">Datenschutz</a>
+            
+            <div class="sidebar-footer">
+                <div class="footer-links">
+                    <a href="impressum.html">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                </div>
+                <span class="url-subtext">www.anton-familienpop.de</span>
             </div>
-            <span class="url-footer">www.anton-familienpop.de</span>
         </div>
     </aside>
 
     <main class="main-content">
-        <section class="window news-window">
+        <section class="content-window news-window">
             <h2>Neuigkeiten</h2>
-            <p>Dein Content hier...</p>
+            <p>Hier erfährst du alles über neue Songs und Projekte...</p>
         </section>
 
-        <section class="window">
-            <h2>Kommende Show</h2>
+        <section class="content-window small-window">
+            <h2>Nächstes Event</h2>
+            <p>Schau bald wieder rein!</p>
         </section>
 
-        <section class="window">
+        <section class="content-window small-window">
             <h2>Social Feed</h2>
+            <p>Folge mir für mehr Insights.</p>
         </section>
     </main>
 
