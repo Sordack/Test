@@ -17,7 +17,7 @@
             background-size: 400% 400%;
             animation: gradientBG 10s ease infinite;
             overflow: hidden;
-            font-family: sans-serif;
+            font-family: 'Permanent Marker', cursive;
         }
 
         @keyframes gradientBG {
@@ -27,42 +27,77 @@
         }
 
         .welcome-text {
-            font-family: 'Permanent Marker', cursive !important;
             font-size: clamp(2.2rem, 8vw, 5.5rem);
             color: white;
             text-shadow: 4px 4px 15px rgba(0,0,0,0.15);
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             animation: float 4s ease-in-out infinite;
             padding: 0 20px;
-            line-height: 1.2;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(-1deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+        }
+
+        /* Moderner Button-Container */
+        .btn-container {
+            position: relative;
+            display: inline-block;
         }
 
         .enter-btn {
-            padding: 18px 50px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 70px;
             font-family: 'Permanent Marker', cursive !important;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: #000;
             background: #FFD93D;
             text-decoration: none;
-            border-radius: 60px;
-            box-shadow: 0 8px 0px #d4b42a;
-            transition: all 0.2s ease;
+            border-radius: 20px;
+            overflow: hidden; /* Damit die Note im Hintergrund bleibt */
+            box-shadow: 0 10px 30px rgba(255, 217, 61, 0.4), inset 0 0 15px rgba(255,255,255,0.5);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid #fff;
+        }
+
+        /* Die Doppelnote im Hintergrund des Buttons */
+        .enter-btn::before {
+            content: "\266B"; /* Unicode für Doppelnote */
+            position: absolute;
+            font-size: 5rem;
+            color: rgba(0, 0, 0, 0.08);
+            right: 15px;
+            bottom: -5px;
+            transform: rotate(-15deg);
+            pointer-events: none;
         }
 
         .enter-btn:hover {
-            transform: translateY(3px) scale(1.05);
-            box-shadow: 0 5px 0px #d4b42a;
+            transform: scale(1.08) translateY(-5px);
+            background: #ffe16b;
+            box-shadow: 0 15px 40px rgba(255, 217, 61, 0.6);
         }
+
+        .enter-btn:active {
+            transform: scale(0.98);
+        }
+
     </style>
 </head>
 <body>
+
     <h1 class="welcome-text">Hey! Schön das du da bist!</h1>
-    <a href="hauptseite.html" class="enter-btn">Komm rein</a>
+
+    <div class="btn-container">
+        <a href="hauptseite.html" class="enter-btn">
+            Komm rein
+        </a>
+    </div>
+
 </body>
 </html>
