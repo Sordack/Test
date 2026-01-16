@@ -3,200 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hauptseite | ANTON</title>
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Hauptseite | Dein Name</title>
     <style>
-        :root {
-            --primary-blue: #ade8f4;
-            --sidebar-width: 25%;
-            --accent-yellow: #FFD93D;
-        }
-
-        body {
+        /* Grundlayout */
+        body, html {
             margin: 0;
-            display: flex;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f0f9ff;
-            height: 100vh;
-            overflow: hidden;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            overflow-x: hidden;
+            background-color: #1a1a1a;
         }
 
-        /* SCHMALE SIDEBAR (25%) */
-        .sidebar {
-            width: var(--sidebar-width);
-            background: white;
+        /* Hintergrund Canvas */
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Container für Sidebar und Inhalt */
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Schmale Sidebar (25%) */
+        nav {
+            width: 25%;
+            background: rgba(0, 0, 0, 0.7); /* Halbtransparent, damit Hintergrund leicht durchscheint */
+            backdrop-filter: blur(5px);
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 40px 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
             box-sizing: border-box;
-            border-right: 2px solid #e0e0e0;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.05);
-            z-index: 20;
         }
 
-        .logo {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 40px;
-            color: #333;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 15px 0;
-        }
-
-        nav ul li a {
+        .menu-links a {
+            display: block;
+            color: white;
             text-decoration: none;
-            color: #333;
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
             transition: color 0.3s;
         }
 
-        nav ul li a:hover {
-            color: #00b4d8;
+        .menu-links a:hover {
+            color: #ff00ff; /* Ein Akzent-Farbton */
         }
 
-        /* SOCIAL MEDIA ICONS */
-        .social-media {
+        /* Social Media Icons Bereich */
+        .social-icons {
             display: flex;
-            justify-content: center;
+            flex-wrap: wrap;
             gap: 15px;
-            font-size: 1.2rem;
-            padding: 20px 0;
-            border-top: 1px solid #eee;
+            font-size: 1.5rem;
+            padding-top: 20px;
         }
 
-        .social-media a {
+        .social-icons a {
+            color: white;
             text-decoration: none;
-            color: #555;
-            transition: transform 0.2s;
+            transition: transform 0.3s;
         }
 
-        .social-media a:hover {
+        .social-icons a:hover {
             transform: scale(1.2);
-            color: #000;
         }
 
-        /* MAIN CONTENT AREA */
-        .main-content {
-            width: calc(100% - var(--sidebar-width));
-            padding: 40px;
-            box-sizing: border-box;
-            display: grid;
-            /* Grid: Links groß, rechts zwei kleine untereinander */
-            grid-template-columns: 2fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 25px;
-        }
-
-        /* FENSTER-STYLING */
-        .content-window {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 1px solid rgba(0,0,0,0.05);
-            overflow-y: auto;
-        }
-
-        .news-window {
-            grid-row: span 2; /* Geht über beide Zeilen */
-            border-top: 8px solid var(--accent-yellow);
-        }
-
-        .small-window {
-            border-top: 8px solid var(--primary-blue);
-        }
-
-        h2 {
-            font-family: 'Permanent Marker', cursive;
-            margin-top: 0;
-            color: #333;
-        }
-
-        /* FOOTER MIT URL UNTER IMPRESSUM/DATENSCHUTZ */
-        .sidebar-footer {
-            text-align: center;
-        }
-
-        .footer-links {
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #888;
-            text-decoration: none;
-            margin: 0 5px;
-        }
-
-        .url-subtext {
-            display: block;
-            font-size: 0.75rem;
-            color: #bbb;
-            letter-spacing: 1px;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-
-    <aside class="sidebar">
-        <div class="top-part">
-            <div class="logo">ANTON</div>
-            <nav>
-                <ul>
-                    <li><a href="hauptseite.html">Home</a></li>
-                    <li><a href="konzerte.html">Konzerte</a></li>
-                    <li><a href="ueber-mich.html">Über mich</a></li>
-                    <li><a href="kontakt.html">Kontakt</a></li>
-                </ul>
-            </nav>
-        </div>
-
-        <div class="bottom-part">
-            <div class="social-media">
-                <a href="#" title="YouTube">YT</a>
-                <a href="#" title="TikTok">TT</a>
-                <a href="#" title="Instagram">IG</a>
-                <a href="#" title="Facebook">FB</a>
-                <a href="#" title="@">@</a>
-            </div>
-            
-            <div class="sidebar-footer">
-                <div class="footer-links">
-                    <a href="impressum.html">Impressum</a> | 
-                    <a href="datenschutz.html">Datenschutz</a>
-                </div>
-                <span class="url-subtext">www.anton-familienpop.de</span>
-            </div>
-        </div>
-    </aside>
-
-    <main class="main-content">
-        <section class="content-window news-window">
-            <h2>Neuigkeiten</h2>
-            <p>Hier erfährst du alles über neue Songs und Projekte...</p>
-        </section>
-
-        <section class="content-window small-window">
-            <h2>Nächstes Event</h2>
-            <p>Schau bald wieder rein!</p>
-        </section>
-
-        <section class="content-window small-window">
-            <h2>Social Feed</h2>
-            <p>Folge mir für mehr Insights.</p>
-        </section>
-    </main>
-
-</body>
-</html>
+        /* Inhaltsbereich */
+        main {
+            width: 75%;
+            padding: 50px;
+            box-sizing: border-
