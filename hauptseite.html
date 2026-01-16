@@ -8,137 +8,145 @@
     <style>
         body {
             margin: 0;
-            display: flex;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f4f7f6; /* Dein ursprünglicher Hauptseiten-Hintergrund */
             height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Sidebar auf 15% verkleinert */
-        .sidebar {
-            width: 15%;
-            background: #ffffff;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 25px 15px;
-            box-sizing: border-box;
-            border-right: 1px solid #ddd;
-        }
-
-        .sidebar-top {
+            background: #ade8f4; /* Das charakteristische Blau */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden;
             position: relative;
         }
 
-        /* Das gewünschte X */
+        /* GRAFISCHE HINTERGRUND-ELEMENTE */
+        .bg-elements {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-letter {
+            position: absolute;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 30vw;
+            color: rgba(255, 255, 255, 0.1);
+            transform: rotate(-10deg);
+        }
+
+        .bg-symbol {
+            position: absolute;
+            font-size: 10vw;
+            color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* SIDEBAR (15% BREITE) */
+        .sidebar {
+            width: 15%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .sidebar-top { position: relative; }
+
         .close-x {
             font-family: 'Permanent Marker', cursive;
-            color: #333;
-            font-size: 1.2rem;
+            color: #ff4d4d;
+            font-size: 1.5rem;
             position: absolute;
-            top: 0;
+            top: -10px;
             right: 0;
             cursor: pointer;
         }
 
         .logo {
             font-family: 'Permanent Marker', cursive;
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 40px;
-            color: #000;
         }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin-bottom: 20px;
-        }
-
+        nav ul { list-style: none; padding: 0; }
+        nav ul li { margin: 20px 0; }
         nav ul li a {
             text-decoration: none;
             color: #333;
             font-weight: 700;
-            font-size: 0.95rem;
+            transition: color 0.3s;
         }
+        nav ul li a:hover { color: #00b4d8; }
 
-        /* Hauptbereich mit der neuen Fenster-Aufteilung */
+        /* FENSTER-LAYOUT GRID */
         .main-content {
             width: 85%;
-            padding: 25px;
+            padding: 30px;
             display: grid;
-            /* 2 Spalten: Links Neuigkeiten (breit), rechts die kleinen Fenster */
-            grid-template-columns: 1.8fr 1fr; 
+            grid-template-columns: 2fr 1fr; /* News-Fenster breiter */
             grid-template-rows: 1fr 1fr;
-            gap: 20px;
+            gap: 25px;
             box-sizing: border-box;
+            z-index: 5;
         }
 
         .window {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 25px;
+            border: 4px solid #fff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             overflow-y: auto;
         }
 
-        /* Neuigkeiten-Fenster geht über beide Zeilen links */
         .news-window {
-            grid-row: span 2;
+            grid-row: span 2; /* Großes Fenster links */
         }
 
         h2 {
             font-family: 'Permanent Marker', cursive;
             margin-top: 0;
-            font-size: 1.4rem;
+            color: #333;
         }
 
-        /* Footer Bereich der Sidebar */
-        .sidebar-bottom {
-            text-align: center;
-        }
+        /* SIDEBAR FOOTER & SOCIALS */
+        .sidebar-bottom { text-align: center; }
 
         .social-icons {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             margin-bottom: 20px;
-            padding: 0 5px;
+            font-family: 'Permanent Marker', cursive;
         }
 
-        .social-icons a {
+        .social-icons a { text-decoration: none; color: #333; font-size: 0.9rem; }
+
+        .footer-links a {
+            font-size: 0.8rem;
+            color: #555;
             text-decoration: none;
-            color: #333;
-            font-size: 0.85rem;
-            font-weight: bold;
+            display: block;
+            margin: 5px 0;
         }
 
-        .footer-nav {
+        .url-footer {
+            display: block;
             font-size: 0.75rem;
-            margin-bottom: 10px;
-        }
-
-        .footer-nav a {
-            color: #777;
-            text-decoration: none;
-            display: block;
-            margin: 3px 0;
-        }
-
-        /* Die URL wie auf der Index-Seite */
-        .url-display {
-            display: block;
-            font-size: 0.7rem;
-            color: #aaa;
-            margin-top: 10px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: rgba(0,0,0,0.4);
+            margin-top: 15px;
+            font-weight: 700;
         }
     </style>
 </head>
 <body>
+
+    <div class="bg-elements">
+        <div class="bg-letter" style="top: -5%; right: 5%;">A</div>
+        <div class="bg-symbol" style="bottom: 10%; left: 20%; transform: rotate(15deg);">♫</div>
+        <div class="bg-symbol" style="top: 40%; right: 25%;">★</div>
+    </div>
 
     <aside class="sidebar">
         <div class="sidebar-top">
@@ -156,34 +164,28 @@
 
         <div class="sidebar-bottom">
             <div class="social-icons">
-                <a href="#">YT</a>
-                <a href="#">TT</a>
-                <a href="#">IG</a>
-                <a href="#">FB</a>
-                <a href="#">@</a>
+                <a href="#">YT</a> <a href="#">TT</a> <a href="#">IG</a> <a href="#">FB</a> <a href="#">@</a>
             </div>
-            <div class="footer-nav">
+            <div class="footer-links">
                 <a href="impressum.html">Impressum</a>
                 <a href="datenschutz.html">Datenschutz</a>
             </div>
-            <span class="url-display">www.anton-familienpop.de</span>
+            <span class="url-footer">www.anton-familienpop.de</span>
         </div>
     </aside>
 
     <main class="main-content">
         <section class="window news-window">
             <h2>Neuigkeiten</h2>
-            <p>Hier kommen deine neuesten Updates rein...</p>
+            <p>Dein Content hier...</p>
         </section>
 
         <section class="window">
-            <h2>Konzert-Vorschau</h2>
-            <p>Nächster Termin...</p>
+            <h2>Kommende Show</h2>
         </section>
 
         <section class="window">
-            <h2>Highlights</h2>
-            <p>Was gerade wichtig ist...</p>
+            <h2>Social Feed</h2>
         </section>
     </main>
 
