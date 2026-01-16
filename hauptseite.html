@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --menu-bg: rgba(255, 225, 0, 0.7); /* Fröhliches Sonnengelb */
-            --glass: rgba(255, 255, 255, 0.25);
-            --border: rgba(255, 255, 255, 0.4);
+            --menu-bg: rgba(255, 225, 0, 0.8); /* Knalliges, fröhliches Gelb */
+            --glass: rgba(255, 255, 255, 0.3);
+            --border: rgba(255, 255, 255, 0.5);
         }
 
         * { box-sizing: border-box; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -18,8 +18,7 @@
         body {
             margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            /* Sanfter Farbverlauf im Hintergrund */
-            background: linear-gradient(-45deg, #f0f9ff, #e0f2fe, #dbeafe, #f5f3ff);
+            background: linear-gradient(-45deg, #a2c2ff, #c3aaff, #ffb7ce, #a2eaff);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             min-height: 100vh;
@@ -30,20 +29,21 @@
 
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* DER BEWEGTE HINTERGRUND (Buchstaben & Symbole) */
+        /* DER BEWEGTE HINTERGRUND (Buchstaben & Musiknoten in Weiß) */
         .bg-pattern {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; 
-            opacity: 0.12; 
+            opacity: 0.4; /* Gesamte Deckkraft des Layers */
             pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000'%3E%3Ctext x='50' y='120' font-family='Montserrat' font-size='100' font-weight='900' transform='rotate(-10, 50, 120)'%3EA%3C/text%3E%3Ctext x='200' y='180' font-family='Montserrat' font-size='80' font-weight='900' transform='rotate(15, 200, 180)'%3EN%3C/text%3E%3Ctext x='350' y='100' font-family='Montserrat' font-size='110' font-weight='900' transform='rotate(-5, 350, 100)'%3ET%3C/text%3E%3Ctext x='480' y='220' font-family='Montserrat' font-size='90' font-weight='900' transform='rotate(10, 480, 220)'%3EO%3C/text%3E%3Ctext x='100' y='520' font-family='Montserrat' font-size='95' font-weight='900' transform='rotate(-15, 100, 520)'%3EN%3C/text%3E%3Ctext x='300' y='450' font-family='Arial' font-size='120'%3E%26%23119070;%3C/text%3E%3C/g%3E%3C/svg%3E");
-            animation: movePattern 40s linear infinite;
+            /* SVG mit A, N, T, O, N + Noten in weiß mit 50% Transparenz */
+            background-image: url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.5'%3E%3Ctext x='50' y='120' font-family='Montserrat' font-size='100' font-weight='900' transform='rotate(-10, 50, 120)'%3EA%3C/text%3E%3Ctext x='250' y='180' font-family='Montserrat' font-size='80' font-weight='900' transform='rotate(15, 250, 180)'%3EN%3C/text%3E%3Ctext x='450' y='100' font-family='Montserrat' font-size='110' font-weight='900' transform='rotate(-5, 450, 100)'%3ET%3C/text%3E%3Ctext x='650' y='220' font-family='Montserrat' font-size='90' font-weight='900' transform='rotate(10, 650, 220)'%3EO%3C/text%3E%3Ctext x='100' y='650' font-family='Montserrat' font-size='95' font-weight='900' transform='rotate(-15, 100, 650)'%3EN%3C/text%3E%3C!-- Musiknoten --%3E%3Ctext x='350' y='450' font-size='100'%3E%26%23119070;%3C/text%3E%3Ctext x='550' y='600' font-size='80'%3E%26%239835;%3C/text%3E%3Ctext x='150' y='350' font-size='60'%3E%26%239833;%3C/text%3E%3Ctext x='600' y='400' font-size='70'%3E%26%239834;%3C/text%3E%3C/g%3E%3C/svg%3E");
+            animation: movePattern 60s linear infinite;
         }
 
         @keyframes movePattern { 
             from { background-position: 0 0; } 
-            to { background-position: 600px 600px; } 
+            to { background-position: 800px 800px; } 
         }
 
         /* Overlay zum Schließen */
@@ -55,19 +55,19 @@
             display: none;
         }
 
-        /* Extra schmales Sidebar-Menü (ca. 18%) */
+        /* Sidebar-Menü (18% Breite) */
         .sidebar {
             position: fixed;
             top: 0; left: -25%;
             width: 18%;
             height: 100%;
             background: var(--menu-bg);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
             z-index: 2000;
             display: flex; flex-direction: column;
             padding: 40px 20px;
             border-right: 1px solid var(--border);
-            box-shadow: 15px 0 30px rgba(0,0,0,0.05);
+            box-shadow: 10px 0 30px rgba(0,0,0,0.05);
         }
 
         .sidebar.active { left: 0; }
@@ -80,23 +80,23 @@
             color: #000;
             font-weight: 900;
             text-transform: uppercase;
-            font-size: clamp(0.8rem, 1.1vw, 1.1rem);
+            font-size: clamp(0.7rem, 1vw, 1rem);
             letter-spacing: 1px;
         }
 
         .sidebar a.nav-link:hover { transform: translateX(5px); opacity: 0.6; }
 
+        /* Social Icons */
         .social-area {
             margin-top: auto;
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
             padding-bottom: 20px;
             justify-content: center;
         }
 
-        .social-area a { color: #000; font-size: 1.3rem; text-decoration: none; }
-        .social-area a:hover { transform: translateY(-3px); }
+        .social-area a { color: #000; font-size: 1.2rem; text-decoration: none; }
 
         /* Hamburger Button */
         .menu-btn {
@@ -117,88 +117,9 @@
             font-family: 'Montserrat';
             font-size: clamp(4rem, 15vw, 10rem);
             margin: 0; color: #fff;
-            text-shadow: 5px 5px 0px rgba(0,0,0,0.02);
+            text-shadow: 4px 4px 15px rgba(0,0,0,0.1);
         }
 
         /* Bento Grid */
         .container {
-            max-width: 1100px; margin: 40px auto; padding: 20px;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px; flex: 1;
-        }
-
-        .bento {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 35px; padding: 35px;
-            text-decoration: none; color: #000;
-            min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end;
-            backdrop-filter: blur(5px);
-        }
-
-        .bento:hover { transform: scale(1.02); background: rgba(255,255,255,0.4); }
-        .bento h2 { font-family: 'Montserrat'; margin: 0; font-size: 1.5rem; }
-
-        footer { padding: 30px; display: flex; justify-content: center; gap: 30px; }
-        footer a { text-decoration: none; color: #000; opacity: 0.4; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
-
-        /* Mobile */
-        @media (max-width: 1024px) { .sidebar { width: 30%; left: -35%; } }
-        @media (max-width: 768px) { .sidebar { width: 70%; left: -75%; } }
-    </style>
-</head>
-<body>
-
-    <div class="bg-pattern"></div>
-
-    <div id="menu-overlay" onclick="toggleMenu()"></div>
-
-    <div class="menu-btn" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-    </div>
-
-    <div class="sidebar" id="sidebar">
-        <div onclick="toggleMenu()" style="cursor:pointer; font-weight:800; font-size: 0.7rem; opacity: 0.5; text-align: right;">✕ CLOSE</div>
-        
-        <div class="menu-links">
-            <a href="konzerte.html" class="nav-link">Konzerte</a>
-            <a href="uebermich.html" class="nav-link">Über mich</a>
-            <a href="social.html" class="nav-link">Social</a>
-            <a href="kontakt.html" class="nav-link">Kontakt</a>
-        </div>
-
-        <div class="social-area">
-            <a href="notfound.html"><i class="fa-brands fa-youtube"></i></a>
-            <a href="notfound.html"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="notfound.html"><i class="fa-brands fa-instagram"></i></a>
-            <a href="notfound.html"><i class="fa-brands fa-facebook"></i></a>
-            <a href="notfound.html"><i class="fa-solid fa-at"></i></a>
-        </div>
-    </div>
-
-    <section class="hero">
-        <h1>ANTON</h1>
-        <p style="font-weight: 800; letter-spacing: 4px; opacity: 0.3; font-size: 0.9rem;">FAMILIEN POP / STREET VIBES</p>
-    </section>
-
-    <div class="container">
-        <a href="konzerte.html" class="bento" style="background: rgba(162, 210, 255, 0.3);"><h2>Konzerte</h2></a>
-        <a href="social.html" class="bento" style="background: rgba(255, 175, 204, 0.3);"><h2>Social</h2></a>
-        <a href="uebermich.html" class="bento" style="background: rgba(205, 180, 219, 0.3);"><h2>Story</h2></a>
-    </div>
-
-    <footer>
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-    </footer>
-
-    <script>
-        function toggleMenu() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('menu-overlay');
-            sidebar.classList.toggle('active');
-            overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
-        }
-    </script>
-</body>
-</html>
+            max-width: 1100px; margin: 40px auto; padding:
