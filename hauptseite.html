@@ -7,45 +7,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FFD93D;   /* Gelb */
-            --secondary: #FF6B6B; /* Koralle */
-            --accent: #4D96FF;    /* Blau */
-            --dark: #2d3436;      /* Comic-Schwarz */
+            --primary: #FFD93D;
+            --secondary: #FF6B6B;
+            --accent: #4D96FF;
+            --dark: #2d3436;
         }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: var(--primary);
-            /* Comic-Punkt-Muster */
-            background-image: radial-gradient(var(--dark) 1px, transparent 0);
-            background-size: 25px 25px;
-            background-color: #f0f0f0;
+            /* HIER DEN LINK ZU DEINEM BILD EINSETZEN */
+            background: url('DEIN_BILD_LINK_HIER') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* Fetter Comic-Header */
+        /* Ein leichter Overlay, damit man den Text über dem Bild besser lesen kann */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.1); /* 10% Weißschleier */
+            z-index: -1;
+        }
+
         header {
-            background: var(--primary);
+            background: rgba(255, 217, 61, 0.9);
             padding: 30px 20px;
             text-align: center;
             border-bottom: 6px solid var(--dark);
-            box-shadow: 0 10px 0px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
         }
 
         .logo {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-size: 3.5rem;
             color: var(--dark);
-            margin: 0 0 20px 0;
+            margin: 0 0 15px 0;
             text-transform: uppercase;
-            letter-spacing: -3px;
-            -webkit-text-stroke: 1px var(--dark);
         }
 
-        /* Navigation als "Sticker" */
         nav {
             display: flex;
             justify-content: center;
@@ -63,85 +67,67 @@
             border-radius: 10px;
             transition: 0.2s;
             box-shadow: 4px 4px 0px var(--dark);
-            font-size: 0.9rem;
-            text-transform: uppercase;
         }
 
         nav a:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 7px 7px 0px var(--dark);
+            box-shadow: 6px 6px 0px var(--dark);
             background: var(--accent);
             color: white;
         }
 
-        /* Aktiver Link Markierung */
-        .active-link {
-            background: var(--secondary) !important;
-            color: white !important;
-        }
-
         .main-content {
             flex: 1;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
         }
 
         .welcome-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95); /* Leicht transparentes Weiß */
             padding: 40px;
             border: 6px solid var(--dark);
             border-radius: 30px;
             box-shadow: 15px 15px 0px var(--secondary);
             text-align: center;
-            transform: rotate(-1deg);
+            max-width: 600px;
         }
 
-        h2 { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 2.5rem; 
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 15px 40px;
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1.3rem;
-            border: 4px solid var(--dark);
-            border-radius: 15px;
-            box-shadow: 6px 6px 0px var(--dark);
-            transition: 0.1s;
-        }
-
-        .cta-btn:hover {
-            background: #2ecc71;
-            transform: scale(1.05);
-        }
-
-        /* Footer */
         footer {
             background: var(--dark);
             color: white;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
-            margin-top: 40px;
-        }
-
-        .footer-links a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 10px;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class=
+    <div class="logo">ANTON</div>
+    <nav>
+        <a href="index.html">Start</a>
+        <a href="hauptseite.html">Home</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="konzerte.html">Konzerte</a>
+        <a href="social-media.html">Social</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+</header>
+
+<div class="main-content">
+    <div class="welcome-card">
+        <h2>Hey, was geht?</h2>
+        <p>Willkommen auf meiner offiziellen Seite! Hier gibt's die neuesten Tracks und alle Infos.</p>
+        <a href="konzerte.html" style="background: var(--accent); color: white; padding: 15px 30px; border-radius: 15px; text-decoration: none; font-weight: 900; border: 3px solid var(--dark); display: inline-block;">CHECK DIE TOUR!</a>
+    </div>
+</div>
+
+<footer>
+    <a href="impressum.html" style="color: white; margin-right: 10px;">Impressum</a> | 
+    <a href="datenschutz.html" style="color: white; margin-left: 10px;">Datenschutz</a>
+    <p>&copy; 202
