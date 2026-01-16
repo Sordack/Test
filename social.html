@@ -2,29 +2,30 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Social-Media</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social | ANTON</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; margin: 0; line-height: 1.6; }
-        nav { background: #333; padding: 1rem; text-align: center; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        .content { padding: 50px; max-width: 800px; margin: auto; }
+        :root { --primary: #FFD93D; --bg-color: #4a152c; --glass-bg: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.1); }
+        * { box-sizing: border-box; transition: 0.3s; }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-color); color: white; background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ctext x='50' y='120' font-family='Montserrat' font-size='100' font-weight='900' transform='rotate(-10, 50, 120)'%3EA%3C/text%3E%3Ctext x='200' y='180' font-family='Montserrat' font-size='80' font-weight='900' transform='rotate(15, 200, 180)'%3EN%3C/text%3E%3Ctext x='350' y='100' font-family='Montserrat' font-size='110' font-weight='900' transform='rotate(-5, 350, 100)'%3ET%3C/text%3E%3Ctext x='480' y='220' font-family='Montserrat' font-size='90' font-weight='900' transform='rotate(10, 480, 220)'%3EO%3C/text%3E%3Ctext x='100' y='520' font-family='Montserrat' font-size='95' font-weight='900' transform='rotate(-15, 100, 520)'%3EN%3C/text%3E%3Ctext x='300' y='450' font-family='Arial' font-size='120'%3E%26%23119070;%3C/text%3E%3C/g%3E%3C/svg%3E"); }
+        nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 800px; background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 100px; padding: 10px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+        nav a { text-decoration: none; color: rgba(255,255,255,0.7); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; }
+        .container { max-width: 1000px; margin: 150px auto; padding: 0 20px; }
+        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .social-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 30px; padding: 50px; text-align: center; text-decoration: none; color: white; }
+        .social-box:hover { background: rgba(255,255,255,0.08); border-color: var(--primary); transform: translateY(-5px); }
+        .tiktok { background: linear-gradient(45deg, rgba(255,0,80,0.1), rgba(0,242,234,0.1)); grid-column: span 2; }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="hauptseite.html">Home</a>
-        <a href="uebermich.html">Über mich</a>
-        <a href="konzerte.html">Konzerte</a>
-        <a href="social.html">Social Media</a>
-        <a href="kontakt.html">Kontakt</a>
-        <a href="datenschutz.html">Datenschutz</a>
-        <a href="impressum.html">Impressum</a>
-    </nav>
-    <div class="content">
-        <h1>Herzlich Willkommen</h1>
-        <p>Wähle einen Punkt im Menü aus, um mehr zu erfahren.</p>
+    <nav><a href="hauptseite.html" style="font-family:Montserrat; font-weight:900; color:var(--primary); text-decoration:none">ANTON</a><div style="display:flex; gap:20px"><a href="konzerte.html">Tour</a><a href="social_media.html" style="color:white">Social</a><a href="ueber_mich.html">Story</a></div></nav>
+    <div class="container">
+        <div class="bento-grid">
+            <a href="#" class="social-box tiktok"><h1>TikTok</h1><p>Check die neuesten Tanz-Moves & Sounds</p></a>
+            <a href="#" class="social-box"><h1>Instagram</h1><p>Backstage & Stories</p></a>
+            <a href="#" class="social-box"><h1>YouTube</h1><p>Musikvideos & Vlogs</p></a>
+        </div>
     </div>
 </body>
-
 </html>
-
