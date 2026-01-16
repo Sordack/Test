@@ -4,23 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impressum | ANTON</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #FFD93D; --dark: #1e272e; }
-        body { margin: 0; font-family: 'Poppins', sans-serif; background-color: var(--dark); color: white; padding: 40px 20px; }
-        .card { max-width: 700px; margin: 0 auto; background: #2d3436; padding: 40px; border-radius: 20px; border: 2px solid #444; }
-        h1 { font-family: 'Montserrat'; color: var(--primary); }
-        a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        :root {
+            --primary: #FFD93D;
+            --dark: #1e272e;
+            --secondary: #FF6B6B;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: white;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 20px;
+        }
+
+        .legal-card {
+            background: #2d3436;
+            max-width: 700px;
+            width: 100%;
+            padding: 50px;
+            border-radius: 30px;
+            border: 4px solid var(--primary);
+            box-shadow: 15px 15px 0px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        h2 { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; margin-top: 30px; color: var(--secondary); }
+        
+        p { line-height: 1.8; opacity: 0.9; }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--primary);
+            transition: 0.2s;
+        }
+
+        .back-link:hover { color: white; border-color: white; }
     </style>
 </head>
 <body>
-    <div class="card">
+
+    <div class="legal-card">
         <h1>Impressum</h1>
-        <p>Angaben gemäß § 5 TMG:</p>
-        <p><strong>Anton Künstlername</strong><br>Beispielstraße 123<br>12345 Berlin</p>
-        <p><strong>Kontakt:</strong><br>E-Mail: mail@anton-music.de</p>
-        <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
-        <a href="hauptseite.html">← Zurück zur Hauptseite</a>
+        
+        <h2>Angaben gemäß § 5 TMG</h2>
+        <p>
+            Anton [Dein Nachname]<br>
+            [Deine Straße Hausnummer]<br>
+            [PLZ Ort]
+        </p>
+
+        <h2>Kontakt</h2>
+        <p>E-Mail: [Deine E-Mail Adresse]</p>
+
+        <h2>Verbraucherstreitbeilegung</h2>
+        <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+        <a href="hauptseite.html" class="back-link">← Zurück zur Hauptseite</a>
     </div>
+
 </body>
 </html>
