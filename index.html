@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Willkommen | ANTON</title>
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@400&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -13,7 +13,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Grund-Hintergrund Farbe */
             background: #ade8f4;
             overflow: hidden;
             font-family: 'Permanent Marker', cursive;
@@ -23,34 +22,28 @@
         /* Die Basecap als Hintergrund-Großaufnahme */
         .cap-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Platzhalter für eine schwarze Cap - du kannst später dein eigenes Bild einfügen */
+            top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=2000') no-repeat center center;
             background-size: cover;
-            filter: blur(8px) grayscale(100%) brightness(0.7); /* Portrait-Look: Unscharf, Schwarz-Weiß, Dunkel */
-            opacity: 0.25; /* Sehr dezent */
+            filter: blur(8px) grayscale(100%) brightness(0.7);
+            opacity: 0.25;
             z-index: -1;
-            transform: scale(1.1); /* Verhindert weiße Ränder durch den Blur */
+            transform: scale(1.1);
         }
 
-        /* Das weiße A auf der Cap (simuliert als Overlay, falls das Bild kein A hat) */
+        /* Das weiße A auf der Cap */
         .cap-letter {
             position: absolute;
-            top: 45%;
-            left: 50%;
+            top: 45%; left: 50%;
             transform: translate(-50%, -50%) rotate(-5deg);
             font-size: 25vw;
-            color: rgba(255, 255, 255, 0.15); /* Sehr dezent auf dem Hintergrund */
-            font-family: 'Permanent Marker', cursive;
+            color: rgba(255, 255, 255, 0.15);
             z-index: -1;
             filter: blur(2px);
             pointer-events: none;
         }
 
-        /* Animierter Farbverlauf als Overlay für den Vibe */
+        /* Animierter Farbverlauf als Overlay */
         .overlay-gradient {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -83,9 +76,13 @@
             50% { transform: translateY(-15px) rotate(1deg); }
         }
 
-        .btn-wrapper {
+        .btn-area {
             position: relative;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px; /* Abstand zwischen Button und URL */
         }
 
         .enter-btn {
@@ -107,12 +104,11 @@
         }
 
         .enter-btn::after {
-            content: "\266B"; /* Doppelnote im Button */
+            content: "\266B";
             position: absolute;
             font-size: 5rem;
             color: rgba(0, 0, 0, 0.08);
-            right: 10px;
-            bottom: -10px;
+            right: 10px; bottom: -10px;
             transform: rotate(-15deg);
         }
 
@@ -120,6 +116,16 @@
             transform: scale(1.05) translateY(-5px);
             background: #FFD700;
             box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+        }
+
+        /* Die URL unter dem Button */
+        .url-subtext {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 2px;
+            font-weight: 400;
+            text-transform: lowercase;
         }
     </style>
 </head>
@@ -131,10 +137,11 @@
 
     <h1 class="welcome-text">Hey! Schön das du da bist!</h1>
 
-    <div class="btn-wrapper">
+    <div class="btn-area">
         <a href="hauptseite.html" class="enter-btn">
             Komm rein
         </a>
+        <span class="url-subtext">www.anton-familienpop.de</span>
     </div>
 
 </body>
