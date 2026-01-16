@@ -1,45 +1,141 @@
-<style>
-  /* Styling für die Pop-Art Buttons */
-  .nav-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 30px;
-  }
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hauptseite | ANTON</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD93D;
+            --secondary: #FF6B6B;
+            --accent: #4D96FF;
+            --dark: #2d3436;
+        }
 
-  .nav-button {
-    text-decoration: none;
-    color: #333;
-    background: #ffd1dc; /* Farbe 3 aus deinem Schema */
-    padding: 10px 20px;
-    border: 3px solid #333;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 5px 5px 0px #333; /* Harter Pop-Art Schatten */
-    transition: all 0.2s ease;
-  }
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary);
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.2) 1px, transparent 0);
+            background-size: 32px 32px;
+            min-height: 100vh;
+        }
 
-  .nav-button:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 7px 7px 0px #e0eafc; /* Schattenfarbe wechselt beim Hover */
-    background: #fff;
-  }
+        /* Der schräge Streifen bleibt als Design-Element im Hintergrund */
+        body::before {
+            content: "";
+            position: fixed; /* Fixed, damit er beim Scrollen stehen bleibt */
+            top: 0; left: 0;
+            width: 150%; height: 200px;
+            background: var(--secondary);
+            transform: rotate(-5deg) translateY(-50px);
+            z-index: 0;
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+        }
 
-  .nav-button:active {
-    transform: translate(3px, 3px);
-    box-shadow: 0px 0px 0px #333;
-  }
-</style>
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
 
-<div class="nav-container">
-    <a href="index.html" class="nav-button">Home</a>
-    <a href="Hauptseite.html" class="nav-button">Hauptseite</a>
-    <a href="Über mich.html" class="nav-button">Über mich</a>
-    <a href="Konzerte.html" class="nav-button">Konzerte</a>
-    <a href="Social Media.html" class="nav-button">Social Media</a>
-    <a href="Kontakt.html" class="nav-button">Kontakt</a>
-    <a href="Impressum.html" class="nav-button">Impressum</a>
-    <a href="Datenschutz.html" class="nav-button">Datenschutz</a>
-</div>
+        /* Die Karte wird hier zur Inhaltsbox */
+        .content-card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            border: 6px solid var(--dark);
+            box-shadow: 15px 15px 0px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .header-area {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .mini-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        /* Navigation im Streetart-Stil */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            background: white;
+            padding: 8px 15px;
+            border-radius: 12px;
+            border: 3px solid var(--dark);
+            font-weight: 900;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        p { line-height: 1.6; color: #444; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="header-area">
+            <h1 class="mini-logo">ANTON</h1>
+            <p style="font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Official Artist Page</p>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Konzerte.html">Konzerte</a>
+            <a href="Über mich.html">Über mich</a>
+            <a href="Social Media.html">Social Media</a>
+            <a href="Kontakt.html">Kontakt</a>
+        </nav>
+
+        <main class="content-card">
+            <h2>Willkommen auf der Hauptseite</h2>
+            <p>Hier kannst du nun deine Inhalte einfügen. Das Design orientiert sich an der Landingpage (Index), bietet aber mehr Platz für Texte, Bilder oder deine Konzertliste.</p>
+            
+            <p>Nutze diese Karte als Basis für alle deine Unterseiten, damit alles wie aus einem Guss wirkt!</p>
+        </main>
+
+        <footer style="text-align: center; margin-bottom: 40px;">
+            <nav style="font-size: 0.8rem;">
+                <a href="Impressum.html">Impressum</a>
+                <a href="Datenschutz.html">Datenschutz</a>
+            </nav>
+        </footer>
+
+    </div>
+
+</body>
+</html>
