@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hauptseite | ANTON</title>
     <style>
+        /* 1. Animierter Hintergrund (Türkis zu Weiß) */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: 'Arial', sans-serif;
-            background-color: #111;
-            color: white;
-            overflow: hidden; /* Verhindert Scrollen des Hintergrunds */
+            width: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(45deg, #00ced1, #ffffff, #00ced1);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
         }
 
-        /* Der interaktive Hintergrund */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         #canvas-container {
             position: fixed;
             top: 0;
@@ -23,99 +31,128 @@
             width: 100%;
             height: 100%;
             z-index: 1;
+            /* Ermöglicht das Klicken auf den Hintergrund, um das Menü zu öffnen */
+            cursor: pointer;
         }
 
-        /* Das Layout über dem Hintergrund */
-        .ui-layer {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            height: 100vh;
-            pointer-events: none; /* Klicks gehen durch auf den Hintergrund */
-        }
-
-        /* Schmale Sidebar (25%) */
+        /* 2. Gelbe Sidebar (50% Transparenz) */
         nav {
+            position: fixed;
+            top: 0;
+            left: -25%; /* Startet versteckt */
             width: 25%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            padding: 40px 20px;
+            height: 100%;
+            background-color: rgba(255, 235, 59, 0.5); /* Gelb mit 50% Transparenz */
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            transition: left 0.5s cubic-bezier(0.77,0,0.175,1);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            pointer-events: auto; /* Sidebar ist klickbar */
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 20px;
+            box-sizing: border-box;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        }
+
+        nav.open {
+            left: 0;
+        }
+
+        /* Schließen-Button (X) */
+        .close-btn {
+            align-self: flex-end;
+            font-size: 2rem;
+            color: #333;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: bold;
         }
 
         .menu-links a {
             display: block;
-            color: #eee;
+            color: #333;
             text-decoration: none;
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            font-weight: bold;
-            transition: 0.3s;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: transform 0.2s;
         }
 
         .menu-links a:hover {
-            color: #00d4ff;
-            padding-left: 10px;
+            transform: translateX(10px);
+            color: #000;
         }
 
         .social-icons {
+            margin-top: auto;
             display: flex;
             gap: 15px;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
         }
 
         .social-icons a {
-            color: white;
             text-decoration: none;
+            color: #333;
         }
 
-        main {
-            width: 75%;
-            padding: 60px;
-            pointer-events: auto;
+        /* Content Layer */
+        .main-content {
+            position: relative;
+            z-index: 5;
+            padding: 100px;
+            pointer-events: none; /* Klicks gehen durch zum Canvas */
         }
 
-        h1 { font-size: 3.5rem; margin-top: 0; }
+        h1 { font-size: 4rem; color: #333; }
     </style>
 </head>
-<body>
+<body onclick="openNav()">
 
     <canvas id="canvas-container"></canvas>
 
-    <div class="ui-layer">
-        <nav>
-            <div class="menu-links">
-                <a href="hauptseite.html">Home</a>
-                <a href="ueber-mich.html">Über mich</a>
-                <a href="konzerte.html">Konzerte</a>
-                <a href="kontakt.html">Kontakt</a>
-                <a href="impressum.html">Impressum</a>
-                <a href="datenschutz.html">Datenschutz</a>
-            </div>
+    <nav id="sidebar">
+        <span class="close-btn" onclick="closeNav(event)">×</span>
+        <div class="menu-links">
+            <a href="hauptseite.html">Home</a>
+            <a href="ueber-mich.html">Über mich</a>
+            <a href="konzerte.html">Konzerte</a>
+            <a href="kontakt.html">Kontakt</a>
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
 
-            <div class="social-icons">
-                <a href="#">🎬</a> <a href="#">📱</a> <a href="#">📸</a> <a href="#">👥</a> <a href="#">@</a>
-            </div>
-        </nav>
+        <div class="social-icons">
+            <a href="#">🎬</a>
+            <a href="#">📱</a>
+            <a href="#">📸</a>
+            <a href="#">👥</a>
+            <a href="#">@</a>
+        </div>
+    </nav>
 
-        <main>
-            <h1>ANTON</h1>
-            <p>Willkommen auf meiner Seite.</p>
-        </main>
+    <div class="main-content">
+        <h1>ANTON</h1>
+        <p>Klicke irgendwohin, um das Menü zu öffnen.</p>
     </div>
 
     <script>
+        // --- Sidebar Logik ---
+        function openNav() {
+            document.getElementById("sidebar").classList.add("open");
+        }
+
+        function closeNav(event) {
+            event.stopPropagation(); // Verhindert, dass der Klick sofort wieder openNav() auslöst
+            document.getElementById("sidebar").classList.remove("open");
+        }
+
+        // --- Hintergrund Animation (Buchstaben & Noten) ---
         const canvas = document.getElementById('canvas-container');
         const ctx = canvas.getContext('2d');
 
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        // Die spezifischen Zeichen für deinen Hintergrund
         const elements = ['A', 'N', 'T', 'O', 'N', '♪', '♫', '♭', '♯', '𝄞'];
         const particles = [];
 
@@ -128,12 +165,13 @@
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.text = elements[Math.floor(Math.random() * elements.length)];
-                this.size = Math.random() * 30 + 20;
-                this.speedX = (Math.random() - 0.5) * 1.5;
-                this.speedY = (Math.random() - 0.5) * 1.5;
-                this.opacity = Math.random() * 0.5 + 0.2;
+                this.size = Math.random() * 40 + 20;
+                // Langsamere Bewegungen wie gewünscht
+                this.speedX = (Math.random() - 0.5) * 0.8; 
+                this.speedY = (Math.random() - 0.5) * 0.8;
+                this.opacity = Math.random() * 0.4 + 0.1;
                 this.rotation = Math.random() * Math.PI * 2;
-                this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.01;
             }
 
             update() {
@@ -141,33 +179,30 @@
                 this.y += this.speedY;
                 this.rotation += this.rotationSpeed;
 
-                // Bounce an den Rändern
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                if (this.x < -50) this.x = canvas.width + 50;
+                if (this.x > canvas.width + 50) this.x = -50;
+                if (this.y < -50) this.y = canvas.height + 50;
+                if (this.y > canvas.height + 50) this.y = -50;
             }
 
             draw() {
                 ctx.save();
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.rotation);
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                // Dunklere Farbe für die Zeichen auf dem hellen Hintergrund
+                ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`;
                 ctx.font = `${this.size}px serif`;
                 ctx.fillText(this.text, 0, 0);
                 ctx.restore();
             }
         }
 
-        // Erstelle 50 schwebende Objekte
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 40; i++) {
             particles.push(new Particle());
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // Optional: Ein leichter dunkler Verlauf
-            ctx.fillStyle = '#111';
-            ctx.fillRect(0,0, canvas.width, canvas.height);
-
             particles.forEach(p => {
                 p.update();
                 p.draw();
