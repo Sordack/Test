@@ -3,117 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hauptseite | ANTON</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <title>Official Artist | ANTON</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #FFD93D;
             --secondary: #FF6B6B;
             --accent: #4D96FF;
-            --dark: #2d3436;
+            --dark: #1e272e;
+            --glass: rgba(255, 255, 255, 0.95);
         }
 
-        body, html {
-            margin: 0; padding: 0;
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: var(--primary);
-            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.2) 1px, transparent 0);
-            background-size: 32px 32px;
-            min-height: 100vh;
+            background-color: #f0f2f5;
+            background-image: 
+                radial-gradient(var(--primary) 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            color: var(--dark);
+            line-height: 1.6;
         }
 
-        /* Der schräge Streifen bleibt als Design-Element im Hintergrund */
+        /* Moderner, dynamischer Hintergrund-Akzent */
         body::before {
             content: "";
-            position: fixed; /* Fixed, damit er beim Scrollen stehen bleibt */
-            top: 0; left: 0;
-            width: 150%; height: 200px;
-            background: var(--secondary);
-            transform: rotate(-5deg) translateY(-50px);
-            z-index: 0;
-            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+            position: fixed;
+            top: -10%; left: -10%;
+            width: 120%; height: 40vh;
+            background: linear-gradient(135deg, var(--secondary), #ff4757);
+            transform: skewY(-3deg);
+            z-index: -1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .container {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        /* Die Karte wird hier zur Inhaltsbox */
-        .content-card {
-            background: white;
-            padding: 40px;
-            border-radius: 30px;
-            border: 6px solid var(--dark);
-            box-shadow: 15px 15px 0px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-
-        .header-area {
+        /* Header Styling */
+        header {
             text-align: center;
-            margin-bottom: 30px;
+            padding: 60px 0 40px;
         }
 
-        .mini-logo {
+        .logo {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            color: var(--dark);
+            font-size: clamp(3rem, 10vw, 6rem);
             margin: 0;
-            text-transform: uppercase;
-            letter-spacing: -2px;
+            line-height: 0.8;
+            letter-spacing: -5px;
+            color: white;
+            text-shadow: 5px 5px 0px var(--dark);
         }
 
-        /* Navigation im Streetart-Stil */
-        nav {
+        /* Professionelle Navigation */
+        nav.main-nav {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
         }
 
-        nav a {
+        nav.main-nav a {
             text-decoration: none;
             color: var(--dark);
             background: white;
-            padding: 8px 15px;
-            border-radius: 12px;
-            border: 3px solid var(--dark);
-            font-weight: 900;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
             font-size: 0.9rem;
-            transition: 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
-        nav a:hover {
+        nav.main-nav a:hover {
+            transform: translateY(-3px);
+            border-color: var(--dark);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Inhalts-Bereiche (Bento Box Style) */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--glass);
+            border-radius: 24px;
+            padding: 40px;
+            border: 3px solid var(--dark);
+            box-shadow: 10px 10px 0px var(--dark);
+        }
+
+        .side-card {
             background: var(--accent);
             color: white;
-            transform: translateY(-3px);
+            border-radius: 24px;
+            padding: 30px;
+            border: 3px solid var(--dark);
+            box-shadow: 10px 10px 0px var(--dark);
         }
 
         h2 {
             font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            color: var(--secondary);
             font-size: 2rem;
+            margin-top: 0;
+            text-transform: uppercase;
         }
 
-        p { line-height: 1.6; color: #444; }
+        .btn-cta {
+            display: inline-block;
+            margin-top: 20px;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 15px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: 3px solid var(--dark);
+            transition: 0.2s;
+        }
 
+        .btn-cta:hover {
+            background: white;
+            transform: translate(-3px, -3px);
+            box-shadow: 3px 3px 0px var(--dark);
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.8rem;
+            padding-bottom: 40px;
+        }
+
+        footer a { color: var(--dark); margin: 0 10px; text-decoration: none; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .logo { letter-spacing: -2px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        
-        <div class="header-area">
-            <h1 class="mini-logo">ANTON</h1>
-            <p style="font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Official Artist Page</p>
-        </div>
+        <header>
+            <h1 class="logo">ANTON</h1>
+            <p style="font-weight: 600; color: white; background: var(--dark); display: inline-block; padding: 2px 12px; border-radius: 5px; margin-top: 10px;">OFFICIAL ARTIST 2026</p>
+        </header>
 
-        <nav>
+        <nav class="main-nav">
             <a href="index.html">Home</a>
             <a href="Konzerte.html">Konzerte</a>
             <a href="Über mich.html">Über mich</a>
@@ -121,20 +172,25 @@
             <a href="Kontakt.html">Kontakt</a>
         </nav>
 
-        <main class="content-card">
-            <h2>Willkommen auf der Hauptseite</h2>
-            <p>Hier kannst du nun deine Inhalte einfügen. Das Design orientiert sich an der Landingpage (Index), bietet aber mehr Platz für Texte, Bilder oder deine Konzertliste.</p>
-            
-            <p>Nutze diese Karte als Basis für alle deine Unterseiten, damit alles wie aus einem Guss wirkt!</p>
-        </main>
+        <div class="grid-layout">
+            <main class="card">
+                <h2>Neuigkeiten</h2>
+                <p>Willkommen auf der offiziellen Plattform. Hier findest du aktuelle Projekte, exklusive Einblicke und alle Termine für die kommende Tournee.</p>
+                <p>Das Design kombiniert rohe Streetart-Elemente mit einer klaren, modernen Struktur, um die Energie der Musik auch visuell zu transportieren.</p>
+                <a href="Konzerte.html" class="btn-cta">Alle Tourdaten</a>
+            </main>
 
-        <footer style="text-align: center; margin-bottom: 40px;">
-            <nav style="font-size: 0.8rem;">
-                <a href="Impressum.html">Impressum</a>
-                <a href="Datenschutz.html">Datenschutz</a>
-            </nav>
+            <aside class="side-card">
+                <h3>Socials</h3>
+                <p>Folge mir für tägliche Updates aus dem Studio.</p>
+                <a href="Social Media.html" style="color: white; font-weight: 900; text-decoration: underline;">Jetzt verbinden →</a>
+            </aside>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 ANTON ARTIST</p>
+            <a href="Impressum.html">Impressum</a> | <a href="Datenschutz.html">Datenschutz</a>
         </footer>
-
     </div>
 
 </body>
