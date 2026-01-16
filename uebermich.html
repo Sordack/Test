@@ -1,9 +1,22 @@
-<style>
-    :root { --bg: #4D96FF; --dark: #1e272e; }
-    /* ... gleicher Body-Style wie Hauptseite ... */
-    .content-box { background: white; margin: 50px auto; max-width: 700px; padding: 40px; border: 5px solid var(--dark); border-radius: 30px; box-shadow: 15px 15px 0px var(--dark); }
-</style>
-<div class="content-box">
-    <h2>Wer ist Anton?</h2>
-    <p>Hier kommt deine Geschichte rein! Familien-Pop mit Herz und Street-Vibe.</p>
-</div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story | ANTON</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #FFD93D; --bg-color: #143d3d; --glass: rgba(255, 255, 255, 0.05); --border: rgba(255, 255, 255, 0.1); }
+        body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-color); color: white; background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ctext x='50' y='120' font-family='Montserrat' font-size='100' font-weight='900' transform='rotate(-10, 50, 120)'%3EA%3C/text%3E%3Ctext x='200' y='180' font-family='Montserrat' font-size='80' font-weight='900' transform='rotate(15, 200, 180)'%3EN%3C/text%3E%3Ctext x='350' y='100' font-family='Montserrat' font-size='110' font-weight='900' transform='rotate(-5, 350, 100)'%3ET%3C/text%3E%3Ctext x='480' y='220' font-family='Montserrat' font-size='90' font-weight='900' transform='rotate(10, 480, 220)'%3EO%3C/text%3E%3Ctext x='100' y='520' font-family='Montserrat' font-size='95' font-weight='900' transform='rotate(-15, 100, 520)'%3EN%3C/text%3E%3Ctext x='300' y='450' font-family='Arial' font-size='120'%3E%26%23119070;%3C/text%3E%3C/g%3E%3C/svg%3E"); }
+        nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 800px; background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border: 1px solid var(--border); border-radius: 100px; padding: 10px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+        .container { max-width: 800px; margin: 150px auto; padding: 0 20px; }
+        .glass-card { background: var(--glass); border: 1px solid var(--border); padding: 60px; border-radius: 40px; backdrop-filter: blur(10px); }
+        h1 { font-family: 'Montserrat'; font-size: 3.5rem; color: var(--primary); margin-top: 0; }
+        p { font-size: 1.2rem; line-height: 1.8; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <nav><a href="hauptseite.html" style="font-family:Montserrat; font-weight:900; color:var(--primary); text-decoration:none">ANTON</a><div style="display:flex; gap:20px"><a href="konzerte.html" style="text-decoration:none; color:rgba(255,255,255,0.7)">Tour</a><a href="ueber_mich.html" style="text-decoration:none; color:white">Story</a></div></nav>
+    <div class="container"><div class="glass-card"><h1>Die Story</h1><p>Ich bin Anton. Musik ist für mich mehr als nur Töne – es ist Energie, Familie und Street-Vibe. Hier erfährst du bald alles über meinen Weg vom Kiez auf die großen Bühnen.</p></div></div>
+</body>
+</html>
