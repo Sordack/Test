@@ -3,111 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willkommen | ANTON</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <title>ANTON | Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Plus+Jakarta+Sans:wght@400;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FFD93D;
-            --secondary: #FF6B6B;
-            --accent: #4D96FF;
+            --primary: #000000;
+            --color1: #a2d2ff;
+            --color2: #cdb4db;
+            --menu-bg: rgba(255, 217, 61, 0.5); /* 50% transparentes Gelb */
+            --glass: rgba(255, 255, 255, 0.25);
+            --border: rgba(255, 255, 255, 0.4);
         }
 
-        /* Wir bauen ein Streetart-Muster rein mit CSS, das braucht kein externes Bild */
-        body, html {
-            margin: 0; padding: 0; height: 100%;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--primary);
-            background-image:  
-                radial-gradient(circle at 2px 2px, rgba(255,255,255,0.2) 1px, transparent 0);
-            background-size: 32px 32px; /* Punkt-Muster wie bei Comics */
-            display: flex; justify-content: center; align-items: center;
-            overflow: hidden;
-        }
+        * { box-sizing: border-box; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        /* Ein schräger Farbstreifen im Hintergrund für Streetart-Look */
-        body::before {
-            content: "";
-            position: absolute;
-            width: 150%; height: 300px;
-            background: var(--secondary);
-            transform: rotate(-15deg);
-            z-index: 0;
-            box-shadow: 0 0 50px rgba(0,0,0,0.1);
-        }
-
-        .portal-card {
-            position: relative;
-            z-index: 2;
-            background: white;
-            padding: 50px 30px;
-            border-radius: 40px;
-            text-align: center;
-            box-shadow: 20px 20px 0px rgba(0,0,0,0.1); /* "Pop-Art" Schatten */
-            border: 6px solid #2d3436;
-            max-width: 400px;
-            width: 85%;
-            animation: bounce 3s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) rotate(2deg); }
-            50% { transform: translateY(-15px) rotate(-1deg); }
-        }
-
-        .welcome-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(3rem, 15vw, 5rem);
-            color: #2d3436;
+        body {
             margin: 0;
-            line-height: 0.9;
-            letter-spacing: -4px;
-            text-transform: uppercase;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(-45deg, var(--color1), var(--color2), #bde0fe, #ffafcc);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
         }
 
-        .tagline {
-            color: var(--secondary);
-            font-size: 1.1rem;
-            font-weight: 900;
-            margin: 15px 0 35px 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: #f0f0f0;
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 10px;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .start-btn {
-            display: block;
+        /* Graffiti Muster */
+        .bg-pattern {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; opacity: 0.15; pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000'%3E%3Ctext x='50' y='120' font-family='Montserrat' font-size='100' font-weight='900' transform='rotate(-10, 50, 120)'%3EA%3C/text%3E%3Ctext x='200' y='180' font-family='Montserrat' font-size='80' font-weight='900' transform='rotate(15, 200, 180)'%3EN%3C/text%3E%3Ctext x='350' y='100' font-family='Montserrat' font-size='110' font-weight='900' transform='rotate(-5, 350, 100)'%3ET%3C/text%3E%3Ctext x='100' y='520' font-family='Montserrat' font-size='95' font-weight='900' transform='rotate(-15, 100, 520)'%3EN%3C/text%3E%3C/g%3E%3C/svg%3E");
+            animation: float 25s linear infinite;
+        }
+
+        @keyframes float { from { background-position: 0 0; } to { background-position: 600px 600px; } }
+
+        /* Hamburger Button */
+        .menu-btn {
+            position: fixed;
+            top: 25px; left: 25px;
+            width: 50px; height: 50px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer; z-index: 2100;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px;
+        }
+
+        .menu-btn span { width: 25px; height: 3px; background: #000; border-radius: 10px; }
+
+        /* Kompaktes Menü (1/3 Breite) */
+        .nav-sidebar {
+            position: fixed;
+            top: 0; left: -35%; 
+            width: 33.33%; /* Ein Drittel der Seite */
+            height: 100%;
+            background: var(--menu-bg);
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+            border-right: 1px solid var(--border);
+            box-shadow: 20px 0 50px rgba(0,0,0,0.05);
+        }
+
+        .nav-sidebar.active { left: 0; }
+
+        .nav-sidebar a {
+            font-family: 'Montserrat';
+            font-size: clamp(1.2rem, 3vw, 2.5rem);
             text-decoration: none;
-            background: var(--accent);
-            color: white;
-            padding: 18px;
-            border-radius: 20px;
-            font-size: 1.5rem;
+            color: #000;
+            margin: 10px 0;
             font-weight: 900;
-            border: 4px solid #2d3436;
-            box-shadow: 6px 6px 0px #2d3436;
-            transition: 0.1s;
+            text-transform: uppercase;
         }
 
-        .start-btn:active {
-            transform: translate(4px, 4px);
-            box-shadow: 0px 0px 0px #2d3436;
+        .nav-sidebar a:hover { transform: translateX(10px); color: #fff; }
+
+        .close-area {
+            position: absolute; top: 30px; right: 30px;
+            cursor: pointer; font-weight: 800; font-size: 1.2rem;
         }
 
-        .start-btn:hover {
-            background: #2ecc71; /* Wechselt auf Grün beim Hover */
+        /* Hero */
+        .hero { padding-top: 80px; text-align: center; }
+        .hero h1 {
+            font-family: 'Montserrat';
+            font-size: clamp(4rem, 18vw, 11rem);
+            margin: 0; color: #fff;
+            text-shadow: 8px 8px 0px rgba(0,0,0,0.05);
+            letter-spacing: -4px;
+        }
+
+        /* Grid */
+        .container {
+            max-width: 1100px; margin: 30px auto; padding: 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; flex: 1;
+        }
+
+        .bento {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 35px;
+            padding: 35px;
+            text-decoration: none;
+            color: #000;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            min-height: 220px;
+        }
+
+        .bento:hover { transform: scale(1.02); background: rgba(255,255,255,0.4); }
+        .bento h2 { font-family: 'Montserrat'; margin: 0; font-size: 1.8rem; }
+
+        /* Footer */
+        footer { padding: 20px; display: flex; justify-content: center; gap: 25px; }
+        footer a {
+            text-decoration: none; color: #000; opacity: 0.4;
+            font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+        }
+        footer a:hover { opacity: 1; }
+
+        /* Mobile Anpassung */
+        @media (max-width: 768px) {
+            .nav-sidebar { width: 80%; left: -85%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="portal-card">
-        <h1 class="welcome-logo">ANTON</h1>
-        <p class="tagline">Official Artist</p>
-        <a href="hauptseite.html" class="start-btn">GO!</a>
+    <div class="bg-pattern"></div>
+
+    <div class="menu-btn" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
     </div>
+
+    <div class="nav-sidebar" id="sidebar">
+        <div class="close-area" onclick="toggleMenu()">✕</div>
+        <a href="konzerte.html">Konzerte</a>
+        <a href="uebermich.html">Über mich</a>
+        <a href="social.html">Social</a>
+        <a href="kontakt.html">Kontakt</a>
+    </div>
+
+    <section class="hero">
+        <h1>ANTON</h1>
+        <p style="font-weight: 800; letter-spacing: 3px; text-transform: uppercase;">Familien Pop / Street Vibes</p>
+    </section>
+
+    <div class="container">
+        <a href="konzerte.html" class="bento" style="background: rgba(255, 255, 255, 0.3);">
+            <h2>Tour 2026</h2>
+            <p>Sichere dir Tickets!</p>
+        </a>
+        <a href="social.html" class="bento" style="background: rgba(255, 255, 255, 0.3);">
+            <h2>Social</h2>
+            <p>TikTok & Instagram</p>
+        </a>
+        <a href="uebermich.html" class="bento" style="background: rgba(255, 255, 255, 0.3);">
+            <h2>Story</h2>
+            <p>Über Anton</p>
+        </a>
+    </div>
+
+    <footer>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
