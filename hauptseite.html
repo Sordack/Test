@@ -16,21 +16,12 @@
         body {
             margin: 0; padding: 0;
             font-family: 'Poppins', sans-serif;
-            /* Ein hochwertiges Streetart/Doodle Hintergrundbild */
-            background: url('https://img.freepik.com/free-vector/hand-drawn-graffiti-cartoon-background_23-2148963503.jpg') no-repeat center center fixed;
-            background-size: cover;
+            /* Ein generiertes Streetart-Pattern (Doodles/Grafitti Style) */
+            background-color: #f0f0f0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 86c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm66-3c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm-46-45c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm54 54c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM58 7c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM10 40c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm50-28c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm40 10c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM20 50c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm60 40c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM30 20c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm40 40c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM90 10c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM80 10c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ff6b6b' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-        }
-
-        /* Ein leichter Farb-Schleier, damit das Bild nicht zu unruhig wirkt */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(255, 217, 61, 0.4), rgba(77, 150, 255, 0.4));
-            z-index: -1;
         }
 
         header {
@@ -65,16 +56,15 @@
             background: var(--primary);
             border: 3px solid var(--dark);
             border-radius: 12px;
-            transition: 0.2s;
             box-shadow: 4px 4px 0px var(--dark);
             text-transform: uppercase;
             font-size: 0.85rem;
+            transition: 0.1s;
         }
 
         nav a:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px var(--dark);
-            background: white;
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--dark);
         }
 
         .main-content {
@@ -86,55 +76,17 @@
         }
 
         .welcome-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: white;
             padding: 40px;
             border: 6px solid var(--dark);
             border-radius: 30px;
-            box-shadow: 15px 15px 0px var(--secondary);
+            box-shadow: 15px 15px 0px var(--accent);
             text-align: center;
             max-width: 500px;
+            /* Der Comic-Twist */
             transform: rotate(-1deg);
         }
 
         h2 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; color: var(--dark); margin: 0; }
-        p { font-weight: 600; color: #444; margin: 20px 0; }
-
+        
         .cta-btn {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 15px 35px;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: 900;
-            border: 4px solid var(--dark);
-            box-shadow: 5px 5px 0px var(--dark);
-            transition: 0.1s;
-        }
-
-        .cta-btn:hover {
-            background: #2ecc71;
-            transform: scale(1.05);
-        }
-
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .footer-links a {
-            color: var(--primary);
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <div class="logo">ANTON</div>
-    <nav>
-        <a href="ind
