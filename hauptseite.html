@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hauptseite | ANTON</title>
     <style>
-        /* 1. Animierter Hintergrund (Türkis zu Weiß) */
+        /* 1. Hintergrund & Animation (Türkis zu Weiß) */
         body, html {
             margin: 0;
             padding: 0;
@@ -31,19 +31,40 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            /* Ermöglicht das Klicken auf den Hintergrund, um das Menü zu öffnen */
-            cursor: pointer;
         }
 
-        /* 2. Gelbe Sidebar (50% Transparenz) */
+        /* 2. Menü-Button (3 Striche) */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.3);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            color: #333;
+            transition: 0.3s;
+        }
+
+        .menu-btn:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        /* 3. Gelbe Sidebar (50% Transparenz) */
         nav {
             position: fixed;
             top: 0;
-            left: -25%; /* Startet versteckt */
+            left: -25%; /* Breite 25% */
             width: 25%;
             height: 100%;
-            background-color: rgba(255, 235, 59, 0.5); /* Gelb mit 50% Transparenz */
-            backdrop-filter: blur(5px);
+            background-color: rgba(255, 235, 59, 0.5);
+            backdrop-filter: blur(8px);
             z-index: 100;
             transition: left 0.5s cubic-bezier(0.77,0,0.175,1);
             display: flex;
@@ -60,12 +81,12 @@
         /* Schließen-Button (X) */
         .close-btn {
             align-self: flex-end;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #333;
             cursor: pointer;
-            text-decoration: none;
-            margin-bottom: 30px;
             font-weight: bold;
+            line-height: 1;
+            margin-bottom: 30px;
         }
 
         .menu-links a {
@@ -73,14 +94,14 @@
             color: #333;
             text-decoration: none;
             font-size: 1.4rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 600;
-            transition: transform 0.2s;
+            transition: 0.3s;
         }
 
         .menu-links a:hover {
-            transform: translateX(10px);
             color: #000;
+            padding-left: 10px;
         }
 
         .social-icons {
@@ -95,23 +116,30 @@
             color: #333;
         }
 
-        /* Content Layer */
+        /* Content */
         .main-content {
             position: relative;
             z-index: 5;
             padding: 100px;
-            pointer-events: none; /* Klicks gehen durch zum Canvas */
+            text-align: center;
         }
 
-        h1 { font-size: 4rem; color: #333; }
+        h1 { font-size: 5rem; color: #333; letter-spacing: 5px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { width: 50%; left: -50%; }
+        }
     </style>
 </head>
-<body onclick="openNav()">
+<body>
+
+    <div class="menu-btn" onclick="toggleNav()">☰</div>
 
     <canvas id="canvas-container"></canvas>
 
     <nav id="sidebar">
-        <span class="close-btn" onclick="closeNav(event)">×</span>
+        <div class="close-btn" onclick="toggleNav()">×</div>
         <div class="menu-links">
             <a href="hauptseite.html">Home</a>
             <a href="ueber-mich.html">Über mich</a>
@@ -122,31 +150,25 @@
         </div>
 
         <div class="social-icons">
-            <a href="#">🎬</a>
-            <a href="#">📱</a>
-            <a href="#">📸</a>
-            <a href="#">👥</a>
-            <a href="#">@</a>
+            <a href="#" title="YouTube">🎬</a>
+            <a href="#" title="TikTok">📱</a>
+            <a href="#" title="Instagram">📸</a>
+            <a href="#" title="Facebook">👥</a>
+            <a href="#" title="E-Mail">@</a>
         </div>
     </nav>
 
     <div class="main-content">
         <h1>ANTON</h1>
-        <p>Klicke irgendwohin, um das Menü zu öffnen.</p>
     </div>
 
     <script>
-        // --- Sidebar Logik ---
-        function openNav() {
-            document.getElementById("sidebar").classList.add("open");
+        // --- Sidebar Steuerung ---
+        function toggleNav() {
+            document.getElementById("sidebar").classList.toggle("open");
         }
 
-        function closeNav(event) {
-            event.stopPropagation(); // Verhindert, dass der Klick sofort wieder openNav() auslöst
-            document.getElementById("sidebar").classList.remove("open");
-        }
-
-        // --- Hintergrund Animation (Buchstaben & Noten) ---
+        // --- Hintergrund Animation ---
         const canvas = document.getElementById('canvas-container');
         const ctx = canvas.getContext('2d');
 
@@ -165,13 +187,12 @@
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.text = elements[Math.floor(Math.random() * elements.length)];
-                this.size = Math.random() * 40 + 20;
-                // Langsamere Bewegungen wie gewünscht
-                this.speedX = (Math.random() - 0.5) * 0.8; 
-                this.speedY = (Math.random() - 0.5) * 0.8;
-                this.opacity = Math.random() * 0.4 + 0.1;
+                this.size = Math.random() * 35 + 20;
+                this.speedX = (Math.random() - 0.5) * 0.6; // Sehr langsam
+                this.speedY = (Math.random() - 0.5) * 0.6;
+                this.opacity = Math.random() * 0.3 + 0.1;
                 this.rotation = Math.random() * Math.PI * 2;
-                this.rotationSpeed = (Math.random() - 0.5) * 0.01;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.005;
             }
 
             update() {
@@ -179,6 +200,7 @@
                 this.y += this.speedY;
                 this.rotation += this.rotationSpeed;
 
+                // Endlosschleife an den Rändern
                 if (this.x < -50) this.x = canvas.width + 50;
                 if (this.x > canvas.width + 50) this.x = -50;
                 if (this.y < -50) this.y = canvas.height + 50;
@@ -189,7 +211,6 @@
                 ctx.save();
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.rotation);
-                // Dunklere Farbe für die Zeichen auf dem hellen Hintergrund
                 ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`;
                 ctx.font = `${this.size}px serif`;
                 ctx.fillText(this.text, 0, 0);
@@ -197,7 +218,7 @@
             }
         }
 
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 45; i++) {
             particles.push(new Particle());
         }
 
