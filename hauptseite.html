@@ -65,7 +65,7 @@
         .submenu li a { font-size: 0.75rem; margin-bottom: 10px; opacity: 0.8; }
         .submenu li a::before { content: "• "; color: #333; }
 
-        /* Rechte Sidebar */
+        /* Rechte Sidebar (Wiederhergestellt) */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
@@ -82,7 +82,17 @@
             5% { transform: scale(1.3); color: var(--brand-color); }
         }
         .yt { --brand-color: #FF0000; } .tt { --brand-color: #000; } .ig { --brand-color: #E1306C; }
-        .fb { --brand-color: #1877F2; } .sp { --brand-color: #1DB954; }
+        .fb { --brand-color: #1877F2; } .sp { --brand-color: #1DB954; } .ap { --brand-color: #000; }
+        .ym { --brand-color: #FF0000; } .am { --brand-color: #00A8E1; }
+
+        .sidebar-right a:nth-child(1) i { animation-delay: 0s; }
+        .sidebar-right a:nth-child(2) i { animation-delay: 1.5s; }
+        .sidebar-right a:nth-child(3) i { animation-delay: 3s; }
+        .sidebar-right a:nth-child(4) i { animation-delay: 4.5s; }
+        .sidebar-right a:nth-child(5) i { animation-delay: 6s; }
+        .sidebar-right a:nth-child(6) i { animation-delay: 7.5s; }
+        .sidebar-right a:nth-child(7) i { animation-delay: 9s; }
+        .sidebar-right a:nth-child(8) i { animation-delay: 10.5s; }
 
         /* Content Layout Grid */
         .content-container { 
@@ -101,11 +111,7 @@
         .side-column { display: flex; flex-direction: column; gap: 20px; flex: 1; }
         .small-window { flex: 1; }
         
-        /* Permanent Marker für alles */
-        h2, h3, p { 
-            font-family: 'Permanent Marker', cursive !important; 
-            color: #222; margin-top: 0; 
-        }
+        h2, h3, p { font-family: 'Permanent Marker', cursive !important; color: #222; margin-top: 0; }
         .main-window h2 { font-size: 2.5rem; margin-bottom: 20px; }
         .small-window h3 { font-size: 1.5rem; margin-bottom: 15px; }
         p { line-height: 1.4; color: #333; }
@@ -163,6 +169,9 @@
         <a href="#" class="ig"><i class="fa-brands fa-instagram"></i></a>
         <a href="#" class="fb"><i class="fa-brands fa-facebook"></i></a>
         <a href="#" class="sp"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#" class="ap"><i class="fa-brands fa-apple"></i></a>
+        <a href="#" class="ym"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="#" class="am"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
     <div class="content-container">
