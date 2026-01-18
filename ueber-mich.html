@@ -197,4 +197,28 @@
             }
             update() {
                 this.x += this.speedX; this.y += this.speedY; this.rotation += this.rotationSpeed;
-                if (this.x < -50) this.x = canvas.width
+                if (this.x < -50) this.x = canvas.width + 50;
+                if (this.x > canvas.width + 50) this.x = -50;
+                if (this.y < -50) this.y = canvas.height + 50;
+                if (this.y > canvas.height + 50) this.y = -50;
+            }
+            draw() {
+                ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation);
+                ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`; ctx.font = `${this.size}px serif`;
+                ctx.fillText(this.text, 0, 0); ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 30; i++) { particles.push(new Particle()); }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
