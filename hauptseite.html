@@ -60,33 +60,56 @@
             box-sizing: border-box; border-left: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Basis-Stil für Social Icons (Schwarz) */
         .sidebar-right a { color: #333; font-size: 1.5rem; text-decoration: none; transition: 0.5s; display: flex; }
 
-        /* Verlangsamte Animation (14s Gesamtzyklus) */
+        /* 14s Gesamtzyklus */
         @keyframes sequentialPulseColorSlow {
-            0%, 10%, 100% { transform: scale(1); color: #333; }
-            5% { transform: scale(1.3); color: var(--brand-color); }
+            0%, 10%, 100% { 
+                transform: scale(1); 
+                color: #333; 
+                text-shadow: none;
+                -webkit-text-stroke: 0px transparent;
+            }
+            5% { 
+                transform: scale(1.3); 
+                color: var(--brand-color); 
+                text-shadow: var(--brand-shadow);
+                -webkit-text-stroke: var(--brand-stroke);
+            }
         }
 
         .sidebar-right a i { animation: sequentialPulseColorSlow 14s infinite ease-in-out; }
         .sidebar-right:hover a i { animation-play-state: paused; }
         
-        /* Direkter Hover-Zustand (Icon bleibt in Farbe bei Mauszeiger-Kontakt) */
         .sidebar-right a:hover { transform: scale(1.4); }
-        .sidebar-right a:hover i { color: var(--brand-color) !important; animation: none; }
+        .sidebar-right a:hover i { 
+            color: var(--brand-color) !important; 
+            text-shadow: var(--brand-shadow) !important;
+            -webkit-text-stroke: var(--brand-stroke) !important;
+            animation: none; 
+        }
 
         /* Markenfarben Definition */
-        .yt { --brand-color: #FF0000; }
-        .tt { --brand-color: #000000; }
-        .ig { --brand-color: #E1306C; }
-        .fb { --brand-color: #1877F2; }
-        .sp { --brand-color: #1DB954; }
-        .ap { --brand-color: #FC3C44; }
-        .ym { --brand-color: #FF0000; }
-        .am { --brand-color: #00A8E1; }
+        .yt { --brand-color: #FF0000; --brand-shadow: none; --brand-stroke: 0px transparent; }
+        /* TikTok Originalfarben Schatten-Effekt */
+        .tt { 
+            --brand-color: #000000; 
+            --brand-shadow: 2px 2px #ff0050, -2px -2px #00f2ea; 
+            --brand-stroke: 0px transparent;
+        }
+        .ig { --brand-color: #E1306C; --brand-shadow: none; --brand-stroke: 0px transparent; }
+        .fb { --brand-color: #1877F2; --brand-shadow: none; --brand-stroke: 0px transparent; }
+        .sp { --brand-color: #1DB954; --brand-shadow: none; --brand-stroke: 0px transparent; }
+        /* Apple: Weiß mit schwarzem Rand */
+        .ap { 
+            --brand-color: #ffffff; 
+            --brand-shadow: none;
+            --brand-stroke: 1px #000000; 
+        }
+        .ym { --brand-color: #FF0000; --brand-shadow: none; --brand-stroke: 0px transparent; }
+        .am { --brand-color: #00A8E1; --brand-shadow: none; --brand-stroke: 0px transparent; }
 
-        /* Zeitversatz angepasst auf 14s (Icons nacheinander) */
+        /* Animation Delays */
         .sidebar-right a:nth-child(1) i { animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { animation-delay: 1.5s; }
         .sidebar-right a:nth-child(3) i { animation-delay: 3s; }
