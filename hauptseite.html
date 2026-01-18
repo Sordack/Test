@@ -23,14 +23,13 @@
         }
         .header-title { font-family: 'Bangers', cursive; font-size: 3rem; color: #ffffff; letter-spacing: 5px; margin: 0; }
 
-        /* Menü-Button (Burger) */
+        /* Menü-Button */
         .menu-btn { 
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
             z-index: 110; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; 
             display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333;
             transition: 0.3s;
         }
-        .menu-btn:hover { background: rgba(255, 255, 255, 0.8); }
 
         /* Linke Sidebar */
         .sidebar-left { 
@@ -42,13 +41,7 @@
             border-right: 1px solid rgba(0,0,0,0.1);
         }
         .sidebar-left.open { left: 0; }
-
-        /* DAS "X" ZUM SCHLIESSEN */
-        .close-sidebar {
-            position: absolute; top: 15px; right: 15px; font-size: 1.8rem;
-            cursor: pointer; color: #333; transition: 0.3s; line-height: 1;
-        }
-        .close-sidebar:hover { transform: scale(1.2) rotate(90deg); color: #000; }
+        .close-sidebar { position: absolute; top: 15px; right: 15px; font-size: 1.8rem; cursor: pointer; color: #333; transition: 0.3s; }
 
         .menu-links a { 
             display: flex; align-items: center; gap: 10px; color: #222; 
@@ -68,25 +61,15 @@
             box-sizing: border-box; border-left: 1px solid rgba(255, 255, 255, 0.3);
         }
         .sidebar-right a { color: #333; font-size: 1.5rem; text-decoration: none; transition: 0.3s; }
-        
         @keyframes sequentialPulseColor {
             0%, 100% { transform: scale(1); color: #333; }
             50% { transform: scale(1.3); color: var(--brand-color); }
         }
         .sidebar-right a i { animation: sequentialPulseColor 5s infinite ease-in-out; }
         .sidebar-right:hover a i { animation-play-state: paused; }
-        .sidebar-right a:hover { transform: scale(1.4); }
-        .sidebar-right a:hover i { color: var(--brand-color); }
-
-        /* Markenfarben Definition */
-        .yt { --brand-color: #FF0000; }
-        .tt { --brand-color: #000000; }
-        .ig { --brand-color: #E1306C; }
-        .fb { --brand-color: #1877F2; }
-        .sp { --brand-color: #1DB954; }
-        .ap { --brand-color: #FC3C44; }
-        .ym { --brand-color: #FF0000; }
-        .am { --brand-color: #00A8E1; }
+        
+        .yt { --brand-color: #FF0000; } .tt { --brand-color: #000000; } .ig { --brand-color: #E1306C; } .fb { --brand-color: #1877F2; } 
+        .sp { --brand-color: #1DB954; } .ap { --brand-color: #FC3C44; } .ym { --brand-color: #FF0000; } .am { --brand-color: #00A8E1; }
 
         /* Animation Delays */
         .sidebar-right a:nth-child(1) i { animation-delay: 0.0s; }
@@ -111,7 +94,7 @@
             padding: 12px 30px; border-radius: 20px;
         }
         .footer-links { display: flex; gap: 25px; }
-        .footer-legal a.legal-link { color: #333; text-decoration: none; font-size: 1rem; font-weight: bold; text-transform: uppercase; }
+        .footer-legal a.legal-link { color: #333; text-decoration: none; font-size: 1rem; font-weight: bold; text-transform: uppercase; font-family: 'Segoe UI', sans-serif; }
         .footer-url { font-size: 0.6rem; opacity: 0.6; margin-top: 8px; text-decoration: none; color: #333; }
     </style>
 </head>
@@ -123,11 +106,10 @@
 
     <nav class="sidebar-left" id="sidebar">
         <div class="close-sidebar" onclick="toggleNav(event)">&times;</div>
-        
         <div class="menu-links">
             <a href="hauptseite.html"><i class="fa-solid fa-house"></i> Home</a>
             <a href="meinemusik.html"><i class="fa-solid fa-music"></i> Meine Musik</a>
-            <a href="ueber-mich.html"><i class="fa-solid fa-face-frown"></i> Über mich</a>
+            <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
             <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
             <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
             <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
