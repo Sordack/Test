@@ -24,7 +24,6 @@
             overflow: hidden;
         }
         
-        /* Schwebende Symbole im gesamten Header */
         .header-bg-elements {
             position: absolute;
             width: 100%;
@@ -37,7 +36,8 @@
             font-size: 24px;
             color: #fff;
             opacity: 0.5;
-            animation: flyAround 15s infinite linear;
+            /* Animation deutlich verlangsamt auf 30 Sekunden */
+            animation: flyAround 30s infinite linear;
             pointer-events: none;
         }
 
@@ -47,7 +47,6 @@
             100% { transform: translate(var(--x-end), var(--y-end)) rotate(360deg); }
         }
 
-        /* Kantige Schriftart für ANTON */
         .header-title { 
             font-family: 'Bangers', cursive;
             font-size: 3.8rem;
@@ -56,14 +55,12 @@
             margin: 0;
             z-index: 11;
             text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
-            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
         }
 
         .menu-btn { 
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
             z-index: 110; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; 
             display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333;
-            transition: 0.3s;
         }
 
         /* Linke Sidebar */
@@ -76,16 +73,16 @@
             border-right: 1px solid rgba(0,0,0,0.1);
         }
         .sidebar-left.open { left: 0; }
-        .close-sidebar { position: absolute; top: 15px; right: 15px; font-size: 1.8rem; cursor: pointer; color: #333; transition: 0.3s; }
+        .close-sidebar { position: absolute; top: 15px; right: 15px; font-size: 1.8rem; cursor: pointer; color: #333; }
 
         .menu-links a { 
             display: flex; align-items: center; gap: 10px; color: #222; 
             text-decoration: none; font-family: 'Permanent Marker', cursive; 
             font-size: 0.9rem; margin-bottom: 25px; transition: 0.3s;
         }
-        .menu-links a:hover { transform: scale(1.1); color: #000; }
+        .menu-links a:hover { transform: scale(1.1); }
 
-        /* Rechte Sidebar mit Umrandung */
+        /* Rechte Sidebar mit festem Rahmen (wie Kontaktseite) */
         .sidebar-right {
             position: fixed; top: 80px; bottom: 0; right: 0; width: 65px;
             display: flex; flex-direction: column; align-items: center;
@@ -94,8 +91,9 @@
             backdrop-filter: blur(10px); 
             border-top-left-radius: 25px;
             box-sizing: border-box; 
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-right: none;
+            /* Rahmen explizit gesetzt */
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
         }
         .sidebar-right a { color: #333; font-size: 1.5rem; text-decoration: none; transition: 0.5s; display: flex; }
 
@@ -104,7 +102,6 @@
             5% { transform: scale(1.3); color: var(--brand-color); text-shadow: var(--brand-shadow); -webkit-text-stroke: var(--brand-stroke); }
         }
         .sidebar-right a i { animation: sequentialPulseColorSlow 14s infinite ease-in-out; }
-        .sidebar-right a:hover i { color: var(--brand-color) !important; text-shadow: var(--brand-shadow) !important; -webkit-text-stroke: var(--brand-stroke) !important; animation: none; }
 
         .yt { --brand-color: #FF0000; --brand-shadow: none; --brand-stroke: 0px transparent; }
         .tt { --brand-color: #000000; --brand-shadow: 2px 2px #ff0050, -2px -2px #00f2ea; --brand-stroke: 0px transparent; }
@@ -142,8 +139,8 @@
             color: #333; text-decoration: none; font-size: 0.8rem; 
             font-weight: bold; text-transform: uppercase; font-family: 'Segoe UI', sans-serif; 
         }
-        /* Vergrößerter Link */
-        .footer-url { font-size: 0.65rem; opacity: 0.6; margin-top: 5px; text-decoration: none; color: #333; }
+        /* Sichtbar vergrößerter Link (Schriftgröße erhöht) */
+        .footer-url { font-size: 0.85rem; opacity: 0.8; margin-top: 5px; text-decoration: none; color: #333; font-weight: 500; }
     </style>
 </head>
 <body onclick="closeNavOutside(event)">
@@ -151,12 +148,11 @@
     <header>
         <div class="header-bg-elements">
             <i class="fa-solid fa-music" style="--x-start: -5vw; --y-start: 10px; --x-mid: 50vw; --y-mid: 50px; --x-end: 105vw; --y-end: 20px; animation-delay: 0s;"></i>
-            <i class="fa-solid fa-headphones" style="--x-start: 105vw; --y-start: 40px; --x-mid: 40vw; --y-mid: 10px; --x-end: -5vw; --y-end: 50px; animation-delay: 3s;"></i>
-            <i class="fa-solid fa-microphone-lines" style="--x-start: 20vw; --y-start: -30px; --x-mid: 60vw; --y-mid: 40px; --x-end: 80vw; --y-end: 90px; animation-delay: 5s;"></i>
-            <i class="fa-solid fa-note-sticky" style="--x-start: -5vw; --y-start: 60px; --x-mid: 55vw; --y-mid: 20px; --x-end: 105vw; --y-end: 40px; animation-delay: 7s;"></i>
-            <i class="fa-solid fa-hat-cowboy" style="--x-start: 90vw; --y-start: 90px; --x-mid: 30vw; --y-mid: 40px; --x-end: -10vw; --y-end: -10px; animation-delay: 2s;"></i>
-            <i class="fa-solid fa-volume-high" style="--x-start: 40vw; --y-start: 90px; --x-mid: 50vw; --y-mid: 10px; --x-end: 60vw; --y-end: -20px; animation-delay: 9s;"></i>
-            <i class="fa-solid fa-compact-disc" style="--x-start: 105vw; --y-start: 20px; --x-mid: 50vw; --y-mid: 60px; --x-end: -5vw; --y-end: 10px; animation-delay: 11s;"></i>
+            <i class="fa-solid fa-headphones" style="--x-start: 105vw; --y-start: 40px; --x-mid: 40vw; --y-mid: 10px; --x-end: -5vw; --y-end: 50px; animation-delay: -5s;"></i>
+            <i class="fa-solid fa-microphone-lines" style="--x-start: 20vw; --y-start: -30px; --x-mid: 60vw; --y-mid: 40px; --x-end: 80vw; --y-end: 90px; animation-delay: -10s;"></i>
+            <i class="fa-solid fa-note-sticky" style="--x-start: -5vw; --y-start: 60px; --x-mid: 55vw; --y-mid: 20px; --x-end: 105vw; --y-end: 40px; animation-delay: -15s;"></i>
+            <i class="fa-solid fa-volume-high" style="--x-start: 40vw; --y-start: 90px; --x-mid: 50vw; --y-mid: 10px; --x-end: 60vw; --y-end: -20px; animation-delay: -20s;"></i>
+            <i class="fa-solid fa-compact-disc" style="--x-start: 105vw; --y-start: 20px; --x-mid: 50vw; --y-mid: 60px; --x-end: -5vw; --y-end: 10px; animation-delay: -25s;"></i>
         </div>
         <h1 class="header-title">ANTON</h1>
     </header>
