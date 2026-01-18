@@ -8,14 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     
     <style>
-        /* 1. Hintergrund & Animation der Seite */
+        /* 1. Hintergrund & Animation */
         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            font-family: 'Segoe UI', sans-serif;
-            overflow: hidden;
+            margin: 0; padding: 0; height: 100%; width: 100%;
+            font-family: 'Segoe UI', sans-serif; overflow: hidden;
             background: linear-gradient(45deg, #00ced1, #ffffff, #00ced1);
             background-size: 200% 200%;
             animation: gradientBG 15s ease infinite;
@@ -27,105 +23,55 @@
             100% { background-position: 0% 50%; }
         }
 
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
         /* 2. Header */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            position: fixed; top: 0; width: 100%; height: 80px;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 10; background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px); border-bottom: 1px solid rgba(0,0,0,0.1);
         }
 
         .header-title {
             font-family: 'Permanent Marker', cursive;
-            font-size: 3rem;
-            color: #222;
-            letter-spacing: 5px;
-            margin: 0;
+            font-size: 3rem; color: #222; letter-spacing: 5px; margin: 0;
         }
 
-        /* 3. Linke Sidebar (Menü) */
+        /* 3. Linke Sidebar */
         .menu-btn {
-            position: fixed;
-            top: 15px;
-            left: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.5);
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            color: #333;
+            position: fixed; top: 15px; left: 20px; font-size: 24px;
+            cursor: pointer; z-index: 50; background: rgba(255, 255, 255, 0.5);
+            width: 45px; height: 45px; display: flex; align-items: center;
+            justify-content: center; border-radius: 5px; color: #333;
             border: 1px solid rgba(0,0,0,0.1);
         }
 
         .sidebar-left {
-            position: fixed;
-            top: 10px;
-            bottom: 10px;
-            left: -15%; 
-            width: 12.5%; 
-            background-color: rgba(255, 235, 59, 0.6); 
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            transition: left 0.4s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            box-sizing: border-box;
-            border: 2px solid rgba(0, 0, 0, 0.2); 
-            border-radius: 0 15px 15px 0; 
+            position: fixed; top: 10px; bottom: 10px; left: -15%; width: 12.5%;
+            background-color: rgba(255, 235, 59, 0.6); backdrop-filter: blur(10px);
+            z-index: 100; transition: left 0.4s ease-in-out;
+            display: flex; flex-direction: column; padding: 20px;
+            box-sizing: border-box; border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 0 15px 15px 0;
         }
 
         .sidebar-left.open { left: 0; }
 
         .menu-links a {
-            display: block;
-            color: #222;
-            text-decoration: none;
-            font-family: 'Permanent Marker', cursive;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            display: block; color: #222; text-decoration: none;
+            font-family: 'Permanent Marker', cursive; font-size: 1.3rem; margin-bottom: 20px;
         }
 
-        /* 4. Rechte Sidebar mit Schimmer & Pulsierenden Icons */
+        /* 4. Rechte Sidebar mit Schimmer & Sequenziellem Puls */
         .sidebar-right {
-            position: fixed;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
+            position: fixed; top: 50%; right: 15px; transform: translateY(-50%);
             width: 55px;
             background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(0,206,209,0.2), rgba(255,255,255,0.3));
-            background-size: 400% 400%;
-            animation: shimmerEffect 6s ease infinite;
-            backdrop-filter: blur(8px);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-            padding: 20px 0;
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
+            background-size: 400% 400%; animation: shimmerEffect 6s ease infinite;
+            backdrop-filter: blur(8px); z-index: 100;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 25px; padding: 20px 0; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px;
         }
 
         @keyframes shimmerEffect {
@@ -134,29 +80,31 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Animation für die Icons */
+        /* Die Symbole pulsieren nacheinander */
         .sidebar-right a {
-            color: #333;
-            font-size: 1.5rem;
-            text-decoration: none;
-            display: block;
-            animation: floatIcon 4s ease-in-out infinite;
+            color: #333; font-size: 1.5rem; text-decoration: none; display: block;
+            animation: sequentialPulse 5s linear infinite; /* 5 Sekunden Gesamtdauer für 5 Icons */
             transition: color 0.3s;
         }
 
-        @keyframes floatIcon {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(0,0,0,0)); }
-            50% { transform: scale(1.25); filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2)); }
+        /* Jedes Icon ist nur 20% der Zeit aktiv (0-20% für das erste, 20-40% für das zweite etc.)
+           In den restlichen 80% bleibt es bei scale(1)
+        */
+        @keyframes sequentialPulse {
+            0% { transform: scale(1); }
+            10% { transform: scale(1.3); filter: drop-shadow(0 5px 8px rgba(0,0,0,0.2)); }
+            20% { transform: scale(1); }
+            100% { transform: scale(1); }
         }
 
-        /* Harmonischer Versatz der Animation */
+        /* Zeitlicher Versatz für die 5 Icons */
         .sidebar-right a:nth-child(1) { animation-delay: 0s; }
-        .sidebar-right a:nth-child(2) { animation-delay: 0.8s; }
-        .sidebar-right a:nth-child(3) { animation-delay: 1.6s; }
-        .sidebar-right a:nth-child(4) { animation-delay: 2.4s; }
-        .sidebar-right a:nth-child(5) { animation-delay: 3.2s; }
+        .sidebar-right a:nth-child(2) { animation-delay: 1s; }
+        .sidebar-right a:nth-child(3) { animation-delay: 2s; }
+        .sidebar-right a:nth-child(4) { animation-delay: 3s; }
+        .sidebar-right a:nth-child(5) { animation-delay: 4s; }
 
-        .sidebar-right a:hover { color: #000; animation-play-state: paused; transform: scale(1.4); }
+        .sidebar-right a:hover { color: #000; animation-play-state: paused; transform: scale(1.4) !important; }
         .fa-youtube:hover { color: #ff0000; }
         .fa-instagram:hover { color: #E1306C; }
         .fa-tiktok:hover { color: #000; }
@@ -164,53 +112,28 @@
 
         /* 5. Fenster-Layout */
         .content-container {
-            position: relative;
-            z-index: 5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 80px);
-            margin-top: 80px;
+            position: relative; z-index: 5; display: flex;
+            justify-content: center; align-items: center;
+            height: calc(100vh - 80px); margin-top: 80px;
         }
 
-        .window-grid {
-            display: flex;
-            gap: 20px;
-            width: 50%;
-            height: 50vh;
-        }
+        .window-grid { display: flex; gap: 20px; width: 50%; height: 50vh; }
 
         .main-window {
-            flex: 2;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+            flex: 2; background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px;
+            padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.05); overflow-y: auto;
         }
 
-        .side-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            flex: 1;
-        }
+        .side-column { display: flex; flex-direction: column; gap: 20px; flex: 1; }
 
         .small-window {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 15px;
-            padding: 15px;
+            flex: 1; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 15px;
+            padding: 15px; overflow-y: auto;
         }
 
-        h2, h3 {
-            font-family: 'Permanent Marker', cursive;
-            color: #222;
-            margin-top: 0;
-        }
+        h2, h3 { font-family: 'Permanent Marker', cursive; color: #222; margin-top: 0; }
     </style>
 </head>
 <body>
@@ -236,11 +159,11 @@
     </nav>
 
     <aside class="sidebar-right">
-        <a href="#" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-        <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="mailto:info@deineseite.de" title="E-Mail"><i class="fas fa-at"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="mailto:info@deineseite.de"><i class="fas fa-at"></i></a>
     </aside>
 
     <div class="content-container">
@@ -250,12 +173,8 @@
                 <p>Willkommen! Hier findest du alle aktuellen Updates.</p>
             </div>
             <div class="side-column">
-                <div class="small-window">
-                    <h3>Info 1</h3>
-                </div>
-                <div class="small-window">
-                    <h3>Info 2</h3>
-                </div>
+                <div class="small-window"><h3>Info 1</h3></div>
+                <div class="small-window"><h3>Info 2</h3></div>
             </div>
         </div>
     </div>
@@ -265,13 +184,13 @@
             document.getElementById("sidebar").classList.toggle("open");
         }
 
-        // Partikel Animation
         const canvas = document.getElementById('canvas-container');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         const elements = ['A', 'N', 'T', 'O', 'N', '♪', '♫', '♭', '♯', '𝄞'];
         const particles = [];
+
         class Particle {
             constructor() { this.reset(); }
             reset() {
@@ -293,13 +212,9 @@
                 if (this.y > canvas.height + 50) this.y = -50;
             }
             draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation);
+                ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation);
                 ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`;
-                ctx.font = `${this.size}px serif`;
-                ctx.fillText(this.text, 0, 0);
-                ctx.restore();
+                ctx.font = `${this.size}px serif`; ctx.fillText(this.text, 0, 0); ctx.restore();
             }
         }
         for (let i = 0; i < 30; i++) { particles.push(new Particle()); }
@@ -310,8 +225,7 @@
         }
         animate();
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         });
     </script>
 </body>
