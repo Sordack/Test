@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hauptseite | ANTON</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* 1. Hintergrund & Animation (Türkis zu Weiß) */
+        /* 1. Animierter Hintergrund (Türkis zu Weiß) */
         body, html {
             margin: 0;
             padding: 0;
@@ -33,103 +34,103 @@
             z-index: 1;
         }
 
-        /* 2. Menü-Button (3 Striche) */
+        /* 2. Menü-Button (Hamburger) */
         .menu-btn {
             position: fixed;
             top: 20px;
             left: 20px;
-            font-size: 30px;
+            font-size: 24px;
             cursor: pointer;
             z-index: 50;
-            background: rgba(255, 255, 255, 0.3);
-            width: 50px;
-            height: 50px;
+            background: rgba(255, 255, 255, 0.5);
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 5px;
             color: #333;
-            transition: 0.3s;
+            border: 1px solid rgba(0,0,0,0.1);
         }
 
-        .menu-btn:hover {
-            background: rgba(255, 255, 255, 0.6);
-        }
-
-        /* 3. Gelbe Sidebar (50% Transparenz) */
+        /* 3. Verkleinerte Sidebar (12.5%) mit Rahmen */
         nav {
             position: fixed;
-            top: 0;
-            left: -25%; /* Breite 25% */
-            width: 25%;
-            height: 100%;
-            background-color: rgba(255, 235, 59, 0.5);
-            backdrop-filter: blur(8px);
+            top: 10px;
+            bottom: 10px;
+            left: -15%; /* Startet außerhalb */
+            width: 12.5%; /* 50% von den ursprünglichen 25% */
+            background-color: rgba(255, 235, 59, 0.5); /* Gelb 50% transparent */
+            backdrop-filter: blur(10px);
             z-index: 100;
-            transition: left 0.5s cubic-bezier(0.77,0,0.175,1);
+            transition: left 0.4s ease-in-out;
             display: flex;
             flex-direction: column;
-            padding: 40px 20px;
+            padding: 20px;
             box-sizing: border-box;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            border: 2px solid rgba(0, 0, 0, 0.2); /* Einrahmung */
+            border-radius: 0 15px 15px 0; /* Abrundung rechts */
         }
 
         nav.open {
             left: 0;
         }
 
-        /* Schließen-Button (X) */
         .close-btn {
             align-self: flex-end;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: #333;
             cursor: pointer;
-            font-weight: bold;
-            line-height: 1;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .menu-links a {
             display: block;
             color: #333;
             text-decoration: none;
-            font-size: 1.4rem;
-            margin-bottom: 25px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
             font-weight: 600;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
         .menu-links a:hover {
             color: #000;
-            padding-left: 10px;
+            text-decoration: underline;
         }
 
+        /* Social Icons (Originale) */
         .social-icons {
             margin-top: auto;
             display: flex;
+            flex-direction: column;
             gap: 15px;
-            font-size: 1.5rem;
+            align-items: center;
+            font-size: 1.3rem;
         }
 
         .social-icons a {
-            text-decoration: none;
             color: #333;
+            transition: 0.3s;
         }
 
-        /* Content */
+        .social-icons a:hover {
+            color: #ff0000; /* YouTube Rot Effekt */
+        }
+        .fa-instagram:hover { color: #E1306C; }
+        .fa-tiktok:hover { color: #000000; }
+        .fa-facebook:hover { color: #1877F2; }
+
+        /* Hauptinhalt */
         .main-content {
             position: relative;
             z-index: 5;
-            padding: 100px;
             text-align: center;
+            margin-top: 15vh;
+            pointer-events: none;
         }
 
-        h1 { font-size: 5rem; color: #333; letter-spacing: 5px; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav { width: 50%; left: -50%; }
-        }
+        h1 { font-size: 4rem; color: #222; letter-spacing: 8px; }
     </style>
 </head>
 <body>
@@ -150,11 +151,11 @@
         </div>
 
         <div class="social-icons">
-            <a href="#" title="YouTube">🎬</a>
-            <a href="#" title="TikTok">📱</a>
-            <a href="#" title="Instagram">📸</a>
-            <a href="#" title="Facebook">👥</a>
-            <a href="#" title="E-Mail">@</a>
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:info@deineseite.de"><i class="fas fa-at"></i></a>
         </div>
     </nav>
 
@@ -163,12 +164,10 @@
     </div>
 
     <script>
-        // --- Sidebar Steuerung ---
         function toggleNav() {
             document.getElementById("sidebar").classList.toggle("open");
         }
 
-        // --- Hintergrund Animation ---
         const canvas = document.getElementById('canvas-container');
         const ctx = canvas.getContext('2d');
 
@@ -182,31 +181,26 @@
             constructor() {
                 this.reset();
             }
-
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.text = elements[Math.floor(Math.random() * elements.length)];
-                this.size = Math.random() * 35 + 20;
-                this.speedX = (Math.random() - 0.5) * 0.6; // Sehr langsam
-                this.speedY = (Math.random() - 0.5) * 0.6;
-                this.opacity = Math.random() * 0.3 + 0.1;
+                this.size = Math.random() * 30 + 15;
+                this.speedX = (Math.random() - 0.5) * 0.5; // Extra langsam
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.4 + 0.1;
                 this.rotation = Math.random() * Math.PI * 2;
                 this.rotationSpeed = (Math.random() - 0.5) * 0.005;
             }
-
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
                 this.rotation += this.rotationSpeed;
-
-                // Endlosschleife an den Rändern
                 if (this.x < -50) this.x = canvas.width + 50;
                 if (this.x > canvas.width + 50) this.x = -50;
                 if (this.y < -50) this.y = canvas.height + 50;
                 if (this.y > canvas.height + 50) this.y = -50;
             }
-
             draw() {
                 ctx.save();
                 ctx.translate(this.x, this.y);
@@ -218,7 +212,7 @@
             }
         }
 
-        for (let i = 0; i < 45; i++) {
+        for (let i = 0; i < 40; i++) {
             particles.push(new Particle());
         }
 
