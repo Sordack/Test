@@ -23,17 +23,14 @@
             z-index: 10; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); 
             border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
         }
-        /* Neue kantige Schriftart für den Header */
         .header-title { 
             font-family: 'Bangers', cursive; 
-            font-size: 3.5rem; 
-            color: #ffffff; 
+            font-size: 3.5rem; color: #ffffff; 
             text-shadow: 3px 3px 0px #000, 5px 5px 15px rgba(0,0,0,0.3); 
-            margin: 0; 
-            letter-spacing: 8px; 
+            margin: 0; letter-spacing: 8px; 
         }
         
-        /* Sidebar Navigation - 12.5% Breite */
+        /* Sidebar Links (Navigation) - Breite 12.5% */
         .menu-btn { 
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
             z-index: 110; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; 
@@ -47,7 +44,15 @@
             border-right: 2px solid rgba(0, 0, 0, 0.1); border-top-right-radius: 25px; 
         }
         .sidebar-left.open { left: 0; }
-        .menu-links a { display: block; color: #222; text-decoration: none; font-family: 'Permanent Marker', cursive; font-size: 1.3rem; margin-bottom: 20px; transition: 0.3s; }
+        
+        /* Stil für die Menü-Links inklusive Symbolen */
+        .menu-links a { 
+            display: flex; align-items: center; gap: 10px;
+            color: #222; text-decoration: none; 
+            font-family: 'Permanent Marker', cursive; font-size: 1.2rem; 
+            margin-bottom: 20px; transition: 0.3s; 
+        }
+        .menu-links a i { font-size: 1rem; color: #000; }
         .menu-links a:hover { color: #d35400; transform: translateX(5px); }
 
         /* Sidebar Social Rechts */
@@ -57,43 +62,24 @@
             z-index: 100; display: flex; flex-direction: column; align-items: center; 
             gap: 25px; padding: 25px 0; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; 
         }
-
-        /* Automatischer Puls-Modus */
         @keyframes sequentialPulseSlow { 
             0%, 2% { transform: scale(1); color: #000000; filter: grayscale(1); opacity: 0.5; } 
             6% { transform: scale(1.25); filter: grayscale(0); opacity: 1; color: var(--brand-color); } 
             14% { transform: scale(1.25); filter: grayscale(0); opacity: 1; color: var(--brand-color); } 
             18%, 100% { transform: scale(1); color: #000000; filter: grayscale(1); opacity: 0.5; } 
         }
-
         .sidebar-right a { 
             color: #000000; font-size: 1.6rem; text-decoration: none; 
             animation: sequentialPulseSlow 14s linear infinite; 
             display: flex; align-items: center; justify-content: center;
-            transition: transform 0.1s ease, color 0.1s ease, filter 0.1s ease;
+            transition: transform 0.1s ease, color 0.1s ease;
             filter: grayscale(1); opacity: 0.5;
         }
-
-        /* SOFORT-RESET bei Hover über Sidebar-Fläche */
-        .sidebar-right:hover a {
-            animation: none !important;
-            filter: grayscale(1) !important;
-            opacity: 0.4 !important;
-            transform: scale(1) !important;
-            color: #000000 !important;
-        }
-
-        /* Hervorhebung NUR für das fokussierte Symbol */
-        .sidebar-right a:hover {
-            transform: scale(1.4) !important;
-            filter: grayscale(0) !important;
-            opacity: 1 !important;
-            color: var(--brand-color) !important;
-        }
-
+        .sidebar-right:hover a { animation: none !important; filter: grayscale(1) !important; opacity: 0.4 !important; transform: scale(1) !important; color: #000000 !important; }
+        .sidebar-right a:hover { transform: scale(1.4) !important; filter: grayscale(0) !important; opacity: 1 !important; color: var(--brand-color) !important; }
         .sidebar-right svg { width: 1.7rem; height: 1.7rem; fill: currentColor; }
 
-        /* Brand Colors & Delays */
+        /* Social Brand Colors */
         .sidebar-right a:nth-child(1) { animation-delay: 0s; --brand-color: #FF0000; } 
         .sidebar-right a:nth-child(2) { animation-delay: 2s; --brand-color: #E1306C; } 
         .sidebar-right a:nth-child(3) { animation-delay: 4s; --brand-color: #000000; } 
@@ -101,7 +87,7 @@
         .sidebar-right a:nth-child(5) { animation-delay: 8s; --brand-color: #1DB954; } 
         .sidebar-right a:nth-child(6) { animation-delay: 10s; --brand-color: #00A8E1; } 
 
-        /* Footer mit Zentrierter URL */
+        /* Footer */
         .footer-legal { 
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
             z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 5px; 
@@ -112,9 +98,7 @@
         .footer-legal a { color: #333; text-decoration: none; font-family: 'Segoe UI', sans-serif; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
         .footer-legal .legal-link { font-size: 0.75rem; }
         .footer-legal .url-link { font-size: 0.65rem; opacity: 0.7; margin-top: 2px; text-transform: lowercase; }
-        .footer-legal a:hover { opacity: 1; color: #000; }
 
-        /* Content Layout */
         .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 80px); margin-top: 80px; }
         .window-grid { display: flex; gap: 20px; width: 75%; height: 65vh; }
         .main-window, .small-window { background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 20px; padding: 30px; overflow-y: auto; }
@@ -136,6 +120,7 @@
             <a href="meinemusik.html">Meine Musik</a>
             <a href="ueber-mich.html">Über mich</a>
             <a href="konzerte.html">Konzerte</a>
+            <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
             <a href="kontakt.html">Kontakt</a>
         </div>
     </nav>
@@ -164,12 +149,12 @@
     <div class="content-container">
         <div class="window-grid">
             <div class="main-window">
-                <h2>Willkommen</h2>
-                <p>Das ist das neue Zuhause von ANTON. Schau dich um!</p>
+                <h2>Schön, dass du da bist!</h2>
+                <p>Entdecke die Welt von ANTON – jetzt auch mit eigenem Shop für Merch!</p>
             </div>
             <div class="side-column">
-                <div class="small-window"><h3>Info</h3><p>Tour 2026!</p></div>
-                <div class="small-window"><h3>Kontakt</h3><p>Schreib mir eine Mail.</p></div>
+                <div class="small-window"><h3>News</h3><p>Neuer Merch im Shop!</p></div>
+                <div class="small-window"><h3>Tour</h3><p>Tickets ab jetzt verfügbar.</p></div>
             </div>
         </div>
     </div>
