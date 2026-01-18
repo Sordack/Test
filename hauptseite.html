@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     
     <style>
-        /* 1. Hintergrund & Animation */
+        /* 1. Hintergrund & Animation der Seite */
         body, html {
             margin: 0;
             padding: 0;
@@ -36,7 +36,7 @@
             z-index: 1;
         }
 
-        /* 2. Header */
+        /* 2. Header / Kopfzeile */
         header {
             position: fixed;
             top: 0;
@@ -107,31 +107,41 @@
             margin-bottom: 20px;
         }
 
-        /* 4. NEUE Rechte Sidebar (Social Media) - Kompakt & Zentriert am Rand */
+        /* 4. Rechte Sidebar mit Schimmer-Animation */
         .sidebar-right {
             position: fixed;
-            top: 50%; /* Mittig platzieren */
+            top: 50%;
             right: 15px;
-            transform: translateY(-50%); /* Exakt vertikal zentrieren */
-            width: 50px; /* Feste schmale Breite */
-            background-color: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
+            transform: translateY(-50%);
+            width: 55px;
+            /* Schimmer-Hintergrund */
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.3) 0%, 
+                rgba(0,206,209,0.2) 50%, 
+                rgba(255,255,255,0.3) 100%);
+            background-size: 400% 400%;
+            animation: shimmerEffect 6s ease infinite;
+            backdrop-filter: blur(8px);
             z-index: 100;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
-            padding: 15px 5px; /* Innenabstand für Rahmenabschluss */
-            box-sizing: border-box;
+            padding: 15px 0;
             border: 2px solid rgba(0, 0, 0, 0.1);
-            border-radius: 10px; /* Rundum geschlossen */
+            border-radius: 12px;
+        }
+
+        @keyframes shimmerEffect {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .sidebar-right a {
             color: #333;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             transition: transform 0.3s, color 0.3s;
-            display: block;
         }
 
         .sidebar-right a:hover { transform: scale(1.2); }
@@ -140,7 +150,7 @@
         .fa-tiktok:hover { color: #000; }
         .fa-facebook:hover { color: #1877F2; }
 
-        /* 5. Fenster-Layout */
+        /* 5. Fenster-Layout (50% verkleinert, getauscht) */
         .content-container {
             position: relative;
             z-index: 5;
@@ -153,11 +163,12 @@
 
         .window-grid {
             display: flex;
-            gap: 15px;
-            width: 50%;
-            height: 50vh;
+            gap: 20px;
+            width: 50%; /* Gruppe auf 50% Breite */
+            height: 50vh; /* Gruppe auf 50% Höhe */
         }
 
+        /* Großes Fenster LINKS */
         .main-window {
             flex: 2;
             background: rgba(255, 255, 255, 0.3);
@@ -165,13 +176,15 @@
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+            overflow-y: auto;
         }
 
+        /* Kleine Fenster RECHTS */
         .side-column {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
             flex: 1;
         }
 
@@ -182,13 +195,13 @@
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 15px;
             padding: 15px;
+            overflow-y: auto;
         }
 
         h2, h3 {
             font-family: 'Permanent Marker', cursive;
             color: #222;
             margin-top: 0;
-            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -226,7 +239,7 @@
         <div class="window-grid">
             <div class="main-window">
                 <h2>Neuigkeiten</h2>
-                <p style="font-size: 0.9rem;">Aktuelle Updates folgen hier.</p>
+                <p>Willkommen! Hier findest du alle aktuellen Updates.</p>
             </div>
             <div class="side-column">
                 <div class="small-window">
@@ -244,13 +257,14 @@
             document.getElementById("sidebar").classList.toggle("open");
         }
 
-        // Canvas Animation bleibt identisch
+        // Partikel Animation
         const canvas = document.getElementById('canvas-container');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         const elements = ['A', 'N', 'T', 'O', 'N', '♪', '♫', '♭', '♯', '𝄞'];
         const particles = [];
+
         class Particle {
             constructor() { this.reset(); }
             reset() {
