@@ -81,20 +81,31 @@
         }
         .menu-links a:hover { transform: scale(1.1); }
 
-        /* Rechte Sidebar mit dem Rahmen von der Kontaktseite */
+        /* Rechte Sidebar mit Umrandung in transparentem Schwarz, die bündig endet */
         .sidebar-right {
-            position: fixed; top: 80px; bottom: 0; right: 0; width: 65px;
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; gap: 18px; z-index: 100;
-            background-color: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(10px); 
-            border-top-left-radius: 25px;
+            position: fixed; 
+            top: 50%; 
+            right: 0; 
+            transform: translateY(-50%); /* Zentriert die Sidebar vertikal */
+            width: 60px;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            justify-content: center; 
+            gap: 15px; 
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(5px); 
+            padding: 20px 0; /* Erzeugt den Rahmenabstand oben/unten direkt an den Icons */
             box-sizing: border-box; 
-            /* Hier ist der Rahmen der Kontaktseite */
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-right: none; 
+            
+            /* Rahmen in transparentem Schwarz */
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-right: none;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
         }
-        .sidebar-right a { color: #333; font-size: 1.5rem; text-decoration: none; transition: 0.5s; display: flex; }
+        .sidebar-right a { color: #333; font-size: 1.4rem; text-decoration: none; transition: 0.5s; display: flex; }
 
         @keyframes sequentialPulseColorSlow {
             0%, 10%, 100% { transform: scale(1); color: #333; text-shadow: none; -webkit-text-stroke: 0px transparent; }
