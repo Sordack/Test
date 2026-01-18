@@ -38,29 +38,38 @@
         .menu-links a i { width: 20px; text-align: center; }
         .menu-links a:hover { transform: scale(1.1); color: #000; }
 
+        /* Custom Cappy Icon */
+        .cappy-icon {
+            width: 20px; height: 14px; background-color: #000;
+            border-radius: 10px 10px 2px 2px; position: relative;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .cappy-icon::after {
+            content: ''; position: absolute; bottom: 0; right: -6px;
+            width: 10px; height: 4px; background-color: #000; border-radius: 0 4px 4px 0;
+        }
+        .cappy-icon span {
+            color: #fff; font-family: 'Bangers', cursive; font-size: 10px;
+            position: relative; top: -1px; left: -1px;
+        }
+
         /* Rechte Sidebar mit Rahmen */
         .sidebar-right {
             position: fixed; top: 80px; bottom: 0; right: 0; width: 65px;
             display: flex; flex-direction: column; align-items: center;
             justify-content: center; gap: 18px; z-index: 100;
             background-color: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(10px);
-            border-top-left-radius: 25px;
-            box-sizing: border-box;
-            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px); border-top-left-radius: 25px;
+            box-sizing: border-box; border-left: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .sidebar-right a { color: #333; font-size: 1.5rem; text-decoration: none; transition: transform 0.3s, color 0.3s; }
-
-        @keyframes sequentialPulseSlow {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.25); }
-        }
-
+        @keyframes sequentialPulseSlow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
         .sidebar-right a i { animation: sequentialPulseSlow 5s infinite ease-in-out; }
         .sidebar-right:hover a i { animation-play-state: paused; }
         .sidebar-right a:hover { transform: scale(1.4); }
         
+        /* Hover Farben Social Media */
         .sidebar-right a.yt:hover { color: #FF0000; }
         .sidebar-right a.tt:hover { color: #000000; text-shadow: 1px 1px #ff0050, -1px -1px #00f2ea; }
         .sidebar-right a.ig:hover { color: #E1306C; }
@@ -80,12 +89,12 @@
         .sidebar-right a:nth-child(7) i { animation-delay: 3.6s; }
         .sidebar-right a:nth-child(8) i { animation-delay: 4.2s; }
 
-        /* Content */
+        /* Main Content */
         .main-content { margin-left: 12.5%; margin-right: 65px; padding-top: 120px; display: flex; justify-content: center; align-items: flex-start; }
         .welcome-card { background: rgba(255,255,255,0.5); padding: 50px; border-radius: 30px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
         .welcome-card h2 { font-family: 'Bangers'; font-size: 3.5rem; color: #333; margin: 0; }
 
-        /* Footer - Design wie auf "Meine Musik" */
+        /* Footer (Wie Meine Musik) */
         .footer-legal { 
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
             z-index: 100; display: flex; flex-direction: column; align-items: center; 
@@ -93,19 +102,8 @@
             padding: 12px 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .footer-links { display: flex; gap: 25px; }
-        .footer-legal a.legal-link { 
-            color: #333; text-decoration: none; 
-            font-size: 1rem; /* Präsent wie auf Meine Musik */
-            font-weight: bold; text-transform: uppercase; 
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .footer-url { 
-            font-size: 0.6rem; /* URL verkleinert */
-            opacity: 0.6; 
-            margin-top: 8px; 
-            text-decoration: none; 
-            color: #333; 
-        }
+        .footer-legal a.legal-link { color: #333; text-decoration: none; font-size: 1rem; font-weight: bold; text-transform: uppercase; font-family: 'Segoe UI', sans-serif; }
+        .footer-url { font-size: 0.6rem; opacity: 0.6; margin-top: 8px; text-decoration: none; color: #333; }
     </style>
 </head>
 <body>
@@ -116,7 +114,10 @@
         <div class="menu-links">
             <a href="hauptseite.html"><i class="fa-solid fa-house"></i> Home</a>
             <a href="meinemusik.html"><i class="fa-solid fa-music"></i> Meine Musik</a>
-            <a href="ueber-mich.html"><i class="fa-solid fa-user"></i> Über mich</a>
+            <a href="ueber-mich.html">
+                <div class="cappy-icon"><span>A</span></div>
+                Über mich
+            </a>
             <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
             <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
             <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
