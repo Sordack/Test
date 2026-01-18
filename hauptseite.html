@@ -16,26 +16,10 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* Header Bereich */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
             z-index: 10; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); 
-            overflow: hidden;
-        }
-        
-        .header-bg-elements {
-            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
-        }
-        .header-bg-elements i {
-            position: absolute; font-size: 24px; color: #fff; opacity: 0.5;
-            animation: flyAround 30s infinite linear; pointer-events: none;
-        }
-
-        @keyframes flyAround {
-            0% { transform: translate(var(--x-start), var(--y-start)) rotate(0deg); }
-            50% { transform: translate(var(--x-mid), var(--y-mid)) rotate(180deg); }
-            100% { transform: translate(var(--x-end), var(--y-end)) rotate(360deg); }
         }
 
         .header-title { 
@@ -55,40 +39,38 @@
             background-color: rgba(255, 235, 59, 0.95); backdrop-filter: blur(10px); 
             z-index: 150; display: flex; flex-direction: column; 
             padding: 50px 15px 20px 15px; box-sizing: border-box; border-top-right-radius: 25px; 
-            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-right: 1px solid rgba(0,0,0,0.1);
+            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .sidebar-left.open { left: 0; }
         .close-sidebar { 
             position: absolute; top: 15px; right: 15px; font-size: 1.8rem; cursor: pointer; color: #333; 
-            transition: transform 0.3s ease, color 0.3s ease;
+            transition: transform 0.3s ease;
         }
         .close-sidebar:hover { transform: scale(1.3) translateY(-2px); color: #000; }
 
         .menu-links a { 
             display: flex; align-items: center; gap: 10px; color: #222; text-decoration: none; 
-            font-family: 'Permanent Marker', cursive; font-size: 0.9rem; margin-bottom: 25px; transition: 0.3s;
+            font-size: 0.9rem; margin-bottom: 25px; transition: 0.3s;
         }
         .menu-links a:hover { transform: scale(1.1); }
 
-        /* Rechte Sidebar */
+        /* Rechte Sidebar (Kompakt & Transparent Schwarz) */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
             gap: 15px; z-index: 100; background-color: rgba(255, 255, 255, 0.15); 
-            backdrop-filter: blur(5px); padding: 20px 0; box-sizing: border-box; 
-            border: 1px solid rgba(0, 0, 0, 0.2); border-right: none;
-            border-top-left-radius: 20px; border-bottom-left-radius: 20px;
+            backdrop-filter: blur(5px); padding: 20px 0; border: 1px solid rgba(0, 0, 0, 0.2);
+            border-right: none; border-top-left-radius: 20px; border-bottom-left-radius: 20px;
         }
-        .sidebar-right a { color: #333; font-size: 1.4rem; text-decoration: none; transition: 0.5s; display: flex; }
+        .sidebar-right a { color: #333; font-size: 1.4rem; text-decoration: none; display: flex; }
         .sidebar-right a i { animation: sequentialPulseColorSlow 14s infinite ease-in-out; }
 
         @keyframes sequentialPulseColorSlow {
             0%, 10%, 100% { transform: scale(1); color: #333; }
-            5% { transform: scale(1.3); color: var(--brand-color); text-shadow: var(--brand-shadow); -webkit-text-stroke: var(--brand-stroke); }
+            5% { transform: scale(1.3); color: var(--brand-color); }
         }
-
-        .yt { --brand-color: #FF0000; } .tt { --brand-color: #000000; } .ig { --brand-color: #E1306C; }
-        .fb { --brand-color: #1877F2; } .sp { --brand-color: #1DB954; } .ap { --brand-color: #ffffff; --brand-stroke: 1px #000; }
+        .yt { --brand-color: #FF0000; } .tt { --brand-color: #000; } .ig { --brand-color: #E1306C; }
+        .fb { --brand-color: #1877F2; } .sp { --brand-color: #1DB954; } .ap { --brand-color: #000; }
         .ym { --brand-color: #FF0000; } .am { --brand-color: #00A8E1; }
 
         .sidebar-right a:nth-child(1) i { animation-delay: 0s; }
@@ -100,55 +82,55 @@
         .sidebar-right a:nth-child(7) i { animation-delay: 9s; }
         .sidebar-right a:nth-child(8) i { animation-delay: 10.5s; }
 
-        /* MAIN CONTENT - ANGEPASST AN MEINE MUSIK */
+        /* MAIN CONTENT - ORIENTIERT AN ÜBER MICH / MEINE MUSIK */
         .main-content {
-            padding: 100px 80px 100px 80px;
-            display: flex; justify-content: center; align-items: stretch;
-            height: calc(100vh - 200px); gap: 25px; box-sizing: border-box;
+            position: absolute; top: 110px; bottom: 100px; left: 100px; right: 100px;
+            display: flex; gap: 30px; align-items: stretch;
         }
 
         .content-window {
-            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 25px;
-            padding: 30px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            display: flex; flex-direction: column; box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 30px;
+            padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: flex; flex-direction: column;
         }
 
         .window-title {
-            font-family: 'Bangers', cursive; font-size: 2.5rem; color: #333;
+            font-family: 'Bangers', cursive; font-size: 2.8rem; color: #333;
             margin: 0 0 20px 0; text-align: center; letter-spacing: 2px;
         }
 
-        /* Großes Fenster Links */
+        /* Großes Willkommens-Fenster links */
         .welcome-window {
-            flex: 2; max-width: 800px;
+            flex: 1.8;
         }
         .welcome-window p {
-            font-size: 1.4rem; color: #444; line-height: 1.5;
-            display: flex; align-items: center; justify-content: center;
-            flex-grow: 1; text-align: center; margin: 0;
+            font-size: 1.5rem; color: #444; line-height: 1.6;
+            text-align: center; margin: auto 0;
         }
 
-        /* Rechte Spalte */
-        .right-column-windows {
-            flex: 1; max-width: 450px; display: flex; flex-direction: column; gap: 25px;
+        /* Rechte Spalte mit zwei Fenstern */
+        .right-column {
+            flex: 1; display: flex; flex-direction: column; gap: 30px;
         }
 
-        .slideshow-window, .news-window {
-            flex: 1; overflow: hidden;
+        .slideshow-window {
+            flex: 1.2; overflow: hidden; position: relative; padding: 15px;
         }
-
         .slideshow-container {
-            position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden;
+            width: 100%; height: 100%; border-radius: 20px; overflow: hidden; position: relative;
         }
         .slideshow-image {
             width: 100%; height: 100%; object-fit: cover; position: absolute;
-            top: 0; left: 0; opacity: 0; transition: opacity 1.5s ease-in-out;
+            opacity: 0; transition: opacity 1.5s ease-in-out;
         }
         .slideshow-image.active { opacity: 1; }
 
+        .news-window {
+            flex: 0.8; justify-content: center;
+        }
         .news-window p {
-            font-size: 1.1rem; color: #555; text-align: center; margin: auto 0;
+            font-size: 1.2rem; color: #555; text-align: center; margin: 0;
         }
 
         /* Footer */
@@ -159,34 +141,17 @@
             padding: 10px 25px; border-radius: 20px;
         }
         .footer-links { display: flex; gap: 20px; }
-        .footer-legal a.legal-link { 
+        .footer-legal a { 
             color: #333; text-decoration: none; font-size: 0.8rem; font-weight: bold; 
-            text-transform: uppercase; font-family: 'Segoe UI', sans-serif; 
+            text-transform: uppercase; font-family: sans-serif; 
         }
-        .footer-url { 
-            font-size: 0.85rem; opacity: 0.8; margin-top: 5px; text-decoration: none; 
-            color: #333; font-weight: 500; font-family: 'Segoe UI', sans-serif; 
-        }
+        .footer-url { font-size: 0.9rem; margin-top: 5px; font-family: sans-serif; }
 
-        @media (max-width: 1000px) {
-            .main-content { flex-direction: column; overflow-y: auto; align-items: center; }
-            .welcome-window, .right-column-windows { width: 100%; max-width: none; flex: none; }
-            .welcome-window { height: 400px; }
-            .slideshow-window, .news-window { height: 300px; }
-        }
     </style>
 </head>
 <body onclick="closeNavOutside(event)">
 
     <header>
-        <div class="header-bg-elements">
-            <i class="fa-solid fa-music" style="--x-start: -5vw; --y-start: 10px; --x-mid: 50vw; --y-mid: 50px; --x-end: 105vw; --y-end: 20px;"></i>
-            <i class="fa-solid fa-headphones" style="--x-start: 105vw; --y-start: 40px; --x-mid: 40vw; --y-mid: 10px; --x-end: -5vw; --y-end: 50px; animation-delay: -5s;"></i>
-            <i class="fa-solid fa-microphone-lines" style="--x-start: 20vw; --y-start: -30px; --x-mid: 60vw; --y-mid: 40px; --x-end: 80vw; --y-end: 90px; animation-delay: -10s;"></i>
-            <i class="fa-solid fa-note-sticky" style="--x-start: -5vw; --y-start: 60px; --x-mid: 55vw; --y-mid: 20px; --x-end: 105vw; --y-end: 40px; animation-delay: -15s;"></i>
-            <i class="fa-solid fa-volume-high" style="--x-start: 40vw; --y-start: 90px; --x-mid: 50vw; --y-mid: 10px; --x-end: 60vw; --y-end: -20px; animation-delay: -20s;"></i>
-            <i class="fa-solid fa-compact-disc" style="--x-start: 105vw; --y-start: 20px; --x-mid: 50vw; --y-mid: 60px; --x-end: -5vw; --y-end: 10px; animation-delay: -25s;"></i>
-        </div>
         <h1 class="header-title">ANTON</h1>
     </header>
 
@@ -199,51 +164,49 @@
             <a href="meinemusik.html"><i class="fa-solid fa-music"></i> Meine Musik</a>
             <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
             <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
-            <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
             <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
         </div>
     </nav>
 
     <aside class="sidebar-right">
-        <a href="#" class="yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" class="tt" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="#" class="ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" class="fb" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#" class="sp" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
-        <a href="#" class="ap" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
-        <a href="#" class="ym" title="YouTube Music"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="#" class="am" title="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
+        <a href="#" class="yt"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" class="tt"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="ig"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="fb"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="sp"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#" class="ap"><i class="fa-brands fa-apple"></i></a>
+        <a href="#" class="ym"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="#" class="am"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
     <main class="main-content">
         <div class="content-window welcome-window">
             <h2 class="window-title">Willkommen!</h2>
-            <p>Tauche ein in die Welt von ANTON – wo jeder Ton ein Lächeln zaubert und jede Melodie zum Mitsingen einlädt! Hier findest du alles über meine Musik, spannende Konzerte, coole Merchandise-Artikel und vieles mehr. Lass uns gemeinsam die Welt mit fröhlichen Klängen füllen!</p>
+            <p>Tauche ein in die Welt von ANTON – wo jeder Ton ein Lächeln zaubert und jede Melodie zum Mitsingen einlädt! Lass uns gemeinsam die Welt mit fröhlichen Klängen füllen!</p>
         </div>
 
-        <div class="right-column-windows">
+        <div class="right-column">
             <div class="content-window slideshow-window">
-                <h3 class="window-title">Konzerte</h3>
                 <div class="slideshow-container">
-                    <img class="slideshow-image active" src="https://via.placeholder.com/500x300/FFC0CB/333?text=Live+On+Stage" alt="Konzert 1">
-                    <img class="slideshow-image" src="https://via.placeholder.com/500x300/ADD8E6/333?text=ANTON+Action" alt="Konzert 2">
-                    <img class="slideshow-image" src="https://via.placeholder.com/500x300/90EE90/333?text=Family+Pop+Tour" alt="Konzert 3">
+                    <img class="slideshow-image active" src="https://via.placeholder.com/600x400/FFC0CB/333?text=Live+Moment+1" alt="Konzert 1">
+                    <img class="slideshow-image" src="https://via.placeholder.com/600x400/ADD8E6/333?text=ANTON+Live" alt="Konzert 2">
+                    <img class="slideshow-image" src="https://via.placeholder.com/600x400/90EE90/333?text=Show+Time" alt="Konzert 3">
                 </div>
             </div>
 
             <div class="content-window news-window">
-                <h3 class="window-title">Neuigkeiten</h3>
-                <p>Neue Single "Sonnenstrahl" ab sofort überall verfügbar! Schau auch in meinem Shop vorbei für neue Hoodies.</p>
+                <h3 class="window-title" style="font-size: 2rem;">Neuigkeiten</h3>
+                <p>Neue Single "Sonnenstrahl" ab sofort überall verfügbar!</p>
             </div>
         </div>
     </main>
 
     <footer class="footer-legal">
         <div class="footer-links">
-            <a href="impressum.html" class="legal-link">Impressum</a>
-            <a href="datenschutz.html" class="legal-link">Datenschutz</a>
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
         </div>
-        <a href="index.html" class="footer-url">www.anton-familienpop.de</a>
+        <div class="footer-url">www.anton-familienpop.de</div>
     </footer>
 
     <script>
