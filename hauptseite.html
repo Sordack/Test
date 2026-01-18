@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANTON | Hauptseite</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
-            font-family: 'Permanent Marker', cursive;
+            font-family: 'Permanent Marker', cursive !important;
             background: linear-gradient(45deg, #ade8f4, #ffffff, #ade8f4); 
             background-size: 200% 200%; animation: gradientBG 15s ease infinite;
             overflow: hidden;
@@ -24,23 +24,10 @@
             overflow: hidden;
         }
         
-        .header-bg-elements {
-            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
-        }
-        .header-bg-elements i {
-            position: absolute; font-size: 24px; color: #fff; opacity: 0.5;
-            animation: flyAround 30s infinite linear; pointer-events: none;
-        }
-
-        @keyframes flyAround {
-            0% { transform: translate(var(--x-start), var(--y-start)) rotate(0deg); }
-            50% { transform: translate(var(--x-mid), var(--y-mid)) rotate(180deg); }
-            100% { transform: translate(var(--x-end), var(--y-end)) rotate(360deg); }
-        }
-
         .header-title { 
-            font-family: 'Bangers', cursive; font-size: 3.8rem; color: #ffffff; 
-            letter-spacing: 4px; margin: 0; z-index: 11; text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            font-family: 'Permanent Marker', cursive !important; 
+            font-size: 3rem; color: #ffffff; 
+            letter-spacing: 5px; margin: 0; z-index: 11; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
 
         .menu-btn { 
@@ -60,12 +47,8 @@
         .sidebar-left.open { left: 0; }
         .close-sidebar { 
             position: absolute; top: 15px; right: 15px; font-size: 1.8rem; cursor: pointer; color: #333; 
-            transition: transform 0.3s ease, color 0.3s ease;
         }
-        .close-sidebar:hover { transform: scale(1.3) translateY(-2px); color: #000; }
 
-        .menu-links { display: flex; flex-direction: column; }
-        
         .menu-links a { 
             display: flex; align-items: center; gap: 10px; color: #222; text-decoration: none; 
             font-family: 'Permanent Marker', cursive; font-size: 0.9rem; margin-bottom: 25px; transition: 0.3s;
@@ -78,11 +61,8 @@
             max-height: 0; overflow: hidden; list-style: none; padding: 0; margin: -15px 0 20px 20px; 
             transition: max-height 0.5s ease-in-out; 
         }
-        .shop-container:hover .submenu { max-height: 300px; }
-        
-        .submenu li a { 
-            font-size: 0.75rem; margin-bottom: 10px; opacity: 0.8; 
-        }
+        .shop-container:hover .submenu { max-height: 400px; }
+        .submenu li a { font-size: 0.75rem; margin-bottom: 10px; opacity: 0.8; }
         .submenu li a::before { content: "• "; color: #333; }
 
         /* Rechte Sidebar */
@@ -102,10 +82,9 @@
             5% { transform: scale(1.3); color: var(--brand-color); }
         }
         .yt { --brand-color: #FF0000; } .tt { --brand-color: #000; } .ig { --brand-color: #E1306C; }
-        .fb { --brand-color: #1877F2; } .sp { --brand-color: #1DB954; } .ap { --brand-color: #000; }
-        .ym { --brand-color: #FF0000; } .am { --brand-color: #00A8E1; }
+        .fb { --brand-color: #1877F2; } .sp { --brand-color: #1DB954; }
 
-        /* Grid Layout */
+        /* Content Layout Grid */
         .content-container { 
             position: relative; z-index: 5; display: flex; justify-content: center; 
             align-items: center; height: calc(100vh - 80px); margin-top: 80px; 
@@ -122,11 +101,14 @@
         .side-column { display: flex; flex-direction: column; gap: 20px; flex: 1; }
         .small-window { flex: 1; }
         
-        h2, h3 { font-family: 'Bangers', cursive; color: #222; margin-top: 0; letter-spacing: 2px; }
-        .main-window h2 { font-size: 2.8rem; }
-        .small-window h3 { font-size: 1.8rem; }
-        
-        p { font-family: 'Permanent Marker', cursive; color: #333; line-height: 1.4; }
+        /* Permanent Marker für alles */
+        h2, h3, p { 
+            font-family: 'Permanent Marker', cursive !important; 
+            color: #222; margin-top: 0; 
+        }
+        .main-window h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .small-window h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        p { line-height: 1.4; color: #333; }
 
         .slideshow-container { position: relative; width: 100%; height: 100%; border-radius: 10px; overflow: hidden; }
         .slideshow-image { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 1.5s ease-in-out; }
@@ -147,11 +129,6 @@
 <body onclick="closeNavOutside(event)">
 
     <header>
-        <div class="header-bg-elements">
-            <i class="fa-solid fa-music" style="--x-start: -5vw; --y-start: 10px; --x-mid: 50vw; --y-mid: 50px; --x-end: 105vw; --y-end: 20px;"></i>
-            <i class="fa-solid fa-headphones" style="--x-start: 105vw; --y-start: 40px; --x-mid: 40vw; --y-mid: 10px; --x-end: -5vw; --y-end: 50px; animation-delay: -5s;"></i>
-            <i class="fa-solid fa-microphone-lines" style="--x-start: 20vw; --y-start: -30px; --x-mid: 60vw; --y-mid: 40px; --x-end: 80vw; --y-end: 90px; animation-delay: -10s;"></i>
-        </div>
         <h1 class="header-title">ANTON</h1>
     </header>
 
@@ -186,9 +163,6 @@
         <a href="#" class="ig"><i class="fa-brands fa-instagram"></i></a>
         <a href="#" class="fb"><i class="fa-brands fa-facebook"></i></a>
         <a href="#" class="sp"><i class="fa-brands fa-spotify"></i></a>
-        <a href="#" class="ap"><i class="fa-brands fa-apple"></i></a>
-        <a href="#" class="ym"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="#" class="am"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
     <div class="content-container">
@@ -206,7 +180,7 @@
                     </div>
                 </div>
                 <div class="small-window">
-                    <h3>Neuigkeiten</h3>
+                    <h3>News</h3>
                     <p>Neue Single "Sonnenstrahl" ab sofort überall verfügbar!</p>
                 </div>
             </div>
