@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
+        /* Grunddesign & Hintergrund */
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
             font-family: 'Segoe UI', sans-serif; overflow: hidden; 
@@ -14,8 +15,10 @@
             background-size: 200% 200%; animation: gradientBG 15s ease infinite; 
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 
+        /* Header */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
@@ -24,7 +27,7 @@
         }
         .header-title { font-family: 'Rock Salt', cursive; font-size: 2.5rem; color: #ffffff; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); margin: 0; letter-spacing: 5px; }
         
-        /* Sidebar Links (Links) */
+        /* Linke Sidebar (Navigation) - Abgerundet ab 80px */
         .menu-btn { 
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
             z-index: 110; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; 
@@ -38,9 +41,10 @@
             border-right: 2px solid rgba(0, 0, 0, 0.1); border-top-right-radius: 25px; 
         }
         .sidebar-left.open { left: 0; }
-        .menu-links a { display: block; color: #222; text-decoration: none; font-family: 'Permanent Marker', cursive; font-size: 1.3rem; margin-bottom: 20px; }
+        .menu-links a { display: block; color: #222; text-decoration: none; font-family: 'Permanent Marker', cursive; font-size: 1.3rem; margin-bottom: 20px; transition: 0.3s; }
+        .menu-links a:hover { color: #d35400; transform: translateX(5px); }
 
-        /* Sidebar Social (Rechts) - Schwarz zu Farbe */
+        /* Rechte Sidebar (Socials) - Schwarz zu Farbe Animation */
         .sidebar-right { 
             position: fixed; top: 50%; right: 15px; transform: translateY(-50%); 
             width: 55px; background: rgba(255,255,255,0.3); backdrop-filter: blur(8px); 
@@ -48,10 +52,10 @@
             gap: 20px; padding: 20px 0; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; 
         }
         @keyframes sequentialPulseSlow { 
-            0% { transform: scale(1); color: #000000; filter: none; } 
-            5% { transform: scale(1.3); filter: drop-shadow(0 5px 8px rgba(0,0,0,0.2)); color: var(--brand-color); } 
-            10% { transform: scale(1); color: #000000; filter: none; } 
-            100% { transform: scale(1); color: #000000; } 
+            0% { transform: scale(1); color: #000000; filter: grayscale(1); } 
+            5% { transform: scale(1.3); filter: grayscale(0) drop-shadow(0 5px 8px rgba(0,0,0,0.2)); color: var(--brand-color); } 
+            10% { transform: scale(1); color: #000000; filter: grayscale(1); } 
+            100% { transform: scale(1); color: #000000; filter: grayscale(1); } 
         }
         .sidebar-right a { 
             color: #000000; font-size: 1.5rem; text-decoration: none; 
@@ -60,43 +64,48 @@
         }
         .sidebar-right svg { width: 1.5rem; height: 1.5rem; fill: currentColor; }
 
-        .sidebar-right a:nth-child(1) { animation-delay: 0s; --brand-color: #FF0000; } 
-        .sidebar-right a:nth-child(2) { animation-delay: 2s; --brand-color: #E1306C; } 
-        .sidebar-right a:nth-child(3) { animation-delay: 4s; --brand-color: #000000; } 
-        .sidebar-right a:nth-child(4) { animation-delay: 6s; --brand-color: #1877F2; } 
-        .sidebar-right a:nth-child(5) { animation-delay: 8s; --brand-color: #1DB954; } 
-        .sidebar-right a:nth-child(6) { animation-delay: 10s; --brand-color: #00A8E1; } 
-        .sidebar-right a:nth-child(7) { animation-delay: 12s; --brand-color: #d35400; }
+        /* Individuelle Brand-Colors für den Puls */
+        .sidebar-right a:nth-child(1) { animation-delay: 0s; --brand-color: #FF0000; } /* YT */
+        .sidebar-right a:nth-child(2) { animation-delay: 2s; --brand-color: #E1306C; } /* IG */
+        .sidebar-right a:nth-child(3) { animation-delay: 4s; --brand-color: #000000; } /* TT */
+        .sidebar-right a:nth-child(4) { animation-delay: 6s; --brand-color: #1877F2; } /* FB */
+        .sidebar-right a:nth-child(5) { animation-delay: 8s; --brand-color: #1DB954; } /* Spotify */
+        .sidebar-right a:nth-child(6) { animation-delay: 10s; --brand-color: #00A8E1; } /* Amazon */
+        .sidebar-right a:nth-child(7) { animation-delay: 12s; --brand-color: #222222; } /* @ */
 
         /* Footer */
         .footer-legal { 
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
             z-index: 100; display: flex; gap: 20px; padding: 10px 25px; 
             border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 30px; 
-            background: transparent; backdrop-filter: blur(5px); 
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); 
         }
         .footer-legal a { color: #333; text-decoration: none; font-family: 'Segoe UI', sans-serif; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Content Layout */
+        /* Content Fenster */
         .content-container { 
             position: relative; z-index: 5; display: flex; justify-content: center; 
             align-items: center; height: calc(100vh - 80px); margin-top: 80px; 
         }
-        .window-grid { display: flex; gap: 20px; width: 70%; height: 60vh; }
+        .window-grid { display: flex; gap: 20px; width: 75%; height: 65vh; }
         .main-window, .small-window { 
-            background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
-            padding: 25px; overflow-y: auto; 
+            background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 20px; 
+            padding: 30px; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
-        .main-window { flex: 2.2; }
+        .main-window { flex: 2.5; }
         .side-column { display: flex; flex-direction: column; gap: 20px; flex: 1; }
         .small-window { flex: 1; }
         h2, h3 { font-family: 'Permanent Marker', cursive; color: #222; margin-top: 0; }
+        p { line-height: 1.6; color: #333; }
     </style>
 </head>
 <body onclick="closeNavOutside(event)">
+
     <header><h1 class="header-title">ANTON</h1></header>
+    
     <div class="menu-btn" onclick="toggleNav(event)">☰</div>
+    
     <canvas id="canvas-container"></canvas>
 
     <nav class="sidebar-left" id="sidebar">
@@ -110,15 +119,18 @@
     </nav>
 
     <aside class="sidebar-right">
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-tiktok"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-spotify"></i></a>
-        <a href="#">
-            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.66 17.15c-.24.36-.6.44-.93.26-2.5-1.54-5.65-1.88-9.35-1.04-.42.1-.84-.17-.93-.58-.1-.42.17-.84.58-.93 4.05-.92 7.55-.53 10.37 1.2.33.22.44.73.26 1.09zm1.5-3.23c-.3.48-.92.63-1.4.33-2.86-1.76-7.23-2.27-10.62-1.24-.54.16-1.1-.14-1.27-.68-.17-.55.14-1.11.68-1.28 4-1.22 8.81-.64 12.1 1.38.49.31.64.93.33 1.42l.18.08zm.13-3.41c-3.43-2.04-9.1-2.23-12.4-1.23-.53.16-1.08-.14-1.24-.67s.14-1.08.67-1.24c3.84-1.16 10.12-.94 14.1 1.42.48.28.64.9.36 1.38-.28.48-.9.64-1.38.36l-.11-.02z"/></svg>
+        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
+        <a href="#" title="Amazon Music">
+            <svg viewBox="0 0 24 24">
+                <path d="M12.5 13.9c-2.4 0-4.7-.9-6.3-2.5-.2-.2-.2-.5 0-.7.2-.2.5-.2.7 0 1.5 1.4 3.5 2.2 5.6 2.2 2.1 0 4.1-.8 5.6-2.2.2-.2.5-.2.7 0 .2.2.2.5 0 .7-1.6 1.6-3.9 2.5-6.3 2.5zm7-2.9c-.3 0-.5-.2-.5-.5 0-3.3-2.7-6-6-6s-6 2.7-6 6c0 .3-.2.5-.5.5s-.5-.2-.5-.5c0-3.9 3.1-7 7-7s7 3.1 7 7c0 .3-.2.5-.5.5z"/>
+                <path d="M18.5 18c-2 1.5-4.5 2-7 2-3.5 0-6.5-1.2-8.5-3-.2-.2-.2-.5 0-.7.2-.2.5-.2.7 0 1.8 1.6 4.5 2.7 7.8 2.7 2.3 0 4.6-.5 6.4-1.8.2-.1.5-.1.7.1.2.2.2.5-.1.7z"/>
+            </svg>
         </a>
-        <a href="#"><i class="fas fa-at"></i></a>
+        <a href="#" title="Kontakt"><i class="fas fa-at"></i></a>
     </aside>
 
     <footer class="footer-legal">
@@ -129,25 +141,70 @@
     <div class="content-container">
         <div class="window-grid">
             <div class="main-window">
-                <h2>Willkommen</h2>
-                <p>Hey! Schön, dass du auf meine offizielle Seite gefunden hast. Hier findest du alles über meine Musik, Tourdaten und vieles mehr!</p>
+                <h2>Willkommen bei ANTON</h2>
+                <p>Hey! Schön, dass du da bist. Hier auf meiner offiziellen Seite dreht sich alles um modernen Familienpop.</p>
+                <p>Klick dich durch die Navigation, um mehr über mich und meine Musik zu erfahren. Wir sehen uns vor der Bühne!</p>
             </div>
             <div class="side-column">
-                <div class="small-window"><h3>News</h3><p>Neues Album in Arbeit!</p></div>
-                <div class="small-window"><h3>Shop</h3><p>Bald verfügbar.</p></div>
+                <div class="small-window">
+                    <h3>News</h3>
+                    <p>Neue Single "Komm rein" ab sofort überall verfügbar!</p>
+                </div>
+                <div class="small-window">
+                    <h3>Events</h3>
+                    <p>Die Tourdaten für 2026 sind online. Schau mal rein!</p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function toggleNav(event) { event.stopPropagation(); document.getElementById("sidebar").classList.toggle("open"); }
-        function closeNavOutside(event) { const sidebar = document.getElementById("sidebar"); if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { sidebar.classList.remove("open"); } }
-        const canvas = document.getElementById('canvas-container'); const ctx = canvas.getContext('2d'); canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        const elements = ['A', 'N', 'T', 'O', 'N', '♪', '♫']; const particles = [];
-        class Particle { constructor() { this.reset(); } reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.text = elements[Math.floor(Math.random() * elements.length)]; this.size = Math.random() * 20 + 10; this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4; this.opacity = Math.random() * 0.2 + 0.1; this.rotation = Math.random() * Math.PI * 2; this.rotationSpeed = (Math.random() - 0.5) * 0.005; } update() { this.x += this.speedX; this.y += this.speedY; this.rotation += this.rotationSpeed; if (this.x < -50) this.x = canvas.width + 50; if (this.x > canvas.width + 50) this.x = -50; if (this.y < -50) this.y = canvas.height + 50; if (this.y > canvas.height + 50) this.y = -50; } draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation); ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`; ctx.font = `${this.size}px serif`; ctx.fillText(this.text, 0, 0); ctx.restore(); } }
+        function toggleNav(event) { 
+            event.stopPropagation(); 
+            document.getElementById("sidebar").classList.toggle("open"); 
+        }
+        function closeNavOutside(event) { 
+            const sidebar = document.getElementById("sidebar"); 
+            if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { 
+                sidebar.classList.remove("open"); 
+            } 
+        }
+        
+        // Background Animation
+        const canvas = document.getElementById('canvas-container');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const elements = ['A', 'N', 'T', 'O', 'N', '♪', '♫'];
+        const particles = [];
+        class Particle { 
+            constructor() { this.reset(); } 
+            reset() { 
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; 
+                this.text = elements[Math.floor(Math.random() * elements.length)]; 
+                this.size = Math.random() * 20 + 10; this.speedX = (Math.random() - 0.5) * 0.4; 
+                this.speedY = (Math.random() - 0.5) * 0.4; this.opacity = Math.random() * 0.15 + 0.05; 
+                this.rotation = Math.random() * Math.PI * 2; this.rotationSpeed = (Math.random() - 0.5) * 0.005; 
+            } 
+            update() { 
+                this.x += this.speedX; this.y += this.speedY; this.rotation += this.rotationSpeed; 
+                if (this.x < -50) this.x = canvas.width + 50; if (this.x > canvas.width + 50) this.x = -50; 
+                if (this.y < -50) this.y = canvas.height + 50; if (this.y > canvas.height + 50) this.y = -50; 
+            } 
+            draw() { 
+                ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation); 
+                ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`; ctx.font = `${this.size}px serif`; 
+                ctx.fillText(this.text, 0, 0); ctx.restore(); 
+            } 
+        }
         for (let i = 0; i < 30; i++) { particles.push(new Particle()); }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
-        animate(); window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        function animate() { 
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            particles.forEach(p => { p.update(); p.draw(); }); 
+            requestAnimationFrame(animate); 
+        }
+        animate();
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
     </script>
 </body>
 </html>
