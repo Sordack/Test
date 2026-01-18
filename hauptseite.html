@@ -25,19 +25,11 @@
         }
         
         .header-bg-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
         }
         .header-bg-elements i {
-            position: absolute;
-            font-size: 24px;
-            color: #fff;
-            opacity: 0.5;
-            animation: flyAround 30s infinite linear;
-            pointer-events: none;
+            position: absolute; font-size: 24px; color: #fff; opacity: 0.5;
+            animation: flyAround 30s infinite linear; pointer-events: none;
         }
 
         @keyframes flyAround {
@@ -47,13 +39,8 @@
         }
 
         .header-title { 
-            font-family: 'Bangers', cursive;
-            font-size: 3.8rem;
-            color: #ffffff; 
-            letter-spacing: 4px; 
-            margin: 0;
-            z-index: 11;
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            font-family: 'Bangers', cursive; font-size: 3.8rem; color: #ffffff; 
+            letter-spacing: 4px; margin: 0; z-index: 11; text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
         }
 
         .menu-btn { 
@@ -68,70 +55,41 @@
             background-color: rgba(255, 235, 59, 0.95); backdrop-filter: blur(10px); 
             z-index: 150; display: flex; flex-direction: column; 
             padding: 50px 15px 20px 15px; box-sizing: border-box; border-top-right-radius: 25px; 
-            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-right: 1px solid rgba(0,0,0,0.1);
+            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-right: 1px solid rgba(0,0,0,0.1);
         }
         .sidebar-left.open { left: 0; }
-        
         .close-sidebar { 
-            position: absolute; 
-            top: 15px; 
-            right: 15px; 
-            font-size: 1.8rem; 
-            cursor: pointer; 
-            color: #333; 
+            position: absolute; top: 15px; right: 15px; font-size: 1.8rem; cursor: pointer; color: #333; 
             transition: transform 0.3s ease, color 0.3s ease;
         }
-        .close-sidebar:hover {
-            transform: scale(1.3) translateY(-2px); 
-            color: #000;
-        }
+        .close-sidebar:hover { transform: scale(1.3) translateY(-2px); color: #000; }
 
         .menu-links a { 
-            display: flex; align-items: center; gap: 10px; color: #222; 
-            text-decoration: none; font-family: 'Permanent Marker', cursive; 
-            font-size: 0.9rem; margin-bottom: 25px; transition: 0.3s;
+            display: flex; align-items: center; gap: 10px; color: #222; text-decoration: none; 
+            font-family: 'Permanent Marker', cursive; font-size: 0.9rem; margin-bottom: 25px; transition: 0.3s;
         }
         .menu-links a:hover { transform: scale(1.1); }
 
         /* Rechte Sidebar */
         .sidebar-right {
-            position: fixed; 
-            top: 50%; 
-            right: 0; 
-            transform: translateY(-50%); 
-            width: 60px;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;
-            justify-content: center; 
-            gap: 15px; 
-            z-index: 100;
-            background-color: rgba(255, 255, 255, 0.15); 
-            backdrop-filter: blur(5px); 
-            padding: 20px 0; 
-            box-sizing: border-box; 
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-right: none;
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            gap: 15px; z-index: 100; background-color: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(5px); padding: 20px 0; box-sizing: border-box; 
+            border: 1px solid rgba(0, 0, 0, 0.2); border-right: none;
+            border-top-left-radius: 20px; border-bottom-left-radius: 20px;
         }
         .sidebar-right a { color: #333; font-size: 1.4rem; text-decoration: none; transition: 0.5s; display: flex; }
-
-        @keyframes sequentialPulseColorSlow {
-            0%, 10%, 100% { transform: scale(1); color: #333; text-shadow: none; -webkit-text-stroke: 0px transparent; }
-            5% { transform: scale(1.3); color: var(--brand-color); text-shadow: var(--brand-shadow); -webkit-text-stroke: var(--brand-stroke); }
-        }
         .sidebar-right a i { animation: sequentialPulseColorSlow 14s infinite ease-in-out; }
 
-        .yt { --brand-color: #FF0000; --brand-shadow: none; --brand-stroke: 0px transparent; }
-        .tt { --brand-color: #000000; --brand-shadow: 2px 2px #ff0050, -2px -2px #00f2ea; --brand-stroke: 0px transparent; }
-        .ig { --brand-color: #E1306C; --brand-shadow: none; --brand-stroke: 0px transparent; }
-        .fb { --brand-color: #1877F2; --brand-shadow: none; --brand-stroke: 0px transparent; }
-        .sp { --brand-color: #1DB954; --brand-shadow: none; --brand-stroke: 0px transparent; }
-        .ap { --brand-color: #ffffff; --brand-shadow: none; --brand-stroke: 1px #000000; }
-        .ym { --brand-color: #FF0000; --brand-shadow: none; --brand-stroke: 0px transparent; }
-        .am { --brand-color: #00A8E1; --brand-shadow: none; --brand-stroke: 0px transparent; }
+        @keyframes sequentialPulseColorSlow {
+            0%, 10%, 100% { transform: scale(1); color: #333; }
+            5% { transform: scale(1.3); color: var(--brand-color); text-shadow: var(--brand-shadow); -webkit-text-stroke: var(--brand-stroke); }
+        }
+
+        .yt { --brand-color: #FF0000; } .tt { --brand-color: #000000; } .ig { --brand-color: #E1306C; }
+        .fb { --brand-color: #1877F2; } .sp { --brand-color: #1DB954; } .ap { --brand-color: #ffffff; --brand-stroke: 1px #000; }
+        .ym { --brand-color: #FF0000; } .am { --brand-color: #00A8E1; }
 
         .sidebar-right a:nth-child(1) i { animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { animation-delay: 1.5s; }
@@ -142,106 +100,55 @@
         .sidebar-right a:nth-child(7) i { animation-delay: 9s; }
         .sidebar-right a:nth-child(8) i { animation-delay: 10.5s; }
 
-        /* MAIN CONTENT LAYOUT */
+        /* MAIN CONTENT - ANGEPASST AN MEINE MUSIK */
         .main-content {
-            padding-top: 100px;
-            padding-bottom: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: calc(100vh - 180px);
-            gap: 20px;
+            padding: 100px 80px 100px 80px;
+            display: flex; justify-content: center; align-items: stretch;
+            height: calc(100vh - 200px); gap: 25px; box-sizing: border-box;
         }
 
         .content-window {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
+            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 25px;
+            padding: 30px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            display: flex; flex-direction: column; box-sizing: border-box;
         }
 
         .window-title {
-            font-family: 'Bangers', cursive;
-            font-size: 2.2rem;
-            color: #333;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+            font-family: 'Bangers', cursive; font-size: 2.5rem; color: #333;
+            margin: 0 0 20px 0; text-align: center; letter-spacing: 2px;
         }
 
-        /* Fenster "Willkommen!" (links) */
+        /* Großes Fenster Links */
         .welcome-window {
-            width: 55%;
-            max-width: 650px;
-            height: 60vh;
-            justify-content: space-between;
+            flex: 2; max-width: 800px;
         }
         .welcome-window p {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 1.3rem;
-            color: #555;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1.4;
+            font-size: 1.4rem; color: #444; line-height: 1.5;
+            display: flex; align-items: center; justify-content: center;
+            flex-grow: 1; text-align: center; margin: 0;
         }
 
+        /* Rechte Spalte */
         .right-column-windows {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 30%;
-            max-width: 400px;
+            flex: 1; max-width: 450px; display: flex; flex-direction: column; gap: 25px;
         }
 
-        /* Slideshow Fenster (rechts oben) */
-        .slideshow-window {
-            height: 30vh;
-            overflow: hidden;
-            position: relative;
+        .slideshow-window, .news-window {
+            flex: 1; overflow: hidden;
         }
-        .slideshow-window .window-title {
-            margin-bottom: 5px;
-            font-size: 1.8rem;
-        }
+
         .slideshow-container {
-            position: relative;
-            width: 100%;
-            height: calc(100% - 45px);
-            overflow: hidden;
-            border-radius: 10px;
+            position: relative; width: 100%; height: 100%; border-radius: 15px; overflow: hidden;
         }
         .slideshow-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            width: 100%; height: 100%; object-fit: cover; position: absolute;
+            top: 0; left: 0; opacity: 0; transition: opacity 1.5s ease-in-out;
         }
-        .slideshow-image.active {
-            opacity: 1;
-        }
+        .slideshow-image.active { opacity: 1; }
 
-        /* Neuigkeiten Fenster (rechts unten) */
-        .news-window {
-            height: 30vh;
-        }
-        .news-window .window-title {
-            font-size: 1.8rem;
-        }
         .news-window p {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 1.1rem;
-            color: #666;
-            margin-top: 10px;
+            font-size: 1.1rem; color: #555; text-align: center; margin: auto 0;
         }
 
         /* Footer */
@@ -253,17 +160,27 @@
         }
         .footer-links { display: flex; gap: 20px; }
         .footer-legal a.legal-link { 
-            color: #333; text-decoration: none; font-size: 0.8rem; 
-            font-weight: bold; text-transform: uppercase; font-family: 'Segoe UI', sans-serif; 
+            color: #333; text-decoration: none; font-size: 0.8rem; font-weight: bold; 
+            text-transform: uppercase; font-family: 'Segoe UI', sans-serif; 
         }
-        .footer-url { font-size: 0.85rem; opacity: 0.8; margin-top: 5px; text-decoration: none; color: #333; font-weight: 500; font-family: 'Segoe UI', sans-serif; }
+        .footer-url { 
+            font-size: 0.85rem; opacity: 0.8; margin-top: 5px; text-decoration: none; 
+            color: #333; font-weight: 500; font-family: 'Segoe UI', sans-serif; 
+        }
+
+        @media (max-width: 1000px) {
+            .main-content { flex-direction: column; overflow-y: auto; align-items: center; }
+            .welcome-window, .right-column-windows { width: 100%; max-width: none; flex: none; }
+            .welcome-window { height: 400px; }
+            .slideshow-window, .news-window { height: 300px; }
+        }
     </style>
 </head>
 <body onclick="closeNavOutside(event)">
 
     <header>
         <div class="header-bg-elements">
-            <i class="fa-solid fa-music" style="--x-start: -5vw; --y-start: 10px; --x-mid: 50vw; --y-mid: 50px; --x-end: 105vw; --y-end: 20px; animation-delay: 0s;"></i>
+            <i class="fa-solid fa-music" style="--x-start: -5vw; --y-start: 10px; --x-mid: 50vw; --y-mid: 50px; --x-end: 105vw; --y-end: 20px;"></i>
             <i class="fa-solid fa-headphones" style="--x-start: 105vw; --y-start: 40px; --x-mid: 40vw; --y-mid: 10px; --x-end: -5vw; --y-end: 50px; animation-delay: -5s;"></i>
             <i class="fa-solid fa-microphone-lines" style="--x-start: 20vw; --y-start: -30px; --x-mid: 60vw; --y-mid: 40px; --x-end: 80vw; --y-end: 90px; animation-delay: -10s;"></i>
             <i class="fa-solid fa-note-sticky" style="--x-start: -5vw; --y-start: 60px; --x-mid: 55vw; --y-mid: 20px; --x-end: 105vw; --y-end: 40px; animation-delay: -15s;"></i>
@@ -301,24 +218,22 @@
     <main class="main-content">
         <div class="content-window welcome-window">
             <h2 class="window-title">Willkommen!</h2>
-            <p>
-                Tauche ein in die Welt von ANTON – wo jeder Ton ein Lächeln zaubert und jede Melodie zum Mitsingen einlädt! Hier findest du alles über meine Musik, spannende Konzerte, coole Merchandise-Artikel und vieles mehr. Lass uns gemeinsam die Welt mit fröhlichen Klängen füllen!
-            </p>
+            <p>Tauche ein in die Welt von ANTON – wo jeder Ton ein Lächeln zaubert und jede Melodie zum Mitsingen einlädt! Hier findest du alles über meine Musik, spannende Konzerte, coole Merchandise-Artikel und vieles mehr. Lass uns gemeinsam die Welt mit fröhlichen Klängen füllen!</p>
         </div>
 
         <div class="right-column-windows">
             <div class="content-window slideshow-window">
                 <h3 class="window-title">Konzerte</h3>
                 <div class="slideshow-container">
-                    <img class="slideshow-image active" src="https://via.placeholder.com/400x250/FFC0CB/000000?text=Konzert+Live" alt="Konzertbild 1">
-                    <img class="slideshow-image" src="https://via.placeholder.com/400x250/ADD8E6/000000?text=ANTON+Bühne" alt="Konzertbild 2">
-                    <img class="slideshow-image" src="https://via.placeholder.com/400x250/90EE90/000000?text=Fans+&+Spaß" alt="Konzertbild 3">
+                    <img class="slideshow-image active" src="https://via.placeholder.com/500x300/FFC0CB/333?text=Live+On+Stage" alt="Konzert 1">
+                    <img class="slideshow-image" src="https://via.placeholder.com/500x300/ADD8E6/333?text=ANTON+Action" alt="Konzert 2">
+                    <img class="slideshow-image" src="https://via.placeholder.com/500x300/90EE90/333?text=Family+Pop+Tour" alt="Konzert 3">
                 </div>
             </div>
 
             <div class="content-window news-window">
                 <h3 class="window-title">Neuigkeiten</h3>
-                <p>Bleibe auf dem Laufenden! Neue Single "Sonnenstrahl" ab sofort überall verfügbar. Bald Tourdaten-Ankündigung!</p>
+                <p>Neue Single "Sonnenstrahl" ab sofort überall verfügbar! Schau auch in meinem Shop vorbei für neue Hoodies.</p>
             </div>
         </div>
     </main>
@@ -332,25 +247,19 @@
     </footer>
 
     <script>
-        function toggleNav(event) { 
-            event.stopPropagation(); 
-            document.getElementById("sidebar").classList.toggle("open"); 
-        }
+        function toggleNav(event) { event.stopPropagation(); document.getElementById("sidebar").classList.toggle("open"); }
         function closeNavOutside(event) { 
             const sidebar = document.getElementById("sidebar"); 
-            if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { 
-                sidebar.classList.remove("open"); 
-            } 
+            if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { sidebar.classList.remove("open"); } 
         }
 
         let slideIndex = 0;
         const slides = document.querySelectorAll('.slideshow-image');
         function showSlides() {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1; }
-            slides[slideIndex - 1].classList.add('active');
-            setTimeout(showSlides, 4000); 
+            slides.forEach(s => s.classList.remove('active'));
+            slideIndex = (slideIndex + 1) % slides.length;
+            slides[slideIndex].classList.add('active');
+            setTimeout(showSlides, 4000);
         }
         document.addEventListener('DOMContentLoaded', showSlides);
     </script>
