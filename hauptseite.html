@@ -38,14 +38,14 @@
         .menu-links a i { width: 20px; text-align: center; }
         .menu-links a:hover { transform: scale(1.1); color: #000; }
 
-        /* Rechte Sidebar mit festem Rahmen (wie Impressum) */
+        /* Rechte Sidebar mit Rahmen */
         .sidebar-right {
             position: fixed; top: 80px; bottom: 0; right: 0; width: 65px;
             display: flex; flex-direction: column; align-items: center;
             justify-content: center; gap: 18px; z-index: 100;
-            background-color: rgba(255, 255, 255, 0.2); /* Sichtbarer Rahmen-Hintergrund */
+            background-color: rgba(255, 255, 255, 0.2); 
             backdrop-filter: blur(10px);
-            border-top-left-radius: 25px; /* Abrundung oben links */
+            border-top-left-radius: 25px;
             box-sizing: border-box;
             border-left: 1px solid rgba(255, 255, 255, 0.3);
         }
@@ -61,7 +61,6 @@
         .sidebar-right:hover a i { animation-play-state: paused; }
         .sidebar-right a:hover { transform: scale(1.4); }
         
-        /* Markenfarben beim Hover */
         .sidebar-right a.yt:hover { color: #FF0000; }
         .sidebar-right a.tt:hover { color: #000000; text-shadow: 1px 1px #ff0050, -1px -1px #00f2ea; }
         .sidebar-right a.ig:hover { color: #E1306C; }
@@ -86,16 +85,27 @@
         .welcome-card { background: rgba(255,255,255,0.5); padding: 50px; border-radius: 30px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
         .welcome-card h2 { font-family: 'Bangers'; font-size: 3.5rem; color: #333; margin: 0; }
 
-        /* Footer */
+        /* Footer - Design wie auf "Meine Musik" */
         .footer-legal { 
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
             z-index: 100; display: flex; flex-direction: column; align-items: center; 
             background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); 
-            padding: 10px 25px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 12px 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        .footer-links { display: flex; gap: 20px; }
-        .footer-legal a.legal-link { color: #333; text-decoration: none; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
-        .footer-url { font-size: 0.85rem; font-weight: bold; opacity: 0.8; margin-top: 5px; text-decoration: none; color: #333; font-family: 'Segoe UI', sans-serif; }
+        .footer-links { display: flex; gap: 25px; }
+        .footer-legal a.legal-link { 
+            color: #333; text-decoration: none; 
+            font-size: 1rem; /* Präsent wie auf Meine Musik */
+            font-weight: bold; text-transform: uppercase; 
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .footer-url { 
+            font-size: 0.6rem; /* URL verkleinert */
+            opacity: 0.6; 
+            margin-top: 8px; 
+            text-decoration: none; 
+            color: #333; 
+        }
     </style>
 </head>
 <body>
