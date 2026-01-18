@@ -7,32 +7,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; background: linear-gradient(45deg, #bdc3c7, #ffffff, #2c3e50); background-size: 200% 200%; animation: gradientBG 15s ease infinite; }
+        /* Gleiches Styling wie oben, Hintergrundfarbe leicht anders */
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; background: linear-gradient(45deg, #495057, #ffffff, #495057); background-size: 200% 200%; animation: gradientBG 15s ease infinite; }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 10; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .header-title { font-family: 'Rock Salt', cursive; font-size: 2.5rem; color: #ffffff; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); margin: 0; letter-spacing: 5px; }
         
-        .menu-btn { position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; z-index: 50; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333; }
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -15%; width: 12.5%; background-color: rgba(255, 235, 59, 0.85); backdrop-filter: blur(10px); z-index: 100; transition: left 0.4s ease-in-out; display: flex; flex-direction: column; padding: 20px; box-sizing: border-box; border-right: 2px solid rgba(0, 0, 0, 0.1); }
+        .menu-btn { position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; z-index: 110; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333; }
+        .sidebar-left { 
+            position: fixed; top: 80px; bottom: 0; left: -15%; width: 12.5%; 
+            background-color: rgba(255, 235, 59, 0.85); backdrop-filter: blur(10px); 
+            z-index: 100; transition: left 0.4s ease-in-out; display: flex; flex-direction: column; 
+            padding: 40px 20px 20px 20px; box-sizing: border-box; 
+            border-right: 2px solid rgba(0, 0, 0, 0.1); border-top-right-radius: 25px; 
+        }
         .sidebar-left.open { left: 0; }
         .menu-links a { display: block; color: #222; text-decoration: none; font-family: 'Permanent Marker', cursive; font-size: 1.3rem; margin-bottom: 20px; }
 
         .sidebar-right { position: fixed; top: 50%; right: 15px; transform: translateY(-50%); width: 55px; background: rgba(255,255,255,0.3); backdrop-filter: blur(8px); z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 25px; padding: 20px 0; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; }
         @keyframes sequentialPulseSlow { 0% { transform: scale(1); } 5% { transform: scale(1.3); filter: drop-shadow(0 5px 8px rgba(0,0,0,0.2)); } 10% { transform: scale(1); } 100% { transform: scale(1); } }
         .sidebar-right a { color: #333; font-size: 1.5rem; text-decoration: none; animation: sequentialPulseSlow 10s linear infinite; }
-        .sidebar-right a:nth-child(1) { animation-delay: 0s; }
-        .sidebar-right a:nth-child(2) { animation-delay: 2s; }
-        .sidebar-right a:nth-child(3) { animation-delay: 4s; }
-        .sidebar-right a:nth-child(4) { animation-delay: 6s; }
-        .sidebar-right a:nth-child(5) { animation-delay: 8s; }
+        .sidebar-right a:nth-child(1) { animation-delay: 0s; } .sidebar-right a:nth-child(2) { animation-delay: 2s; } .sidebar-right a:nth-child(3) { animation-delay: 4s; } .sidebar-right a:nth-child(4) { animation-delay: 6s; } .sidebar-right a:nth-child(5) { animation-delay: 8s; }
 
         .footer-legal { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 20px; padding: 10px 25px; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 30px; background: transparent; backdrop-filter: blur(5px); }
         .footer-legal a { color: #333; text-decoration: none; font-family: 'Segoe UI', sans-serif; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
         .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 80px); margin-top: 80px; }
-        .main-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 30px; width: 60%; height: 60vh; overflow-y: auto; }
-        h2 { font-family: 'Permanent Marker', cursive; color: #222; }
+        .window-grid { display: flex; gap: 20px; width: 70%; height: 60vh; }
+        .main-window, .small-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 25px; overflow-y: auto; }
+        .main-window { flex: 2.2; }
+        .side-column { display: flex; flex-direction: column; gap: 20px; flex: 1; }
+        .small-window { flex: 1; }
+        h2, h3 { font-family: 'Permanent Marker', cursive; color: #222; margin-top: 0; }
+        p { font-size: 0.85rem; line-height: 1.4; color: #333; }
     </style>
 </head>
 <body onclick="closeNavOutside(event)">
@@ -40,7 +48,6 @@
     <div class="menu-btn" onclick="toggleNav(event)">☰</div>
     <canvas id="canvas-container"></canvas>
     <nav class="sidebar-left" id="sidebar">
-        <div onclick="toggleNav(event)" style="cursor:pointer; align-self:flex-end; font-size: 2rem;">×</div>
         <div class="menu-links">
             <a href="hauptseite.html">Home</a>
             <a href="meinemusik.html">Meine Musik</a>
@@ -57,9 +64,16 @@
         <a href="datenschutz.html">Datenschutz</a>
     </footer>
     <div class="content-container">
-        <div class="main-window">
-            <h2>Datenschutzerklärung</h2>
-            <p><strong>1. Datenschutz auf einen Blick</strong><br>Hier werden Informationen zum Umgang mit deinen Daten stehen.</p>
+        <div class="window-grid">
+            <div class="main-window">
+                <h2>Datenschutzerklärung</h2>
+                <p>Der Schutz deiner Daten ist uns wichtig. Auf dieser Seite erfährst du, wie wir mit personenbezogenen Informationen umgehen.</p>
+                <p><strong>Datenverarbeitung:</strong> Wir speichern nur Daten, die für den Betrieb dieser Webseite technisch notwendig sind.</p>
+            </div>
+            <div class="side-column">
+                <div class="small-window"><h3>Cookies</h3><p>Diese Seite nutzt nur technisch notwendige Session-Cookies.</p></div>
+                <div class="small-window"><h3>Rechte</h3><p>Du hast jederzeit das Recht auf Auskunft über deine Daten.</p></div>
+            </div>
         </div>
     </div>
     <script>
@@ -70,7 +84,8 @@
         class Particle { constructor() { this.reset(); } reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.text = elements[Math.floor(Math.random() * elements.length)]; this.size = Math.random() * 20 + 10; this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4; this.opacity = Math.random() * 0.2 + 0.1; this.rotation = Math.random() * Math.PI * 2; this.rotationSpeed = (Math.random() - 0.5) * 0.005; } update() { this.x += this.speedX; this.y += this.speedY; this.rotation += this.rotationSpeed; if (this.x < -50) this.x = canvas.width + 50; if (this.x > canvas.width + 50) this.x = -50; if (this.y < -50) this.y = canvas.height + 50; if (this.y > canvas.height + 50) this.y = -50; } draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation); ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`; ctx.font = `${this.size}px serif`; ctx.fillText(this.text, 0, 0); ctx.restore(); } }
         for (let i = 0; i < 30; i++) { particles.push(new Particle()); }
         function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
-        animate(); window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        animate();
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
     </script>
 </body>
 </html>
