@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Über mich | ANTON</title>
+    <title>Konzerte | ANTON</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
-        /* Hintergrund: Edles Grau-Weiß für den biografischen Teil */
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; background: linear-gradient(45deg, #757575, #ffffff, #757575); background-size: 200% 200%; animation: gradientBG 15s ease infinite; }
+        /* Hintergrund: Energetisches Rot-Orange für Live-Vibes */
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; background: linear-gradient(45deg, #ff5722, #ffffff, #ff9800); background-size: 200% 200%; animation: gradientBG 15s ease infinite; }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 10; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
@@ -18,4 +18,57 @@
         .sidebar-left.open { left: 0; }
         .menu-links a { display: block; color: #222; text-decoration: none; font-family: 'Permanent Marker', cursive; font-size: 1.3rem; margin-bottom: 20px; }
         .sidebar-right { position: fixed; top: 50%; right: 15px; transform: translateY(-50%); width: 55px; background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(0,206,209,0.2), rgba(255,255,255,0.3)); background-size: 400% 400%; animation: shimmerEffect 6s ease infinite; backdrop-filter: blur(8px); z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 25px; padding: 20px 0; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; }
-        .sidebar-right a { color: #333; font-size: 1.5rem;
+        .sidebar-right a { color: #333; font-size: 1.5rem; text-decoration: none; display: block; animation: sequentialPulseSlow 10s linear infinite; }
+        @keyframes sequentialPulseSlow { 0% { transform: scale(1); } 5% { transform: scale(1.3); filter: drop-shadow(0 5px 8px rgba(0,0,0,0.2)); } 10% { transform: scale(1); } 100% { transform: scale(1); } }
+        .sidebar-right a:nth-child(1) { animation-delay: 0s; } .sidebar-right a:nth-child(2) { animation-delay: 2s; } .sidebar-right a:nth-child(3) { animation-delay: 4s; } .sidebar-right a:nth-child(4) { animation-delay: 6s; } .sidebar-right a:nth-child(5) { animation-delay: 8s; }
+        .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 80px); margin-top: 80px; }
+        .window-grid { display: flex; gap: 20px; width: 50%; height: 50vh; }
+        .main-window, .small-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.05); overflow-y: auto; }
+        .main-window { flex: 2; } .side-column { display: flex; flex-direction: column; gap: 20px; flex: 1; } .small-window { flex: 1; }
+        h2, h3 { font-family: 'Permanent Marker', cursive; color: #222; margin-top: 0; }
+    </style>
+</head>
+<body onclick="closeNavOutside(event)">
+    <header><h1 class="header-title">ANTON</h1></header>
+    <div class="menu-btn" onclick="toggleNav(event)">☰</div>
+    <canvas id="canvas-container"></canvas>
+    <nav class="sidebar-left" id="sidebar">
+        <div onclick="toggleNav(event)" style="cursor:pointer; align-self:flex-end; font-size: 2rem;">×</div>
+        <div class="menu-links">
+            <a href="hauptseite.html">Home</a>
+            <a href="meinemusik.html">Meine Musik</a>
+            <a href="ueber-mich.html">Über mich</a>
+            <a href="konzerte.html">Konzerte</a>
+            <a href="kontakt.html">Kontakt</a>
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
+    </nav>
+    <aside class="sidebar-right">
+        <a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-tiktok"></i></a><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fas fa-at"></i></a>
+    </aside>
+    <div class="content-container">
+        <div class="window-grid">
+            <div class="main-window">
+                <h2>Live Konzerte</h2>
+                <p>Erlebe die Musik live! Hier findest du alle aktuellen Termine und Venues.</p>
+                <p><i>Aktuell sind neue Termine in Planung – schau bald wieder vorbei!</i></p>
+            </div>
+            <div class="side-column">
+                <div class="small-window"><h3>Nächster Gig</h3><p>TBA</p></div>
+                <div class="small-window"><h3>Tickets</h3><p>Coming soon</p></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleNav(event) { event.stopPropagation(); document.getElementById("sidebar").classList.toggle("open"); }
+        function closeNavOutside(event) { const sidebar = document.getElementById("sidebar"); if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { sidebar.classList.remove("open"); } }
+        const canvas = document.getElementById('canvas-container'); const ctx = canvas.getContext('2d'); canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const elements = ['A', 'N', 'T', 'O', 'N', '♪', '♫']; const particles = [];
+        class Particle { constructor() { this.reset(); } reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.text = elements[Math.floor(Math.random() * elements.length)]; this.size = Math.random() * 20 + 10; this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4; this.opacity = Math.random() * 0.2 + 0.1; this.rotation = Math.random() * Math.PI * 2; this.rotationSpeed = (Math.random() - 0.5) * 0.005; } update() { this.x += this.speedX; this.y += this.speedY; this.rotation += this.rotationSpeed; if (this.x < -50) this.x = canvas.width + 50; if (this.x > canvas.width + 50) this.x = -50; if (this.y < -50) this.y = canvas.height + 50; if (this.y > canvas.height + 50) this.y = -50; } draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation); ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`; ctx.font = `${this.size}px serif`; ctx.fillText(this.text, 0, 0); ctx.restore(); } }
+        for (let i = 0; i < 30; i++) { particles.push(new Particle()); }
+        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
+        animate(); window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
