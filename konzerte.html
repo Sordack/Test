@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konzerte 2026 | ANTON</title>
+    <title>Konzerte | ANTON</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
@@ -19,23 +19,26 @@
         .sidebar-left.open { left: 0; }
         .menu-links a { display: block; color: #222; text-decoration: none; font-family: 'Permanent Marker', cursive; font-size: 1.1rem; margin-bottom: 15px; }
         
-        /* Sidebar Rechts */
+        /* Rechte Sidebar (Pulse 10s) */
         .sidebar-right { position: fixed; top: 50%; right: 15px; transform: translateY(-50%); width: 55px; background: rgba(255,255,255,0.3); backdrop-filter: blur(8px); z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 25px; padding: 20px 0; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; }
         .sidebar-right a { color: #333; font-size: 1.5rem; text-decoration: none; animation: sequentialPulseSlow 10s linear infinite; }
         @keyframes sequentialPulseSlow { 0% { transform: scale(1); } 5% { transform: scale(1.3); } 10% { transform: scale(1); } 100% { transform: scale(1); } }
 
-        /* Content & Tabelle */
+        /* Content Layout */
         .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 80px); margin-top: 80px; }
-        .window-grid { display: flex; gap: 20px; width: 70%; height: 65vh; }
-        .main-window { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(15px); border-radius: 15px; padding: 30px; flex: 2; overflow-y: auto; border: 1px solid rgba(255,255,255,0.5); }
+        .window-grid { display: flex; gap: 20px; width: 85%; height: 70vh; }
+        .main-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border-radius: 15px; padding: 25px; flex: 1.8; border: 1px solid rgba(255,255,255,0.5); overflow-y: auto; }
+        .side-column { display: flex; flex-direction: column; gap: 20px; flex: 1; }
+        .small-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border-radius: 15px; padding: 20px; flex: 1; border: 1px solid rgba(255,255,255,0.5); }
         
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-family: 'Segoe UI', sans-serif; background: rgba(255,255,255,0.2); border-radius: 10px; overflow: hidden; }
-        th { background: rgba(255, 87, 34, 0.8); color: white; text-align: left; padding: 12px; font-family: 'Permanent Marker', cursive; }
-        td { padding: 12px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #222; }
-        tr:hover { background: rgba(255, 255, 255, 0.4); }
-        .ticket-btn { background: #222; color: #fff; padding: 5px 10px; text-decoration: none; border-radius: 5px; font-size: 0.8rem; font-family: 'Permanent Marker', cursive; }
-        
-        h2 { font-family: 'Permanent Marker', cursive; margin: 0; color: #222; }
+        /* Tabelle Styling */
+        table { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', sans-serif; }
+        th { text-align: left; padding: 12px; border-bottom: 2px solid rgba(0,0,0,0.1); font-family: 'Permanent Marker', cursive; color: #222; }
+        td { padding: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333; }
+        .ticket-link { color: #ff5722; font-weight: bold; text-decoration: none; font-family: 'Permanent Marker', cursive; }
+
+        h2, h3 { font-family: 'Permanent Marker', cursive; margin-top: 0; color: #222; }
+        .highlight-text { font-size: 1.2rem; color: #ff5722; font-weight: bold; margin-bottom: 5px; }
     </style>
 </head>
 <body onclick="closeNavOutside(event)">
@@ -63,29 +66,37 @@
     <div class="content-container">
         <div class="window-grid">
             <div class="main-window">
-                <h2>Tourdaten 2026</h2>
+                <h2>Tour 2026</h2>
                 <table>
                     <thead>
-                        <tr>
-                            <th>Datum</th>
-                            <th>Stadt</th>
-                            <th>Location</th>
-                            <th>Tickets</th>
-                        </tr>
+                        <tr><th>Datum</th><th>Stadt</th><th>Venue</th><th>Tickets</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>14.03.2026</td><td>Berlin</td><td>Columbia Theater</td><td><a href="#" class="ticket-btn">Tickets</a></td></tr>
-                        <tr><td>28.03.2026</td><td>Hamburg</td><td>Uebel & Gefährlich</td><td><a href="#" class="ticket-btn">Tickets</a></td></tr>
-                        <tr><td>12.04.2026</td><td>Köln</td><td>Gloria Theater</td><td><a href="#" class="ticket-btn">Tickets</a></td></tr>
-                        <tr><td>05.05.2026</td><td>München</td><td>Backstage Werk</td><td><a href="#" class="ticket-btn">Tickets</a></td></tr>
-                        <tr><td>22.05.2026</td><td>Leipzig</td><td>Täubchenthal</td><td><a href="#" class="ticket-btn">Tickets</a></td></tr>
-                        <tr><td>15.06.2026</td><td>Frankfurt</td><td>Batschkapp</td><td><a href="#" class="ticket-btn">Tickets</a></td></tr>
-                        <tr><td>30.07.2026</td><td>Stuttgart</td><td>LKA Longhorn</td><td><a href="#" class="ticket-btn">Tickets</a></td></tr>
-                        <tr><td>12.08.2026</td><td>Wien (AT)</td><td>Flex</td><td><a href="#" class="ticket-btn">Tickets</a></td></tr>
-                        <tr><td>19.09.2026</td><td>Zürich (CH)</td><td>Dynamo</td><td><a href="#" class="ticket-btn">Tickets</a></td></tr>
-                        <tr><td>12.12.2026</td><td>Berlin</td><td>Huxleys Neue Welt</td><td><a href="#" class="ticket-btn">Tickets</a></td></tr>
+                        <tr><td>14.03.26</td><td>Berlin</td><td>Columbia Theater</td><td><a href="#" class="ticket-link">Tickets</a></td></tr>
+                        <tr><td>28.03.26</td><td>Hamburg</td><td>Uebel & Gefährlich</td><td><a href="#" class="ticket-link">Tickets</a></td></tr>
+                        <tr><td>12.04.26</td><td>Köln</td><td>Gloria Theater</td><td><a href="#" class="ticket-link">Tickets</a></td></tr>
+                        <tr><td>05.05.26</td><td>München</td><td>Backstage Werk</td><td><a href="#" class="ticket-link">Tickets</a></td></tr>
+                        <tr><td>22.05.26</td><td>Leipzig</td><td>Täubchenthal</td><td><a href="#" class="ticket-link">Tickets</a></td></tr>
+                        <tr><td>15.06.26</td><td>Frankfurt</td><td>Batschkapp</td><td><a href="#" class="ticket-link">Tickets</a></td></tr>
+                        <tr><td>30.07.26</td><td>Stuttgart</td><td>LKA Longhorn</td><td><a href="#" class="ticket-link">Tickets</a></td></tr>
+                        <tr><td>12.08.26</td><td>Wien (AT)</td><td>Flex</td><td><a href="#" class="ticket-link">Tickets</a></td></tr>
+                        <tr><td>19.09.26</td><td>Zürich (CH)</td><td>Dynamo</td><td><a href="#" class="ticket-link">Tickets</a></td></tr>
+                        <tr><td>12.12.26</td><td>Berlin</td><td>Huxleys Neue Welt</td><td><a href="#" class="ticket-link">Tickets</a></td></tr>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="side-column">
+                <div class="small-window">
+                    <h3>Highlights</h3>
+                    <p>Nächstes Konzert:</p>
+                    <div class="highlight-text">BERLIN - 14. MÄRZ 2026</div>
+                    <p>Columbia Theater<br><small>Beginn: 20:00 Uhr</small></p>
+                </div>
+                <div class="small-window">
+                    <h3>Ticket Info</h3>
+                    <p>Alle Tickets sind ab sofort über die Links in der Tabelle verfügbar. Schnell sein lohnt sich!</p>
+                </div>
             </div>
         </div>
     </div>
@@ -96,9 +107,9 @@
         const canvas = document.getElementById('canvas-container'); const ctx = canvas.getContext('2d'); canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         const elements = ['A', 'N', 'T', 'O', 'N', '♪', '♫']; const particles = [];
         class Particle { constructor() { this.reset(); } reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.text = elements[Math.floor(Math.random() * elements.length)]; this.size = Math.random() * 20 + 10; this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4; this.opacity = 0.1; this.rotation = Math.random() * Math.PI * 2; this.rotationSpeed = (Math.random() - 0.5) * 0.005; } update() { this.x += this.speedX; this.y += this.speedY; if (this.x < -50) this.x = canvas.width + 50; if (this.x > canvas.width + 50) this.x = -50; if (this.y < -50) this.y = canvas.height + 50; if (this.y > canvas.height + 50) this.y = -50; } draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation); ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`; ctx.font = `${this.size}px serif`; ctx.fillText(this.text, 0, 0); ctx.restore(); } }
-        for (let i = 0; i < 25; i++) { particles.push(new Particle()); }
+        for (let i = 0; i < 20; i++) { particles.push(new Particle()); }
         function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
-        animate();
+        animate(); window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
     </script>
 </body>
 </html>
