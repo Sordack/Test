@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | ANTON</title>
+    <title>ANTON | Hauptseite</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
-        /* Grunddesign & Animierter Verlaufshintergrund */
+        /* Grundlayout & Hintergrund */
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
             font-family: 'Segoe UI', sans-serif; overflow: hidden; 
@@ -18,7 +18,6 @@
         
         #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 
-        /* Header mit Blur-Effekt */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
@@ -27,7 +26,7 @@
         }
         .header-title { font-family: 'Rock Salt', cursive; font-size: 2.5rem; color: #ffffff; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); margin: 0; letter-spacing: 5px; }
         
-        /* Linke Sidebar (Navigation) - Breite 12.5% */
+        /* Sidebar Navigation - 12.5% Breite */
         .menu-btn { 
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
             z-index: 110; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; 
@@ -44,7 +43,7 @@
         .menu-links a { display: block; color: #222; text-decoration: none; font-family: 'Permanent Marker', cursive; font-size: 1.3rem; margin-bottom: 20px; transition: 0.3s; }
         .menu-links a:hover { color: #d35400; transform: translateX(5px); }
 
-        /* Rechte Sidebar (Socials) */
+        /* Sidebar Social Rechts */
         .sidebar-right { 
             position: fixed; top: 50%; right: 15px; transform: translateY(-50%); 
             width: 55px; background: rgba(255,255,255,0.3); backdrop-filter: blur(8px); 
@@ -52,38 +51,32 @@
             gap: 20px; padding: 20px 0; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; 
         }
 
-        /* Sequential Pulse Slow Animation */
+        /* Überarbeitete Animation: Längeres Halten der Farbe */
         @keyframes sequentialPulseSlow { 
-            0% { transform: scale(1); color: #000000; filter: grayscale(1) brightness(0); } 
-            5% { transform: scale(1.3); filter: grayscale(0) brightness(1) drop-shadow(0 5px 8px rgba(0,0,0,0.2)); color: var(--brand-color); } 
-            10% { transform: scale(1); color: #000000; filter: grayscale(1) brightness(0); } 
-            100% { transform: scale(1); color: #000000; filter: grayscale(1) brightness(0); } 
+            0%, 2% { transform: scale(1); color: #000000; filter: grayscale(1); opacity: 0.6; } 
+            5% { transform: scale(1.3); filter: grayscale(0); opacity: 1; color: var(--brand-color); } 
+            12% { transform: scale(1.3); filter: grayscale(0); opacity: 1; color: var(--brand-color); } /* Farbe hält länger */
+            15%, 100% { transform: scale(1); color: #000000; filter: grayscale(1); opacity: 0.6; } 
         }
 
         .sidebar-right a { 
             color: #000000; font-size: 1.5rem; text-decoration: none; 
-            animation: sequentialPulseSlow 14s linear infinite; 
+            animation: sequentialPulseSlow 16s linear infinite; 
             display: flex; align-items: center; justify-content: center;
         }
-
-        /* Amazon Logo Bild-Spezifisches Styling */
-        .sidebar-right a img {
-            width: 1.8rem; height: 1.8rem; border-radius: 4px;
-            /* Start-Zustand: Schwarz durch Filter */
-            filter: grayscale(1) brightness(0);
-            transition: filter 0.3s;
-        }
+        .sidebar-right svg { width: 1.5rem; height: 1.5rem; fill: currentColor; }
 
         /* Brand Colors & Delays */
-        .sidebar-right a:nth-child(1) { animation-delay: 0s; --brand-color: #FF0000; } 
-        .sidebar-right a:nth-child(2) { animation-delay: 2s; --brand-color: #E1306C; } 
-        .sidebar-right a:nth-child(3) { animation-delay: 4s; --brand-color: #000000; } 
-        .sidebar-right a:nth-child(4) { animation-delay: 6s; --brand-color: #1877F2; } 
-        .sidebar-right a:nth-child(5) { animation-delay: 8s; --brand-color: #1DB954; } 
+        .sidebar-right a:nth-child(1) { animation-delay: 0s; --brand-color: #FF0000; } /* YT */
+        .sidebar-right a:nth-child(2) { animation-delay: 2s; --brand-color: #E1306C; } /* Insta */
+        .sidebar-right a:nth-child(3) { animation-delay: 4s; --brand-color: #000000; } /* TikTok */
+        .sidebar-right a:nth-child(4) { animation-delay: 6s; --brand-color: #1877F2; } /* FB */
+        .sidebar-right a:nth-child(5) { animation-delay: 8s; --brand-color: #1DB954; } /* Spotify */
         .sidebar-right a:nth-child(6) { animation-delay: 10s; --brand-color: #00A8E1; } /* Amazon Music */
-        .sidebar-right a:nth-child(7) { animation-delay: 12s; --brand-color: #222222; } 
+        /* Das @-Symbol leuchtet weiß auf */
+        .sidebar-right a:nth-child(7) { animation-delay: 12s; --brand-color: #ffffff; filter: drop-shadow(0 0 5px #fff); } 
 
-        /* Footer als Floating Bar */
+        /* Footer Bar */
         .footer-legal { 
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
             z-index: 100; display: flex; gap: 20px; padding: 10px 25px; 
@@ -92,7 +85,7 @@
         }
         .footer-legal a { color: #333; text-decoration: none; font-family: 'Segoe UI', sans-serif; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* 3-Fenster-Layout */
+        /* Inhalts-Layout */
         .content-container { 
             position: relative; z-index: 5; display: flex; justify-content: center; 
             align-items: center; height: calc(100vh - 80px); margin-top: 80px; 
@@ -101,21 +94,18 @@
         .main-window, .small-window { 
             background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 20px; 
-            padding: 30px; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 30px; overflow-y: auto; 
         }
         .main-window { flex: 2.5; }
         .side-column { display: flex; flex-direction: column; gap: 20px; flex: 1; }
         .small-window { flex: 1; }
-        h2, h3 { font-family: 'Permanent Marker', cursive; color: #222; margin-top: 0; }
-        p { line-height: 1.6; color: #333; }
+        h2 { font-family: 'Permanent Marker', cursive; color: #222; margin-top: 0; }
     </style>
 </head>
 <body onclick="closeNavOutside(event)">
 
     <header><h1 class="header-title">ANTON</h1></header>
-    
     <div class="menu-btn" onclick="toggleNav(event)">☰</div>
-    
     <canvas id="canvas-container"></canvas>
 
     <nav class="sidebar-left" id="sidebar">
@@ -135,7 +125,10 @@
         <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
         <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
         <a href="#" title="Amazon Music">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/9d/f8/30/9df83004-8db6-c4cc-ddd5-389a2e801936/Placeholder.mill/400x400bb-75.webp" alt="Amazon Music">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.33 13.5c-.17.25-.5.33-.75.17-1.42-.87-3.2-1.07-5.3-.6-.28.07-.57-.12-.63-.4-.07-.28.12-.57.4-.63 2.3-.53 4.27-.3 5.87.68.25.15.33.48.17.75l.24.03zm1.15-2.55c-.22.35-.67.47-1.02.25-1.62-.99-4.1-1.28-6.02-.7-.4.12-.82-.1-.94-.5s.1-.82.5-.94c2.25-.68 5-.35 6.87.8.35.2.47.65.25 1.02l.36.07zm.1-2.7c-1.95-1.15-5.17-1.26-7.03-.7-.3.1-.63-.08-.72-.38-.1-.3.08-.63.38-.72 2.15-.65 5.7-.52 7.95.82.27.15.35.5.2.77-.17.27-.5.35-.77.2l-.01.01z"/>
+                <path d="M14.5 16.5c-1.5 1-4 1.2-5.5.5-.3-.1-.4-.5-.3-.8.1-.3.5-.4.8-.3 1.1.5 3 .4 4.1-.3.3-.2.7-.1.9.2.1.3 0 .7-.3.7z" opacity=".8"/>
+            </svg>
         </a>
         <a href="#" title="Kontakt"><i class="fas fa-at"></i></a>
     </aside>
@@ -148,70 +141,26 @@
     <div class="content-container">
         <div class="window-grid">
             <div class="main-window">
-                <h2>Willkommen bei ANTON</h2>
-                <p>Hey! Schön, dass du da bist. Klick dich durch meine Welt des modernen Familienpops!</p>
-                <p>Nutze das Menü links, um meine Musik zu entdecken oder zu sehen, wann ich das nächste Mal live spiele.</p>
+                <h2>Schön, dass du da bist!</h2>
+                <p>Willkommen auf der offiziellen Seite von ANTON. Entdecke neuen Familienpop, der ins Ohr geht!</p>
             </div>
             <div class="side-column">
-                <div class="small-window">
-                    <h3>News</h3>
-                    <p>Die Tour 2026 ist in Planung. Alle Infos findest du bald hier!</p>
-                </div>
-                <div class="small-window">
-                    <h3>Kontakt</h3>
-                    <p>Du willst mich buchen? Nutze das Kontaktformular!</p>
-                </div>
+                <div class="small-window"><h3>News</h3><p>Tourdaten 2026 sind online!</p></div>
+                <div class="small-window"><h3>Events</h3><p>Nächstes Konzert: Berlin.</p></div>
             </div>
         </div>
     </div>
 
     <script>
-        function toggleNav(event) { 
-            event.stopPropagation(); 
-            document.getElementById("sidebar").classList.toggle("open"); 
-        }
-        function closeNavOutside(event) { 
-            const sidebar = document.getElementById("sidebar"); 
-            if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { 
-                sidebar.classList.remove("open"); 
-            } 
-        }
+        function toggleNav(event) { event.stopPropagation(); document.getElementById("sidebar").classList.toggle("open"); }
+        function closeNavOutside(event) { const sidebar = document.getElementById("sidebar"); if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { sidebar.classList.remove("open"); } }
         
-        // Hintergrund Animation
-        const canvas = document.getElementById('canvas-container');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const elements = ['A', 'N', 'T', 'O', 'N', '♪', '♫'];
-        const particles = [];
-        class Particle { 
-            constructor() { this.reset(); } 
-            reset() { 
-                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; 
-                this.text = elements[Math.floor(Math.random() * elements.length)]; 
-                this.size = Math.random() * 20 + 10; this.speedX = (Math.random() - 0.5) * 0.4; 
-                this.speedY = (Math.random() - 0.5) * 0.4; this.opacity = Math.random() * 0.15 + 0.05; 
-                this.rotation = Math.random() * Math.PI * 2; this.rotationSpeed = (Math.random() - 0.5) * 0.005; 
-            } 
-            update() { 
-                this.x += this.speedX; this.y += this.speedY; this.rotation += this.rotationSpeed; 
-                if (this.x < -50) this.x = canvas.width + 50; if (this.x > canvas.width + 50) this.x = -50; 
-                if (this.y < -50) this.y = canvas.height + 50; if (this.y > canvas.height + 50) this.y = -50; 
-            } 
-            draw() { 
-                ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation); 
-                ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`; ctx.font = `${this.size}px serif`; 
-                ctx.fillText(this.text, 0, 0); ctx.restore(); 
-            } 
-        }
+        const canvas = document.getElementById('canvas-container'); const ctx = canvas.getContext('2d'); canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const elements = ['A', 'N', 'T', 'O', 'N', '♪', '♫']; const particles = [];
+        class Particle { constructor() { this.reset(); } reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.text = elements[Math.floor(Math.random() * elements.length)]; this.size = Math.random() * 20 + 10; this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4; this.opacity = Math.random() * 0.15 + 0.05; this.rotation = Math.random() * Math.PI * 2; this.rotationSpeed = (Math.random() - 0.5) * 0.005; } update() { this.x += this.speedX; this.y += this.speedY; this.rotation += this.rotationSpeed; if (this.x < -50) this.x = canvas.width + 50; if (this.x > canvas.width + 50) this.x = -50; if (this.y < -50) this.y = canvas.height + 50; if (this.y > canvas.height + 50) this.y = -50; } draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation); ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`; ctx.font = `${this.size}px serif`; ctx.fillText(this.text, 0, 0); ctx.restore(); } }
         for (let i = 0; i < 30; i++) { particles.push(new Particle()); }
-        function animate() { 
-            ctx.clearRect(0, 0, canvas.width, canvas.height); 
-            particles.forEach(p => { p.update(); p.draw(); }); 
-            requestAnimationFrame(animate); 
-        }
-        animate();
-        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
+        animate(); window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
     </script>
 </body>
 </html>
