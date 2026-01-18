@@ -64,13 +64,28 @@
         }
         .close-sidebar:hover { transform: scale(1.3) translateY(-2px); color: #000; }
 
+        .menu-links { display: flex; flex-direction: column; }
+        
         .menu-links a { 
             display: flex; align-items: center; gap: 10px; color: #222; text-decoration: none; 
             font-family: 'Permanent Marker', cursive; font-size: 0.9rem; margin-bottom: 25px; transition: 0.3s;
         }
         .menu-links a:hover { transform: scale(1.1); }
 
-        /* Rechte Sidebar (Kompakt & Transparent Schwarz) */
+        /* Dropdown Menü für Shop */
+        .shop-container { position: relative; }
+        .submenu { 
+            max-height: 0; overflow: hidden; list-style: none; padding: 0; margin: -15px 0 20px 20px; 
+            transition: max-height 0.5s ease-in-out; 
+        }
+        .shop-container:hover .submenu { max-height: 300px; }
+        
+        .submenu li a { 
+            font-size: 0.75rem; margin-bottom: 10px; opacity: 0.8; 
+        }
+        .submenu li a::before { content: "• "; color: #333; }
+
+        /* Rechte Sidebar */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
@@ -90,16 +105,7 @@
         .fb { --brand-color: #1877F2; } .sp { --brand-color: #1DB954; } .ap { --brand-color: #000; }
         .ym { --brand-color: #FF0000; } .am { --brand-color: #00A8E1; }
 
-        .sidebar-right a:nth-child(1) i { animation-delay: 0s; }
-        .sidebar-right a:nth-child(2) i { animation-delay: 1.5s; }
-        .sidebar-right a:nth-child(3) i { animation-delay: 3s; }
-        .sidebar-right a:nth-child(4) i { animation-delay: 4.5s; }
-        .sidebar-right a:nth-child(5) i { animation-delay: 6s; }
-        .sidebar-right a:nth-child(6) i { animation-delay: 7.5s; }
-        .sidebar-right a:nth-child(7) i { animation-delay: 9s; }
-        .sidebar-right a:nth-child(8) i { animation-delay: 10.5s; }
-
-        /* NEUES CONTENT LAYOUT (VON DIR GELIEFERT) */
+        /* Grid Layout */
         .content-container { 
             position: relative; z-index: 5; display: flex; justify-content: center; 
             align-items: center; height: calc(100vh - 80px); margin-top: 80px; 
@@ -122,14 +128,8 @@
         
         p { font-family: 'Permanent Marker', cursive; color: #333; line-height: 1.4; }
 
-        /* Slideshow spezifisch im Fenster */
-        .slideshow-container {
-            position: relative; width: 100%; height: 100%; border-radius: 10px; overflow: hidden;
-        }
-        .slideshow-image {
-            width: 100%; height: 100%; object-fit: cover; position: absolute;
-            top: 0; left: 0; opacity: 0; transition: opacity 1.5s ease-in-out;
-        }
+        .slideshow-container { position: relative; width: 100%; height: 100%; border-radius: 10px; overflow: hidden; }
+        .slideshow-image { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 1.5s ease-in-out; }
         .slideshow-image.active { opacity: 1; }
 
         /* Footer */
@@ -140,12 +140,8 @@
             padding: 10px 25px; border-radius: 20px;
         }
         .footer-links { display: flex; gap: 20px; }
-        .footer-legal a { 
-            color: #333; text-decoration: none; font-size: 0.8rem; font-weight: bold; 
-            text-transform: uppercase; font-family: 'Segoe UI', sans-serif; 
-        }
+        .footer-legal a { color: #333; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; font-family: 'Segoe UI', sans-serif; }
         .footer-url { font-size: 0.85rem; opacity: 0.8; margin-top: 5px; font-family: 'Segoe UI', sans-serif; color: #333; }
-
     </style>
 </head>
 <body onclick="closeNavOutside(event)">
@@ -155,9 +151,6 @@
             <i class="fa-solid fa-music" style="--x-start: -5vw; --y-start: 10px; --x-mid: 50vw; --y-mid: 50px; --x-end: 105vw; --y-end: 20px;"></i>
             <i class="fa-solid fa-headphones" style="--x-start: 105vw; --y-start: 40px; --x-mid: 40vw; --y-mid: 10px; --x-end: -5vw; --y-end: 50px; animation-delay: -5s;"></i>
             <i class="fa-solid fa-microphone-lines" style="--x-start: 20vw; --y-start: -30px; --x-mid: 60vw; --y-mid: 40px; --x-end: 80vw; --y-end: 90px; animation-delay: -10s;"></i>
-            <i class="fa-solid fa-note-sticky" style="--x-start: -5vw; --y-start: 60px; --x-mid: 55vw; --y-mid: 20px; --x-end: 105vw; --y-end: 40px; animation-delay: -15s;"></i>
-            <i class="fa-solid fa-volume-high" style="--x-start: 40vw; --y-start: 90px; --x-mid: 50vw; --y-mid: 10px; --x-end: 60vw; --y-end: -20px; animation-delay: -20s;"></i>
-            <i class="fa-solid fa-compact-disc" style="--x-start: 105vw; --y-start: 20px; --x-mid: 50vw; --y-mid: 60px; --x-end: -5vw; --y-end: 10px; animation-delay: -25s;"></i>
         </div>
         <h1 class="header-title">ANTON</h1>
     </header>
@@ -172,18 +165,30 @@
             <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
             <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
             <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
+            
+            <div class="shop-container">
+                <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
+                <ul class="submenu">
+                    <li><a href="shop.html?cat=shirts">Shirts</a></li>
+                    <li><a href="shop.html?cat=muetzen">Mützen</a></li>
+                    <li><a href="shop.html?cat=hoodies">Hoodies</a></li>
+                    <li><a href="shop.html?cat=alben">Alben</a></li>
+                    <li><a href="shop.html?cat=pakete">Fan-Pakete</a></li>
+                    <li><a href="shop.html?cat=sale">Sale</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <aside class="sidebar-right">
-        <a href="#" class="yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" class="tt" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="#" class="ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" class="fb" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#" class="sp" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
-        <a href="#" class="ap" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
-        <a href="#" class="ym" title="YouTube Music"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="#" class="am" title="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
+        <a href="#" class="yt"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" class="tt"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="ig"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="fb"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="sp"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#" class="ap"><i class="fa-brands fa-apple"></i></a>
+        <a href="#" class="ym"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="#" class="am"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
     <div class="content-container">
@@ -196,9 +201,8 @@
                 <div class="small-window">
                     <h3>Konzerte</h3>
                     <div class="slideshow-container">
-                        <img class="slideshow-image active" src="https://via.placeholder.com/500x300/FFC0CB/333?text=Live+Moment" alt="Konzert 1">
-                        <img class="slideshow-image" src="https://via.placeholder.com/500x300/ADD8E6/333?text=ANTON+Live" alt="Konzert 2">
-                        <img class="slideshow-image" src="https://via.placeholder.com/500x300/90EE90/333?text=Bühne" alt="Konzert 3">
+                        <img class="slideshow-image active" src="https://via.placeholder.com/500x300/FFC0CB/333?text=Live+1" alt="Konzert 1">
+                        <img class="slideshow-image" src="https://via.placeholder.com/500x300/ADD8E6/333?text=Live+2" alt="Konzert 2">
                     </div>
                 </div>
                 <div class="small-window">
