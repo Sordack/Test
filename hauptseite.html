@@ -128,4 +128,90 @@
         /* Content Area */
         .main-content { padding-top: 150px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
         .welcome-card { background: rgba(255,255,255,0.5); padding: 50px; border-radius: 30px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
-        .welcome-card h2 { font-family: 'Bangers'; font-size:
+        .welcome-card h2 { font-family: 'Bangers'; font-size: 3.5rem; color: #333; margin: 0; }
+
+        /* Footer */
+        .footer-legal { 
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
+            z-index: 100; display: flex; flex-direction: column; align-items: center; 
+            background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); 
+            padding: 10px 25px; border-radius: 20px;
+        }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-legal a.legal-link { 
+            color: #333; text-decoration: none; font-size: 0.8rem; 
+            font-weight: bold; text-transform: uppercase; font-family: 'Segoe UI', sans-serif; 
+        }
+        /* Vergrößerter Link */
+        .footer-url { font-size: 0.65rem; opacity: 0.6; margin-top: 5px; text-decoration: none; color: #333; }
+    </style>
+</head>
+<body onclick="closeNavOutside(event)">
+
+    <header>
+        <div class="header-bg-elements">
+            <i class="fa-solid fa-music" style="--x-start: -5vw; --y-start: 10px; --x-mid: 50vw; --y-mid: 50px; --x-end: 105vw; --y-end: 20px; animation-delay: 0s;"></i>
+            <i class="fa-solid fa-headphones" style="--x-start: 105vw; --y-start: 40px; --x-mid: 40vw; --y-mid: 10px; --x-end: -5vw; --y-end: 50px; animation-delay: 3s;"></i>
+            <i class="fa-solid fa-microphone-lines" style="--x-start: 20vw; --y-start: -30px; --x-mid: 60vw; --y-mid: 40px; --x-end: 80vw; --y-end: 90px; animation-delay: 5s;"></i>
+            <i class="fa-solid fa-note-sticky" style="--x-start: -5vw; --y-start: 60px; --x-mid: 55vw; --y-mid: 20px; --x-end: 105vw; --y-end: 40px; animation-delay: 7s;"></i>
+            <i class="fa-solid fa-hat-cowboy" style="--x-start: 90vw; --y-start: 90px; --x-mid: 30vw; --y-mid: 40px; --x-end: -10vw; --y-end: -10px; animation-delay: 2s;"></i>
+            <i class="fa-solid fa-volume-high" style="--x-start: 40vw; --y-start: 90px; --x-mid: 50vw; --y-mid: 10px; --x-end: 60vw; --y-end: -20px; animation-delay: 9s;"></i>
+            <i class="fa-solid fa-compact-disc" style="--x-start: 105vw; --y-start: 20px; --x-mid: 50vw; --y-mid: 60px; --x-end: -5vw; --y-end: 10px; animation-delay: 11s;"></i>
+        </div>
+        <h1 class="header-title">ANTON</h1>
+    </header>
+
+    <div class="menu-btn" onclick="toggleNav(event)">☰</div>
+
+    <nav class="sidebar-left" id="sidebar">
+        <div class="close-sidebar" onclick="toggleNav(event)">&times;</div>
+        <div class="menu-links">
+            <a href="hauptseite.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="meinemusik.html"><i class="fa-solid fa-music"></i> Meine Musik</a>
+            <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
+            <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
+            <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
+            <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
+        </div>
+    </nav>
+
+    <aside class="sidebar-right">
+        <a href="#" class="yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" class="tt" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="fb" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="sp" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#" class="ap" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
+        <a href="#" class="ym" title="YouTube Music"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="#" class="am" title="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
+    </aside>
+
+    <main class="main-content">
+        <div class="welcome-card">
+            <h2>HEY!</h2>
+            <p style="font-family: 'Permanent Marker'; font-size: 1.5rem;">Schön, dass du da bist.</p>
+        </div>
+    </main>
+
+    <footer class="footer-legal">
+        <div class="footer-links">
+            <a href="impressum.html" class="legal-link">Impressum</a>
+            <a href="datenschutz.html" class="legal-link">Datenschutz</a>
+        </div>
+        <a href="index.html" class="footer-url">www.anton-familienpop.de</a>
+    </footer>
+
+    <script>
+        function toggleNav(event) { 
+            event.stopPropagation(); 
+            document.getElementById("sidebar").classList.toggle("open"); 
+        }
+        function closeNavOutside(event) { 
+            const sidebar = document.getElementById("sidebar"); 
+            if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { 
+                sidebar.classList.remove("open"); 
+            } 
+        }
+    </script>
+</body>
+</html>
