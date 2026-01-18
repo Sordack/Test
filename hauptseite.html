@@ -73,7 +73,6 @@
         }
         .sidebar-left.open { left: 0; }
         
-        /* Das "x" mit Hover-Effekt */
         .close-sidebar { 
             position: absolute; 
             top: 15px; 
@@ -84,7 +83,7 @@
             transition: transform 0.3s ease, color 0.3s ease;
         }
         .close-sidebar:hover {
-            transform: scale(1.3) translateY(-2px); /* Erhebt sich und wird größer */
+            transform: scale(1.3) translateY(-2px); 
             color: #000;
         }
 
@@ -143,9 +142,109 @@
         .sidebar-right a:nth-child(7) i { animation-delay: 9s; }
         .sidebar-right a:nth-child(8) i { animation-delay: 10.5s; }
 
-        .main-content { padding-top: 150px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
-        .welcome-card { background: rgba(255,255,255,0.5); padding: 50px; border-radius: 30px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
-        .welcome-card h2 { font-family: 'Bangers'; font-size: 3.5rem; color: #333; margin: 0; }
+        /* NEUES LAYOUT FÜR MAIN CONTENT */
+        .main-content {
+            padding-top: 100px; /* Mehr Platz unter dem Header */
+            padding-bottom: 100px; /* Mehr Platz über dem Footer */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: calc(100vh - 180px); /* Angepasst für Header/Footer-Höhe */
+            gap: 20px; /* Abstand zwischen den Fenstern */
+        }
+
+        .content-window {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .window-title {
+            font-family: 'Bangers', cursive;
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+        }
+
+        /* Fenster "Willkommen!" (links) */
+        .welcome-window {
+            width: 55%; /* Nimmt mehr Platz ein */
+            max-width: 650px;
+            height: 60vh; /* Füllt vertikal mehr aus */
+            justify-content: space-between; /* Titel oben, Text zentriert */
+        }
+        .welcome-window p {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.3rem;
+            color: #555;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .right-column-windows {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 30%; /* Rechte Spalte für zwei Fenster */
+            max-width: 400px;
+        }
+
+        /* Slideshow Fenster (rechts oben) */
+        .slideshow-window {
+            height: 30vh; /* Oberes Fenster */
+            overflow: hidden;
+            position: relative;
+            background-color: #eee;
+        }
+        .slideshow-window .window-title {
+            margin-bottom: 5px; /* Kleinerer Abstand */
+            font-size: 1.8rem;
+        }
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 45px); /* Höhe abzüglich Titel */
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .slideshow-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .slideshow-image.active {
+            opacity: 1;
+        }
+
+        /* Neuigkeiten Fenster (rechts unten) */
+        .news-window {
+            height: 30vh; /* Unteres Fenster */
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .news-window .window-title {
+            font-size: 1.8rem;
+        }
+        .news-window p {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
 
         .footer-legal { 
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
@@ -159,6 +258,28 @@
             font-weight: bold; text-transform: uppercase; font-family: 'Segoe UI', sans-serif; 
         }
         .footer-url { font-size: 0.85rem; opacity: 0.8; margin-top: 5px; text-decoration: none; color: #333; font-weight: 500; }
+
+        /* Responsive Anpassungen (Beispiel) */
+        @media (max-width: 1200px) {
+            .welcome-window { width: 50%; }
+            .right-column-windows { width: 35%; }
+        }
+        @media (max-width: 992px) {
+            .main-content { flex-direction: column; align-items: center; padding-top: 90px; }
+            .welcome-window, .right-column-windows { width: 80%; max-width: 600px; height: auto; }
+            .slideshow-window, .news-window { height: 250px; } /* Feste Höhe für kleinere Bildschirme */
+            .sidebar-left { width: 200px; }
+        }
+        @media (max-width: 768px) {
+            .sidebar-left { width: 100%; left: -100%; border-radius: 0; }
+            .sidebar-left.open { left: 0; }
+            .menu-btn { top: 10px; left: 10px; }
+            header { height: 60px; }
+            .header-title { font-size: 2.5rem; }
+            .sidebar-right { width: 50px; gap: 10px; font-size: 1.2rem; }
+            .sidebar-right a { font-size: 1.2rem; }
+            .footer-legal { bottom: 10px; padding: 5px 15px; }
+        }
     </style>
 </head>
 <body onclick="closeNavOutside(event)">
@@ -201,9 +322,27 @@
     </aside>
 
     <main class="main-content">
-        <div class="welcome-card">
-            <h2>HEY!</h2>
-            <p style="font-family: 'Permanent Marker'; font-size: 1.5rem;">Schön, dass du da bist.</p>
+        <div class="content-window welcome-window">
+            <h2 class="window-title">Willkommen!</h2>
+            <p>
+                Tauche ein in die Welt von ANTON – wo jeder Ton ein Lächeln zaubert und jede Melodie zum Mitsingen einlädt! Hier findest du alles über meine Musik, spannende Konzerte, coole Merchandise-Artikel und vieles mehr. Lass uns gemeinsam die Welt mit fröhlichen Klängen füllen!
+            </p>
+        </div>
+
+        <div class="right-column-windows">
+            <div class="content-window slideshow-window">
+                <h3 class="window-title">Konzerte</h3>
+                <div class="slideshow-container">
+                    <img class="slideshow-image active" src="https://via.placeholder.com/400x250/FFC0CB/000000?text=Konzert+1" alt="Konzertbild 1">
+                    <img class="slideshow-image" src="https://via.placeholder.com/400x250/ADD8E6/000000?text=Konzert+2" alt="Konzertbild 2">
+                    <img class="slideshow-image" src="https://via.placeholder.com/400x250/90EE90/000000?text=Konzert+3" alt="Konzertbild 3">
+                </div>
+            </div>
+
+            <div class="content-window news-window">
+                <h3 class="window-title">Neuigkeiten</h3>
+                <p>Bleibe auf dem Laufenden! Neue Single "Sonnenstrahl" ab sofort überall verfügbar. Bald Tourdaten-Ankündigung!</p>
+            </div>
         </div>
     </main>
 
@@ -226,6 +365,24 @@
                 sidebar.classList.remove("open"); 
             } 
         }
+
+        // Slideshow Funktionalität
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slideshow-image');
+        const totalSlides = slides.length;
+
+        function showSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+            });
+            slideIndex++;
+            if (slideIndex > totalSlides) { slideIndex = 1; }
+            slides[slideIndex - 1].classList.add('active');
+            setTimeout(showSlides, 4000); // Bildwechsel alle 4 Sekunden
+        }
+
+        // Starte Slideshow, sobald DOM geladen ist
+        document.addEventListener('DOMContentLoaded', showSlides);
     </script>
 </body>
 </html>
