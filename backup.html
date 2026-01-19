@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | Hauptseite</title>
+    <title>ANTON | Backup</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
@@ -60,14 +60,11 @@
 
         .sidebar-left.open { left: 0; }
 
-        /* "X" hebt sich nur ein kleines Stück an */
         .close-sidebar {
             align-self: flex-end; margin-bottom: 20px; cursor: pointer; font-size: 1.5rem;
             position: relative; color: #000; transition: transform 0.3s ease;
         }
-        .close-sidebar:hover {
-            transform: translateY(-5px);
-        }
+        .close-sidebar:hover { transform: translateY(-5px); }
 
         .menu-links a { 
             display: flex; align-items: center; gap: 10px; 
@@ -101,23 +98,39 @@
         .sidebar-right a:nth-child(8) i { animation-delay: 14s; --brand-color: #FF0000; }
         .sidebar-right a:nth-child(9) i { animation-delay: 16s; --brand-color: var(--amazon-music-tuerkis); }
 
+        /* GRID ANPASSUNGEN */
         .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
-        .window-grid { display: flex; gap: 40px; align-items: center; }
+        
+        .window-grid { 
+            display: flex; 
+            gap: 40px; 
+            align-items: stretch; /* Wichtig, damit die Spalten die gleiche Höhe haben */
+        }
 
         .main-window { 
             background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
             padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            position: relative; width: 45vh; height: 45vh; 
+            position: relative; 
+            width: 45vh; 
+            height: 45vh; 
             display: flex; flex-direction: column;
         }
 
-        .side-column { display: flex; flex-direction: column; gap: 15px; height: 45vh; justify-content: space-between; }
+        .side-column { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; /* Drückt die Fenster an den oberen und unteren Rand */
+            height: 45vh; /* Gleiche Höhe wie das Hauptfenster */
+        }
+
         .small-window { 
             background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
             padding: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            position: relative; width: 250px; height: calc(50% - 7.5px);
+            position: relative; 
+            width: 250px; 
+            height: calc(50% - 10px); /* Höhe angepasst für den Abschluss */
         }
 
         .window-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; z-index: 10; }
@@ -184,6 +197,7 @@
                 <h2>Hi, schön das du da bist...</h2>
             </div>
         </div>
+
         <div class="side-column">
             <div class="small-window">
                 <div class="slideshow">
