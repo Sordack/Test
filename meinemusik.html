@@ -17,7 +17,7 @@
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
             font-family: 'Permanent Marker', cursive !important;
-            background: linear-gradient(45deg, #74ebd5, #acb6e5, #74ebd5); 
+            background: linear-gradient(45deg, #6a11cb, #2575fc, #6a11cb); 
             background-size: 200% 200%; animation: gradientBG 15s ease infinite;
             overflow: hidden;
         }
@@ -81,6 +81,12 @@
             margin-bottom: 18px; transition: 0.3s;
         }
 
+        .shop-container { position: relative; }
+        .sub-menu { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; padding-left: 25px; display: flex; flex-direction: column; }
+        .shop-container:hover .sub-menu { max-height: 400px; }
+        .sub-menu a { font-size: 0.8rem; margin-bottom: 12px; opacity: 0.8; display: flex; align-items: center; gap: 8px; }
+
+        /* RECHTE SIDEBAR & ANIMATIONEN */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
@@ -110,12 +116,10 @@
         .main-window { 
             background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
             position: relative; width: 45vh; height: 45vh; 
-            display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+            display: flex; flex-direction: column; overflow-y: auto;
         }
-
-        .main-img { width: 100%; height: 100%; object-fit: cover; }
 
         .side-column { display: flex; flex-direction: column; gap: 15px; height: 45vh; justify-content: space-between; }
         .small-window { 
@@ -126,7 +130,7 @@
         }
 
         .window-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; z-index: 10; }
-        .window-content { height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .window-content { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 
         .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
         .footer-links { display: flex; gap: 20px; }
@@ -150,6 +154,16 @@
         <a href="meinemusik.html"><i class="fa-solid fa-music"></i> Meine Musik</a>
         <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
         <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
+        <div class="shop-container">
+            <a href="onlineshop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
+            <div class="sub-menu">
+                <a href="shirts.html"><i class="fa-solid fa-shirt"></i> Shirts</a>
+                <a href="hoodies.html"><i class="fa-solid fa-vest"></i> Hoodies</a>
+                <a href="muetzen.html"><i class="fa-solid fa-hat-wizard"></i> Mützen</a>
+                <a href="alben.html"><i class="fa-solid fa-compact-disc"></i> Alben</a>
+                <a href="fanpakete.html"><i class="fa-solid fa-box-open"></i> Fan-Pakete</a>
+            </div>
+        </div>
         <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
     </div>
 </nav>
@@ -169,17 +183,23 @@
 <div class="content-container">
     <div class="window-grid">
         <div class="main-window">
-            <span class="window-label">Album Art</span>
-            <img src="Ton an.jpeg" alt="Ton an" class="main-img">
+            <span class="window-label">Playlist</span>
+            <div class="window-content">
+                <i class="fa-solid fa-play" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                <p>Aktuelle Singles & Alben</p>
+                <div style="width: 100%; height: 200px; background: rgba(0,0,0,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                    [Player Widget Placeholder]
+                </div>
+            </div>
         </div>
         <div class="side-column">
             <div class="small-window">
-                <span class="window-label">Release</span>
-                <div class="window-content"><p>Das neue Album erscheint am 20. März 2026!</p></div>
+                <span class="window-label">Neueste Single</span>
+                <div class="window-content"><p>Ab jetzt überall!</p></div>
             </div>
             <div class="small-window">
-                <span class="window-label">Status</span>
-                <div class="window-content"><p>In allen Stores verfügbar!</p></div>
+                <span class="window-label">Lyrics</span>
+                <div class="window-content"><p>Sing mit!</p></div>
             </div>
         </div>
     </div>
