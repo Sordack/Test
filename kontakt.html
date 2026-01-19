@@ -81,6 +81,12 @@
             margin-bottom: 18px; transition: 0.3s;
         }
 
+        .shop-container { position: relative; }
+        .sub-menu { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; padding-left: 25px; display: flex; flex-direction: column; }
+        .shop-container:hover .sub-menu { max-height: 400px; }
+        .sub-menu a { font-size: 0.8rem; margin-bottom: 12px; opacity: 0.8; display: flex; align-items: center; gap: 8px; }
+
+        /* RECHTE SIDEBAR & ANIMATIONEN */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
@@ -88,6 +94,9 @@
             padding: 20px 0; border: 1px solid rgba(0, 0, 0, 0.2); border-right: none;
             border-top-left-radius: 20px; border-bottom-left-radius: 20px;
         }
+
+        @keyframes sequentialPulseColorSlow { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: var(--brand-color); } }
+        @keyframes ttGlitchPulse { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: #000; filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)); } }
 
         .sidebar-right a i { animation: sequentialPulseColorSlow 18s infinite ease-in-out; color: #000; }
         .sidebar-right a.tt i { animation-name: ttGlitchPulse; }
@@ -145,6 +154,16 @@
         <a href="meinemusik.html"><i class="fa-solid fa-music"></i> Meine Musik</a>
         <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
         <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
+        <div class="shop-container">
+            <a href="onlineshop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
+            <div class="sub-menu">
+                <a href="shirts.html"><i class="fa-solid fa-shirt"></i> Shirts</a>
+                <a href="hoodies.html"><i class="fa-solid fa-vest"></i> Hoodies</a>
+                <a href="muetzen.html"><i class="fa-solid fa-hat-wizard"></i> Mützen</a>
+                <a href="alben.html"><i class="fa-solid fa-compact-disc"></i> Alben</a>
+                <a href="fanpakete.html"><i class="fa-solid fa-box-open"></i> Fan-Pakete</a>
+            </div>
+        </div>
         <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
     </div>
 </nav>
