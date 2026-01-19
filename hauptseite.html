@@ -55,7 +55,6 @@
         }
         .sidebar-right a { color: #000; font-size: 1.4rem; text-decoration: none; display: flex; transition: all 0.3s ease; }
 
-        /* Animation Keyframes */
         @keyframes sequentialPulse {
             0% { transform: scale(1); color: #000; }
             5%, 12.5% { transform: scale(1.4); color: var(--brand-color); }
@@ -76,7 +75,6 @@
         .sidebar-right a.tt i { animation-name: ttGlitchPulse; }
         .sidebar-right a.ap i { animation-name: applePulse; }
 
-        /* Delays */
         .sidebar-right a:nth-child(1) i { animation-delay: 0s; } .sidebar-right a:nth-child(2) i { animation-delay: 2s; }
         .sidebar-right a:nth-child(3) i { animation-delay: 4s; } .sidebar-right a:nth-child(4) i { animation-delay: 6s; }
         .sidebar-right a:nth-child(5) i { animation-delay: 8s; } .sidebar-right a:nth-child(6) i { animation-delay: 10s; }
@@ -90,24 +88,28 @@
         .sidebar-right a.ap:hover i { color: #555555 !important; filter: drop-shadow(0 0 1px #000) !important; }
         .sidebar-right a.tt:hover i { color: #000 !important; filter: drop-shadow(-2px -1px 0px #25F4EE) drop-shadow(2px 1px 0px #FE2C55) !important; }
 
-        /* Content Layout - Verkleinerte Fenster */
+        /* Content Layout - Fenster & Überschriften */
         .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
         .window-grid { display: flex; gap: 20px; width: 80%; height: 55vh; }
-        .main-window, .small-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .big-column { flex: 2; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .main-window, .small-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; }
+        .big-column { flex: 2; }
         .side-column { flex: 0.8; display: flex; flex-direction: column; gap: 15px; }
-        .small-window { flex: 1; position: relative; }
+        .small-window { flex: 1; }
+
+        .window-label { position: absolute; top: 8px; left: 12px; font-size: 0.8rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; pointer-events: none; }
+        .window-content { height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; }
 
         /* Slideshow */
         .slideshow-img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 1s; }
         .slideshow-img.active { opacity: 1; }
 
         /* Footer */
-        .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.5); }
-        .footer-links { display: flex; gap: 15px; }
-        .footer-links a, .footer-url a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: 'Permanent Marker', cursive; text-transform: uppercase; }
-        .footer-url { margin-top: 3px; }
-        .footer-url a { text-transform: lowercase; opacity: 0.7; }
+        .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.5); }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold; text-transform: uppercase; }
+        .footer-url { margin-top: 4px; }
+        .footer-url a { color: #333; text-decoration: none; font-size: 0.7rem; font-family: 'Segoe UI', sans-serif; opacity: 0.5; transition: 0.3s; }
+        .footer-url a:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
@@ -139,16 +141,23 @@
     <div class="content-container">
         <div class="window-grid">
             <div class="main-window big-column">
-                <h2 style="font-size: 2.5rem;">Hey, schön das du da bist...</h2>
+                <span class="window-label">Willkommen</span>
+                <div class="window-content">
+                    <h2 style="font-size: 2.2rem; margin: 0;">Hey, schön das du da bist...</h2>
+                </div>
             </div>
             <div class="side-column">
                 <div class="small-window">
+                    <span class="window-label" style="z-index: 2; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Konzerte</span>
                     <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=400" class="slideshow-img active" alt="Konzert 1">
                     <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400" class="slideshow-img" alt="Konzert 2">
                     <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=400" class="slideshow-img" alt="Konzert 3">
                 </div>
-                <div class="small-window" style="display: flex; align-items: center; justify-content: center;">
-                    <h3>Neuigkeiten</h3>
+                <div class="small-window">
+                    <span class="window-label">Neuigkeiten</span>
+                    <div class="window-content">
+                        <p style="font-size: 1rem; opacity: 0.8;">Demnächst mehr...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,7 +178,6 @@
             if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { sidebar.classList.remove("open"); }
         });
 
-        // Slideshow Logik
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slideshow-img');
         setInterval(() => {
