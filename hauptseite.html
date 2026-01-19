@@ -41,30 +41,19 @@
             display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333;
         }
 
-        /* Linke Sidebar: Oben abgerundet, beginnt bei 80px, endet über Home-Button */
+        /* Linke Sidebar Design */
         .sidebar-left { 
-            position: fixed; 
-            top: 80px; /* Beginnt unter Header */
-            bottom: auto; /* Endet über Home-Button */
-            left: -15%; 
-            width: 12.5%; 
-            background-color: rgba(255, 235, 59, 0.95); 
-            backdrop-filter: blur(10px); 
-            z-index: 150; 
-            display: flex; 
-            flex-direction: column; 
-            padding: 20px 15px; 
-            box-sizing: border-box; 
+            position: fixed; top: 80px; left: -15%; width: 12.5%; 
+            background-color: rgba(255, 235, 59, 0.95); backdrop-filter: blur(10px); 
+            z-index: 150; display: flex; flex-direction: column; 
+            padding: 20px 15px; box-sizing: border-box; 
             transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border-right: 1px solid rgba(0,0,0,0.1);
-            border-top-right-radius: 25px; /* Abrundung oben */
+            border-right: 1px solid rgba(0,0,0,0.1); border-top-right-radius: 25px;
         }
         .sidebar-left.open { left: 0; }
-
         .menu-links a { display: flex; align-items: center; gap: 10px; color: #222; text-decoration: none; margin-bottom: 25px; transition: 0.3s; font-size: 1.1rem; }
-        .menu-links a:hover { transform: scale(1.1); color: #000; }
 
-        /* Sidebar Rechts - Fixierte sequentielle Animation */
+        /* Sidebar Rechts - Sequentielle Animation */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
@@ -73,30 +62,37 @@
         }
         .sidebar-right a { color: #000; font-size: 1.4rem; text-decoration: none; display: flex; }
         
-        /* Animation: Pulse und Farbe nacheinander */
-        .sidebar-right a i { animation: sequentialPulseColorSlow 16s infinite ease-in-out; }
+        /* Basis-Animation für alle Icons */
+        .sidebar-right a i { animation: sequentialPulse 16s infinite ease-in-out; }
 
-        @keyframes sequentialPulseColorSlow {
-            0%, 5%, 100% { transform: scale(1); color: #000; filter: none; }
+        @keyframes sequentialPulse {
+            0%, 5%, 100% { transform: scale(1); color: #000; filter: none; -webkit-text-stroke: 0px transparent; }
             2.5% { transform: scale(1.4); color: var(--brand-color); }
         }
 
-        /* TikTok Spezial-Animation */
+        /* Spezial Animation für Apple (Weiß mit Rand) */
+        @keyframes applePulse {
+            0%, 5%, 100% { transform: scale(1); color: #000; -webkit-text-stroke: 0px transparent; }
+            2.5% { transform: scale(1.4); color: #ffffff; -webkit-text-stroke: 1px #000000; }
+        }
+        .ap i { animation: applePulse 16s infinite ease-in-out !important; }
+
+        /* Spezial Animation für TikTok (Glitch) */
         @keyframes ttGlitchPulse {
             0%, 5%, 100% { transform: scale(1); color: #000; filter: none; }
             2.5% { transform: scale(1.4); color: #000; filter: drop-shadow(-2px -1px 0px #25F4EE) drop-shadow(2px 1px 0px #FE2C55); }
         }
         .tt i { animation: ttGlitchPulse 16s infinite ease-in-out !important; }
 
+        /* Farben */
         .yt { --brand-color: #FF0000; } 
         .ig { --brand-color: #E1306C; } 
         .fb { --brand-color: #1877F2; } 
         .sp { --brand-color: #1DB954; } 
-        .ap { --brand-color: #A2AAAD; } 
         .ym { --brand-color: #FF0000; } 
         .am { --brand-color: #FF9900; }
 
-        /* Versetzte Delays für echte sequentielle Bewegung */
+        /* Delays für die Reihenfolge */
         .sidebar-right a:nth-child(1) i { animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { animation-delay: 2s; }
         .sidebar-right a:nth-child(3) i { animation-delay: 4s; }
@@ -106,25 +102,17 @@
         .sidebar-right a:nth-child(7) i { animation-delay: 12s; }
         .sidebar-right a:nth-child(8) i { animation-delay: 14s; }
 
-        /* Inhalts-Layout */
+        /* Layout */
         .content-container { 
             position: relative; z-index: 5; display: flex; justify-content: center; align-items: stretch; 
             height: calc(100vh - 160px); margin-top: 80px; gap: 30px; padding: 40px 100px;
         }
-        
-        .main-window { 
-            background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
-            padding: 30px; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            transition: 0.3s;
-        }
+        .main-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 30px; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .big-column { flex: 2; }
         .side-column { flex: 1; display: flex; flex-direction: column; gap: 20px; }
         .small-window { flex: 1; }
 
         .footer-legal { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 10px 25px; border-radius: 20px; }
-        .footer-links { display: flex; gap: 20px; }
-        .footer-links a { color: #333; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; font-family: 'Segoe UI', sans-serif; }
     </style>
 </head>
 <body>
@@ -156,24 +144,18 @@
     <div class="content-container">
         <div class="main-window big-column">
             <h2>Willkommen in meiner Welt</h2>
-            <p>Hey! Schön, dass du da bist. Hier auf meiner Seite findest du alles über meinen modernen Familien-Pop.</p>
+            <p>Das neue Haupt-Design ist aktiv.</p>
         </div>
         <div class="side-column">
-            <div class="main-window small-window">
-                <h3>News</h3>
-                <p>Das neue Video zu "Sommerhit" ist jetzt auf YouTube!</p>
-            </div>
-            <div class="main-window small-window">
-                <h3>Nächster Halt</h3>
-                <p>Berlin am 15. Mai!</p>
-            </div>
+            <div class="main-window small-window"><h3>News</h3></div>
+            <div class="main-window small-window"><h3>Termine</h3></div>
         </div>
     </div>
 
     <footer class="footer-legal">
-        <div class="footer-links">
-            <a href="impressum.html">Impressum</a>
-            <a href="datenschutz.html">Datenschutz</a>
+        <div style="display: flex; gap: 20px;">
+            <a href="impressum.html" style="color: #333; text-decoration: none; font-weight: bold;">Impressum</a>
+            <a href="datenschutz.html" style="color: #333; text-decoration: none; font-weight: bold;">Datenschutz</a>
         </div>
     </footer>
 
