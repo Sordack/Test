@@ -1,76 +1,210 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANTON | Über mich</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
-<style>
-/* ... Gleiches CSS wie bei meinemusik.html ... */
-:root { --tiktok-cyan: #25F4EE; --tiktok-pink: #FE2C55; --whatsapp-green: #25D366; --amazon-music-tuerkis: #00A8E1; }
-body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: 'Permanent Marker', cursive !important; background: linear-gradient(45deg, #b2f7ef, #eff7f6, #b2f7ef); background-size: 200% 200%; animation: gradientBG 15s ease infinite; overflow: hidden; }
-@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-.big-a { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 45vw; color: rgba(255, 255, 255, 0.15); z-index: 1; pointer-events: none; }
-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 170; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); overflow: hidden; }
-.header-title { font-family: 'Rock Salt', cursive !important; font-size: 1.8rem; color: #ffffff; letter-spacing: 5px; margin: 0; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); z-index: 175; }
-.header-floating-icons i { position: absolute; color: rgba(255, 255, 255, 0.2); font-size: 1.2rem; z-index: 172; animation: headerFloat 15s linear infinite; pointer-events: none; }
-@keyframes headerFloat { 0% { transform: translateX(-10vw) translateY(10px) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(110vw) translateY(-10px) rotate(360deg); opacity: 0; } }
-.menu-btn { position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; z-index: 180; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333; transition: 0.3s; }
-.sidebar-left { position: fixed; top: 80px; bottom: 0; left: -15%; width: 12.5%; background-color: rgba(255, 235, 59, 0.45); backdrop-filter: blur(10px); z-index: 150; display: flex; flex-direction: column; padding: 30px 15px; box-sizing: border-box; transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-right: 2px solid rgba(0,0,0,0.1); border-top-right-radius: 25px; overflow-y: auto; }
-.sidebar-left.open { left: 0; }
-.menu-links a { display: flex; align-items: center; gap: 12px; color: #000; text-decoration: none; font-size: 1rem; margin-bottom: 25px; transition: 0.3s; }
-.sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); padding: 20px 0; border: 1px solid rgba(0, 0, 0, 0.2); border-right: none; border-top-left-radius: 20px; border-bottom-left-radius: 20px; }
-.sidebar-right a { color: #000; font-size: 1.4rem; text-decoration: none; display: flex; transition: all 0.3s ease; }
-@keyframes pulseColor { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: var(--brand-color); } }
-@keyframes ttGlitch { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: #000; filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)); } }
-.sidebar-right a i { animation: pulseColor 18s infinite ease-in-out; }
-.sidebar-right a.tt i { animation-name: ttGlitch; }
-.sidebar-right a:nth-child(1) i { animation-delay: 0s; } .sidebar-right a:nth-child(2) i { animation-delay: 2s; } .sidebar-right a:nth-child(3) i { animation-delay: 4s; } .sidebar-right a:nth-child(4) i { animation-delay: 6s; } .sidebar-right a:nth-child(5) i { animation-delay: 8s; } .sidebar-right a:nth-child(6) i { animation-delay: 10s; } .sidebar-right a:nth-child(7) i { animation-delay: 12s; } .sidebar-right a:nth-child(8) i { animation-delay: 14s; } .sidebar-right a:nth-child(9) i { animation-delay: 16s; }
-.yt { --brand-color: #f00; } .ig { --brand-color: #E1306C; } .wa { --brand-color: #25D366; } .fb { --brand-color: #1877F2; } .sp { --brand-color: #1DB954; } .ap { --brand-color: #555; } .ym { --brand-color: #f00; } .am { --brand-color: #00A8E1; }
-.content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
-.main-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 40px; width: 60vh; height: 60vh; display: flex; flex-direction: column; overflow-y: auto; position: relative; }
-.window-label { position: absolute; top: 12px; left: 15px; font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; }
-.footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
-.footer-links { display: flex; gap: 20px; }
-.footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; text-transform: uppercase; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANTON | Über mich</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tiktok-cyan: #25F4EE;
+            --tiktok-pink: #FE2C55;
+            --whatsapp-green: #25D366;
+            --amazon-music-tuerkis: #00A8E1;
+        }
+
+        body, html { 
+            margin: 0; padding: 0; height: 100%; width: 100%; 
+            font-family: 'Permanent Marker', cursive !important;
+            background: linear-gradient(45deg, #b2f7ef, #eff7f6, #b2f7ef); 
+            background-size: 200% 200%; animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        .big-a {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 45vw; color: rgba(255, 255, 255, 0.15); z-index: 1; user-select: none; pointer-events: none;
+        }
+
+        header { 
+            position: fixed; top: 0; width: 100%; height: 80px; 
+            display: flex; justify-content: center; align-items: center; 
+            z-index: 170; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); 
+            overflow: hidden;
+        }
+
+        .header-title { 
+            font-family: 'Rock Salt', cursive !important; 
+            font-size: 2rem; color: #ffffff; 
+            letter-spacing: 5px; margin: 0; 
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+            z-index: 175;
+        }
+
+        .header-floating-icons i {
+            position: absolute; color: rgba(255, 255, 255, 0.2); font-size: 1.2rem; 
+            z-index: 172; animation: headerFloat 15s linear infinite; pointer-events: none;
+        }
+
+        @keyframes headerFloat {
+            0% { transform: translateX(-10vw) translateY(10px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(110vw) translateY(-10px) rotate(360deg); opacity: 0; }
+        }
+
+        .menu-btn { 
+            position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
+            z-index: 180; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; 
+            display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333;
+            transition: 0.3s;
+        }
+
+        .sidebar-left { 
+            position: fixed; top: 80px; bottom: 0; left: -15%; width: 12.5%; 
+            background-color: rgba(255, 235, 59, 0.45); backdrop-filter: blur(10px); 
+            z-index: 150; display: flex; flex-direction: column; 
+            padding: 20px 15px; box-sizing: border-box; 
+            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            border-right: 2px solid rgba(0,0,0,0.1); border-top-right-radius: 25px;
+            overflow-y: auto;
+        }
+
+        .sidebar-left.open { left: 0; }
+
+        .menu-links a { 
+            display: flex; align-items: center; gap: 10px; 
+            color: #000; text-decoration: none; font-size: 0.95rem; 
+            margin-bottom: 18px; transition: 0.3s;
+        }
+        .menu-links a:hover { transform: translateX(5px); }
+
+        .shop-container { position: relative; }
+        .sub-menu { 
+            max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; 
+            padding-left: 25px; display: flex; flex-direction: column;
+        }
+        .shop-container:hover .sub-menu { max-height: 300px; }
+        .sub-menu a { font-size: 0.8rem; margin-bottom: 12px; opacity: 0.8; display: flex; align-items: center; gap: 8px; }
+
+        .sidebar-right {
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
+            display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
+            background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); 
+            padding: 20px 0; border: 1px solid rgba(0, 0, 0, 0.2); border-right: none;
+            border-top-left-radius: 20px; border-bottom-left-radius: 20px;
+        }
+
+        @keyframes sequentialPulseColorSlow { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: var(--brand-color); } }
+        @keyframes ttGlitchPulse { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: #000; filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)); } }
+
+        .sidebar-right a i { animation: sequentialPulseColorSlow 18s infinite ease-in-out; color: #000; }
+        .sidebar-right a.tt i { animation-name: ttGlitchPulse; }
+        .sidebar-right a:nth-child(1) i { animation-delay: 0s; --brand-color: #FF0000; } 
+        .sidebar-right a:nth-child(2) i { animation-delay: 2s; }
+        .sidebar-right a:nth-child(3) i { animation-delay: 4s; --brand-color: #E1306C; } 
+        .sidebar-right a:nth-child(4) i { animation-delay: 6s; --brand-color: var(--whatsapp-green); }
+        .sidebar-right a:nth-child(5) i { animation-delay: 8s; --brand-color: #1877F2; } 
+        .sidebar-right a:nth-child(6) i { animation-delay: 10s; --brand-color: #1DB954; }
+        .sidebar-right a:nth-child(7) i { animation-delay: 12s; --brand-color: #555; } 
+        .sidebar-right a:nth-child(8) i { animation-delay: 14s; --brand-color: #FF0000; }
+        .sidebar-right a:nth-child(9) i { animation-delay: 16s; --brand-color: var(--amazon-music-tuerkis); }
+
+        .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
+        
+        .about-window { 
+            background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
+            padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            width: 60%; max-height: 70vh; overflow-y: auto; text-align: center;
+        }
+
+        .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; text-transform: uppercase; }
+    </style>
 </head>
 <body>
+
 <div class="big-a">A</div>
-<header><div class="header-floating-icons" id="headerIcons"></div><h1 class="header-title">ÜBER MICH</h1></header>
+
+<header>
+    <div class="header-floating-icons" id="headerIcons"></div>
+    <h1 class="header-title">ANTON</h1>
+</header>
+
 <div class="menu-btn" onclick="toggleNav(event)">☰</div>
+
 <nav class="sidebar-left" id="sidebar">
     <div class="menu-links">
         <a href="hauptseite.html"><i class="fa-solid fa-house"></i> Home</a>
         <a href="meinemusik.html"><i class="fa-solid fa-music"></i> Meine Musik</a>
         <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
         <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
+        
+        <div class="shop-container">
+            <a href="onlineshop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
+            <div class="sub-menu">
+                <a href="shirts.html"><i class="fa-solid fa-shirt"></i> Shirts</a>
+                <a href="hoodies.html"><i class="fa-solid fa-vest"></i> Hoodies</a>
+                <a href="muetzen.html"><i class="fa-solid fa-hat-wizard"></i> Mützen</a>
+                <a href="alben.html"><i class="fa-solid fa-compact-disc"></i> Alben</a>
+                <a href="fanpakete.html"><i class="fa-solid fa-box-open"></i> Fan-Pakete</a>
+            </div>
+        </div>
+
         <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
     </div>
 </nav>
+
 <aside class="sidebar-right">
-    <a href="#" class="yt"><i class="fa-brands fa-youtube"></i></a><a href="#" class="tt"><i class="fa-brands fa-tiktok"></i></a><a href="#" class="ig"><i class="fa-brands fa-instagram"></i></a><a href="#" class="wa"><i class="fa-brands fa-whatsapp"></i></a><a href="#" class="fb"><i class="fa-brands fa-facebook"></i></a><a href="#" class="sp"><i class="fa-brands fa-spotify"></i></a><a href="#" class="ap"><i class="fa-brands fa-apple"></i></a><a href="#" class="ym"><i class="fa-solid fa-circle-play"></i></a><a href="#" class="am"><i class="fa-brands fa-amazon"></i></a>
+    <a href="#" class="yt"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#" class="tt"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="#" class="ig"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" class="wa"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="#" class="fb"><i class="fa-brands fa-facebook"></i></a>
+    <a href="#" class="sp"><i class="fa-brands fa-spotify"></i></a>
+    <a href="#" class="ap"><i class="fa-brands fa-apple"></i></a>
+    <a href="#" class="ym"><i class="fa-solid fa-circle-play"></i></a>
+    <a href="#" class="am"><i class="fa-brands fa-amazon"></i></a>
 </aside>
+
 <div class="content-container">
-    <div class="main-window">
-        <span class="window-label">Die Story</span>
-        <h2>Wer ist ANTON?</h2>
-        <p>Hier kannst du deine Geschichte erzählen. Von den ersten Schritten in der Musik bis hin zum Familienpop...</p>
-        <p>Musik für Groß und Klein!</p>
-    </div>
+    <div class="about-window">
+        <h2>Über mich</h2>
+        <p>Erfahre hier mehr über meine Reise als Musiker.</p>
+        </div>
 </div>
+
 <footer class="footer-legal">
     <div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div>
+    <div style="font-size: 0.7rem; opacity: 0.5; margin-top: 5px; font-family: sans-serif;">www.anton-familienpop.de</div>
 </footer>
+
 <script>
-function toggleNav(event) { event.stopPropagation(); document.getElementById("sidebar").classList.toggle("open"); }
-document.addEventListener("click", function(event) { const sidebar = document.getElementById("sidebar"); if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { sidebar.classList.remove("open"); } });
+function toggleNav(event) { 
+    event.stopPropagation(); 
+    document.getElementById("sidebar").classList.toggle("open"); 
+}
+
+document.addEventListener("click", function(event) {
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { 
+        sidebar.classList.remove("open"); 
+    }
+});
+
 const iconClasses = ['fa-music', 'fa-guitar', 'fa-microphone', 'fa-headphones', 'fa-compact-disc'];
 const headerContainer = document.getElementById('headerIcons');
 for (let i = 0; i < 12; i++) {
-    const icon = document.createElement('i'); icon.className = `fa-solid ${iconClasses[Math.floor(Math.random() * iconClasses.length)]}`;
-    icon.style.left = '-10vw'; icon.style.top = Math.random() * 50 + 15 + 'px'; icon.style.animationDelay = (Math.random() * 15) + 's';
+    const icon = document.createElement('i');
+    icon.className = `fa-solid ${iconClasses[Math.floor(Math.random() * iconClasses.length)]}`;
+    icon.style.left = '-10vw';
+    icon.style.top = Math.random() * 50 + 15 + 'px';
+    icon.style.animationDelay = (Math.random() * 15) + 's';
     headerContainer.appendChild(icon);
 }
 </script>
