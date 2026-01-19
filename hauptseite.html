@@ -8,9 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
 <style>
 :root {
-    --tiktok-cyan: #25F4EE;
-    --tiktok-pink: #FE2C55;
-    --whatsapp-green: #25D366;
+    --tiktok-cyan: #00f2ea;
+    --tiktok-pink: #ff0050;
+    --sidebar-width: 12.5%;
 }
 
 body, html { 
@@ -27,7 +27,7 @@ position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 font-size: 45vw; color: rgba(255, 255, 255, 0.15); z-index: 1; user-select: none; pointer-events: none;
 }
 
-/* --- HEADER MIT SCHWEBENDEN ICONS --- */
+/* --- HEADER --- */
 header { 
 position: fixed; top: 0; width: 100%; height: 80px; 
 display: flex; justify-content: center; align-items: center; 
@@ -37,33 +37,15 @@ overflow: hidden;
 
 .header-title { 
     font-family: 'Permanent Marker', cursive !important; 
-    font-size: 2.5rem; 
-    color: #ffffff; 
-    letter-spacing: 5px; 
-    margin: 0; 
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
-    position: relative;
-    z-index: 20; /* Über den schwebenden Icons */
+    font-size: 2.5rem; color: #ffffff; letter-spacing: 5px; margin: 0; 
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3); position: relative; z-index: 20;
 }
 
-/* Container für die schwebenden Icons */
-.header-float-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
+.header-float-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
 .header-float-icon {
-    position: absolute;
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.4); /* Einfarbig Weiß/Transparent */
-    animation: slowFloat linear infinite;
-    top: 25px;
+    position: absolute; font-size: 1.2rem; color: rgba(255, 255, 255, 0.4); 
+    animation: slowFloat linear infinite; top: 25px;
 }
-
 @keyframes slowFloat {
     0% { left: -50px; transform: rotate(0deg); opacity: 0; }
     10% { opacity: 0.4; }
@@ -71,60 +53,60 @@ overflow: hidden;
     100% { left: 100%; transform: rotate(360deg); opacity: 0; }
 }
 
-/* --- MENÜ & SIDEBARS --- */
+/* --- MENÜ BUTTON (Clean Design) --- */
 .menu-btn { 
 position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
 z-index: 160; background: #fff; width: 45px; height: 45px; 
 display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #000;
-box-shadow: -2px -1px 0px var(--tiktok-cyan), 2px 1px 0px var(--tiktok-pink);
-transition: 0.2s;
+border: 2px solid #000; transition: 0.3s;
 }
-.menu-btn:hover { transform: scale(1.1); box-shadow: -3px -2px 0px var(--tiktok-cyan), 3px 2px 0px var(--tiktok-pink); }
+.menu-btn:hover { background: #f0f0f0; transform: scale(1.05); }
 
+/* --- LINKE SIDEBAR (12.5% mit Header-Box) --- */
 .sidebar-left { 
-position: fixed; top: 0; bottom: 0; left: -15%; width: 12.5%; 
+position: fixed; top: 0; bottom: 0; left: -15%; width: var(--sidebar-width); 
 background-color: rgba(255, 235, 59, 0.98); backdrop-filter: blur(10px); 
 z-index: 150; display: flex; flex-direction: column; 
-padding: 80px 15px 30px 15px; box-sizing: border-box; 
+padding: 0; box-sizing: border-box; 
 transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-border-right: 3px solid #000;
-overflow-y: auto;
+border-right: 3px solid #000; overflow-y: auto;
 }
 .sidebar-left.open { left: 0; }
-.menu-links a { display: block; color: #000; text-decoration: none; font-size: 1.1rem; margin-bottom: 20px; transition: 0.3s; position: relative; }
 
+.sidebar-header-box {
+    background: #000; color: #fff; padding: 25px 15px; text-align: center;
+    font-family: sans-serif; font-weight: bold; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 20px;
+}
+
+.menu-links { padding: 0 15px; }
+.menu-links a { display: block; color: #000; text-decoration: none; font-size: 1.1rem; margin-bottom: 20px; transition: 0.3s; }
+.menu-links a:hover { transform: translateX(5px); font-weight: bold; }
+
+/* --- RECHTE SIDEBAR (8 Icons inkl. Amazon) --- */
 .sidebar-right {
-position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
-display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
-background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); 
-padding: 20px 0; border: 1px solid rgba(0, 0, 0, 0.2); border-right: none;
-border-top-left-radius: 20px; border-bottom-left-radius: 20px;
-}
-.sidebar-right a { color: #000; font-size: 1.4rem; text-decoration: none; display: flex; transition: all 0.3s ease; }
-
-@keyframes ttGlitchPulse {
-0% { transform: scale(1); color: #000; filter: none; }
-5%, 10% { transform: scale(1.4); color: #000; filter: drop-shadow(-2px -1px 0px #25F4EE) drop-shadow(2px 1px 0px #FE2C55); }
-15%, 100% { transform: scale(1); color: #000; filter: none; }
-}
-@keyframes sequentialPulse {
-0% { transform: scale(1); color: #000; }
-5%, 10% { transform: scale(1.4); color: var(--brand-color); }
-15%, 100% { transform: scale(1); color: #000; }
+    position: fixed; right: 0; top: 0; height: 100vh; width: 60px;
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; gap: 20px; z-index: 100;
 }
 
-.sidebar-right a i { animation: sequentialPulse 14s infinite ease-in-out; }
-.sidebar-right a.tt i { animation-name: ttGlitchPulse; }
-.sidebar-right a:nth-child(1) i { animation-delay: 0s; } 
-.sidebar-right a:nth-child(2) i { animation-delay: 2s; }
-.sidebar-right a:nth-child(3) i { animation-delay: 4s; } 
-.sidebar-right a:nth-child(4) i { animation-delay: 6s; }
-.sidebar-right a:nth-child(5) i { animation-delay: 8s; } 
-.sidebar-right a:nth-child(6) i { animation-delay: 10s; }
-.sidebar-right a:nth-child(7) i { animation-delay: 12s; }
+.social-icon {
+    color: white; font-size: 1.5rem; text-decoration: none;
+    animation: sequentialPulseSlow 8s infinite;
+}
 
-.yt { --brand-color: #FF0000; } .tt { --brand-color: #000000; } .wa { --brand-color: var(--whatsapp-green); }
-.ig { --brand-color: #E1306C; } .fb { --brand-color: #1877F2; } .sp { --brand-color: #1DB954; } .ap { --brand-color: #555555; }
+@keyframes sequentialPulseSlow {
+    0%, 100% { transform: scale(1); text-shadow: none; color: white; }
+    5%, 15% { transform: scale(1.4); text-shadow: 0 0 10px var(--tiktok-cyan), 0 0 20px var(--tiktok-pink); color: var(--tiktok-cyan); }
+}
+
+.social-icon:nth-child(1) { animation-delay: 0s; }
+.social-icon:nth-child(2) { animation-delay: 1s; }
+.social-icon:nth-child(3) { animation-delay: 2s; }
+.social-icon:nth-child(4) { animation-delay: 3s; }
+.social-icon:nth-child(5) { animation-delay: 4s; }
+.social-icon:nth-child(6) { animation-delay: 5s; }
+.social-icon:nth-child(7) { animation-delay: 6s; }
+.social-icon:nth-child(8) { animation-delay: 7s; }
 
 /* --- CONTENT --- */
 .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
@@ -158,24 +140,26 @@ border-top-left-radius: 20px; border-bottom-left-radius: 20px;
 <div class="menu-btn" onclick="toggleNav(event)">☰</div>
 
 <nav class="sidebar-left" id="sidebar">
-<div class="menu-links">
-    <a href="hauptseite.html">Hauptseite</a>
-    <a href="meinemusik.html">Meine Musik</a>
-    <a href="ueber-mich.html">Über mich</a>
-    <a href="konzerte.html">Konzerte</a>
-    <a href="kontakt.html">Kontakt</a>
-    <div class="shop-container"><a href="shop.html">Onlineshop</a></div>
-</div>
+    <div class="sidebar-header-box">MENÜ</div>
+    <div class="menu-links">
+        <a href="hauptseite.html">Hauptseite</a>
+        <a href="meinemusik.html">Musik</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="konzerte.html">Konzerte</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="shop.html">Shop</a>
+    </div>
 </nav>
 
 <aside class="sidebar-right">
-<a href="#" class="yt"><i class="fa-brands fa-youtube"></i></a>
-<a href="#" class="tt"><i class="fa-brands fa-tiktok"></i></a>
-<a href="#" class="wa"><i class="fa-brands fa-whatsapp"></i></a>
-<a href="#" class="ig"><i class="fa-brands fa-instagram"></i></a>
-<a href="#" class="fb"><i class="fa-brands fa-facebook"></i></a>
-<a href="#" class="sp"><i class="fa-brands fa-spotify"></i></a>
-<a href="#" class="ap"><i class="fa-brands fa-apple"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-spotify"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-apple"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-amazon"></i></a>
 </aside>
 
 <div class="content-container">
@@ -210,7 +194,6 @@ const sidebar = document.getElementById("sidebar");
 if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { sidebar.classList.remove("open"); }
 });
 
-// Slideshow
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slideshow-img');
 setInterval(() => {
@@ -221,34 +204,24 @@ setInterval(() => {
     }
 }, 4000);
 
-// Header Floating Icons Logik
 const headerIconsList = [
     'fa-brands fa-youtube', 'fa-brands fa-tiktok', 'fa-brands fa-whatsapp', 
     'fa-brands fa-instagram', 'fa-brands fa-facebook', 'fa-brands fa-spotify', 
-    'fa-brands fa-apple', 'fa-solid fa-music', 'fa-solid fa-compact-disc', 
-    'fa-solid fa-microphone', 'fa-solid fa-headphones'
+    'fa-brands fa-apple', 'fa-brands fa-amazon', 'fa-solid fa-music', 
+    'fa-solid fa-compact-disc', 'fa-solid fa-microphone', 'fa-solid fa-headphones'
 ];
 
 function createHeaderIcon() {
     const container = document.getElementById('headerIcons');
+    if(!container) return;
     const icon = document.createElement('i');
-    const randomClass = headerIconsList[Math.floor(Math.random() * headerIconsList.length)];
-    
-    icon.className = randomClass + ' header-float-icon';
-    
-    // Zufällige Dauer zwischen 15s und 25s für sanftes Schweben
+    icon.className = headerIconsList[Math.floor(Math.random() * headerIconsList.length)] + ' header-float-icon';
     const duration = Math.random() * 10 + 15 + "s";
     icon.style.animationDuration = duration;
-    
-    // Zufällige vertikale Position innerhalb des Headers
     icon.style.top = Math.random() * 40 + 10 + "px";
-
     container.appendChild(icon);
-
     setTimeout(() => { icon.remove(); }, parseFloat(duration) * 1000);
 }
-
-// Alle 1.5 Sekunden ein neues Icon in den Header schicken
 setInterval(createHeaderIcon, 1500);
 </script>
 </body>
