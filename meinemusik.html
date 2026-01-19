@@ -17,7 +17,7 @@
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
             font-family: 'Permanent Marker', cursive !important;
-            background: linear-gradient(45deg, #b2f7ef, #eff7f6, #b2f7ef); 
+            background: linear-gradient(45deg, #74ebd5, #acb6e5, #74ebd5); 
             background-size: 200% 200%; animation: gradientBG 15s ease infinite;
             overflow: hidden;
         }
@@ -80,12 +80,6 @@
             color: #000; text-decoration: none; font-size: 0.95rem; 
             margin-bottom: 18px; transition: 0.3s;
         }
-        .menu-links a:hover { transform: translateX(5px); }
-
-        .shop-container { position: relative; }
-        .sub-menu { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; padding-left: 25px; display: flex; flex-direction: column; }
-        .shop-container:hover .sub-menu { max-height: 300px; }
-        .sub-menu a { font-size: 0.8rem; margin-bottom: 12px; opacity: 0.8; display: flex; align-items: center; gap: 8px; }
 
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
@@ -110,14 +104,13 @@
         .sidebar-right a:nth-child(8) i { animation-delay: 14s; --brand-color: #FF0000; }
         .sidebar-right a:nth-child(9) i { animation-delay: 16s; --brand-color: var(--amazon-music-tuerkis); }
 
-        /* --- CONTENT --- */
         .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
         .window-grid { display: flex; gap: 40px; align-items: center; }
 
         .main-window { 
             background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
-            padding: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
             position: relative; width: 45vh; height: 45vh; 
             display: flex; flex-direction: column; justify-content: center; overflow: hidden;
         }
@@ -133,9 +126,8 @@
         }
 
         .window-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; z-index: 10; }
-        .window-content { height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; box-sizing: border-box; }
+        .window-content { height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; }
 
-        /* --- FOOTER --- */
         .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
         .footer-links { display: flex; gap: 20px; }
         .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; text-transform: uppercase; }
@@ -158,16 +150,6 @@
         <a href="meinemusik.html"><i class="fa-solid fa-music"></i> Meine Musik</a>
         <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
         <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
-        <div class="shop-container">
-            <a href="onlineshop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
-            <div class="sub-menu">
-                <a href="shirts.html"><i class="fa-solid fa-shirt"></i> Shirts</a>
-                <a href="hoodies.html"><i class="fa-solid fa-vest"></i> Hoodies</a>
-                <a href="muetzen.html"><i class="fa-solid fa-hat-wizard"></i> Mützen</a>
-                <a href="alben.html"><i class="fa-solid fa-compact-disc"></i> Alben</a>
-                <a href="fanpakete.html"><i class="fa-solid fa-box-open"></i> Fan-Pakete</a>
-            </div>
-        </div>
         <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
     </div>
 </nav>
@@ -190,19 +172,14 @@
             <span class="window-label">Album Art</span>
             <img src="Ton an.jpeg" alt="Ton an" class="main-img">
         </div>
-
         <div class="side-column">
             <div class="small-window">
                 <span class="window-label">Release</span>
-                <div class="window-content">
-                    <p style="font-size: 1rem; margin: 0;">Das neue Album erscheint am 20. März 2026!</p>
-                </div>
+                <div class="window-content"><p>Das neue Album erscheint am 20. März 2026!</p></div>
             </div>
             <div class="small-window">
-                <span class="window-label">Hörprobe</span>
-                <div class="window-content">
-                    <p style="font-size: 0.8rem; opacity: 0.8;">Single "Ton an" jetzt überall verfügbar.</p>
-                </div>
+                <span class="window-label">Status</span>
+                <div class="window-content"><p>In allen Stores verfügbar!</p></div>
             </div>
         </div>
     </div>
@@ -214,16 +191,8 @@
 </footer>
 
 <script>
-function toggleNav(event) { 
-    event.stopPropagation(); 
-    document.getElementById("sidebar").classList.toggle("open"); 
-}
-document.addEventListener("click", function(event) {
-    const sidebar = document.getElementById("sidebar");
-    if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { 
-        sidebar.classList.remove("open"); 
-    }
-});
+function toggleNav(event) { event.stopPropagation(); document.getElementById("sidebar").classList.toggle("open"); }
+document.addEventListener("click", function(event) { const sidebar = document.getElementById("sidebar"); if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { sidebar.classList.remove("open"); } });
 const iconClasses = ['fa-music', 'fa-guitar', 'fa-microphone', 'fa-headphones', 'fa-compact-disc'];
 const headerContainer = document.getElementById('headerIcons');
 for (let i = 0; i < 12; i++) {
