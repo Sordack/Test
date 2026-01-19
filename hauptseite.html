@@ -18,7 +18,7 @@
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
             font-family: 'Permanent Marker', cursive !important;
-            background: linear-gradient(45deg, #00ced1, #40e0d0, #00ced1); 
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ff9a9e); 
             background-size: 200% 200%; animation: gradientBG 15s ease infinite;
             overflow: hidden;
         }
@@ -30,17 +30,44 @@
             font-size: 45vw; color: rgba(255, 255, 255, 0.15); z-index: 1; user-select: none; pointer-events: none;
         }
 
+        /* HEADER MIT FLIEGENDEN ICONS */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
             z-index: 170; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); 
+            overflow: hidden;
         }
 
         .header-title { 
             font-family: 'Rock Salt', cursive !important; 
             font-size: 2rem; color: #ffffff; 
             letter-spacing: 5px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+            z-index: 10;
         }
+
+        .floating-icons {
+            position: absolute; width: 100%; height: 100%;
+            top: 0; left: 0; pointer-events: none;
+        }
+
+        .floating-icons i {
+            position: absolute; color: rgba(255, 255, 255, 0.3);
+            font-size: 1.5rem; animation: floatAround 10s infinite linear;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translate(100px, -50px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Unterschiedliche Startpositionen für die fliegenden Icons */
+        .floating-icons i:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .floating-icons i:nth-child(2) { left: 30%; top: 60%; animation-delay: 2s; }
+        .floating-icons i:nth-child(3) { left: 50%; top: 10%; animation-delay: 4s; }
+        .floating-icons i:nth-child(4) { left: 70%; top: 50%; animation-delay: 1s; }
+        .floating-icons i:nth-child(5) { left: 85%; top: 30%; animation-delay: 5s; }
 
         .menu-btn { 
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
@@ -48,6 +75,7 @@
             display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333;
         }
 
+        /* Sidebars */
         .sidebar-left { 
             position: fixed; top: 80px; bottom: 0; left: calc(var(--sidebar-width) * -1); 
             width: var(--sidebar-width); 
@@ -57,24 +85,10 @@
             transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             border-right: 2px solid rgba(0,0,0,0.1); border-top-right-radius: 25px;
         }
-
         .sidebar-left.open { left: 0; }
-
-        /* "X" hebt sich nur ein kleines Stück an */
-        .close-sidebar {
-            align-self: flex-end; margin-bottom: 20px; cursor: pointer; font-size: 1.5rem;
-            position: relative; color: #000; transition: transform 0.3s ease;
-        }
-        .close-sidebar:hover {
-            transform: translateY(-5px);
-        }
-
-        .menu-links a { 
-            display: flex; align-items: center; gap: 10px; 
-            color: #000; text-decoration: none; font-size: 0.9rem; 
-            margin-bottom: 18px; transition: 0.3s;
-        }
-
+        .close-sidebar { align-self: flex-end; margin-bottom: 20px; cursor: pointer; font-size: 1.5rem; color: #000; transition: 0.3s; }
+        .close-sidebar:hover { transform: translateY(-5px); }
+        .menu-links a { display: flex; align-items: center; gap: 10px; color: #000; text-decoration: none; font-size: 0.9rem; margin-bottom: 18px; transition: 0.3s; }
         .menu-links a:hover { transform: translateX(5px); }
 
         .sidebar-right {
@@ -88,7 +102,10 @@
         @keyframes sequentialPulseSlow { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: var(--brand-color); } }
         @keyframes ttGlitchPulse { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: #000; filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)); } }
 
-        .sidebar-right a i { animation: sequentialPulseSlow 18s infinite ease-in-out; color: #000; }
+        .sidebar-right a i { animation: sequentialPulseSlow 18s infinite ease-in-out; color: #000; transition: transform 0.3s, color 0.3s; }
+        .sidebar-right:hover a i { animation-play-state: paused; }
+        .sidebar-right a:hover i { transform: scale(1.4) !important; color: var(--brand-color) !important; }
+        .sidebar-right a.tt:hover i { color: #000 !important; filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)) !important; }
         .sidebar-right a.tt i { animation-name: ttGlitchPulse; }
         
         .sidebar-right a:nth-child(1) i { animation-delay: 0s; --brand-color: #FF0000; } 
@@ -101,42 +118,20 @@
         .sidebar-right a:nth-child(8) i { animation-delay: 14s; --brand-color: #FF0000; }
         .sidebar-right a:nth-child(9) i { animation-delay: 16s; --brand-color: var(--amazon-music-tuerkis); }
 
+        /* Layout */
         .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
-        .window-grid { display: flex; gap: 40px; align-items: center; }
+        .window-grid { display: flex; gap: 20px; align-items: flex-start; }
+        .main-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 30px; width: 70vh; height: 60vh; display: flex; flex-direction: column; box-sizing: border-box; }
+        .side-column { display: flex; flex-direction: column; justify-content: space-between; height: 60vh; width: 320px; }
+        .small-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 0; overflow: hidden; width: 100%; height: calc(50% - 10px); position: relative; }
+        .window-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; z-index: 20; color: #fff; text-shadow: 1px 1px 3px #000; }
+        
+        .slideshow-container { width: 100%; height: 100%; position: relative; background: #222; }
+        .slide-image { width: 100%; height: 100%; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 1.5s ease-in-out; background-size: cover; background-position: center; }
+        .slide-image.active { opacity: 1; }
+        .window-content { height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; }
 
-        .main-window { 
-            background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
-            padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            position: relative; width: 45vh; height: 45vh; 
-            display: flex; flex-direction: column;
-        }
-
-        .side-column { display: flex; flex-direction: column; gap: 15px; height: 45vh; justify-content: space-between; }
-        .small-window { 
-            background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
-            padding: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            position: relative; width: 250px; height: calc(50% - 7.5px);
-        }
-
-        .window-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; z-index: 10; }
-        .window-label.right-label { left: auto; right: 12px; }
-        .window-content { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-
-        .slideshow { width: 100%; height: 100%; position: relative; }
-        .slide { position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.8rem; opacity: 0; animation: slideFade 12s infinite; background-color: rgba(0,0,0,0.2); }
-        .slide:nth-child(1) { animation-delay: 0s; }
-        .slide:nth-child(2) { animation-delay: 4s; }
-        .slide:nth-child(3) { animation-delay: 8s; }
-        @keyframes slideFade { 0%, 33% { opacity: 1; } 34%, 100% { opacity: 0; } }
-
-        .footer-legal { 
-            position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); 
-            z-index: 100; display: flex; flex-direction: column; align-items: center; 
-            background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); 
-            padding: 8px 25px; border-radius: 15px; 
-        }
+        .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
         .footer-links { display: flex; gap: 20px; }
         .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; text-transform: uppercase; }
         .footer-subtext a { text-decoration: none; color: inherit; font-family: sans-serif; font-size: 0.7rem; opacity: 0.5; margin-top: 5px; }
@@ -147,6 +142,13 @@
 <div class="big-a">A</div>
 
 <header>
+    <div class="floating-icons">
+        <i class="fa-solid fa-music"></i>
+        <i class="fa-solid fa-microphone"></i>
+        <i class="fa-solid fa-guitar"></i>
+        <i class="fa-solid fa-compact-disc"></i>
+        <i class="fa-solid fa-headphones"></i>
+    </div>
     <h1 class="header-title">ANTON</h1>
 </header>
 
@@ -165,7 +167,7 @@
 </nav>
 
 <aside class="sidebar-right">
-    <a href="#" class="yt"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" class="yt"><i class="fa-brands fa-youtube"></i></a>
     <a href="#" class="tt"><i class="fa-brands fa-tiktok"></i></a>
     <a href="#" class="ig"><i class="fa-brands fa-instagram"></i></a>
     <a href="#" class="wa"><i class="fa-brands fa-whatsapp"></i></a>
@@ -179,23 +181,25 @@
 <div class="content-container">
     <div class="window-grid">
         <div class="main-window">
-            <span class="window-label right-label">Willkommen</span>
+            <span class="window-label" style="color:#000; text-shadow:none; left: auto; right: 12px;">Willkommen</span>
             <div class="window-content">
-                <h2>Hi, schön das du da bist...</h2>
+                <h2>Hauptseite - Schön, dass du da bist!</h2>
             </div>
         </div>
         <div class="side-column">
             <div class="small-window">
-                <div class="slideshow">
-                    <div class="slide">Konzert Bild 1</div>
-                    <div class="slide">Konzert Bild 2</div>
-                    <div class="slide">Konzert Bild 3</div>
+                <span class="window-label">Live Momente</span>
+                <div class="slideshow-container">
+                    <div class="slide-image active" style="background-image: url('http://googleusercontent.com/image_collection/image_retrieval/1893999955843204993_0');"></div>
+                    <div class="slide-image" style="background-image: url('http://googleusercontent.com/image_collection/image_retrieval/1893999955843204993_1');"></div>
+                    <div class="slide-image" style="background-image: url('http://googleusercontent.com/image_collection/image_retrieval/1893999955843204993_2');"></div>
+                    <div class="slide-image" style="background-image: url('http://googleusercontent.com/image_collection/image_retrieval/1893999955843204993_3');"></div>
                 </div>
             </div>
             <div class="small-window">
-                <span class="window-label">Neuigkeiten</span>
+                <span class="window-label" style="color:#000; text-shadow:none;">News & Updates</span>
                 <div class="window-content">
-                    <p>Das neue Album ist da!</p>
+                    <p>Hier erfährst du alles Neue von ANTON!</p>
                 </div>
             </div>
         </div>
@@ -223,6 +227,17 @@ document.addEventListener("click", function(event) {
         sidebar.classList.remove("open"); 
     } 
 });
+
+let slideIndex = 0;
+function showSlides() {
+    let slides = document.getElementsByClassName("slide-image");
+    for (let i = 0; i < slides.length; i++) { slides[i].classList.remove('active'); }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    slides[slideIndex-1].classList.add('active');
+    setTimeout(showSlides, 4000); 
+}
+showSlides();
 </script>
 </body>
 </html>
