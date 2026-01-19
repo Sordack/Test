@@ -98,13 +98,13 @@
         .sidebar-right a:nth-child(8) i { animation-delay: 14s; --brand-color: #FF0000; }
         .sidebar-right a:nth-child(9) i { animation-delay: 16s; --brand-color: var(--amazon-music-tuerkis); }
 
-        /* HARMONISCHES LAYOUT */
+        /* CONTENT LAYOUT */
         .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
         
         .window-grid { 
             display: flex; 
             gap: 40px; 
-            align-items: flex-start; 
+            align-items: flex-start; /* Spalten fangen oben gleichzeitig an */
         }
 
         .main-window { 
@@ -120,8 +120,8 @@
         .side-column { 
             display: flex; 
             flex-direction: column; 
-            justify-content: space-between; /* Kleine Fenster an die Enden pinnen */
-            height: 45vh; /* Exakt so hoch wie das main-window */
+            justify-content: space-between; /* Dies drückt das untere Fenster bündig nach unten */
+            height: 45vh; /* Gleiche Höhe wie das Hauptfenster links */
             width: 250px;
         }
 
@@ -131,7 +131,7 @@
             padding: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
             position: relative; 
             width: 100%; 
-            height: calc(50% - 20px); /* Harmonische Höhe mit Platz für den Gap */
+            height: calc(50% - 15px); /* Fenstergröße für harmonisches Gleichgewicht */
         }
 
         .window-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; z-index: 10; }
@@ -207,6 +207,7 @@
                     <div class="slide">Konzert Bild 3</div>
                 </div>
             </div>
+            
             <div class="small-window">
                 <span class="window-label">Neuigkeiten</span>
                 <div class="window-content">
