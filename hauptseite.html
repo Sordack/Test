@@ -31,33 +31,33 @@ font-size: 45vw; color: rgba(255, 255, 255, 0.15); z-index: 1; user-select: none
 header { 
 position: fixed; top: 0; width: 100%; height: 80px; 
 display: flex; justify-content: center; align-items: center; 
-z-index: 10; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); 
+z-index: 170; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); 
 }
 .header-title { font-size: 2.5rem; color: #ffffff; letter-spacing: 5px; margin: 0; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
 
-/* --- MENÜ BUTTON --- */
+/* --- MENÜ BUTTON (Klassisches Design) --- */
 .menu-btn { 
 position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
-z-index: 160; background: #fff; width: 45px; height: 45px; 
-display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #000;
-box-shadow: -2px -1px 0px var(--tiktok-cyan), 2px 1px 0px var(--tiktok-pink);
-transition: 0.2s;
+z-index: 180; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; 
+display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333;
+transition: 0.3s;
 }
-.menu-btn:hover { transform: scale(1.1); box-shadow: -3px -2px 0px var(--tiktok-cyan), 3px 2px 0px var(--tiktok-pink); }
+.menu-btn:hover { background: rgba(255, 255, 255, 0.8); transform: scale(1.05); }
 
-/* --- LINKE SIDEBAR (12.5% Breite) --- */
+/* --- LINKE SIDEBAR (Transparenter & unter Header) --- */
 .sidebar-left { 
-position: fixed; top: 0; bottom: 0; left: -15%; width: 12.5%; 
-background-color: rgba(255, 235, 59, 0.98); backdrop-filter: blur(10px); 
+position: fixed; top: 80px; bottom: 0; left: -15%; width: 12.5%; 
+background-color: rgba(255, 235, 59, 0.45); /* 50% transparenter als vorher */
+backdrop-filter: blur(10px); 
 z-index: 150; display: flex; flex-direction: column; 
-padding: 80px 15px 30px 15px; box-sizing: border-box; 
+padding: 30px 15px; box-sizing: border-box; 
 transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-border-right: 3px solid #000; border-top-right-radius: 25px;
+border-right: 2px solid rgba(0,0,0,0.1); border-top-right-radius: 25px;
 overflow-y: auto;
 }
 .sidebar-left.open { left: 0; }
 
-.close-sidebar { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; cursor: pointer; color: #333; transition: 0.3s; }
+.close-sidebar { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; color: #333; transition: 0.3s; }
 .close-sidebar:hover { transform: scale(1.2) rotate(90deg); color: #000; }
 
 .menu-links a, .shop-trigger { 
@@ -75,7 +75,7 @@ overflow-y: auto;
 .sub-menu a { font-size: 0.9rem; margin-bottom: 12px; color: #333; display: flex; align-items: center; gap: 8px; }
 .sub-menu a::before { content: "•"; color: #000; font-weight: bold; }
 
-/* --- RECHTE SIDEBAR (9 Icons) --- */
+/* --- RECHTE SIDEBAR --- */
 .sidebar-right {
 position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
 display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
