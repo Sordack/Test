@@ -11,14 +11,13 @@
             --tiktok-cyan: #25F4EE;
             --tiktok-pink: #FE2C55;
             --whatsapp-green: #25D366;
-            --amazon-music-tuerkis: #00A8E1;
             --sidebar-width: 12.5%;
         }
 
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
             font-family: 'Permanent Marker', cursive !important;
-            background: linear-gradient(45deg, #f3ec78, #af4261, #f3ec78); 
+            background: linear-gradient(45deg, #84fab0, #8fd3f4, #84fab0); 
             background-size: 200% 200%; animation: gradientBG 15s ease infinite;
             overflow: hidden;
         }
@@ -34,13 +33,38 @@
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
             z-index: 170; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); 
+            overflow: hidden;
         }
 
         .header-title { 
             font-family: 'Rock Salt', cursive !important; 
             font-size: 2rem; color: #ffffff; 
             letter-spacing: 5px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+            z-index: 10;
         }
+
+        .floating-icons {
+            position: absolute; width: 100%; height: 100%;
+            top: 0; left: 0; pointer-events: none;
+        }
+
+        .floating-icons i {
+            position: absolute; color: rgba(255, 255, 255, 0.3);
+            font-size: 1.5rem; animation: floatAround 10s infinite linear;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translate(100px, -50px) rotate(360deg); opacity: 0; }
+        }
+
+        .floating-icons i:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .floating-icons i:nth-child(2) { left: 30%; top: 60%; animation-delay: 2s; }
+        .floating-icons i:nth-child(3) { left: 50%; top: 30%; animation-delay: 4s; }
+        .floating-icons i:nth-child(4) { left: 70%; top: 50%; animation-delay: 1s; }
+        .floating-icons i:nth-child(5) { left: 85%; top: 25%; animation-delay: 5s; }
 
         .menu-btn { 
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
@@ -57,23 +81,11 @@
             transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             border-right: 2px solid rgba(0,0,0,0.1); border-top-right-radius: 25px;
         }
-
         .sidebar-left.open { left: 0; }
-
-        .close-sidebar {
-            align-self: flex-end; margin-bottom: 20px; cursor: pointer; font-size: 1.5rem;
-            position: relative; color: #000; transition: 0.3s;
-        }
-        .close-sidebar:hover {
-            text-shadow: -2px -1px 0px var(--tiktok-cyan), 2px 1px 0px var(--tiktok-pink);
-            transform: scale(1.1);
-        }
-
-        .menu-links a { 
-            display: flex; align-items: center; gap: 10px; 
-            color: #000; text-decoration: none; font-size: 0.9rem; 
-            margin-bottom: 18px; transition: 0.3s;
-        }
+        .close-sidebar { align-self: flex-end; margin-bottom: 20px; cursor: pointer; font-size: 1.5rem; color: #000; transition: 0.3s; }
+        .close-sidebar:hover { transform: translateY(-5px); }
+        .menu-links a { display: flex; align-items: center; gap: 10px; color: #000; text-decoration: none; font-size: 0.9rem; margin-bottom: 18px; transition: 0.3s; }
+        .menu-links a:hover { transform: translateX(5px); }
 
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
@@ -86,49 +98,72 @@
         @keyframes sequentialPulseSlow { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: var(--brand-color); } }
         @keyframes ttGlitchPulse { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: #000; filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)); } }
 
-        .sidebar-right a i { animation: sequentialPulseSlow 18s infinite ease-in-out; color: #000; }
+        .sidebar-right a i { animation: sequentialPulseSlow 18s infinite ease-in-out; color: #000; transition: transform 0.3s, color 0.3s; }
+        .sidebar-right:hover a i { animation-play-state: paused; }
+        .sidebar-right a:hover i { transform: scale(1.4) !important; color: var(--brand-color) !important; }
+        .sidebar-right a.tt:hover i { color: #000 !important; filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)) !important; }
         .sidebar-right a.tt i { animation-name: ttGlitchPulse; }
         
-        /* Delays */
         .sidebar-right a:nth-child(1) i { animation-delay: 0s; --brand-color: #FF0000; } 
         .sidebar-right a:nth-child(2) i { animation-delay: 2s; } 
         .sidebar-right a:nth-child(3) i { animation-delay: 4s; --brand-color: #E1306C; } 
         .sidebar-right a:nth-child(4) i { animation-delay: 6s; --brand-color: var(--whatsapp-green); }
         .sidebar-right a:nth-child(5) i { animation-delay: 8s; --brand-color: #1877F2; } 
         .sidebar-right a:nth-child(6) i { animation-delay: 10s; --brand-color: #1DB954; }
-        .sidebar-right a:nth-child(7) i { animation-delay: 12s; --brand-color: #555; } 
+        .sidebar-right a:nth-child(7) i { animation-delay: 12s; --brand-color: #0070c9; } 
         .sidebar-right a:nth-child(8) i { animation-delay: 14s; --brand-color: #FF0000; }
-        .sidebar-right a:nth-child(9) i { animation-delay: 16s; --brand-color: var(--amazon-music-tuerkis); }
+        .sidebar-right a:nth-child(9) i { animation-delay: 16s; --brand-color: #00A8E1; }
 
-        /* FENSTER LAYOUT */
         .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
-        .window-grid { display: flex; gap: 40px; align-items: center; }
-
+        .window-grid { display: flex; gap: 20px; align-items: flex-start; }
+        
         .main-window { 
             background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
-            padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            position: relative; width: 45vh; height: 45vh; 
-            display: flex; flex-direction: column; overflow-y: auto;
+            padding: 30px; width: 70vh; height: 60vh; 
+            display: flex; flex-direction: column; box-sizing: border-box; 
+            text-align: left; overflow-y: auto;
+        }
+        
+        .main-window h2 { margin-top: 0; font-size: 1.15rem; color: #000; text-transform: uppercase; letter-spacing: 2px; opacity: 0.85; }
+        
+        .tour-list { list-style: none; padding: 0; margin-top: 20px; }
+        .tour-item { 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-family: sans-serif;
+        }
+        .tour-date { font-weight: bold; width: 100px; color: #000; }
+        .tour-venue { flex-grow: 1; }
+        .tour-ticket-link { background: #000; color: #fff; padding: 5px 15px; text-decoration: none; border-radius: 5px; font-size: 0.8rem; transition: 0.3s; }
+        .tour-ticket-link:hover { background: #333; transform: scale(1.05); }
+
+        .side-column { display: flex; flex-direction: column; justify-content: space-between; height: 60vh; width: 320px; }
+        .small-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 0; overflow: hidden; width: 100%; height: calc(50% - 10px); position: relative; }
+        .window-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; z-index: 20; color: #fff; text-shadow: 1px 1px 3px #000; }
+        
+        /* BILDER-GALERIE ANIMATION */
+        .image-slideshow { width: 100%; height: 100%; position: relative; }
+        .slide { 
+            position: absolute; width: 100%; height: 100%; 
+            background-size: cover; background-position: center; 
+            opacity: 0; animation: slideShow 16s infinite; 
+        }
+        .slide:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=400'); animation-delay: 0s; }
+        .slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1459749411177-042180ce6742?auto=format&fit=crop&w=400'); animation-delay: 4s; }
+        .slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=400'); animation-delay: 8s; }
+        .slide:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=400'); animation-delay: 12s; }
+
+        @keyframes slideShow { 
+            0%, 20% { opacity: 0; } 5%, 15% { opacity: 1; } 
         }
 
-        .side-column { display: flex; flex-direction: column; gap: 15px; height: 45vh; justify-content: space-between; }
-        .small-window { 
-            background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
-            padding: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            position: relative; width: 250px; height: calc(50% - 7.5px);
-        }
+        .info-content { padding: 25px 20px; font-family: sans-serif; font-size: 0.8rem; color: #333; line-height: 1.4; overflow-y: auto; height: 100%; box-sizing: border-box; }
+        .info-content h4 { margin: 0 0 10px 0; text-transform: uppercase; font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 5px; }
+        .info-content ul { padding-left: 15px; margin: 0; }
+        .info-content li { margin-bottom: 5px; }
 
-        .window-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; z-index: 10; }
-        .window-content { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-
-        .footer-legal { 
-            position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); 
-            z-index: 100; display: flex; flex-direction: column; align-items: center; 
-            background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); 
-            padding: 8px 25px; border-radius: 15px; 
-        }
+        .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
         .footer-links { display: flex; gap: 20px; }
         .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; text-transform: uppercase; }
         .footer-subtext a { text-decoration: none; color: inherit; font-family: sans-serif; font-size: 0.7rem; opacity: 0.5; margin-top: 5px; }
@@ -139,6 +174,13 @@
 <div class="big-a">A</div>
 
 <header>
+    <div class="floating-icons">
+        <i class="fa-solid fa-microphone-lines"></i>
+        <i class="fa-solid fa-ticket"></i>
+        <i class="fa-solid fa-van-shuttle"></i>
+        <i class="fa-solid fa-headphones"></i>
+        <i class="fa-solid fa-bolt-lightning"></i>
+    </div>
     <h1 class="header-title">ANTON</h1>
 </header>
 
@@ -157,7 +199,7 @@
 </nav>
 
 <aside class="sidebar-right">
-    <a href="#" class="yt"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" class="yt"><i class="fa-brands fa-youtube"></i></a>
     <a href="#" class="tt"><i class="fa-brands fa-tiktok"></i></a>
     <a href="#" class="ig"><i class="fa-brands fa-instagram"></i></a>
     <a href="#" class="wa"><i class="fa-brands fa-whatsapp"></i></a>
@@ -171,20 +213,53 @@
 <div class="content-container">
     <div class="window-grid">
         <div class="main-window">
-            <span class="window-label">Tourplan</span>
-            <div class="window-content">
-                <h2>Live Termine</h2>
-                <p>Bald gibt es hier alle Infos zu meinen Konzerten!</p>
+            <span class="window-label" style="color:#000; text-shadow:none; left: auto; right: 12px;">Tourdaten</span>
+            <h2>Konzerte 2026</h2>
+            <div class="tour-list">
+                <div class="tour-item">
+                    <div class="tour-date">15.03.2026</div>
+                    <div class="tour-venue">Berlin | Astra Kulturhaus</div>
+                    <a href="#" class="tour-ticket-link">Tickets</a>
+                </div>
+                <div class="tour-item">
+                    <div class="tour-date">22.03.2026</div>
+                    <div class="tour-venue">Hamburg | Gruenspan</div>
+                    <a href="#" class="tour-ticket-link">Tickets</a>
+                </div>
+                <div class="tour-item">
+                    <div class="tour-date">05.04.2026</div>
+                    <div class="tour-venue">München | Backstage</div>
+                    <a href="#" class="tour-ticket-link">Tickets</a>
+                </div>
+                <div class="tour-item">
+                    <div class="tour-date">18.04.2026</div>
+                    <div class="tour-venue">Köln | Gloria Theater</div>
+                    <a href="#" class="tour-ticket-link">Tickets</a>
+                </div>
             </div>
         </div>
         <div class="side-column">
             <div class="small-window">
-                <span class="window-label">Tickets</span>
-                <div class="window-content"><p>Ab demnächst 🎟️</p></div>
+                <span class="window-label">Impressionen</span>
+                <div class="image-slideshow">
+                    <div class="slide"></div>
+                    <div class="slide"></div>
+                    <div class="slide"></div>
+                    <div class="slide"></div>
+                </div>
             </div>
+            
             <div class="small-window">
-                <span class="window-label">Info</span>
-                <div class="window-content"><p>Open Air 2026</p></div>
+                <span class="window-label" style="color:#000; text-shadow:none;">Regeln & Info</span>
+                <div class="info-content">
+                    <h4>Wichtige Infos</h4>
+                    <ul>
+                        <li>Einlass: 90 Min. vor Beginn</li>
+                        <li>Jugendschutz: Unter 14 J. nur mit Begleitung</li>
+                        <li>Taschen: Max. DIN A4 Format</li>
+                        <li>Gehörschutz: Kostenfrei am Merch</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
