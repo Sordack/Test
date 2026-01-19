@@ -43,6 +43,7 @@
             z-index: 10;
         }
 
+        /* HEADER ICONS KORREKTUR */
         .floating-icons {
             position: absolute; width: 100%; height: 100%;
             top: 0; left: 0; pointer-events: none;
@@ -60,11 +61,11 @@
             100% { transform: translate(100px, -50px) rotate(360deg); opacity: 0; }
         }
 
-        .floating-icons i:nth-child(1) { left: 15%; top: 30%; animation-delay: 0s; }
-        .floating-icons i:nth-child(2) { left: 35%; top: 50%; animation-delay: 2s; }
-        .floating-icons i:nth-child(3) { left: 55%; top: 20%; animation-delay: 4s; }
-        .floating-icons i:nth-child(4) { left: 75%; top: 40%; animation-delay: 1s; }
-        .floating-icons i:nth-child(5) { left: 90%; top: 60%; animation-delay: 5s; }
+        .floating-icons i:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .floating-icons i:nth-child(2) { left: 30%; top: 60%; animation-delay: 2s; }
+        .floating-icons i:nth-child(3) { left: 50%; top: 30%; animation-delay: 4s; }
+        .floating-icons i:nth-child(4) { left: 70%; top: 50%; animation-delay: 1s; }
+        .floating-icons i:nth-child(5) { left: 85%; top: 25%; animation-delay: 5s; }
 
         .menu-btn { 
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
@@ -87,7 +88,7 @@
         .menu-links a { display: flex; align-items: center; gap: 10px; color: #000; text-decoration: none; font-size: 0.9rem; margin-bottom: 18px; transition: 0.3s; }
         .menu-links a:hover { transform: translateX(5px); }
 
-        /* RECHTE SIDEBAR */
+        /* RECHTE SIDEBAR KORREKTUR */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
@@ -136,7 +137,6 @@
         
         .image-container { width: 100%; height: 100%; background-size: cover; background-position: center; }
 
-        /* FOOTER */
         .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
         .footer-links { display: flex; gap: 20px; }
         .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; text-transform: uppercase; }
@@ -149,11 +149,11 @@
 
 <header>
     <div class="floating-icons">
-        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-face-smile"></i>
         <i class="fa-solid fa-heart"></i>
+        <i class="fa-solid fa-star"></i>
         <i class="fa-solid fa-bolt"></i>
-        <i class="fa-solid fa-rocket"></i>
-        <i class="fa-solid fa-lightbulb"></i>
+        <i class="fa-solid fa-camera-retro"></i>
     </div>
     <h1 class="header-title">ANTON</h1>
 </header>
@@ -194,7 +194,7 @@
         </div>
         <div class="side-column">
             <div class="small-window">
-                <span class="window-label">Action</span>
+                <span class="window-label">In Aktion</span>
                 <div class="image-container" style="background-image: url('anton-live.jpg'); background-color: #ddd;"></div>
             </div>
             
