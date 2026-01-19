@@ -34,19 +34,38 @@
             display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333;
         }
 
-        /* Sidebar Links - Oben abgerundet, Start bei 80px */
+        /* Linke Sidebar - Geht nun bis nach ganz unten */
         .sidebar-left { 
-            position: fixed; top: 80px; left: -15%; width: 12.5%; 
-            background-color: rgba(255, 235, 59, 0.95); backdrop-filter: blur(10px); 
-            z-index: 150; display: flex; flex-direction: column; 
-            padding: 20px 15px; box-sizing: border-box; 
+            position: fixed; 
+            top: 80px; 
+            bottom: 0; 
+            left: -15%; 
+            width: 12.5%; 
+            background-color: rgba(255, 235, 59, 0.95); 
+            backdrop-filter: blur(10px); 
+            z-index: 150; 
+            display: flex; 
+            flex-direction: column; 
+            padding: 30px 15px; 
+            box-sizing: border-box; 
             transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border-right: 2px solid rgba(0, 0, 0, 0.1); border-top-right-radius: 25px;
+            border-right: 2px solid rgba(0, 0, 0, 0.1); 
+            border-top-right-radius: 25px;
         }
         .sidebar-left.open { left: 0; }
-        .menu-links a { display: block; color: #222; text-decoration: none; font-size: 1.3rem; margin-bottom: 20px; transition: 0.3s; }
+        
+        /* Schriftgröße angepasst */
+        .menu-links a { 
+            display: block; 
+            color: #222; 
+            text-decoration: none; 
+            font-size: 1.1rem; 
+            margin-bottom: 25px; 
+            transition: 0.3s; 
+        }
+        .menu-links a:hover { transform: scale(1.05); color: #000; }
 
-        /* Sidebar Rechts - Sequentielle Animation Korrektur */
+        /* Sidebar Rechts - Sequentielle Animation */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
@@ -56,17 +75,14 @@
         .sidebar-right a { color: #000; font-size: 1.4rem; text-decoration: none; display: flex; transition: color 0.3s, transform 0.3s; }
         .sidebar-right a i { transition: all 0.3s; -webkit-text-stroke: 0px transparent; }
 
-        /* 16s Gesamtzeit / 8 Icons = 2s pro Icon (12.5% der Timeline) */
         @keyframes sequentialPulse {
             0%, 12.5% { transform: scale(1.4); color: var(--brand-color); }
             13%, 100% { transform: scale(1); color: #000; }
         }
-
         @keyframes applePulse {
             0%, 12.5% { transform: scale(1.4); color: #ffffff; -webkit-text-stroke: 1px #000; }
             13%, 100% { transform: scale(1); color: #000; -webkit-text-stroke: 0px transparent; }
         }
-
         @keyframes ttGlitchPulse {
             0%, 12.5% { transform: scale(1.4); color: #000; filter: drop-shadow(-2px -1px 0px #25F4EE) drop-shadow(2px 1px 0px #FE2C55); }
             13%, 100% { transform: scale(1); color: #000; filter: none; }
@@ -75,16 +91,12 @@
         .sidebar-right a i { animation: sequentialPulse 16s infinite linear; }
         .sidebar-right a.tt i { animation-name: ttGlitchPulse; }
         .sidebar-right a.ap i { animation-name: applePulse; }
-
-        /* Pausieren bei Hover über Sidebar, Fortsetzen beim Verlassen */
         .sidebar-right:hover a i { animation-play-state: paused; }
 
-        /* Originalfarbe beim Hover auf ein Icon */
         .sidebar-right a:hover i { transform: scale(1.4) !important; color: var(--brand-color) !important; animation: none !important; filter: none !important; }
         .sidebar-right a.ap:hover i { color: #ffffff !important; -webkit-text-stroke: 1px #000 !important; }
         .sidebar-right a.tt:hover i { filter: drop-shadow(-2px -1px 0px #25F4EE) drop-shadow(2px 1px 0px #FE2C55) !important; color: #000 !important; }
 
-        /* Genaue Delays für die Sequenz */
         .sidebar-right a:nth-child(1) i { animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { animation-delay: 2s; }
         .sidebar-right a:nth-child(3) i { animation-delay: 4s; }
@@ -114,15 +126,18 @@
     <div class="big-a">A</div>
     <header><h1 class="header-title">ANTON</h1></header>
     <div class="menu-btn" onclick="toggleNav(event)">☰</div>
+    
     <nav class="sidebar-left" id="sidebar">
         <div class="menu-links">
             <a href="hauptseite.html"><i class="fa-solid fa-house"></i> Home</a>
             <a href="meinemusik.html"><i class="fa-solid fa-music"></i> Meine Musik</a>
             <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
             <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
+            <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Shop</a>
             <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
         </div>
     </nav>
+
     <aside class="sidebar-right">
         <a href="#" class="yt"><i class="fa-brands fa-youtube"></i></a>
         <a href="#" class="tt"><i class="fa-brands fa-tiktok"></i></a>
@@ -133,11 +148,12 @@
         <a href="#" class="ym"><i class="fa-solid fa-circle-play"></i></a>
         <a href="#" class="am"><i class="fa-brands fa-amazon"></i></a>
     </aside>
+
     <div class="content-container">
         <div class="window-grid">
             <div class="main-window big-column">
                 <h2>Willkommen</h2>
-                <p>Hier ist der neue Standard für deine Hauptseite.</p>
+                <p>Die Sidebar ist nun vollständig und der Shop-Link wurde hinzugefügt.</p>
             </div>
             <div class="side-column">
                 <div class="small-window"><h3>News</h3></div>
@@ -145,10 +161,12 @@
             </div>
         </div>
     </div>
+
     <footer class="footer-legal">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
     </footer>
+
     <script>
         function toggleNav(event) { event.stopPropagation(); document.getElementById("sidebar").classList.toggle("open"); }
         document.addEventListener("click", function(event) {
