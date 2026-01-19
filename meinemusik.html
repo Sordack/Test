@@ -13,6 +13,7 @@
             --whatsapp-green: #25D366;
             --amazon-music-tuerkis: #00A8E1;
             --sidebar-width: 12.5%;
+            --spotify-green: #1DB954;
         }
 
         body, html { 
@@ -97,23 +98,12 @@
         }
 
         @keyframes sequentialPulseSlow { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: var(--brand-color); } }
-        @keyframes ttGlitchPulse { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: #000; filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)); } }
-
+        
         .sidebar-right a i { animation: sequentialPulseSlow 18s infinite ease-in-out; color: #000; transition: transform 0.3s, color 0.3s; }
-        .sidebar-right:hover a i { animation-play-state: paused; }
         .sidebar-right a:hover i { transform: scale(1.4) !important; color: var(--brand-color) !important; }
-        .sidebar-right a.tt:hover i { color: #000 !important; filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)) !important; }
-        .sidebar-right a.tt i { animation-name: ttGlitchPulse; }
         
         .sidebar-right a:nth-child(1) i { animation-delay: 0s; --brand-color: #FF0000; } 
-        .sidebar-right a:nth-child(2) i { animation-delay: 2s; } 
-        .sidebar-right a:nth-child(3) i { animation-delay: 4s; --brand-color: #E1306C; } 
-        .sidebar-right a:nth-child(4) i { animation-delay: 6s; --brand-color: var(--whatsapp-green); }
-        .sidebar-right a:nth-child(5) i { animation-delay: 8s; --brand-color: #1877F2; } 
         .sidebar-right a:nth-child(6) i { animation-delay: 10s; --brand-color: #1DB954; }
-        .sidebar-right a:nth-child(7) i { animation-delay: 12s; --brand-color: #555; } 
-        .sidebar-right a:nth-child(8) i { animation-delay: 14s; --brand-color: #FF0000; }
-        .sidebar-right a:nth-child(9) i { animation-delay: 16s; --brand-color: var(--amazon-music-tuerkis); }
 
         .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
         .window-grid { display: flex; gap: 20px; align-items: flex-start; }
@@ -133,9 +123,32 @@
         .small-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 0; overflow: hidden; width: 100%; height: calc(50% - 10px); position: relative; }
         .window-label { position: absolute; top: 8px; left: 12px; font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; z-index: 20; color: #fff; text-shadow: 1px 1px 3px #000; }
         
-        /* Bildanpassung: Alles sichtbar, Zentriert */
         .image-container { width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; }
-        .window-content { height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; }
+
+        /* Fiktiver Spotify Player */
+        .spotify-player {
+            width: 100%; height: 100%;
+            background: #121212;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 15px; box-sizing: border-box;
+            color: white; font-family: sans-serif !important;
+        }
+        .player-cover {
+            width: 100px; height: 100px;
+            background-size: cover; background-position: center;
+            border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+        .player-info { text-align: center; margin-bottom: 10px; }
+        .player-info h4 { margin: 0; font-size: 1rem; color: #fff; }
+        .player-info p { margin: 2px 0 0; font-size: 0.8rem; color: #b3b3b3; }
+        .player-controls { display: flex; align-items: center; gap: 15px; font-size: 1.2rem; }
+        .player-controls i { cursor: pointer; transition: 0.2s; }
+        .player-controls i:hover { color: var(--spotify-green); }
+        .play-btn { font-size: 2rem !important; }
+        .progress-bar { width: 80%; height: 4px; background: #4f4f4f; border-radius: 2px; margin-top: 10px; position: relative; }
+        .progress-fill { width: 35%; height: 100%; background: var(--spotify-green); border-radius: 2px; }
 
         .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
         .footer-links { display: flex; gap: 20px; }
@@ -193,14 +206,28 @@
         </div>
         <div class="side-column">
             <div class="small-window">
-                <span class="window-label">Ton an</span>
+                <span class="window-label">Cover</span>
                 <div class="image-container" style="background-image: url('Ton an.jpeg');"></div>
             </div>
             
             <div class="small-window">
-                <span class="window-label" style="color:#000; text-shadow:none;">Streaming</span>
-                <div class="window-content">
-                    <p>Jetzt auf allen Plattformen.</p>
+                <span class="window-label" style="color:#fff; text-shadow:none;">Streaming Player</span>
+                <div class="spotify-player">
+                    <div class="player-cover" style="background-image: url('Ton an.jpeg');"></div>
+                    <div class="player-info">
+                        <h4>Hunger</h4>
+                        <p>Anton</p>
+                    </div>
+                    <div class="player-controls">
+                        <i class="fa-solid fa-shuffle" style="font-size: 0.8rem; color: #b3b3b3;"></i>
+                        <i class="fa-solid fa-backward-step"></i>
+                        <i class="fa-solid fa-circle-play play-btn"></i>
+                        <i class="fa-solid fa-forward-step"></i>
+                        <i class="fa-solid fa-repeat" style="font-size: 0.8rem; color: #b3b3b3;"></i>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
                 </div>
             </div>
         </div>
