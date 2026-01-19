@@ -113,13 +113,16 @@
         .sidebar-right a:nth-child(8) i { animation-delay: 14s; --brand-color: #FF0000; }
         .sidebar-right a:nth-child(9) i { animation-delay: 16s; --brand-color: var(--amazon-music-tuerkis); }
 
-        .content-container { position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; height: calc(100vh - 120px); margin-top: 80px; }
+        .content-container { 
+            position: relative; z-index: 5; display: flex; justify-content: center; align-items: center; 
+            height: calc(100vh - 120px); margin-top: 80px; 
+        }
         
         .about-window { 
             background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; 
             padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            width: 60%; max-height: 70vh; overflow-y: auto; text-align: center;
+            width: 70%; max-height: 75vh; overflow-y: auto; text-align: left;
         }
 
         .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
@@ -174,9 +177,10 @@
 
 <div class="content-container">
     <div class="about-window">
-        <h2>Über mich</h2>
-        <p>Erfahre hier mehr über meine Reise als Musiker.</p>
-        </div>
+        <h1 style="font-family: 'Rock Salt', cursive; text-align: center;">Über mich</h1>
+        <p>Hier steht dein persönlicher Text über dich, deine Geschichte und deine Leidenschaft zur Musik. Alles, was dich als Künstler ausmacht, wird in diesem Bereich präsentiert.</p>
+        <p>Ich habe sichergestellt, dass das Design modern bleibt, während deine Inhalte im Mittelpunkt stehen.</p>
+    </div>
 </div>
 
 <footer class="footer-legal">
