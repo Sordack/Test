@@ -88,8 +88,30 @@
         }
         .menu-links a:hover { transform: translateX(5px); }
 
-        .sub-menu { padding-left: 20px; margin-bottom: 15px; }
-        .sub-menu a { font-size: 0.8rem; margin-bottom: 10px; opacity: 0.8; }
+        /* --- SHOP DROPDOWN LOGIK --- */
+        .shop-container { position: relative; }
+        
+        .sub-menu { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.5s ease-in-out; 
+            padding-left: 25px; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        .shop-container:hover .sub-menu { 
+            max-height: 300px; /* Genug Platz für alle Unterpunkte */
+        }
+
+        .sub-menu a { 
+            font-size: 0.8rem; 
+            margin-bottom: 12px; 
+            opacity: 0.8; 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
         /* --- SIDEBAR RECHTS --- */
         .sidebar-right {
@@ -173,11 +195,15 @@
         <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
         <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
         
-        <a href="onlineshop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
-        <div class="sub-menu">
-            <a href="tickets.html"><i class="fa-solid fa-ticket"></i> Tickets</a>
-            <a href="merch.html"><i class="fa-solid fa-shirt"></i> Merch</a>
-            <a href="bundles.html"><i class="fa-solid fa-box-open"></i> Bundles</a>
+        <div class="shop-container">
+            <a href="onlineshop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
+            <div class="sub-menu">
+                <a href="shirts.html"><i class="fa-solid fa-shirt"></i> Shirts</a>
+                <a href="hoodies.html"><i class="fa-solid fa-vest"></i> Hoodies</a>
+                <a href="muetzen.html"><i class="fa-solid fa-hat-wizard"></i> Mützen</a>
+                <a href="alben.html"><i class="fa-solid fa-compact-disc"></i> Alben</a>
+                <a href="fanpakete.html"><i class="fa-solid fa-box-open"></i> Fan-Pakete</a>
+            </div>
         </div>
 
         <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
