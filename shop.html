@@ -3,229 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | Onlineshop</title>
+    <title>ANTON | Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&display=swap" rel="stylesheet">
-    
-    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=EUR"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
-        body, html { 
-            margin: 0; padding: 0; min-height: 100%; width: 100%; 
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(45deg, #ade8f4, #ffffff, #ade8f4); 
-            background-size: 200% 200%; animation: gradientBG 15s ease infinite;
-        }
+        :root { --tiktok-cyan: #25F4EE; --tiktok-pink: #FE2C55; --whatsapp-green: #25D366; --amazon-music-tuerkis: #00A8E1; }
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: 'Permanent Marker', cursive !important; background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ff9a9e); background-size: 200% 200%; animation: gradientBG 15s ease infinite; overflow: hidden; }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-        header { 
-            position: fixed; top: 0; width: 100%; height: 80px; 
-            display: flex; justify-content: center; align-items: center; 
-            z-index: 10; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); 
-        }
-        .header-title { font-family: 'Bangers', cursive; font-size: 3rem; color: #ffffff; letter-spacing: 5px; margin: 0; }
-
-        /* Warenkorb Button oben rechts */
-        .cart-status {
-            position: fixed; top: 15px; right: 20px; z-index: 110;
-            background: #ffeb3b; padding: 10px 15px; border-radius: 50px;
-            font-family: 'Permanent Marker', cursive; cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s;
-        }
-        .cart-status:hover { transform: scale(1.1); }
-
-        .menu-btn { position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; z-index: 110; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
+        .big-a { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 45vw; color: rgba(255, 255, 255, 0.15); z-index: 1; user-select: none; pointer-events: none; }
+        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 170; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); }
+        .header-title { font-family: 'Rock Salt', cursive !important; font-size: 2rem; color: #ffffff; letter-spacing: 5px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+        .menu-btn { position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; z-index: 180; background: rgba(255, 255, 255, 0.5); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333; }
         
-        .sidebar-left { 
-            position: fixed; top: 80px; bottom: 0; left: -15%; width: 12.5%; 
-            background-color: rgba(255, 235, 59, 0.85); backdrop-filter: blur(10px); 
-            z-index: 100; transition: 0.4s; display: flex; flex-direction: column; 
-            padding: 40px 20px; box-sizing: border-box; border-top-right-radius: 25px; 
-        }
+        .sidebar-left { position: fixed; top: 80px; bottom: 0; left: -15%; width: 12.5%; background-color: rgba(255, 235, 59, 0.45); backdrop-filter: blur(10px); z-index: 150; display: flex; flex-direction: column; padding: 20px 15px; box-sizing: border-box; transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-right: 2px solid rgba(0,0,0,0.1); border-top-right-radius: 25px; overflow-y: auto; }
         .sidebar-left.open { left: 0; }
-        .menu-links a { display: flex; align-items: center; gap: 10px; color: #222; text-decoration: none; font-family: 'Permanent Marker', cursive; font-size: 1.1rem; margin-bottom: 20px; }
+        .menu-links a { display: flex; align-items: center; gap: 10px; color: #000; text-decoration: none; font-size: 0.95rem; margin-bottom: 18px; }
+        .shop-container { position: relative; }
+        .sub-menu { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; padding-left: 25px; display: flex; flex-direction: column; }
+        .shop-container:hover .sub-menu { max-height: 400px; }
+        .sub-menu a { font-size: 0.8rem; margin-bottom: 12px; opacity: 0.8; display: flex; align-items: center; gap: 8px; }
 
-        /* Shop Grid */
-        .shop-container { padding: 120px 50px 150px 50px; display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; }
-        
-        .product-card {
-            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);
-            border-radius: 20px; padding: 25px; width: 280px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            position: relative; transition: 0.3s;
-        }
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); padding: 20px 0; border: 1px solid rgba(0, 0, 0, 0.2); border-right: none; border-top-left-radius: 20px; border-bottom-left-radius: 20px; }
+        @keyframes sequentialPulseColorSlow { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: var(--brand-color); } }
+        @keyframes ttGlitchPulse { 0%, 10%, 100% { transform: scale(1); color: #000; filter: none; } 5% { transform: scale(1.4); color: #000; filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)); } }
+        .sidebar-right a i { animation: sequentialPulseColorSlow 18s infinite ease-in-out; color: #000; }
+        .sidebar-right a.tt i { animation-name: ttGlitchPulse; }
+        .sidebar-right a:nth-child(1) i { animation-delay: 0s; --brand-color: #FF0000; } 
+        .sidebar-right a:nth-child(2) i { animation-delay: 2s; }
+        .sidebar-right a:nth-child(3) i { animation-delay: 4s; --brand-color: #E1306C; } 
+        .sidebar-right a:nth-child(4) i { animation-delay: 6s; --brand-color: var(--whatsapp-green); }
+        .sidebar-right a:nth-child(5) i { animation-delay: 8s; --brand-color: #1877F2; } 
+        .sidebar-right a:nth-child(6) i { animation-delay: 10s; --brand-color: #1DB954; }
+        .sidebar-right a:nth-child(7) i { animation-delay: 12s; --brand-color: #555; } 
+        .sidebar-right a:nth-child(8) i { animation-delay: 14s; --brand-color: #FF0000; }
+        .sidebar-right a:nth-child(9) i { animation-delay: 16s; --brand-color: var(--amazon-music-tuerkis); }
 
-        .product-img { width: 100%; height: 200px; background: #eee; border-radius: 15px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #aaa; }
-        .product-title { font-family: 'Permanent Marker', cursive; font-size: 1.5rem; margin: 10px 0; }
-        .product-price { font-weight: bold; color: #333; font-size: 1.3rem; margin-bottom: 15px; display: block; }
+        .content-container { position: relative; z-index: 5; margin-top: 100px; padding: 0 80px; display: flex; flex-direction: column; align-items: center; height: calc(100vh - 150px); overflow-y: auto; }
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; width: 100%; max-width: 1000px; padding-bottom: 100px; }
+        .shop-card { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 20px; text-align: center; transition: 0.3s; text-decoration: none; color: #000; position: relative; }
+        .shop-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.5); }
+        .shop-card i { font-size: 3rem; margin-bottom: 15px; display: block; }
+        .shop-card h3 { margin: 10px 0 5px 0; font-size: 1.2rem; }
 
-        /* Größen Auswahl */
-        .size-selector {
-            width: 100%; padding: 8px; border-radius: 10px; border: 1px solid #ccc;
-            margin-bottom: 15px; font-family: 'Segoe UI', sans-serif; outline: none;
-        }
-
-        .add-to-cart-btn {
-            background: #222; color: white; border: none; padding: 10px 20px;
-            border-radius: 10px; font-family: 'Permanent Marker', cursive;
-            cursor: pointer; width: 100%; transition: 0.3s;
-        }
-        .add-to-cart-btn:hover { background: #ffeb3b; color: #222; }
-
-        /* Checkout Bereich am Boden */
-        .checkout-bar {
-            position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 600px; background: white; padding: 20px;
-            border-radius: 20px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            z-index: 105; display: none; /* Nur sichtbar wenn Artikel im Warenkorb */
-            text-align: center;
-        }
-
-        .footer-legal { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 10px 25px; border-radius: 20px; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); }
-        .footer-legal a { color: #333; text-decoration: none; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; }
-        
-        /* Sold Out Badge */
-        .product-card.sold-out { filter: grayscale(0.8); opacity: 0.7; pointer-events: none; }
-        .sold-out-badge { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); background: #ff4444; color: white; font-family: 'Bangers'; font-size: 2rem; padding: 5px 15px; border: 3px solid white; z-index: 5; display: none; }
-        .product-card.sold-out .sold-out-badge { display: block; }
+        .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; text-transform: uppercase; }
     </style>
 </head>
-<body onclick="closeNavOutside(event)">
+<body>
+<div class="big-a">A</div>
+<header><h1 class="header-title">ANTON SHOP</h1></header>
+<div class="menu-btn" onclick="toggleNav(event)">☰</div>
 
-    <header><h1 class="header-title">ANTON SHOP</h1></header>
-    <div class="menu-btn" onclick="toggleNav(event)">☰</div>
-    
-    <div class="cart-status" onclick="scrollToCheckout()">
-        🛒 <span id="cart-count">0</span> Artikel
-    </div>
-
-    <nav class="sidebar-left" id="sidebar">
-        <div class="menu-links">
-            <a href="hauptseite.html">Home</a>
-            <a href="meinemusik.html">Musik</a>
-            <a href="konzerte.html">Konzerte</a>
+<nav class="sidebar-left" id="sidebar">
+    <div class="menu-links">
+        <a href="hauptseite.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="meinemusik.html"><i class="fa-solid fa-music"></i> Meine Musik</a>
+        <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
+        <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
+        <div class="shop-container">
             <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> Onlineshop</a>
-            <a href="kontakt.html">Kontakt</a>
+            <div class="sub-menu">
+                <a href="shirts.html"><i class="fa-solid fa-shirt"></i> Shirts</a>
+                <a href="hoodies.html"><i class="fa-solid fa-vest"></i> Hoodies</a>
+                <a href="muetzen.html"><i class="fa-solid fa-hat-wizard"></i> Mützen</a>
+                <a href="alben.html"><i class="fa-solid fa-compact-disc"></i> Alben</a>
+                <a href="fanpakete.html"><i class="fa-solid fa-box-open"></i> Fan-Pakete</a>
+            </div>
         </div>
-    </nav>
-
-    <div class="shop-container">
-        
-        <div class="product-card" id="prod-1">
-            <div class="sold-out-badge">AUSVERKAUFT</div>
-            <div class="product-img"><i class="fa-solid fa-shirt"></i></div>
-            <div class="product-title">ANTON T-Shirt</div>
-            <span class="product-price">24,99 €</span>
-            
-            <select class="size-selector" id="size-1">
-                <option value="116/128">Größe: 116/128 (Kids)</option>
-                <option value="140/152">Größe: 140/152 (Kids)</option>
-                <option value="S">Größe: S</option>
-                <option value="M">Größe: M</option>
-                <option value="L">Größe: L</option>
-            </select>
-
-            <button class="add-to-cart-btn" onclick="addToCart('ANTON T-Shirt', 24.99, 'size-1')">In den Warenkorb</button>
-        </div>
-
-        <div class="product-card" id="prod-2">
-            <div class="sold-out-badge">AUSVERKAUFT</div>
-            <div class="product-img"><i class="fa-solid fa-compact-disc"></i></div>
-            <div class="product-title">Album "Abenteuer"</div>
-            <span class="product-price">14,99 €</span>
-            <button class="add-to-cart-btn" onclick="addToCart('Album Abenteuer', 14.99)">In den Warenkorb</button>
-        </div>
-
+        <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a>
     </div>
+</nav>
 
-    <div class="checkout-bar" id="checkout-section">
-        <h3 style="font-family: 'Permanent Marker'; margin-top: 0;">Dein Warenkorb</h3>
-        <div id="cart-items-list" style="margin-bottom: 15px; font-size: 0.9rem;"></div>
-        <div style="font-weight: bold; font-size: 1.2rem; margin-bottom: 15px;">Gesamtsumme: <span id="total-price">0.00</span> €</div>
-        <div id="paypal-button-container"></div>
-        <button onclick="clearCart()" style="margin-top: 10px; background: none; border: none; color: #888; cursor: pointer; text-decoration: underline; font-size: 0.8rem;">Warenkorb leeren</button>
+<aside class="sidebar-right">
+    <a href="#" class="yt"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#" class="tt"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="#" class="ig"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" class="wa"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="#" class="fb"><i class="fa-brands fa-facebook"></i></a>
+    <a href="#" class="sp"><i class="fa-brands fa-spotify"></i></a>
+    <a href="#" class="ap"><i class="fa-brands fa-apple"></i></a>
+    <a href="#" class="ym"><i class="fa-solid fa-circle-play"></i></a>
+    <a href="#" class="am"><i class="fa-brands fa-amazon"></i></a>
+</aside>
+
+<div class="content-container">
+    <div class="shop-grid">
+        <a href="shirts.html" class="shop-card">
+            <i class="fa-solid fa-shirt"></i>
+            <h3>Shirts</h3>
+        </a>
+        <a href="hoodies.html" class="shop-card">
+            <i class="fa-solid fa-vest"></i>
+            <h3>Hoodies</h3>
+        </a>
+        <a href="muetzen.html" class="shop-card">
+            <i class="fa-solid fa-hat-wizard"></i>
+            <h3>Mützen</h3>
+        </a>
+        <a href="alben.html" class="shop-card">
+            <i class="fa-solid fa-compact-disc"></i>
+            <h3>Alben</h3>
+        </a>
+        <a href="fanpakete.html" class="shop-card">
+            <i class="fa-solid fa-box-open"></i>
+            <h3>Fan-Pakete</h3>
+        </a>
     </div>
+</div>
 
-    <footer class="footer-legal">
-        <div style="display:flex; gap:15px;">
-            <a href="impressum.html">Impressum</a>
-            <a href="datenschutz.html">Datenschutz</a>
-        </div>
-        <a href="index.html" style="font-size:0.6rem; opacity:0.7;">www.anton-familienpop.de</a>
-    </footer>
+<footer class="footer-legal">
+    <div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div>
+    <div style="font-size: 0.7rem; opacity: 0.5; margin-top: 5px; font-family: sans-serif;">www.anton-familienpop.de</div>
+</footer>
 
-    <script>
-        let cart = [];
-
-        function addToCart(name, price, sizeId) {
-            let size = sizeId ? document.getElementById(sizeId).value : null;
-            let itemTitle = size ? `${name} (${size})` : name;
-            
-            cart.push({ name: itemTitle, price: price });
-            updateCartUI();
-            
-            // Kleiner Effekt
-            const btn = event.target;
-            btn.innerText = "Hinzugefügt! ✓";
-            setTimeout(() => { btn.innerText = "In den Warenkorb"; }, 1500);
-        }
-
-        function updateCartUI() {
-            const cartCount = document.getElementById('cart-count');
-            const checkoutSection = document.getElementById('checkout-section');
-            const itemsList = document.getElementById('cart-items-list');
-            const totalDisplay = document.getElementById('total-price');
-
-            cartCount.innerText = cart.length;
-            
-            if (cart.length > 0) {
-                checkoutSection.style.display = 'block';
-                itemsList.innerHTML = cart.map(item => `${item.name} - ${item.price.toFixed(2)}€`).join('<br>');
-                
-                let total = cart.reduce((sum, item) => sum + item.price, 0);
-                totalDisplay.innerText = total.toFixed(2);
-                
-                // PayPal Button neu rendern für neue Summe
-                renderPayPal(total);
-            } else {
-                checkoutSection.style.display = 'none';
-            }
-        }
-
-        function clearCart() {
-            cart = [];
-            updateCartUI();
-        }
-
-        function scrollToCheckout() {
-            document.getElementById('checkout-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        let paypalRendered = false;
-        function renderPayPal(amount) {
-            document.getElementById('paypal-button-container').innerHTML = '';
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: { value: amount.toFixed(2) },
-                            description: 'Einkauf bei ANTON Shop: ' + cart.map(i => i.name).join(', ')
-                        }]
-                    });
-                },
-                onApprove: function(details) {
-                    alert('Danke für deine Bestellung!');
-                    clearCart();
-                }
-            }).render('#paypal-button-container');
-        }
-
-        // Navigation
-        function toggleNav(event) { event.stopPropagation(); document.getElementById("sidebar").classList.toggle("open"); }
-        function closeNavOutside(event) {
-            const sidebar = document.getElementById("sidebar");
-            if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { sidebar.classList.remove("open"); }
-        }
-    </script>
+<script>
+function toggleNav(event) { event.stopPropagation(); document.getElementById("sidebar").classList.toggle("open"); }
+document.addEventListener("click", function(event) { const sidebar = document.getElementById("sidebar"); if (sidebar.classList.contains("open") && !sidebar.contains(event.target)) { sidebar.classList.remove("open"); } });
+</script>
 </body>
 </html>
