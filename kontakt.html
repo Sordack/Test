@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | Kontakt</title>
+    <title>ANTON | Konzerte & Tour-Map</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
         :root {
-            --tiktok-cyan: #25F4EE;
-            --tiktok-pink: #FE2C55;
-            --whatsapp-green: #25D366;
             --sidebar-width: 12.5%;
-            --accent-color: #ffeb3b;
+            --map-green: #2e7d32;
+            --point-orange: #ff6d00;
         }
 
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
             font-family: 'Permanent Marker', cursive !important;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4); 
+            background: linear-gradient(45deg, #84fab0, #8fd3f4, #84fab0); 
             background-size: 200% 200%; animation: gradientBG 15s ease infinite;
             overflow: hidden;
         }
@@ -31,11 +29,7 @@
             z-index: 170; background: rgba(0, 0, 0, 0.24); backdrop-filter: blur(10px); 
         }
 
-        .header-title { 
-            font-family: 'Rock Salt', cursive !important; 
-            font-size: 2rem; color: #ffffff; 
-            letter-spacing: 5px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
-        }
+        .header-title { font-family: 'Rock Salt', cursive !important; font-size: 2rem; color: #ffffff; letter-spacing: 5px; }
 
         .menu-btn { 
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
@@ -45,11 +39,9 @@
 
         .sidebar-left { 
             position: fixed; top: 80px; bottom: 0; left: calc(var(--sidebar-width) * -1); 
-            width: var(--sidebar-width); 
-            background-color: rgba(255, 235, 59, 0.45); backdrop-filter: blur(10px); 
+            width: var(--sidebar-width); background-color: rgba(255, 235, 59, 0.45); backdrop-filter: blur(10px); 
             z-index: 150; display: flex; flex-direction: column; padding: 20px 15px; 
-            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border-right: 2px solid rgba(0,0,0,0.1); border-top-right-radius: 25px;
+            transition: left 0.4s ease-in-out; border-right: 2px solid rgba(0,0,0,0.1);
         }
         .sidebar-left.open { left: 0; }
         .menu-links a { display: flex; align-items: center; gap: 10px; color: #000; text-decoration: none; font-size: 0.9rem; margin-bottom: 18px; }
@@ -57,47 +49,67 @@
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
-            background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); 
-            padding: 20px 0; border-top-left-radius: 20px; border-bottom-left-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); padding: 20px 0; border-top-left-radius: 20px; border-bottom-left-radius: 20px;
         }
 
-        @keyframes sequentialPulseSlow { 0%, 10%, 100% { transform: scale(1); color: #000; } 5% { transform: scale(1.4); color: var(--brand-color); } }
-        .sidebar-right a i { animation: sequentialPulseSlow 18s infinite ease-in-out; color: #000; }
-
-        .content-container { 
-            position: relative; z-index: 5; display: flex; justify-content: center; 
-            align-items: center; height: calc(100vh - 80px); margin-top: 80px; 
+        .scroll-wrapper {
+            position: absolute; top: 80px; bottom: 80px; left: 0; right: 0;
+            overflow-y: auto; padding: 30px 0; display: flex; flex-direction: column; align-items: center;
         }
-        
-        .window-grid { display: flex; gap: 20px; align-items: flex-start; }
+
+        .content-width-container { width: 85vw; max-width: 1100px; display: flex; flex-direction: column; gap: 20px; }
+
+        .top-row { display: flex; gap: 20px; height: 40vh; }
         
         .main-window { 
             background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 20px; 
-            padding: 30px; width: 60vh; height: 60vh; display: flex; flex-direction: column;
+            padding: 25px; flex: 2; overflow-y: auto;
+        }
+        
+        .side-column { display: flex; flex-direction: column; justify-content: space-between; flex: 1; gap: 20px; }
+        .small-window { 
+            background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 20px; 
+            flex: 1; position: relative; overflow: hidden; 
         }
 
-        .side-column { display: flex; flex-direction: column; justify-content: space-between; height: 60vh; width: 300px; }
-        .small-window { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 20px; height: calc(50% - 10px); position: relative; padding: 20px; box-sizing: border-box; }
+        /* XXL KARTEN FENSTER */
+        .map-window {
+            background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 25px; 
+            width: 100%; height: 75vh; position: relative; display: flex; justify-content: center; align-items: center;
+        }
+
+        /* GEOGRAFISCHE FORM DEUTSCHLANDS VIA CSS CLIP-PATH */
+        .map-shape {
+            width: 350px; height: 480px; background: var(--map-green); opacity: 0.6;
+            clip-path: polygon(31% 0%, 58% 4%, 81% 10%, 88% 25%, 96% 41%, 85% 58%, 91% 75%, 82% 91%, 64% 100%, 45% 96%, 29% 93%, 16% 80%, 12% 61%, 0% 45%, 12% 28%, 18% 10%);
+            position: relative;
+        }
+
+        .map-point {
+            position: absolute; width: 16px; height: 16px;
+            background: var(--point-orange); border-radius: 50%;
+            box-shadow: 0 0 10px white; transform: translate(-50%, -50%);
+        }
+        .map-label {
+            position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+            font-family: sans-serif; font-size: 0.7rem; font-weight: bold; color: #000; background: rgba(255,255,255,0.7); padding: 2px 5px; border-radius: 3px;
+        }
+
+        /* Positionen der Städte auf der Clip-Path Karte */
+        .pos-berlin { top: 30%; left: 80%; }
+        .pos-hamburg { top: 15%; left: 45%; }
+        .pos-muenchen { top: 85%; left: 65%; }
+        .pos-koeln { top: 50%; left: 20%; }
 
         .window-label { position: absolute; top: 10px; left: 15px; font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; font-family: sans-serif; color: #000; }
 
-        /* FORMULAR STYLES */
-        form { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-        input, textarea { 
-            background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(0,0,0,0.1); 
-            border-radius: 8px; padding: 10px; font-family: sans-serif; outline: none;
-        }
-        textarea { height: 120px; resize: none; }
-        button { 
-            background: #000; color: #fff; border: none; padding: 12px; 
-            border-radius: 8px; cursor: pointer; font-family: 'Permanent Marker', cursive; 
-            font-size: 1.1rem; transition: 0.3s; margin-top: 5px;
-        }
-        button:hover { background: var(--accent-color); color: #000; transform: scale(1.02); }
+        .tour-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.1); font-family: sans-serif; }
+        .tour-ticket-link { background: #000; color: #fff; padding: 6px 14px; text-decoration: none; border-radius: 5px; font-size: 0.8rem; }
 
-        .info-text { font-family: sans-serif; font-size: 0.85rem; line-height: 1.4; color: #333; margin-top: 25px; }
-        .icon-box { display: flex; align-items: center; justify-content: center; height: 100%; font-size: 3rem; color: rgba(0,0,0,0.2); }
+        .info-content { padding: 35px 20px; font-family: sans-serif; font-size: 0.85rem; line-height: 1.4; color: #333; }
 
         .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.4); backdrop-filter: blur(10px); padding: 10px 30px; border-radius: 20px; }
         .footer-links a { color: #333; text-decoration: none; font-size: 0.8rem; font-family: sans-serif; font-weight: bold; margin: 0 15px; }
@@ -126,42 +138,48 @@
     <a href="#" style="--brand-color: #FF0000;"><i class="fa-brands fa-youtube"></i></a>
     <a href="#" style="--brand-color: #000;"><i class="fa-brands fa-tiktok"></i></a>
     <a href="#" style="--brand-color: #E1306C;"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#" style="--brand-color: #1877F2;"><i class="fa-brands fa-facebook"></i></a>
-    <a href="#" style="--brand-color: #1DB954;"><i class="fa-brands fa-spotify"></i></a>
 </aside>
 
-<div class="content-container">
-    <div class="window-grid">
-        <div class="main-window">
-            <span class="window-label">Nachricht senden</span>
-            <h2 style="margin: 10px 0 0 0;">Schreib mir!</h2>
-            <form>
-                <input type="text" placeholder="Dein Name" required>
-                <input type="email" placeholder="Deine E-Mail" required>
-                <textarea placeholder="Deine Nachricht an Anton..." required></textarea>
-                <button type="submit">Abschicken!</button>
-            </form>
-        </div>
+<div class="scroll-wrapper">
+    <div class="content-width-container">
         
-        <div class="side-column">
-            <div class="small-window">
-                <span class="window-label">Booking</span>
-                <div class="info-text">
-                    <strong>Management & Show-Anfragen:</strong><br>
-                    E-Mail: booking@anton-musik.de<br><br>
-                    Wir freuen uns auf eure Anfragen für Festivals und Events!
-                </div>
+        <div class="top-row">
+            <div class="main-window">
+                <span class="window-label">Tourdaten 2026</span>
+                <h2 style="margin-top: 10px;">Konzerte</h2>
+                <div class="tour-item"><span>15.03. Berlin - Astra</span><a href="#" class="tour-ticket-link">Tickets</a></div>
+                <div class="tour-item"><span>22.03. Hamburg - Gruenspan</span><a href="#" class="tour-ticket-link">Tickets</a></div>
+                <div class="tour-item"><span>05.04. München - Backstage</span><a href="#" class="tour-ticket-link">Tickets</a></div>
+                <div class="tour-item"><span>18.04. Köln - Gloria</span><a href="#" class="tour-ticket-link">Tickets</a></div>
             </div>
-            <div class="small-window">
-                <span class="window-label">Post & Autogramme</span>
-                <div class="info-text">
-                    Schick uns einen frankierten Rückumschlag an das Impressum, wenn du eine Karte möchtest!
+            
+            <div class="side-column">
+                <div class="small-window">
+                    <span class="window-label">Live</span>
+                    <div style="width:100%; height:100%; background: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400') center/cover;"></div>
                 </div>
-                <div class="icon-box">
-                    <i class="fa-solid fa-pen-nib"></i>
+                <div class="small-window">
+                    <span class="window-label">Informationen</span>
+                    <div class="info-content">
+                        <strong>Wichtig:</strong><br>
+                        Einlass: 90 Min. vor Beginn.<br>
+                        Taschen bis max. DIN A4.<br>
+                        Gehörschutz gratis vor Ort!
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="map-window">
+            <span class="window-label" style="left: auto; right: 20px;">Tour-Karte Deutschland</span>
+            <div class="map-shape">
+                <div class="map-point pos-berlin"><span class="map-label">Berlin</span></div>
+                <div class="map-point pos-hamburg"><span class="map-label">Hamburg</span></div>
+                <div class="map-point pos-muenchen"><span class="map-label">München</span></div>
+                <div class="map-point pos-koeln"><span class="map-label">Köln</span></div>
+            </div>
+        </div>
+
     </div>
 </div>
 
