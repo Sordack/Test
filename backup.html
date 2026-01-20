@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | TON AN (BG FIX)</title>
+    <title>ANTON | TON AN (Hintergrund Fix)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     
@@ -13,7 +13,6 @@
             --anton-red: #ff0000;
             --anton-yellow: #ffeb3b;
             --sidebar-width: 200px;
-            --z-index-bg: -1;
             --z-index-content: 10;
             --z-index-right-bar: 50;
             --z-index-header: 100;
@@ -24,33 +23,28 @@
         body, html { 
             margin: 0; padding: 0; min-height: 100%; width: 100%; 
             font-family: 'Special Elite', cursive;
-            background-color: #f0f0f0; /* Fallback Farbe */
-            overflow-x: hidden;
-        }
-
-        /* FIX: HINTERGRUND-BILD LOGIK */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* WICHTIG: Pfad muss exakt stimmen */
+            
+            /* DIREKTE HINTERGRUND-DEFINITION */
+            background-color: #dcdcdc; /* Das Grau, das du siehst */
             background-image: url('Gemini Bgrnd.png');
-            background-size: 150%; /* Skalierung wie gewünscht */
+            background-size: 140%; 
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.4; /* Etwas stärker sichtbar als zuvor */
-            z-index: var(--z-index-bg);
-            pointer-events: none;
+            background-attachment: fixed;
+            
+            /* Falls das Bild zu blass ist, sorgt dieser Filter für Sichtbarkeit */
+            background-blend-mode: multiply; 
+            
+            overflow-x: hidden;
         }
 
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
-            z-index: var(--z-index-header); background: rgba(255, 255, 255, 0.9); 
-            backdrop-filter: blur(5px); border-bottom: 2px solid #000;
+            z-index: var(--z-index-header); 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); 
+            border-bottom: 2px solid #000;
         }
         .header-title { color: var(--anton-red); font-size: 1.8rem; }
 
@@ -70,11 +64,12 @@
         .sidebar-left.open { left: 0; }
         .sidebar-left a { display: block; color: #000; text-decoration: none; font-size: 1.2rem; margin-bottom: 18px; }
 
-        /* --- RECHTE SIDEBAR (UNVERÄNDERT) --- */
+        /* --- RECHTE SIDEBAR (FIXIERT) --- */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; 
-            z-index: var(--z-index-right-bar); background: rgba(0, 0, 0, 0.03); 
+            z-index: var(--z-index-right-bar); background: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(3px);
             padding: 20px 0; border-radius: 20px 0 0 20px;
         }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: 0.3s; animation: pulseIcons 18s infinite ease-in-out; }
@@ -96,13 +91,13 @@
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
             max-width: 1000px; margin: 0 auto;
         }
-        /* Transparenz erhöht für Bild-Sichtbarkeit */
+        /* Transparenz auf 0.7 reduziert, um den Hintergrund besser zu sehen */
         .bento-card { 
-            background: rgba(255, 255, 255, 0.85); 
+            background: rgba(255, 255, 255, 0.7); 
             border: 2px solid #000; 
             border-radius: 15px; 
             padding: 25px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
         }
         .card-hero { grid-column: span 3; background: #000; color: #fff; text-align: center; }
         .card-list { grid-column: span 2; }
@@ -111,16 +106,16 @@
         .player-cover-replacement { 
             width: 100%; aspect-ratio: 1/1; border-radius: 8px; 
             background: #000; display: flex; align-items: center; justify-content: center;
-            color: var(--anton-yellow); border: 3px solid #000;
+            color: var(--anton-yellow); border: 2px solid #000;
             font-size: 1.4rem; text-align: center;
         }
         
-        .progress-container { width: 100%; height: 6px; background: #ddd; border-radius: 3px; }
+        .progress-container { width: 100%; height: 6px; background: #bbb; border-radius: 3px; }
         .progress-bar { width: 45%; height: 100%; background: var(--anton-red); border-radius: 3px; }
         .btns { display: flex; gap: 20px; font-size: 1.2rem; cursor: pointer; align-items: center; }
         .play-main { font-size: 2.5rem; }
 
-        footer { position: relative; width: 100%; padding: 30px 0; text-align: center; background: rgba(255,255,255,0.9); border-top: 2px solid #000; margin-top: 50px; }
+        footer { position: relative; width: 100%; padding: 30px 0; text-align: center; background: rgba(255,255,255,0.7); border-top: 2px solid #000; margin-top: 50px; }
 
         @media (max-width: 800px) {
             .main-grid { grid-template-columns: 1fr; }
