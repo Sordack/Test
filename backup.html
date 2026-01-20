@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | FUSION V9 (Streetart Fonts)</title>
+    <title>ANTON | FUSION V10 (Special Elite & Urban Canvas)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&family=Sedgwick+Ave+Display&family=Gochi+Hand&family=Shadows+Into+Light&family=Gloria+Hallelujah&family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&family=Special+Elite&display=swap" rel="stylesheet">
     
     <style>
         /* --- Z-INDEX MANAGEMENT --- */
@@ -23,18 +23,20 @@
             --z-index-menu-btn: 210;
         }
 
-        /* FONT-VORSCHLÄGE FÜR DIE SIDEBAR */
-        .font-1 { font-family: 'Sedgwick Ave Display', cursive; } /* Urban Tag */
-        .font-2 { font-family: 'Permanent Marker', cursive; }    /* Klassischer Edding-Style */
-        .font-3 { font-family: 'Gochi Hand', cursive; }           /* Lockerer Handstyle */
-        .font-4 { font-family: 'Gloria Hallelujah', cursive; }  /* Marker/Schule-Vibe */
-        .font-5 { font-family: 'Rock Salt', cursive; }           /* Rough & Speed */
-        .font-6 { font-family: 'Special Elite', cursive; }       /* Stencil / Typewriter Mix */
-
+        /* GLOBALE SCHRIFTART: Special Elite */
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
-            font-family: 'Permanent Marker', cursive; /* Fallback */
-            background: #ffffff; overflow-x: hidden;
+            font-family: 'Special Elite', cursive; /* Hauptschriftart */
+            overflow-x: hidden;
+            background-color: #e8e8e8; /* Leicht dunkleres, warmes Grau */
+            /* Subtile Urban Canvas Textur (generisches Beispiel) */
+            background-image: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/></svg>');
+            background-size: cover; /* Passt die Textur an die Größe an */
+        }
+
+        /* Alle Überschriften, die vorher "Permanent Marker" oder "Rock Salt" waren */
+        h1, h2, h3, .header-title, .cover-text { 
+            font-family: 'Special Elite', cursive; /* Auch diese passen sich an */
         }
 
         .big-a {
@@ -49,7 +51,7 @@
             z-index: var(--z-index-header); background: rgba(255, 255, 255, 0.9); 
             backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        .header-title { font-family: 'Rock Salt', cursive; color: var(--anton-red); font-size: 1.8rem; }
+        .header-title { color: var(--anton-red); font-size: 1.8rem; }
 
         /* --- NAVIGATION LINKS --- */
         .menu-btn { 
@@ -71,6 +73,7 @@
         .sidebar-left a {
             display: block; color: #000; text-decoration: none; 
             font-size: 1.2rem; margin-bottom: 18px; transition: 0.2s;
+            font-family: 'Special Elite', cursive; /* Auch Sidebar-Links nutzen neue Font */
         }
         .sidebar-left a:hover { color: var(--anton-red); transform: translateX(5px); }
 
@@ -103,6 +106,7 @@
         .bento-card { background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 25px; }
         .card-hero { grid-column: span 3; background: #000; color: #fff; text-align: center; }
         .card-list { grid-column: span 2; }
+        
         .card-player { grid-column: span 1; display: flex; flex-direction: column; align-items: center; gap: 15px; }
         .player-cover img { width: 100%; aspect-ratio: 1/1; border-radius: 12px; object-fit: cover; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .progress-container { width: 100%; height: 6px; background: #eee; border-radius: 3px; margin: 10px 0; }
@@ -121,17 +125,15 @@
 <body>
 
 <div class="big-a">A</div>
-<header><div class="header-title">ANTON | STREETART</div></header>
+<header><div class="header-title">ANTON | PRODUKTION</div></header>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <nav class="sidebar-left" id="sidebar">
     <div style="margin-top: 20px;">
-        <a href="#" class="font-1">SEDGWICK AVE</a>
-        <a href="#" class="font-2">PERMANENT MARKER</a>
-        <a href="#" class="font-3">GOCHI HAND</a>
-        <a href="#" class="font-4">GLORIA HALLELUJAH</a>
-        <a href="#" class="font-5">ROCK SALT</a>
-        <a href="#" class="font-6">SPECIAL ELITE</a>
+        <a href="#">HOME</a>
+        <a href="#">MUSIK</a>
+        <a href="#">SHOP</a>
+        <a href="#">KONTAKT</a>
     </div>
 </nav>
 
@@ -148,10 +150,11 @@
 </aside>
 
 <main class="main-grid">
-    <div class="bento-card card-hero"><h2>ANTON FUSION V9</h2></div>
+    <div class="bento-card card-hero"><h2>ANTON FUSION V10</h2></div>
     <div class="bento-card card-list"><h3>TRACKLISTE</h3></div>
     <div class="bento-card card-player">
         <div class="player-cover"><img src="https://via.placeholder.com/250/FFEB3B/000000?text=COVER" alt="Cover"></div>
+        <div class="track-info" style="font-family: sans-serif; font-size: 0.8rem;">Dino-Pizza</div>
         <div class="progress-container"><div class="progress-bar"></div></div>
         <div class="btns">
             <i class="fa-solid fa-backward-step"></i>
