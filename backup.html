@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | BACKUP (Final Check)</title>
+    <title>ANTON | SANDBOX (Hover-Fix)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
@@ -59,7 +59,9 @@
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
             z-index: 180; background: rgba(0, 0, 0, 0.05); width: 45px; height: 45px; 
             display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333;
+            transition: background 0.3s;
         }
+        .menu-btn:hover { background: rgba(0, 0, 0, 0.15); }
 
         /* LEFT SIDEBAR */
         .sidebar-left { 
@@ -74,9 +76,9 @@
         .sidebar-left.open { left: 0; }
         .close-sidebar { align-self: flex-end; margin-bottom: 20px; cursor: pointer; font-size: 1.5rem; color: #000; }
         .menu-links a { display: flex; align-items: center; gap: 10px; color: #000; text-decoration: none; font-size: 0.9rem; margin-bottom: 18px; transition: 0.3s; }
-        .menu-links a:hover { transform: translateX(5px); }
+        .menu-links a:hover { transform: translateX(8px); color: #ff0000; }
 
-        /* RIGHT SIDEBAR (Systematisch korrigiert) */
+        /* RIGHT SIDEBAR WITH HOVER FIX */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
@@ -84,14 +86,17 @@
             padding: 20px 0; border: 1px solid rgba(0, 0, 0, 0.1); border-right: none;
             border-top-left-radius: 20px; border-bottom-left-radius: 20px;
         }
-        .sidebar-right a { text-decoration: none; display: flex; align-items: center; justify-content: center; }
+        .sidebar-right a { text-decoration: none; transition: 0.3s; }
         .sidebar-right a i { color: #000; transition: 0.3s; font-size: 1.2rem; animation: sequentialPulseSlow 18s infinite ease-in-out; }
         
+        /* Hover Effect for Social Icons */
+        .sidebar-right a:hover i { transform: scale(1.5) !important; color: var(--brand-color); }
+        .sidebar-right a.tt:hover i { filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)); }
+
         @keyframes sequentialPulseSlow { 0%, 5.55%, 100% { transform: scale(1); color: #000; filter: none; } 2.77% { transform: scale(1.4); color: var(--brand-color); } }
         @keyframes ttGlitchPulse { 0%, 5.55%, 100% { transform: scale(1); color: #000; filter: none; } 2.77% { transform: scale(1.4); filter: drop-shadow(-2px -1px 0px var(--tiktok-cyan)) drop-shadow(2px 1px 0px var(--tiktok-pink)); } }
         
         .sidebar-right a.tt i { animation-name: ttGlitchPulse; }
-
         .sidebar-right a:nth-child(1) i { animation-delay: 0s; --brand-color: #FF0000; } 
         .sidebar-right a:nth-child(2) i { animation-delay: 2s; } 
         .sidebar-right a:nth-child(3) i { animation-delay: 4s; --brand-color: #E1306C; } 
@@ -113,7 +118,8 @@
         /* FOOTER */
         .footer-legal { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; background: rgba(0,0,0,0.03); backdrop-filter: blur(10px); padding: 8px 25px; border-radius: 15px; }
         .footer-links { display: flex; gap: 20px; }
-        .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; text-transform: uppercase; }
+        .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        .footer-links a:hover { color: #ff0000; }
         .footer-subtext a { text-decoration: none; color: inherit; font-family: sans-serif; font-size: 0.7rem; opacity: 0.5; margin-top: 5px; }
 
         @media (max-width: 768px) {
@@ -168,21 +174,21 @@
 <div class="content-container">
     <div class="window-grid">
         <div class="main-window">
-            <span class="window-label" style="left: auto; right: 12px;">Letzte Prüfung</span>
+            <span class="window-label" style="left: auto; right: 12px;">Interaktion</span>
             <div style="margin: auto; text-align: center;">
-                <h2>Struktureller Abgleich</h2>
-                <p>Social Bar HTML-Struktur korrigiert.</p>
+                <h2>Hover-Effekte aktiv</h2>
+                <p>Punkt 9 der Checkliste vervollständigt.</p>
             </div>
         </div>
         <div class="side-column">
             <div class="small-window">
-                <span class="window-label">Sandbox</span>
+                <span class="window-label">Feedback</span>
                 <div style="background: #fdfdfd; height: 100%;"></div>
             </div>
             <div class="small-window">
                 <span class="window-label">Status</span>
                 <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                    <p>Revision abgeschlossen.</p>
+                    <p>Interaktiv: JA</p>
                 </div>
             </div>
         </div>
