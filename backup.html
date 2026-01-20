@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | FUSION V2</title>
+    <title>ANTON | FUSION V4 (Professional Layers)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
+        /* --- Z-INDEX MANAGEMENT & VARIABLEN --- */
         :root {
             --anton-red: #ff0000;
             --anton-yellow: #ffeb3b;
-            --sidebar-width: 280px;
+            --sidebar-width: 200px;
+            
+            /* Die Schicht-Hierarchie */
+            --z-index-bg-deco: 1;
+            --z-index-content: 10;
+            --z-index-right-bar: 50;
+            --z-index-header: 100;
+            --z-index-sidebar: 200;
+            --z-index-menu-btn: 210;
         }
 
         body, html { 
@@ -19,49 +28,59 @@
             background: #ffffff; overflow-x: hidden;
         }
 
+        /* Hintergrund-Deko */
         .big-a {
             position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 50vw; color: rgba(0, 0, 0, 0.02); z-index: 1; pointer-events: none;
+            font-size: 50vw; color: rgba(0, 0, 0, 0.02); 
+            z-index: var(--z-index-bg-deco); pointer-events: none;
         }
 
+        /* --- HEADER --- */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
-            z-index: 170; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); 
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            z-index: var(--z-index-header); background: rgba(255, 255, 255, 0.9); 
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .header-title { font-family: 'Rock Salt', cursive !important; color: var(--anton-red); font-size: 1.8rem; }
 
+        /* --- NAVIGATION --- */
         .menu-btn { 
             position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
-            z-index: 200; background: #000; color: #fff; width: 45px; height: 45px; 
-            display: flex; align-items: center; justify-content: center; border-radius: 5px;
+            z-index: var(--z-index-menu-btn); background: #000; color: #fff; 
+            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; 
+            border-radius: 5px; transition: 0.3s;
         }
 
-        /* SIDEBAR - Annäherung an Master */
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); 
-            width: var(--sidebar-width); background: rgba(255, 235, 59, 0.95); 
-            z-index: 190; display: flex; flex-direction: column; padding: 100px 30px;
+            width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
+            z-index: var(--z-index-sidebar); display: flex; flex-direction: column; padding: 100px 20px;
             transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-right: 2px solid rgba(0,0,0,0.1);
+            box-shadow: 5px 0 15px rgba(0,0,0,0.05);
         }
         .sidebar-left.open { left: 0; }
-        .menu-links a { display: block; color: #000; text-decoration: none; font-size: 1.2rem; margin-bottom: 18px; transition: 0.2s; }
-        .menu-links a:hover { color: var(--anton-red); transform: translateX(8px); }
 
-        /* SOCIAL BAR MIT HOVER-FIX */
+        /* --- SOCIAL BAR RECHTS --- */
         .sidebar-right {
-            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 55px;
-            display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
-            background: rgba(0, 0, 0, 0.03); padding: 20px 0; border-radius: 20px 0 0 20px;
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
+            display: flex; flex-direction: column; align-items: center; gap: 15px; 
+            z-index: var(--z-index-right-bar); background: rgba(0, 0, 0, 0.03); 
+            padding: 20px 0; border-radius: 20px 0 0 20px;
         }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; animation: pulse 18s infinite ease-in-out; transition: 0.3s; }
-        
-        /* Hier wird die Animation pausiert, damit der Hover wirkt */
-        .sidebar-right a:hover i { animation-play-state: paused; transform: scale(1.5); color: var(--brand-color); }
+        .sidebar-right a i { 
+            color: #000; font-size: 1.2rem; transition: 0.3s;
+            animation: pulseIcons 18s infinite ease-in-out; 
+        }
+        .sidebar-right a:hover i { 
+            animation-play-state: paused; transform: scale(1.6) !important; color: var(--brand-color); 
+        }
+        @keyframes pulseIcons { 
+            0%, 5.55%, 100% { transform: scale(1); color: #000; } 
+            2.77% { transform: scale(1.4); color: var(--brand-color); } 
+        }
 
-        @keyframes pulse { 0%, 5.55%, 100% { transform: scale(1); color: #000; } 2.77% { transform: scale(1.4); color: var(--brand-color); } }
+        /* Social Delays & Colors */
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 2s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 4s; }
@@ -72,44 +91,47 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
 
-        /* GRID-LAYOUT */
+        /* --- MAIN CONTENT --- */
         .main-grid {
-            position: relative; z-index: 10; padding: 120px 20px;
+            position: relative; z-index: var(--z-index-content); padding: 120px 20px;
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            max-width: 1100px; margin: 0 auto;
+            max-width: 1000px; margin: 0 auto;
         }
 
         .bento-card {
-            background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; padding: 30px;
+            background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 30px;
         }
 
         .card-hero { grid-column: span 3; background: #000; color: #fff; text-align: center; }
-        .card-list { grid-column: span 2; } /* Jetzt links */
-        .card-player { grid-column: span 1; display: flex; flex-direction: column; align-items: center; justify-content: center; } /* Jetzt rechts */
+        .card-list { grid-column: span 2; }
+        .card-player { grid-column: span 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
+        /* VINYL PLAYER - Verbessertes Design */
         .vinyl-disc { 
-            width: 160px; height: 160px; background: radial-gradient(circle, #333 10%, #111 40%, #222 70%);
-            border-radius: 50%; border: 4px solid #000; position: relative;
-            animation: spin 4s infinite linear; animation-play-state: paused;
+            width: 140px; height: 140px; border-radius: 50%; border: 5px solid #000;
+            background: radial-gradient(circle, #333 5%, #111 15%, #333 25%, #111 40%, #444 60%, #111 90%);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative; animation: spin 4s infinite linear; animation-play-state: paused;
         }
         .vinyl-disc.active { animation-play-state: running; }
-        .vinyl-disc::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 35px; height: 35px; background: var(--anton-red); border: 2px solid #fff; border-radius: 50%; }
+        .vinyl-disc::after { 
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            width: 30px; height: 30px; background: var(--anton-red); border: 2px solid #fff; border-radius: 50%;
+        }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        .track-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
-
-        /* FOOTER - Master Style */
-        footer {
+        /* FOOTER */
+        footer { 
             position: relative; width: 100%; padding: 30px 0; text-align: center;
             background: rgba(0,0,0,0.02); border-top: 1px solid rgba(0,0,0,0.05); margin-top: 60px;
         }
         .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; margin: 0 15px; }
-        .footer-subtext { font-family: sans-serif; font-size: 0.7rem; opacity: 0.5; margin-top: 8px; }
 
         @media (max-width: 800px) {
             .main-grid { grid-template-columns: 1fr; }
             .card-hero, .card-list, .card-player { grid-column: span 1; }
+            .sidebar-right { display: none; }
         }
     </style>
 </head>
@@ -122,13 +144,13 @@
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <nav class="sidebar-left" id="sidebar">
-    <div class="menu-links">
-        <a href="#"><i class="fa-solid fa-house"></i> HOME</a>
-        <a href="#"><i class="fa-solid fa-music"></i> MEINE MUSIK</a>
-        <a href="#"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
-        <a href="#"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
-        <a href="#"><i class="fa-solid fa-cart-shopping"></i> ONLINESHOP</a>
-        <a href="#"><i class="fa-solid fa-envelope"></i> KONTAKT</a>
+    <div style="margin-top: 20px;">
+        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-solid fa-house"></i> HOME</a>
+        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-solid fa-music"></i> MUSIK</a>
+        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
+        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
+        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-solid fa-cart-shopping"></i> SHOP</a>
+        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-solid fa-envelope"></i> KONTAKT</a>
     </div>
 </nav>
 
@@ -146,14 +168,12 @@
 
 <main class="main-grid">
     <div class="bento-card card-hero">
-        <h2 style="font-size: 2.2rem; margin: 0; font-family: 'Rock Salt';">ZAPPEL-TIME!</h2>
+        <h2 style="font-family: 'Rock Salt';">ZAPPEL-TIME!</h2>
     </div>
 
     <div class="bento-card card-list">
-        <h3 style="margin-top: 0; border-bottom: 2px solid var(--anton-red); display: inline-block;">PLAYLIST</h3>
-        <div class="track-item"><span>1. Dino-Pizza</span><span>02:10</span></div>
-        <div class="track-item"><span>2. Matschpfützen-Lied</span><span>03:05</span></div>
-        <div class="track-item"><span>3. Der Zappel-Boogie</span><span>02:40</span></div>
+        <h3 style="margin-top:0; border-bottom:2px solid red; display:inline-block;">PLAYLIST</h3>
+        <p style="margin-top:20px; opacity:0.7;">Hier entstehen bald deine Lieblingslieder...</p>
     </div>
 
     <div class="bento-card card-player">
@@ -165,11 +185,8 @@
 </main>
 
 <footer>
-    <div class="footer-links">
-        <a href="#">IMPRESSUM</a>
-        <a href="#">DATENSCHUTZ</a>
-    </div>
-    <div class="footer-subtext">www.anton-familienpop.de</div>
+    <div class="footer-links"><a href="#">IMPRESSUM</a><a href="#">DATENSCHUTZ</a></div>
+    <div style="font-family:sans-serif; font-size:0.7rem; opacity:0.5; margin-top:10px;">www.anton-familienpop.de</div>
 </footer>
 
 <script>
@@ -185,6 +202,7 @@
             disc.classList.remove('active');
         }
     }
+    // Schließen bei Klick außerhalb
     document.addEventListener('click', function(e) {
         const sb = document.getElementById("sidebar");
         const btn = document.querySelector(".menu-btn");
