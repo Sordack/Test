@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | FUSION V6 (Final Polish)</title>
+    <title>ANTON | FUSION V9 (Streetart Fonts)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&family=Sedgwick+Ave+Display&family=Gochi+Hand&family=Shadows+Into+Light&family=Gloria+Hallelujah&family=Special+Elite&display=swap" rel="stylesheet">
+    
     <style>
         /* --- Z-INDEX MANAGEMENT --- */
         :root {
@@ -21,9 +23,17 @@
             --z-index-menu-btn: 210;
         }
 
+        /* FONT-VORSCHLÄGE FÜR DIE SIDEBAR */
+        .font-1 { font-family: 'Sedgwick Ave Display', cursive; } /* Urban Tag */
+        .font-2 { font-family: 'Permanent Marker', cursive; }    /* Klassischer Edding-Style */
+        .font-3 { font-family: 'Gochi Hand', cursive; }           /* Lockerer Handstyle */
+        .font-4 { font-family: 'Gloria Hallelujah', cursive; }  /* Marker/Schule-Vibe */
+        .font-5 { font-family: 'Rock Salt', cursive; }           /* Rough & Speed */
+        .font-6 { font-family: 'Special Elite', cursive; }       /* Stencil / Typewriter Mix */
+
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
-            font-family: 'Permanent Marker', cursive !important;
+            font-family: 'Permanent Marker', cursive; /* Fallback */
             background: #ffffff; overflow-x: hidden;
         }
 
@@ -33,57 +43,47 @@
             z-index: var(--z-index-bg-deco); pointer-events: none;
         }
 
-        /* --- HEADER --- */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
             z-index: var(--z-index-header); background: rgba(255, 255, 255, 0.9); 
             backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        .header-title { font-family: 'Rock Salt', cursive !important; color: var(--anton-red); font-size: 1.8rem; }
+        .header-title { font-family: 'Rock Salt', cursive; color: var(--anton-red); font-size: 1.8rem; }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION LINKS --- */
         .menu-btn { 
             position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
             z-index: var(--z-index-menu-btn); background: #000; color: #fff; 
             width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; 
             border-radius: 5px; transition: 0.3s;
         }
-        .menu-btn:hover { background: var(--anton-red); }
 
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); 
             width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
             z-index: var(--z-index-sidebar); display: flex; flex-direction: column; padding: 100px 20px;
-            /* Animation von 0.4s auf 0.6s verlangsamt für mehr Eleganz */
             transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 5px 0 15px rgba(0,0,0,0.05);
         }
         .sidebar-left.open { left: 0; }
+        
+        .sidebar-left a {
+            display: block; color: #000; text-decoration: none; 
+            font-size: 1.2rem; margin-bottom: 18px; transition: 0.2s;
+        }
+        .sidebar-left a:hover { color: var(--anton-red); transform: translateX(5px); }
 
-        /* --- SOCIAL BAR RECHTS --- */
+        /* --- SIDEBAR RECHTS (FIXIERT) --- */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; 
             z-index: var(--z-index-right-bar); background: rgba(0, 0, 0, 0.03); 
             padding: 20px 0; border-radius: 20px 0 0 20px;
         }
-        .sidebar-right a { text-decoration: none; width: 100%; text-align: center; }
-        .sidebar-right a i { 
-            color: #000; font-size: 1.2rem; transition: 0.3s;
-            animation: pulseIcons 18s infinite ease-in-out; 
-        }
-        .sidebar-right a:hover i { 
-            animation-play-state: paused; 
-            transform: scale(1.6) !important; 
-            color: var(--brand-color) !important;
-        }
-        @keyframes pulseIcons { 
-            0%, 5.55%, 100% { transform: scale(1); color: #000; } 
-            2.77% { transform: scale(1.4); color: var(--brand-color); } 
-        }
-
-        /* Branding Colors */
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: 0.3s; animation: pulseIcons 18s infinite ease-in-out; }
+        .sidebar-right a:hover i { animation-play-state: paused; transform: scale(1.6) !important; color: var(--brand-color) !important; }
+        @keyframes pulseIcons { 0%, 5.55%, 100% { transform: scale(1); color: #000; } 2.77% { transform: scale(1.4); color: var(--brand-color); } }
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 2s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 4s; }
@@ -94,42 +94,22 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
 
-        /* --- MAIN GRID --- */
+        /* --- BENTO GRID & PLAYER --- */
         .main-grid {
             position: relative; z-index: var(--z-index-content); padding: 120px 20px;
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
             max-width: 1000px; margin: 0 auto;
         }
-
-        .bento-card {
-            background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 30px;
-        }
-
+        .bento-card { background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 25px; }
         .card-hero { grid-column: span 3; background: #000; color: #fff; text-align: center; }
         .card-list { grid-column: span 2; }
-        .card-player { grid-column: span 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-
-        /* VINYL PLAYER */
-        .vinyl-disc { 
-            width: 140px; height: 140px; border-radius: 50%; border: 5px solid #000;
-            background: radial-gradient(circle, #333 5%, #111 15%, #333 25%, #111 40%, #444 60%, #111 90%);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            position: relative; animation: spin 4s infinite linear; animation-play-state: paused;
-        }
-        .vinyl-disc.active { animation-play-state: running; }
-        .vinyl-disc::after { 
-            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            width: 30px; height: 30px; background: var(--anton-red); border: 2px solid #fff; border-radius: 50%;
-        }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* FOOTER */
-        footer { 
-            position: relative; width: 100%; padding: 30px 0; text-align: center;
-            background: rgba(0,0,0,0.02); border-top: 1px solid rgba(0,0,0,0.05); margin-top: 60px;
-        }
-        .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-family: sans-serif; font-weight: bold; margin: 0 15px; }
+        .card-player { grid-column: span 1; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .player-cover img { width: 100%; aspect-ratio: 1/1; border-radius: 12px; object-fit: cover; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .progress-container { width: 100%; height: 6px; background: #eee; border-radius: 3px; margin: 10px 0; }
+        .progress-bar { width: 35%; height: 100%; background: var(--anton-red); border-radius: 3px; }
+        .btns { display: flex; justify-content: center; gap: 20px; font-size: 1.2rem; cursor: pointer; align-items: center; }
+        
+        footer { position: relative; width: 100%; padding: 25px 0; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 50px; }
 
         @media (max-width: 800px) {
             .main-grid { grid-template-columns: 1fr; }
@@ -141,19 +121,17 @@
 <body>
 
 <div class="big-a">A</div>
-
-<header><div class="header-title">ANTON | FUSION</div></header>
-
+<header><div class="header-title">ANTON | STREETART</div></header>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <nav class="sidebar-left" id="sidebar">
     <div style="margin-top: 20px;">
-        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-solid fa-house"></i> HOME</a>
-        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-solid fa-music"></i> MEINE MUSIK</a>
-        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
-        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
-        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-solid fa-cart-shopping"></i> SHOP</a>
-        <a href="#" style="display:block; text-decoration:none; color:#000; margin-bottom:15px;"><i class="fa-solid fa-envelope"></i> KONTAKT</a>
+        <a href="#" class="font-1">SEDGWICK AVE</a>
+        <a href="#" class="font-2">PERMANENT MARKER</a>
+        <a href="#" class="font-3">GOCHI HAND</a>
+        <a href="#" class="font-4">GLORIA HALLELUJAH</a>
+        <a href="#" class="font-5">ROCK SALT</a>
+        <a href="#" class="font-6">SPECIAL ELITE</a>
     </div>
 </nav>
 
@@ -170,42 +148,28 @@
 </aside>
 
 <main class="main-grid">
-    <div class="bento-card card-hero">
-        <h2 style="font-family: 'Rock Salt';">ZAPPEL-TIME!</h2>
-    </div>
-
-    <div class="bento-card card-list">
-        <h3 style="margin-top:0; border-bottom:2px solid red; display:inline-block;">PLAYLIST</h3>
-        <p style="margin-top:20px; opacity:0.7;">Wähle deinen Song aus dem Bento-Menü...</p>
-    </div>
-
+    <div class="bento-card card-hero"><h2>ANTON FUSION V9</h2></div>
+    <div class="bento-card card-list"><h3>TRACKLISTE</h3></div>
     <div class="bento-card card-player">
-        <div id="disc" class="vinyl-disc"></div>
-        <div style="font-size: 2.5rem; cursor: pointer; margin-top: 20px;">
-            <i id="play-btn" class="fa-solid fa-play" onclick="handlePlay()"></i>
+        <div class="player-cover"><img src="https://via.placeholder.com/250/FFEB3B/000000?text=COVER" alt="Cover"></div>
+        <div class="progress-container"><div class="progress-bar"></div></div>
+        <div class="btns">
+            <i class="fa-solid fa-backward-step"></i>
+            <i id="play-btn" class="fa-solid fa-play play-main" onclick="handlePlay()"></i>
+            <i class="fa-solid fa-forward-step"></i>
         </div>
     </div>
 </main>
 
-<footer>
-    <div class="footer-links"><a href="#">IMPRESSUM</a><a href="#">DATENSCHUTZ</a></div>
-    <div style="font-family:sans-serif; font-size:0.7rem; opacity:0.5; margin-top:10px;">www.anton-familienpop.de</div>
-</footer>
+<footer>www.anton-familienpop.de</footer>
 
 <script>
     function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
     function handlePlay() {
         const btn = document.getElementById('play-btn');
-        const disc = document.getElementById('disc');
-        if (btn.classList.contains('fa-play')) {
-            btn.classList.replace('fa-play', 'fa-pause');
-            disc.classList.add('active');
-        } else {
-            btn.classList.replace('fa-pause', 'fa-play');
-            disc.classList.remove('active');
-        }
+        btn.classList.toggle('fa-play');
+        btn.classList.toggle('fa-pause');
     }
-    // Schließen bei Klick außerhalb
     document.addEventListener('click', function(e) {
         const sb = document.getElementById("sidebar");
         const btn = document.querySelector(".menu-btn");
