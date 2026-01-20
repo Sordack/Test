@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | Backup (Vollständige Hauptseite)</title>
+    <title>ANTON | Backup (Vollständige Spiegelung)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
     <style>
         :root {
             --sidebar-width: 12.5%;
-            --accent-yellow: rgba(255, 235, 59, 0.8);
-            --glass-white: rgba(0, 0, 0, 0.05);
-            --window-bg: rgba(240, 240, 240, 0.4);
+            --accent-yellow: rgba(255, 235, 59, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.3);
+            --tiktok-cyan: #25F4EE;
+            --tiktok-pink: #FE2C55;
+            --whatsapp-green: #25D366;
         }
 
         body, html { 
             margin: 0; padding: 0; height: 100%; width: 100%; 
             font-family: 'Permanent Marker', cursive !important;
-            background-color: #ffffff;
+            background-color: #ffffff; /* Weißer Hintergrund laut Anweisung */
             overflow: hidden;
         }
 
@@ -25,30 +27,30 @@
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
-            z-index: 170; background: rgba(0, 0, 0, 0.03); backdrop-filter: blur(10px); 
+            z-index: 170; background: rgba(0, 0, 0, 0.05); backdrop-filter: blur(10px); 
             border-bottom: 1px solid rgba(0,0,0,0.1);
         }
 
         .header-title { 
             font-family: 'Rock Salt', cursive !important; 
-            font-size: 2.5rem; color: #ff0000; letter-spacing: 8px; 
+            font-size: 2.5rem; color: #ff0000; letter-spacing: 5px; 
         }
 
         /* MENU BUTTON */
         .menu-btn { 
             position: fixed; top: 15px; left: 20px; font-size: 24px; cursor: pointer; 
-            z-index: 210; background: rgba(0, 0, 0, 0.1); width: 45px; height: 45px; 
+            z-index: 220; background: rgba(0, 0, 0, 0.1); width: 45px; height: 45px; 
             display: flex; align-items: center; justify-content: center; border-radius: 5px; color: #333;
         }
 
-        /* SIDEBAR LINKS */
+        /* LINKE SIDEBAR */
         .sidebar-left { 
             position: fixed; top: 80px; bottom: 0; 
             left: calc(var(--sidebar-width) * -1); 
             width: var(--sidebar-width); 
             background-color: var(--accent-yellow); 
             backdrop-filter: blur(15px); 
-            z-index: 200; display: flex; flex-direction: column; padding: 30px 15px; 
+            z-index: 210; display: flex; flex-direction: column; padding: 30px 15px; 
             transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             border-right: 2px solid rgba(0,0,0,0.1); border-top-right-radius: 25px;
             box-sizing: border-box; overflow-y: auto;
@@ -58,18 +60,21 @@
         .menu-links { display: flex; flex-direction: column; gap: 15px; }
         .menu-links a, .submenu-trigger { 
             display: flex; align-items: center; gap: 12px; color: #000; 
-            text-decoration: none; font-size: 0.9rem; cursor: pointer;
+            text-decoration: none; font-size: 0.9rem; transition: 0.3s; cursor: pointer;
         }
+        .menu-links a:hover, .submenu-trigger:hover { transform: translateX(8px); opacity: 0.7; }
 
+        /* SUBMENU */
         .submenu {
             max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
             display: flex; flex-direction: column; padding-left: 25px; gap: 10px;
         }
-        .submenu.active { max-height: 200px; margin-top: 10px; }
+        .submenu.active { max-height: 200px; margin-top: 10px; margin-bottom: 10px; }
+        .submenu a { font-size: 0.8rem !important; opacity: 0.8; }
         .fa-chevron-down { font-size: 0.7rem; transition: transform 0.3s; margin-left: auto; }
         .submenu-trigger.active .fa-chevron-down { transform: rotate(180deg); }
 
-        /* SIDEBAR RECHTS */
+        /* RECHTE SIDEBAR */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 100; 
@@ -77,40 +82,43 @@
             padding: 20px 0; border-top-left-radius: 20px; border-bottom-left-radius: 20px;
             border: 1px solid rgba(0, 0, 0, 0.1);
         }
-        .sidebar-right a i { font-size: 1.5rem; color: #333; }
+        @keyframes sequentialPulseSlow { 0%, 10%, 100% { transform: scale(1); color: #000; } 5% { transform: scale(1.4); color: var(--brand-color); } }
+        .sidebar-right a i { animation: sequentialPulseSlow 18s infinite ease-in-out; color: #000; font-size: 1.5rem; }
+        .sidebar-right a:nth-child(1) i { animation-delay: 0s; --brand-color: #FF0000; } 
+        .sidebar-right a:nth-child(2) i { animation-delay: 2s; --brand-color: #000; } 
+        .sidebar-right a:nth-child(3) i { animation-delay: 4s; --brand-color: #E1306C; } 
+        .sidebar-right a:nth-child(4) i { animation-delay: 6s; --brand-color: #1877F2; }
 
-        /* HAUPT-LAYOUT (BENTO BOX) */
-        .content-container { 
-            position: relative; z-index: 5; display: flex; justify-content: center; 
-            align-items: center; height: calc(100vh - 80px); margin-top: 80px; 
+        /* BENTO BOX LAYOUT */
+        .scroll-wrapper {
+            position: absolute; top: 80px; bottom: 80px; left: 0; right: 0;
+            overflow-y: auto; display: flex; justify-content: center; align-items: center; padding: 20px;
         }
 
-        .window-grid { display: flex; gap: 20px; align-items: flex-start; }
-
-        .main-window { 
-            background: var(--window-bg); backdrop-filter: blur(15px); 
-            border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 25px; 
-            padding: 30px; width: 45vh; height: 45vh; display: flex; 
-            flex-direction: column; justify-content: center; position: relative;
-        }
-
-        .side-column { display: flex; flex-direction: column; gap: 20px; height: 45vh; width: 250px; }
+        .content-width-container { width: 85vw; max-width: 1100px; display: flex; flex-direction: column; gap: 20px; }
+        .top-row { display: flex; gap: 20px; height: 50vh; }
         
+        .main-window { 
+            background: var(--glass-bg); backdrop-filter: blur(15px); 
+            border: 1px solid rgba(0,0,0,0.1); border-radius: 25px; padding: 30px; 
+            flex: 2; display: flex; flex-direction: column; justify-content: center; position: relative;
+        }
+        
+        .side-column { display: flex; flex-direction: column; justify-content: space-between; flex: 1; gap: 20px; }
         .small-window { 
-            background: var(--window-bg); backdrop-filter: blur(15px); 
-            border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 20px; 
-            flex: 1; position: relative; padding: 20px; display: flex; 
-            flex-direction: column; justify-content: center;
+            background: var(--glass-bg); backdrop-filter: blur(15px); 
+            border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; 
+            flex: 1; position: relative; padding: 20px; display: flex; flex-direction: column; justify-content: center;
         }
 
         .window-label { position: absolute; top: 12px; left: 15px; font-size: 0.65rem; opacity: 0.5; text-transform: uppercase; font-family: sans-serif; color: #000; }
 
         footer { 
             position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); 
-            z-index: 100; background: rgba(0,0,0,0.03); backdrop-filter: blur(10px); 
-            padding: 10px 30px; border-radius: 20px; 
+            z-index: 100; background: rgba(0,0,0,0.05); backdrop-filter: blur(10px); 
+            padding: 10px 30px; border-radius: 20px; display: flex; gap: 20px;
         }
-        .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; margin: 0 10px; font-family: sans-serif; }
+        .footer-links a { color: #333; text-decoration: none; font-size: 0.8rem; font-family: sans-serif; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -148,27 +156,28 @@
     <a href="#"><i class="fa-brands fa-youtube"></i></a>
     <a href="#"><i class="fa-brands fa-tiktok"></i></a>
     <a href="#"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="#"><i class="fa-brands fa-facebook"></i></a>
 </aside>
 
-<div class="content-container">
-    <div class="window-grid">
-        <div class="main-window">
-            <span class="window-label">Willkommen</span>
-            <h1 style="margin: 0; font-size: 2.2rem;">Antons Welt</h1>
-            <p style="font-family: sans-serif; font-size: 0.9rem; margin-top: 15px;">
-                Entdecke die neuesten Songs, Tourdaten und exklusives Merch.
-            </p>
-        </div>
-        
-        <div class="side-column">
-            <div class="small-window">
-                <span class="window-label">Aktuell</span>
-                <p style="font-size: 0.85rem;">Neues Album "Sturm" jetzt verfügbar!</p>
+<div class="scroll-wrapper">
+    <div class="content-width-container">
+        <div class="top-row">
+            <div class="main-window">
+                <span class="window-label">Willkommen</span>
+                <h1 style="font-size: 2.8rem; margin: 0;">ANTONS WELT</h1>
+                <p style="font-family: sans-serif; font-size: 1rem; margin-top: 20px; line-height: 1.5;">
+                    Die offizielle Seite für News, Tourdaten und exklusives Merch. Tauche ein in den Sound.
+                </p>
             </div>
-            <div class="small-window">
-                <span class="window-label">Nächstes Event</span>
-                <p style="font-size: 0.85rem;">Berlin - 15.03.2026</p>
+            <div class="side-column">
+                <div class="small-window">
+                    <span class="window-label">Status</span>
+                    <p style="font-size: 0.9rem;">Backup-Modus aktiv.<br>Layout: Stabil</p>
+                </div>
+                <div class="small-window">
+                    <span class="window-label">Kontakt</span>
+                    <p style="font-size: 0.9rem;">Für Anfragen nutze das Kontaktformular.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -187,17 +196,20 @@
     const shopTrigger = document.getElementById("shopTrigger");
     const shopSubmenu = document.getElementById("shopSubmenu");
 
+    // Sidebar Logik
     menuToggle.addEventListener("click", (e) => {
         e.stopPropagation();
         sidebar.classList.toggle("open");
     });
 
+    // Shop Submenu Logik
     shopTrigger.addEventListener("click", (e) => {
         e.stopPropagation();
         shopTrigger.classList.toggle("active");
         shopSubmenu.classList.toggle("active");
     });
 
+    // Schließen bei Klick außerhalb
     document.addEventListener("click", (e) => {
         if (sidebar.classList.contains("open") && !sidebar.contains(e.target) && e.target !== menuToggle) {
             sidebar.classList.remove("open");
