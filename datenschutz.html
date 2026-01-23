@@ -3,31 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | Datenschutz</title>
+    <title>ANTON | DATENSCHUTZ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --tiktok-cyan: #25F4EE; --tiktok-pink: #FE2C55; --whatsapp-green: #25D366; --amazon-music-tuerkis: #00A8E1; }
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: sans-serif; background: #f4f4f4; overflow-y: auto; }
-        .legal-header { background: #333; color: white; padding: 40px 20px; text-align: center; font-family: 'Rock Salt', cursive; }
-        .legal-content { max-width: 800px; margin: 40px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); line-height: 1.6; }
-        .back-btn { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #333; font-family: 'Permanent Marker', cursive; }
-        .footer-legal { position: relative; margin-top: 50px; padding: 20px; display: flex; flex-direction: column; align-items: center; background: rgba(0,0,0,0.05); }
-        .footer-links { display: flex; gap: 20px; margin-bottom: 10px; }
-        .footer-links a { color: #333; text-decoration: none; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
-        .footer-subtext a { text-decoration: none; color: inherit; }
+        :root {
+            --anton-red: #ff0000;
+            --anton-yellow: #ffeb3b;
+            --sidebar-width: 220px;
+            --z-index-content: 10;
+            --z-index-right-bar: 50;
+            --z-index-header: 100;
+            --z-index-sidebar: 200;
+            --z-index-menu-btn: 210;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body { 
+            display: flex;
+            flex-direction: column;
+            font-family: 'Special Elite', cursive;
+            background-color: #b0b0b0; 
+            background-image: url('TON-AN.png');
+            background-size: 100%; 
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-blend-mode: multiply; 
+            overflow-x: hidden;
+        }
+
+        header { 
+            position: fixed; top: 0; width: 100%; height: 80px; 
+            display: flex; justify-content: center; align-items: center; 
+            z-index: var(--z-index-header); 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); 
+            border-bottom: 2px solid #000;
+        }
+        .header-title { color: var(--anton-red); font-size: 1.8rem; }
+
+        .menu-btn { 
+            position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
+            z-index: var(--z-index-menu-btn); background: #000; color: #fff; 
+            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; 
+            border-radius: 5px;
+        }
+
+        .sidebar-left { 
+            position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); 
+            width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
+            z-index: var(--z-index-sidebar); display: flex; flex-direction: column; padding: 100px 20px;
+            transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-right: 2px solid #000;
+        }
+        .sidebar-left.open { left: 0; }
+        .sidebar-left a { display: flex; align-items: center; gap: 15px; color: #000; text-decoration: none; font-size: 1.2rem; margin-bottom: 25px; }
+        .sidebar-left a i { width: 25px; text-align: center; }
+
+        .sidebar-right {
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
+            display: flex; flex-direction: column; align-items: center; gap: 15px; 
+            z-index: var(--z-index-right-bar); background: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(3px);
+            padding: 20px 0; border-radius: 20px 0 0 20px;
+        }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: 0.3s; animation: pulseIcons 18s infinite ease-in-out; }
+        .sidebar-right a:hover i { animation-play-state: paused; transform: scale(1.6) !important; color: var(--brand-color) !important; }
+        
+        @keyframes pulseIcons { 
+            0%, 5.55%, 100% { transform: scale(1); color: #000; } 
+            2.77% { transform: scale(1.4); color: var(--brand-color); } 
+        }
+        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
+        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 2s; }
+        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 4s; }
+        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 6s; }
+        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 8s; }
+        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 10s; }
+        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 12s; }
+        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
+        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
+
+        main {
+            flex: 1;
+            position: relative; 
+            z-index: var(--z-index-content); 
+            padding: 120px 20px 50px 20px;
+            max-width: 800px; 
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .legal-card { 
+            background: rgba(255, 255, 255, 0.9); 
+            border: 2px solid #000; 
+            border-radius: 15px; 
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        h2 { color: var(--anton-red); margin-top: 0; }
+        h3 { border-bottom: 2px solid #000; display: inline-block; margin-top: 25px; margin-bottom: 10px; }
+
+        footer { 
+            width: 100%; padding: 30px 0; text-align: center; 
+            background: rgba(255,255,255,0.85); border-top: 2px solid #000; 
+            z-index: var(--z-index-content);
+        }
+        .footer-content { max-width: 1000px; margin: 0 auto; }
+        .footer-links a { color: #000; text-decoration: none; margin: 0 15px; }
+
+        @media (max-width: 800px) {
+            .sidebar-right { display: none; }
+        }
     </style>
 </head>
 <body>
-<header class="legal-header"><h1>Datenschutz</h1></header>
-<div class="legal-content">
-    <a href="hauptseite.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Zurück zur Hauptseite</a>
-    <h2>1. Datenschutz auf einen Blick</h2>
-    <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen...</p>
-</div>
-<footer class="footer-legal">
-    <div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div>
-    <div class="footer-subtext" style="font-size: 0.7rem; opacity: 0.5; font-family: sans-serif;"><a href="index.html">www.anton-familienpop.de</a></div>
+
+<header><div class="header-title">ANTON | DATENSCHUTZ</div></header>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<nav class="sidebar-left" id="sidebar">
+    <div style="margin-top: 20px;">
+        <a href="hauptseite.html"><i class="fa-solid fa-house"></i> HOME</a>
+        <a href="meinemusik.html"><i class="fa-solid fa-music"></i> MEINE MUSIK</a>
+        <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> SHOP</a>
+        <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> KONTAKT</a>
+    </div>
+</nav>
+
+<aside class="sidebar-right">
+    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+    <a href="#"><i class="fa-brands fa-spotify"></i></a>
+    <a href="#"><i class="fa-brands fa-apple"></i></a>
+    <a href="#"><i class="fa-solid fa-circle-play"></i></a>
+    <a href="#"><i class="fa-brands fa-amazon"></i></a>
+</aside>
+
+<main>
+    <div class="legal-card">
+        <h2>Datenschutzerklärung</h2>
+        
+        <h3>1. Datenschutz auf einen Blick</h3>
+        <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
+
+        <h3>2. Datenerfassung auf dieser Website</h3>
+        <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.</p>
+
+        <h3>3. Analyse-Tools und Tools von Drittanbietern</h3>
+        <p>Beim Besuch dieser Website kann Ihr Surf-Verhalten statistisch ausgewertet werden. Dies geschieht vor allem mit Cookies und mit sogenannten Analyseprogrammen.</p>
+
+        <h3>4. Ihre Rechte</h3>
+        <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten.</p>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div>www.anton-familienpop.de</div>
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
+    </div>
 </footer>
+
+<script>
+    function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
+    document.addEventListener('click', function(e) {
+        const sb = document.getElementById("sidebar");
+        const btn = document.querySelector(".menu-btn");
+        if (!sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) {
+            sb.classList.remove("open");
+        }
+    });
+</script>
 </body>
 </html>
