@@ -19,8 +19,16 @@
             --z-index-menu-btn: 210;
         }
 
-        body, html { 
-            margin: 0; padding: 0; min-height: 100%; width: 100%; 
+        /* STICKY FOOTER LOGIC */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body { 
+            display: flex;
+            flex-direction: column;
             font-family: 'Special Elite', cursive;
             background-color: #b0b0b0; 
             background-image: url('TON-AN.png');
@@ -80,14 +88,24 @@
         .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 6s; }
         .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 8s; }
         .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 10s; }
+        /* Apple Icon in Silber/Grau */
         .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 12s; }
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
 
-        .main-grid {
-            position: relative; z-index: var(--z-index-content); padding: 120px 20px;
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            max-width: 1000px; margin: 0 auto;
+        /* MAIN AREA FLEX FILL */
+        main {
+            flex: 1;
+            position: relative; 
+            z-index: var(--z-index-content); 
+            padding: 120px 20px 50px 20px;
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px;
+            max-width: 1000px; 
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .bento-card { background: rgba(255, 255, 255, 0.7); border: 2px solid #000; border-radius: 15px; padding: 25px; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
@@ -96,9 +114,11 @@
         .card-social-info { grid-column: span 1; }
 
         footer { 
-            position: relative; width: 100%; padding: 30px 0; 
-            text-align: center; background: rgba(255,255,255,0.85); 
-            border-top: 2px solid #000; margin-top: 50px; 
+            width: 100%; 
+            padding: 30px 0; 
+            text-align: center; 
+            background: rgba(255,255,255,0.85); 
+            border-top: 2px solid #000; 
             z-index: var(--z-index-content);
         }
         .footer-content { max-width: 1000px; margin: 0 auto; }
@@ -107,7 +127,7 @@
         .footer-links a:hover { border-bottom: 1px solid var(--anton-red); }
 
         @media (max-width: 800px) {
-            .main-grid { grid-template-columns: 1fr; }
+            main { grid-template-columns: 1fr; }
             .card-hero, .card-welcome, .card-social-info { grid-column: span 1; }
             .sidebar-right { display: none; }
         }
@@ -139,7 +159,7 @@
     <a href="#"><i class="fa-brands fa-amazon"></i></a>
 </aside>
 
-<main class="main-grid">
+<main>
     <div class="bento-card card-hero"><h2>ANTON - FAMILIENPOP</h2></div>
     <div class="bento-card card-welcome">
         <h3>Willkommen in Antons Welt!</h3>
