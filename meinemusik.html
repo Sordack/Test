@@ -103,12 +103,14 @@
 
         footer { 
             position: relative; width: 100%; padding: 30px 0; 
-            text-align: center; background: rgba(255,255,255,0.7); 
+            text-align: center; background: rgba(255,255,255,0.85); 
             border-top: 2px solid #000; margin-top: 50px; 
+            z-index: var(--z-index-content);
         }
-        .footer-links { margin-top: 10px; font-size: 0.9rem; }
-        .footer-links a { color: #000; text-decoration: none; margin: 0 15px; border-bottom: 1px solid transparent; }
-        .footer-links a:hover { border-bottom: 1px solid #000; }
+        .footer-content { max-width: 1000px; margin: 0 auto; }
+        .footer-links { margin-top: 15px; font-size: 0.9rem; }
+        .footer-links a { color: #000; text-decoration: none; margin: 0 15px; border-bottom: 1px solid transparent; transition: 0.2s; }
+        .footer-links a:hover { border-bottom: 1px solid var(--anton-red); }
 
         @media (max-width: 800px) {
             .main-grid { grid-template-columns: 1fr; }
@@ -124,7 +126,7 @@
 
 <nav class="sidebar-left" id="sidebar">
     <div style="margin-top: 20px;">
-        <a href="home.html"><i class="fa-solid fa-house"></i> HOME</a>
+        <a href="hauptseite.html"><i class="fa-solid fa-house"></i> HOME</a>
         <a href="meinemusik.html"><i class="fa-solid fa-music"></i> MEINE MUSIK</a>
         <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> SHOP</a>
         <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> KONTAKT</a>
@@ -163,10 +165,12 @@
 </main>
 
 <footer>
-    <div>www.anton-familienpop.de</div>
-    <div class="footer-links">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
+    <div class="footer-content">
+        <div>www.anton-familienpop.de</div>
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
     </div>
 </footer>
 
