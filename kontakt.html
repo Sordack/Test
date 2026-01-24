@@ -19,7 +19,6 @@
             --z-index-menu-btn: 210;
         }
 
-        /* STICKY FOOTER LOGIC */
         html, body {
             height: 100%;
             margin: 0;
@@ -32,7 +31,7 @@
             font-family: 'Special Elite', cursive;
             background-color: #b0b0b0; 
             background-image: url('TON-AN.png');
-            background-size: 100%; 
+            background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -57,6 +56,7 @@
             border-radius: 5px;
         }
 
+        /* SIDEBAR LEFT */
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); 
             width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
@@ -65,9 +65,27 @@
             border-right: 2px solid #000;
         }
         .sidebar-left.open { left: 0; }
-        .sidebar-left a { display: flex; align-items: center; gap: 15px; color: #000; text-decoration: none; font-size: 1.2rem; margin-bottom: 25px; }
+        
+        .nav-item { margin-bottom: 25px; }
+        .sidebar-left a { display: flex; align-items: center; gap: 15px; color: #000; text-decoration: none; font-size: 1.2rem; }
         .sidebar-left a i { width: 25px; text-align: center; }
 
+        .submenu {
+            display: none;
+            flex-direction: column;
+            padding-left: 40px;
+            margin-top: 10px;
+        }
+        .submenu a {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .nav-item:hover .submenu {
+            display: flex;
+        }
+
+        /* SIDEBAR RIGHT */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; 
@@ -75,7 +93,7 @@
             backdrop-filter: blur(3px);
             padding: 20px 0; border-radius: 20px 0 0 20px;
         }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: 0.3s; animation: pulseIcons 18s infinite ease-in-out; }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.3s, color 0.3s; animation: pulseIcons 18s infinite ease-in-out; }
         .sidebar-right a:hover i { animation-play-state: paused; transform: scale(1.6) !important; color: var(--brand-color) !important; }
         
         @keyframes pulseIcons { 
@@ -88,72 +106,50 @@
         .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 6s; }
         .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 8s; }
         .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 10s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 12s; } /* Apple Silber */
+        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 12s; }
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
 
-        /* MAIN CONTENT AREA */
         main {
             flex: 1;
             position: relative; 
             z-index: var(--z-index-content); 
             padding: 120px 20px 50px 20px;
-            max-width: 800px; 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px;
+            max-width: 1000px; 
             margin: 0 auto;
             width: 100%;
             box-sizing: border-box;
         }
         
-        .contact-card { 
-            background: rgba(255, 255, 255, 0.85); 
-            border: 2px solid #000; 
-            border-radius: 15px; 
-            padding: 40px;
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
-        }
+        .bento-card { background: rgba(255, 255, 255, 0.75); border: 2px solid #000; border-radius: 15px; padding: 25px; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
+        .card-form { grid-column: span 2; }
+        .card-info { grid-column: span 1; background: var(--anton-yellow); }
 
-        h2 { color: var(--anton-red); margin-top: 0; }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        /* FORM STYLING */
+        .contact-form { display: flex; flex-direction: column; gap: 15px; }
+        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        .form-group label { font-weight: bold; font-size: 0.9rem; }
+        .form-group input, .form-group textarea { 
+            padding: 10px; border: 2px solid #000; border-radius: 5px; 
+            font-family: 'Special Elite', cursive; background: rgba(255,255,255,0.8);
         }
-
-        .contact-form input, .contact-form textarea {
-            font-family: 'Special Elite', cursive;
-            padding: 12px;
-            border: 2px solid #000;
-            border-radius: 5px;
-            background: #fff;
-            font-size: 1rem;
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .submit-btn { 
+            background: #000; color: #fff; padding: 12px; border: none; 
+            border-radius: 5px; cursor: pointer; font-family: 'Special Elite', cursive; 
+            font-size: 1.1rem; transition: 0.3s;
         }
-
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .send-btn {
-            background: #000;
-            color: #fff;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-family: 'Special Elite', cursive;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .send-btn:hover {
-            background: var(--anton-red);
-            transform: translateY(-2px);
-        }
+        .submit-btn:hover { background: var(--anton-red); transform: scale(1.02); }
 
         footer { 
-            width: 100%; padding: 30px 0; text-align: center; 
-            background: rgba(255,255,255,0.85); border-top: 2px solid #000; 
+            width: 100%; 
+            padding: 30px 0; 
+            text-align: center; 
+            background: rgba(255,255,255,0.85); 
+            border-top: 2px solid #000; 
             z-index: var(--z-index-content);
         }
         .footer-content { max-width: 1000px; margin: 0 auto; }
@@ -162,8 +158,9 @@
         .footer-links a:hover { border-bottom: 1px solid var(--anton-red); }
 
         @media (max-width: 800px) {
+            main { grid-template-columns: 1fr; }
+            .card-form, .card-info { grid-column: span 1; }
             .sidebar-right { display: none; }
-            .contact-card { padding: 20px; }
         }
     </style>
 </head>
@@ -174,10 +171,22 @@
 
 <nav class="sidebar-left" id="sidebar">
     <div style="margin-top: 20px;">
-        <a href="hauptseite.html"><i class="fa-solid fa-house"></i> HOME</a>
-        <a href="meinemusik.html"><i class="fa-solid fa-music"></i> MEINE MUSIK</a>
-        <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> SHOP</a>
-        <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> KONTAKT</a>
+        <div class="nav-item">
+            <a href="hauptseite.html"><i class="fa-solid fa-house"></i> HOME</a>
+        </div>
+        <div class="nav-item">
+            <a href="meinemusik.html"><i class="fa-solid fa-music"></i> MEINE MUSIK</a>
+            <div class="submenu">
+                <a href="uebermich.html"><i class="fa-solid fa-user"></i> ÜBER MICH</a>
+                <a href="konzerte.html"><i class="fa-solid fa-calendar-days"></i> KONZERTE</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> SHOP</a>
+        </div>
+        <div class="nav-item">
+            <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> KONTAKT</a>
+        </div>
     </div>
 </nav>
 
@@ -194,17 +203,35 @@
 </aside>
 
 <main>
-    <div class="contact-card">
-        <h2>SCHREIB MIR!</h2>
-        <p>Hast du Fragen zu Auftritten oder zum Album? Melde dich einfach.</p>
-        
+    <div class="bento-card card-form">
+        <h2>Schreib mir!</h2>
         <form class="contact-form">
-            <input type="text" placeholder="Dein Name" required>
-            <input type="email" placeholder="Deine E-Mail Adresse" required>
-            <input type="text" placeholder="Betreff">
-            <textarea placeholder="Deine Nachricht an Anton..." required></textarea>
-            <button type="submit" class="send-btn">NACHRICHT ABSENDEN</button>
+            <div class="form-group">
+                <label for="name">Dein Name</label>
+                <input type="text" id="name" placeholder="Wie heißt du?" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Deine E-Mail</label>
+                <input type="email" id="email" placeholder="Deine Mail-Adresse" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Betreff</label>
+                <input type="text" id="subject" placeholder="Worum geht's?">
+            </div>
+            <div class="form-group">
+                <label for="message">Nachricht</label>
+                <textarea id="message" placeholder="Deine Nachricht an ANTON..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">ABSCHICKEN <i class="fa-solid fa-paper-plane"></i></button>
         </form>
+    </div>
+
+    <div class="bento-card card-info">
+        <h3>Direkt-Kontakt</h3>
+        <p><i class="fa-solid fa-envelope"></i> info@anton-familienpop.de</p>
+        <hr style="border: 1px solid #000;">
+        <h3>Booking</h3>
+        <p>Du willst ANTON für ein Event buchen? Schreib mir einfach eine Mail mit dem Betreff "Booking".</p>
     </div>
 </main>
 
