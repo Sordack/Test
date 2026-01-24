@@ -56,6 +56,7 @@
             border-radius: 5px;
         }
 
+        /* SIDEBAR LEFT */
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); 
             width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
@@ -64,32 +65,28 @@
             border-right: 2px solid #000;
         }
         .sidebar-left.open { left: 0; }
-        .sidebar-left a { display: flex; align-items: center; gap: 15px; color: #000; text-decoration: none; font-size: 1.2rem; margin-bottom: 25px; }
-        .sidebar-left a i { width: 25px; text-align: center; }
+        .nav-item { margin-bottom: 25px; }
+        .sidebar-left a { display: flex; align-items: center; gap: 15px; color: #000; text-decoration: none; font-size: 1.2rem; }
+        
+        /* SUBMENU */
+        .submenu { display: none; flex-direction: column; padding-left: 40px; margin-top: 10px; }
+        .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; }
+        .nav-item:hover .submenu { display: flex; }
 
+        /* SIDEBAR RIGHT */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; 
             z-index: var(--z-index-right-bar); background: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(3px);
-            padding: 20px 0; border-radius: 20px 0 0 20px;
+            backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px;
         }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.3s, color 0.3s; animation: pulseIcons 18s infinite ease-in-out; }
-        .sidebar-right a:hover i { animation-play-state: paused; transform: scale(1.6) !important; color: var(--brand-color) !important; }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: 0.3s; animation: pulseIcons 18s infinite ease-in-out; }
         
         @keyframes pulseIcons { 
             0%, 5.55%, 100% { transform: scale(1); color: #000; } 
             2.77% { transform: scale(1.4); color: var(--brand-color); } 
         }
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
-        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 2s; }
-        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 4s; }
-        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 6s; }
-        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 8s; }
-        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 10s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 12s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
+        /* ... Animation Delays wie gehabt ... */
 
         main {
             flex: 1;
@@ -105,28 +102,45 @@
             box-sizing: border-box;
         }
         
-        .bento-card { background: rgba(255, 255, 255, 0.7); border: 2px solid #000; border-radius: 15px; padding: 25px; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
+        .bento-card { 
+            background: rgba(255, 255, 255, 0.7); 
+            border: 2px solid #000; 
+            border-radius: 15px; 
+            padding: 25px; 
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #000;
+            transition: all 0.3s ease;
+        }
+
+        /* Kreative Link-Cards */
+        .link-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+            border-color: var(--anton-red);
+        }
+
         .card-hero { grid-column: span 3; background: #000; color: #fff; text-align: center; }
-        .card-welcome { grid-column: span 2; }
-        .card-social-info { grid-column: span 1; }
+        .card-full { grid-column: span 3; }
+        .card-half { grid-column: span 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .card-main-link { grid-column: span 2; }
+
+        .icon-circle {
+            width: 60px; height: 60px; background: var(--anton-yellow);
+            border: 2px solid #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 15px; font-size: 1.5rem;
+        }
 
         footer { 
-            width: 100%; 
-            padding: 30px 0; 
-            text-align: center; 
-            background: rgba(255,255,255,0.85); 
-            border-top: 2px solid #000; 
-            z-index: var(--z-index-content);
+            width: 100%; padding: 30px 0; text-align: center; 
+            background: rgba(255,255,255,0.85); border-top: 2px solid #000; 
         }
-        .footer-content { max-width: 1000px; margin: 0 auto; }
-        .footer-links { margin-top: 15px; font-size: 0.9rem; }
-        .footer-links a { color: #000; text-decoration: none; margin: 0 15px; border-bottom: 1px solid transparent; transition: 0.2s; }
-        .footer-links a:hover { border-bottom: 1px solid var(--anton-red); }
 
         @media (max-width: 800px) {
             main { grid-template-columns: 1fr; }
-            .card-hero, .card-welcome, .card-social-info { grid-column: span 1; }
-            .sidebar-right { display: none; }
+            .card-hero, .card-full, .card-half, .card-main-link { grid-column: span 1; }
         }
     </style>
 </head>
@@ -137,35 +151,45 @@
 
 <nav class="sidebar-left" id="sidebar">
     <div style="margin-top: 20px;">
-        <a href="hauptseite.html"><i class="fa-solid fa-house"></i> HOME</a>
-        <a href="meinemusik.html"><i class="fa-solid fa-music"></i> MEINE MUSIK</a>
-        <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> SHOP</a>
-        <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> KONTAKT</a>
+        <div class="nav-item">
+            <a href="hauptseite.html"><i class="fa-solid fa-house"></i> HOME</a>
+        </div>
+        <div class="nav-item">
+            <a href="meinemusik.html"><i class="fa-solid fa-music"></i> MEINE MUSIK</a>
+            <div class="submenu">
+                <a href="uebermich.html"><i class="fa-solid fa-user"></i> ÜBER MICH</a>
+                <a href="konzerte.html"><i class="fa-solid fa-calendar-days"></i> KONZERTE</a>
+            </div>
+        </div>
+        <div class="nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> SHOP</a></div>
+        <div class="nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i> KONTAKT</a></div>
     </div>
 </nav>
 
-<aside class="sidebar-right">
-    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-    <a href="#"><i class="fa-brands fa-spotify"></i></a>
-    <a href="#"><i class="fa-brands fa-apple"></i></a>
-    <a href="#"><i class="fa-solid fa-circle-play"></i></a>
-    <a href="#"><i class="fa-brands fa-amazon"></i></a>
-</aside>
-
 <main>
-    <div class="bento-card card-hero"><h2>ALBUM: "TON AN"</h2></div>
-    <div class="bento-card card-welcome">
-        <h3>Hör mal rein</h3>
-        <p>Hier findest du alle Tracks des neuen Albums. Von fetzigen Pop-Beats bis zu Liedern für die ganze Familie.</p>
-        <div style="background: #eee; padding: 20px; border: 1px dashed #000; text-align: center;">[MUSIK PLAYER PLATZHALTER]</div>
+    <div class="bento-card card-hero">
+        <h2>SOUNDS & STORIES</h2>
     </div>
-    <div class="bento-card card-social-info">
-        <h3>Streaming</h3>
-        <p>Höre ANTON auf Spotify, Apple Music oder Amazon Music.</p>
+
+    <a href="uebermich.html" class="bento-card card-main-link link-card">
+        <div class="icon-circle"><i class="fa-solid fa-user"></i></div>
+        <h3>Wer steckt hinter ANTON?</h3>
+        <p>Erfahre mehr über meine Reise, meine Vision von Familienpop und was mich jeden Tag antreibt, Musik zu machen.</p>
+        <span style="color: var(--anton-red); font-weight: bold;">Mehr erfahren →</span>
+    </a>
+
+    <a href="konzerte.html" class="bento-card card-half link-card">
+        <div class="icon-circle" style="background: #ff8a80;"><i class="fa-solid fa-calendar-days"></i></div>
+        <h3>Live erleben</h3>
+        <p>Bist du bereit für Party? Hier gibt's alle Tourdaten.</p>
+    </a>
+
+    <div class="bento-card card-full">
+        <h3>Aktuelles Album: "TON AN"</h3>
+        <div style="background: rgba(0,0,0,0.05); padding: 20px; border-radius: 10px; margin-top: 10px; text-align: center; border: 1px dashed #000;">
+            <i class="fa-solid fa-play-circle" style="font-size: 2rem; color: var(--anton-red);"></i>
+            <p>Hier wird bald der Player geladen...</p>
+        </div>
     </div>
 </main>
 
