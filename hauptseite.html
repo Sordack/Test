@@ -76,7 +76,7 @@
             padding-left: 40px;
             margin-top: 10px;
         }
-        .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; }
+        .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; text-decoration: none; }
         .nav-item:hover .submenu { display: flex; }
 
         /* SIDEBAR RIGHT */
@@ -133,7 +133,7 @@
         }
         .footer-content { max-width: 1000px; margin: 0 auto; }
         
-        /* Einheitlicher Link-Stil im Footer */
+        /* Einheitlicher Stil für alle Footer-Links */
         .footer-main-link, .footer-links a { 
             color: #000; 
             text-decoration: none; 
@@ -167,7 +167,7 @@
         <div class="nav-item">
             <a href="meinemusik.html"><i class="fa-solid fa-music"></i> MEINE MUSIK</a>
             <div class="submenu">
-                <a href="uebermich.html"><i class="fa-solid fa-user"></i> ÜBER MICH</a>
+                <a href="ueber-mich.html"><i class="fa-solid fa-user"></i> ÜBER MICH</a>
                 <a href="konzerte.html"><i class="fa-solid fa-calendar-days"></i> KONZERTE</a>
             </div>
         </div>
@@ -220,8 +220,10 @@
     document.addEventListener('click', function(e) {
         const sb = document.getElementById("sidebar");
         const btn = document.querySelector(".menu-btn");
-        if (!sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) {
-            sb.classList.remove("open");
+        if (sb && btn) {
+            if (!sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) {
+                sb.classList.remove("open");
+            }
         }
     });
 </script>
