@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | SHOP</title>
+    <title>ANTON | KONTAKT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     
@@ -127,6 +127,7 @@
             text-align: center;
         }
 
+        /* Submenü-Logik */
         .submenu-indicator-wrapper {
             flex-grow: 1;
             display: flex;
@@ -224,16 +225,10 @@
             color: #000;
         }
 
-        .bento-item:hover { 
-            transform: translateY(-5px); 
-            border-color: var(--anton-red); 
-        }
-
-        /* Shop Bento Zuordnung */
-        .item-hero { grid-column: span 2; grid-row: span 2; }
-        .item-product-1 { grid-column: span 2; }
-        .item-product-2 { grid-column: span 1; }
-        .item-product-3 { grid-column: span 1; }
+        /* Kontakt spezifische Grid-Anpassung */
+        .item-contact-info { grid-column: span 2; grid-row: span 2; }
+        .item-social-cta { grid-column: span 2; }
+        .item-email-cta { grid-column: span 2; }
 
         /* --- FOOTER --- */
         footer {
@@ -272,7 +267,7 @@
 
         @media (max-width: 850px) {
             .bento-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-            .item-hero, .item-product-1 { grid-column: span 2; }
+            .item-contact-info, .item-social-cta, .item-email-cta { grid-column: span 2; }
             .sidebar-right { display: none; }
         }
     </style>
@@ -310,13 +305,13 @@
         </div>
 
         <div class="nav-item">
-            <a href="shop.html" style="color: var(--anton-red);">
+            <a href="shop.html">
                 <span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span>
             </a>
         </div>
 
         <div class="nav-item">
-            <a href="kontakt.html">
+            <a href="kontakt.html" style="color: var(--anton-red);">
                 <span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span>
             </a>
         </div>
@@ -331,28 +326,21 @@
 
     <main>
         <div class="bento-grid">
-            <div class="bento-item item-hero">
-                <h2 style="color: var(--anton-red); margin: 0;">OFFIZIELLER SHOP</h2>
-                <p>Hol dir den Anton-Style nach Hause!</p>
+            <div class="bento-item item-contact-info">
+                <h2 style="color: var(--anton-red);">SAY HELLO!</h2>
+                <p>Du hast Fragen oder möchtest Anton buchen?</p>
+                <p style="font-weight: bold; font-size: 1.2rem;">management@anton.de</p>
             </div>
             
-            <a href="#" class="bento-item item-product-1">
-                <i class="fa-solid fa-shirt fa-3x" style="margin-bottom: 10px;"></i>
-                <h3>ANTON T-SHIRT</h3>
-                <span style="color: var(--anton-red); font-weight: bold;">24,90 €</span>
-            </a>
+            <div class="bento-item item-social-cta">
+                <h3>FOLGE MIR</h3>
+                <p>Immer up-to-date auf Instagram & TikTok</p>
+            </div>
 
-            <a href="#" class="bento-item item-product-2">
-                <i class="fa-solid fa-compact-disc fa-2x" style="margin-bottom: 10px;"></i>
-                <h3>ALBUM CD</h3>
-                <span style="color: var(--anton-red); font-weight: bold;">17,90 €</span>
-            </a>
-
-            <a href="#" class="bento-item item-product-3">
-                <i class="fa-solid fa-hat-wizard fa-2x" style="margin-bottom: 10px;"></i>
-                <h3>CAP</h3>
-                <span style="color: var(--anton-red); font-weight: bold;">19,90 €</span>
-            </a>
+            <div class="bento-item item-email-cta">
+                <h3>PRESSE</h3>
+                <p>Presse-Materialien auf Anfrage.</p>
+            </div>
         </div>
     </main>
 
@@ -375,7 +363,6 @@
         document.addEventListener('click', function(event) {
             const sidebar = document.getElementById('sidebar');
             const menuBtn = document.querySelector('.menu-btn');
-
             if (sidebar.classList.contains('open') && 
                 !sidebar.contains(event.target) && 
                 !menuBtn.contains(event.target)) {
