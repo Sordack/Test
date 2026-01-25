@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | KONTAKT</title>
+    <title>ANTON | SHOP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     
@@ -190,45 +190,74 @@
             transform: scale(1.2);
         }
 
-        /* --- MAIN CONTENT & BENTO GRID --- */
+        /* --- MAIN CONTENT --- */
         main {
             flex: 1;
             padding: 120px 20px 50px;
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             width: 100%;
             box-sizing: border-box;
         }
 
-        .bento-grid { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            grid-template-rows: repeat(2, 250px); 
-            gap: 20px; 
-            width: 100%; 
+        /* Shop Inhalt Style (Passend zum Master-Look) */
+        .shop-container {
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px solid #000;
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(5px);
         }
 
-        .bento-item { 
-            background: rgba(255, 255, 255, 0.85); 
-            border: 2px solid #000; 
-            border-radius: 15px; 
-            backdrop-filter: blur(5px); 
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            padding: 20px; 
-            transition: transform 0.3s;
-            text-decoration: none; 
-            color: #000;
+        .shop-title {
+            color: var(--anton-red);
+            text-align: center;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
 
-        /* Kontakt spezifische Grid-Anpassung */
-        .item-contact-info { grid-column: span 2; grid-row: span 2; }
-        .item-social-cta { grid-column: span 2; }
-        .item-email-cta { grid-column: span 2; }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-item {
+            text-align: center;
+            border: 1px solid #000;
+            padding: 20px;
+            border-radius: 10px;
+            background: #fff;
+            transition: transform 0.2s;
+        }
+
+        .product-item:hover {
+            transform: scale(1.02);
+            border-color: var(--anton-red);
+        }
+
+        .price {
+            display: block;
+            font-weight: bold;
+            margin: 10px 0;
+            color: var(--anton-red);
+        }
+
+        .buy-button {
+            background: #000;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .buy-button:hover {
+            background: var(--anton-red);
+        }
 
         /* --- FOOTER --- */
         footer {
@@ -265,10 +294,11 @@
             border-bottom: 1px solid var(--anton-red);
         }
 
-        @media (max-width: 850px) {
-            .bento-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-            .item-contact-info, .item-social-cta, .item-email-cta { grid-column: span 2; }
-            .sidebar-right { display: none; }
+        /* Mobile Adjustments */
+        @media (max-width: 750px) {
+            .sidebar-right {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -305,13 +335,13 @@
         </div>
 
         <div class="nav-item">
-            <a href="shop.html">
+            <a href="shop.html" style="color: var(--anton-red);">
                 <span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span>
             </a>
         </div>
 
         <div class="nav-item">
-            <a href="kontakt.html" style="color: var(--anton-red);">
+            <a href="kontakt.html">
                 <span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span>
             </a>
         </div>
@@ -325,21 +355,21 @@
     </aside>
 
     <main>
-        <div class="bento-grid">
-            <div class="bento-item item-contact-info">
-                <h2 style="color: var(--anton-red);">SAY HELLO!</h2>
-                <p>Du hast Fragen oder möchtest Anton buchen?</p>
-                <p style="font-weight: bold; font-size: 1.2rem;">management@anton.de</p>
-            </div>
-            
-            <div class="bento-item item-social-cta">
-                <h3>FOLGE MIR</h3>
-                <p>Immer up-to-date auf Instagram & TikTok</p>
-            </div>
-
-            <div class="bento-item item-email-cta">
-                <h3>PRESSE</h3>
-                <p>Presse-Materialien auf Anfrage.</p>
+        <div class="shop-container">
+            <h2 class="shop-title">Offizieller Shop</h2>
+            <div class="product-list">
+                <div class="product-item">
+                    <i class="fa-solid fa-shirt fa-4x"></i>
+                    <h3>Anton Shirt</h3>
+                    <span class="price">24,90 €</span>
+                    <a href="#" class="buy-button">Kaufen</a>
+                </div>
+                <div class="product-item">
+                    <i class="fa-solid fa-compact-disc fa-4x"></i>
+                    <h3>Das Album</h3>
+                    <span class="price">17,90 €</span>
+                    <a href="#" class="buy-button">Kaufen</a>
+                </div>
             </div>
         </div>
     </main>
@@ -363,6 +393,7 @@
         document.addEventListener('click', function(event) {
             const sidebar = document.getElementById('sidebar');
             const menuBtn = document.querySelector('.menu-btn');
+
             if (sidebar.classList.contains('open') && 
                 !sidebar.contains(event.target) && 
                 !menuBtn.contains(event.target)) {
