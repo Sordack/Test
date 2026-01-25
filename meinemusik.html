@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | Über mich</title>
+    <title>ANTON | MEINE MUSIK</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     
@@ -36,7 +36,7 @@
             backdrop-filter: blur(10px); border-bottom: 2px solid #000;
         }
         
-        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; }
+        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; }
 
         .menu-btn { 
             position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
@@ -85,12 +85,16 @@
 
         main {
             flex: 1; position: relative; z-index: var(--z-index-content); 
-            padding: 120px 20px 50px 20px; max-width: 800px; margin: 0 auto; width: 100%; box-sizing: border-box;
+            padding: 120px 20px 50px 20px; display: grid; 
+            grid-template-columns: repeat(3, 1fr); gap: 20px;
+            max-width: 1000px; margin: 0 auto; width: 100%; box-sizing: border-box;
         }
-        .bio-card { 
-            background: rgba(255, 255, 255, 0.85); border: 2px solid #000; 
-            border-radius: 15px; padding: 40px; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); backdrop-filter: blur(5px);
+        .bento-card { 
+            background: rgba(255, 255, 255, 0.75); border: 2px solid #000; 
+            border-radius: 15px; padding: 25px; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); backdrop-filter: blur(5px);
         }
+        .card-album-hero { grid-column: span 3; display: flex; gap: 30px; align-items: center; }
+        .album-cover-placeholder { width: 180px; height: 180px; background: #eee; border: 2px solid #000; display: flex; align-items: center; justify-content: center; }
 
         footer { 
             width: 100%; padding: 20px 0; background: rgba(255,255,255,0.9); 
@@ -101,12 +105,16 @@
         .footer-links { font-size: 0.9rem; display: flex; gap: 20px; }
         .footer-links a { color: #000; text-decoration: none; }
 
-        @media (max-width: 800px) { .sidebar-right { display: none; } .bio-card { padding: 20px; } }
+        @media (max-width: 800px) {
+            main { grid-template-columns: 1fr; }
+            .card-album-hero { grid-column: span 1; flex-direction: column; text-align: center; }
+            .sidebar-right { display: none; }
+        }
     </style>
 </head>
 <body>
 
-<header><div class="header-title">ANTON</div></header>
+<header><div class="header-title">MEINE MUSIK</div></header>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <nav class="sidebar-left" id="sidebar">
@@ -136,10 +144,12 @@
 </aside>
 
 <main>
-    <div class="bio-card">
-        <h2>Hi, ich bin ANTON!</h2>
-        <p>Hier erfährst du mehr über meine Reise, meine Musik und was mich antreibt. Familienpop mit Herz und Energie.</p>
-        <p>In Kürze findest du hier meine komplette Story...</p>
+    <div class="bento-card card-album-hero">
+        <div class="album-cover-placeholder"><i class="fa-solid fa-compact-disc fa-4x"></i></div>
+        <div>
+            <h2>Album: TON AN</h2>
+            <p>Das neue Meisterwerk – jetzt reinhören!</p>
+        </div>
     </div>
 </main>
 
