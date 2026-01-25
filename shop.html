@@ -19,271 +19,180 @@
             --z-index-menu-btn: 210;
         }
 
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+        html, body { height: 100%; margin: 0; padding: 0; }
 
         body { 
-            display: flex;
-            flex-direction: column;
-            font-family: 'Special Elite', cursive;
-            background-color: #ffffff; 
-            background-image: url('TON-AN.png');
-            background-size: cover; 
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-blend-mode: multiply; 
-            overflow-x: hidden;
+            display: flex; flex-direction: column; font-family: 'Special Elite', cursive;
+            background-color: #ffffff; background-image: url('AFaPo Wall.png');
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            background-attachment: fixed; background-blend-mode: multiply; overflow-x: hidden;
         }
 
+        /* --- NAVIGATION (Identisch mit Hauptseite) --- */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
-            z-index: var(--z-index-header); 
-            background: rgba(255, 255, 255, 0.8); 
-            backdrop-filter: blur(10px); 
-            border-bottom: 2px solid #000;
+            z-index: var(--z-index-header); background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); border-bottom: 2px solid #000;
         }
-        .header-title { color: var(--anton-red); font-size: 1.8rem; }
-
-        .menu-btn { 
-            position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
-            z-index: var(--z-index-menu-btn); background: #000; color: #fff; 
-            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; 
-            border-radius: 5px;
-        }
-
-        /* SIDEBAR LEFT */
-        .sidebar-left { 
-            position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); 
-            width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
-            z-index: var(--z-index-sidebar); display: flex; flex-direction: column; padding: 100px 20px;
-            transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-right: 2px solid #000;
-        }
-        .sidebar-left.open { left: 0; }
         
-        .nav-item { margin-bottom: 25px; }
-        .sidebar-left a { display: flex; align-items: center; gap: 15px; color: #000; text-decoration: none; font-size: 1.2rem; }
-        .sidebar-left a i { width: 25px; text-align: center; }
+        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; }
 
-        .submenu {
-            display: none;
-            flex-direction: column;
-            padding-left: 40px;
-            margin-top: 10px;
-        }
+        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: var(--z-index-menu-btn); background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
+
+        .sidebar-left { position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: var(--z-index-sidebar); display: flex; flex-direction: column; padding: 100px 20px; transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-right: 2px solid #000; box-sizing: border-box; }
+        .sidebar-left.open { left: 0; }
+        .nav-item { margin-bottom: 25px; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.2rem; width: 100%; }
+        .nav-label { display: flex; align-items: center; gap: 15px; }
+        
+        .submenu { display: none; flex-direction: column; padding-left: 40px; margin-top: 10px; }
         .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; text-decoration: none; }
         .nav-item:hover .submenu { display: flex; }
 
-        /* SIDEBAR RIGHT */
-        .sidebar-right {
-            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
-            display: flex; flex-direction: column; align-items: center; gap: 15px; 
-            z-index: var(--z-index-right-bar); background: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(3px);
-            padding: 20px 0; border-radius: 20px 0 0 20px;
-        }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.3s, color 0.3s; animation: pulseIcons 18s infinite ease-in-out; }
-        .sidebar-right a:hover i { animation-play-state: paused; transform: scale(1.6) !important; color: var(--brand-color) !important; }
+        /* --- SHOP SPECIFIC STYLES --- */
+        main { flex: 1; z-index: var(--z-index-content); padding: 120px 20px 50px 20px; max-width: 1000px; margin: 0 auto; width: 100%; box-sizing: border-box; }
         
-        @keyframes pulseIcons { 
-            0%, 5.55%, 100% { transform: scale(1); color: #000; } 
-            2.77% { transform: scale(1.4); color: var(--brand-color); } 
-        }
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
-        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 2s; }
-        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 4s; }
-        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 6s; }
-        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 8s; }
-        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 10s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 12s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
-
-        /* SHOP CONTENT */
-        main {
-            flex: 1;
-            position: relative; 
-            z-index: var(--z-index-content); 
-            padding: 120px 20px 50px 20px;
-            max-width: 1000px; 
-            margin: 0 auto;
-            width: 100%;
-            box-sizing: border-box;
+        .shop-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 30px; 
+            margin-top: 30px;
         }
 
-        .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+        .product-card { 
+            background: rgba(255, 255, 255, 0.9); 
+            border: 2px solid #000; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            transition: transform 0.3s ease;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
         }
 
-        .product-card {
-            background: rgba(255, 255, 255, 0.85);
-            border: 2px solid #000;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+        .product-card:hover { transform: translateY(-5px); }
 
-        .product-img-placeholder {
-            width: 100%;
-            height: 200px;
-            background: #f0f0f0;
-            border: 2px dashed #ccc;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-
-        .product-price {
-            font-size: 1.4rem;
-            color: var(--anton-red);
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .btn-buy {
-            background: #000;
-            color: #fff;
-            padding: 12px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
-            font-size: 0.9rem;
-        }
-        .btn-buy:hover { background: var(--anton-red); }
-
-        footer { 
+        .product-image { 
             width: 100%; 
-            padding: 30px 0; 
-            text-align: center; 
-            background: rgba(255,255,255,0.85); 
-            border-top: 2px solid #000; 
-            z-index: var(--z-index-content);
+            height: 200px; 
+            background: #eee; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-bottom: 2px solid #000;
         }
-        .footer-content { max-width: 1000px; margin: 0 auto; }
         
-        .footer-main-link, .footer-links a { 
-            color: #000; 
-            text-decoration: none; 
-            margin: 0 15px; 
-            border-bottom: 1px solid transparent; 
-            transition: 0.2s; 
-            display: inline-block;
-        }
-        .footer-main-link:hover, .footer-links a:hover { 
-            border-bottom: 1px solid var(--anton-red); 
-        }
-        .footer-links { margin-top: 15px; font-size: 0.9rem; }
+        .product-image i { font-size: 4rem; color: #ccc; }
 
-        @media (max-width: 800px) {
-            .sidebar-right { display: none; }
+        .product-info { padding: 20px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; }
+        
+        .product-title { font-size: 1.2rem; margin: 0 0 10px 0; color: #000; }
+        
+        .product-price { font-size: 1.4rem; color: var(--anton-red); font-weight: bold; margin-bottom: 15px; }
+
+        .buy-btn { 
+            background: #000; 
+            color: #fff; 
+            text-decoration: none; 
+            padding: 10px; 
+            border-radius: 5px; 
+            transition: background 0.3s; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px;
         }
+        
+        .buy-btn:hover { background: var(--anton-red); }
+
+        /* --- FOOTER & SIDEBAR RIGHT --- */
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: var(--z-index-right-bar); background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px; }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; }
+
+        footer { width: 100%; padding: 20px 0; background: rgba(255,255,255,0.9); border-top: 2px solid #000; text-align: center; margin-top: auto; }
+        .footer-links { display: flex; gap: 20px; justify-content: center; margin-top: 10px; font-size: 0.8rem; }
+
+        @media (max-width: 600px) { .sidebar-right { display: none; } }
     </style>
 </head>
 <body>
 
-<header><div class="header-title">ANTON | SHOP</div></header>
+<header><div class="header-title">MERCH & SHOP</div></header>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <nav class="sidebar-left" id="sidebar">
     <div style="margin-top: 20px;">
+        <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house"></i> HOME</span></a></div>
         <div class="nav-item">
-            <a href="hauptseite.html"><i class="fa-solid fa-house"></i> HOME</a>
-        </div>
-        <div class="nav-item">
-            <a href="meinemusik.html"><i class="fa-solid fa-music"></i> MEINE MUSIK</a>
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music"></i> MEINE MUSIK</span></a>
             <div class="submenu">
-                <a href="ueber-mich.html"><i class="fa-solid fa-user"></i> ÜBER MICH</a>
-                <a href="konzerte.html"><i class="fa-solid fa-calendar-days"></i> KONZERTE</a>
+                <a href="ueber-mich.html">ÜBER MICH</a>
+                <a href="konzerte.html">KONZERTE</a>
             </div>
         </div>
-        <div class="nav-item">
-            <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> SHOP</a>
-        </div>
-        <div class="nav-item">
-            <a href="kontakt.html"><i class="fa-solid fa-envelope"></i> KONTAKT</a>
-        </div>
+        <div class="nav-item"><a href="shop.html" style="color: var(--anton-red);"><span class="nav-label"><i class="fa-solid fa-cart-shopping"></i> SHOP</span></a></div>
+        <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope"></i> KONTAKT</span></a></div>
     </div>
 </nav>
 
 <aside class="sidebar-right">
     <a href="#"><i class="fa-brands fa-youtube"></i></a>
-    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
     <a href="#"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="#"><i class="fa-brands fa-facebook"></i></a>
     <a href="#"><i class="fa-brands fa-spotify"></i></a>
-    <a href="#"><i class="fa-brands fa-apple"></i></a>
-    <a href="#"><i class="fa-solid fa-circle-play"></i></a>
-    <a href="#"><i class="fa-brands fa-amazon"></i></a>
 </aside>
 
 <main>
+    <h2 style="text-align: center; text-transform: uppercase;">Hol dir den Sound nach Hause!</h2>
+    
     <div class="shop-grid">
         <div class="product-card">
-            <div class="product-img-placeholder">[ALBUM CD]</div>
-            <h3>CD "TON AN"</h3>
-            <p class="product-price">17,99 €</p>
-            <a href="#" class="btn-buy">In den Warenkorb</a>
-        </div>
-        
-        <div class="product-card">
-            <div class="product-img-placeholder">[T-SHIRT]</div>
-            <h3>Anton Logo Shirt</h3>
-            <p class="product-price">24,99 €</p>
-            <a href="#" class="btn-buy">In den Warenkorb</a>
+            <div class="product-image"><i class="fa-solid fa-compact-disc"></i></div>
+            <div class="product-info">
+                <h3 class="product-title">Das neue Album</h3>
+                <span class="product-price">17,99 €</span>
+                <a href="#" class="buy-btn"><i class="fa-solid fa-cart-plus"></i> In den Warenkorb</a>
+            </div>
         </div>
 
         <div class="product-card">
-            <div class="product-img-placeholder">[HOODIE]</div>
-            <h3>Fan Hoodie</h3>
-            <p class="product-price">49,99 €</p>
-            <a href="#" class="btn-buy">In den Warenkorb</a>
+            <div class="product-image"><i class="fa-solid fa-shirt"></i></div>
+            <div class="product-info">
+                <h3 class="product-title">Anton Tour T-Shirt</h3>
+                <span class="product-price">24,95 €</span>
+                <a href="#" class="buy-btn"><i class="fa-solid fa-cart-plus"></i> In den Warenkorb</a>
+            </div>
         </div>
 
         <div class="product-card">
-            <div class="product-img-placeholder">[CAP]</div>
-            <h3>Anton Snapback</h3>
-            <p class="product-price">19,99 €</p>
-            <a href="#" class="btn-buy">In den Warenkorb</a>
+            <div class="product-image"><i class="fa-solid fa-face-grin-stars"></i></div>
+            <div class="product-info">
+                <h3 class="product-title">Sticker Set (10 Stk.)</h3>
+                <span class="product-price">4,50 €</span>
+                <a href="#" class="buy-btn"><i class="fa-solid fa-cart-plus"></i> In den Warenkorb</a>
+            </div>
         </div>
     </div>
 </main>
 
 <footer>
     <div class="footer-content">
-        <a href="hauptseite.html" class="footer-main-link">www.anton-familienpop.de</a>
+        <a href="hauptseite.html" style="color:#000; text-decoration:none;">www.anton-familienpop.de</a>
         <div class="footer-links">
-            <a href="impressum.html">Impressum</a>
-            <a href="datenschutz.html">Datenschutz</a>
+            <a href="impressum.html" style="color:#000;">Impressum</a>
+            <a href="datenschutz.html" style="color:#000;">Datenschutz</a>
         </div>
     </div>
 </footer>
 
 <script>
     function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-    
     document.addEventListener('click', function(e) {
         const sb = document.getElementById("sidebar");
         const btn = document.querySelector(".menu-btn");
-        if (sb && btn) {
-            if (!sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) {
-                sb.classList.remove("open");
-            }
-        }
+        if (sb && btn && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
     });
 </script>
+
 </body>
 </html>
