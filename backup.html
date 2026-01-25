@@ -47,12 +47,11 @@
             backdrop-filter: blur(10px); 
             border-bottom: 2px solid #000;
         }
-
-        /* Styling für das neue Logo im Header */
-        .header-logo {
-            max-height: 60px;
-            width: auto;
-            display: block;
+        
+        .header-title { 
+            color: var(--anton-red); 
+            font-size: 1.8rem; 
+            text-decoration: none;
         }
 
         .menu-btn { 
@@ -62,7 +61,6 @@
             border-radius: 5px;
         }
 
-        /* SIDEBAR LEFT */
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); 
             width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
@@ -85,7 +83,6 @@
         .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; text-decoration: none; }
         .nav-item:hover .submenu { display: flex; }
 
-        /* SIDEBAR RIGHT */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; 
@@ -127,7 +124,7 @@
         .hero-graffitti-img {
             grid-column: span 3;
             width: 100%;
-            max-height: 320px; 
+            max-height: 208px; /* Reduziert um 35% von 320px */
             object-fit: contain;
             display: block;
             margin-bottom: 20px;
@@ -170,7 +167,7 @@
 <body>
 
 <header>
-    <img src="anton-logo.png" alt="ANTON Logo" class="header-logo">
+    <div class="header-title">ANTON | BACKUP</div>
 </header>
 
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
