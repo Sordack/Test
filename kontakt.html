@@ -6,196 +6,40 @@
     <title>ANTON | KONTAKT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --anton-red: #ff0000;
-            --anton-yellow: #ffeb3b;
-            --sidebar-width: 220px;
-            --z-index-header: 1000;
-            --z-index-sidebar: 1100;
-            --z-index-menu-btn: 1200;
-        }
-
-        /* Footer Fix: Body als Flex-Container */
+        /* [STYLE-BLOCK MASTER EINSETZEN] */
+        :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 220px; --z-index-content: 10; --z-index-right-bar: 999; --z-index-header: 100; --z-index-sidebar: 200; --z-index-menu-btn: 210; }
         html, body { height: 100%; margin: 0; padding: 0; }
-        
-        body { 
-            display: flex; 
-            flex-direction: column; 
-            font-family: 'Special Elite', cursive;
-            background: #ffffff url('AFaPo Wall.png') center/cover no-repeat fixed;
-            background-blend-mode: multiply; 
-            overflow-x: hidden;
-        }
-
-        header { 
-            position: fixed; top: 0; width: 100%; height: 80px; 
-            display: flex; justify-content: center; align-items: center; 
-            z-index: var(--z-index-header); background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(10px); border-bottom: 2px solid #000;
-        }
-        
+        body { display: flex; flex-direction: column; font-family: 'Special Elite', cursive; background-color: #ffffff; background-image: url('AFaPo Wall.png'); background-size: cover; background-position: center; background-attachment: fixed; background-blend-mode: multiply; overflow-x: hidden; }
+        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: var(--z-index-header); background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; }
-
-        .menu-btn { 
-            position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
-            z-index: var(--z-index-menu-btn); background: #000; color: #fff; 
-            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; 
-            border-radius: 5px; border: none;
-        }
-
-        /* SIDEBAR (IDENTISCH MIT ALLEN SEITEN) */
-        .sidebar-left { 
-            position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); 
-            width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
-            z-index: var(--z-index-sidebar); display: flex; flex-direction: column; 
-            padding: 100px 20px; transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border-right: 2px solid #000; box-sizing: border-box; 
-        }
+        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: var(--z-index-menu-btn); background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
+        .sidebar-left { position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: var(--z-index-sidebar); display: flex; flex-direction: column; padding: 100px 20px; transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 25px; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
-        .nav-label { display: flex; align-items: center; gap: 15px; }
-        .main-icon { width: 25px; text-align: center; }
-        
-        .submenu-indicator-wrapper { flex-grow: 1; display: flex; justify-content: flex-end; }
-        .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
-        .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
-        .submenu { display: none; flex-direction: column; padding-left: 40px; margin-top: 10px; }
-        .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; }
-        .nav-item:hover .submenu { display: flex; }
-
-        /* Social Bar Rechts */
-        .sidebar-right { 
-            position: fixed; top: 50%; right: 0; transform: translateY(-50%); 
-            width: 50px; display: flex; flex-direction: column; align-items: center; 
-            gap: 15px; z-index: 500; background: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(5px); padding: 20px 0; border-radius: 20px 0 0 20px; 
-        }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; }
-
-        /* KONTAKT CONTENT */
-        main { flex: 1; padding: 120px 20px 50px; max-width: 800px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        
-        .bio-card { 
-            background: rgba(255, 255, 255, 0.85); border: 2px solid #000; border-radius: 15px; 
-            padding: 40px; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); backdrop-filter: blur(5px);
-        }
-
-        h2 { color: var(--anton-red); text-align: center; text-transform: uppercase; margin-bottom: 30px; }
-
-        .contact-form { display: flex; flex-direction: column; gap: 20px; }
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-group label { font-size: 0.9rem; text-transform: uppercase; font-weight: bold; }
-
-        .contact-form input, .contact-form textarea { 
-            font-family: 'Special Elite', cursive; 
-            padding: 12px; 
-            border: 2px solid #000; 
-            border-radius: 5px; 
-            background: rgba(255,255,255,0.6); 
-            font-size: 1rem;
-            outline: none;
-            transition: background 0.3s, border-color 0.3s;
-        }
-
-        .contact-form input:focus, .contact-form textarea:focus { 
-            background: #fff; 
-            border-color: var(--anton-red); 
-        }
-
-        .send-btn { 
-            background: #000; color: #fff; border: none; padding: 15px; 
-            border-radius: 5px; cursor: pointer; font-family: 'Special Elite'; 
-            font-size: 1.1rem; transition: background 0.3s; text-transform: uppercase;
-            margin-top: 10px;
-        }
-        .send-btn:hover { background: var(--anton-red); }
-
-        /* FOOTER KORREKTUR */
-        footer { 
-            width: 100%; padding: 25px 0; background: rgba(255, 255, 255, 0.95); 
-            border-top: 2px solid #000; text-align: center; margin-top: auto; 
-        }
-        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .footer-links { display: flex; gap: 30px; justify-content: center; }
-        .footer-links a { color: #000; text-decoration: none; font-size: 0.9rem; }
-
-        @media (max-width: 600px) { 
-            .sidebar-right { display: none; }
-            .bio-card { padding: 25px 15px; }
-        }
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: var(--z-index-right-bar); background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+        @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 8% { transform: scale(1.55); color: var(--brand-color); } 20%, 100% { transform: scale(1); color: #000; } }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: all 0.7s ease; animation: ultraFlowWave 7s ease-in-out infinite; }
+        .sidebar-right:hover a i { animation-play-state: paused; color: #000 !important; }
+        .sidebar-right a:hover i { transform: scale(1.75) !important; color: var(--brand-color) !important; }
+        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
+        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
+        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
+        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
+        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
+        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
+        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 1.5s; }
+        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
+        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
+        main { flex: 1; position: relative; z-index: var(--z-index-content); padding: 120px 20px 50px 20px; max-width: 800px; margin: 0 auto; background: rgba(255, 255, 255, 0.9); }
+        footer { width: 100%; padding: 20px 0; background: rgba(255,255,255,0.9); border-top: 2px solid #000; text-align: center; }
     </style>
 </head>
 <body>
-
 <header><div class="header-title">KONTAKT</div></header>
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-<nav class="sidebar-left" id="sidebar">
-    <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> HOME</span></a></div>
-    <div class="nav-item">
-        <a href="meinemusik.html">
-            <span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span>
-            <div class="submenu-indicator-wrapper"><span class="submenu-indicator"><i class="fa-solid fa-caret-down"></i></span></div>
-        </a>
-        <div class="submenu">
-            <a href="ueber-mich.html"><i class="fa-regular fa-face-smile main-icon"></i> ÜBER MICH</a>
-            <a href="konzerte.html"><i class="fa-solid fa-microphone-lines main-icon"></i> KONZERTE</a>
-        </div>
-    </div>
-    <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
-    <div class="nav-item"><a href="kontakt.html" style="color: var(--anton-red);"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-</nav>
-
-<aside class="sidebar-right">
-    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#"><i class="fa-brands fa-spotify"></i></a>
-</aside>
-
-<main>
-    <div class="bio-card">
-        <h2>Schreib mir eine Nachricht</h2>
-        <form class="contact-form">
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" placeholder="Dein Name" required>
-            </div>
-            <div class="form-group">
-                <label>E-Mail</label>
-                <input type="email" placeholder="Deine E-Mail Adresse" required>
-            </div>
-            <div class="form-group">
-                <label>Deine Nachricht</label>
-                <textarea rows="6" placeholder="Was möchtest du mir sagen?" required></textarea>
-            </div>
-            <button type="submit" class="send-btn">Nachricht Absenden</button>
-        </form>
-    </div>
-</main>
-
-<footer>
-    <div class="footer-content">
-        <a href="hauptseite.html" style="color:#000; text-decoration:none; font-weight:bold;">www.anton-familienpop.de</a>
-        <div class="footer-links">
-            <a href="impressum.html">Impressum</a>
-            <a href="datenschutz.html">Datenschutz</a>
-        </div>
-    </div>
-</footer>
-
-<script>
-    function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-    document.addEventListener('click', function(e) {
-        const sb = document.getElementById("sidebar");
-        const btn = document.querySelector(".menu-btn");
-        if (sb.classList.contains("open") && !sb.contains(e.target) && !btn.contains(e.target)) {
-            sb.classList.remove("open");
-        }
-    });
-</script>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<main><h1>Kontakt</h1><p>Schreib mir eine Nachricht!</p></main>
+<footer><div>www.anton-familienpop.de</div></footer>
+<script> function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); } </script>
 </body>
 </html>
