@@ -11,181 +11,40 @@
             --anton-red: #ff0000;
             --anton-yellow: #ffeb3b;
             --sidebar-width: 220px;
-            --z-index-content: 10;
-            --z-index-right-bar: 50;
-            --z-index-header: 100;
-            --z-index-sidebar: 200;
-            --z-index-menu-btn: 210;
         }
 
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
+        /* Grundstruktur bleibt gleich */
+        html, body { height: 100%; margin: 0; padding: 0; overflow-x: hidden; }
+        body { 
+            display: flex; flex-direction: column; font-family: 'Special Elite', cursive;
+            background-image: url('AFaPo Wall.png'); background-size: cover; background-attachment: fixed;
         }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            font-family: 'Special Elite', cursive;
-            background-color: #ffffff;
-            background-image: url('AFaPo Wall.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-blend-mode: multiply;
-            overflow-x: hidden;
+        header { 
+            position: fixed; top: 0; width: 100%; height: 80px; 
+            display: flex; justify-content: center; align-items: center; 
+            z-index: 100; background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); border-bottom: 2px solid #000;
         }
+        .header-title { color: var(--anton-red); font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: var(--z-index-header);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid #000;
-        }
-
-        .header-title {
-            color: var(--anton-red);
-            font-size: 1.8rem;
-            text-decoration: none;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .menu-btn {
-            position: fixed;
-            top: 18px;
-            left: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: var(--z-index-menu-btn);
-            background: #000;
-            color: #fff;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-        }
-
-        .sidebar-left {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: calc(var(--sidebar-width) * -1.2);
-            width: var(--sidebar-width);
-            background: rgba(255, 235, 59, 0.98);
-            z-index: var(--z-index-sidebar);
-            display: flex;
-            flex-direction: column;
-            padding: 100px 20px;
-            transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-right: 2px solid #000;
-            box-sizing: border-box;
-        }
-
-        .sidebar-left.open {
-            left: 0;
-        }
-
-        .nav-item {
-            margin-bottom: 25px;
-        }
-
-        .sidebar-left a {
-            display: flex;
-            align-items: center;
-            color: #000;
-            text-decoration: none;
-            font-size: 1.2rem;
-            width: 100%;
-        }
-
-        .nav-label {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-grow: 0;
-        }
-
-        .sidebar-left a i.main-icon {
-            width: 25px;
-            text-align: center;
-        }
-
-        .submenu-indicator-wrapper {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .submenu-indicator {
-            font-size: 0.8rem;
-            transition: transform 0.3s;
-        }
-
-        .nav-item:hover .submenu-indicator {
-            transform: rotate(180deg);
-        }
-
-        .submenu {
-            display: none;
-            flex-direction: column;
-            padding-left: 40px;
-            margin-top: 10px;
-        }
-
-        .submenu a {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            color: #333;
-            text-decoration: none;
-            display: flex;
-        }
-
-        .nav-item:hover .submenu {
-            display: flex;
-        }
-
+        /* RECHTE SIDEBAR */
         .sidebar-right {
-            position: fixed;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            width: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            z-index: var(--z-index-right-bar);
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(3px);
-            padding: 20px 0;
-            border-radius: 20px 0 0 20px;
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
+            display: flex; flex-direction: column; align-items: center; gap: 15px; 
+            z-index: 50; background: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px;
         }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.3s; animation: pulseIcons 18s infinite ease-in-out; }
 
-        .sidebar-right a i {
-            color: #000;
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-            animation: pulseIcons 18s infinite ease-in-out;
-        }
-
+        /* Animation & Hover */
         @keyframes pulseIcons {
             0%, 5.55%, 100% { transform: scale(1); color: #000; }
             2.77% { transform: scale(1.4); color: var(--brand-color); }
         }
+        .sidebar-right a:hover i { transform: scale(1.6) !important; color: var(--brand-color) !important; animation-play-state: paused; }
 
+        /* Farben der Icons */
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 2s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 4s; }
@@ -196,155 +55,56 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
 
+        /* MAIN CONTENT GRID */
         main {
-            flex: 1;
-            position: relative;
-            z-index: var(--z-index-content);
             padding: 120px 20px 50px 20px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* 3 Spalten Desktop */
             gap: 20px;
             max-width: 1000px;
             margin: 0 auto;
-            width: 100%;
-            box-sizing: border-box;
         }
-
-        .bento-card {
-            background: rgba(255, 255, 255, 0.75);
-            border: 2px solid #000;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-            backdrop-filter: blur(5px);
-            text-align: center;
-        }
-
+        .bento-card { background: rgba(255, 255, 255, 0.75); border: 2px solid #000; border-radius: 15px; padding: 20px; text-align: center; }
         .card-header { grid-column: span 3; }
 
-        footer {
-            width: 100%;
-            padding: 20px 0;
-            background: rgba(255, 255, 255, 0.9);
-            border-top: 2px solid #000;
-            z-index: var(--z-index-content);
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-main-link {
-            color: #000;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
-            font-size: 0.9rem;
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-links a {
-            color: #000;
-            text-decoration: none;
-        }
-
+        /* ############################################# */
+        /* MOBILE OPTIMIERUNG (WICHTIG!) */
+        /* ############################################# */
         @media (max-width: 800px) {
-            main { grid-template-columns: 1fr; }
-            .card-header { grid-column: span 1; }
+            /* 1. Header Schrift etwas kleiner */
+            .header-title { font-size: 1.2rem; }
+
+            /* 2. Rechte Sidebar auf Mobile verstecken (stört sonst beim Wischen) */
             .sidebar-right { display: none; }
+
+            /* 3. Shop-Layout: Alles untereinander statt nebeneinander */
+            main { grid-template-columns: 1fr; padding-top: 100px; }
+            .card-header { grid-column: span 1; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-title">ANTON | SHOP</div>
-    </header>
+<header><div class="header-title">ANTON | SHOP</div></header>
 
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+<aside class="sidebar-right">
+    <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-apple"></i></a>
+    <a href="#" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+</aside>
 
-    <nav class="sidebar-left" id="sidebar">
-        <div style="margin-top: 20px;">
-            <div class="nav-item">
-                <a href="hauptseite.html">
-                    <span class="nav-label"><i class="fa-solid fa-house main-icon"></i> HOME</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="meinemusik.html">
-                    <span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span>
-                    <div class="submenu-indicator-wrapper">
-                        <span class="submenu-indicator"><i class="fa-solid fa-caret-down"></i></span>
-                    </div>
-                </a>
-                <div class="submenu">
-                    <a href="ueber-mich.html"><i class="fa-regular fa-face-smile main-icon"></i> ÜBER MICH</a>
-                    <a href="konzerte.html"><i class="fa-solid fa-microphone-lines main-icon"></i> KONZERTE</a>
-                </div>
-            </div>
-            <div class="nav-item">
-                <a href="shop.html">
-                    <span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="kontakt.html">
-                    <span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+<main>
+    <div class="bento-card card-header"><h3>SHOP</h3></div>
+    <div class="bento-card"><h4>T-SHIRT</h4><p>Demnächst verfügbar</p></div>
+    <div class="bento-card"><h4>CD</h4><p>Demnächst verfügbar</p></div>
+    <div class="bento-card"><h4>STICKER</h4><p>Demnächst verfügbar</p></div>
+</main>
 
-    <aside class="sidebar-right">
-        <a href="https://www.youtube.com/channel/UC-N_WIDidVAtNfX_OOn7fSg" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.instagram.com/anton.familienpop/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://wa.me/4915224424317" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.facebook.com/anton.familienpop" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://open.spotify.com/intl-de/artist/066fA506K42Y366v7X9YvC" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com/de/artist/anton/1545627252" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCpIisV9V_I79p_9fXm7pI_w" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="https://www.amazon.de/music/player/artists/B0025P4S60/anton" target="_blank"><i class="fa-brands fa-amazon"></i></a>
-    </aside>
-
-    <main>
-        <div class="bento-card card-header">
-            <h3>SHOP</h3>
-            <p>Hier entstehen bald die offiziellen Fan-Artikel.</p>
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <a href="hauptseite.html" class="footer-main-link">www.anton-familienpop.de</a>
-            <div class="footer-links">
-                <a href="impressum.html">Impressum</a>
-                <a href="datenschutz.html">Datenschutz</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('open');
-        }
-
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
-            const menuBtn = document.querySelector('.menu-btn');
-            if (sidebar.classList.contains('open')) {
-                if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
-                    sidebar.classList.remove('open');
-                }
-            }
-        });
-    </script>
 </body>
 </html>
