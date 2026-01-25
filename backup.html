@@ -101,7 +101,7 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
 
-        /* Main Grid */
+        /* Main Content Grid */
         main {
             flex: 1; position: relative; z-index: var(--z-index-content); 
             padding: 120px 20px 50px 20px; display: grid; 
@@ -117,22 +117,21 @@
         .card-welcome { grid-column: span 2; }
         .card-social-info { grid-column: span 1; }
 
-        /* Footer Alignment korrigiert */
+        /* Footer Alignment - Wiederhergestellt */
         footer { 
-            width: 100%; padding: 20px 0; background: rgba(255,255,255,0.9); 
+            width: 100%; padding: 25px 0; background: rgba(255,255,255,0.9); 
             border-top: 2px solid #000; z-index: var(--z-index-content);
         }
         .footer-content { 
             display: flex; flex-direction: column; align-items: center; 
-            width: 280px; /* Definierte Breite für die Bündigkeit */
+            width: 280px; /* Basisbreite für die Ausrichtung */
             margin: 0 auto;
         }
         .footer-main-link { 
             color: #000; text-decoration: none; font-weight: normal; 
-            font-size: 0.85rem; /* Gleiche Größe wie Impressum/Datenschutz */
-            width: 100%; text-align: justify;
+            font-size: 0.85rem; width: 100%; text-align: justify;
             text-align-last: justify; 
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             display: block;
         }
         .footer-links { 
