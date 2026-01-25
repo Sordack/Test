@@ -117,30 +117,32 @@
         .card-welcome { grid-column: span 2; }
         .card-social-info { grid-column: span 1; }
 
-        /* Footer Alignment - Wiederhergestellt */
+        /* Footer Alignment - Präzisions-Grid */
         footer { 
             width: 100%; padding: 25px 0; background: rgba(255,255,255,0.9); 
             border-top: 2px solid #000; z-index: var(--z-index-content);
         }
         .footer-content { 
-            display: flex; flex-direction: column; align-items: center; 
-            width: 280px; /* Basisbreite für die Ausrichtung */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 300px; /* Fixierte Breite für absolute Bündigkeit */
             margin: 0 auto;
+            font-size: 0.85rem;
         }
         .footer-main-link { 
+            grid-column: span 2;
             color: #000; text-decoration: none; font-weight: normal; 
-            font-size: 0.85rem; width: 100%; text-align: justify;
+            text-align: justify;
             text-align-last: justify; 
             margin-bottom: 6px;
-            display: block;
         }
-        .footer-links { 
-            font-size: 0.85rem; display: flex; width: 100%; justify-content: space-between; 
-        }
-        .footer-links a { 
+        .footer-links-left { text-align: left; }
+        .footer-links-right { text-align: right; }
+        
+        .footer-content a { 
             color: #000; text-decoration: none; border-bottom: 1px solid transparent; transition: 0.2s; 
         }
-        .footer-main-link:hover, .footer-links a:hover { border-bottom: 1px solid var(--anton-red); }
+        .footer-content a:hover { border-bottom: 1px solid var(--anton-red); }
 
         @media (max-width: 800px) {
             main { grid-template-columns: 1fr; }
@@ -213,8 +215,10 @@
 <footer>
     <div class="footer-content">
         <a href="hauptseite.html" class="footer-main-link">www.anton-familienpop.de</a>
-        <div class="footer-links">
+        <div class="footer-links-left">
             <a href="impressum.html">Impressum</a>
+        </div>
+        <div class="footer-links-right">
             <a href="datenschutz.html">Datenschutz</a>
         </div>
     </div>
