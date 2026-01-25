@@ -39,6 +39,7 @@
 
         .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: var(--z-index-menu-btn); background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
 
+        /* --- SIDEBAR LINKS (KORRIGIERT) --- */
         .sidebar-left { position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: var(--z-index-sidebar); display: flex; flex-direction: column; padding: 100px 20px; transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 25px; }
@@ -57,25 +58,55 @@
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: var(--z-index-right-bar); background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.3s; }
 
-        main { flex: 1; position: relative; z-index: var(--z-index-content); padding: 120px 20px 50px 20px; max-width: 800px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .bio-card { background: rgba(255, 255, 255, 0.85); border: 2px solid #000; border-radius: 15px; padding: 40px; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); backdrop-filter: blur(5px); }
+        /* --- MAIN LAYOUT MIT BIO-CARD STIL --- */
+        main { flex: 1; position: relative; z-index: var(--z-index-content); padding: 120px 20px 50px 20px; max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        
+        .bio-card { 
+            background: rgba(255, 255, 255, 0.85); border: 2px solid #000; border-radius: 15px; 
+            padding: 40px; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); backdrop-filter: blur(5px);
+        }
 
-        /* Termine-spezifisch */
-        .tour-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #000; padding: 15px 0; }
-        .tour-date { color: var(--anton-red); font-weight: bold; min-width: 100px; }
-        .tour-city { flex-grow: 1; font-weight: bold; }
-        .buy-btn { background: #000; color: #fff; text-decoration: none; padding: 8px 15px; border-radius: 5px; font-size: 0.8rem; }
+        h2 { color: var(--anton-red); text-align: center; text-transform: uppercase; margin-top: 0; }
 
-        footer { width: 100%; padding: 20px 0; background: rgba(255,255,255,0.9); border-top: 2px solid #000; z-index: var(--z-index-content); text-align: center; }
+        /* --- DAS ALTE TERMINE-LAYOUT (GRID/TABELLE) --- */
+        .tour-list { display: flex; flex-direction: column; gap: 10px; margin-top: 30px; }
+
+        .tour-item { 
+            display: grid;
+            grid-template-columns: 120px 1fr 150px;
+            align-items: center;
+            border-bottom: 2px dashed #000;
+            padding: 15px 0;
+            transition: background 0.2s;
+        }
+
+        .tour-item:last-child { border-bottom: none; }
+
+        .tour-date { font-weight: bold; color: var(--anton-red); font-size: 1.1rem; }
+        .tour-city { font-size: 1.3rem; font-weight: bold; text-transform: uppercase; }
+        .tour-venue { font-size: 0.9rem; color: #444; display: block; }
+
+        .buy-btn { 
+            background: #000; color: #fff; text-decoration: none; padding: 10px 15px; 
+            border-radius: 5px; text-align: center; font-family: 'Special Elite'; 
+            transition: background 0.3s; font-size: 0.9rem; border: none; cursor: pointer;
+        }
+        .buy-btn:hover { background: var(--anton-red); }
+
+        footer { width: 100%; padding: 20px 0; background: rgba(255,255,255,0.9); border-top: 2px solid #000; text-align: center; }
         .footer-links { font-size: 0.9rem; display: flex; gap: 20px; justify-content: center; margin-top: 10px; }
         .footer-links a { color: #000; text-decoration: none; }
 
-        @media (max-width: 800px) { .sidebar-right { display: none; } .tour-item { flex-direction: column; text-align: center; gap: 10px; } }
+        @media (max-width: 700px) { 
+            .sidebar-right { display: none; } 
+            .tour-item { grid-template-columns: 1fr; text-align: center; gap: 10px; border-bottom: 2px solid #000; }
+            .tour-date { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
 
-<header><div class="header-title">KONZERTE</div></header>
+<header><div class="header-title">LIVE TERMINE</div></header>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <nav class="sidebar-left" id="sidebar">
@@ -102,23 +133,43 @@
 
 <main>
     <div class="bio-card">
-        <h2>Live Termine</h2>
-        <div class="tour-item">
-            <span class="tour-date">20.06.2026</span>
-            <span class="tour-city">BERLIN - Waldbühne</span>
-            <a href="#" class="buy-btn">TICKETS</a>
-        </div>
-        <div class="tour-item">
-            <span class="tour-date">15.07.2026</span>
-            <span class="tour-city">HAMBURG - Stadtpark</span>
-            <a href="#" class="buy-btn">TICKETS</a>
+        <h2>Anton on Tour 2026</h2>
+        <div class="tour-list">
+            
+            <div class="tour-item">
+                <div class="tour-date">14. MAI</div>
+                <div class="tour-info">
+                    <span class="tour-city">Berlin</span>
+                    <span class="tour-venue">Columbia Theater</span>
+                </div>
+                <div class="tour-action"><a href="#" class="buy-btn">TICKETS</a></div>
+            </div>
+
+            <div class="tour-item">
+                <div class="tour-date">21. MAI</div>
+                <div class="tour-info">
+                    <span class="tour-city">Hamburg</span>
+                    <span class="tour-venue">Knust</span>
+                </div>
+                <div class="tour-action"><a href="#" class="buy-btn">TICKETS</a></div>
+            </div>
+
+            <div class="tour-item">
+                <div class="tour-date">05. JUNI</div>
+                <div class="tour-info">
+                    <span class="tour-city">München</span>
+                    <span class="tour-venue">Backstage</span>
+                </div>
+                <div class="tour-action"><a href="#" class="buy-btn">TICKETS</a></div>
+            </div>
+
         </div>
     </div>
 </main>
 
 <footer>
     <div class="footer-content">
-        <a href="hauptseite.html" style="color: #000; text-decoration: none;">www.anton-familienpop.de</a>
+        <a href="hauptseite.html" style="color:#000; text-decoration:none;">www.anton-familienpop.de</a>
         <div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div>
     </div>
 </footer>
