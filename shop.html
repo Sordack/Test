@@ -6,146 +6,73 @@
     <title>ANTON | SHOP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --anton-red: #ff0000;
-            --anton-yellow: #ffeb3b;
-            --sidebar-width: 220px;
-            --z-index-content: 10;
-            --z-index-right-bar: 50;
-            --z-index-header: 100;
-            --z-index-sidebar: 200;
-            --z-index-menu-btn: 210;
-        }
-
-        html, body { height: 100%; margin: 0; padding: 0; }
-
-        body { 
-            display: flex; flex-direction: column; font-family: 'Special Elite', cursive;
-            background-color: #ffffff; background-image: url('AFaPo Wall.png');
-            background-size: cover; background-position: center; background-repeat: no-repeat;
-            background-attachment: fixed; background-blend-mode: multiply; overflow-x: hidden;
-        }
-
-        header { 
-            position: fixed; top: 0; width: 100%; height: 80px; 
-            display: flex; justify-content: center; align-items: center; 
-            z-index: var(--z-index-header); background: rgba(255, 255, 255, 0.8); 
-            backdrop-filter: blur(10px); border-bottom: 2px solid #000;
-        }
+        :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 220px; }
+        html, body { height: 100%; margin: 0; display: flex; flex-direction: column; }
+        body { font-family: 'Special Elite', cursive; background: #fff url('AFaPo Wall.png') center/cover no-repeat fixed; background-blend-mode: multiply; overflow-x: hidden; }
         
+        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; }
+        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 1200; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
 
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: var(--z-index-menu-btn); background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
-
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: var(--z-index-sidebar); display: flex; flex-direction: column; padding: 100px 20px; transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-right: 2px solid #000; box-sizing: border-box; }
+        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -264px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 1100; display: flex; flex-direction: column; padding: 100px 20px; transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 25px; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.2rem; width: 100%; }
-        .nav-label { display: flex; align-items: center; gap: 15px; }
-        .sidebar-left a i.main-icon { width: 25px; text-align: center; }
-        
-        .submenu-indicator-wrapper { flex-grow: 1; display: flex; justify-content: center; align-items: center; }
-        .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
-        .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
-        
-        .submenu { display: none; flex-direction: column; padding-left: 40px; margin-top: 10px; }
-        .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; text-decoration: none; display: flex; }
+        .nav-item { margin-bottom: 20px; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
+        .nav-label { display: flex; align-items: center; gap: 12px; }
+        .main-icon { width: 25px; text-align: center; }
+        .submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; }
         .nav-item:hover .submenu { display: flex; }
+        .submenu a { font-size: 0.9rem; margin-bottom: 8px; }
 
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: var(--z-index-right-bar); background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px; }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.3s; }
-
-        main { flex: 1; position: relative; z-index: var(--z-index-content); padding: 120px 20px 50px 20px; max-width: 1000px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        
-        .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-
-        .product-card { 
-            background: rgba(255, 255, 255, 0.85); border: 2px solid #000; border-radius: 15px; 
-            padding: 20px; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); backdrop-filter: blur(5px);
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-        }
-
-        .product-image { width: 100%; height: 200px; background: rgba(0,0,0,0.05); border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #000; }
-
-        .product-title { font-size: 1.3rem; margin: 10px 0; text-transform: uppercase; }
-        .product-price { font-size: 1.5rem; color: var(--anton-red); font-weight: bold; margin-bottom: 15px; }
-
-        .buy-btn { 
-            background: #000; color: #fff; text-decoration: none; padding: 10px 20px; 
-            border-radius: 5px; font-family: 'Special Elite'; cursor: pointer; border: none;
-            transition: background 0.3s;
-        }
+        main { flex: 1; padding: 120px 20px 50px; max-width: 1000px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
+        .product-card { background: rgba(255, 255, 255, 0.85); border: 2px solid #000; border-radius: 15px; padding: 20px; text-align: center; backdrop-filter: blur(5px); }
+        .product-image { height: 150px; background: rgba(0,0,0,0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 15px; }
+        .buy-btn { background: #000; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Special Elite'; }
         .buy-btn:hover { background: var(--anton-red); }
 
-        footer { width: 100%; padding: 20px 0; background: rgba(255,255,255,0.9); border-top: 2px solid #000; z-index: var(--z-index-content); text-align: center; }
-        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .footer-main-link { color: #000; text-decoration: none; font-size: 0.9rem; }
-        .footer-links { font-size: 0.9rem; display: flex; gap: 20px; }
-
-        @media (max-width: 800px) { .sidebar-right { display: none; } }
+        footer { width: 100%; padding: 25px 0; background: rgba(255, 255, 255, 0.95); border-top: 2px solid #000; text-align: center; margin-top: auto; }
+        .footer-links { display: flex; gap: 30px; justify-content: center; margin-top: 10px; }
+        .footer-links a { color: #000; text-decoration: none; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-
-<header><div class="header-title">SHOP</div></header>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-
-<nav class="sidebar-left" id="sidebar">
-    <div style="margin-top: 20px;">
+    <header><div class="header-title">SHOP</div></header>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <nav class="sidebar-left" id="sidebar">
         <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> HOME</span></a></div>
         <div class="nav-item">
-            <a href="meinemusik.html">
-                <span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span>
-                <div class="submenu-indicator-wrapper"><span class="submenu-indicator"><i class="fa-solid fa-caret-down"></i></span></div>
-            </a>
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span></a>
             <div class="submenu">
                 <a href="ueber-mich.html"><i class="fa-regular fa-face-smile main-icon"></i> ÜBER MICH</a>
                 <a href="konzerte.html"><i class="fa-solid fa-microphone-lines main-icon"></i> KONZERTE</a>
             </div>
         </div>
-        <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
+        <div class="nav-item"><a href="shop.html" style="color:var(--anton-red)"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
         <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-    </div>
-</nav>
-
-<aside class="sidebar-right">
-    <a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-tiktok"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#"><i class="fa-brands fa-spotify"></i></a>
-</aside>
-
-<main>
-    <div class="shop-grid">
-        <div class="product-card">
-            <div class="product-image"><i class="fa-solid fa-compact-disc"></i></div>
-            <h3 class="product-title">Album</h3>
-            <span class="product-price">18,00 €</span>
-            <button class="buy-btn">IN DEN WARENKORB</button>
+    </nav>
+    <main>
+        <div class="shop-grid">
+            <div class="product-card">
+                <div class="product-image"><i class="fa-solid fa-compact-disc"></i></div>
+                <h3>ALBUM</h3>
+                <p>18,00 €</p>
+                <button class="buy-btn">WARENKORB</button>
+            </div>
         </div>
-        <div class="product-card">
-            <div class="product-image"><i class="fa-solid fa-shirt"></i></div>
-            <h3 class="product-title">T-Shirt</h3>
-            <span class="product-price">25,00 €</span>
-            <button class="buy-btn">IN DEN WARENKORB</button>
-        </div>
-    </div>
-</main>
-
-<footer>
-    <div class="footer-content">
-        <a href="hauptseite.html" class="footer-main-link">www.anton-familienpop.de</a>
+    </main>
+    <footer>
+        <a href="hauptseite.html" style="color:#000; text-decoration:none; font-weight:bold;">www.anton-familienpop.de</a>
         <div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div>
-    </div>
-</footer>
-
-<script>
-    function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-    document.addEventListener('click', function(e) {
-        const sb = document.getElementById("sidebar");
-        const btn = document.querySelector(".menu-btn");
-        if (sb && btn && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
-    });
-</script>
+    </footer>
+    <script>
+        function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
+        document.addEventListener('click', (e) => {
+            const sb = document.getElementById("sidebar");
+            const btn = document.querySelector(".menu-btn");
+            if(sb.classList.contains("open") && !sb.contains(e.target) && !btn.contains(e.target)) sb.classList.remove("open");
+        });
+    </script>
 </body>
 </html>
