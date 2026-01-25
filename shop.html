@@ -27,7 +27,6 @@
             background-attachment: fixed; background-blend-mode: multiply; overflow-x: hidden;
         }
 
-        /* MASTER HEADER */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
@@ -36,14 +35,13 @@
         }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* MASTER MENU BUTTON */
         .menu-btn { 
             position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
             z-index: var(--z-index-menu-btn); background: #000; color: #fff; 
             width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px;
         }
 
-        /* MASTER SIDEBAR LEFT */
+        /* SIDEBAR LEFT (MASTER) */
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); 
             width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
@@ -62,7 +60,7 @@
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; }
 
-        /* MASTER SIDEBAR RIGHT (FIXED) */
+        /* SIDEBAR RIGHT (MASTER) */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; 
@@ -86,7 +84,7 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
 
-        /* BENTO SHOP LAYOUT (ALTES FORMAT) */
+        /* BENTO SHOP CONTENT */
         main {
             flex: 1; position: relative; z-index: var(--z-index-content); 
             padding: 120px 20px 50px 20px; 
@@ -98,39 +96,23 @@
         }
         
         .bento-card { 
-            background: rgba(255, 255, 255, 0.75); 
-            border: 2px solid #000; 
-            border-radius: 15px; 
-            padding: 20px; 
+            background: rgba(255, 255, 255, 0.75); border: 2px solid #000; border-radius: 15px; padding: 20px; 
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            backdrop-filter: blur(5px);
-            transition: transform 0.2s;
+            backdrop-filter: blur(5px); transition: transform 0.2s;
         }
-        .bento-card:hover { transform: translateY(-3px); }
-
         .card-large { grid-column: span 2; grid-row: span 2; }
         .card-wide { grid-column: span 2; }
         .card-tall { grid-row: span 2; }
-
-        .bento-card h3, .bento-card h4 { margin: 0 0 10px 0; text-transform: uppercase; }
         .price { color: var(--anton-red); font-weight: bold; font-size: 1.2rem; margin-bottom: 10px; }
         .buy-btn { background: #000; color: #fff; text-decoration: none; padding: 8px 15px; border-radius: 5px; font-size: 0.8rem; }
 
-        /* MASTER FOOTER */
         footer { width: 100%; padding: 20px 0; background: rgba(255,255,255,0.9); border-top: 2px solid #000; text-align: center; }
         .footer-content { display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .footer-links { font-size: 0.9rem; display: flex; gap: 20px; }
         .footer-links a { color: #000; text-decoration: none; }
 
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            main { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 600px) {
-            main { grid-template-columns: 1fr; grid-auto-rows: auto; }
-            .card-large, .card-wide, .card-tall { grid-column: span 1; grid-row: span 1; }
-            .sidebar-right { display: none; }
-        }
+        @media (max-width: 900px) { main { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { main { grid-template-columns: 1fr; grid-auto-rows: auto; } .card-large, .card-wide, .card-tall { grid-column: span 1; grid-row: span 1; } .sidebar-right { display: none; } }
     </style>
 </head>
 <body>
@@ -170,39 +152,12 @@
 </aside>
 
 <main>
-    <div class="bento-card card-large">
-        <h3>NEUES ALBUM</h3>
-        <p>Jetzt überall erhältlich!</p>
-        <span class="price">17,90 €</span>
-        <a href="#" class="buy-btn">ZUM ALBUM</a>
-    </div>
-    <div class="bento-card">
-        <h4>SHIRT</h4>
-        <span class="price">24,90 €</span>
-        <a href="#" class="buy-btn">KAUFEN</a>
-    </div>
-    <div class="bento-card">
-        <h4>CAP</h4>
-        <span class="price">19,90 €</span>
-        <a href="#" class="buy-btn">KAUFEN</a>
-    </div>
-    <div class="bento-card card-wide">
-        <h4>BUNDLE ANGEBOT</h4>
-        <p>CD + Shirt + Sticker</p>
-        <span class="price">39,90 €</span>
-        <a href="#" class="buy-btn">SPAREN</a>
-    </div>
-    <div class="bento-card card-tall">
-        <h4>STICKER</h4>
-        <p>5er Pack</p>
-        <span class="price">4,90 €</span>
-        <a href="#" class="buy-btn">KAUFEN</a>
-    </div>
-    <div class="bento-card">
-        <h4>POSTER</h4>
-        <span class="price">9,90 €</span>
-        <a href="#" class="buy-btn">KAUFEN</a>
-    </div>
+    <div class="bento-card card-large"><h3>NEUES ALBUM</h3><span class="price">17,90 €</span><a href="#" class="buy-btn">ZUM ALBUM</a></div>
+    <div class="bento-card"><h4>SHIRT</h4><span class="price">24,90 €</span><a href="#" class="buy-btn">KAUFEN</a></div>
+    <div class="bento-card"><h4>CAP</h4><span class="price">19,90 €</span><a href="#" class="buy-btn">KAUFEN</a></div>
+    <div class="bento-card card-wide"><h4>BUNDLE ANGEBOT</h4><span class="price">39,90 €</span><a href="#" class="buy-btn">SPAREN</a></div>
+    <div class="bento-card card-tall"><h4>STICKER</h4><span class="price">4,90 €</span><a href="#" class="buy-btn">KAUFEN</a></div>
+    <div class="bento-card"><h4>POSTER</h4><span class="price">9,90 €</span><a href="#" class="buy-btn">KAUFEN</a></div>
 </main>
 
 <footer>
