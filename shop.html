@@ -47,7 +47,7 @@
             width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px;
         }
 
-        /* --- SIDEBAR LINKS (MASTER KOPIE) --- */
+        /* --- SIDEBAR LINKS --- */
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) * -1.2); 
             width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
@@ -55,20 +55,23 @@
             transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-right: 2px solid #000; box-sizing: border-box;
         }
         .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 25px; }
+        
+        .nav-item { margin-bottom: 25px; position: relative; }
         .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.2rem; width: 100%; }
-        .nav-label { display: flex; align-items: center; gap: 15px; flex-grow: 0; }
+        .nav-label { display: flex; align-items: center; gap: 15px; }
         .sidebar-left a i.main-icon { width: 25px; text-align: center; }
         
-        .submenu-indicator-wrapper { flex-grow: 1; display: flex; justify-content: center; align-items: center; }
+        .submenu-indicator-wrapper { flex-grow: 1; display: flex; justify-content: flex-end; align-items: center; padding-right: 10px; }
         .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
-        .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
         
+        /* HOVER EFFEKT AUS DEM MASTER */
+        .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
         .submenu { display: none; flex-direction: column; padding-left: 40px; margin-top: 10px; }
-        .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; text-decoration: none; display: flex; }
         .nav-item:hover .submenu { display: flex; }
+        
+        .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; text-decoration: none; display: flex; align-items: center; }
 
-        /* --- SIDEBAR RECHTS (MASTER KOPIE) --- */
+        /* --- SIDEBAR RECHTS --- */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; 
@@ -92,7 +95,6 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
 
-        /* --- MAIN CONTENT --- */
         main {
             flex: 1; position: relative; z-index: var(--z-index-content); 
             padding: 120px 20px 50px 20px; display: grid; 
@@ -137,15 +139,15 @@
 </nav>
 
 <aside class="sidebar-right">
-    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-    <a href="#"><i class="fa-brands fa-spotify"></i></a>
-    <a href="#"><i class="fa-brands fa-apple"></i></a>
-    <a href="#"><i class="fa-solid fa-circle-play"></i></a>
-    <a href="#"><i class="fa-brands fa-amazon"></i></a>
+    <a href="https://www.youtube.com/channel/UC-N_WIDidVAtNfX_OOn7fSg" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="https://www.instagram.com/anton.familienpop/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://wa.me/4915224424317" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://www.facebook.com/anton.familienpop" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://open.spotify.com/intl-de/artist/066fA506K42Y366v7X9YvC" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+    <a href="https://music.apple.com/de/artist/anton/1545627252" target="_blank"><i class="fa-brands fa-apple"></i></a>
+    <a href="https://music.youtube.com/channel/UCpIisV9V_I79p_9fXm7pI_w" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+    <a href="https://www.amazon.de/music/player/artists/B0025P4S60/anton" target="_blank"><i class="fa-brands fa-amazon"></i></a>
 </aside>
 
 <main>
@@ -163,21 +165,11 @@
 </footer>
 
 <script>
-    /* MASTER NAVIGATION SCRIPT */
-    function toggleMenu() { 
-        document.getElementById('sidebar').classList.toggle('open'); 
-    }
-
-    /* Schließen beim Klick außerhalb */
+    function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
     document.addEventListener('click', function(e) {
-        const sidebar = document.getElementById("sidebar");
-        const menuBtn = document.querySelector(".menu-btn");
-        
-        if (sidebar.classList.contains("open")) {
-            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
-                sidebar.classList.remove("open");
-            }
-        }
+        const sb = document.getElementById("sidebar");
+        const btn = document.querySelector(".menu-btn");
+        if (sb && btn && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
     });
 </script>
 </body>
