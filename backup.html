@@ -62,7 +62,7 @@
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; }
 
-        /* SIDEBAR RIGHT MIT WELLENEFFEKT */
+        /* SIDEBAR RIGHT MIT RUHIGER WELLE */
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
             display: flex; flex-direction: column; align-items: center; gap: 15px; 
@@ -70,20 +70,21 @@
             backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px;
         }
 
-        /* Die Wellen-Animation */
-        @keyframes wavePulse {
-            0%, 40%, 100% { transform: scale(1); color: #000; }
-            20% { transform: scale(1.6); color: var(--brand-color); }
+        /* Ruhige Animation: 1.5s Bewegung + 2s Pause = 3.5s Gesamtdauer */
+        @keyframes calmWave {
+            0% { transform: scale(1); color: #000; }
+            10% { transform: scale(1.5); color: var(--brand-color); }
+            20%, 100% { transform: scale(1); color: #000; }
         }
 
         .sidebar-right a i { 
             color: #000; font-size: 1.2rem; transition: all 0.3s ease; 
-            animation: wavePulse 1.5s ease-in-out infinite; 
+            animation: calmWave 3.5s ease-in-out infinite; 
         }
 
         .sidebar-right a:hover i { transform: scale(1.6) !important; color: var(--brand-color) !important; animation-play-state: paused; }
 
-        /* Zeitversatz für die Welle von oben nach unten */
+        /* Gleichmäßiger Versatz nach unten */
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.1s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.2s; }
@@ -142,7 +143,7 @@
 
 <main>
     <h1>Backup Seite</h1>
-    <p>Dies ist die Struktur deiner Backup-Seite mit dem neuen Sidebar-Wellen-Effekt.</p>
+    <p>Hier siehst du die optimierte Welle: Ruhiger Verlauf und 2 Sekunden Pause nach jedem Durchgang.</p>
 </main>
 
 <footer>
