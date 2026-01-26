@@ -22,7 +22,6 @@
             background-attachment: fixed; background-blend-mode: multiply; overflow-x: hidden;
         }
 
-        /* MASTER HEADER */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
@@ -60,32 +59,46 @@
             z-index: 999; background: rgba(255, 255, 255, 0.3); 
             backdrop-filter: blur(5px); padding: 20px 0; border-radius: 15px 0 0 15px;
         }
-
         @keyframes ultraFlowWave {
             0% { transform: scale(1); color: #000; }
             8% { transform: scale(1.5); color: var(--brand-color); }
             20%, 100% { transform: scale(1); color: #000; }
         }
-        .sidebar-right a i { font-size: 1.1rem; animation: ultraFlowWave 7s ease-in-out infinite; transition: 0.3s; }
-        .sidebar-right:hover a i { animation-play-state: paused; color: #000 !important; }
-        .sidebar-right a:hover i { transform: scale(1.6) !important; color: var(--brand-color) !important; }
-
-        /* Social Delays */
+        .sidebar-right a i { font-size: 1.1rem; animation: ultraFlowWave 7s ease-in-out infinite; }
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.2s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.4s; }
         .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.6s; }
         .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 0.8s; }
         .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.0s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 1.2s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.4s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 1.6s; }
 
-        /* MAIN CONTENT - KEINE BENTO OPTIK */
+        /* BENTO GRID */
         main {
-            flex: 1; padding: 120px 40px 40px 40px; max-width: 900px; margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9); min-height: 100vh;
+            flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto;
+            z-index: 10;
         }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 300px;
+            gap: 20px;
+        }
+
+        .bento-box {
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px solid #000;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .bento-box:hover { transform: scale(1.02); }
+        .bento-box h2 { margin-top: 0; color: var(--anton-red); }
+
+        .box-large { grid-column: span 2; grid-row: span 1; }
+        .box-tall { grid-column: span 1; grid-row: span 2; }
 
         /* FOOTER - 15% KLEINER */
         footer { 
@@ -117,20 +130,33 @@
 </nav>
 
 <aside class="sidebar-right">
-    <a href="https://www.youtube.com/channel/UC-N_WIDidVAtNfX_OOn7fSg" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-    <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-    <a href="https://www.instagram.com/anton.familienpop/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://wa.me/4915224424317" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="https://www.facebook.com/anton.familienpop" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     <a href="#" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-    <a href="#" target="_blank"><i class="fa-brands fa-apple"></i></a>
-    <a href="#" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
-    <a href="#" target="_blank"><i class="fa-brands fa-amazon"></i></a>
 </aside>
 
 <main>
-    <h1>Willkommen bei ANTON</h1>
-    <p>Hier erfährst du alles über modernen Familienpop.</p>
+    <div class="bento-grid">
+        <div class="bento-box box-large">
+            <h2>Aktuelles</h2>
+            <p>Willkommen in Antons Welt! Hier erfährst du alles über die neuesten Songs.</p>
+        </div>
+        <div class="bento-box box-tall">
+            <h2>Social Media</h2>
+            <p>Folge mir für tägliche Updates!</p>
+        </div>
+        <div class="bento-box">
+            <h2>Shop</h2>
+            <p>Hol dir den Merch.</p>
+        </div>
+        <div class="bento-box">
+            <h2>Konzerte</h2>
+            <p>Bald wieder live!</p>
+        </div>
+    </div>
 </main>
 
 <footer>
