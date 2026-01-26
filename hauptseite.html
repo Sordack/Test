@@ -91,61 +91,49 @@
     </style>
 </head>
 <body>
-
-<header><div class="header-title">ANTON</div></header>
-
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-
-<nav class="sidebar-left" id="sidebar">
-    <div class="nav-item">
-        <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a>
-    </div>
-    <div class="nav-item">
-        <a href="meinemusik.html">
-            <span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span>
-            <div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div>
-        </a>
-        <div class="submenu">
-            <a href="ueber-mich.html"><i class="fa-regular fa-face-smile" style="margin-right:10px"></i> ÜBER MICH</a>
-            <a href="konzerte.html"><i class="fa-solid fa-microphone-lines" style="margin-right:10px"></i> KONZERTE</a>
+    <header><div class="header-title">ANTON</div></header>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <nav class="sidebar-left" id="sidebar">
+        <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
+        <div class="nav-item">
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
+            <div class="submenu">
+                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile" style="margin-right:10px"></i> ÜBER MICH</a>
+                <a href="konzerte.html"><i class="fa-solid fa-microphone-lines" style="margin-right:10px"></i> KONZERTE</a>
+            </div>
         </div>
-    </div>
-    <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
-    <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-</nav>
-
-<aside class="sidebar-right">
-    <a href="https://www.youtube.com/channel/UC-N_WIDidVAtNfX_OOn7fSg" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-    <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-    <a href="https://www.instagram.com/anton.familienpop/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://wa.me/4915224424317" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="https://www.facebook.com/anton.familienpop" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-    <a href="#" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-    <a href="#" target="_blank"><i class="fa-brands fa-apple"></i></a>
-    <a href="#" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
-    <a href="#" target="_blank"><i class="fa-brands fa-amazon"></i></a>
-</aside>
-
-<main>
-    <div class="bento-grid">
-        <div class="bento-box box-large"><h2>Aktuelles</h2><p>Hier erfährst du alles über die neuesten Songs.</p></div>
-        <div class="bento-box"><h2>Shop</h2><p>Hol dir den offiziellen ANTON Merch!</p></div>
-        <div class="bento-box"><h2>Konzerte</h2><p>Erfahre hier alle Live-Termine.</p></div>
-    </div>
-</main>
-
-<footer>
-    <div style="margin-bottom: 5px; opacity: 0.8;">www.anton-familienpop.de</div>
-    <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
-</footer>
-
-<script>
-    function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-    document.addEventListener('click', function(e) {
-        const sb = document.getElementById("sidebar");
-        const btn = document.querySelector(".menu-btn");
-        if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
-    });
-</script>
+        <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
+        <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
+    </nav>
+    <aside class="sidebar-right">
+        <a href="https://www.youtube.com/channel/UC-N_WIDidVAtNfX_OOn7fSg" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/anton.familienpop/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/4915224424317" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/anton.familienpop" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-apple"></i></a>
+        <a href="#" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+    </aside>
+    <main>
+        <div class="bento-grid">
+            <div class="bento-box box-large"><h2>Aktuelles</h2><p>Willkommen in Antons Welt! Hier findest du alle Neuigkeiten.</p></div>
+            <div class="bento-box"><h2>Shop</h2><p>Hol dir den offiziellen Merch.</p></div>
+            <div class="bento-box"><h2>Konzerte</h2><p>Alle Termine auf einen Blick.</p></div>
+        </div>
+    </main>
+    <footer>
+        <div style="margin-bottom: 5px; opacity: 0.8;">www.anton-familienpop.de</div>
+        <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
+    </footer>
+    <script>
+        function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
+        document.addEventListener('click', function(e) {
+            const sb = document.getElementById("sidebar");
+            const btn = document.querySelector(".menu-btn");
+            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
+        });
+    </script>
 </body>
 </html>
