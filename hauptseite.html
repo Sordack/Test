@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | HOME</title>
+    <title>ANTON | START</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
@@ -11,9 +11,6 @@
             --anton-red: #ff0000;
             --anton-yellow: #ffeb3b;
             --sidebar-width: 220px;
-            --z-index-header: 100;
-            --z-index-sidebar: 200;
-            --z-index-right-bar: 999;
         }
 
         html, body { height: 100%; margin: 0; padding: 0; }
@@ -25,11 +22,11 @@
             background-attachment: fixed; background-blend-mode: multiply; overflow-x: hidden;
         }
 
-        /* HEADER */
+        /* MASTER HEADER */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
-            z-index: var(--z-index-header); background: rgba(255, 255, 255, 0.8); 
+            z-index: 100; background: rgba(255, 255, 255, 0.8); 
             backdrop-filter: blur(10px); border-bottom: 2px solid #000;
         }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
@@ -40,11 +37,11 @@
             width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px;
         }
 
-        /* SIDEBAR LINKS - MEINE MUSIK NEBENEINANDER */
+        /* SIDEBAR LINKS - NEBENEINANDER */
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: -250px; 
             width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
-            z-index: var(--z-index-sidebar); display: flex; flex-direction: column; padding: 100px 20px;
+            z-index: 200; display: flex; flex-direction: column; padding: 100px 20px;
             transition: left 0.5s ease; border-right: 2px solid #000;
         }
         .sidebar-left.open { left: 0; }
@@ -60,7 +57,7 @@
         .sidebar-right {
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 45px;
             display: flex; flex-direction: column; align-items: center; gap: 12px; 
-            z-index: var(--z-index-right-bar); background: rgba(255, 255, 255, 0.3); 
+            z-index: 999; background: rgba(255, 255, 255, 0.3); 
             backdrop-filter: blur(5px); padding: 20px 0; border-radius: 15px 0 0 15px;
         }
 
@@ -73,11 +70,16 @@
         .sidebar-right:hover a i { animation-play-state: paused; color: #000 !important; }
         .sidebar-right a:hover i { transform: scale(1.6) !important; color: var(--brand-color) !important; }
 
+        /* Social Delays */
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.2s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.4s; }
         .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.6s; }
-        /* ... restliche delays analog */
+        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 0.8s; }
+        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.0s; }
+        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 1.2s; }
+        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.4s; }
+        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 1.6s; }
 
         /* MAIN CONTENT - KEINE BENTO OPTIK */
         main {
@@ -87,15 +89,10 @@
 
         /* FOOTER - 15% KLEINER */
         footer { 
-            width: 100%; 
-            padding: 12px 0; /* Verkleinert von ca. 20px */
-            background: rgba(255,255,255,0.9); 
-            border-top: 1.5px solid #000; 
-            text-align: center;
-            font-size: 0.75rem; /* Verkleinert von 0.9rem */
+            width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); 
+            border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; 
         }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
-        footer .copy-text { margin-bottom: 5px; opacity: 0.8; }
     </style>
 </head>
 <body>
@@ -105,7 +102,9 @@
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <nav class="sidebar-left" id="sidebar">
-    <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house"></i> HOME</span></a></div>
+    <div class="nav-item">
+        <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house"></i> START</span></a>
+    </div>
     <div class="nav-item">
         <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music"></i> MEINE MUSIK</span></a>
         <div class="submenu">
@@ -124,15 +123,18 @@
     <a href="https://wa.me/4915224424317" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
     <a href="https://www.facebook.com/anton.familienpop" target="_blank"><i class="fa-brands fa-facebook"></i></a>
     <a href="#" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-apple"></i></a>
+    <a href="#" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-amazon"></i></a>
 </aside>
 
 <main>
     <h1>Willkommen bei ANTON</h1>
-    <p>Hier entsteht die neue Seite für modernen Familienpop. Entdecke meine Musik, Termine und vieles mehr im neuen Design.</p>
+    <p>Hier erfährst du alles über modernen Familienpop.</p>
 </main>
 
 <footer>
-    <div class="copy-text">www.anton-familienpop.de</div>
+    <div style="margin-bottom: 5px; opacity: 0.8;">www.anton-familienpop.de</div>
     <div>
         <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
     </div>
