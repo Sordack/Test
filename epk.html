@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anton - EPK (Geschützt)</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --sidebar-width: 250px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            background-color: var(--bg-color);
+            color: #333;
+        }
+
+        /* Sidebar - Gemäß Master-Vorgabe unverändert */
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--primary-color);
+            color: white;
+            position: fixed;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        main {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            min-height: 100vh;
+        }
+
+        header {
+            background: white;
+            padding: 20px 40px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Passwort-Abfrage Styling */
+        #login-overlay {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: 100px auto;
+        }
+
+        #login-overlay input {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* EPK Inhalt - initial versteckt */
+        #epk-content {
+            display: none;
+        }
+
+        /* Grid Layout */
+        .epk-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .grid-item {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .full-width { grid-column: span 2; }
+
+        .btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        @media (max-width: 900px) {
+            .epk-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="sidebar">
+        <h3>Navigation</h3>
+        <p>Master-Sidebar</p>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Anton</h1>
+        </header>
+
+        <section class="content">
+            
+            <div id="login-overlay">
+                <h3>Interner Bereich</h3>
+                <p>Bitte geben Sie das Passwort ein, um das EPK einzusehen.</p>
+                <input type="password" id="password-input" placeholder="Passwort...">
+                <button class="btn" onclick="checkPassword()">Zugreifen</button>
+                <p id="error-msg" style="color: red; display: none; margin-top: 10px;">Falsches Passwort!</p>
+            </div>
+
+            <div id="epk-content">
+                <div class="epk-grid">
+                    <div class="grid-item full-width">
+                        <h2>Electronic Press Kit (Intern)</h2>
+                        <p>Herzlich Willkommen im geschützten Bereich. Hier finden Sie sensible Daten und Dokumente.</p>
+                    </div>
+
+                    <div class="grid-item">
+                        <h3>Presse-Downloads</h3>
+                        <p>Alle Dateien sind für die Veröffentlichung freigegeben.</p>
+                        <ul>
+                            <li><a href="#">Technical Rider 2026</a></li>
+                            <li><a href="#">Pressefoto-Paket</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="grid-item">
+                        <h3>Direkter Kontakt</h3>
+                        <p><strong>Booking:</strong> +49 170 1234567</p>
+                        <p><strong>E-Mail:</strong> privat@anton.de</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        function checkPassword() {
+            const pw = document.getElementById('password-input').value;
+            // Das Passwort ist hier: anton2026
+            if (pw === 'anton2026') {
+                document.getElementById('login-overlay').style.display = 'none';
+                document.getElementById('epk-content').style.display = 'block';
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+            }
+        }
+
+        // Ermöglicht "Enter" Taste zum Login
+        document.getElementById('password-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+
+</body>
+</html>
