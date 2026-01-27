@@ -5,129 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anton - Startseite</title>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            --sidebar-width: 250px;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 0;
             display: flex;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #f0f0f0;
         }
 
-        /* Sidebar - Bleibt unverändert laut Master-Vorgabe */
+        /* Sidebar - Der ursprüngliche Stil */
         #sidebar {
-            width: var(--sidebar-width);
+            width: 200px;
+            background-color: #333;
+            color: #fff;
             height: 100vh;
-            background: var(--primary-color);
-            color: white;
-            position: fixed;
             padding: 20px;
             box-sizing: border-box;
+            position: fixed;
+        }
+
+        #sidebar h2 {
+            font-size: 1.2rem;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            margin: 15px 0;
+        }
+
+        #sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        #sidebar ul li a:hover {
+            color: #ccc;
         }
 
         /* Hauptinhalt */
-        main {
-            margin-left: var(--sidebar-width);
-            flex-grow: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+        #main-content {
+            margin-left: 200px;
+            padding: 20px;
+            width: 100%;
         }
 
         header {
-            background: white;
-            padding: 20px 40px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
         }
 
         header h1 {
             margin: 0;
-            color: var(--primary-color);
             font-size: 1.5rem;
+            color: #333;
         }
 
-        .content {
-            padding: 40px;
-            flex-grow: 1;
-        }
-
-        /* Hero Segment mit Animation */
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #666;
-            opacity: 0;
-            animation: fadeInUp 1s 0.5s forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cta-button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 12px 30px;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            transition: background 0.3s;
         }
 
-        .cta-button:hover {
-            background-color: #2980b9;
+        p {
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .welcome-box {
+            border-left: 5px solid #333;
+            padding-left: 15px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <nav id="sidebar">
-        <h3>Navigation</h3>
-        <p>Hier bleibt alles wie gehabt.</p>
-        </nav>
+    <div id="sidebar">
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="epk.html">EPK / Presse</a></li>
+        </ul>
+    </div>
 
-    <main>
+    <div id="main-content">
         <header>
             <h1>Anton</h1>
         </header>
 
-        <section class="content">
-            <div class="hero">
-                <h2>Willkommen bei Anton</h2>
-                <p>Kreative Lösungen und strukturierte Projekte – alles an einem Ort.</p>
-                <a href="#projekte" class="cta-button">Mehr erfahren</a>
+        <div class="container">
+            <div class="welcome-box">
+                <h2>Willkommen zurück</h2>
+                <p>Dies ist die Hauptseite im bewährten Stil der backup.html. Die Struktur ist schlicht, funktional und konzentriert sich auf das Wesentliche.</p>
             </div>
-        </section>
-    </main>
+            <p>Über die Sidebar gelangst du nun direkt zum passwortgeschützten EPK-Bereich.</p>
+        </div>
+    </div>
 
 </body>
 </html>
