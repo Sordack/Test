@@ -16,7 +16,6 @@
         
         .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
         
-        /* LINKE SIDEBAR */
         .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 20px; width: 100%; }
@@ -24,10 +23,6 @@
         .nav-item-epk { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
 
-        .nav-label { display: flex; align-items: center; width: 100%; }
-        .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
-        
-        /* RECHTE SIDEBAR */
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: all 0.7s ease; animation: ultraFlowWave 7s ease-in-out infinite; }
         @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 8% { transform: scale(1.55); color: var(--brand-color); } 20%, 100% { transform: scale(1); color: #000; } }
@@ -42,8 +37,6 @@
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
         
         main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; }
-        
-        /* Kontakt Bento Grid */
         .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(150px, auto); gap: 20px; }
         .bento-box { background: rgba(255, 255, 255, 0.95); border: 3px solid #000; padding: 25px; border-radius: 20px; display: flex; flex-direction: column; justify-content: center; }
         .bento-box h2 { margin: 0 0 10px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.4rem; }
@@ -51,27 +44,26 @@
         .box-wide { grid-column: span 2; }
         .box-full { grid-column: span 3; text-align: center; }
 
-        /* Formular Styling */
         input, textarea { font-family: 'Special Elite', cursive; width: 100%; padding: 10px; margin: 10px 0; border: 2px solid #000; border-radius: 5px; box-sizing: border-box; }
         .submit-btn { background: #000; color: #fff; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-family: 'Special Elite', cursive; font-size: 1.1rem; margin-top: 10px; }
-        .submit-btn:hover { background: var(--anton-red); }
+        
+        /* Pfeil-Animation */
+        .social-hint { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 10px; }
+        .arrow-right-anim { font-size: 1.5rem; color: var(--anton-red); animation: pointRight 1s infinite alternate; }
+        @keyframes pointRight { from { transform: translateX(0); } to { transform: translateX(10px); } }
 
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
 
-        @media (max-width: 900px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } .box-full { grid-column: span 2; } }
-        @media (max-width: 600px) { .bento-grid { grid-template-columns: 1fr; } .box-wide, .box-full { grid-column: span 1; } .sidebar-right { display: none; } }
+        @media (max-width: 768px) { .sidebar-right { display: none; } .social-hint { display: none; } }
     </style>
 </head>
 <body>
     <header><div class="header-title">Anton</div></header>
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
-        <div class="nav-item">
-            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span></a>
-        </div>
+        <div class="nav-item"><a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span></a></div>
         <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
         <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
         <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span></a></div>
@@ -104,15 +96,18 @@
                 <p style="margin-top: 20px;"><strong>Management:</strong><br>Agentur Name</p>
             </div>
 
-            <div class="bento-box">
-                <h2>Socials</h2>
-                <p>Check meine Kanäle für die schnellsten Updates!</p>
-            </div>
-
             <div class="bento-box box-wide">
                 <h2>Autogrammwünsche</h2>
                 <p>Bitte sende einen frankierten Rückumschlag an:</p>
                 <p>Anton Musik / Postfach 1234 / 12345 Stadt</p>
+            </div>
+
+            <div class="bento-box">
+                <h2>Social Media</h2>
+                <div class="social-hint">
+                    <p>Hier entlang!</p>
+                    <i class="fa-solid fa-arrow-right arrow-right-anim"></i>
+                </div>
             </div>
         </div>
     </main>
