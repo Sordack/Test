@@ -11,7 +11,6 @@
         html, body { height: 100%; margin: 0; padding: 0; }
         body { display: flex; flex-direction: column; font-family: 'Special Elite', cursive; background: #fff url('AFaPo Wall.png') fixed center/cover no-repeat; background-blend-mode: multiply; overflow-x: hidden; }
         
-        /* Header - Name laut Vorgabe: Anton */
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
@@ -20,6 +19,14 @@
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 20px; width: 100%; }
         .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
+        
+        /* Spezielles Styling für den EPK Link am Fußende */
+        .nav-item-epk { margin-top: auto; margin-bottom: 20px; }
+        .nav-item-epk a { 
+            color: #fff !important; 
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
+        }
+
         .nav-label { display: flex; align-items: center; width: 100%; }
         .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
         .arrow-wrapper { margin-left: auto; padding-right: 5px; }
@@ -32,15 +39,6 @@
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: all 0.7s ease; animation: ultraFlowWave 7s ease-in-out infinite; }
         @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 8% { transform: scale(1.55); color: var(--brand-color); } 20%, 100% { transform: scale(1); color: #000; } }
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
-        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
-        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
-        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
-        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 1.5s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
         
         main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; }
         .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: minmax(250px, auto); gap: 20px; }
@@ -73,9 +71,14 @@
                 <a href="konzerte.html"><i class="fa-solid fa-microphone-lines" style="margin-right:10px"></i> KONZERTE</a>
             </div>
         </div>
-        <div class="nav-item"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span></a></div>
         <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
         <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
+        
+        <div class="nav-item nav-item-epk">
+            <a href="epk.html">
+                <span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span>
+            </a>
+        </div>
     </nav>
 
     <aside class="sidebar-right">
