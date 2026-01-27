@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | STARTSEITE</title>
+    <title>ANTON | KONTAKT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
@@ -23,7 +23,6 @@
         .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
         .nav-item-epk { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
-
         .nav-label { display: flex; align-items: center; width: 100%; }
         .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
         .arrow-wrapper { margin-left: auto; padding-right: 5px; }
@@ -33,21 +32,17 @@
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
         
-        /* RECHTE SIDEBAR MIT WELLEN-OPTIK & HOVER-STOPP */
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.1); padding: 20px 0; border-radius: 30px 0 0 30px; }
+        /* RECHTE SIDEBAR MIT HOVER-LOGIK */
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px; display: flex; flex-direction: column; align-items: center; gap: 18px; z-index: 999; padding: 20px 0; }
+        .sidebar-right a i { color: #000; font-size: 1.3rem; transition: transform 0.3s ease, color 0.3s ease; animation: ultraFlowWave 7s ease-in-out infinite; }
         
-        .sidebar-right a i { color: #000; font-size: 1.3rem; transition: transform 0.3s ease; animation: ultraFlowWave 7s ease-in-out infinite; }
-        
-        /* Die gesamte Sidebar stoppt die Wellen-Animation bei Hover */
         .sidebar-right:hover a i { animation-play-state: paused; }
-
-        /* Das gehoverte Icon führt seine eigene Animation aus */
         .sidebar-right a:hover i { transform: scale(1.6); color: var(--brand-color) !important; }
 
         @keyframes ultraFlowWave { 
             0% { transform: scale(1); color: #000; } 
-            10% { transform: scale(1.4); color: var(--brand-color); } 
-            25%, 100% { transform: scale(1); color: #000; } 
+            8% { transform: scale(1.45); color: var(--brand-color); } 
+            20%, 100% { transform: scale(1); color: #000; } 
         }
 
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
@@ -61,23 +56,26 @@
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.4s; }
         
         main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; }
-        
-        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(180px, auto); gap: 20px; }
-        .bento-box { background: rgba(255, 255, 255, 0.95); border: 3px solid #000; padding: 25px; border-radius: 20px; transition: all 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: center; }
-        .bento-box:hover { transform: translateY(-5px); background: var(--anton-yellow); }
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(150px, auto); gap: 20px; }
+        .bento-box { background: rgba(255, 255, 255, 0.95); border: 3px solid #000; padding: 25px; border-radius: 20px; display: flex; flex-direction: column; justify-content: center; }
         .bento-box h2 { margin: 0 0 10px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.4rem; }
-        
         .box-wide { grid-column: span 2; }
         .box-full { grid-column: span 3; text-align: center; }
 
+        input, textarea { font-family: 'Special Elite', cursive; width: 100%; padding: 10px; margin: 10px 0; border: 2px solid #000; border-radius: 5px; box-sizing: border-box; }
+        .submit-btn { background: #000; color: #fff; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-family: 'Special Elite', cursive; font-size: 1.1rem; }
+        
+        .social-hint { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 10px; }
+        .arrow-right-anim { font-size: 1.5rem; color: var(--anton-red); animation: pointRight 1s infinite alternate; }
+        @keyframes pointRight { from { transform: translateX(0); } to { transform: translateX(10px); } }
+
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
-
-        @media (max-width: 600px) { .sidebar-right { display: none; } }
+        @media (max-width: 600px) { .sidebar-right { display: none; } .bento-grid { grid-template-columns: 1fr; } .box-wide, .box-full { grid-column: span 1; } }
     </style>
 </head>
 <body>
-    <header><div class="header-title">Anton</div></header>
+    <header><div class="header-title">Kontakt</div></header>
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
     
     <nav class="sidebar-left" id="sidebar">
@@ -85,8 +83,8 @@
         <div class="nav-item">
             <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
             <div class="submenu">
-                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile" style="margin-right:10px"></i> ÜBER MICH</a>
-                <a href="konzerte.html"><i class="fa-solid fa-microphone-lines" style="margin-right:10px"></i> KONZERTE</a>
+                <a href="ueber-mich.html">ÜBER MICH</a>
+                <a href="konzerte.html">KONZERTE</a>
             </div>
         </div>
         <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
@@ -108,22 +106,21 @@
 
     <main>
         <div class="bento-grid">
-            <div class="bento-box box-full">
-                <h2>Anton</h2>
-                <p>Willkommen auf der offiziellen Seite.</p>
+            <div class="bento-box box-full"><h2>Kontakt</h2><p>Schreib mir eine Nachricht!</p></div>
+            <div class="bento-box box-wide">
+                <h2>Schreib mir</h2>
+                <form><input type="text" placeholder="Name"><input type="email" placeholder="E-Mail"><textarea placeholder="Nachricht" rows="4"></textarea><button type="submit" class="submit-btn">Senden</button></form>
             </div>
-            <a href="meinemusik.html" class="bento-box box-wide">
-                <h2>Musik</h2>
-                <p>Aktuelle Releases.</p>
-            </a>
-            <a href="ueber-mich.html" class="bento-box">
-                <h2>Bio</h2>
-                <p>Wer steckt dahinter?</p>
-            </a>
+            <div class="bento-box"><h2>E-Mail</h2><p>mail@anton.de</p></div>
+            <div class="bento-box box-wide"><h2>Autogramme</h2><p>Sende einen frankierten Rückumschlag an das Management.</p></div>
+            <div class="bento-box">
+                <h2>Socials</h2>
+                <div class="social-hint"><p>Hier lang</p><i class="fa-solid fa-arrow-right arrow-right-anim"></i></div>
+            </div>
         </div>
     </main>
 
-    <footer><div style="margin-bottom: 5px; opacity: 0.8;">www.anton-familienpop.de</div><div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div></footer>
+    <footer><div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div></footer>
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
