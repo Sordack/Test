@@ -1,151 +1,79 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | KONTAKT</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-    <style>
-        :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 240px; }
-        html, body { height: 100%; margin: 0; padding: 0; }
-        body { display: flex; flex-direction: column; font-family: 'Special Elite', cursive; background: #fff url('AFaPo Wall.png') fixed center/cover no-repeat; background-blend-mode: multiply; overflow-x: hidden; }
-        
-        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
-        
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
-        
-        /* LINKE SIDEBAR (Master) */
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
-        .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
-        .nav-item-epk { margin-top: auto; }
-        .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
+.submenu a { font-size: 1rem; margin-bottom: 10px; color: #333; text-decoration: none; display: flex; }
+.nav-item:hover .submenu { display: flex; }
 
-        /* RECHTE SIDEBAR - KORRIGIERTE WELLEN- UND HOVER-LOGIK */
-        .sidebar-right { 
-            position: fixed; 
-            top: 50%; 
-            right: 0; 
-            transform: translateY(-50%); 
-            width: 55px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 18px; 
-            z-index: 999; 
-            background: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(5px); 
-            padding: 30px 0; 
-            border-radius: 25px 0 0 25px; 
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .sidebar-right a { 
-            text-decoration: none; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
+        /* Sidebar Right */
+        /* Sidebar Right Icons */
+.sidebar-right {
+position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
+display: flex; flex-direction: column; align-items: center; gap: 15px; 
+@@ -101,7 +101,7 @@
+.sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 14s; }
+.sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 16s; }
+
+        /* Main Content */
+        /* Main Grid */
+main {
+flex: 1; position: relative; z-index: var(--z-index-content); 
+padding: 120px 20px 50px 20px; display: grid; 
+@@ -117,36 +117,35 @@
+.card-welcome { grid-column: span 2; }
+.card-social-info { grid-column: span 1; }
+
+        /* Footer Alignment - Präzise Bündigkeit */
+        /* Footer Präzisions-Layout */
+footer { 
+            width: 100%; padding: 25px 0; background: rgba(255,255,255,0.9); 
+            width: 100%; padding: 30px 0; background: rgba(255,255,255,0.9); 
+border-top: 2px solid #000; z-index: var(--z-index-content);
+}
+        .footer-container {
+            width: 275px; /* Exakt ausgemessene Breite für Special Elite */
+        .footer-wrapper {
+            width: 272px; /* Fixierte Breite für absolute Kanten-Bündigkeit */
+margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+font-size: 0.85rem;
+}
+.footer-main-link { 
+            color: #000; text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            display: block;
             width: 100%;
-        }
+text-align: justify;
+text-align-last: justify;
+            margin-bottom: 5px;
+            width: 100%;
+            letter-spacing: 0.5px; /* Feinjustierung für den rechten Abschluss */
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 8px;
+}
+        .footer-sub-links {
+        .footer-bottom-row {
+display: flex;
+justify-content: space-between;
+width: 100%;
+}
+        .footer-container a { 
+        .footer-wrapper a { 
+color: #000; text-decoration: none; border-bottom: 1px solid transparent; transition: 0.2s; 
+}
+        .footer-container a:hover { border-bottom: 1px solid var(--anton-red); }
+        .footer-wrapper a:hover { border-bottom: 1px solid var(--anton-red); }
 
-        .sidebar-right a i { 
-            color: #000; 
-            font-size: 1.3rem; 
-            transition: transform 0.3s ease, color 0.3s ease;
-            animation: ultraFlowWave 8s ease-in-out infinite;
-            will-change: transform;
-        }
-        
-        /* Hover-Effekt: Animation wird gestoppt, Icon wird erhaben (skaliert) und farbig */
-        .sidebar-right a:hover i { 
-            animation: none !important; 
-            transform: scale(1.7) !important; 
-            color: var(--brand-color) !important;
-        }
+@media (max-width: 800px) {
+main { grid-template-columns: 1fr; }
+@@ -217,9 +216,9 @@ <h3>Follow Me</h3>
+</main>
 
-        @keyframes ultraFlowWave { 
-            0%, 20%, 100% { transform: scale(1); color: #000; } 
-            10% { transform: scale(1.5); color: var(--brand-color); } 
-        }
-        
-        /* Delays für den Welleneffekt */
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-        .sidebar-right a:nth-child(2) i { --brand-color: #000000; animation-delay: 0.4s; }
-        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.8s; }
-        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 1.2s; }
-        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.6s; }
-        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 2.0s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 2.4s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 2.8s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 3.2s; }
-        
-        main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; }
-        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-        .bento-box { background: rgba(255, 255, 255, 0.95); border: 3px solid #000; padding: 30px; border-radius: 20px; transition: all 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: center; text-align: center; }
-        .bento-box:hover { transform: translateY(-5px); background: var(--anton-yellow); }
-        .bento-box h2 { margin: 0 0 10px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.5rem; }
-        .box-full { grid-column: span 2; }
-        
-        .contact-form { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        .contact-form input, .contact-form textarea { font-family: 'Special Elite', cursive; padding: 12px; border: 2px solid #000; border-radius: 8px; font-size: 1rem; }
-        .contact-form button { font-family: 'Special Elite', cursive; background: #000; color: #fff; border: none; padding: 15px; cursor: pointer; text-transform: uppercase; font-weight: bold; border-radius: 8px; }
-        .contact-form button:hover { background: var(--anton-red); }
-
-        footer { width: 100%; padding: 15px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.8rem; }
-    </style>
-</head>
-<body>
-    <header><div class="header-title">Anton</div></header>
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    
-    <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
-        <div class="nav-item"><a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span></a></div>
-        <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
-        <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-        <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span></a></div>
-    </nav>
-
-    <aside class="sidebar-right">
-        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#"><i class="fa-brands fa-spotify"></i></a>
-        <a href="#"><i class="fa-brands fa-apple"></i></a>
-        <a href="#"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="#"><i class="fa-brands fa-amazon"></i></a>
-    </aside>
-
-    <main>
-        <div class="bento-grid">
-            <div class="bento-box box-full">
-                <h2>Kontakt</h2>
-                <form class="contact-form">
-                    <input type="text" placeholder="Dein Name" required>
-                    <input type="email" placeholder="E-Mail Adresse" required>
-                    <textarea rows="5" placeholder="Deine Nachricht an Anton..." required></textarea>
-                    <button type="submit">Nachricht senden</button>
-                </form>
-            </div>
-            <div class="bento-box"><h2>Management</h2><p>info@anton-familienpop.de</p></div>
-            <div class="bento-box"><h2>Booking</h2><p>booking@anton-familienpop.de</p></div>
-        </div>
-    </main>
-
-    <footer>www.anton-familienpop.de | <a href="impressum.html" style="color:#000; text-decoration:none; font-weight:bold;">Impressum</a></footer>
-
-    <script>
-        function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-        document.addEventListener('click', function(e) {
-            const sb = document.getElementById("sidebar");
-            const btn = document.querySelector(".menu-btn");
-            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
-        });
-    </script>
-</body>
-</html>
+<footer>
+    <div class="footer-container">
+    <div class="footer-wrapper">
+<a href="hauptseite.html" class="footer-main-link">www.anton-familienpop.de</a>
+        <div class="footer-sub-links">
+        <div class="footer-bottom-row">
+<a href="impressum.html">Impressum</a>
+<a href="datenschutz.html">Datenschutz</a>
+</div>
