@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | HAUPTSEITE</title>
+    <title>ANTON | BACKUP SCHEMA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
@@ -16,7 +16,7 @@
         
         .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
         
-        /* LINKE SIDEBAR - EXAKT NACH DEINER VORGABE */
+        /* LINKE SIDEBAR - UNANTASTBAR */
         .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 20px; width: 100%; }
@@ -34,7 +34,7 @@
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
         
-        /* RECHTE SIDEBAR - EXAKT NACH DEINER VORGABE */
+        /* RECHTE SIDEBAR - UNANTASTBAR */
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: all 0.7s ease; animation: ultraFlowWave 7s ease-in-out infinite; }
         @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 8% { transform: scale(1.55); color: var(--brand-color); } 20%, 100% { transform: scale(1); color: #000; } }
@@ -57,6 +57,8 @@
 
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
+
+        @media (max-width: 600px) { .bento-grid { grid-template-columns: 1fr; } .box-full { grid-column: span 1; } }
     </style>
 </head>
 <body>
@@ -84,8 +86,16 @@
     <main>
         <div class="bento-grid">
             <div class="bento-box box-full">
-                <h2>Anton</h2>
-                <p>Willkommen auf der offiziellen Seite.</p>
+                <h2>Backup Schema</h2>
+                <p>Aktualisierter Master-Stand für Systemwiederherstellung.</p>
+            </div>
+            <div class="bento-box">
+                <h2>Integrität</h2>
+                <p>Sidebars fixiert.</p>
+            </div>
+            <div class="bento-box">
+                <h2>Layout</h2>
+                <p>3-Boxen-Schema aktiv.</p>
             </div>
         </div>
     </main>
