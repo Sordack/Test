@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | BACKUP SCHEMA</title>
+    <title>ANTON | MASTER</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
@@ -14,7 +14,6 @@
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
-        /* MENU BUTTON MIT HOVER TRANSFORMATION */
         .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
         .menu-btn:hover { background: var(--anton-yellow); color: #000; }
         .menu-btn span { transition: opacity 0.2s; }
@@ -22,7 +21,6 @@
         .menu-btn:hover span { opacity: 0; }
         .menu-btn:hover::after { opacity: 1; }
         
-        /* LINKE SIDEBAR - UNANTASTBAR */
         .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 20px; width: 100%; }
@@ -38,10 +36,10 @@
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
         
-        /* RECHTE SIDEBAR - FIXIERT (6s Linear Flow) */
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
         @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+        
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
@@ -51,6 +49,8 @@
         .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 1.5s; }
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
+        .sidebar-right a:nth-child(10) i { --brand-color: #EF3340; animation-delay: 2.25s; }
+
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
@@ -61,11 +61,11 @@
         .bento-box h2 { margin: 0 0 10px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.5rem; }
         .box-full { grid-column: span 2; }
 
-        /* FOOTER MIT OUTLINE HOVER */
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
-        footer a:hover, .footer-link-main:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; opacity: 1 !important; }
+        footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
         .footer-link-main { display: inline-block; margin-bottom: 5px; opacity: 0.8; transition: all 0.3s ease; }
+        .footer-link-main:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; opacity: 1; }
 
         @media (max-width: 600px) { .bento-grid { grid-template-columns: 1fr; } .box-full { grid-column: span 1; } .sidebar-right { display: none; } }
     </style>
@@ -89,20 +89,37 @@
     </nav>
 
     <aside class="sidebar-right">
-        <a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-tiktok"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-whatsapp"></i></a><a href="#"><i class="fa-brands fa-facebook"></i></a><a href="#"><i class="fa-brands fa-spotify"></i></a><a href="#"><i class="fa-brands fa-apple"></i></a><a href="#"><i class="fa-solid fa-circle-play"></i></a><a href="#"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://whatsapp.com/channel/Anton-Familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+        <a href="http://googleusercontent.com/spotify.com/4" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="https://music.amazon.de/artists/B0GF2ZR9RR?ref=dm_sh_AWYUJVI4waHDtvBNkm6xayISN" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://www.deezer.com/de/artist/348545011" target="_blank" rel="noopener"><i class="fa-brands fa-deezer"></i></a>
     </aside>
 
     <main>
         <div class="bento-grid">
             <div class="bento-box box-full">
-                <h2>Master Backup</h2>
-                <p>Menu-Hover: Burger zu "A". Footer-Hover aktiv.</p>
+                <h2>Willkommen</h2>
+                <p>Dies ist der absolute Master. Alle weiteren Seiten werden an dieses Layout angepasst.</p>
+            </div>
+            <div class="bento-box">
+                <h2>Musik</h2>
+                <p>Aktuelle Veröffentlichungen und Playlists.</p>
+            </div>
+            <div class="bento-box">
+                <h2>Live</h2>
+                <p>Alle Tourdaten auf einen Blick.</p>
             </div>
         </div>
     </main>
 
     <footer>
-        <div><a href="index.html" class="footer-link-main">www.anton-familienpop.de</a></div>
+        <div><a href="hauptseite.html" class="footer-link-main">www.anton-familienpop.de</a></div>
         <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
     </footer>
 
