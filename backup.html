@@ -32,7 +32,7 @@
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
         
-        /* RECHTE SIDEBAR - FIXIERT (6s Linear Flow) */
+        /* RECHTE SIDEBAR - FIXIERT */
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
         @keyframes ultraFlowWave { 
@@ -59,12 +59,18 @@
         .bento-box h2 { margin: 0 0 10px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.5rem; }
         .box-full { grid-column: span 2; }
 
-        /* FOOTER - UNANTASTBAR MIT HOVER */
+        /* FOOTER - HOVER MIT SCHWARZER UMRANDUNG */
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
-        footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: color 0.3s ease; }
-        footer a:hover { color: var(--anton-yellow); }
-        .footer-link-main { display: inline-block; margin-bottom: 5px; opacity: 0.8; transition: color 0.3s ease, opacity 0.3s ease; }
-        .footer-link-main:hover { color: var(--anton-yellow); opacity: 1; }
+        footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
+        
+        /* Der "Glow" Effekt simuliert die Umrandung durch 4 Schattenpositionen */
+        footer a:hover, .footer-link-main:hover { 
+            color: var(--anton-yellow) !important; 
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            opacity: 1 !important;
+        }
+        
+        .footer-link-main { display: inline-block; margin-bottom: 5px; opacity: 0.8; transition: all 0.3s ease; }
 
         @media (max-width: 600px) { .bento-grid { grid-template-columns: 1fr; } .box-full { grid-column: span 1; } .sidebar-right { display: none; } }
     </style>
@@ -95,7 +101,7 @@
         <div class="bento-grid">
             <div class="bento-box box-full">
                 <h2>Master Backup</h2>
-                <p>Systemzustand: Sidebars versiegelt. Footer-Hover & Link aktiv. Bilder deaktiviert.</p>
+                <p>Footer-Hover: Gelb mit schwarzem Outline.</p>
             </div>
         </div>
     </main>
