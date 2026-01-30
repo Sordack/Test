@@ -23,6 +23,7 @@
         .nav-item-epk { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
 
+        /* RECHTE SIDEBAR - PRÄZISE LOGIK-UMSETZUNG */
         .sidebar-right { 
             position: fixed; 
             top: 50%; 
@@ -49,11 +50,17 @@
             animation: ultraFlowWave 7s ease-in-out infinite; 
         }
 
+        /* 1. Schritt: Bei Hover auf Sidebar alle Animationen stoppen */
         .sidebar-right:hover a i { 
-            animation-play-state: paused; 
+            animation-play-state: paused !important; 
+        }
+
+        /* 2. Schritt: Bei Hover auf Sidebar alle Icons auf Schwarz setzen */
+        .sidebar-right:hover a i { 
             color: #000 !important; 
         }
 
+        /* 3. Schritt: Nur das aktiv gehoverte Icon zeigt Markenfarbe und Skalierung */
         .sidebar-right a:hover i { 
             color: var(--brand-color) !important; 
             transform: scale(1.55) !important; 
