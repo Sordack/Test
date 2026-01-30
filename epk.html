@@ -3,38 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | EPK</title>
+    <title>ANTON | EPK LOGIN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 240px; }
         html, body { height: 100%; margin: 0; padding: 0; }
-        body { display: flex; flex-direction: column; font-family: 'Special Elite', cursive; background: #fff url('AFaPo Wall.png') fixed center/cover no-repeat; background-blend-mode: multiply; overflow-x: hidden; }
+        body { display: flex; flex-direction: column; font-family: 'Special Elite', cursive; background: #fff url('AFaPo Wall.png') fixed center/cover no-repeat; background-blend-mode: multiply; overflow-x: hidden; justify-content: center; }
         
-        /* Passwort-Overlay Style */
-        #epk-lock { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--anton-yellow); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        #epk-lock h1 { color: var(--anton-red); margin-bottom: 20px; }
-        #epk-lock input { padding: 10px; border: 2px solid #000; font-family: 'Special Elite', cursive; font-size: 1.2rem; text-align: center; border-radius: 5px; margin-bottom: 10px; }
-        #epk-lock button { padding: 10px 20px; background: #000; color: #fff; border: none; font-family: 'Special Elite', cursive; cursor: pointer; border-radius: 5px; }
-        #epk-lock button:hover { background: var(--anton-red); }
-
-        /* Content ist initial versteckt */
-        #epk-content { display: none; flex-direction: column; min-height: 100vh; }
-
-        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
-        
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
+        /* Sidebar Left (bleibt erhalten) */
+        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; outline: none; }
         .menu-btn:hover { background: var(--anton-yellow); color: #000; }
         .menu-btn span { transition: opacity 0.2s; }
         .menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
         .menu-btn:hover span { opacity: 0; }
         .menu-btn:hover::after { opacity: 1; }
         
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
+        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; outline: none; }
         .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
+        .nav-item { margin-bottom: 20px; width: 100%; outline: none; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; outline: none; }
         .nav-item-epk { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
         .nav-label { display: flex; align-items: center; width: 100%; }
@@ -45,101 +33,54 @@
         .submenu { display: none; flex-direction: column; padding-left: 40px; margin-top: 10px; }
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
+
+        main { padding: 20px; max-width: 600px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; }
+        .bento-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
+        .bento-box { background: rgba(255, 255, 255, 0.95); border: 3px solid #000; padding: 40px; border-radius: 20px; transition: all 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: center; text-align: center; outline: none; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); }
+        .bento-box h2 { margin: 0 0 20px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.8rem; }
         
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
-        @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
-        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
-        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
-        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
-        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 1.5s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
-        .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
-        .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
+        .login-form { display: flex; flex-direction: column; gap: 15px; }
+        .login-form input { font-family: 'Special Elite', cursive; padding: 15px; border: 2px solid #000; border-radius: 10px; background: #fff; font-size: 1.1rem; outline: none; text-align: center; }
+        .login-form input:focus { background: var(--anton-yellow); }
+        .login-form button { font-family: 'Special Elite', cursive; background: #000; color: #fff; padding: 15px; border: none; border-radius: 10px; cursor: pointer; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease; font-size: 1rem; }
+        .login-form button:hover { background: var(--anton-red); transform: scale(1.02); }
+        .info-text { margin-top: 20px; font-size: 0.9rem; color: #666; }
 
-        main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; }
-        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-        .bento-box { background: rgba(255, 255, 255, 0.95); border: 3px solid #000; padding: 30px; border-radius: 20px; transition: all 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: center; text-align: center; }
-        .bento-box:hover { transform: translateY(-5px); background: var(--anton-yellow); }
-        .bento-box h2 { margin: 0 0 10px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.5rem; }
-        .box-full { grid-column: span 2; }
-
-        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
-        footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
-        footer a:hover, .footer-link-main:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; opacity: 1 !important; }
-        .footer-link-main { display: inline-block; margin-bottom: 5px; opacity: 0.8; transition: all 0.3s ease; }
-
-        @media (max-width: 600px) { .bento-grid { grid-template-columns: 1fr; } .box-full { grid-column: span 1; } .sidebar-right { display: none; } }
+        @media (max-width: 600px) { main { padding: 10px; } }
     </style>
 </head>
 <body>
-    <div id="epk-lock">
-        <h1>EPK LOGIN</h1>
-        <p>Bitte gib das Passwort ein:</p>
-        <input type="password" id="pass-input" placeholder="Passwort...">
-        <button onclick="checkPass()">LOGIN</button>
-    </div>
-
-    <div id="epk-content">
-        <header><div class="header-title">EPK / Presse</div></header>
-        <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
-        
-        <nav class="sidebar-left" id="sidebar">
-            <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
-            <div class="nav-item">
-                <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
-                <div class="submenu">
-                    <a href="ueber-mich.html"><i class="fa-regular fa-face-smile" style="margin-right:10px"></i> ÜBER MICH</a>
-                    <a href="konzerte.html"><i class="fa-solid fa-microphone-lines" style="margin-right:10px"></i> KONZERTE</a>
-                </div>
+    <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
+    
+    <nav class="sidebar-left" id="sidebar">
+        <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
+        <div class="nav-item">
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
+            <div class="submenu">
+                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile" style="margin-right:10px"></i> ÜBER MICH</a>
+                <a href="konzerte.html"><i class="fa-solid fa-microphone-lines" style="margin-right:10px"></i> KONZERTE</a>
             </div>
-            <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
-            <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-            <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span></a></div>
-        </nav>
+        </div>
+        <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
+        <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
+        <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span></a></div>
+    </nav>
 
-        <aside class="sidebar-right">
-            <a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-tiktok"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-whatsapp"></i></a><a href="#"><i class="fa-brands fa-facebook"></i></a><a href="#"><i class="fa-brands fa-spotify"></i></a><a href="#"><i class="fa-brands fa-apple"></i></a><a href="#"><i class="fa-solid fa-circle-play"></i></a><a href="#"><i class="fa-brands fa-amazon"></i></a>
-        </aside>
-
-        <main>
-            <div class="bento-grid">
-                <div class="bento-box box-full">
-                    <h2>Downloads</h2>
-                    <p>Hier finden Sie Pressefotos, Logos und die aktuelle Biografie.</p>
-                </div>
-                <div class="bento-box">
-                    <h2>Tech-Rider</h2>
-                    <p>Alle Informationen für Ton- und Lichttechnik.</p>
-                </div>
-                <div class="bento-box">
-                    <h2>Kontakt Presse</h2>
-                    <p>presse@anton-familienpop.de</p>
-                </div>
+    <main>
+        <div class="bento-grid">
+            <div class="bento-box">
+                <h2>EPK / PRESSE LOGIN</h2>
+                <p>Dieser Bereich ist passwortgeschützt.<br>Bitte gib dein Passwort ein, um zum Pressematerial zu gelangen.</p>
+                <form class="login-form" action="#" method="post">
+                    <input type="password" name="password" placeholder="Passwort eingeben" required>
+                    <button type="submit">Einloggen</button>
+                </form>
+                <p class="info-text">Du hast kein Passwort? Melde dich über den <a href="kontakt.html" style="color:#000; font-weight:bold;">Kontakt</a> bei uns.</p>
             </div>
-        </main>
-
-        <footer>
-            <div><a href="hauptseite.html" class="footer-link-main">www.anton-familienpop.de</a></div>
-            <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
-        </footer>
-    </div>
+        </div>
+    </main>
 
     <script>
-        function checkPass() {
-            const pass = document.getElementById('pass-input').value;
-            if (pass === '12345') {
-                document.getElementById('epk-lock').style.display = 'none';
-                document.getElementById('epk-content').style.display = 'flex';
-            } else {
-                alert('Falsches Passwort!');
-            }
-        }
-
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
         document.addEventListener('click', function(e) {
             const sb = document.getElementById("sidebar");
