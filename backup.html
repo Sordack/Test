@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | HOME</title>
+    <title>ANTON | BACKUP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
@@ -14,55 +14,25 @@
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
+        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: background 0.3s; }
+        .menu-btn:hover { background: var(--anton-red); }
         
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
+        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
-        .nav-item-epk { margin-top: auto; }
+        .nav-item { margin-bottom: 15px; width: 100%; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
+        .sidebar-left a:hover { color: var(--anton-red); }
+        .sidebar-left a i { margin-right: 15px; width: 25px; text-align: center; }
+        
+        .nav-item-epk { margin-top: auto; border-bottom: none; border-top: 2px solid #000; padding-top: 15px; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
 
-        /* RECHTE SIDEBAR - OPTIMIERTE ANIMATIONSDAUER */
-        .sidebar-right { 
-            position: fixed; 
-            top: 50%; 
-            right: 0; 
-            transform: translateY(-50%); 
-            width: 50px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 15px; 
-            z-index: 999; 
-            background: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(3px); 
-            padding: 25px 0; 
-            border-radius: 20px 0 0 20px; 
-        }
-        
+        /* RECHTE SIDEBAR - GESICHERTER MASTER-BLOCK (ÄNDERUNGSVERBOT) */
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a { text-decoration: none; display: flex; justify-content: center; align-items: center; width: 100%; }
-        
-        .sidebar-right a i { 
-            color: #000; 
-            font-size: 1.2rem; 
-            transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; 
-            /* Dauer auf 6s reduziert für 1s weniger Pause am Ende */
-            animation: ultraFlowWave 6s ease-in-out infinite; 
-            animation-play-state: running;
-        }
-
-        .sidebar-right:hover a i { 
-            animation-play-state: paused !important; 
-            transform: scale(1) !important; 
-            color: #000 !important; 
-        }
-
-        .sidebar-right a:hover i { 
-            color: var(--brand-color) !important; 
-            transform: scale(1.55) !important; 
-            transition: transform 0.3s ease-out, color 0.3s ease-out !important;
-        }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s ease-in-out infinite; animation-play-state: running; }
+        .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
+        .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out, color 0.3s ease-out !important; }
 
         @keyframes ultraFlowWave { 
             0% { transform: scale(1); color: #000; } 
@@ -95,20 +65,20 @@
     <header><div class="header-title">Anton</div></header>
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
     <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
-        <div class="nav-item"><a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span></a></div>
-        <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
-        <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-        <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span></a></div>
+        <div class="nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i> START</a></div>
+        <div class="nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i> MEINE MUSIK</a></div>
+        <div class="nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> SHOP</a></div>
+        <div class="nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i> KONTAKT</a></div>
+        <div class="nav-item nav-item-epk"><a href="epk.html"><i class="fa-solid fa-lock"></i> EPK / PRESSE</a></div>
     </nav>
     <aside class="sidebar-right">
         <a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-tiktok"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-whatsapp"></i></a><a href="#"><i class="fa-brands fa-facebook"></i></a><a href="#"><i class="fa-brands fa-spotify"></i></a><a href="#"><i class="fa-brands fa-apple"></i></a><a href="#"><i class="fa-solid fa-circle-play"></i></a><a href="#"><i class="fa-brands fa-amazon"></i></a>
     </aside>
     <main>
         <div class="bento-grid">
-            <div class="bento-box box-full"><h2>Anton Familienpop</h2><p>Offizielle Seite.</p></div>
-            <a href="meinemusik.html" class="bento-box"><h2>Meine Musik</h2></a>
-            <a href="konzerte.html" class="bento-box"><h2>Konzerte</h2></a>
+            <div class="bento-box box-full"><h2>System-Backup</h2><p>Alle Funktionen gesichert.</p></div>
+            <div class="bento-box"><h2>Daten</h2></div>
+            <div class="bento-box"><h2>Status</h2></div>
         </div>
     </main>
     <footer>
