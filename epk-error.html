@@ -11,7 +11,6 @@
         html, body { height: 100%; margin: 0; padding: 0; }
         body { display: flex; flex-direction: column; font-family: 'Special Elite', cursive; background: #fff url('AFaPo Wall.png') fixed center/cover no-repeat; background-blend-mode: multiply; overflow-x: hidden; justify-content: center; }
         
-        /* Sidebar Left */
         .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; outline: none; }
         .menu-btn:hover { background: var(--anton-yellow); color: #000; }
         .menu-btn span { transition: opacity 0.2s; }
@@ -37,11 +36,10 @@
         main { padding: 20px; max-width: 600px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; }
         .bento-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
         
-        /* Box mit rotem Fehler-Rahmen */
         .bento-box { background: rgba(255, 255, 255, 0.95); border: 3px solid var(--anton-red); padding: 40px; border-radius: 20px; transition: all 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: center; text-align: center; outline: none; box-shadow: 10px 10px 0px rgba(255,0,0,0.1); }
-        .bento-box h2 { margin: 0 0 10px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.8rem; }
+        .bento-box h2 { margin: 0 0 20px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.8rem; }
         
-        .error-message { color: var(--anton-red); font-weight: bold; margin-bottom: 20px; border: 1px solid var(--anton-red); padding: 10px; background: rgba(255,0,0,0.05); border-radius: 5px; }
+        .error-message { color: var(--anton-red); font-weight: bold; margin-bottom: 25px; border: 1px solid var(--anton-red); padding: 15px; background: rgba(255,0,0,0.05); border-radius: 5px; line-height: 1.4; }
         
         .login-form { display: flex; flex-direction: column; gap: 15px; }
         .login-form input { font-family: 'Special Elite', cursive; padding: 15px; border: 2px solid #000; border-radius: 10px; background: #fff; font-size: 1.1rem; outline: none; text-align: center; }
@@ -49,8 +47,6 @@
         .login-form button { font-family: 'Special Elite', cursive; background: #000; color: #fff; padding: 15px; border: none; border-radius: 10px; cursor: pointer; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease; font-size: 1rem; }
         .login-form button:hover { background: var(--anton-red); transform: scale(1.02); }
         .info-text { margin-top: 20px; font-size: 0.9rem; color: #666; }
-
-        .warn-icon { font-size: 3rem; color: var(--anton-red); margin-bottom: 15px; }
 
         @media (max-width: 600px) { main { padding: 10px; } }
     </style>
@@ -69,19 +65,18 @@
         </div>
         <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
         <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-        <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span></a></div>
+        <div class="nav-item nav-item-epk"><a href="epk-login.html"><span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span></a></div>
     </nav>
 
     <main>
         <div class="bento-grid">
             <div class="bento-box">
-                <div class="warn-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                <h2>LOGIN FEHLGESCHLAGEN</h2>
-                <div class="error-message">Falsches Passwort! Bitte versuche es erneut.</div>
-                <form class="login-form" action="#" method="post">
-                    <input type="password" name="password" placeholder="Passwort erneut eingeben" required autofocus>
-                    <button type="submit">Einloggen</button>
-                </form>
+                <h2>EPK / PRESSE LOGIN</h2>
+                <div class="error-message">Vertippt? Da stimmte was nicht.<br>Versuche es bitte nochmal.</div>
+                <div class="login-form">
+                    <input type="password" id="epkPass" placeholder="Passwort erneut eingeben" onkeydown="if(event.key==='Enter') checkPassword()" autofocus>
+                    <button onclick="checkPassword()">Einloggen</button>
+                </div>
                 <p class="info-text">Passwort vergessen? Kontaktiere uns über den <a href="kontakt.html" style="color:#000; font-weight:bold;">Kontaktbereich</a>.</p>
             </div>
         </div>
@@ -89,6 +84,17 @@
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
+        
+        function checkPassword() {
+            const pass = document.getElementById('epkPass').value;
+            // Passwort: anton2026
+            if (pass === "anton2026") {
+                window.location.href = "epk.html";
+            } else {
+                window.location.href = "epk-error.html";
+            }
+        }
+
         document.addEventListener('click', function(e) {
             const sb = document.getElementById("sidebar");
             const btn = document.querySelector(".menu-btn");
