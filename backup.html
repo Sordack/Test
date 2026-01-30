@@ -23,7 +23,7 @@
         .nav-item-epk { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
 
-        /* RECHTE SIDEBAR - EINGEFRORENE ANIMATION BEI HOVER */
+        /* RECHTE SIDEBAR - PRÄZISE STOPP- UND RÜCKFALL-LOGIK */
         .sidebar-right { 
             position: fixed; 
             top: 50%; 
@@ -46,27 +46,29 @@
         .sidebar-right a i { 
             color: #000; 
             font-size: 1.2rem; 
+            /* Erlaubt sanftes Zurückgleiten in die Animation */
             transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; 
             animation: ultraFlowWave 7s ease-in-out infinite; 
             animation-play-state: running;
         }
 
-        /* 1. Schritt: Animation beim Betreten der Sidebar einfrieren */
+        /* 1. Schritt: Beim Berühren der Sidebar-Fläche alles einfrieren */
         .sidebar-right:hover a i { 
             animation-play-state: paused !important; 
         }
 
-        /* 2. Schritt: Alle Icons auf Schwarz und Scale 1 zwingen (Animation bleibt pausiert) */
+        /* 2. Schritt: Alle unberührten Icons fallen SOFORT in Ausgangsposition zurück */
         .sidebar-right:hover a i { 
-            transform: scale(1); 
+            transform: scale(1) !important; 
             color: #000 !important; 
         }
 
-        /* 3. Schritt: Das fokussierte Icon gleitet sanft auf Markenfarbe und Scale 1.55 */
+        /* 3. Schritt: Nur das aktiv angewählte Icon wird hervorgehoben */
         .sidebar-right a:hover i { 
             color: var(--brand-color) !important; 
             transform: scale(1.55) !important; 
-            transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
+            /* Schnellerer Hover-Effekt für direkte Rückmeldung */
+            transition: transform 0.3s ease-out, color 0.3s ease-out !important;
         }
 
         @keyframes ultraFlowWave { 
