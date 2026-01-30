@@ -23,7 +23,7 @@
         .nav-item-epk { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
 
-        /* RECHTE SIDEBAR - FINALE LOGIK */
+        /* RECHTE SIDEBAR - FINALE LOGIK MIT SANFTEM HOVER */
         .sidebar-right { 
             position: fixed; 
             top: 50%; 
@@ -46,22 +46,23 @@
         .sidebar-right a i { 
             color: #000; 
             font-size: 1.2rem; 
-            /* Transition für den sanften Übergang zurück in die Animation */
+            /* Grund-Transition für das Zurückgleiten in die Wellen-Animation */
             transition: transform 0.6s ease-in-out, color 0.6s ease-in-out; 
             animation: ultraFlowWave 7s ease-in-out infinite; 
         }
 
-        /* Logik: Animation läuft unsichtbar weiter, Icons werden auf Schwarz/Scale 1 fixiert */
+        /* Wenn Sidebar gehovert: Alle Icons auf Schwarz/Scale 1 fixieren, während Animation im Hintergrund läuft */
         .sidebar-right:hover a i { 
             transform: scale(1) !important; 
             color: #000 !important; 
         }
 
-        /* Nur das fokussierte Icon bricht die Fixierung */
+        /* Das spezifisch gehoverte Icon: Sanftes Aufblähen in Markenfarbe */
         .sidebar-right a:hover i { 
             color: var(--brand-color) !important; 
             transform: scale(1.55) !important; 
-            transition: transform 0.2s ease, color 0.2s ease;
+            /* Sanfter Übergang beim Hovern, analog zur Wellen-Geschwindigkeit */
+            transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
         }
 
         @keyframes ultraFlowWave { 
