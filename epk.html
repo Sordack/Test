@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANTON | EPK & PRESSE</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <script>
-        // Sicherheits-Check: Nur Zugriff, wenn über epk-login.html authentifiziert
+        // ABSOLUTER SCHUTZ: Wird ausgeführt, bevor das CSS oder HTML geladen wird
         if (sessionStorage.getItem('epkAuth') !== 'true') {
+            window.stop(); // Stoppt das Laden der restlichen Seite
             window.location.href = "epk-login.html";
         }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 240px; }
         html, body { height: 100%; margin: 0; padding: 0; }
