@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANTON | HAUPTSEITE</title>
+    <title>ANTON | BACKUP SCHEMA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
@@ -16,13 +16,15 @@
         
         .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
         
-        /* LINKE SIDEBAR - FIXIERT */
+        /* LINKE SIDEBAR - UNANTASTBAR */
         .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 20px; width: 100%; }
         .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
+        
         .nav-item-epk { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
+
         .nav-label { display: flex; align-items: center; width: 100%; }
         .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
         .arrow-wrapper { margin-left: auto; padding-right: 5px; }
@@ -32,7 +34,7 @@
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
         
-        /* RECHTE SIDEBAR - REKONSTRUKTION DES ORIGINALS */
+        /* RECHTE SIDEBAR - REKONSTRUKTION DES ORIGINALS (FIXIERT) */
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
         
@@ -52,7 +54,9 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
         
+        /* Stop-Effekt bei Hover über die gesamte Sidebar */
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
+        /* Highlight-Effekt bei Hover über einzelnes Icon */
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
         main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; }
@@ -91,9 +95,10 @@
 
     <main>
         <div class="bento-grid">
-            <div class="bento-box box-full"><h2>Anton</h2><p>Sidebar-Integrität wiederhergestellt.</p></div>
-            <a href="meinemusik.html" class="bento-box"><h2>Musik</h2><p>Master-Animation aktiv.</p></a>
-            <a href="shop.html" class="bento-box"><h2>Shop</h2><p>Struktur fixiert.</p></a>
+            <div class="bento-box box-full">
+                <h2>Master Backup</h2>
+                <p>Systemzustand: Sidebars versiegelt. Animationen auf Originalstand.</p>
+            </div>
         </div>
     </main>
 
