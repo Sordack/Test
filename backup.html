@@ -2,163 +2,154 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANTON | OFFIZIELLE SEITE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 240px; }
+        html, body { height: 100%; margin: 0; padding: 0; }
+        body { display: flex; flex-direction: column; font-family: 'Special Elite', cursive; background: #fff url('AFaPo Wall.png') fixed center/cover no-repeat; background-blend-mode: multiply; overflow: hidden; }
         
-        html, body { height: 100%; margin: 0; padding: 0; background: #000; overflow: hidden; }
-        body { font-family: 'Special Elite', cursive; display: flex; flex-direction: column; }
-
-        /* Panorama-Hintergrund */
-        .background-wall {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 200%; /* Ermöglicht das Entdecken beim Swipen */
-            background: #fff url('AFaPo Wall.png') center/cover no-repeat;
-            background-blend-mode: multiply;
-            z-index: 1;
-            transition: transform 0.1s ease-out;
-        }
-
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; outline: none; }
+        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; outline: none; }
         .menu-btn:hover { background: var(--anton-yellow); color: #000; }
+        .menu-btn span { transition: opacity 0.2s; }
+        .menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
+        .menu-btn:hover span { opacity: 0; }
+        .menu-btn:hover::after { opacity: 1; }
         
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
+        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; outline: none; }
         .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
+        .nav-item { margin-bottom: 20px; width: 100%; outline: none; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; outline: none; }
         .nav-item-epk { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
-
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px; }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.3s; }
-        .sidebar-right a:hover i { transform: scale(1.3); color: var(--anton-red); }
-
-        /* Swipe-Container */
-        main {
-            flex: 1;
-            position: relative;
-            z-index: 10;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-            display: flex;
-            align-items: center;
-            -webkit-overflow-scrolling: touch; /* Flüssiges Scrollen auf iOS */
-        }
-
-        .swipe-content {
-            display: flex;
-            width: 200%; 
-            height: 100%;
-            align-items: center;
-        }
-
-        .section {
-            width: 100vw;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            scroll-snap-align: center;
-            flex-shrink: 0;
-        }
-
-        .plakat-container { width: 320px; transform: rotate(-1deg); }
+        .nav-label { display: flex; align-items: center; width: 100%; }
+        .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
+        .arrow-wrapper { margin-left: auto; padding-right: 5px; }
+        .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
+        .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
+        .submenu { display: none; flex-direction: column; padding-left: 40px; margin-top: 10px; }
+        .nav-item:hover .submenu { display: flex; }
+        .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
         
-        .bento-box-plakat { background: #fff; border: 2px solid #000; padding: 15px; border-radius: 5px; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 5px 15px 30px rgba(0,0,0,0.4); position: relative; overflow: hidden; transition: transform 0.3s; }
-        .bento-box-plakat:hover { transform: scale(1.02); background: var(--anton-yellow); }
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px; outline: none; }
+        .sidebar-right a { outline: none; text-decoration: none; }
+        .sidebar-right a i, .sidebar-right a svg { color: #000; fill: #000; font-size: 1.2rem; width: 22px; height: 22px; transition: all 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; display: block; border: none; outline: none; }
+        
+        @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; fill: #000; text-shadow: none; } 9.33% { transform: scale(1.55); color: var(--brand-color); fill: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; fill: #000; text-shadow: none; } }
+        
+        @keyframes tiktokGlitchWave { 
+            0% { transform: scale(1); color: #000; text-shadow: none; } 
+            9.33% { transform: scale(1.55); color: #fff; text-shadow: 2px 0 #ff0050, -2px 0 #00f2ea; } 
+            11% { transform: scale(1.55) translate(1px, -1px); }
+            13% { transform: scale(1.55) translate(-1px, 1px); }
+            23.33%, 100% { transform: scale(1); color: #000; text-shadow: none; } 
+        }
+
+        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
+        .sidebar-right a:nth-child(2) i { animation-name: tiktokGlitchWave; animation-delay: 0.25s; }
+        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
+        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
+        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
+        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
+        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 1.5s; }
+        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
+        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
+        .sidebar-right a:nth-child(10) svg { --brand-color: #A238FF; animation-delay: 2.25s; }
+
+        main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 0; z-index: 10; position: relative; }
+        
+        .plakat-container { position: relative; width: 340px; transform: rotate(-1deg); }
+        
+        .bento-box-plakat { background: #fff; border: 2px solid #000; padding: 15px; border-radius: 5px; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 5px 15px 30px rgba(0,0,0,0.4); transition: all 0.4s ease; outline: none; position: relative; overflow: hidden; }
         
         .bento-box-plakat img { width: 100%; height: auto; border: 1px solid #eee; margin-bottom: 15px; display: block; }
-        .bento-box-plakat::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); opacity: 0.3; pointer-events: none; }
         
-        .bento-box-plakat h2 { margin: 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.8rem; z-index: 1; }
-        .bento-box-plakat p { font-size: 1rem; margin: 10px 0; font-weight: bold; z-index: 1; }
+        .bento-box-plakat::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); opacity: 0.4; pointer-events: none; }
+        
+        .bento-box-plakat:hover { transform: scale(1.02) rotate(1deg); background: var(--anton-yellow); }
+        
+        .bento-box-plakat h2 { margin: 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.8rem; letter-spacing: 1px; line-height: 1.1; z-index: 1; }
+        .bento-box-plakat p { font-size: 1rem; margin: 10px 0 5px 0; z-index: 1; font-weight: bold; }
 
         footer { position: fixed; bottom: 0; width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; }
-        footer a { color: #000; text-decoration: none; font-weight: bold; }
+        footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; outline: none; }
+        footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+        .footer-link-main { display: inline-block; margin-bottom: 5px; opacity: 0.8; transition: all 0.3s ease; }
+        .footer-link-main:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; opacity: 1; }
 
-        @media (min-width: 1025px) {
-            .background-wall { width: 100%; }
-            .swipe-content { width: 100%; justify-content: center; }
-            .section { width: auto; margin: 0 50px; }
-            main { overflow: hidden; }
-        }
-
-        @media (max-width: 600px) { .sidebar-right { display: none; } }
+        @media (max-width: 600px) { .sidebar-right { display: none; } .plakat-container { width: 290px; } }
     </style>
 </head>
 <body>
-
-    <div class="background-wall" id="bgWall"></div>
-
     <header><a href="hauptseite.html" class="header-title">Anton</a></header>
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
     
     <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item"><a href="hauptseite.html"><span><i class="fa-solid fa-house"></i> START</span></a></div>
-        <div class="nav-item"><a href="meinemusik.html"><span><i class="fa-solid fa-music"></i> MEINE MUSIK</span></a></div>
-        <div class="nav-item"><a href="shop.html"><span><i class="fa-solid fa-cart-shopping"></i> SHOP</span></a></div>
-        <div class="nav-item"><a href="kontakt.html"><span><i class="fa-solid fa-envelope"></i> KONTAKT</span></a></div>
-        <div class="nav-item nav-item-epk"><a href="epk.html"><span><i class="fa-solid fa-bullhorn"></i> EPK / PRESSE</span></a></div>
+        <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
+        <div class="nav-item">
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
+            <div class="submenu">
+                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile" style="margin-right:10px"></i> ÜBER MICH</a>
+                <a href="konzerte.html"><i class="fa-solid fa-microphone-lines" style="margin-right:10px"></i> KONZERTE</a>
+            </div>
+        </div>
+        <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
+        <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
+        <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a></div>
     </nav>
 
     <aside class="sidebar-right">
-        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.spotify.com" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="https://music.amazon.de/artists/B0GF2ZR9RR?ref=dm_sh_AWYUJVI4waHDtvBNkm6xayISN" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://www.deezer.com/de/artist/348545011" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.3" y="10" width="2" height="4" rx="1"/>
+                <rect x="4.5" y="7" width="2" height="9" rx="1"/>
+                <rect x="6.5" y="6" width="2" height="11" rx="1"/>
+                <rect x="8.5" y="5" width="2" height="13" rx="1"/>
+                <rect x="10.5" y="7" width="2" height="14" rx="1"/>
+                <rect x="12.5" y="5" width="2" height="13" rx="1"/>
+                <rect x="14.5" y="6" width="2" height="11" rx="1"/>
+                <rect x="16.5" y="7" width="2" height="9" rx="1"/>
+                <rect x="18.7" y="10" width="2" height="4" rx="1"/>
+            </svg>
+        </a>
     </aside>
 
-    <main id="mainScroll">
-        <div class="swipe-content">
-            <section class="section">
-                <div class="plakat-container">
-                    <a href="meinemusik.html" class="bento-box-plakat">
-                        <img src="HUNGER.jpeg" alt="HUNGER Cover">
-                        <h2>Neues Album</h2>
-                        <p>Jetzt reinhören!</p>
-                    </a>
-                </div>
-            </section>
-            
-            <section class="section">
-                <div class="plakat-container" style="transform: rotate(2deg);">
-                    <div class="bento-box-plakat">
-                        <div style="font-size: 4rem; margin-bottom: 10px;">🎤</div>
-                        <h2>Tour 2026</h2>
-                        <p>Termine folgen bald!</p>
-                    </div>
-                </div>
-            </section>
+    <main>
+        <div class="plakat-container">
+            <a href="meinemusik.html" class="bento-box-plakat">
+                <img src="HUNGER.png" alt="HUNGER Cover">
+                <h2>Neue Single</h2>
+                <p>WELTPREMIERE am 20. Februar!</p>
+            </a>
         </div>
     </main>
 
     <footer>
-        <a href="hauptseite.html">www.anton-familienpop.de</a><br>
-        <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
+        <div><a href="hauptseite.html" class="footer-link-main">www.anton-familienpop.de</a></div>
+        <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
     </footer>
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-        
-        const mainScroll = document.getElementById('mainScroll');
-        const bgWall = document.getElementById('bgWall');
-
-        if (window.innerWidth <= 1024) {
-            mainScroll.addEventListener('scroll', () => {
-                const scrollPercentage = mainScroll.scrollLeft / (mainScroll.scrollWidth - window.innerWidth);
-                const move = scrollPercentage * 50; 
-                bgWall.style.transform = `translateX(-${move}%)`;
-            });
-        }
+        document.addEventListener('click', function(e) {
+            const sb = document.getElementById("sidebar");
+            const btn = document.querySelector(".menu-btn");
+            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
+        });
     </script>
 </body>
 </html>
