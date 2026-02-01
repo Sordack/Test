@@ -9,17 +9,16 @@
     <style>
         :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 240px; }
         
-        /* Grundsetup */
         html, body { height: 100%; margin: 0; padding: 0; background: #000; overflow: hidden; }
         body { font-family: 'Special Elite', cursive; display: flex; flex-direction: column; }
 
-        /* Die "Wand" im Hintergrund */
+        /* Panorama-Hintergrund */
         .background-wall {
             position: fixed;
             top: 0;
             left: 0;
             height: 100%;
-            width: 200%; /* Doppelt so breit für den Entdecker-Effekt */
+            width: 200%; /* Ermöglicht das Entdecken beim Swipen */
             background: #fff url('AFaPo Wall.png') center/cover no-repeat;
             background-blend-mode: multiply;
             z-index: 1;
@@ -29,18 +28,21 @@
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
-        /* UI Elemente */
         .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; outline: none; }
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; }
+        .menu-btn:hover { background: var(--anton-yellow); color: #000; }
+        
+        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
-        
-        /* Rechte Social Bar */
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px; }
-        .sidebar-right a i, .sidebar-right a svg { color: #000; font-size: 1.2rem; display: block; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
+        .nav-item-epk { margin-top: auto; }
+        .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
 
-        /* Content-Bereich mit horizontalem Scroll */
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px; }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.3s; }
+        .sidebar-right a:hover i { transform: scale(1.3); color: var(--anton-red); }
+
+        /* Swipe-Container */
         main {
             flex: 1;
             position: relative;
@@ -50,12 +52,12 @@
             scroll-snap-type: x mandatory;
             display: flex;
             align-items: center;
-            -webkit-overflow-scrolling: touch;
+            -webkit-overflow-scrolling: touch; /* Flüssiges Scrollen auf iOS */
         }
 
         .swipe-content {
             display: flex;
-            width: 200%; /* Gleiche Breite wie der Hintergrund */
+            width: 200%; 
             height: 100%;
             align-items: center;
         }
@@ -70,25 +72,28 @@
             flex-shrink: 0;
         }
 
-        /* Plakat Styling */
         .plakat-container { width: 320px; transform: rotate(-1deg); }
-        .bento-box-plakat { background: #fff; border: 2px solid #000; padding: 15px; border-radius: 5px; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; box-shadow: 5px 15px 30px rgba(0,0,0,0.4); }
-        .bento-box-plakat img { width: 100%; height: auto; margin-bottom: 15px; }
-        .bento-box-plakat h2 { color: var(--anton-red); text-transform: uppercase; font-size: 1.8rem; margin: 0; }
+        
+        .bento-box-plakat { background: #fff; border: 2px solid #000; padding: 15px; border-radius: 5px; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 5px 15px 30px rgba(0,0,0,0.4); position: relative; overflow: hidden; transition: transform 0.3s; }
+        .bento-box-plakat:hover { transform: scale(1.02); background: var(--anton-yellow); }
+        
+        .bento-box-plakat img { width: 100%; height: auto; border: 1px solid #eee; margin-bottom: 15px; display: block; }
+        .bento-box-plakat::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); opacity: 0.3; pointer-events: none; }
+        
+        .bento-box-plakat h2 { margin: 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.8rem; z-index: 1; }
+        .bento-box-plakat p { font-size: 1rem; margin: 10px 0; font-weight: bold; z-index: 1; }
 
         footer { position: fixed; bottom: 0; width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; }
+        footer a { color: #000; text-decoration: none; font-weight: bold; }
 
-        /* Desktop-Optimierung: Kein Scroll nötig, wenn genug Platz */
         @media (min-width: 1025px) {
             .background-wall { width: 100%; }
-            .swipe-content { width: 100%; justify-content: space-around; }
-            .section { width: auto; }
+            .swipe-content { width: 100%; justify-content: center; }
+            .section { width: auto; margin: 0 50px; }
             main { overflow: hidden; }
         }
 
-        @media (max-width: 600px) {
-            .sidebar-right { display: none; }
-        }
+        @media (max-width: 600px) { .sidebar-right { display: none; } }
     </style>
 </head>
 <body>
@@ -96,7 +101,6 @@
     <div class="background-wall" id="bgWall"></div>
 
     <header><a href="hauptseite.html" class="header-title">Anton</a></header>
-    
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
     
     <nav class="sidebar-left" id="sidebar">
@@ -104,13 +108,13 @@
         <div class="nav-item"><a href="meinemusik.html"><span><i class="fa-solid fa-music"></i> MEINE MUSIK</span></a></div>
         <div class="nav-item"><a href="shop.html"><span><i class="fa-solid fa-cart-shopping"></i> SHOP</span></a></div>
         <div class="nav-item"><a href="kontakt.html"><span><i class="fa-solid fa-envelope"></i> KONTAKT</span></a></div>
-        <div class="nav-item"><a href="epk.html" style="color:var(--anton-red); font-weight:bold;"><span><i class="fa-solid fa-bullhorn"></i> EPK / PRESSE</span></a></div>
+        <div class="nav-item nav-item-epk"><a href="epk.html"><span><i class="fa-solid fa-bullhorn"></i> EPK / PRESSE</span></a></div>
     </nav>
 
     <aside class="sidebar-right">
-        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
     </aside>
 
     <main id="mainScroll">
@@ -118,18 +122,19 @@
             <section class="section">
                 <div class="plakat-container">
                     <a href="meinemusik.html" class="bento-box-plakat">
-                        <img src="HUNGER.png" alt="HUNGER Cover">
+                        <img src="HUNGER.jpeg" alt="HUNGER Cover">
                         <h2>Neues Album</h2>
                         <p>Jetzt reinhören!</p>
                     </a>
                 </div>
             </section>
-
+            
             <section class="section">
                 <div class="plakat-container" style="transform: rotate(2deg);">
                     <div class="bento-box-plakat">
+                        <div style="font-size: 4rem; margin-bottom: 10px;">🎤</div>
                         <h2>Tour 2026</h2>
-                        <p>Bald Termine entdecken!</p>
+                        <p>Termine folgen bald!</p>
                     </div>
                 </div>
             </section>
@@ -143,17 +148,17 @@
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-
-        // Parallax-Effekt: Der Hintergrund bewegt sich mit dem Scrollen mit
+        
         const mainScroll = document.getElementById('mainScroll');
         const bgWall = document.getElementById('bgWall');
 
-        mainScroll.addEventListener('scroll', () => {
-            const scrollPercentage = mainScroll.scrollLeft / (mainScroll.scrollWidth - window.innerWidth);
-            // Der Hintergrund bewegt sich um maximal 50% seiner Breite (da er 200% breit ist)
-            const move = scrollPercentage * 50; 
-            bgWall.style.transform = `translateX(-${move}%)`;
-        });
+        if (window.innerWidth <= 1024) {
+            mainScroll.addEventListener('scroll', () => {
+                const scrollPercentage = mainScroll.scrollLeft / (mainScroll.scrollWidth - window.innerWidth);
+                const move = scrollPercentage * 50; 
+                bgWall.style.transform = `translateX(-${move}%)`;
+            });
+        }
     </script>
 </body>
 </html>
