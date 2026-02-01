@@ -37,7 +37,7 @@
         .nav-item-epk { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
 
-        /* RECHTE SIDEBAR (Alle 10 Icons) */
+        /* RECHTE SIDEBAR (Desktop-Standard) */
         .sidebar-right { 
             position: fixed; 
             top: 50%; 
@@ -55,9 +55,8 @@
             border-radius: 15px 0 0 15px; 
             border: 1px solid rgba(0,0,0,0.1);
         }
-        .sidebar-right a { display: block; height: 24px; width: 24px; text-decoration: none; }
+        .sidebar-right a { display: flex; justify-content: center; align-items: center; text-decoration: none; }
         .sidebar-right a i, .sidebar-right a svg { color: #000; fill: #000; font-size: 1.2rem; width: 22px; height: 22px; transition: all 0.3s; }
-        .sidebar-right a:hover i { transform: scale(1.2); color: var(--anton-red); }
 
         /* Swipe-Container */
         main {
@@ -89,11 +88,10 @@
             flex-shrink: 0;
         }
 
-        .plakat-container { width: 310px; transform: rotate(-1deg); padding-right: 40px; }
+        .plakat-container { width: 310px; transform: rotate(-1deg); }
         
         .bento-box-plakat { background: #fff; border: 2px solid #000; padding: 15px; border-radius: 5px; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 5px 15px 30px rgba(0,0,0,0.4); position: relative; overflow: hidden; }
         .bento-box-plakat img { width: 100%; height: auto; border: 1px solid #eee; margin-bottom: 15px; display: block; }
-        .bento-box-plakat::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); opacity: 0.3; pointer-events: none; }
         
         .bento-box-plakat h2 { margin: 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.7rem; z-index: 1; }
         .bento-box-plakat p { font-size: 0.95rem; margin: 10px 0; font-weight: bold; z-index: 1; }
@@ -101,20 +99,43 @@
         footer { position: fixed; bottom: 0; width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; }
         footer a { color: #000; text-decoration: none; font-weight: bold; }
 
-        /* Desktop */
+        /* MOBILE OPTIMIERUNG */
+        @media (max-width: 800px) {
+            /* Rechte Sidebar über den Footer schieben */
+            .sidebar-right { 
+                top: auto;
+                bottom: 65px; /* Direkt über dem Footer (Footer ca. 60px hoch) */
+                right: 0;
+                left: 0;
+                width: 100%;
+                height: auto;
+                flex-direction: row; /* Horizontal nebeneinander */
+                justify-content: center;
+                transform: none;
+                border-radius: 0;
+                background: rgba(255, 255, 255, 0.7);
+                border: none;
+                border-top: 1px solid rgba(0,0,0,0.1);
+                padding: 15px 0;
+                gap: 20px; /* Mehr Platz zwischen den großen Icons */
+            }
+
+            /* Icons doppelt so groß */
+            .sidebar-right a i, .sidebar-right a svg { 
+                font-size: 2rem; 
+                width: 35px; 
+                height: 35px; 
+            }
+
+            .plakat-container { width: 260px; }
+            main { padding-bottom: 80px; /* Platz für die neue Icon-Leiste unten */ }
+        }
+
         @media (min-width: 1025px) {
             .background-wall { width: 100%; }
             .swipe-content { width: 100%; justify-content: center; }
             .section { width: auto; margin: 0 60px; }
             main { overflow: hidden; }
-            .plakat-container { padding-right: 0; }
-        }
-
-        /* Mobile Fix für alle 10 Icons */
-        @media (max-width: 600px) {
-            .sidebar-right { width: 35px; gap: 8px; padding: 10px 0; }
-            .sidebar-right a i, .sidebar-right a svg { font-size: 0.9rem; width: 18px; height: 18px; }
-            .plakat-container { width: 260px; }
         }
     </style>
 </head>
