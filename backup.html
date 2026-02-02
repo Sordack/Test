@@ -12,7 +12,7 @@
         html, body { height: 100%; margin: 0; padding: 0; background: #000; overflow: hidden; }
         body { font-family: 'Special Elite', cursive; display: flex; flex-direction: column; }
 
-        /* Panorama-Hintergrund - MASTER */
+        /* Panorama-Hintergrund (MASTER) */
         .background-wall {
             position: fixed; top: 0; left: 0; height: 100%; width: 200%; 
             background: #fff url('AFaPo Wall.png') center/cover no-repeat;
@@ -27,20 +27,12 @@
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 20px; width: 100%; }
         .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
-        .nav-item-epk { margin-top: auto; }
-        .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
 
-        /* RECHTE SIDEBAR - MASTER (OHNE DEEZER) */
-        .sidebar-right { 
-            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; 
-            display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; 
-            background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; 
-            border-radius: 20px 0 0 20px; 
-        }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; display: block; }
+        /* RECHTE SIDEBAR (9 ICONS) */
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; display: block; }
         @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
         @keyframes tiktokGlitchWave { 0% { transform: scale(1); color: #000; text-shadow: none; } 9.33% { transform: scale(1.55); color: #fff; text-shadow: 2px 0 #ff0050, -2px 0 #00f2ea; } 23.33%, 100% { transform: scale(1); color: #000; text-shadow: none; } }
-        
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { animation-name: tiktokGlitchWave; animation-delay: 0.25s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
@@ -51,46 +43,29 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2s; }
 
-        /* MAIN & BENTO-LAYOUT - MASTER TREUE */
-        main {
-            flex: 1; position: relative; z-index: 10; overflow-x: auto; overflow-y: hidden; 
-            scroll-snap-type: x mandatory; display: flex; align-items: center; -webkit-overflow-scrolling: touch;
-        }
-        .swipe-content { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; }
-        .section { width: 100vw; height: 100%; display: flex; justify-content: center; align-items: center; scroll-snap-align: center; flex-shrink: 0; }
+        /* MAIN & SECTIONS (MASTER) */
+        main { flex: 1; position: relative; z-index: 10; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; display: flex; align-items: center; -webkit-overflow-scrolling: touch; }
+        .swipe-content { display: flex; width: 250%; height: 100%; align-items: center; }
+        .section { width: 50vw; height: 100%; display: flex; justify-content: center; align-items: center; scroll-snap-align: center; flex-shrink: 0; }
         
-        /* Bento-Gruppe (Zusammengefasst im Master-Container) */
-        .bento-group { display: flex; align-items: center; gap: 20px; transform: rotate(-1.5deg); }
-        .side-column { display: flex; flex-direction: column; gap: 15px; }
-
-        /* Kleine Boxen (Master-Stil) */
-        .small-bento { 
-            width: 100px; height: 100px; background: #fff; border: 2px solid #000; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-decoration: none; color: #000; font-size: 0.7rem; font-weight: bold;
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
-        }
-
-        /* Haupt-Plakat (15% kleiner als Original 310px -> ~260px) */
-        .plakat-container { width: 260px; }
-        .bento-box-plakat { 
-            background: #fff; border: 2px solid #000; padding: 15px; border-radius: 5px; 
-            text-decoration: none; color: inherit; display: flex; flex-direction: column; 
-            align-items: center; text-align: center; box-shadow: 5px 15px 30px rgba(0,0,0,0.4); 
-        }
+        /* BENTO BOXEN (MASTER DESIGN) */
+        .plakat-container { width: 260px; transform: rotate(-1.5deg); margin: 0 15px; }
+        .plakat-container.small { width: 120px; transform: rotate(1deg); }
+        .bento-box-plakat { background: #fff; border: 2px solid #000; padding: 15px; border-radius: 5px; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 5px 15px 30px rgba(0,0,0,0.4); }
         .bento-box-plakat img { width: 100%; height: auto; border: 1px solid #eee; margin-bottom: 15px; display: block; }
-        .bento-box-plakat h2 { margin: 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.5rem; }
+        .bento-box-plakat h2 { margin: 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.3rem; }
+        .bento-box-plakat p { font-size: 0.8rem; margin: 5px 0 0 0; font-weight: bold; }
 
         footer { position: fixed; bottom: 0; width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; }
         footer a { color: #000; text-decoration: none; font-weight: bold; }
 
-        /* MOBILE ANPASSUNG - MASTER */
+        /* MOBILE OPTIMIERUNG (MASTER) */
         @media (max-width: 800px) {
-            .sidebar-right { top: auto; bottom: 60px; right: 0; left: 0; width: 100%; height: auto; flex-direction: row; justify-content: space-evenly; transform: none; border-radius: 0; background: rgba(255, 255, 255, 0.85); border-top: 1.5px solid #000; padding: 12px 5px; }
-            .bento-group { flex-direction: column; transform: rotate(0); gap: 10px; }
-            .side-column { flex-direction: row; }
-            .small-bento { width: 70px; height: 70px; font-size: 0.55rem; }
-            .plakat-container { width: 220px; }
+            .sidebar-right { bottom: 60px; right: 0; left: 0; width: 100%; height: auto; flex-direction: row; justify-content: space-evenly; transform: none; border-radius: 0; background: rgba(255, 255, 255, 0.85); border-top: 1.5px solid #000; padding: 12px 5px; }
+            .sidebar-right a i { font-size: 1.5rem; }
+            .swipe-content { width: 500%; }
+            .section { width: 100vw; }
+            main { padding-bottom: 80px; }
         }
     </style>
 </head>
@@ -106,7 +81,6 @@
         <div class="nav-item"><a href="meinemusik.html"><span><i class="fa-solid fa-music"></i> MEINE MUSIK</span></a></div>
         <div class="nav-item"><a href="shop.html"><span><i class="fa-solid fa-cart-shopping"></i> SHOP</span></a></div>
         <div class="nav-item"><a href="kontakt.html"><span><i class="fa-solid fa-envelope"></i> KONTAKT</span></a></div>
-        <div class="nav-item nav-item-epk"><a href="epk.html"><span><i class="fa-solid fa-bullhorn"></i> EPK / PRESSE</span></a></div>
     </nav>
 
     <aside class="sidebar-right">
@@ -123,25 +97,21 @@
 
     <main id="mainScroll">
         <div class="swipe-content">
+            <section class="section"><div class="plakat-container small"><div class="bento-box-plakat"><h2>TOUR</h2></div></div></section>
+            <section class="section"><div class="plakat-container small"><div class="bento-box-plakat"><h2>ALBUM 1</h2></div></div></section>
+            
             <section class="section">
-                <div class="bento-group">
-                    <div class="side-column">
-                        <a href="#" class="small-bento">TOUR</a>
-                        <a href="#" class="small-bento">1. ALBUM</a>
-                    </div>
-                    <div class="plakat-container">
-                        <a href="meinemusik.html" class="bento-box-plakat">
-                            <img src="HUNGER.jpeg" alt="HUNGER Cover">
-                            <h2>Neue Single</h2>
-                            <p>20. Februar!</p>
-                        </a>
-                    </div>
-                    <div class="side-column">
-                        <a href="#" class="small-bento">2. ALBUM</a>
-                        <a href="#" class="small-bento">3. ALBUM</a>
-                    </div>
+                <div class="plakat-container">
+                    <a href="meinemusik.html" class="bento-box-plakat">
+                        <img src="HUNGER.jpeg" alt="HUNGER">
+                        <h2>Neue Single</h2>
+                        <p>20. FEBRUAR!</p>
+                    </a>
                 </div>
             </section>
+
+            <section class="section"><div class="plakat-container small"><div class="bento-box-plakat"><h2>ALBUM 2</h2></div></div></section>
+            <section class="section"><div class="plakat-container small"><div class="bento-box-plakat"><h2>ALBUM 3</h2></div></div></section>
         </div>
     </main>
 
@@ -152,12 +122,6 @@
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-        document.addEventListener('click', function(e) {
-            const sb = document.getElementById("sidebar");
-            const btn = document.querySelector(".menu-btn");
-            if (sb.classList.contains("open") && !sb.contains(e.target) && !btn.contains(e.target)) sb.classList.remove("open");
-        });
-
         const mainScroll = document.getElementById('mainScroll');
         const bgWall = document.getElementById('bgWall');
         mainScroll.addEventListener('scroll', () => {
