@@ -12,7 +12,7 @@
         html, body { height: 100%; margin: 0; padding: 0; background: #000; overflow-x: hidden; }
         body { font-family: 'Special Elite', cursive; display: flex; flex-direction: column; }
 
-        /* HINTERGRUND-STEUERUNG */
+        /* Hintergrund-Wall */
         .background-wall {
             position: fixed; top: 0; left: 0; height: 100%; width: 100%; 
             background: #fff url('AFaPo Wall.png') center/cover no-repeat;
@@ -22,20 +22,29 @@
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
-        /* SIDEBARS */
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 2px solid #000; }
+        /* Menü-Button (Master-Design) */
+        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; }
+        .menu-btn:hover { background: var(--anton-yellow); color: #000; }
+
+        /* Linke Sidebar (Master-Design) */
         .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: transform 0.2s; }
+        .sidebar-left a:hover { transform: translateX(10px); }
+        .sidebar-left a i { width: 30px; margin-right: 10px; text-align: center; }
         
+        .nav-item-epk { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.1); }
+        .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
+
+        /* Rechte Sidebar (9 Icons - Master Animation) */
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; display: block; }
+        .sidebar-right a { display: flex; justify-content: center; align-items: center; text-decoration: none; width: 100%; }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; display: block; }
 
         @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
         @keyframes tiktokGlitchWave { 0% { transform: scale(1); color: #000; text-shadow: none; } 9.33% { transform: scale(1.55); color: #fff; text-shadow: 2px 0 #ff0050, -2px 0 #00f2ea; } 23.33%, 100% { transform: scale(1); color: #000; text-shadow: none; } }
 
-        /* BRAND COLORS FOR ICONS */
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { animation-name: tiktokGlitchWave; animation-delay: 0.25s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
@@ -46,29 +55,26 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
         .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2s; }
 
-        /* DESKTOP LAYOUT (Normale Webseite) */
-        main { flex: 1; position: relative; z-index: 10; display: flex; justify-content: center; align-items: center; padding: 100px 60px; }
-        .swipe-content { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; align-items: center; width: 100%; }
-        .section { display: flex; justify-content: center; align-items: center; }
-
-        .plakat-container { width: 300px; transform: rotate(-1.5deg); transition: transform 0.3s ease; }
-        .small-container { width: 180px; transform: rotate(1deg); transition: transform 0.3s ease; }
-        .plakat-container:hover, .small-container:hover { transform: rotate(0deg) scale(1.05); }
-
+        /* Desktop Main */
+        main { flex: 1; position: relative; z-index: 10; display: flex; justify-content: center; align-items: center; padding: 100px 60px; box-sizing: border-box; }
+        .swipe-content { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; align-items: center; width: 100%; max-width: 1200px; }
+        
+        .plakat-container { width: 300px; transform: rotate(-1.5deg); }
+        .small-container { width: 180px; transform: rotate(1deg); }
         .bento-box-plakat { background: #fff; border: 2px solid #000; padding: 15px; border-radius: 5px; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 5px 15px 30px rgba(0,0,0,0.4); }
-        .bento-box-plakat img { width: 100%; height: auto; border: 1px solid #eee; margin-bottom: 12px; }
+        .bento-box-plakat img { width: 100%; height: auto; border: 1px solid #eee; margin-bottom: 12px; display: block; }
         .bento-box-plakat h2 { margin: 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.3rem; }
 
         footer { position: fixed; bottom: 0; width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; }
         footer a { color: #000; text-decoration: none; font-weight: bold; }
 
-        /* MOBILE PANORAMA (Nur für kleine Bildschirme) */
+        /* Mobile Panorama */
         @media (max-width: 800px) {
             .background-wall { width: 200%; background-size: 100% 100%; }
-            main { padding: 0; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; }
-            .swipe-content { width: 500%; flex-wrap: nowrap; gap: 0; }
-            .section { width: 100vw; scroll-snap-align: center; }
-            .sidebar-right { bottom: 60px; right: 0; left: 0; width: 100%; height: auto; flex-direction: row; justify-content: space-evenly; transform: none; border-radius: 0; background: rgba(255, 255, 255, 0.85); border-top: 1.5px solid #000; padding: 12px 5px; }
+            main { padding: 0; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; display: flex; justify-content: flex-start; }
+            .swipe-content { width: 500%; flex-wrap: nowrap; gap: 0; align-items: center; height: 100%; }
+            .section { width: 100vw; height: 100%; display: flex; justify-content: center; align-items: center; scroll-snap-align: center; flex-shrink: 0; }
+            .sidebar-right { bottom: 60px; right: 0; left: 0; top: auto; width: 100%; height: auto; flex-direction: row; justify-content: space-evenly; transform: none; border-radius: 0; background: rgba(255, 255, 255, 0.85); border-top: 1.5px solid #000; padding: 12px 5px; }
             .plakat-container { width: 260px; }
             .small-container { width: 160px; }
         }
@@ -80,11 +86,11 @@
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
     
     <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item"><a href="hauptseite.html"><span><i class="fa-solid fa-house"></i> START</span></a></div>
-        <div class="nav-item"><a href="meinemusik.html"><span><i class="fa-solid fa-music"></i> MEINE MUSIK</span></a></div>
-        <div class="nav-item"><a href="shop.html"><span><i class="fa-solid fa-cart-shopping"></i> SHOP</span></a></div>
-        <div class="nav-item"><a href="kontakt.html"><span><i class="fa-solid fa-envelope"></i> KONTAKT</span></a></div>
-        <div class="nav-item nav-item-epk"><a href="epk.html"><span><i class="fa-solid fa-bullhorn"></i> EPK / PRESSE</span></a></div>
+        <div class="nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span>START</span></a></div>
+        <div class="nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span>MEINE MUSIK</span></a></div>
+        <div class="nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span>SHOP</span></a></div>
+        <div class="nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span>KONTAKT</span></a></div>
+        <div class="nav-item nav-item-epk"><a href="epk.html"><i class="fa-solid fa-bullhorn"></i><span>EPK / PRESSE</span></a></div>
     </nav>
 
     <aside class="sidebar-right">
@@ -101,9 +107,9 @@
 
     <main id="mainScroll">
         <div class="swipe-content">
-            <section class="section"><div class="small-container"><div class="bento-box-plakat"><h2>TOUR</h2></div></div></section>
-            <section class="section"><div class="small-container"><div class="bento-box-plakat"><h2>ALBUM 1</h2></div></div></section>
-            <section class="section">
+            <div class="section"><div class="small-container"><div class="bento-box-plakat"><h2>TOUR</h2></div></div></div>
+            <div class="section"><div class="small-container"><div class="bento-box-plakat"><h2>ALBUM 1</h2></div></div></div>
+            <div class="section">
                 <div class="plakat-container">
                     <a href="meinemusik.html" class="bento-box-plakat">
                         <img src="HUNGER.jpeg" alt="HUNGER">
@@ -111,9 +117,9 @@
                         <p>20. Februar!</p>
                     </a>
                 </div>
-            </section>
-            <section class="section"><div class="small-container"><div class="bento-box-plakat"><h2>ALBUM 2</h2></div></div></section>
-            <section class="section"><div class="small-container"><div class="bento-box-plakat"><h2>ALBUM 3</h2></div></div></section>
+            </div>
+            <div class="section"><div class="small-container"><div class="bento-box-plakat"><h2>ALBUM 2</h2></div></div></div>
+            <div class="section"><div class="small-container"><div class="bento-box-plakat"><h2>ALBUM 3</h2></div></div></div>
         </div>
     </main>
 
@@ -126,19 +132,13 @@
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
         const mainScroll = document.getElementById('mainScroll');
         const bgWall = document.getElementById('bgWall');
-        
         mainScroll.addEventListener('scroll', () => {
             if (window.innerWidth <= 800) {
                 const scrollPercentage = mainScroll.scrollLeft / (mainScroll.scrollWidth - window.innerWidth);
                 bgWall.style.transform = `translateX(-${scrollPercentage * 50}%)`;
             }
         });
-
-        window.onload = () => { 
-            if (window.innerWidth <= 800) {
-                mainScroll.scrollLeft = window.innerWidth * 2; 
-            }
-        };
+        window.onload = () => { if (window.innerWidth <= 800) { mainScroll.scrollLeft = window.innerWidth * 2; } };
     </script>
 </body>
 </html>
