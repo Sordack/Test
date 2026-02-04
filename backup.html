@@ -14,6 +14,7 @@
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
+        /* SIDEBAR LINKS - MASTER STANDARD */
         .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; outline: none; }
         .menu-btn:hover { background: var(--anton-yellow); color: #000; }
         
@@ -24,12 +25,14 @@
         .nav-item-epk { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
         
+        /* SIDEBAR RECHTS - MASTER STANDARD */
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 20px 0; border-radius: 20px 0 0 20px; outline: none; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: all 0.3s ease-in-out; }
         .sidebar-right a:hover i { transform: scale(1.5); }
 
         main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 15px; }
         
+        /* HUNGER BOX (BILD) - ALTER PLATZ */
         .hunger-box { 
             width: 100%; 
             max-width: 278px; 
@@ -40,13 +43,14 @@
             text-decoration: none; 
             position: relative; 
             left: -3vw; 
-            top: 0vh; /* Angepasst wegen neuem Stapel-Layout */
+            top: 3vh;
             transform: rotate(6deg);
             opacity: 0.95;
             z-index: 5;
         }
         .hunger-box img { width: 100%; height: auto; border: none; }
 
+        /* TEXT TAG - ÜBER DEM BILD */
         .hunger-text-tag {
             position: relative;
             left: -3vw;
@@ -58,23 +62,16 @@
             pointer-events: none;
             font-family: 'Rock Salt', cursive;
             color: rgba(255, 235, 59, 0.98);
-            text-shadow: none;
             mix-blend-mode: multiply;
             font-weight: bold;
         }
-        /* Größen getauscht, alles Fett und 20% kleiner im Vergleich zur Vorversion */
-        .hunger-text-tag h2 { 
+        /* Einheitliche Größe & Fett */
+        .hunger-text-tag h2, .hunger-text-tag p { 
             margin: 0; 
             color: rgba(255, 235, 59, 0.98); 
-            text-transform: uppercase; 
-            font-size: 1.12rem; 
             font-weight: bold;
-        }
-        .hunger-text-tag p { 
-            margin: 0; 
-            font-size: 0.64rem; 
-            color: rgba(255, 235, 59, 0.98); 
-            font-weight: bold;
+            font-size: 0.9rem; /* Einheitliche Größe (20% kleiner als Basis) */
+            text-transform: uppercase;
         }
 
         .album-row { 
