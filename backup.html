@@ -62,25 +62,25 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; text-shadow: none !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
-        /* Bento Grid 75% kleiner (Skalierung auf 25%) */
-        main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        /* Bento Grid 50% kleiner als zuvor */
+        main { flex: 1; padding: 120px 20px 40px 20px; max-width: 800px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 10px; }
         
-        .hunger-box { width: 100%; max-width: 280px; background: rgba(255, 255, 255, 0.95); border: 2px solid #000; border-radius: 12px; padding: 10px; text-align: center; text-decoration: none; color: inherit; transition: transform 0.3s; }
+        .hunger-box { width: 100%; max-width: 140px; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #000; border-radius: 8px; padding: 6px; text-align: center; text-decoration: none; color: inherit; transition: transform 0.3s; }
         .hunger-box:hover { transform: scale(1.05); background: var(--anton-yellow); }
-        .hunger-box img { width: 100%; height: auto; border-radius: 6px; border: 1.5px solid #000; }
-        .hunger-box h2 { margin: 8px 0 2px 0; color: var(--anton-red); text-transform: uppercase; font-size: 0.9rem; }
-        .hunger-box p { margin: 0; font-size: 0.7rem; color: #000; }
+        .hunger-box img { width: 100%; height: auto; border-radius: 4px; border: 1px solid #000; }
+        .hunger-box h2 { margin: 4px 0 1px 0; color: var(--anton-red); text-transform: uppercase; font-size: 0.55rem; }
+        .hunger-box p { margin: 0; font-size: 0.45rem; color: #000; }
 
-        .album-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; max-width: 500px; }
-        .album-box { background: rgba(255, 255, 255, 0.95); border: 1.5px solid #000; border-radius: 10px; padding: 8px; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: flex; align-items: center; justify-content: center; min-height: 45px; }
-        .album-box:hover { background: var(--anton-yellow); transform: translateY(-3px); }
-        .album-box h3 { margin: 0; font-size: 0.65rem; color: #000; text-transform: uppercase; line-height: 1.2; }
+        .album-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%; max-width: 300px; }
+        .album-box { background: rgba(255, 255, 255, 0.95); border: 1px solid #000; border-radius: 6px; padding: 5px; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: flex; align-items: center; justify-content: center; min-height: 25px; }
+        .album-box:hover { background: var(--anton-yellow); transform: translateY(-2px); }
+        .album-box h3 { margin: 0; font-size: 0.4rem; color: #000; text-transform: uppercase; line-height: 1.1; }
 
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; outline: none; }
         footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
 
-        @media (max-width: 600px) { .album-row { grid-template-columns: 1fr; max-width: 280px; } .sidebar-right { display: none; } }
+        @media (max-width: 600px) { .album-row { grid-template-columns: 1fr; max-width: 140px; } .sidebar-right { display: none; } }
     </style>
 </head>
 <body>
@@ -117,7 +117,7 @@
         <a href="meinemusik.html" class="hunger-box">
             <img src="HUNGER.jpeg" alt="HUNGER Single">
             <h2>Neue Single: HUNGER</h2>
-            <p>Ab 20. Februar überall!</p>
+            <p>Ab 20. Februar!</p>
         </a>
 
         <div class="album-row">
