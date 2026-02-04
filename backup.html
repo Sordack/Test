@@ -62,9 +62,9 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; text-shadow: none !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
-        main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         
-        /* Hunger-Box: +15% größer, eckig, 5vw nach links verschoben */
+        /* Hunger-Box: Eckig, verschoben und 10 Grad gedreht */
         .hunger-box { 
             width: 100%; 
             max-width: 253px; 
@@ -77,14 +77,25 @@
             color: inherit; 
             transition: transform 0.3s; 
             position: relative; 
-            left: -5vw; 
+            left: -3vw; 
+            transform: rotate(10deg);
         }
-        .hunger-box:hover { transform: scale(1.05); background: var(--anton-yellow); }
+        .hunger-box:hover { transform: rotate(10deg) scale(1.05); background: var(--anton-yellow); }
         .hunger-box img { width: 100%; height: auto; border-radius: 0; border: 1px solid #000; }
         .hunger-box h2 { margin: 8px 0 2px 0; color: var(--anton-red); text-transform: uppercase; font-size: 0.95rem; }
         .hunger-box p { margin: 0; font-size: 0.8rem; color: #000; }
 
-        .album-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%; max-width: 280px; position: relative; left: -5vw; }
+        /* Album Reihe: Gleiche Drehung und Verschiebung für konsistenten Look */
+        .album-row { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 6px; 
+            width: 100%; 
+            max-width: 280px; 
+            position: relative; 
+            left: -3vw; 
+            transform: rotate(10deg);
+        }
         .album-box { background: rgba(255, 255, 255, 0.95); border: 1px solid #000; border-radius: 6px; padding: 5px; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: flex; align-items: center; justify-content: center; min-height: 25px; }
         .album-box:hover { background: var(--anton-yellow); transform: translateY(-2px); }
         .album-box h3 { margin: 0; font-size: 0.45rem; color: #000; text-transform: uppercase; line-height: 1.1; }
@@ -92,7 +103,7 @@
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
 
-        @media (max-width: 600px) { .album-row { grid-template-columns: 1fr; max-width: 253px; } .hunger-box, .album-row { left: 0; } .sidebar-right { display: none; } }
+        @media (max-width: 600px) { .album-row { grid-template-columns: 1fr; max-width: 253px; } .hunger-box, .album-row { left: 0; transform: none; } .sidebar-right { display: none; } }
     </style>
 </head>
 <body>
