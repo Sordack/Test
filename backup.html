@@ -91,15 +91,13 @@
         .album-box:hover { background: var(--anton-yellow); transform: translateY(-2px); }
         .album-box h3 { margin: 0; font-size: 0.5rem; color: #000; text-transform: uppercase; line-height: 1.1; }
 
-        .album-box:not(:last-child) { margin-right: 110px; }
-
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; outline: none; }
         footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
 
         @media (max-width: 800px) { 
             .bento-row-horizontal { flex-direction: column; }
-            .album-box:not(:last-child) { margin-right: 0; margin-bottom: 15px; }
+            .album-box { margin: 5px 0 !important; }
         }
     </style>
 </head>
@@ -141,9 +139,9 @@
         </a>
 
         <div class="bento-row-horizontal">
-            <a href="ertappt.html" class="album-box" style="margin-right: auto;"><h3>Album "ertappt"</h3></a>
-            <a href="meinemusik.html" class="album-box" style="margin: 0 auto;"><h3>Album "????"</h3></a>
-            <a href="meinemusik.html" class="album-box" style="margin-left: auto;"><h3>Album "Große Pause"</h3></a>
+            <a href="ertappt.html" class="album-box" style="margin-right: 110px;"><h3>Album "ertappt"</h3></a>
+            <a href="meinemusik.html" class="album-box" style="margin-right: 110px;"><h3>Album "????"</h3></a>
+            <a href="meinemusik.html" class="album-box"><h3>Album "Große Pause"</h3></a>
         </div>
     </main>
 
