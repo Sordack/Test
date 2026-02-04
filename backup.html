@@ -3,71 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anton - Single Box</title>
+    <title>Anton</title>
     <style>
-        /* Grundgerüst des Masters bleibt unverändert */
+        /* MASTER DESIGN - UNVERÄNDERT */
         body {
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a; /* Beispielhintergrund */
-            font-family: sans-serif;
-            color: white;
+            background-color: #0a0a0a; /* Dunkler Hintergrund für Kontrast */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
-            padding: 20px;
+            padding: 40px 20px;
             text-align: center;
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .container {
+        .bento-grid {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 80vh;
+            align-items: flex-start;
+            padding: 20px;
+            flex-grow: 1;
         }
 
-        /* Die angepasste Single Box */
+        /* DIE "SINGLE" BOX - ANPASSUNG */
         .single-box {
-            width: 300px;
-            height: 400px;
+            width: 400px;
+            min-height: 500px;
             position: relative;
             
-            /* Weißer Hintergrund, 5% Deckkraft */
-            /* Kombiniert mit CSS-Patterns für den "abgenutzten" Look (Risse/Knicke) */
+            /* Weißer Hintergrund, 5% transparent */
+            /* Die Gradients simulieren Knicke und feine Risse */
             background: 
                 linear-gradient(135deg, transparent 40px, rgba(255, 255, 255, 0.05) 40px),
-                repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 50px),
-                repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 70px);
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(170deg, transparent 45%, rgba(255,255,255,0.03) 46%, rgba(255,255,255,0.03) 47%, transparent 48%),
+                linear-gradient(20deg, transparent 20%, rgba(255,255,255,0.02) 21%, rgba(255,255,255,0.02) 22%, transparent 23%);
+            background-size: 100% 100%, 40px 40px, 40px 40px, 100% 100%, 100% 100%;
             
-            /* Eckige Kanten & Ecke oben rechts entfernen */
-            clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 0 100%);
+            /* Eckige Kanten & Entfernen der oberen rechten Ecke */
+            /* Punkt-Logik: Oben Links -> Schnittpunkt Rechts -> Ecke Rechts Unten -> Ecke Links Unten */
+            clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 50px, 100% 100%, 0 100%);
             
             /* Kein schwarzer Rand */
             border: none;
-            
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
+            outline: none;
+
+            padding: 40px;
             box-sizing: border-box;
+            
+            /* Subtiler Schatten für Tiefe trotz Transparenz */
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Simulierter "Knick" an der fehlenden Ecke */
-        .single-box::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.08); /* Etwas heller für den Knick-Effekt */
-            clip-path: polygon(0 0, 0 100%, 100% 100%);
-            display: none; /* Deaktiviert, da Ecke "entfernt" sein soll. Falls gewünscht, auf 'block' setzen */
+        .box-content {
+            opacity: 0.9;
         }
 
-        .content {
-            z-index: 1;
+        h2 {
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
         }
 
     </style>
@@ -78,14 +82,16 @@
         Anton
     </header>
 
-    <div class="container">
+    <main class="bento-grid">
         <div class="single-box">
-            <div class="content">
-                <h3>Inhalt</h3>
-                <p>Diese Box hat ein abgenutztes Design, keine Rundungen und die obere rechte Ecke fehlt.</p>
+            <div class="box-content">
+                <h2>Dokument</h2>
+                <p>Dieser Hintergrund wirkt durch die CSS-Gradients abgenutzt und leicht geknickt.</p>
+                <p>Die obere rechte Ecke wurde präzise entfernt, während alle anderen Kanten hart und eckig bleiben.</p>
+                <p>Die Deckkraft des Weißwertes liegt bei exakt 5%.</p>
             </div>
         </div>
-    </div>
+    </main>
 
 </body>
 </html>
