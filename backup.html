@@ -58,15 +58,49 @@
 
         main { flex: 1; padding: 120px 20px 40px 20px; width: 100%; max-width: 1200px; margin: 0 auto; z-index: 10; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; }
         
-        .hunger-box { width: 100%; max-width: 280px; background: rgba(255, 255, 255, 0.95); border: 2px solid #000; border-radius: 12px; padding: 10px; text-align: center; text-decoration: none; color: inherit; transition: transform 0.3s; }
+        .hunger-box { width: 100%; max-width: 280px; background: rgba(255, 255, 255, 0.95); border: 2px solid #000; border-radius: 12px; padding: 10px; text-align: center; text-decoration: none; color: inherit; transition: transform 0.3s; margin-bottom: 50px; }
         .hunger-box:hover { transform: scale(1.05); background: var(--anton-yellow); }
         .hunger-box img { width: 100%; height: auto; border-radius: 6px; border: 1.5px solid #000; }
         .hunger-box h2 { margin: 8px 0 2px 0; color: var(--anton-red); text-transform: uppercase; font-size: 0.9rem; }
         .hunger-box p { margin: 0; font-size: 0.7rem; color: #000; }
 
+        .bento-row-horizontal { 
+            display: flex; 
+            flex-direction: row; 
+            justify-content: center; 
+            align-items: center; 
+            width: 100%; 
+        }
+        
+        .album-box { 
+            background: rgba(255, 255, 255, 0.95); 
+            border: 1.5px solid #000; 
+            border-radius: 8px; 
+            padding: 4px; 
+            text-align: center; 
+            text-decoration: none; 
+            color: inherit; 
+            transition: all 0.3s; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 35px; 
+            width: 110px; 
+            box-sizing: border-box; 
+        }
+        .album-box:hover { background: var(--anton-yellow); transform: translateY(-2px); }
+        .album-box h3 { margin: 0; font-size: 0.5rem; color: #000; text-transform: uppercase; line-height: 1.1; }
+
+        .album-box:not(:last-child) { margin-right: 110px; }
+
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; outline: none; }
         footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+
+        @media (max-width: 800px) { 
+            .bento-row-horizontal { flex-direction: column; }
+            .album-box:not(:last-child) { margin-right: 0; margin-bottom: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -105,6 +139,12 @@
             <h2>Neue Single: HUNGER</h2>
             <p>Ab 20. Februar überall!</p>
         </a>
+
+        <div class="bento-row-horizontal">
+            <a href="ertappt.html" class="album-box"><h3>Album "ertappt"</h3></a>
+            <a href="meinemusik.html" class="album-box"><h3>Album "????"</h3></a>
+            <a href="meinemusik.html" class="album-box"><h3>Album "Große Pause"</h3></a>
+        </div>
     </main>
 
     <footer>
