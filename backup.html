@@ -62,9 +62,9 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; text-shadow: none !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
-        main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 15px; }
         
-        /* Hunger-Box: Bild, 6 Grad Drehung, 5% transparent */
+        /* Hunger-Bild Box: 6 Grad rechts, 5% transparent */
         .hunger-box { 
             width: 100%; 
             max-width: 278px; 
@@ -83,18 +83,18 @@
         }
         .hunger-box img { width: 100%; height: auto; border: none; }
 
-        /* Neue Text-Box: Transparent, 16 Grad nach LINKS gedreht */
+        /* Separate Text-Box: 16 Grad links gedreht */
         .hunger-text-tag {
             position: relative;
             left: -3vw;
-            top: 1vh;
+            top: 0vh;
             transform: rotate(-16deg);
             background: transparent;
             text-align: center;
             z-index: 10;
             pointer-events: none;
         }
-        .hunger-text-tag h2 { margin: 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.1rem; padding: 2px 5px; }
+        .hunger-text-tag h2 { margin: 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.1rem; }
         .hunger-text-tag p { margin: 0; font-size: 0.85rem; color: #000; font-weight: bold; }
 
         .album-row { 
@@ -103,7 +103,7 @@
             gap: 6px; 
             width: 100%; 
             max-width: 280px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         .album-box { background: rgba(255, 255, 255, 0.95); border: 1px solid #000; border-radius: 6px; padding: 5px; text-align: center; text-decoration: none; color: inherit; transition: all 0.3s; display: flex; align-items: center; justify-content: center; min-height: 25px; }
         .album-box:hover { background: var(--anton-yellow); transform: translateY(-2px); }
