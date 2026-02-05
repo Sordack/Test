@@ -21,8 +21,9 @@
             position: fixed; top: 0; left: 0; height: 100%; width: 200%; 
             background: #fff url('AFaPo Wall.png') center/cover no-repeat;
             background-blend-mode: multiply; z-index: 1; 
-            transition: transform 0.1s ease-out;
-            will-change: transform, background-position;
+            will-change: transform;
+            /* Startposition für Fokus auf Mitte */
+            transform: translateX(-25%);
         }
 
         header { 
@@ -51,8 +52,8 @@
         .swipe-content { display: flex; width: auto; height: 100%; }
         .section { width: 100vw; height: 100%; display: flex; justify-content: center; align-items: center; scroll-snap-align: center; flex-shrink: 0; }
 
-        /* Plakat-Design */
-        .plakat { background: #fff; padding: 20px; border: 2px solid #000; box-shadow: 10px 10px 0px #000; max-width: 80%; text-align: center; }
+        /* Plakat-Design für Content */
+        .plakat { background: rgba(255,255,255,0.9); padding: 20px; border: 2px solid #000; box-shadow: 10px 10px 0px #000; max-width: 80%; text-align: center; }
 
         /* Social Sidebar (Rechts) */
         .sidebar-right { 
@@ -86,11 +87,10 @@
         /* MOBILE OPTIMIERUNG */
         @media (max-width: 800px) {
             .background-wall { 
-                width: 250%; /* Mehr Breite für echten Swipe-Effekt mobil */
-                background-size: cover; 
-                /* 20% weiter rechts von 35% = 55% */
-                background-position: 55% center; 
-                transform: translateX(0); 
+                width: 300%; /* Breiter für mehr Spielraum beim Fokus */
+                background-position: center center;
+                /* Start-Offset um das mittlere Bild zu treffen */
+                transform: translateX(-33.33%); 
             }
             .sidebar-right { 
                 top: auto; bottom: 60px; right: 0; left: 0; width: 100%; height: auto; 
@@ -134,14 +134,14 @@
         <div class="swipe-content">
             <section class="section">
                 <div class="plakat">
-                    <h1 style="color:var(--anton-red)">ANTON</h1>
-                    <p>Wische nach links</p>
+                    <h1 style="color:var(--anton-red)">WILLKOMMEN</h1>
+                    <p>Fokus auf das mittlere Bild</p>
                 </div>
             </section>
             <section class="section">
                 <div class="plakat">
-                    <h1 style="color:var(--anton-red)">NEUE TOUR</h1>
-                    <p>Hier klicken für Tickets</p>
+                    <h1 style="color:var(--anton-red)">DISCOGRAPHY</h1>
+                    <p>Swipe weiter für mehr</p>
                 </div>
             </section>
         </div>
@@ -162,13 +162,14 @@
             const scrollPercentage = mainScroll.scrollLeft / (mainScroll.scrollWidth - window.innerWidth);
             
             if (window.innerWidth > 800) {
-                // Desktop Parallax
-                const move = scrollPercentage * 50; 
+                // Desktop: Panorama-Verschiebung
+                const move = 25 + (scrollPercentage * 25); 
                 bgWall.style.transform = `translateX(-${move}%)`;
             } else {
-                // Mobile Swipe-Sync
-                // Das Bild bewegt sich beim Swipen leicht mit
-                const moveMobile = scrollPercentage * 30; 
+                // Mobile: Fokus startet bei -33.33% (Mitte des 300%-Panoramas)
+                // Bewegung um ca. 20% des Gesamtbildes beim Swipen
+                const baseOffset = 33.33;
+                const moveMobile = baseOffset + (scrollPercentage * 20); 
                 bgWall.style.transform = `translateX(-${moveMobile}%)`;
             }
         });
