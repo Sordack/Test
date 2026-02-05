@@ -139,7 +139,7 @@
         const bgWall = document.getElementById('bgWall');
 
         window.addEventListener('load', () => {
-            // Zentrierung auf Sektion 5 (Index 4.5)
+            // Zentrierung auf Sektion 5
             mainScroll.scrollLeft = window.innerWidth * 4.5; 
         });
 
@@ -148,10 +148,11 @@
             const scrollPercentage = mainScroll.scrollLeft / maxScroll;
             const maxTranslate = 66.666;
             
-            // Versatz um weitere 5% auf insgesamt 10% erhöht
-            const userOffset = 10; 
+            // Versatz 15% nach rechts (Wir subtrahieren vom Translate-Wert)
+            const userOffset = -15; 
             const currentMove = (scrollPercentage * maxTranslate) + userOffset;
             
+            // Finaler Clamp
             const finalMove = Math.min(Math.max(currentMove, 0), maxTranslate);
             bgWall.style.transform = `translateX(-${finalMove}%)`;
         });
