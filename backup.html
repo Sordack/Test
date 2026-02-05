@@ -62,15 +62,15 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
-        /* UNSICHTBARE KLICK-BOXEN */
+        /* TEST-ANSICHT: SICHTBARE KLICK-BOXEN */
         .invisible-box {
             position: fixed;
             z-index: 10;
-            background: rgba(255, 255, 255, 0); 
+            background: rgba(255, 0, 0, 0.3); /* Halbtransparentes Rot zum Testen */
+            border: 2px solid #000;         /* Rahmen zum Testen */
             cursor: pointer;
         }
 
-        /* Box Links - 3% nach rechts (+left), 3% nach oben (-top) */
         .box-ertappt {
             width: 20%;  
             height: 40%; 
@@ -78,7 +78,6 @@
             left: 21%;   
         }
 
-        /* Box Mitte - 3% nach oben (-top) */
         .box-mitte {
             width: 20%;
             height: 40%;
@@ -86,7 +85,6 @@
             left: 40%;
         }
 
-        /* Box Rechts - 3% nach links (-left), 3% nach oben (-top) */
         .box-pause {
             width: 20%;
             height: 40%;
