@@ -62,12 +62,12 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
-        /* TEST-ANSICHT: SICHTBARE KLICK-BOXEN */
+        /* SICHTBARE KLICK-BOXEN ZUM JUSTIEREN */
         .invisible-box {
             position: fixed;
             z-index: 10;
-            background: rgba(255, 0, 0, 0.3); /* Halbtransparentes Rot zum Testen */
-            border: 2px solid #000;         /* Rahmen zum Testen */
+            background: rgba(255, 0, 0, 0.3); 
+            border: 2px solid #000;
             cursor: pointer;
         }
 
@@ -76,7 +76,7 @@
             height: 43%; 
             top: 16%;    
             left: 17%;   
-            transform: rotate(-4deg)
+            transform: rotate(-4deg);
         }
 
         .box-mitte {
@@ -84,7 +84,7 @@
             height: 42%;
             top: 17%;
             left: 38%;
-            transform: rotate(3deg)
+            transform: rotate(3deg);
         }
 
         .box-pause {
@@ -92,7 +92,14 @@
             height: 43%;
             top: 21%;
             left: 70%;
-            transform: rotate(1deg)
+            transform: rotate(1deg);
+        }
+
+        .box-pause2 {
+            width: 10%;
+            height: 24%;
+            top: 21%;
+            left: 60%;
         }
 
         main { flex: 1; padding: 120px 20px 40px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
@@ -109,6 +116,7 @@
     <a href="veroffentlichungen.html" class="invisible-box box-ertappt"></a>
     <a href="veroffentlichungen.html" class="invisible-box box-mitte"></a>
     <a href="veroffentlichungen.html" class="invisible-box box-pause"></a>
+    <a href="veroffentlichungen.html" class="invisible-box box-pause2"></a>
 
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
