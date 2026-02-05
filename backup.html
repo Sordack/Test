@@ -54,45 +54,43 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
-        /* POSTER OVERLAY SYSTEM */
-        .poster-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 5; }
-        .poster-link { position: absolute; pointer-events: auto; display: block; transition: transform 0.3s ease; text-decoration: none; }
-        .poster-link img { width: 100%; height: auto; display: block; border: none; }
-        .poster-link:hover { transform: scale(1.05); }
-        
-        /* Positionen der Poster - hier an das Hintergrundbild anpassen */
-        .img-left { 
-            width: 18%; 
-            top: 25%;   
-            left: 22%;  
-        }
-        .img-right { 
-            width: 18%; 
-            top: 25%; 
-            left: 58%; 
+        /* UNSICHTBARE KLICK-BOXEN */
+        .invisible-box {
+            position: fixed;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0); /* Komplett durchsichtig */
+            cursor: pointer;
         }
 
-        main { flex: 1; padding: 120px 20px 40px 20px; z-index: 10; width: 100%; box-sizing: border-box; }
+        /* Position Plakat 1 (Links) */
+        .box-ertappt {
+            width: 15%;  /* Breite anpassen */
+            height: 30%; /* Höhe anpassen */
+            top: 30%;    /* Position von oben */
+            left: 22%;   /* Position von links */
+        }
+
+        /* Position Plakat 2 (Rechts) */
+        .box-pause {
+            width: 15%;
+            height: 30%;
+            top: 30%;
+            left: 58%;
+        }
+
+        main { flex: 1; padding: 120px 20px 40px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
         footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
-
-        @media (max-width: 600px) { .poster-container { display: none; } }
     </style>
 </head>
 <body>
     <header><div class="header-title">Anton</div></header>
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
     
-    <div class="poster-container">
-        <a href="veroffentlichungen.html" class="poster-link img-left">
-            <img src="Ertappt.png" alt="Ertappt">
-        </a>
-        <a href="veroffentlichungen.html" class="poster-link img-right">
-            <img src="GrossePause.png" alt="Grosse Pause">
-        </a>
-    </div>
+    <a href="veroffentlichungen.html" class="invisible-box box-ertappt"></a>
+    <a href="veroffentlichungen.html" class="invisible-box box-pause"></a>
 
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
