@@ -56,14 +56,15 @@
 
         /* POSTER OVERLAY SYSTEM */
         .poster-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 5; }
-        .poster-overlay { position: absolute; pointer-events: auto; transition: transform 0.3s ease; }
-        .poster-overlay:hover { transform: scale(1.05); }
+        .poster-link { position: absolute; pointer-events: auto; display: block; transition: transform 0.3s ease; }
+        .poster-link img { width: 100%; height: auto; display: block; }
+        .poster-link:hover { transform: scale(1.05); }
         
-        /* Hier die Positionen basierend auf deinem Wand-Bild anpassen */
+        /* Positionen der Poster auf der Wand */
         .img-ertappt { 
-            width: 15%; /* Größe anpassen */
-            top: 30%;   /* Position von oben */
-            left: 25%;  /* Position von links */
+            width: 15%; 
+            top: 30%;   
+            left: 25%;  
         }
         .img-pause { 
             width: 15%; 
@@ -71,17 +72,13 @@
             left: 60%; 
         }
 
-        main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; }
-        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-        .bento-box { background: rgba(255, 255, 255, 0.9); border: 3px solid #000; padding: 30px; border-radius: 20px; transition: all 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: center; text-align: center; }
-        .bento-box:hover { transform: translateY(-5px); background: var(--anton-yellow); }
-        .bento-box h2 { margin: 0 0 10px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.5rem; }
+        main { flex: 1; padding: 120px 20px 40px 20px; z-index: 10; width: 100%; box-sizing: border-box; }
 
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
         footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
 
-        @media (max-width: 600px) { .poster-container { display: none; } } /* Overlay auf Mobile ausblenden */
+        @media (max-width: 600px) { .poster-container { display: none; } }
     </style>
 </head>
 <body>
@@ -89,8 +86,12 @@
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
     
     <div class="poster-container">
-        <img src="Ertappt.png" alt="Ertappt" class="poster-overlay img-ertappt">
-        <img src="GrossePause.png" alt="Grosse Pause" class="poster-overlay img-pause">
+        <a href="Ertappt.html" class="poster-link img-ertappt">
+            <img src="Ertappt.png" alt="Ertappt">
+        </a>
+        <a href="GrossePause.html" class="poster-link img-pause">
+            <img src="GrossePause.png" alt="Grosse Pause">
+        </a>
     </div>
 
     <nav class="sidebar-left" id="sidebar">
@@ -112,17 +113,7 @@
     </aside>
 
     <main>
-        <div class="bento-grid">
-            <a href="meinemusik.html" class="bento-box">
-                <h2>Musik entdecken</h2>
-                <p>Klicke auf die Poster an der Wand oder hier.</p>
-            </a>
-            <a href="shop.html" class="bento-box">
-                <h2>Zum Shop</h2>
-                <p>Hol dir das offizielle Merch.</p>
-            </a>
-        </div>
-    </main>
+        </main>
 
     <footer>
         <div><a href="hauptseite.html">www.anton-familienpop.de</a></div>
