@@ -60,16 +60,16 @@
         .poster-link img { width: 100%; height: auto; display: block; }
         .poster-link:hover { transform: scale(1.05); }
         
-        /* Positionen der Poster auf der Wand */
-        .img-ertrappt { 
-            width: 15%; 
-            top: 30%;   
-            left: 25%;  
+        /* Positionen der Poster - hier an das Hintergrundbild anpassen */
+        .img-left { 
+            width: 18%; 
+            top: 25%;   
+            left: 22%;  
         }
-        .img-pause { 
-            width: 15%; 
-            top: 30%; 
-            left: 60%; 
+        .img-right { 
+            width: 18%; 
+            top: 25%; 
+            left: 58%; 
         }
 
         main { flex: 1; padding: 120px 20px 40px 20px; z-index: 10; width: 100%; box-sizing: border-box; }
@@ -86,10 +86,10 @@
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
     
     <div class="poster-container">
-        <a href="veroffentlichungen.html" class="poster-link img-ertrappt">
+        <a href="veroffentlichungen.html" class="poster-link img-left">
             <img src="Ertrappt.png" alt="Ertrappt">
         </a>
-        <a href="veroffentlichungen.html" class="poster-link img-pause">
+        <a href="veroffentlichungen.html" class="poster-link img-right">
             <img src="GrossePause.png" alt="Grosse Pause">
         </a>
     </div>
