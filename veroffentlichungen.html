@@ -87,11 +87,6 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* Order Management */
-        .item-ertappt { order: 3; }
-        .item-pause { order: 2; }
-        .item-placeholder { order: 1; }
-
         .bento-item img {
             width: 100%;
             height: 100%;
@@ -106,6 +101,11 @@
             color: #000;
         }
 
+        /* Standard Desktop Order */
+        .item-ertappt { order: 1; }
+        .item-pause { order: 2; }
+        .item-placeholder { order: 3; }
+
         /* MOBILE VIEW ANPASSUNG */
         @media (max-width: 768px) {
             .veroff-grid {
@@ -113,6 +113,10 @@
                 gap: 40px;
                 padding: 0 40px;
             }
+            /* Mobile Order: 3 -> Pause -> Ertappt */
+            .item-placeholder { order: 1; }
+            .item-pause { order: 2; }
+            .item-ertappt { order: 3; }
         }
 
         main { flex: 1; padding: 120px 20px 40px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
