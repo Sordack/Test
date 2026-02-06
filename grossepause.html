@@ -39,8 +39,11 @@
         .sidebar-left.open { left: 0; }
         .nav-item { margin-bottom: 20px; width: 100%; }
         .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
-        .nav-item-epk { margin-top: auto; }
+        
+        /* Unterer Bereich der Sidebar */
+        .nav-item-bottom-group { margin-top: auto; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
+        
         .submenu { display: none; flex-direction: column; padding-left: 40px; margin-top: 10px; }
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
@@ -175,7 +178,11 @@
             </div>
         </div>
         <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping"></i> SHOP</span></a></div>
-        <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock"></i> EPK / PRESSE</span></a></div>
+        
+        <div class="nav-item-bottom-group">
+            <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope"></i> KONTAKT</span></a></div>
+            <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock"></i> EPK / PRESSE</span></a></div>
+        </div>
     </nav>
 
     <main>
