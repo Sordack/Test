@@ -72,16 +72,25 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
-        /* BENTO GRID (Um 30% verkleinert) */
+        /* BENTO CONTAINER */
+        .master-bento {
+            max-width: 840px;
+            margin: 100px auto 40px auto;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            border: 2px solid #000;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+        }
+
         .veroff-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 42px; /* Reduziert von 60px */
-            max-width: 840px; /* Reduziert von 1200px */
-            margin: 100px auto 40px auto; 
+            gap: 30px; 
         }
+
         .bento-item { 
-            background: rgba(255, 255, 255, 0.9); 
+            background: #fff; 
             border: 2px solid #000; 
             aspect-ratio: 1 / 1; 
             display: flex; 
@@ -92,13 +101,14 @@
             cursor: pointer;
         }
         .bento-item img { width: 100%; height: 100%; object-fit: cover; }
-        .album-placeholder { font-size: 1.2rem; font-weight: bold; text-align: center; background: var(--anton-yellow); color: #000; cursor: default; }
+        .album-placeholder { font-size: 1.1rem; font-weight: bold; text-align: center; background: var(--anton-yellow); color: #000; cursor: default; }
 
         /* Hover-Effekt Desktop */
         @media (min-width: 801px) {
             .bento-item:hover {
-                transform: translateY(-8px) scale(1.02);
+                transform: translateY(-8px) scale(1.05);
                 box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+                z-index: 10;
             }
         }
 
@@ -116,7 +126,10 @@
                 border-top: 2px solid #000; padding: 0; z-index: 1000;
             }
             .sidebar-right a i { font-size: 1.4rem; }
-            .veroff-grid { grid-template-columns: 1fr; gap: 30px; padding: 0 60px; max-width: 350px; }
+            
+            .master-bento { padding: 20px; margin: 100px 20px 40px 20px; max-width: none; }
+            .veroff-grid { grid-template-columns: 1fr; gap: 20px; }
+            
             .item-placeholder { order: 1; }
             .item-pause { order: 2; }
             .item-ertappt { order: 3; }
@@ -151,15 +164,17 @@
     </nav>
 
     <main>
-        <div class="veroff-grid">
-            <div class="bento-item item-ertappt" onclick="location.href='ertappt.html'">
-                <img src="Album Ertappt.jpg" alt="Ertappt">
-            </div>
-            <div class="bento-item item-pause" onclick="location.href='grossepause.html'">
-                <img src="Album Große Pause.jpg" alt="Pause">
-            </div>
-            <div class="bento-item item-placeholder album-placeholder">
-                Album 3
+        <div class="master-bento">
+            <div class="veroff-grid">
+                <div class="bento-item item-ertappt" onclick="location.href='ertappt.html'">
+                    <img src="Album Ertappt.jpg" alt="Ertappt">
+                </div>
+                <div class="bento-item item-pause" onclick="location.href='grossepause.html'">
+                    <img src="Album Große Pause.jpg" alt="Pause">
+                </div>
+                <div class="bento-item item-placeholder album-placeholder">
+                    Album 3
+                </div>
             </div>
         </div>
     </main>
