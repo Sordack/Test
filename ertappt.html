@@ -72,26 +72,26 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
-        /* BENTO DETAIL BOX (Abgerundet) */
+        /* BENTO DETAIL BOX (Breiter & Höher positioniert) */
         .detail-bento {
-            max-width: 900px;
-            margin: 100px auto 40px auto;
+            max-width: 1100px; /* Verbreitert */
+            margin: 40px auto 40px auto; /* Weiter oben (von 100px auf 40px reduziert) */
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             padding: 40px;
             border: 2px solid #000;
-            border-radius: 20px; /* Ecken abgerundet */
+            border-radius: 20px;
             display: flex;
-            gap: 40px;
+            gap: 50px;
             align-items: flex-start;
             box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
         }
 
         .album-cover {
             flex-shrink: 0;
-            width: 300px;
+            width: 350px; /* Leicht vergrößert passend zur Box-Breite */
             border: 2px solid #000;
-            border-radius: 15px; /* Ecken abgerundet */
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 5px 5px 0px var(--anton-yellow);
         }
@@ -105,7 +105,7 @@
         .album-text {
             color: #000;
             line-height: 1.6;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
 
         .album-text p {
@@ -125,7 +125,7 @@
 
             .detail-bento {
                 flex-direction: column;
-                margin: 100px 20px 40px 20px;
+                margin: 20px 20px 40px 20px;
                 padding: 20px;
                 align-items: center;
                 border-radius: 15px;
@@ -133,7 +133,7 @@
 
             .album-cover {
                 width: 100%;
-                max-width: 250px;
+                max-width: 280px;
             }
 
             .album-text {
@@ -144,7 +144,7 @@
             main { padding-bottom: 80px; }
         }
 
-        main { flex: 1; padding: 120px 20px 40px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
+        main { flex: 1; padding: 100px 20px 40px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
         footer { width: 100%; padding: 20px 0; background: rgba(255,255,255,0.95); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
         @media (max-width: 800px) { footer { padding: 20px 0 80px 0; } }
