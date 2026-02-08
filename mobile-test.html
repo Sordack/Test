@@ -37,6 +37,7 @@
         .menu-btn:hover span { opacity: 0; }
         .menu-btn:hover::after { opacity: 1; }
         
+        /* Sidebar Desktop */
         .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         
@@ -59,6 +60,7 @@
         .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
         
+        /* Rechte Sidebar (Social) */
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
         
@@ -83,7 +85,7 @@
                 left: 0 !important; top: -150px !important; bottom: auto !important; 
                 width: 100% !important; height: 65px !important; 
                 flex-direction: row !important; justify-content: space-evenly !important; 
-                align-items: center !important; padding: 0 !important; 
+                align-items: center !important; padding: 0 5px !important; 
                 border-right: none !important; border-bottom: 2px solid #000 !important; 
                 transition: top 0.4s ease-in-out !important; background: var(--anton-yellow) !important;
                 z-index: 90 !important;
@@ -95,8 +97,16 @@
             .sidebar-left .nav-item:not(.nav-item-epk) .main-icon { margin-right: 0 !important; font-size: 1.6rem !important; }
             .sidebar-left .submenu, .sidebar-left .arrow-wrapper { display: none !important; }
 
-            /* EPK Spezialfall: Zweizeilig */
-            .nav-item-epk { margin-top: 0 !important; border-top: none !important; padding: 0 !important; }
+            /* EPK Spezialfall mit Trennstrich links */
+            .nav-item-epk { 
+                margin-top: 0 !important; 
+                border-top: none !important; 
+                border-left: 1.5px solid rgba(0,0,0,0.2) !important; /* Vertikaler Trenner */
+                padding: 0 0 0 15px !important; 
+                height: 40px !important; /* Definiere Höhe für den Strich */
+                display: flex !important;
+                align-items: center !important;
+            }
             .nav-item-epk .main-icon { display: none !important; }
             .nav-item-epk .nav-label { display: flex !important; flex-direction: column !important; align-items: center !important; line-height: 1.1 !important; }
             .nav-item-epk .nav-label span { 
@@ -105,7 +115,6 @@
                 font-weight: bold !important; 
                 color: var(--anton-red) !important;
                 text-align: center !important;
-                letter-spacing: 0.5px;
             }
 
             /* Social Sidebar (0.65 Transparenz) */
@@ -126,7 +135,7 @@
                 position: fixed !important; bottom: 0 !important; left: 0 !important;
                 width: 100% !important; height: 45px !important;
                 background: rgba(255, 255, 255, 0.65) !important; 
-                z-index: 1100 !important; border-top: 1px solid #000 !important;
+                z-index: 1100 !important; border-top: 1.5px solid #000 !important;
                 display: flex !important; align-items: center !important; justify-content: center !important;
                 padding: 0 !important;
             }
@@ -134,6 +143,7 @@
             footer div:last-child { font-size: 0.9rem !important; }
         }
 
+        /* Click-Boxen Desktop */
         .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
         .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
         .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
