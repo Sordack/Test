@@ -36,11 +36,13 @@
         .menu-btn:hover span { opacity: 0; }
         .menu-btn:hover::after { opacity: 1; }
         
+        /* UNSERE ORIGINAL SIDEBAR LOGIK */
         .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         
         .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
+        .sidebar-left a:hover { color: var(--anton-red); }
         
         .nav-label { display: flex; align-items: center; width: 100%; }
         .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
@@ -49,6 +51,7 @@
         .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
         .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
         
+        /* FIX: Kein overflow:hidden mehr, damit das Ü nicht rasiert wird */
         .submenu { 
             display: none; 
             flex-direction: column; 
@@ -56,7 +59,6 @@
             margin-top: 10px; 
             width: 100%; 
             box-sizing: border-box;
-            /* overflow entfernt, damit Umlaute nicht abgeschnitten werden */
         }
         .nav-item:hover .submenu { display: flex; }
         
@@ -65,10 +67,11 @@
             margin-bottom: 12px; 
             white-space: nowrap; 
             justify-content: flex-start;
-            padding-top: 5px; /* Platz für die Punkte des Ü */
+            padding-top: 4px; /* Mehr Platz nach oben für die Umlaut-Punkte */
         }
+        .submenu a i { margin-right: 10px; width: 18px; text-align: center; }
 
-        .nav-item-epk { margin-top: auto; }
+        .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
         
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
@@ -122,8 +125,9 @@
         <div class="nav-item">
             <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
             <div class="submenu">
-                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile" style="margin-right:10px"></i> ÜBER MICH</a>
-                <a href="konzerte.html"><i class="fa-solid fa-microphone-lines" style="margin-right:10px"></i> KONZERTE</a>
+                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
+                <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
+                <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
             </div>
         </div>
         <div class="nav-item">
