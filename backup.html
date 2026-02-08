@@ -25,6 +25,21 @@
             background-blend-mode: multiply; 
             overflow-x: hidden; 
         }
+
+        /* FIX FÜR DAS GROSSE Ü */
+        .umlaut-fix {
+            position: relative;
+            display: inline-block;
+        }
+        .umlaut-fix::after {
+            content: "..";
+            position: absolute;
+            top: -0.5em;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            letter-spacing: -0.1em;
+        }
         
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
@@ -104,7 +119,7 @@
         <div class="nav-item">
             <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
             <div class="submenu">
-                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> üBER MICH</a>
+                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> <span class="umlaut-fix">U</span>BER MICH</a>
                 <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
                 <a href="konzerte.html"><i class="fa-solid fa-microphone"></i> KONZERTE</a>
             </div>
@@ -120,9 +135,9 @@
         <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
         <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://open.spotify.com/intl-de/artist/348545011" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
         <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
