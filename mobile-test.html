@@ -15,38 +15,42 @@
             --amazon-blue: #00A8E1; 
         }
 
-        /* ============================================================
-           1. REINER DESKTOP MASTER (ZURÜCK ZUR KLASSISCHEN STRUKTUR)
-           ============================================================ */
-        html { margin: 0; padding: 0; }
-        
-        body { 
+        /* --- DESKTOP MASTER (UNANTASTBAR) --- */
+        html, body { 
             margin: 0; 
             padding: 0; 
+            min-height: 100%; 
+        }
+        
+        body { 
             font-family: 'Special Elite', cursive; 
             background: #fff url('AFaPo Wall.jpg') no-repeat center center fixed; 
-            background-size: cover; 
-            min-height: 100vh;
+            background-size: 100% auto; 
+            background-blend-mode: multiply; 
         }
 
-        /* Desktop-Sicherung: Alles was mobil ist, hier verstecken */
         #stable-bg { display: none; }
-        
+
         header { 
             position: fixed; top: 0; left: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
             z-index: 100; background: rgba(255, 255, 255, 0.8); 
             backdrop-filter: blur(10px); border-bottom: 2px solid #000; 
         }
-        .header-title { color: var(--anton-red); font-size: 1.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
-        
+
+        .header-title { 
+            color: var(--anton-red); font-size: 1.8rem; text-decoration: none; 
+            letter-spacing: 2px; text-transform: uppercase; font-weight: bold; 
+        }
+
         .menu-btn { 
             position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
             z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; 
             display: flex; align-items: center; justify-content: center; border-radius: 5px; 
-            border: 2px solid #000; 
+            transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; 
         }
-        
+        .menu-btn:hover { background: var(--anton-yellow); color: #000; }
+
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); 
             background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; 
@@ -54,73 +58,78 @@
             transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; 
         }
         .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
-        .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
 
+        .nav-item { margin-bottom: 20px; width: 100%; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
+        .sidebar-left a:hover { color: var(--anton-red); }
+        .nav-label { display: flex; align-items: center; width: 100%; }
+        .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
+        
+        .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
+        .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
+
+        /* Rechte Sidebar Master Design & Animation */
         .sidebar-right { 
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); 
             width: 50px; display: flex; flex-direction: column; align-items: center; 
             gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); 
             backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; 
         }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
+        
         @keyframes ultraFlowWave { 
             0% { transform: scale(1); color: #000; } 
             9.33% { transform: scale(1.55); color: var(--brand-color); } 
             23.33%, 100% { transform: scale(1); color: #000; } 
         }
-        
-        main { padding: 120px 20px 40px 20px; min-height: 80vh; }
-        footer { width: 100%; padding: 15px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; position: relative; z-index: 10; }
+        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
+        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
+        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
+        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
+        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
+        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
+        .sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
+        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
+        .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
 
-        /* ============================================================
-           2. MOBILE OPTIMIERUNG (STRENG LIMITIERT AUF VIEWPORT < 1024)
-           ============================================================ */
+        main { padding: 120px 20px 40px 20px; position: relative; z-index: 5; }
+
+        .footer-content { 
+            width: 100%; padding: 15px 0; background: rgba(255,255,255,0.9); 
+            border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; 
+            z-index: 100; position: relative; 
+        }
+        .footer-content a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
+
+        /* --- MOBILE LOGIK (STRENG ISOLIERT) --- */
         @media screen and (max-width: 1024px) {
-            body { 
-                background: #000 !important; 
-                overflow: hidden !important; 
-                position: fixed !important; 
-                width: 100vw; height: 100vh; 
-            }
-            
+            body { background: #000 !important; overflow: hidden !important; position: fixed; width: 100vw; height: 100vh; }
             #stable-bg { 
-                display: block !important; 
-                position: fixed; top: 0; left: -50vw; 
-                width: 200vw; height: 100%; 
-                background: url('AFaPo Wall.jpg') no-repeat center center; 
-                background-size: cover; z-index: -1; 
-                transition: left 0.1s ease-out; 
+                display: block !important; position: fixed; top: 0; left: -50vw; 
+                width: 200vw; height: 100%; background: url('AFaPo Wall.jpg') no-repeat center center; 
+                background-size: cover; z-index: -1; transition: left 0.1s ease-out; 
             }
-
-            header { width: 100vw !important; left: 0 !important; position: fixed !important; }
-
+            header, .footer-content { width: 100vw !important; left: 0 !important; }
             .sidebar-left { 
-                left: 0 !important; top: -150px !important; width: 100vw !important; height: 65px !important; 
-                flex-direction: row !important; justify-content: space-evenly !important; padding: 0 !important;
-                border-right: none !important; border-bottom: 2px solid #000 !important; z-index: 1001 !important;
-                bottom: auto !important;
+                left: 0 !important; top: -150px !important; bottom: auto !important; 
+                width: 100vw !important; height: 65px !important; flex-direction: row !important; 
+                justify-content: space-evenly !important; align-items: center !important; padding: 0 !important;
+                border-right: none !important; border-bottom: 2px solid #000 !important; 
             }
             .sidebar-left.open { top: 80px !important; }
             .nav-item { margin-bottom: 0 !important; width: auto !important; }
-            .nav-item-epk { margin-top: 0 !important; border-top: none !important; border-left: 1px solid rgba(0,0,0,0.1); padding-top: 0 !important; padding-left: 10px !important; }
+            .nav-item:not(.nav-item-epk) .nav-label span { display: none !important; }
+            .nav-item-epk { margin-top: 0 !important; border-top: none !important; border-left: 1px solid rgba(0,0,0,0.1); padding: 0 0 0 10px !important; }
             .nav-item-epk .nav-label { display: flex !important; flex-direction: column !important; line-height: 1 !important; }
-            .nav-item-epk .nav-label span { display: block !important; font-size: 0.7rem !important; color: var(--anton-red); font-weight: bold; }
+            .nav-item-epk .nav-label span { display: block !important; font-size: 0.7rem !important; }
 
             .sidebar-right { 
                 top: auto !important; bottom: 45px !important; transform: none !important; 
                 width: 100vw !important; height: 50px !important; flex-direction: row !important; 
-                background: rgba(255, 255, 255, 0.7) !important; border-top: 1.5px solid #000 !important;
-                border-radius: 0 !important; justify-content: space-evenly !important; padding: 5px 0 !important;
-                right: 0 !important; left: 0 !important;
+                justify-content: space-evenly !important; border-radius: 0 !important; 
+                background: rgba(255,255,255,0.7) !important; border-top: 1.5px solid #000 !important;
             }
-
-            footer { 
-                position: fixed !important; bottom: 0 !important; left: 0 !important; width: 100vw !important; 
-                height: 45px !important; background: rgba(255,255,255,0.7) !important;
-                display: flex !important; align-items: center; justify-content: center; z-index: 1100;
-            }
+            .footer-content { position: fixed !important; bottom: 0 !important; height: 45px !important; display: flex !important; align-items: center; justify-content: center; }
         }
 
         /* Mobile Querformat */
@@ -128,7 +137,7 @@
             body { overflow-y: auto !important; position: relative !important; height: auto !important; }
             #stable-bg { width: 100vw !important; left: 0 !important; background-size: 100% auto !important; position: fixed !important; }
             header { position: absolute !important; }
-            footer { position: relative !important; margin-top: 40px !important; }
+            .footer-content { position: relative !important; margin-top: 40px !important; }
             .sidebar-right { position: relative !important; bottom: 0 !important; margin-top: 20px !important; }
         }
     </style>
@@ -141,9 +150,14 @@
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
     
     <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> <span>START</span></span></a></div>
+        <div class="nav-item">
+            <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> <span>START</span></span></a>
+        </div>
         <div class="nav-item">
             <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> <span>MEINE MUSIK</span></span></a>
+        </div>
+        <div class="nav-item">
+            <a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> <span>SHOP</span></span></a>
         </div>
         <div class="nav-item nav-item-epk">
             <a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i><span>EPK/</span><span>PRESSE</span></span></a>
@@ -151,22 +165,21 @@
     </nav>
 
     <aside class="sidebar-right">
-        <a href="#" style="--brand-color: #f00"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" style="--brand-color: #25F4EE"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="#" style="--brand-color: #E1306C"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" style="--brand-color: #25D366"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#" style="--brand-color: #1877F2"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#" style="--brand-color: #1DB954"><i class="fa-brands fa-spotify"></i></a>
-        <a href="#" style="--brand-color: var(--apple-gray)"><i class="fa-brands fa-apple"></i></a>
-        <a href="#" style="--brand-color: #f00"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="#" style="--brand-color: var(--amazon-blue)"><i class="fa-brands fa-amazon"></i></a>
+        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://open.spotify.com/intl-de/artist/348545011" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
-    <main>
-        </main>
+    <main></main>
 
-    <footer>
-        <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
+    <footer class="footer-content">
+        <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
     </footer>
 
     <script>
@@ -174,7 +187,9 @@
         let currentLeft = -50;
         const bg = document.getElementById('stable-bg');
 
-        // Wisch-Logik nur aktivieren, wenn Mobilansicht aktiv ist
+        function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
+
+        // Touch-Logik für Mobilgeräte
         document.addEventListener('touchstart', e => {
             if (window.innerWidth <= 1024) {
                 startX = e.touches[0].clientX;
@@ -199,15 +214,10 @@
             }
         });
 
-        function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-        
-        // Klick außerhalb der Sidebar schließt diese
         document.addEventListener('click', function(e) {
             const sb = document.getElementById("sidebar");
             const btn = document.querySelector(".menu-btn");
-            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) {
-                sb.classList.remove("open");
-            }
+            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
         });
     </script>
 </body>
