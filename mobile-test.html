@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ANTON | HAUPTSEITE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
@@ -15,7 +15,7 @@
             --amazon-blue: #00A8E1; 
         }
 
-        /* --- DESKTOP MASTER (ABSOLUT UNANTASTBAR) --- */
+        /* --- DESKTOP MASTER (IDENTISCH ZUM URSPRUNG) --- */
         html, body { height: 100%; margin: 0; padding: 0; }
         
         body { 
@@ -27,6 +27,9 @@
             background-blend-mode: multiply; 
             overflow-x: hidden; 
         }
+
+        /* Versteckt für Desktop */
+        .mobile-bg { display: none; }
         
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
@@ -87,13 +90,24 @@
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
         footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
 
-        /* --- MOBILE MEDIA QUERY (GEZIELTE ANPASSUNGEN OHNE DESKTOP-EINGRIFF) --- */
+        /* --- MOBILE MEDIA QUERY (REIN MOBILER FIX) --- */
         @media (max-width: 800px) {
             body { 
-                /* Fix: Scroll-Attachment auf Mobilgeräten deaktivieren, um Springen zu verhindern */
-                background-attachment: scroll !important; 
+                background: #000 !important; /* Entfernt den Body-Hintergrund mobil */
             }
             
+            /* Mobiles Hintergrund-Div wird aktiviert */
+            .mobile-bg { 
+                display: block !important;
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 110vh; /* Etwas höher um Adressleiste zu puffern */
+                background: url('AFaPo Wall.jpg') no-repeat center center;
+                background-size: cover;
+                z-index: -1;
+                transform: translateZ(0); /* Hardware-Beschleunigung */
+            }
+
             .sidebar-left { 
                 left: 0 !important; top: -150px !important; bottom: auto !important; 
                 width: 100% !important; height: 65px !important; 
@@ -124,7 +138,7 @@
                 right: 0 !important; left: 0 !important; 
                 width: 100% !important; height: 50px !important; 
                 flex-direction: row !important; justify-content: space-evenly !important; 
-                transform: none !important; border-radius: 0 !important; 
+                transform: translateZ(0) !important; border-radius: 0 !important; 
                 background: rgba(255, 255, 255, 0.65) !important; 
                 border-top: 1.5px solid #000 !important; padding: 5px 0 !important; 
                 z-index: 1000 !important; backdrop-filter: blur(5px) !important;
@@ -137,7 +151,7 @@
                 background: rgba(255, 255, 255, 0.65) !important; 
                 z-index: 1100 !important; border-top: 1px solid #000 !important;
                 display: flex !important; align-items: center !important; justify-content: center !important;
-                padding: 0 !important;
+                padding: 0 !important; transform: translateZ(0) !important;
             }
             footer div:first-child { display: none !important; }
             footer div:last-child { font-size: 0.9rem !important; }
@@ -145,6 +159,7 @@
     </style>
 </head>
 <body>
+    <div class="mobile-bg"></div>
     <header><div class="header-title">ANTON</div></header>
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
     
