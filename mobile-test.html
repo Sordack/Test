@@ -7,96 +7,70 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
-        :root { 
-            --anton-red: #ff0000; 
-            --anton-yellow: #ffeb3b; 
-            --sidebar-width: 240px; 
-            --apple-gray: #A2AAAD;
-            --amazon-blue: #00A8E1;
-        }
+        :root { --red: #f00; --yellow: #ffeb3b; --side: 240px; --apple: #A2AAAD; --amz: #00A8E1; }
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: #000; font-family: 'Special Elite', cursive; }
 
-        /* Basis-Setup */
-        html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: #000; }
-        body { display: flex; flex-direction: column; font-family: 'Special Elite', cursive; }
+        /* HEADER */
+        header { position: fixed; top: 0; width: 100%; height: 70px; display: flex; justify-content: center; align-items: center; z-index: 1100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+        .header-title { color: var(--red); font-size: 1.6rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
+        .menu-btn { position: fixed; top: 12px; left: 15px; font-size: 22px; cursor: pointer; z-index: 1200; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
 
-        /* HEADER (Bleibt fix) */
-        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
-        
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 2px solid #000; }
-
-        /* DESKTOP BACKGROUND (MASTER) */
-        .desktop-bg {
-            display: block;
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff url('AFaPo Wall.jpg') no-repeat center center fixed;
-            background-size: cover; background-blend-mode: multiply; z-index: 1;
-        }
-
-        /* MOBILE PANORAMA WRAPPER */
-        .mobile-panorama-container { display: none; }
+        /* HINTERGRUND SYSTEM */
+        .desktop-bg { display: block; position: fixed; inset: 0; background: #fff url('AFaPo Wall.jpg') no-repeat center/cover fixed; background-blend-mode: multiply; z-index: 1; }
+        .mobile-panorama { display: none; }
 
         @media (max-width: 800px) {
             .desktop-bg { display: none; }
-            .mobile-panorama-container { 
-                display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                overflow-x: auto; overflow-y: hidden; z-index: 2; scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch; scrollbar-width: none;
-            }
-            .mobile-panorama-container::-webkit-scrollbar { display: none; }
-
-            .panorama-content { 
-                position: relative; width: 300%; height: 100%; 
-                background: #fff url('AFaPo Wall.jpg') no-repeat center center;
-                background-size: cover; background-blend-mode: multiply;
-            }
+            .mobile-panorama { display: block; position: fixed; inset: 0; overflow-x: auto; overflow-y: hidden; z-index: 2; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+            .panorama-content { position: relative; width: 300%; height: 100%; background: #fff url('AFaPo Wall.jpg') no-repeat center/cover; background-blend-mode: multiply; will-change: transform; }
         }
 
-        /* SIDEBARS */
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
+        /* NAVIGATION LINKS */
+        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--side); background: rgba(255,235,59,0.98); z-index: 1300; display: flex; flex-direction: column; padding: 90px 15px 20px; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-right: 2px solid #000; }
         .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
-        .submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; }
+        .nav-item { margin-bottom: 15px; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1rem; padding: 5px 0; }
+        .submenu { display: none; flex-direction: column; padding-left: 30px; margin-top: 5px; }
         .nav-item:hover .submenu { display: flex; }
-        .submenu a { font-size: 0.85rem; margin-bottom: 12px; padding-top: 4px; }
+        .submenu a { font-size: 0.85rem; margin-bottom: 8px; padding-top: 4px; }
 
-        /* SOCIAL SIDEBAR */
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; }
+        /* SOCIAL SIDEBAR RECHTS */
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 45px; display: flex; flex-direction: column; align-items: center; gap: 12px; z-index: 1000; background: rgba(255,255,255,0.2); backdrop-filter: blur(3px); padding: 20px 0; border-radius: 15px 0 0 15px; }
+        .sidebar-right a i { color: #000; font-size: 1.1rem; animation: flow 6s linear infinite; }
+        @keyframes flow { 0%, 23.33% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.5); color: var(--c); } }
         
-        @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-        
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
-        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
-        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
-        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
-        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
+        .sidebar-right a:nth-child(1) i { --c: #f00; animation-delay: 0s; }
+        .sidebar-right a:nth-child(2) i { --c: #25F4EE; animation-delay: 0.25s; }
+        .sidebar-right a:nth-child(3) i { --c: #E1306C; animation-delay: 0.5s; }
+        .sidebar-right a:nth-child(4) i { --c: #25D366; animation-delay: 0.75s; }
+        .sidebar-right a:nth-child(5) i { --c: #1877F2; animation-delay: 1s; }
+        .sidebar-right a:nth-child(6) i { --c: #1DB954; animation-delay: 1.25s; }
+        .sidebar-right a:nth-child(7) i { --c: var(--apple); animation-delay: 1.5s; }
+        .sidebar-right a:nth-child(8) i { --c: #f00; animation-delay: 1.75s; }
+        .sidebar-right a:nth-child(9) i { --c: var(--amz); animation-delay: 2s; }
 
         @media (max-width: 800px) {
-            .sidebar-right { top: auto; bottom: 60px; right: 0; left: 0; width: 100%; height: auto; flex-direction: row; justify-content: space-evenly; transform: none; border-radius: 0; background: rgba(255, 255, 255, 0.85); border-top: 1.5px solid #000; padding: 12px 5px; }
-            .sidebar-right a i { font-size: 1.5rem; }
+            .sidebar-right { top: auto; bottom: 55px; right: 0; left: 0; width: 100%; height: auto; flex-direction: row; justify-content: space-evenly; transform: none; border-radius: 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; padding: 10px 5px; }
+            .sidebar-right a i { font-size: 1.4rem; }
         }
 
-        /* KLICKBOXEN (Absolut im Panorama) */
-        .invisible-box { position: absolute; z-index: 10; background: transparent; cursor: pointer; }
+        /* KLICKBOXEN */
+        .invisible-box { position: absolute; z-index: 10; cursor: pointer; }
         .box-ertappt { width: 6.33%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
         .box-mitte { width: 6.66%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
         .box-pause { width: 3.33%; height: 43%; top: 21%; left: 70%; }
-        
-        /* FOOTER */
-        footer { position: fixed; bottom: 0; width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; }
-        @media (max-width: 800px) { footer { padding-bottom: 70px; } }
+
+        /* FOOTER FIX */
+        footer { position: fixed; bottom: 0; width: 100%; padding: 8px 0; background: rgba(255,255,255,0.95); border-top: 1.5px solid #000; text-align: center; font-size: 0.7rem; z-index: 1500; line-height: 1.4; }
+        footer a { color: #000; text-decoration: none; font-weight: bold; margin: 0 5px; }
+        @media (max-width: 800px) { footer { height: 55px; display: flex; flex-direction: column; justify-content: center; } }
     </style>
 </head>
 <body>
 
     <header><div class="header-title">ANTON</div></header>
-    <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
     <div class="desktop-bg">
         <a href="meinemusik.html" class="invisible-box box-ertappt" style="position:fixed; width:19%; left:17%;"></a>
@@ -104,7 +78,7 @@
         <a href="meinemusik.html" class="invisible-box box-pause" style="position:fixed; width:10%; left:70%;"></a>
     </div>
 
-    <div class="mobile-panorama-container" id="mobileScroll">
+    <div class="mobile-panorama" id="mobileScroll">
         <div class="panorama-content">
             <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
             <a href="neuesingle.html" class="invisible-box box-mitte"></a>
@@ -113,27 +87,27 @@
     </div>
 
     <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house" style="margin-right:10px"></i> START</a></div>
+        <div class="nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house" style="width:25px"></i> START</a></div>
         <div class="nav-item">
-            <a href="meinemusik.html"><i class="fa-solid fa-music" style="margin-right:10px"></i> MEINE MUSIK</a>
+            <a href="meinemusik.html"><i class="fa-solid fa-music" style="width:25px"></i> MEINE MUSIK</a>
             <div class="submenu">
                 <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
-                <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
+                <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> RELEASES</a>
                 <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
             </div>
         </div>
-        <div class="nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping" style="margin-right:10px"></i> SHOP</a></div>
-        <div class="nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope" style="margin-right:10px"></i> KONTAKT</a></div>
-        <div class="nav-item nav-item-epk" style="margin-top:auto"><a href="epk.html" style="color:red"><i class="fa-solid fa-lock" style="margin-right:10px"></i> EPK / PRESSE</a></div>
+        <div class="nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping" style="width:25px"></i> SHOP</a></div>
+        <div class="nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width:25px"></i> KONTAKT</a></div>
+        <div class="nav-item" style="margin-top:auto"><a href="epk.html" style="color:red"><i class="fa-solid fa-lock" style="width:25px"></i> EPK / PRESSE</a></div>
     </nav>
 
     <aside class="sidebar-right">
-        <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://whatsapp.com" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
         <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://spotify.com" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="http://spotify.com" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com" target="_blank"><i class="fa-brands fa-apple"></i></a>
         <a href="https://www.youtube.com" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
         <a href="https://music.amazon.de" target="_blank"><i class="fa-brands fa-amazon"></i></a>
@@ -141,26 +115,18 @@
 
     <footer>
         <a href="index.html">www.anton-familienpop.de</a><br>
-        <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
+        <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
     </footer>
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-        
-        // Zentrierung beim Laden (Mobile)
         window.addEventListener('load', () => {
-            const scrollContainer = document.getElementById('mobileScroll');
-            if(scrollContainer) {
-                // Zentriert auf die Mitte des 300% breiten Bildes
-                const center = (scrollContainer.scrollWidth - window.innerWidth) / 2;
-                scrollContainer.scrollLeft = center;
-            }
+            const sc = document.getElementById('mobileScroll');
+            if(sc) sc.scrollLeft = (sc.scrollWidth - window.innerWidth) / 2;
         });
-
-        document.addEventListener('click', function(e) {
-            const sb = document.getElementById("sidebar");
-            const btn = document.querySelector(".menu-btn");
-            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
+        document.addEventListener('click', (e) => {
+            const sb = document.getElementById("sidebar"), btn = document.querySelector(".menu-btn");
+            if (sb.classList.contains("open") && !sb.contains(e.target) && !btn.contains(e.target)) sb.classList.remove("open");
         });
     </script>
 </body>
