@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ANTON | HAUPTSEITE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
@@ -15,24 +15,25 @@
             --amazon-blue: #00A8E1; 
         }
 
-        /* Fix für das Wackeln und Springen */
-        html, body { 
-            height: 100%; 
-            margin: 0; 
-            padding: 0; 
-            overscroll-behavior: none; /* Verhindert Pull-to-refresh Wackeln */
-        }
-        
-        body { 
-            display: flex; 
-            flex-direction: column; 
-            font-family: 'Special Elite', cursive; 
-            background: #000;
-            overflow-x: hidden; 
+        /* HARD-FIX gegen das Springen/Wackeln auf Mobilgeräten */
+        html {
+            height: 100%;
+            overflow: hidden; /* Verhindert das Scrollen auf dem HTML-Element selbst */
         }
 
-        /* Stabiler Hintergrund-Container */
-        .bg-container {
+        body { 
+            height: 100%;
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Special Elite', cursive; 
+            background-color: #000;
+            overflow-y: auto; /* Scrollen nur auf dem Body */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Die stabilste Methode für mobile Hintergründe */
+        body::before {
+            content: "";
             position: fixed;
             top: 0;
             left: 0;
@@ -41,7 +42,9 @@
             background: url('AFaPo Wall.jpg') no-repeat center center;
             background-size: cover;
             z-index: -1;
-            transform: translateZ(0); /* Hardware-Beschleunigung */
+            /* Wichtig: Kein fixed background-attachment auf Mobilgeräten nutzen */
+            will-change: transform;
+            transform: translateZ(0);
         }
         
         header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
@@ -54,33 +57,29 @@
         .menu-btn:hover span { opacity: 0; }
         .menu-btn:hover::after { opacity: 1; }
         
+        /* Sidebar Links Desktop */
         .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
-        
         .nav-item { margin-bottom: 20px; width: 100%; }
         .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
         .sidebar-left a:hover { color: var(--anton-red); }
-        
         .nav-label { display: flex; align-items: center; width: 100%; }
         .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
-        
         .arrow-wrapper { margin-left: auto; padding-right: 5px; }
         .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
         .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
-        
         .submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
         .submenu a i { margin-right: 10px; width: 18px; text-align: center; }
-
         .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
         
+        /* Sidebar Rechts Social */
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
         
         @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-        
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
@@ -94,6 +93,7 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
+        /* --- MOBILE MEDIA QUERY --- */
         @media (max-width: 800px) {
             .sidebar-left { 
                 left: 0 !important; top: -150px !important; bottom: auto !important; 
@@ -105,7 +105,6 @@
                 z-index: 90 !important;
             }
             .sidebar-left.open { top: 80px !important; }
-            
             .sidebar-left .nav-item { width: auto !important; margin: 0 !important; }
             .sidebar-left .nav-item:not(.nav-item-epk) .nav-label span { display: none !important; }
             .sidebar-left .nav-item:not(.nav-item-epk) .main-icon { margin-right: 0 !important; font-size: 1.6rem !important; }
@@ -114,38 +113,42 @@
             .nav-item-epk { 
                 margin-top: 0 !important; border-top: none !important; 
                 border-left: 1.5px solid rgba(0,0,0,0.2) !important; 
-                padding: 0 0 0 15px !important; height: 40px !important; 
+                padding: 0 0 0 10px !important; height: 40px !important; 
                 display: flex !important; align-items: center !important;
             }
             .nav-item-epk .main-icon { display: none !important; }
             .nav-item-epk .nav-label { display: flex !important; flex-direction: column !important; align-items: center !important; line-height: 1.1 !important; }
-            .nav-item-epk .nav-label span { display: block !important; font-size: 0.75rem !important; font-weight: bold !important; color: var(--anton-red) !important; text-align: center !important; }
+            .nav-item-epk .nav-label span { display: block !important; font-size: 0.72rem !important; font-weight: bold !important; color: var(--anton-red) !important; text-align: center !important; }
 
-            /* Stabilisierte Footer & Social-Bar */
+            /* Stabilisierung Social Bar (Fix gegen Zittern) */
             .sidebar-right { 
-                top: auto !important; bottom: 45px !important; 
+                top: auto !important; 
+                bottom: 45px !important; /* Exakter Pixelwert über Footer */
                 right: 0 !important; left: 0 !important; 
                 width: 100% !important; height: 50px !important; 
                 flex-direction: row !important; justify-content: space-evenly !important; 
-                transform: translateZ(0) !important; /* Fix gegen Wackeln */
+                transform: translateZ(0) !important; 
                 border-radius: 0 !important; 
                 background: rgba(255, 255, 255, 0.65) !important; 
-                border-top: 1.5px solid #000 !important; padding: 5px 0 !important; 
+                border-top: 1.5px solid #000 !important; padding: 0 !important; 
                 z-index: 1000 !important; backdrop-filter: blur(5px) !important;
             }
-            .sidebar-right a i { font-size: 1.4rem !important; }
+            .sidebar-right a i { font-size: 1.3rem !important; }
 
+            /* Stabilisierung Footer (Fix gegen Zittern) */
             footer { 
-                position: fixed !important; bottom: 0 !important; left: 0 !important;
+                position: fixed !important; 
+                bottom: 0 !important; 
+                left: 0 !important;
                 width: 100% !important; height: 45px !important;
                 background: rgba(255, 255, 255, 0.65) !important; 
                 z-index: 1100 !important; border-top: 1.5px solid #000 !important;
                 display: flex !important; align-items: center !important; justify-content: center !important;
                 padding: 0 !important;
-                transform: translateZ(0) !important; /* Fix gegen Wackeln */
+                transform: translateZ(0) !important;
             }
             footer div:first-child { display: none !important; }
-            footer div:last-child { font-size: 0.9rem !important; }
+            footer div:last-child { font-size: 0.85rem !important; }
         }
 
         .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
@@ -156,7 +159,7 @@
         .box-pause3 { width: 5%; height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
         .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
 
-        main { flex: 1; padding: 120px 20px 120px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
+        main { flex: 1; padding: 120px 20px 150px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
@@ -164,7 +167,6 @@
     </style>
 </head>
 <body>
-    <div class="bg-container"></div>
     <header><div class="header-title">ANTON</div></header>
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
     
@@ -225,10 +227,13 @@
 
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
+        /* Schließen bei Klick außerhalb */
         document.addEventListener('click', function(e) {
             const sb = document.getElementById("sidebar");
             const btn = document.querySelector(".menu-btn");
-            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
+            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) {
+                sb.classList.remove("open");
+            }
         });
     </script>
 </body>
