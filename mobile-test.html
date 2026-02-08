@@ -53,6 +53,7 @@
         
         .submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
         .nav-item:hover .submenu { display: flex; }
+        
         .submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
         .submenu a i { margin-right: 10px; width: 18px; text-align: center; }
 
@@ -77,69 +78,62 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-        /* --- MOBILE CHANGES ONLY --- */
+        /* --- MOBILE MEDIA QUERY OPTIMIERUNG --- */
         @media (max-width: 800px) {
-            /* Sidebar Links: Jetzt horizontal unter dem Header */
             .sidebar-left { 
                 left: 0 !important; 
-                top: -150px !important; /* Startet versteckt über dem Header */
+                top: -150px !important; 
                 bottom: auto !important; 
                 width: 100% !important; 
                 height: 60px !important; 
                 flex-direction: row !important; 
                 justify-content: space-evenly !important; 
                 align-items: center !important; 
-                padding: 0 !important; 
+                padding: 0 10px !important; 
                 border-right: none !important; 
                 border-bottom: 2px solid #000 !important; 
                 transition: top 0.4s ease-in-out !important;
                 background: var(--anton-yellow) !important;
-                z-index: 90 !important; /* Hinter dem Header, damit sie drunter rausschiebt */
+                z-index: 90 !important;
             }
-            .sidebar-left.open { top: 80px !important; } /* Erscheint exakt unter dem 80px Header */
+            .sidebar-left.open { top: 80px !important; }
             
+            /* Menü-Struktur für Icons (außer EPK) */
             .sidebar-left .nav-item { width: auto !important; margin-bottom: 0 !important; }
-            .sidebar-left .nav-label span, .sidebar-left .submenu, .sidebar-left .arrow-wrapper { display: none !important; }
+            .sidebar-left .nav-label span { display: none !important; } /* Standard: Kein Text */
+            .sidebar-left .submenu, .sidebar-left .arrow-wrapper { display: none !important; }
             .sidebar-left .nav-label i.main-icon { font-size: 1.5rem !important; margin-right: 0 !important; }
 
-            /* Spezial-Farbe für EPK Icon mobil */
+            /* EPK SPEZIALFALL MOBIL */
             .nav-item-epk { margin-top: 0 !important; border-top: none !important; padding-top: 0 !important; }
-            .nav-item-epk i.main-icon { color: var(--anton-red) !important; }
+            .nav-item-epk i.main-icon { display: none !important; } /* Icon weg */
+            .nav-item-epk .nav-label span { 
+                display: inline !important; 
+                font-size: 0.85rem !important; 
+                font-weight: bold !important; 
+                color: var(--anton-red) !important;
+                letter-spacing: 1px;
+            }
 
-            /* Social Sidebar (Unten) mit erhöhter Transparenz */
+            /* Social Bar & Footer Transparenz */
             .sidebar-right { 
-                top: auto !important; 
-                bottom: 45px !important; 
-                right: 0 !important; 
-                left: 0 !important; 
-                width: 100% !important; 
-                height: 50px !important; 
-                flex-direction: row !important; 
-                justify-content: space-evenly !important; 
-                transform: none !important; 
-                border-radius: 0 !important; 
-                background: rgba(255, 255, 255, 0.75) !important; /* 10% mehr Transparenz */
-                border-top: 1.5px solid #000 !important; 
-                padding: 5px 0 !important; 
-                z-index: 1000 !important;
-                backdrop-filter: blur(5px) !important;
+                top: auto !important; bottom: 45px !important; 
+                right: 0 !important; left: 0 !important; 
+                width: 100% !important; height: 50px !important; 
+                flex-direction: row !important; justify-content: space-evenly !important; 
+                transform: none !important; border-radius: 0 !important; 
+                background: rgba(255, 255, 255, 0.75) !important; 
+                border-top: 1.5px solid #000 !important; padding: 5px 0 !important; 
+                z-index: 1000 !important; backdrop-filter: blur(5px) !important;
             }
             .sidebar-right a i { font-size: 1.4rem !important; }
 
-            /* Footer mit identischer Transparenz wie Sidebar-Right */
             footer { 
-                position: fixed !important; 
-                bottom: 0 !important; 
-                left: 0 !important;
-                width: 100% !important;
-                height: 45px !important;
-                background: rgba(255, 255, 255, 0.75) !important; /* Gleiche Transparenz */
-                z-index: 1100 !important;
-                border-top: 1px solid #000 !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                padding: 0 !important;
+                position: fixed !important; bottom: 0 !important; left: 0 !important;
+                width: 100% !important; height: 45px !important;
+                background: rgba(255, 255, 255, 0.75) !important; 
+                z-index: 1100 !important; border-top: 1px solid #000 !important;
+                display: flex !important; align-items: center !important; justify-content: center !important;
             }
             footer div:first-child { display: none !important; }
             footer div:last-child { font-size: 0.9rem !important; }
@@ -218,12 +212,7 @@
         document.addEventListener('click', function(e) {
             const sb = document.getElementById("sidebar");
             const btn = document.querySelector(".menu-btn");
-            if (window.innerWidth <= 800) {
-                // Mobil: Schließen wenn Klick außerhalb Header und Sidebar
-                if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
-            } else {
-                if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
-            }
+            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
         });
     </script>
 </body>
