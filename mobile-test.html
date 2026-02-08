@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANTON | HAUPTSEITE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
@@ -12,54 +12,60 @@
             --anton-yellow: #ffeb3b; 
             --sidebar-width: 240px; 
             --apple-gray: #A2AAAD;
+            --amazon-blue: #00A8E1; /* Korrigierte Farbe */
         }
 
         html, body { height: 100%; margin: 0; padding: 0; }
         
-        /* --- ABSOLUTER DESKTOP MASTER --- */
         body { 
             display: flex; 
             flex-direction: column; 
             font-family: 'Special Elite', cursive; 
-            background: #fff url('TON-AN.png') no-repeat center center fixed; 
-            background-size: 100%; 
+            background: #fff url('AFaPo Wall.jpg') no-repeat center center fixed; 
+            background-size: cover; 
             background-blend-mode: multiply; 
             overflow-x: hidden; 
         }
         
-        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 2000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 2100; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
+        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
         .menu-btn:hover { background: var(--anton-yellow); color: #000; }
         .menu-btn span { transition: opacity 0.2s; }
         .menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
         .menu-btn:hover span { opacity: 0; }
         .menu-btn:hover::after { opacity: 1; }
         
-        /* SIDEBAR LINKS MASTER */
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 1500; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
+        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
         
         .nav-item { margin-bottom: 20px; width: 100%; }
         .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
         .sidebar-left a:hover { color: var(--anton-red); }
+        
         .nav-label { display: flex; align-items: center; width: 100%; }
-        .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; font-size: 1.2rem; }
+        .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
+        
         .arrow-wrapper { margin-left: auto; padding-right: 5px; }
         .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
         .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
+        
         .submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
         .nav-item:hover .submenu { display: flex; }
+        
         .submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
         .submenu a i { margin-right: 10px; width: 18px; text-align: center; }
+
         .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
         
-        /* SIDEBAR RECHTS MASTER */
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 1000; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+        /* DESKTOP SIDEBAR RIGHT */
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
+        
         @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+        
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
@@ -68,9 +74,55 @@
         .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
         .sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
+        .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
+        
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
+
+        /* MOBILE MEDIA QUERY - OPTIMIERTER TAUSCH */
+        @media (max-width: 800px) {
+            /* Tausche Position: Social Bar über Footer */
+            .sidebar-right { 
+                top: auto !important; 
+                bottom: 45px !important; /* Exakt über dem mobilen Footer */
+                right: 0 !important; 
+                left: 0 !important; 
+                width: 100% !important; 
+                height: 50px !important; 
+                flex-direction: row !important; 
+                justify-content: space-evenly !important; 
+                transform: none !important; 
+                border-radius: 0 !important; 
+                background: rgba(255, 255, 255, 0.95) !important; 
+                border-top: 1.5px solid #000 !important; 
+                padding: 5px 0 !important; 
+                z-index: 1000 !important;
+            }
+            .sidebar-right a i { font-size: 1.4rem !important; }
+
+            /* Footer ganz nach unten */
+            footer { 
+                position: fixed !important; 
+                bottom: 0 !important; 
+                left: 0 !important;
+                width: 100% !important;
+                height: 45px !important;
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                background: #fff !important;
+                z-index: 1100 !important; /* Footer über Social, falls nötig */
+                border-top: 1px solid #000 !important;
+            }
+            
+            /* Entferne den Link www.anton-familienpop.de mobil */
+            footer div:first-child { display: none !important; }
+            
+            /* Rechtliche Links nebeneinander ohne Pipe */
+            footer div:last-child { font-size: 1rem !important; }
+            footer div:last-child a:first-child { border-right: 2px solid #000; padding-right: 15px; margin-right: 15px; }
+        }
 
         .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
         .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
@@ -80,51 +132,11 @@
         .box-pause3 { width: 5%; height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
         .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
 
-        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; margin-top: auto; }
+        main { flex: 1; padding: 120px 20px 40px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
+
+        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
         footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
-
-        /* --- MOBILE REPAIR (ISOLIERT) --- */
-        @media (max-width: 800px) {
-            body { background-size: cover !important; background-attachment: scroll !important; }
-            .invisible-box { display: none !important; }
-            header { height: 60px; z-index: 3000; }
-            .menu-btn { top: 10px; left: 15px; width: 40px; height: 40px; z-index: 3100; }
-
-            .sidebar-left { 
-                left: 0 !important; top: -100px !important; bottom: auto; 
-                width: 100% !important; height: 60px !important; 
-                flex-direction: row !important; justify-content: space-evenly; 
-                align-items: center; padding: 0 !important; border-right: none; 
-                border-bottom: 2.5px solid #000; z-index: 2500;
-                background: var(--anton-yellow) !important;
-            }
-            .sidebar-left.open { top: 60px !important; }
-            .sidebar-left .nav-item { width: auto; margin-bottom: 0 !important; display: flex; align-items: center; height: 100%; }
-            .sidebar-left .nav-label span, .sidebar-left .submenu, .sidebar-left .arrow-wrapper { display: none !important; }
-            .sidebar-left .nav-label i.main-icon { font-size: 1.5rem; margin-right: 0; color: #000; }
-
-            .nav-item-epk { margin-top: 0 !important; border-top: none !important; border-left: 1.5px solid rgba(0,0,0,0.2); padding-left: 15px !important; margin-left: 5px !important; }
-            .nav-item-epk i.main-icon { color: var(--anton-red) !important; }
-
-            /* SOCIAL SIDEBAR NACH OBEN TAUSCHEN */
-            .sidebar-right { 
-                top: auto; bottom: 45px !important; right: 0; left: 0; width: 100%; height: 50px; 
-                flex-direction: row; justify-content: space-evenly; transform: none; 
-                border-radius: 0; background: #fff; border-top: 2px solid #000; z-index: 3000; padding: 0; 
-            }
-            
-            /* FOOTER NACH GANZ UNTEN TAUSCHEN */
-            .footer-index-link { display: none !important; }
-            footer { 
-                position: fixed !important; bottom: 0 !important; left: 0; 
-                width: 100%; background: rgba(255,255,255,0.98); z-index: 3100; 
-                padding: 10px 0; height: 45px; border-top: 1px solid #000;
-            }
-            .footer-legal-links { font-size: 1.1rem !important; display: flex !important; justify-content: center !important; align-items: center !important; height: 100%; }
-            .footer-legal-links a:first-child { border-right: 2px solid #000; padding-right: 20px; margin-right: 20px; }
-            footer a:hover { text-shadow: none !important; }
-        }
     </style>
 </head>
 <body>
@@ -140,10 +152,10 @@
 
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item">
-            <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> <span>START</span></span></a>
+            <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a>
         </div>
         <div class="nav-item">
-            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> <span>MEINE MUSIK</span></span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
             <div class="submenu">
                 <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
                 <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
@@ -151,13 +163,13 @@
             </div>
         </div>
         <div class="nav-item">
-            <a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> <span>SHOP</span></span></a>
+            <a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a>
         </div>
         <div class="nav-item">
-            <a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> <span>KONTAKT</span></span></a>
+            <a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a>
         </div>
         <div class="nav-item nav-item-epk">
-            <a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> <span>EPK / PRESSE</span></span></a>
+            <a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a>
         </div>
     </nav>
 
@@ -173,11 +185,11 @@
         <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
-    <main style="flex: 1;"></main>
+    <main></main>
 
     <footer>
-        <div class="footer-index-link"><a href="index.html">www.anton-familienpop.de</a></div>
-        <div class="footer-legal-links"><a href="impressum.html">Impressum</a> <a href="datenschutz.html">Datenschutz</a></div>
+        <div><a href="index.html">www.anton-familienpop.de</a></div>
+        <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
     </footer>
 
     <script>
