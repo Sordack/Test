@@ -95,18 +95,20 @@
             .sidebar-left .nav-item:not(.nav-item-epk) .main-icon { margin-right: 0 !important; font-size: 1.6rem !important; }
             .sidebar-left .submenu, .sidebar-left .arrow-wrapper { display: none !important; }
 
-            /* EPK Darstellung wie zuvor: Nur Text, rot, keine Icons */
+            /* EPK Spezialfall: Zweizeilig */
             .nav-item-epk { margin-top: 0 !important; border-top: none !important; padding: 0 !important; }
             .nav-item-epk .main-icon { display: none !important; }
+            .nav-item-epk .nav-label { display: flex !important; flex-direction: column !important; align-items: center !important; line-height: 1.1 !important; }
             .nav-item-epk .nav-label span { 
-                display: inline !important; 
-                font-size: 0.85rem !important; 
+                display: block !important; 
+                font-size: 0.75rem !important; 
                 font-weight: bold !important; 
                 color: var(--anton-red) !important;
-                letter-spacing: 1px;
+                text-align: center !important;
+                letter-spacing: 0.5px;
             }
 
-            /* Social Sidebar: 10% mehr Transparenz (0.65) */
+            /* Social Sidebar (0.65 Transparenz) */
             .sidebar-right { 
                 top: auto !important; bottom: 45px !important; 
                 right: 0 !important; left: 0 !important; 
@@ -119,7 +121,7 @@
             }
             .sidebar-right a i { font-size: 1.4rem !important; }
 
-            /* Footer: Ebenfalls 0.65 Transparenz */
+            /* Footer (0.65 Transparenz) */
             footer { 
                 position: fixed !important; bottom: 0 !important; left: 0 !important;
                 width: 100% !important; height: 45px !important;
@@ -177,7 +179,13 @@
             <a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> <span>KONTAKT</span></span></a>
         </div>
         <div class="nav-item nav-item-epk">
-            <a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> <span>EPK / PRESSE</span></span></a>
+            <a href="epk.html">
+                <span class="nav-label">
+                    <i class="fa-solid fa-bullhorn main-icon"></i> 
+                    <span>EPK/</span>
+                    <span>PRESSE</span>
+                </span>
+            </a>
         </div>
     </nav>
 
