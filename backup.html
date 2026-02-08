@@ -24,8 +24,8 @@
             display: flex; 
             flex-direction: column; 
             font-family: 'Special Elite', cursive; 
-            /* Korrektur: Hintergrundbild wieder AFaPo Wall.JPG laut Master */
-            background: #fff url('AFaPo Wall.JPG') fixed center top no-repeat; 
+            /* Hintergrund exakt nach Vorgabe: AFaPo Wall.jpg */
+            background: #fff url('AFaPo Wall.jpg') fixed center top no-repeat; 
             background-size: 100%; 
             background-blend-mode: multiply; 
             overflow-x: hidden; 
@@ -54,7 +54,7 @@
             font-weight: bold; 
         }
         
-        /* MENU BUTTON (MASTER) */
+        /* MENU BUTTON */
         .menu-btn { 
             position: fixed; 
             top: 18px; 
@@ -142,7 +142,7 @@
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
         
-        /* SIDEBAR RECHTS (MASTER DESIGN & ANIMATION) */
+        /* SIDEBAR RECHTS (SOCIALS) */
         .sidebar-right { 
             position: fixed; 
             top: 50%; 
@@ -186,7 +186,7 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
 
-        /* UNSICHTBARE BENTO-BOXEN (KLICKFLÄCHEN) */
+        /* BENTO-BOXEN (POSITIONEN AUS MASTER) */
         .invisible-box {
             position: fixed;
             z-index: 10;
