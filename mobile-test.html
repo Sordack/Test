@@ -15,48 +15,97 @@
             --amazon-blue: #00A8E1; 
         }
 
-        /* --- DESKTOP MASTER (STANDFEST) --- */
-        html, body { height: 100%; margin: 0; padding: 0; overflow-x: hidden; }
-        body { display: flex; flex-direction: column; font-family: 'Special Elite', cursive; background: #fff url('AFaPo Wall.jpg') no-repeat center center fixed; background-size: cover; background-blend-mode: multiply; }
+        /* ============================================================
+           1. DESKTOP MASTER (ZURÜCK IM ORIGINALZUSTAND)
+           ============================================================ */
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+        }
+        
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            font-family: 'Special Elite', cursive; 
+            background: #fff url('AFaPo Wall.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+            background-blend-mode: multiply; 
+        }
 
+        /* Stable-BG ist auf Desktop komplett unsichtbar */
         #stable-bg { display: none; }
         
-        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+        header { 
+            position: fixed; top: 0; width: 100%; height: 80px; 
+            display: flex; justify-content: center; align-items: center; 
+            z-index: 100; background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); border-bottom: 2px solid #000; 
+        }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
+        .menu-btn { 
+            position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
+            z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; 
+            display: flex; align-items: center; justify-content: center; border-radius: 5px; 
+            transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; 
+        }
         .menu-btn:hover { background: var(--anton-yellow); color: #000; }
         
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
+        /* Links-Sidebar Desktop */
+        .sidebar-left { 
+            position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); 
+            background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; 
+            flex-direction: column; padding: 100px 15px 30px 15px; 
+            transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; 
+        }
         .sidebar-left.open { left: 0; }
-        
-        /* Rechte Sidebar (Animationen gemäß Master) */
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+        .nav-item { margin-bottom: 20px; width: 100%; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; transition: color 0.3s; }
+        .sidebar-left a:hover { color: var(--anton-red); }
+        .nav-label { display: flex; align-items: center; width: 100%; }
+        .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
+        .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
+
+        /* Rechts-Sidebar (PULSE UNVERÄNDERT) */
+        .sidebar-right { 
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%); 
+            width: 50px; display: flex; flex-direction: column; align-items: center; 
+            gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; 
+        }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
-        @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-
+        @keyframes ultraFlowWave { 
+            0% { transform: scale(1); color: #000; } 
+            9.33% { transform: scale(1.55); color: var(--brand-color); } 
+            23.33%, 100% { transform: scale(1); color: #000; } 
+        }
+        
         main { flex: 1; padding: 120px 20px 40px 20px; z-index: 5; }
-        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
+        footer { width: 100%; padding: 15px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
 
-        /* --- MOBILE & QUERFORMAT LOGIK --- */
+        /* ============================================================
+           2. MOBILE OPTIMIERUNG (STRENG ISOLIERT)
+           ============================================================ */
         @media screen and (max-width: 1024px) {
-            body { background: #000 !important; overflow: hidden !important; position: fixed; width: 100vw; height: 100vh; }
+            body { 
+                background: #000 !important; 
+                overflow: hidden !important; 
+                position: fixed !important; 
+                width: 100vw; height: 100vh; 
+            }
             
             #stable-bg { 
                 display: block !important; 
-                position: fixed; 
-                top: 0; 
-                left: -50vw; 
-                width: 200vw; 
-                height: 100%; 
+                position: fixed; top: 0; left: -50vw; 
+                width: 200vw; height: 100%; 
                 background: url('AFaPo Wall.jpg') no-repeat center center; 
-                background-size: cover; 
-                z-index: -1;
-                /* Weiches Gleiten beim Wischen */
+                background-size: cover; z-index: -1; 
                 transition: left 0.1s ease-out; 
             }
 
-            header, .sidebar-right { width: 100vw !important; left: 0 !important; right: auto !important; }
+            header { width: 100vw !important; left: 0 !important; }
 
             .sidebar-left { 
                 left: 0 !important; top: -150px !important; width: 100vw !important; height: 65px !important; 
@@ -64,29 +113,34 @@
                 border-right: none !important; border-bottom: 2px solid #000 !important; z-index: 1001 !important;
             }
             .sidebar-left.open { top: 80px !important; }
-            .nav-item-epk .nav-label { display: flex !important; flex-direction: column !important; line-height: 1 !important; align-items: center; }
-            .nav-item-epk .nav-label span { display: block !important; font-size: 0.7rem !important; font-weight: bold; color: var(--anton-red); }
+            .nav-item-epk { margin-top: 0 !important; border-top: none !important; border-left: 1px solid rgba(0,0,0,0.1); padding-top: 0 !important; padding-left: 10px !important; }
+            .nav-item-epk .nav-label { display: flex !important; flex-direction: column !important; line-height: 1 !important; }
+            .nav-item-epk .nav-label span { display: block !important; font-size: 0.7rem !important; color: var(--anton-red); font-weight: bold; }
 
             .sidebar-right { 
                 top: auto !important; bottom: 45px !important; transform: none !important; 
-                height: 50px !important; flex-direction: row !important; 
-                background: rgba(255, 255, 255, 0.65) !important; border-top: 1.5px solid #000 !important;
+                width: 100vw !important; height: 50px !important; flex-direction: row !important; 
+                background: rgba(255, 255, 255, 0.7) !important; border-top: 1.5px solid #000 !important;
+                border-radius: 0 !important; justify-content: space-evenly !important; padding: 5px 0 !important;
             }
 
             footer { 
-                position: fixed !important; bottom: 0 !important; left: 0 !important; width: 100vw !important; 
-                height: 45px !important; background: rgba(255, 255, 255, 0.65) !important; 
-                display: flex !important; align-items: center; justify-content: center; z-index: 1100; 
+                position: fixed !important; bottom: 0 !important; left: 0 !important; 
+                height: 45px !important; display: flex !important; align-items: center; 
+                justify-content: center; z-index: 1100; background: rgba(255,255,255,0.7) !important;
             }
         }
 
-        /* Spezial-Anpassung für Querformat */
+        /* ============================================================
+           3. MOBILE QUERFORMAT (SPECIAL HANDLING)
+           ============================================================ */
         @media screen and (max-width: 1024px) and (orientation: landscape) {
             body { overflow-y: auto !important; position: relative !important; height: auto !important; }
             #stable-bg { width: 100vw !important; left: 0 !important; background-size: 100% auto !important; position: fixed !important; }
             header { position: absolute !important; }
-            footer { position: relative !important; margin-top: 50px; }
-            .sidebar-right { position: relative !important; bottom: 0 !important; margin-top: 20px; }
+            footer { position: relative !important; margin-top: 40px !important; }
+            .sidebar-right { position: relative !important; bottom: 0 !important; margin-top: 20px !important; }
+            main { padding-top: 100px !important; }
         }
     </style>
 </head>
@@ -97,7 +151,9 @@
     
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> <span>START</span></span></a></div>
-        <div class="nav-item"><a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> <span>MUSIK</span></span></a></div>
+        <div class="nav-item">
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> <span>MEINE MUSIK</span></span></a>
+        </div>
         <div class="nav-item nav-item-epk">
             <a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i><span>EPK/</span><span>PRESSE</span></span></a>
         </div>
@@ -118,48 +174,36 @@
     <main></main>
 
     <footer>
-        <div><a href="index.html" style="display:none">www.anton-familienpop.de</a></div>
         <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
     </footer>
 
     <script>
         let startX = 0;
-        let currentLeft = -50; // Startwert in vw
+        let currentLeft = -50;
         const bg = document.getElementById('stable-bg');
 
-        // Touch-Handling für echtes Hin- und Herwischen
+        // Wisch-Logik (nur für Mobil/Hochformat)
         document.addEventListener('touchstart', e => {
             startX = e.touches[0].clientX;
-            bg.style.transition = 'none'; // Sofortige Reaktion während des Wischens
+            if(bg) bg.style.transition = 'none';
         }, {passive: true});
 
         document.addEventListener('touchmove', e => {
             if (window.innerWidth <= 1024 && window.innerHeight > window.innerWidth) {
-                const touchX = e.touches[0].clientX;
-                const moveX = (startX - touchX) / window.innerWidth * 100; // Differenz in vw
+                const moveX = (startX - e.touches[0].clientX) / window.innerWidth * 100;
                 let newPos = currentLeft - moveX;
-
-                // Grenzen: Da das Bild 200vw breit ist, kann left von 0 bis -100vw gehen
                 if (newPos > 0) newPos = 0;
                 if (newPos < -100) newPos = -100;
-
-                bg.style.left = newPos + 'vw';
+                if(bg) bg.style.left = newPos + 'vw';
             }
-        }, {passive: false});
+        }, {passive: true});
 
         document.addEventListener('touchend', () => {
-            currentLeft = parseFloat(bg.style.left) || -50;
-            bg.style.transition = 'left 0.3s ease-out'; // Sanftes Auslaufen nach dem Loslassen
-        });
-
-        // Höhe fixieren
-        function setHeight() {
-            if (window.innerWidth <= 1024) {
-                bg.style.height = window.innerHeight + 'px';
+            if(bg) {
+                currentLeft = parseFloat(bg.style.left) || -50;
+                bg.style.transition = 'left 0.3s ease-out';
             }
-        }
-        window.addEventListener('load', setHeight);
-        window.addEventListener('resize', setHeight);
+        });
 
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
     </script>
