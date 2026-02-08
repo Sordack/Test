@@ -67,21 +67,11 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-        .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
-        .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
-        .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
-        .box-pause { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
-        .box-pause2 { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
-        .box-pause3 { width: 5%; height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
-        .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
-
-        main { flex: 1; padding: 120px 20px 40px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
-
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
 
         /* ============================================================
-           MOBILER BEREICH (FIX FÜR SOCIAL SIDEBAR)
+           MOBILER BEREICH
            ============================================================ */
         #mobile-bg-fix { display: none; }
 
@@ -103,45 +93,34 @@
                 z-index: 205 !important;
             }
             .sidebar-left.open { top: 60px !important; }
-
             .sidebar-left .nav-label span, .sidebar-left .arrow-wrapper, .sidebar-left .submenu { display: none !important; }
-            .sidebar-left .nav-label i { font-size: 1.3rem !important; margin: 0 !important; }
+            .sidebar-left .nav-label i { font-size: 1.3rem !important; }
             .sidebar-left .nav-item { margin: 0 !important; width: auto !important; }
 
             header { position: fixed !important; top: 0 !important; height: 60px !important; width: 100% !important; z-index: 210 !important; background: rgba(255, 255, 255, 0.9) !important; border-bottom: 2px solid #000; }
             .menu-btn { top: 10px; left: 10px; width: 40px; height: 40px; background: #000; z-index: 220 !important; }
             
-            /* KORREKTUR: Social Sidebar Mobil horizontal über Footer */
+            /* Social Sidebar Mobil: Platzoptimiert */
             .sidebar-right { 
-                position: fixed !important; 
-                top: auto !important; 
-                bottom: 50px !important; /* Exakt über dem Footer */
-                left: 0 !important; 
-                right: 0 !important;
-                width: 100% !important; 
-                height: 50px !important; 
-                flex-direction: row !important; 
-                transform: none !important; 
-                border-radius: 0 !important; 
-                border-top: 1.5px solid #000 !important; 
-                background: rgba(255,255,255,0.95) !important; 
-                justify-content: space-evenly !important; 
-                padding: 0 !important; 
-                z-index: 998 !important; 
+                position: fixed !important; top: auto !important; 
+                bottom: 35px !important; /* Exakt über dem neuen komprimierten Footer */
+                left: 0 !important; right: 0 !important; width: 100% !important; height: 45px !important; 
+                flex-direction: row !important; transform: none !important; border-radius: 0 !important; 
+                border-top: 1.5px solid #000 !important; background: rgba(255,255,255,0.95) !important; 
+                justify-content: space-evenly !important; padding: 0 !important; z-index: 998 !important; 
             }
-            .sidebar-right a i { font-size: 1.4rem !important; }
+            .sidebar-right a i { font-size: 1.3rem !important; }
 
-            footer { position: fixed !important; bottom: 0 !important; left: 0 !important; width: 100% !important; height: 50px !important; display: flex !important; align-items: center; justify-content: center; font-size: 0.85rem !important; z-index: 999 !important; background: rgba(255,255,255,1) !important; border-top: 1.5px solid #000; }
+            /* Footer Mobil: Komprimiert */
+            footer { 
+                position: fixed !important; bottom: 0 !important; left: 0 !important; width: 100% !important; 
+                height: 35px !important; padding: 0 !important; display: flex !important; 
+                align-items: center; justify-content: center; font-size: 0.8rem !important; 
+                z-index: 999 !important; background: #fff !important; border-top: 1px solid #000; 
+            }
             footer div:first-child { display: none !important; }
 
-            main { padding: 80px 15px 110px 15px !important; overflow-y: auto; height: 100%; }
-            .invisible-box { display: none; }
-        }
-
-        @media (max-width: 800px) and (orientation: landscape) {
-            header, footer, .sidebar-left { position: absolute !important; }
-            body { overflow-y: auto !important; position: relative !important; }
-            .sidebar-right { position: relative !important; margin-top: 30px; bottom: 0 !important; }
+            main { padding: 75px 15px 95px 15px !important; overflow-y: auto; height: 100%; }
         }
     </style>
 </head>
@@ -149,16 +128,8 @@
     <div id="mobile-bg-fix"></div>
 
     <header><div class="header-title">ANTON</div></header>
-    
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
     
-    <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
-    <a href="neuesingle.html" class="invisible-box box-mitte"></a>
-    <a href="meinemusik.html" class="invisible-box box-pause"></a>
-    <a href="meinemusik.html" class="invisible-box box-pause2"></a>
-    <a href="meinemusik.html" class="invisible-box box-pause3"></a>
-    <a href="neuesingle.html" class="invisible-box box-riesenhunger"></a>
-
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item">
             <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> <span>START</span></span></a>
@@ -204,7 +175,7 @@
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
         
-        // WISCH-LOGIK
+        // WISCH-LOGIK (OPTIMIERTER RADIUS)
         let startX = 0;
         let currentTranslate = 0;
         const bg = document.getElementById('mobile-bg-fix');
@@ -219,8 +190,12 @@
                 const moveX = e.touches[0].clientX;
                 const diff = moveX - startX;
                 let newX = currentTranslate + diff;
-                if (newX > screenWidth) newX = screenWidth;
-                if (newX < -screenWidth) newX = -screenWidth;
+                
+                // Erlaubt das Wischen über das volle 300% Bild
+                const limit = screenWidth * 1.0; 
+                if (newX > limit) newX = limit;
+                if (newX < -limit) newX = -limit;
+                
                 bg.style.transform = `translateX(${newX}px)`;
             }, {passive: true});
 
