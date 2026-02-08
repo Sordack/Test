@@ -77,77 +77,58 @@
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-        /* --- MOBILE MEDIA QUERY OPTIMIERUNG --- */
+        /* --- MOBILE MEDIA QUERY: FINALER TAUSCH & LOGIK --- */
         @media (max-width: 800px) {
+            /* 1. Obere Sidebar unter Header */
             .sidebar-left { 
-                left: 0 !important; 
-                top: -150px !important; 
-                bottom: auto !important; 
-                width: 100% !important; 
-                height: 60px !important; 
-                flex-direction: row !important; 
-                justify-content: space-evenly !important; 
-                align-items: center !important; 
-                padding: 0 5px !important; 
-                border-right: none !important; 
-                border-bottom: 2px solid #000 !important; 
-                transition: top 0.4s ease-in-out !important;
-                background: var(--anton-yellow) !important;
+                left: 0 !important; top: -150px !important; bottom: auto !important; 
+                width: 100% !important; height: 65px !important; 
+                flex-direction: row !important; justify-content: space-evenly !important; 
+                align-items: center !important; padding: 0 !important; 
+                border-right: none !important; border-bottom: 2px solid #000 !important; 
+                transition: top 0.4s ease-in-out !important; background: var(--anton-yellow) !important;
                 z-index: 90 !important;
             }
             .sidebar-left.open { top: 80px !important; }
             
-            /* Entferne Schriftzüge bei den ersten 4 Punkten */
-            .sidebar-left .nav-item { width: auto !important; margin-bottom: 0 !important; }
-            .sidebar-left .nav-item:not(.nav-item-epk) .nav-label span { display: none !important; }
-            .sidebar-left .nav-item:not(.nav-item-epk) .nav-label i.main-icon { margin-right: 0 !important; font-size: 1.6rem !important; }
+            /* NUR ICONS für die ersten 4 Punkte */
+            .sidebar-left .nav-item { width: auto !important; margin: 0 !important; }
+            .sidebar-left .nav-item:not(.nav-item-epk) .nav-label span { display: none !important; opacity: 0 !important; width: 0 !important; }
+            .sidebar-left .nav-item:not(.nav-item-epk) .main-icon { margin-right: 0 !important; font-size: 1.6rem !important; }
             .sidebar-left .submenu, .sidebar-left .arrow-wrapper { display: none !important; }
 
-            /* EPK Spezialfall: Nur Text, kein Icon */
-            .nav-item-epk { margin-top: 0 !important; border-top: none !important; padding-top: 0 !important; }
-            .nav-item-epk i.main-icon { display: none !important; }
+            /* NUR TEXT für EPK (Letzter Punkt) */
+            .nav-item-epk { margin-top: 0 !important; border-top: none !important; padding: 0 !important; }
+            .nav-item-epk .main-icon { display: none !important; }
             .nav-item-epk .nav-label span { 
-                display: inline !important; 
-                font-size: 0.8rem !important; 
-                font-weight: bold !important; 
-                color: var(--anton-red) !important;
-                text-transform: uppercase;
+                display: block !important; visibility: visible !important;
+                font-size: 0.8rem !important; font-weight: bold !important; 
+                color: var(--anton-red) !important; text-transform: uppercase;
             }
 
-            /* UNTERE SIDEBAR (SOCIAL) - ÜBER FOOTER */
+            /* 2. Untere Sidebar (Social) über Footer */
             .sidebar-right { 
-                top: auto !important; 
-                bottom: 45px !important; /* Exakt über dem Footer */
+                top: auto !important; bottom: 45px !important; 
                 right: 0 !important; left: 0 !important; 
                 width: 100% !important; height: 50px !important; 
                 flex-direction: row !important; justify-content: space-evenly !important; 
                 transform: none !important; border-radius: 0 !important; 
                 background: rgba(255, 255, 255, 0.75) !important; 
-                border-top: 1.5px solid #000 !important; 
-                border-bottom: none !important;
-                padding: 5px 0 !important; 
-                z-index: 1000 !important; 
-                backdrop-filter: blur(5px) !important;
+                border-top: 1.5px solid #000 !important; padding: 5px 0 !important; 
+                z-index: 1000 !important; backdrop-filter: blur(5px) !important;
             }
             .sidebar-right a i { font-size: 1.4rem !important; }
 
-            /* FOOTER - GANZ UNTEN */
+            /* 3. Footer ganz unten */
             footer { 
-                position: fixed !important; 
-                bottom: 0 !important; 
-                left: 0 !important;
-                width: 100% !important; 
-                height: 45px !important;
+                position: fixed !important; bottom: 0 !important; left: 0 !important;
+                width: 100% !important; height: 45px !important;
                 background: rgba(255, 255, 255, 0.75) !important; 
-                z-index: 1100 !important; 
-                border-top: 1.5px solid #000 !important;
-                display: flex !important; 
-                align-items: center !important; 
-                justify-content: center !important;
+                z-index: 1100 !important; border-top: 1.5px solid #000 !important;
+                display: flex !important; align-items: center !important; justify-content: center !important;
                 padding: 0 !important;
-                margin: 0 !important;
             }
-            footer div:first-child { display: none !important; } /* Index Link weg */
+            footer div:first-child { display: none !important; } /* Index-Link mobil aus */
             footer div:last-child { font-size: 0.9rem !important; }
         }
 
@@ -179,10 +160,10 @@
 
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item">
-            <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a>
+            <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> <span>START</span></span></a>
         </div>
         <div class="nav-item">
-            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> <span>MEINE MUSIK</span></span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
             <div class="submenu">
                 <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
                 <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
@@ -190,13 +171,13 @@
             </div>
         </div>
         <div class="nav-item">
-            <a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a>
+            <a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> <span>SHOP</span></span></a>
         </div>
         <div class="nav-item">
-            <a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a>
+            <a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> <span>KONTAKT</span></span></a>
         </div>
         <div class="nav-item nav-item-epk">
-            <a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a>
+            <a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> <span>EPK / PRESSE</span></span></a>
         </div>
     </nav>
 
