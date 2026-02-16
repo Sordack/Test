@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MOBILE 800er REFINED FINAL</title>
+    <title>ANTON | MOBILE FINAL REPAIR</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -19,6 +19,7 @@
             background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; 
             background-size: cover; 
             overflow-x: hidden;
+            touch-action: pan-y;
         }
 
         /* --- HEADER --- */
@@ -26,19 +27,31 @@
             position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; 
             z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000;
             transition: transform 0.6s ease-in-out;
+            pointer-events: none;
         }
-        .header-logo { max-height: 55px; width: auto; }
+        
+        /* LOGO: ROT GEFÄRBT & VERGRÖSSERT */
+        .header-logo { 
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            max-height: 110px; /* Deutlich größer */
+            width: auto; 
+            pointer-events: none;
+            /* CSS Filter macht das PNG rot */
+            filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
+        }
         
         /* HYBRIDER BUTTON */
         .menu-btn { 
             position: fixed; top: 18px; left: 15px; z-index: 1500; 
             background: #000; width: 45px; height: 45px; border-radius: 5px; border: 2px solid #000; cursor: pointer;
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
-            transition: all 0.2s ease;
+            pointer-events: auto; transition: all 0.2s ease;
         }
         .menu-btn span { display: block; width: 22px; height: 3px; background: #fff; border-radius: 1px; }
         
-        /* Offener Zustand mit A im Rahmen */
+        /* Offenes Menü: A im Rahmen */
         .menu-btn.active { background: var(--anton-yellow); border: 2px solid #000; }
         .menu-btn.active span { display: none; }
         .menu-btn.active::after { 
@@ -55,13 +68,11 @@
         }
         .sidebar-left.open { top: 0 !important; }
         
-        /* Navigation Items mit Labels darunter */
         .nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; gap: 2px; }
-        .nav-label { display: flex; flex-direction: column; align-items: center; }
         .nav-label i { font-size: 1.3rem; }
         .mobile-tag { font-size: 0.6rem; text-transform: uppercase; font-weight: bold; margin-top: 2px; }
 
-        /* EPK BOX */
+        /* EPK BOX VERTIKAL */
         .epk-container { 
             position: absolute !important; right: 0; top: 0; height: 100%; width: 48px;
             background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; z-index: 1200;
@@ -80,7 +91,7 @@
             border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px;
             display: flex; align-items: center; justify-content: center;
             z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000;
-            cursor: pointer; transition: transform 0.4s ease-in-out;
+            cursor: pointer;
         }
         .id-button.hidden { transform: translateX(100%); }
 
@@ -95,7 +106,7 @@
         .id-panel.open { right: 0; }
         .id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
 
-        /* --- SOCIALBAR MIT PERMANENTER ANIMATION --- */
+        /* --- SOCIALBAR ANIMIERT --- */
         .sidebar-right { 
             position: fixed; bottom: 0; left: 0; width: 100%; height: 45px; 
             display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; 
@@ -105,12 +116,10 @@
             text-decoration: none; color: #000; font-size: 1.25rem; 
             animation: pulseSocial 3s infinite ease-in-out;
         }
-        .sidebar-right a:active { transform: scale(1.4); color: var(--anton-red); }
 
-        /* Keyframes für das leichte Pulsieren */
         @keyframes pulseSocial {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+            50% { transform: scale(1.18); }
         }
 
         header.hide-mobile { transform: translateY(-100%); }
@@ -161,8 +170,7 @@
         <a href="datenschutz.html">Datenschutz</a>
     </div>
 
-    <main style="height: 150vh; padding: 100px 20px;">
-        </main>
+    <main style="height: 150vh; padding: 100px 20px;"></main>
 
     <aside class="sidebar-right" id="social-bar">
         <a href="#"><i class="fa-brands fa-youtube"></i></a>
@@ -186,7 +194,6 @@
         function toggleMenu() { 
             sidebar.classList.toggle('open'); 
             menuBtn.classList.toggle('active');
-            
             clearTimeout(autoCloseTimer);
             if (sidebar.classList.contains('open')) {
                 autoCloseTimer = setTimeout(() => {
@@ -211,14 +218,9 @@
         document.addEventListener('touchstart', e => { touchStartY = e.changedTouches[0].screenY; }, {passive: true});
         document.addEventListener('touchend', e => {
             const swipeDistance = e.changedTouches[0].screenY - touchStartY;
-            if (swipeDistance > 70 && touchStartY < 150) {
+            if (swipeDistance > 70 && touchStartY < 250) {
                 sidebar.classList.add('open');
                 menuBtn.classList.add('active');
-                clearTimeout(autoCloseTimer);
-                autoCloseTimer = setTimeout(() => { 
-                    sidebar.classList.remove('open'); 
-                    menuBtn.classList.remove('active');
-                }, 5000);
             }
             if (swipeDistance < -70) {
                 sidebar.classList.remove('open');
@@ -227,7 +229,7 @@
         }, {passive: true});
 
         setTimeout(() => { 
-            document.getElementById('header-main').classList.add('hide-mobile'); 
+            document.getElementById('header-main').style.transform = 'translateY(-100%)'; 
         }, 3000);
     </script>
 </body>
