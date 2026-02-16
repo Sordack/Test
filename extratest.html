@@ -14,7 +14,7 @@
             --amazon-blue: #00A8E1;
         }
 
-        /* DESKTOP MASTER */
+        /* --- DESKTOP MASTER --- */
         body { 
             margin: 0; 
             padding: 0; 
@@ -39,6 +39,7 @@
             border: 2px solid #000; overflow: hidden;
         }
 
+        /* INVISIBLE BOXEN */
         .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
         .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
         .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
@@ -47,6 +48,7 @@
         .box-pause3 { width: 5%; height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
         .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
 
+        /* LEFT SIDEBAR */
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: -300px; width: 240px; 
             background: rgba(255, 235, 59, 0.98); z-index: 205; 
@@ -62,6 +64,7 @@
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
         .nav-item-epk a:hover { color: #000 !important; }
 
+        /* RIGHT SIDEBAR */
         .sidebar-right { 
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); 
             width: 50px; display: flex; flex-direction: column; align-items: center; 
@@ -88,15 +91,17 @@
         footer a { color: #000; text-decoration: none; margin: 0 10px; font-weight: bold; }
         footer a:hover { color: var(--anton-yellow); }
 
-        /* MOBILER BEREICH BEREINIGT */
+        /* --- MOBILER BEREICH --- */
         #mobile-bg-fix { display: none; }
 
         @media (max-width: 800px) {
             body { background: #000 !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
             
             #mobile-bg-fix { 
-                display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                background: url('AFaPo Wall.jpg') no-repeat center center; background-size: cover; z-index: -1; 
+                display: block; position: fixed; top: 0; 
+                left: -100%; width: 300%; height: 100%; 
+                background: url('AFaPo Wall.jpg') no-repeat center center; 
+                background-size: cover; z-index: -1; 
             }
 
             .sidebar-left { 
@@ -140,11 +145,21 @@
     <a href="neuesingle.html" class="invisible-box box-riesenhunger"></a>
 
     <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i></span></a></div>
-        <div class="nav-item"><a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i></span></a></div>
-        <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i></span></a></div>
-        <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i></span></a></div>
-        <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i></span></a></div>
+        <div class="nav-item">
+            <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> <span>START</span></span></a>
+        </div>
+        <div class="nav-item">
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> <span>MEINE MUSIK</span></span></a>
+        </div>
+        <div class="nav-item">
+            <a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> <span>SHOP</span></span></a>
+        </div>
+        <div class="nav-item">
+            <a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> <span>KONTAKT</span></span></a>
+        </div>
+        <div class="nav-item nav-item-epk">
+            <a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> <span>EPK / PRESSE</span></span></a>
+        </div>
     </nav>
 
     <aside class="sidebar-right">
@@ -166,10 +181,40 @@
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
         
-        // Schließt das Menü, wenn man außerhalb klickt
+        // --- WISCHFUNKTION FÜR HINTERGRUND ---
+        let startX = 0, currentTranslate = 0;
+        const bg = document.getElementById('mobile-bg-fix'), screenWidth = window.innerWidth;
+        
+        if (screenWidth <= 800) {
+            document.addEventListener('touchstart', e => { 
+                startX = e.touches[0].clientX; 
+            }, {passive: true});
+
+            document.addEventListener('touchmove', e => {
+                let diff = e.touches[0].clientX - startX;
+                let newX = currentTranslate + diff;
+                
+                // Limit: Verhindert, dass man über das Bild hinauswischt
+                const limit = screenWidth; 
+                if (newX > limit) newX = limit; 
+                if (newX < -limit) newX = -limit;
+                
+                bg.style.transform = `translateX(${newX}px)`;
+            }, {passive: true});
+
+            document.addEventListener('touchend', () => { 
+                const style = window.getComputedStyle(bg);
+                const matrix = new WebKitCSSMatrix(style.transform);
+                currentTranslate = matrix.m41; 
+            });
+        }
+
+        // Klick-Event zum Schließen der Sidebar
         document.addEventListener('click', e => {
             const sb = document.getElementById("sidebar"), btn = document.querySelector(".menu-btn");
-            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
+            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) {
+                sb.classList.remove("open");
+            }
         });
     </script>
 </body>
