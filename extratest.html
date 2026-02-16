@@ -20,35 +20,47 @@
             padding: 0; 
             background-color: #ffffff; 
             font-family: 'Special Elite', cursive; 
-            overflow: hidden; /* Fixiert für das Hintergrund-Wischen */
+            overflow-x: hidden;
+            overflow-y: auto; 
         }
 
-        /* Hintergrund-Fix für mobiles Wischen */
-        #mobile-bg-fix {
-            display: none;
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            width: 100vw;
+            min-height: 100.5vh; 
+            touch-action: pan-y; 
+            background: #ffffff; /* Fallback */
         }
 
-        @media (max-width: 800px) {
-            #mobile-bg-fix {
-                display: block;
-                position: fixed;
-                top: 0;
-                left: -100%; /* Startposition Mitte */
-                width: 300%;
-                height: 100%;
-                background: url('AFaPo Wall.jpg') no-repeat center center;
-                background-size: cover;
-                z-index: -1;
-                will-change: transform;
+        /* --- DESKTOP HINTERGRUND --- */
+        @media (min-width: 801px) {
+            body {
+                background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; 
+                background-size: cover; 
+                background-blend-mode: multiply;
             }
         }
 
-        /* Desktop Background (bleibt wie gewünscht) */
-        @media (min-width: 801px) {
-            body { 
-                background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; 
-                background-size: cover;
-                background-blend-mode: multiply;
+        /* --- MOBILER HINTERGRUND (WISCHBAR) --- */
+        #mobile-bg-fix { 
+            display: none; 
+        }
+
+        @media (max-width: 800px) {
+            body { background: #000 !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
+            
+            #mobile-bg-fix { 
+                display: block; 
+                position: fixed; 
+                top: 0; 
+                left: -100%; /* Startet zentriert bei 300% Breite */
+                width: 300%; 
+                height: 100%; 
+                background: url('AFaPo Wall.jpg') no-repeat center center; 
+                background-size: cover; 
+                z-index: -1; 
+                will-change: transform;
             }
         }
 
@@ -215,49 +227,54 @@
             }, 200);
         }
 
-        // --- KOMBINIERTE WISCH-LOGIK (Menü vertikal & Hintergrund horizontal) ---
-        let startX = 0, startY = 0, currentTranslateX = 0;
+        // --- KOMBINIERTE WISCHFUNKTION ---
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let currentTranslateX = 0;
         const screenWidth = window.innerWidth;
 
         document.addEventListener('touchstart', e => { 
-            startX = e.touches[0].clientX; 
-            startY = e.touches[0].clientY; 
+            touchStartX = e.touches[0].clientX; 
+            touchStartY = e.touches[0].clientY; 
         }, {passive: true});
 
         document.addEventListener('touchmove', e => {
             const moveX = e.touches[0].clientX;
             const moveY = e.touches[0].clientY;
-            const diffX = moveX - startX;
-            const diffY = moveY - startY;
+            const diffX = moveX - touchStartX;
+            const diffY = moveY - touchStartY;
 
-            // Horizontaler Swipe (Hintergrund bewegen)
+            // Wenn horizontale Bewegung überwiegt -> Hintergrund wischen
             if (Math.abs(diffX) > Math.abs(diffY)) {
-                let newX = currentTranslateX + diffX;
-                const limit = screenWidth; // Verhindert leeren Raum
-                if (newX > limit) newX = limit;
-                if (newX < -limit) newX = -limit;
-                bg.style.transform = `translateX(${newX}px)`;
+                if (window.innerWidth <= 800) {
+                    let newX = currentTranslateX + diffX;
+                    const limit = screenWidth; 
+                    if (newX > limit) newX = limit; 
+                    if (newX < -limit) newX = -limit;
+                    bg.style.transform = `translateX(${newX}px)`;
+                }
             }
         }, {passive: true});
 
         document.addEventListener('touchend', e => {
             const endX = e.changedTouches[0].clientX;
             const endY = e.changedTouches[0].clientY;
-            const diffX = endX - startX;
-            const diffY = endY - startY;
+            const diffX = endX - touchStartX;
+            const diffY = endY - touchStartY;
 
-            // Vertikaler Swipe (Menü steuern)
+            // Vertikales Wischen für Menü
             if (Math.abs(diffY) > Math.abs(diffX)) {
-                if (diffY > 60 && startY < 250) { // Runterwischen oben -> Auf
+                if (diffY > 60 && touchStartY < 250) { 
                     sidebar.classList.add('open');
                     menuBtn.classList.add('active');
-                } else if (diffY < -60) { // Hochwischen -> Zu
+                } else if (diffY < -60) { 
                     sidebar.classList.remove('open');
                     menuBtn.classList.remove('active');
                 }
             } else {
-                // Hintergrund-Position speichern
-                const matrix = new WebKitCSSMatrix(window.getComputedStyle(bg).transform);
+                // Horizontaler Translate-Wert für Hintergrund speichern
+                const style = window.getComputedStyle(bg);
+                const matrix = new WebKitCSSMatrix(style.transform);
                 currentTranslateX = matrix.m41;
             }
         }, {passive: true});
