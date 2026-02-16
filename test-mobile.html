@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | LAYOUT PRECISION FIX</title>
+    <title>ANTON | BACKGROUND RESTORED</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -13,10 +13,24 @@
         }
 
         /* --- GLOBAL --- */
-        html, body { height: 100%; margin: 0; padding: 0; background-color: #ffffff; font-family: 'Special Elite', cursive; }
-        body { display: flex; flex-direction: column; background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; background-size: cover; overflow-x: hidden; }
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #ffffff; 
+            font-family: 'Special Elite', cursive; 
+        }
+        
+        /* Hintergrundbild Wiederherstellung */
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+            overflow-x: hidden; 
+        }
 
-        /* --- HEADER (DESKTOP) --- */
+        /* --- HEADER --- */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; 
             z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; transition: transform 0.8s ease;
@@ -45,7 +59,7 @@
         .nav-label i { width: 35px; text-align: center; margin-right: 15px; font-size: 1.4rem; }
         .mobile-tag { display: none; }
 
-        /* --- SOCIALBAR (DESKTOP) --- */
+        /* --- SOCIALBAR --- */
         .sidebar-right { 
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px; 
             display: flex; flex-direction: column; align-items: center; gap: 15px; 
@@ -64,7 +78,11 @@
 
         /* --- MOBILER BEREICH --- */
         @media (max-width: 800px) {
-            body { background: #ffffff !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
+            body { 
+                background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed !important; 
+                background-size: cover !important; 
+                overflow-x: hidden !important; 
+            }
             
             .sidebar-left { 
                 left: 0 !important; top: -160px !important; bottom: auto !important; width: 100% !important; 
@@ -76,15 +94,12 @@
             }
             .sidebar-left.open { top: 0 !important; }
 
-            /* Items enger zusammen */
             .nav-item { margin: 0 4px !important; width: auto !important; }
-            
             .sidebar-left .nav-label { flex-direction: column !important; }
             .sidebar-left .nav-label i { margin-right: 0 !important; margin-bottom: 2px !important; font-size: 1.3rem !important; display: block !important; visibility: visible !important; }
             .mobile-tag { display: block !important; font-size: 0.5rem !important; text-transform: uppercase; font-weight: bold; }
             .desktop-text { display: none !important; }
 
-            /* EPK Box bündig nach rechts */
             .epk-container { 
                 position: absolute !important; right: 0 !important; top: 0 !important; height: 100% !important; width: 45px !important;
                 background: #fff !important; border-left: 2px solid #000 !important; display: flex !important; align-items: center; justify-content: center;
@@ -92,7 +107,6 @@
             }
             .epk-text-only { transform: rotate(-90deg); font-size: 0.7rem !important; color: var(--anton-red) !important; font-weight: bold; white-space: nowrap; display: block !important; }
 
-            /* Socialbar & Footer Mobile */
             .sidebar-right { 
                 top: auto !important; bottom: 40px !important; left: 0 !important; width: 100% !important; 
                 height: 45px !important; flex-direction: row !important; transform: none !important; 
