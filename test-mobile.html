@@ -16,7 +16,7 @@
         /* --- GLOBAL BASIS --- */
         html, body { height: 100%; margin: 0; padding: 0; background-color: #ffffff; font-family: 'Special Elite', cursive; }
         
-        /* --- DESKTOP MASTER --- */
+        /* --- DESKTOP MASTER (AB 1101PX) --- */
         body { 
             background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; 
             background-size: cover; overflow-x: hidden; display: flex; flex-direction: column; 
@@ -27,14 +27,13 @@
             z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; transition: transform 0.8s ease;
         }
 
-        /* FIX: Zentrierter Menü-Button */
         .menu-btn { 
-            position: fixed; top: 18px; left: 20px; z-index: 230; background: #000; color: #fff; 
+            position: fixed; top: 18px; left: 20px; z-index: 250; background: #000; color: #fff; 
             width: 45px; height: 45px; border-radius: 5px; border: 2px solid #000; cursor: pointer;
-            text-align: center; line-height: 42px; /* Zentriert das A vertikal */
+            text-align: center; line-height: 42px; display: flex; align-items: center; justify-content: center;
         }
         .menu-btn::after { 
-            content: 'A'; font-weight: bold; font-size: 28px; display: block; width: 100%; 
+            content: 'A'; font-weight: bold; font-size: 28px; display: block; width: 100%; text-align: center;
         }
 
         .sidebar-left { 
@@ -43,17 +42,23 @@
         }
         .sidebar-left.open { left: 0; }
 
+        .sidebar-right { 
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; 
+            z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; 
+        }
+
         .invisible-box { position: fixed; z-index: 10; background: transparent; cursor: pointer; }
         .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
+
+        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
 
         /* --- MOBILE & TABLET (BIS 1100PX) --- */
         @media (max-width: 1100px) {
             body { background: #ffffff !important; overflow: hidden !important; }
-            .sidebar-left, .invisible-box, footer { display: none !important; }
+            .sidebar-left, .invisible-box, footer, .sidebar-right { display: none !important; }
             
             header.hide-mobile { transform: translateY(-100%); }
 
-            /* Fix: Wischbereich vergrößert für mehr Sicht nach links */
             #viewport { 
                 display: flex !important; width: 100vw; height: 100vh; 
                 overflow-x: auto !important; overflow-y: hidden !important; 
@@ -61,33 +66,29 @@
             }
             #bg-canvas { 
                 position: relative; 
-                min-width: 350vw; /* Mehr Platz zum Wischen */
+                min-width: 350vw; 
                 height: 100vh; 
                 background: url('AFaPo Wall.jpg') no-repeat center center; 
                 background-size: cover; 
             }
 
-            /* Fix: Öffnet ein kleines Stück weiter unten */
+            /* Fix: Menü mit Strich oben UND unten */
             #mobile-nav { 
-                position: fixed; top: -120px; left: 0; width: 100%; height: 70px; 
-                background: var(--anton-yellow); border-bottom: 3px solid #000; 
+                position: fixed; top: -150px; left: 0; width: 100%; height: 70px; 
+                background: var(--anton-yellow); 
+                border-top: 3px solid #000; /* Strich oben */
+                border-bottom: 3px solid #000; /* Strich unten */
                 display: flex; justify-content: flex-end; align-items: center; 
                 z-index: 215; transition: top 0.4s ease; 
                 padding-right: 15px; box-sizing: border-box;
             }
-            #mobile-nav.open { top: 10px !important; } /* Öffnet tiefer */
+            #mobile-nav.open { top: 15px !important; } 
             
             .nav-icons-container {
                 display: flex; width: calc(100% - 75px); justify-content: space-evenly; align-items: center;
             }
             #mobile-nav a { color: #000; font-size: 1.7rem; text-decoration: none; }
             .epk-text { font-size: 0.85rem !important; font-weight: bold; color: var(--anton-red) !important; }
-
-            .sidebar-right { 
-                position: fixed !important; bottom: 0 !important; left: 0 !important; top: auto !important; 
-                width: 100% !important; transform: none !important; flex-direction: row !important; 
-                background: rgba(255,255,255,0.95) !important; border-top: 2px solid #000; padding: 12px 0 !important; 
-            }
         }
     </style>
 </head>
@@ -124,6 +125,10 @@
         <a href="#"><i class="fa-brands fa-spotify"></i></a>
     </aside>
 
+    <footer>
+        <div><a href="index.html">www.anton-familienpop.de</a></div>
+    </footer>
+
     <script>
         function toggleMenu() {
             if (window.innerWidth <= 1100) {
@@ -133,7 +138,6 @@
             }
         }
 
-        // Fix: Zentriert das Bild beim ersten Laden auf das mittlere Motiv
         function centerMobileImage() {
             if (window.innerWidth <= 1100) {
                 const viewport = document.getElementById('viewport');
