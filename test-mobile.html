@@ -3,49 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER & MOBILE RECTIFIED</title>
+    <title>ANTON | MASTER CORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
         :root { 
             --anton-red: #ff0000; 
             --anton-yellow: #ffeb3b; 
-            --sidebar-width: 240px; 
             --apple-gray: #A2AAAD;
             --amazon-blue: #00A8E1;
         }
 
-        /* --- GLOBAL BASIS --- */
-        html, body { height: 100%; margin: 0; padding: 0; background-color: #ffffff; font-family: 'Special Elite', cursive; }
-        body { display: flex; flex-direction: column; background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; background-size: cover; overflow-x: hidden; }
-        
-        /* --- HEADER & BUTTON --- */
-        header { 
-            position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; 
-            z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; transition: transform 0.8s ease;
+        /* ============================================================
+           DER ABSOLUTE MASTER (DESKTOP)
+           ============================================================ */
+        body { 
+            margin: 0; padding: 0; font-family: 'Special Elite', cursive; 
+            background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; 
+            background-size: cover; background-blend-mode: multiply;
         }
-        .menu-btn { 
-            position: fixed; top: 18px; left: 20px; z-index: 250; background: #000; color: #fff; 
-            width: 45px; height: 45px; border-radius: 5px; border: 2px solid #000; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .menu-btn::after { content: 'A'; font-weight: bold; font-size: 28px; }
 
-        /* --- SIDEBAR LEFT (DESKTOP) --- */
+        header { 
+            position: fixed; top: 0; width: 100%; height: 80px; 
+            display: flex; justify-content: center; align-items: center; 
+            z-index: 100; background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); border-bottom: 2px solid #000; transition: transform 0.8s ease;
+        }
+        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
+        
+        .menu-btn { 
+            position: fixed; top: 18px; left: 20px; cursor: pointer; 
+            z-index: 250; background: #000; color: #fff; width: 45px; height: 45px; 
+            display: flex; align-items: center; justify-content: center; border-radius: 5px; 
+            border: 2px solid #000; overflow: hidden;
+        }
+        /* Zentriertes A */
+        .menu-btn::after { content: 'A'; font-weight: bold; font-size: 28px; line-height: 1; }
+        .menu-btn span { display: none; }
+
+        /* INVISIBLE BOXEN MASTER */
+        .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
+        .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
+        .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
+        .box-pause { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
+        .box-pause2 { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
+        .box-pause3 { width: 5%; height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
+        .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
+
+        /* LEFT SIDEBAR MASTER */
         .sidebar-left { 
-            position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
-            z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; 
+            position: fixed; top: 0; bottom: 0; left: -300px; width: 240px; 
+            background: rgba(255, 235, 59, 0.98); z-index: 205; 
+            display: flex; flex-direction: column; padding: 100px 15px 30px 15px; 
+            transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; 
         }
         .sidebar-left.open { left: 0; }
+        .nav-item { margin-bottom: 20px; width: 100%; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; transition: color 0.3s; }
+        .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
+        
+        .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
+        .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
+        .nav-item-epk a:hover { color: #000 !important; }
 
-        /* --- SOCIALBAR (MASTER) --- */
+        /* RIGHT SIDEBAR MASTER - PULSE ANIMATION */
         .sidebar-right { 
-            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; 
-            z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; 
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%); 
+            width: 50px; display: flex; flex-direction: column; align-items: center; 
+            gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; 
         }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s; animation: ultraFlowWave 6s linear infinite; }
         @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
+        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
         .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
@@ -55,124 +85,157 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
         .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
 
-        /* --- FOOTER --- */
-        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
-        footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
+        footer { 
+            position: fixed; bottom: 0; width: 100%; padding: 15px 0; 
+            background: rgba(255,255,255,0.9); border-top: 2px solid #000; 
+            text-align: center; font-size: 0.85rem; z-index: 100; 
+        }
+        footer a { color: #000; text-decoration: none; margin: 0 10px; font-weight: bold; }
 
-        /* --- MOBILE REWRITE (BIS 1100PX) --- */
-        @media (max-width: 1100px) {
-            body { background: #ffffff !important; overflow: hidden !important; }
-            .sidebar-left { display: none !important; }
-            header.hide-mobile { transform: translateY(-100%); }
+        /* ============================================================
+           MOBILER BEREICH (BIS 800PX)
+           ============================================================ */
+        #mobile-bg-fix { display: none; }
 
-            #viewport { display: flex !important; width: 100vw; height: 100vh; overflow-x: auto !important; -webkit-overflow-scrolling: touch; z-index: 1; }
-            #bg-canvas { position: relative; min-width: 350vw; height: 100vh; background: url('AFaPo Wall.jpg') no-repeat center center; background-size: cover; }
-
-            /* Header Menu: Langsames Schließen (0.8s) & Top-Anbindung */
-            #mobile-nav { 
-                position: fixed; top: -150px; left: 0; width: 100%; height: 75px; 
-                background: var(--anton-yellow); border-top: 3px solid #000; border-bottom: 3px solid #000; 
-                display: flex; justify-content: flex-end; align-items: center; 
-                z-index: 215; transition: top 0.8s ease-in-out; 
-                padding-right: 15px; box-sizing: border-box;
+        @media (max-width: 800px) {
+            body { background: #ffffff !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
+            
+            #mobile-bg-fix { 
+                display: block; position: fixed; top: 0; left: -100%; width: 300%; height: 100%; 
+                background: url('AFaPo Wall.jpg') no-repeat center center; background-size: cover; z-index: -1; 
             }
-            #mobile-nav.open { top: 0 !important; }
-            .nav-icons-container { display: flex; width: calc(100% - 75px); justify-content: space-evenly; align-items: center; }
-            #mobile-nav a { color: #000; font-size: 1.8rem; text-decoration: none; }
-            .epk-text { font-size: 0.85rem !important; font-weight: bold; color: var(--anton-red) !important; text-transform: uppercase; }
 
-            /* SOCIALBAR GANZ UNTEN */
+            /* Header Menu dockt oben an mit 0.8s Transition */
+            .sidebar-left { 
+                left: 0 !important; top: -150px !important; bottom: auto !important; width: 100% !important; 
+                height: 65px !important; flex-direction: row !important; padding: 0 !important; 
+                border-right: none !important; border-top: 3px solid #000 !important; border-bottom: 3px solid #000 !important; 
+                justify-content: space-evenly !important; align-items: center !important; 
+                background: var(--anton-yellow) !important; transition: top 0.8s ease-in-out !important;
+            }
+            .sidebar-left.open { top: 0 !important; padding-left: 50px !important; }
+            
+            .sidebar-left .nav-label { display: flex !important; align-items: center !important; justify-content: center !important; height: 100% !important; }
+            .sidebar-left .nav-label i { font-size: 1.8rem !important; margin: 0 !important; color: #000 !important; }
+            .sidebar-left span:not(.nav-label), .sidebar-left .arrow-wrapper, .sidebar-left .submenu { display: none !important; }
+            .nav-item-epk { margin-top: 0 !important; border-top: none !important; padding-top: 0 !important; }
+
+            header { height: 65px !important; }
+            header.hide-mobile { transform: translateY(-100%); }
+            .menu-btn { top: 10px; left: 10px; width: 45px; height: 45px; }
+            
+            /* Socialbar UNTEN, Footer DARÜBER */
             .sidebar-right { 
-                position: fixed !important; bottom: 0 !important; left: 0 !important; top: auto !important; 
-                width: 100% !important; height: auto !important; transform: none !important; 
-                flex-direction: row !important; background: rgba(255,255,255,0.95) !important; 
-                border-top: 2px solid #000; padding: 10px 0 !important; border-radius: 0 !important; justify-content: space-evenly !important; 
+                top: auto !important; bottom: 0 !important; left: 0 !important; width: 100% !important; 
+                height: 45px !important; flex-direction: row !important; transform: none !important; 
+                border-radius: 0 !important; border-top: 2px solid #000 !important; 
+                background: rgba(255,255,255,0.95) !important; justify-content: space-evenly !important; padding: 0 !important; 
             }
             .sidebar-right a i { font-size: 1.3rem !important; animation: none !important; }
 
-            /* FOOTER ÜBER DER SOCIALBAR */
             footer { 
-                position: fixed !important; bottom: 45px !important; width: 100% !important; 
-                background: rgba(255,255,255,0.9) !important; border-top: 1px solid #000 !important; 
-                padding: 5px 0 !important; font-size: 0.65rem !important; 
+                bottom: 45px !important; height: 35px !important; padding: 0 !important; 
+                display: flex !important; align-items: center; justify-content: center; font-size: 0.7rem !important;
             }
+            .invisible-box { display: none !important; }
         }
     </style>
 </head>
-<body onload="centerMobileImage()">
+<body>
+    <div id="mobile-bg-fix"></div>
 
-    <header id="header-main"><div style="color:var(--anton-red); font-weight:bold; font-size:1.6rem;">ANTON</div></header>
-    
+    <header id="header-main"><div class="header-title">ANTON</div></header>
     <div class="menu-btn" onclick="toggleMenu()"></div>
+    
+    <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
+    <a href="neuesingle.html" class="invisible-box box-mitte"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause2"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause3"></a>
+    <a href="neuesingle.html" class="invisible-box box-riesenhunger"></a>
 
-    <nav id="mobile-nav">
-        <div class="nav-icons-container">
-            <a href="hauptseite.html"><i class="fa-solid fa-house"></i></a>
-            <a href="meinemusik.html"><i class="fa-solid fa-music"></i></a>
-            <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i></a>
-            <a href="kontakt.html"><i class="fa-solid fa-envelope"></i></a>
-            <a href="epk.html" class="epk-text">EPK/Presse</a>
+    <nav class="sidebar-left" id="sidebar">
+        <div class="nav-item">
+            <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> <span>START</span></span></a>
+        </div>
+        <div class="nav-item">
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> <span>MUSIK</span></span></a>
+        </div>
+        <div class="nav-item">
+            <a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> <span>SHOP</span></span></a>
+        </div>
+        <div class="nav-item">
+            <a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> <span>KONTAKT</span></span></a>
+        </div>
+        <div class="nav-item nav-item-epk">
+            <a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> <span style="font-size:0.7rem">EPK/PRESSE</span></span></a>
         </div>
     </nav>
 
-    <nav class="sidebar-left" id="sidebar">
-        <div style="padding: 20px;"><a href="hauptseite.html" style="color:#000; text-decoration:none;">START</a></div>
-    </nav>
-
-    <div id="viewport">
-        <div id="bg-canvas"></div>
-    </div>
-
     <aside class="sidebar-right">
-        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#"><i class="fa-brands fa-spotify"></i></a>
-        <a href="#"><i class="fa-brands fa-apple"></i></a>
-        <a href="#"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="#"><i class="fa-brands fa-amazon"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-apple"></i></a>
+        <a href="#" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
     <footer>
-        <a href="index.html">www.anton-familienpop.de</a>
-        <a href="impressum.html">Impressum</a>
+        <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
     </footer>
 
     <script>
         let autoCloseTimer;
 
-        function toggleMenu() {
-            const isMobile = window.innerWidth <= 1100;
-            const mobileNav = document.getElementById('mobile-nav');
-            const sidebar = document.getElementById('sidebar');
+        function toggleMenu() { 
+            const sb = document.getElementById('sidebar');
+            sb.classList.toggle('open'); 
 
-            if (isMobile) {
-                mobileNav.classList.toggle('open');
+            // Auto-Close Logik (5 Sek) nur mobil
+            if (window.innerWidth <= 800) {
                 clearTimeout(autoCloseTimer);
-                if (mobileNav.classList.contains('open')) {
+                if (sb.classList.contains('open')) {
                     autoCloseTimer = setTimeout(() => {
-                        mobileNav.classList.remove('open');
+                        sb.classList.remove('open');
                     }, 5000);
                 }
-            } else {
-                sidebar.classList.toggle('open');
             }
         }
-
-        function centerMobileImage() {
-            if (window.innerWidth <= 1100) {
-                const v = document.getElementById('viewport');
-                v.scrollLeft = (v.scrollWidth - v.clientWidth) / 2;
-            }
-        }
-
-        setTimeout(() => {
-            if (window.innerWidth <= 1100) {
+        
+        // Wisch-Logik für Mobil
+        let startX = 0, currentTranslate = 0;
+        const bg = document.getElementById('mobile-bg-fix'), screenWidth = window.innerWidth;
+        if (screenWidth <= 800) {
+            document.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive: true});
+            document.addEventListener('touchmove', e => {
+                let newX = currentTranslate + (e.touches[0].clientX - startX);
+                const limit = screenWidth; 
+                if (newX > limit) newX = limit; if (newX < -limit) newX = -limit;
+                bg.style.transform = `translateX(${newX}px)`;
+            }, {passive: true});
+            document.addEventListener('touchend', () => { 
+                const style = window.getComputedStyle(bg);
+                const matrix = new WebKitCSSMatrix(style.transform);
+                currentTranslate = matrix.m41; 
+            });
+            
+            // Header nach 3 Sek ausblenden
+            setTimeout(() => {
                 document.getElementById('header-main').classList.add('hide-mobile');
+            }, 3000);
+        }
+
+        // Klick außerhalb schließt Sidebar
+        document.addEventListener('click', e => {
+            const sb = document.getElementById("sidebar"), btn = document.querySelector(".menu-btn");
+            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) {
+                sb.classList.remove("open");
             }
-        }, 3000);
+        });
     </script>
 </body>
 </html>
