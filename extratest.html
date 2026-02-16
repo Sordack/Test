@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MOBILE MASTER FINAL</title>
+    <title>ANTON | INTERACTIVE MASTER</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -173,7 +173,7 @@
         <img src="Antonlogo.png" alt="ANTON Logo" class="header-logo">
     </header>
 
-    <div class="menu-btn" id="menu-trigger" onclick="toggleMenu()">
+    <div class="menu-btn" id="menu-trigger" onclick="toggleMenu(event)">
         <span></span><span></span><span></span>
     </div>
 
@@ -185,7 +185,7 @@
         <div class="epk-container"><a href="epk.html" class="epk-text-only">EPK/PRESSE</a></div>
     </nav>
 
-    <div class="id-button" id="id-btn" onclick="openIDMenu()">I/D</div>
+    <div class="id-button" id="id-btn" onclick="openIDMenu(event)">I/D</div>
     <div class="id-panel" id="id-panel">
         <a href="impressum.html">Impressum</a>
         <span>|</span>
@@ -211,36 +211,50 @@
         const idPanel = document.getElementById('id-panel');
         const bg = document.getElementById('mobile-bg-fix');
         let menuTimeout;
+        let idTimeout;
 
-        function closeMenu() {
+        function closeAllMenus() {
+            // Sidebar schließen
             sidebar.classList.remove('open');
             menuBtn.classList.remove('active');
             if (menuTimeout) clearTimeout(menuTimeout);
+
+            // I/D Panel schließen
+            idPanel.classList.remove('open');
+            idBtn.classList.remove('hidden');
+            if (idTimeout) clearTimeout(idTimeout);
         }
 
-        function toggleMenu() { 
+        function toggleMenu(e) { 
+            e.stopPropagation(); // Verhindert sofortiges Schließen durch Body-Click
             if (sidebar.classList.contains('open')) {
-                closeMenu();
+                closeAllMenus();
             } else {
+                closeAllMenus(); // Andere Menüs erst zu
                 sidebar.classList.add('open'); 
                 menuBtn.classList.add('active');
-                // Startet den 5-Sekunden-Timer zum Schließen
-                menuTimeout = setTimeout(closeMenu, 5000);
+                menuTimeout = setTimeout(closeAllMenus, 5000);
             }
         }
 
-        function openIDMenu() {
+        function openIDMenu(e) {
+            e.stopPropagation(); // Verhindert sofortiges Schließen durch Body-Click
+            closeAllMenus(); // Andere Menüs erst zu
             idBtn.classList.add('hidden');
-            setTimeout(() => {
-                idPanel.classList.add('open');
-                setTimeout(() => {
-                    idPanel.classList.remove('open');
-                    setTimeout(() => { idBtn.classList.remove('hidden'); }, 1000);
-                }, 4000);
-            }, 200);
+            idPanel.classList.add('open');
+            idTimeout = setTimeout(closeAllMenus, 5000);
         }
 
-        // --- KOMBINIERTE WISCHFUNKTION ---
+        // --- GLOBALER KLICK-SCHUTZ ---
+        // Schließt Menüs bei Interaktion mit der Seite
+        document.addEventListener('click', (e) => {
+            // Wenn der Klick NICHT im Menü oder auf den Buttons war -> Schließen
+            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !idPanel.contains(e.target) && !idBtn.contains(e.target)) {
+                closeAllMenus();
+            }
+        });
+
+        // --- WISCHFUNKTION ---
         let touchStartX = 0;
         let touchStartY = 0;
         let currentTranslateX = 0;
@@ -257,6 +271,15 @@
             const diffX = moveX - touchStartX;
             const diffY = moveY - touchStartY;
 
+            // Bei jeder nennenswerten Bewegung Menüs schließen
+            if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) {
+                // Falls Sidebar offen ist und wir nicht darin wischen -> Schließen
+                if (!sidebar.contains(e.target)) {
+                    closeAllMenus();
+                }
+            }
+
+            // Hintergrund-Wischen (Horizontal)
             if (Math.abs(diffX) > Math.abs(diffY)) {
                 if (window.innerWidth <= 800) {
                     let newX = currentTranslateX + diffX;
@@ -274,16 +297,13 @@
             const diffX = endX - touchStartX;
             const diffY = endY - touchStartY;
 
-            // Vertikales Wischen für Menü
+            // Vertikales Wischen für Menü-Öffnen
             if (Math.abs(diffY) > Math.abs(diffX)) {
                 if (diffY > 60 && touchStartY < 250) { 
+                    closeAllMenus();
                     sidebar.classList.add('open');
                     menuBtn.classList.add('active');
-                    // Auch beim Wischen: Timer starten
-                    if (menuTimeout) clearTimeout(menuTimeout);
-                    menuTimeout = setTimeout(closeMenu, 5000);
-                } else if (diffY < -60) { 
-                    closeMenu();
+                    menuTimeout = setTimeout(closeAllMenus, 5000);
                 }
             } else {
                 const style = window.getComputedStyle(bg);
@@ -292,7 +312,7 @@
             }
         }, {passive: true});
 
-        // Header verschwindet nach 3 Sek.
+        // Header initial ausblenden
         setTimeout(() => { 
             document.getElementById('header-main').style.transform = 'translateY(-100%)'; 
         }, 3000);
