@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER & MOBILE RECOVERED</title>
+    <title>ANTON | MASTER & MOBILE REFINED</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -16,7 +16,7 @@
         /* --- GLOBAL BASIS --- */
         html, body { height: 100%; margin: 0; padding: 0; background-color: #ffffff; font-family: 'Special Elite', cursive; }
         
-        /* --- DESKTOP MASTER (AB 1101PX) --- */
+        /* --- DESKTOP MASTER --- */
         body { 
             background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; 
             background-size: cover; overflow-x: hidden; display: flex; flex-direction: column; 
@@ -27,21 +27,21 @@
             z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; transition: transform 0.8s ease;
         }
 
+        /* FIX: Zentrierter Menü-Button */
         .menu-btn { 
-            position: fixed; top: 18px; left: 20px; z-index: 220; background: #000; color: #fff; 
-            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 2px solid #000; cursor: pointer;
+            position: fixed; top: 18px; left: 20px; z-index: 230; background: #000; color: #fff; 
+            width: 45px; height: 45px; border-radius: 5px; border: 2px solid #000; cursor: pointer;
+            text-align: center; line-height: 42px; /* Zentriert das A vertikal */
         }
-        .menu-btn::after { content: 'A'; font-weight: bold; font-size: 28px; }
+        .menu-btn::after { 
+            content: 'A'; font-weight: bold; font-size: 28px; display: block; width: 100%; 
+        }
 
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
             z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease; border-right: 2px solid #000; 
         }
         .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 20px; }
-        .sidebar-left a { color: #000; text-decoration: none; display: flex; align-items: center; }
-        .submenu { display: none; flex-direction: column; padding-left: 30px; margin-top: 10px; }
-        .nav-item:hover .submenu { display: flex; }
 
         .invisible-box { position: fixed; z-index: 10; background: transparent; cursor: pointer; }
         .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
@@ -53,31 +53,32 @@
             
             header.hide-mobile { transform: translateY(-100%); }
 
-            /* Fix: Hintergrund zentriert beim ersten Laden */
+            /* Fix: Wischbereich vergrößert für mehr Sicht nach links */
             #viewport { 
                 display: flex !important; width: 100vw; height: 100vh; 
                 overflow-x: auto !important; overflow-y: hidden !important; 
                 -webkit-overflow-scrolling: touch; z-index: 1;
             }
             #bg-canvas { 
-                position: relative; min-width: 250vw; height: 100vh; 
+                position: relative; 
+                min-width: 350vw; /* Mehr Platz zum Wischen */
+                height: 100vh; 
                 background: url('AFaPo Wall.jpg') no-repeat center center; 
                 background-size: cover; 
             }
 
-            /* Fix: Menüband mit Abstand für den A-Button */
+            /* Fix: Öffnet ein kleines Stück weiter unten */
             #mobile-nav { 
-                position: fixed; top: -100px; left: 0; width: 100%; height: 70px; 
+                position: fixed; top: -120px; left: 0; width: 100%; height: 70px; 
                 background: var(--anton-yellow); border-bottom: 3px solid #000; 
                 display: flex; justify-content: flex-end; align-items: center; 
                 z-index: 215; transition: top 0.4s ease; 
-                padding-right: 20px; box-sizing: border-box;
+                padding-right: 15px; box-sizing: border-box;
             }
-            #mobile-nav.open { top: 0 !important; }
+            #mobile-nav.open { top: 10px !important; } /* Öffnet tiefer */
             
-            /* Die Icons im Menü - gleichmäßig verteilt mit Platz für den Button links */
             .nav-icons-container {
-                display: flex; width: calc(100% - 70px); justify-content: space-evenly; align-items: center;
+                display: flex; width: calc(100% - 75px); justify-content: space-evenly; align-items: center;
             }
             #mobile-nav a { color: #000; font-size: 1.7rem; text-decoration: none; }
             .epk-text { font-size: 0.85rem !important; font-weight: bold; color: var(--anton-red) !important; }
@@ -90,7 +91,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="centerMobileImage()">
 
     <header id="header-main"><div style="color:var(--anton-red); font-weight:bold; font-size:1.6rem;">ANTON</div></header>
     
@@ -107,11 +108,7 @@
     </nav>
 
     <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item">
-            <a href="hauptseite.html">START</a>
-            <div class="submenu"><a href="ueber-mich.html">ÜBER MICH</a></div>
-        </div>
-        <div class="nav-item"><a href="epk.html" style="color:var(--anton-red);">EPK / PRESSE</a></div>
+        <div style="padding: 20px;"><a href="hauptseite.html" style="color:#000; text-decoration:none;">START</a></div>
     </nav>
 
     <div id="viewport">
@@ -133,6 +130,15 @@
                 document.getElementById('mobile-nav').classList.toggle('open');
             } else {
                 document.getElementById('sidebar').classList.toggle('open');
+            }
+        }
+
+        // Fix: Zentriert das Bild beim ersten Laden auf das mittlere Motiv
+        function centerMobileImage() {
+            if (window.innerWidth <= 1100) {
+                const viewport = document.getElementById('viewport');
+                const scrollCenter = (viewport.scrollWidth - viewport.clientWidth) / 2;
+                viewport.scrollLeft = scrollCenter;
             }
         }
 
