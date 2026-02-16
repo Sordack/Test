@@ -3,118 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MOBILE</title>
+    <title>ANTON | MASTER & MOBILE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
         :root { 
             --anton-red: #ff0000; 
             --anton-yellow: #ffeb3b; 
+            --sidebar-width: 240px; 
+            --apple-gray: #A2AAAD;
+            --amazon-blue: #00A8E1;
         }
 
-        html, body { 
-            height: 100%; margin: 0; padding: 0; 
-            overflow: hidden; background: #fff;
-            font-family: 'Special Elite', cursive;
+        /* --- BASIS & DESKTOP MASTER --- */
+        html, body { height: 100%; margin: 0; padding: 0; font-family: 'Special Elite', cursive; }
+        
+        body { 
+            display: flex; flex-direction: column; 
+            background: #fff url('AFaPo Wall.jpg') no-repeat center center fixed; 
+            background-size: cover; background-blend-mode: multiply; 
+            overflow-x: hidden; 
         }
-
-        /* Horizontales Wischen */
-        #viewport {
-            width: 100vw; height: 100vh;
-            overflow-x: auto; overflow-y: hidden;
-            display: flex; -webkit-overflow-scrolling: touch;
-        }
-
-        #bg-canvas {
-            position: relative;
-            min-width: 250vw; /* Breiter für mehr Wisch-Erlebnis */
-            height: 100vh;
-            background: url('AFaPo Wall.jpg') no-repeat center center;
-            background-size: cover;
-        }
-
-        /* Pulsierende Hotspots statt Bento-Boxen */
-        .hotspot {
-            position: absolute;
-            width: 40px; height: 40px;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid #fff;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-size: 1.2rem;
-            animation: pulse 2s infinite;
-            text-decoration: none;
-            z-index: 20;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.2); opacity: 0.4; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-
-        /* Positionen der Hotspots (Beispiele) */
-        .spot-musik { top: 30%; left: 15%; }
-        .spot-single { top: 40%; left: 45%; }
-        .spot-news { top: 25%; left: 80%; }
-
-        /* Header & Menü */
+        
         header { 
-            position: fixed; top: 0; width: 100%; height: 70px; 
+            position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
-            z-index: 100; background: rgba(255, 255, 255, 0.95); 
-            border-bottom: 2px solid #000; transition: transform 0.8s ease;
+            z-index: 100; background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); border-bottom: 2px solid #000;
+            transition: transform 0.8s ease;
         }
-        header.hide { transform: translateY(-100%); }
+        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
+        
+        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 2px solid #000; }
+        .menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; }
 
-        .menu-btn { 
-            position: fixed; top: 12px; left: 12px; z-index: 210; 
-            background: #000; color: #fff; width: 45px; height: 45px; 
-            display: flex; align-items: center; justify-content: center; 
-            border-radius: 5px; border: 2px solid #000;
+        /* SIDEBAR LEFT (DESKTOP) */
+        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
+        .sidebar-left.open { left: 0; }
+        .nav-item { margin-bottom: 20px; width: 100%; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; transition: color 0.3s; }
+        .sidebar-left a:hover { color: var(--anton-red); }
+        .submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; }
+        .nav-item:hover .submenu { display: flex; }
+        .submenu a { font-size: 0.85rem; margin-bottom: 12px; }
+        .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
+        .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
+
+        /* SIDEBAR RIGHT (DESKTOP) */
+        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s; animation: ultraFlowWave 6s linear infinite; }
+        @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9% { transform: scale(1.5); color: var(--brand-color); } 23%, 100% { transform: scale(1); color: #000; } }
+        /* Animation Delays wie im Master... */
+        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
+        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
+
+        /* DESKTOP BENTO BOXES (MASTER) */
+        .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
+        .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
+
+        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
+        footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
+
+        /* --- MOBILE OPTIMIERUNG (NUR UNTER 800PX) --- */
+        @media (max-width: 800px) {
+            body { background: #fff; overflow: hidden; }
+            .sidebar-left, .invisible-box, footer { display: none; }
+            
+            header.hide-mobile { transform: translateY(-100%); }
+
+            /* Wischbarer Hintergrund */
+            #viewport { width: 100vw; height: 100vh; overflow-x: auto; overflow-y: hidden; display: flex; -webkit-overflow-scrolling: touch; }
+            #bg-canvas { position: relative; min-width: 250vw; height: 100vh; background: url('AFaPo Wall.jpg') no-repeat center center; background-size: cover; }
+
+            /* Mobiles Header-Menü */
+            #mobile-nav { position: fixed; top: -100px; left: 0; width: 100%; height: 65px; background: var(--anton-yellow); border-bottom: 2px solid #000; display: flex; justify-content: space-evenly; align-items: center; z-index: 205; transition: top 0.4s; }
+            #mobile-nav.open { top: 0; }
+            #mobile-nav a { color: #000; font-size: 1.6rem; text-decoration: none; }
+            .epk-text { font-size: 0.85rem !important; font-weight: bold; color: var(--anton-red) !important; text-transform: uppercase; }
+
+            /* Pulsierende Hotspots */
+            .hotspot { position: absolute; width: 45px; height: 45px; background: rgba(255,255,255,0.3); border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; animation: pulse 2s infinite; text-decoration: none; z-index: 20; }
+            @keyframes pulse { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.2); opacity: 0.4; } 100% { transform: scale(1); opacity: 0.8; } }
+            .spot-musik { top: 35%; left: 15%; }
+            .spot-single { top: 45%; left: 45%; }
+
+            /* Social Bar Mobile */
+            .sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: auto; flex-direction: row; transform: none; border-radius: 0; background: rgba(255,255,255,0.95); border-top: 2px solid #000; padding: 12px 0; }
+            .sidebar-right a i { font-size: 1.5rem; animation: none; }
         }
-        .menu-btn::after { content: 'A'; font-weight: bold; font-size: 24px; }
-
-        #mobile-nav {
-            position: fixed; top: -100px; left: 0; width: 100%; height: 65px;
-            background: var(--anton-yellow); border-bottom: 2px solid #000;
-            display: flex; justify-content: space-evenly; align-items: center;
-            z-index: 205; transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #mobile-nav.open { top: 0; }
-        #mobile-nav a { color: #000; text-decoration: none; font-size: 1.6rem; }
-        .epk-text { font-size: 0.85rem !important; font-weight: bold; color: var(--anton-red) !important; text-transform: uppercase; }
-
-        /* Social Bar Mobile */
-        .sidebar-right { 
-            position: fixed; bottom: 0; left: 0; width: 100%; 
-            display: flex; justify-content: space-evenly; align-items: center; 
-            background: rgba(255, 255, 255, 0.95); padding: 12px 0; 
-            border-top: 2px solid #000; z-index: 100;
-        }
-        .sidebar-right a { color: #000; font-size: 1.4rem; }
-
     </style>
 </head>
 <body>
 
-    <header id="main-header"><div style="color: var(--anton-red); font-size: 1.5rem; font-weight: bold;">ANTON</div></header>
-    
-    <div class="menu-btn" onclick="toggleMobileNav()"></div>
+    <header id="header-main"><div class="header-title">ANTON</div></header>
+    <div class="menu-btn" onclick="toggleMenu()"></div>
+
+    <nav class="sidebar-left" id="sidebar">
+        <div class="nav-item"><a href="hauptseite.html">START</a></div>
+        <div class="nav-item"><a href="meinemusik.html">MEINE MUSIK</a></div>
+        <div class="nav-item-epk"><a href="epk.html">EPK / PRESSE</a></div>
+    </nav>
 
     <nav id="mobile-nav">
         <a href="hauptseite.html"><i class="fa-solid fa-house"></i></a>
         <a href="meinemusik.html"><i class="fa-solid fa-music"></i></a>
         <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i></a>
-        <a href="kontakt.html"><i class="fa-solid fa-envelope"></i></a>
         <a href="epk.html" class="epk-text">EPK/Presse</a>
     </nav>
+
+    <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
 
     <div id="viewport">
         <div id="bg-canvas">
             <a href="meinemusik.html" class="hotspot spot-musik"><i class="fa-solid fa-play"></i></a>
             <a href="neuesingle.html" class="hotspot spot-single"><i class="fa-solid fa-star"></i></a>
-            <a href="news.html" class="hotspot spot-news"><i class="fa-solid fa-plus"></i></a>
         </div>
     </div>
 
@@ -123,23 +125,26 @@
         <a href="#"><i class="fa-brands fa-tiktok"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
         <a href="#"><i class="fa-brands fa-spotify"></i></a>
-        <a href="#"><i class="fa-brands fa-apple"></i></a>
     </aside>
 
+    <footer>
+        <div><a href="index.html">www.anton-familienpop.de</a></div>
+    </footer>
+
     <script>
-        function toggleMobileNav() {
-            document.getElementById('mobile-nav').classList.toggle('open');
+        function toggleMenu() {
+            if (window.innerWidth <= 800) {
+                document.getElementById('mobile-nav').classList.toggle('open');
+            } else {
+                document.getElementById('sidebar').classList.toggle('open');
+            }
         }
 
-        // Header verschwindet nach 3 Sekunden
         setTimeout(() => {
-            document.getElementById('main-header').classList.add('hide');
+            if (window.innerWidth <= 800) {
+                document.getElementById('header-main').classList.add('hide-mobile');
+            }
         }, 3000);
-
-        // Schließen bei Klick auf den Viewport
-        document.getElementById('viewport').addEventListener('click', function() {
-            document.getElementById('mobile-nav').classList.remove('open');
-        });
     </script>
 </body>
 </html>
