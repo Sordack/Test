@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER & MOBILE</title>
+    <title>ANTON | MASTER & MOBILE ADAPTIVE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -15,11 +15,11 @@
             --amazon-blue: #00A8E1;
         }
 
-        /* --- DESKTOP MASTER (AB 801PX) --- */
+        /* --- DESKTOP MASTER (BASIS) --- */
         html, body { height: 100%; margin: 0; padding: 0; }
         body { 
             display: flex; flex-direction: column; font-family: 'Special Elite', cursive; 
-            background: #fff url('AFaPo Wall.jpg') no-repeat center center fixed; 
+            background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; 
             background-size: cover; background-blend-mode: multiply; overflow-x: hidden; 
         }
         
@@ -29,6 +29,7 @@
         }
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
+        /* Master Menu Button */
         .menu-btn { 
             position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; 
             width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; 
@@ -39,6 +40,7 @@
         .menu-btn:hover span { opacity: 0; }
         .menu-btn:hover::after { opacity: 1; }
         
+        /* Master Sidebar Left */
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); 
             z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; 
@@ -49,9 +51,6 @@
         .sidebar-left a:hover { color: var(--anton-red); }
         .nav-label { display: flex; align-items: center; width: 100%; }
         .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
-        .arrow-wrapper { margin-left: auto; padding-right: 5px; }
-        .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
-        .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
         .submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
@@ -59,6 +58,7 @@
         .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
 
+        /* Master Sidebar Right */
         .sidebar-right { 
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; 
             z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; 
@@ -75,6 +75,7 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
         .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
 
+        /* Master Bento Boxes */
         .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
         .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
         .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
@@ -86,37 +87,39 @@
         footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
         footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
 
-        /* --- MOBILE DESIGN (UNTER 800PX) --- */
+        /* --- MOBILE & TABLET REWRITE (BIS 1100PX) --- */
         #mobile-nav, .hotspot, #viewport { display: none; }
 
-        @media (max-width: 800px) {
-            body { background: #fff; overflow: hidden; }
-            .sidebar-left, .invisible-box, footer { display: none; }
-            
+        @media (max-width: 1100px) {
+            body { background: #ffffff !important; overflow: hidden !important; }
+            .sidebar-left, .invisible-box, footer { display: none !important; }
             header.hide-mobile { transform: translateY(-100%); }
 
             /* Wischbarer Hintergrund */
-            #viewport { display: flex; width: 100vw; height: 100vh; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; z-index: 1; }
-            #bg-canvas { position: relative; min-width: 250vw; height: 100vh; background: url('AFaPo Wall.jpg') no-repeat center center; background-size: cover; }
+            #viewport { display: flex !important; width: 100vw; height: 100vh; overflow-x: auto !important; overflow-y: hidden !important; -webkit-overflow-scrolling: touch; z-index: 1; }
+            #bg-canvas { position: relative; min-width: 200vw; height: 100vh; background: url('AFaPo Wall.jpg') no-repeat center center; background-size: cover; }
 
-            /* Mobiles Header-Menü (Icons + EPK Text) */
+            /* Mobiles Header-Menü */
             #mobile-nav { 
-                position: fixed; top: -100px; left: 0; width: 100%; height: 65px; background: var(--anton-yellow); 
-                border-bottom: 2px solid #000; display: flex; justify-content: space-evenly; align-items: center; z-index: 205; transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+                position: fixed; top: -120px; left: 0; width: 100%; height: 75px; background: var(--anton-yellow); 
+                border-bottom: 3px solid #000; display: flex; justify-content: space-evenly; align-items: center; z-index: 205; transition: top 0.4s ease; 
             }
-            #mobile-nav.open { top: 0; }
-            #mobile-nav a { color: #000; font-size: 1.6rem; text-decoration: none; display: flex; align-items: center; }
-            .epk-text { font-size: 0.85rem !important; font-weight: bold; color: var(--anton-red) !important; text-transform: uppercase; }
+            #mobile-nav.open { top: 0 !important; }
+            #mobile-nav a { color: #000; font-size: 1.8rem; text-decoration: none; }
+            .epk-text { font-size: 0.9rem !important; font-weight: bold; color: var(--anton-red) !important; text-transform: uppercase; }
 
-            /* Pulsierende Hotspots */
-            .hotspot { position: absolute; display: flex; width: 45px; height: 45px; background: rgba(255,255,255,0.3); border: 2px solid #fff; border-radius: 50%; align-items: center; justify-content: center; color: #fff; animation: pulse 2s infinite; z-index: 20; text-decoration: none; }
+            /* Mobile Hotspots */
+            .hotspot { position: absolute; display: flex; width: 50px; height: 50px; background: rgba(255,255,255,0.4); border: 2px solid #fff; border-radius: 50%; align-items: center; justify-content: center; color: #fff; animation: pulse 2s infinite; z-index: 20; }
             @keyframes pulse { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.2); opacity: 0.4; } 100% { transform: scale(1); opacity: 0.8; } }
-            .spot-1 { top: 35%; left: 15%; }
-            .spot-2 { top: 45%; left: 55%; }
+            
+            /* Social Bar Mobile */
+            .sidebar-right { position: fixed !important; bottom: 0 !important; left: 0 !important; top: auto !important; width: 100% !important; height: auto !important; transform: none !important; flex-direction: row !important; background: rgba(255,255,255,0.95) !important; border-top: 2px solid #000; padding: 15px 0 !important; border-radius: 0 !important; }
+            .sidebar-right a i { font-size: 1.6rem !important; animation: none !important; }
+        }
 
-            /* Social Sidebar Mobile */
-            .sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: auto; flex-direction: row; transform: none; border-radius: 0; background: rgba(255,255,255,0.95); border-top: 2px solid #000; padding: 12px 0; }
-            .sidebar-right a i { font-size: 1.5rem; animation: none; }
+        /* Smartphone Extra-Wischweg */
+        @media (max-width: 480px) {
+            #bg-canvas { min-width: 300vw; }
         }
     </style>
 </head>
@@ -129,12 +132,14 @@
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
         <div class="nav-item">
-            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span></a>
             <div class="submenu">
-                <a href="ueber-mich.html">ÜBER MICH</a>
-                <a href="meinemusik.html">VERÖFFENTLICHUNGEN</a>
+                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
+                <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
+                <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
             </div>
         </div>
+        <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
         <div class="nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a></div>
     </nav>
 
@@ -142,25 +147,30 @@
         <a href="hauptseite.html"><i class="fa-solid fa-house"></i></a>
         <a href="meinemusik.html"><i class="fa-solid fa-music"></i></a>
         <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a href="kontakt.html"><i class="fa-solid fa-envelope"></i></a>
         <a href="epk.html" class="epk-text">EPK/Presse</a>
     </nav>
 
     <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
     <a href="neuesingle.html" class="invisible-box box-mitte"></a>
     <a href="meinemusik.html" class="invisible-box box-pause"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause2"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause3"></a>
+    <a href="neuesingle.html" class="invisible-box box-riesenhunger"></a>
 
     <div id="viewport">
         <div id="bg-canvas">
-            <a href="meinemusik.html" class="hotspot spot-1"><i class="fa-solid fa-play"></i></a>
-            <a href="neuesingle.html" class="hotspot spot-2"><i class="fa-solid fa-star"></i></a>
+            <a href="meinemusik.html" class="hotspot" style="top: 30%; left: 15%;"><i class="fa-solid fa-play"></i></a>
+            <a href="neuesingle.html" class="hotspot" style="top: 45%; left: 50%;"><i class="fa-solid fa-star"></i></a>
         </div>
     </div>
 
     <aside class="sidebar-right">
-        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#"><i class="fa-brands fa-apple"></i></a>
     </aside>
 
     <footer>
@@ -169,28 +179,18 @@
 
     <script>
         function toggleMenu() {
-            if (window.innerWidth <= 800) {
+            if (window.innerWidth <= 1100) {
                 document.getElementById('mobile-nav').classList.toggle('open');
             } else {
                 document.getElementById('sidebar').classList.toggle('open');
             }
         }
 
-        // Header verschwindet nur mobil
         setTimeout(() => {
-            if (window.innerWidth <= 800) {
+            if (window.innerWidth <= 1100) {
                 document.getElementById('header-main').classList.add('hide-mobile');
             }
         }, 3000);
-
-        // Klick außerhalb schließt Desktop Sidebar
-        document.addEventListener('click', function(e) {
-            const sb = document.getElementById("sidebar");
-            const btn = document.querySelector(".menu-btn");
-            if (window.innerWidth > 800 && sb && !sb.contains(e.target) && !btn.contains(e.target)) {
-                sb.classList.remove("open");
-            }
-        });
     </script>
 </body>
 </html>
