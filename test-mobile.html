@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER LAYOUT FIXED</title>
+    <title>ANTON | DESKTOP & MOBILE RESTORED</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -12,131 +12,151 @@
             --anton-yellow: #ffeb3b; 
         }
 
-        /* --- GLOBAL --- */
+        /* --- GLOBAL BASIS --- */
         html, body { height: 100%; margin: 0; padding: 0; background-color: #ffffff; font-family: 'Special Elite', cursive; }
         body { display: flex; flex-direction: column; background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; background-size: cover; overflow-x: hidden; }
 
-        /* --- HEADER --- */
+        /* --- HEADER (DESKTOP) --- */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; 
             z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; transition: transform 0.8s ease;
         }
-        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
+        .header-title { color: var(--anton-red); font-size: 2.2rem; text-decoration: none; letter-spacing: 3px; text-transform: uppercase; font-weight: bold; }
         
+        /* --- MENU BUTTON (UNIVERSAL) --- */
         .menu-btn { 
-            position: fixed; top: 15px; left: 15px; z-index: 1250; background: #000; color: #fff; 
+            position: fixed; top: 18px; left: 20px; z-index: 1500; background: #000; color: #fff; 
             width: 45px; height: 45px; border-radius: 5px; border: 2px solid #000; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
         }
-        .menu-btn::after { content: 'A'; font-weight: bold; font-size: 28px; line-height: 1; }
+        .menu-btn::after { content: 'A'; font-weight: bold; font-size: 28px; }
 
-        /* --- SIDEBAR LEFT --- */
+        /* --- SIDEBAR LEFT (DESKTOP DEFAULT) --- */
         .sidebar-left { 
-            position: fixed; top: 0; bottom: 0; left: -300px; width: 240px; 
+            position: fixed; top: 0; bottom: 0; left: -300px; width: 260px; 
             background: rgba(255, 235, 59, 0.98); z-index: 1100; 
-            display: flex; flex-direction: column; padding: 100px 15px 30px 15px; 
-            transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; 
+            display: flex; flex-direction: column; padding: 120px 20px 30px 20px; 
+            transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1); border-right: 3px solid #000; box-sizing: border-box; 
         }
         .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
+        .nav-item { margin-bottom: 25px; width: 100%; }
+        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.2rem; font-weight: bold; }
+        .nav-label { display: flex; align-items: center; }
+        .nav-label i { width: 35px; text-align: center; margin-right: 15px; font-size: 1.4rem; }
+        .mobile-tag { display: none; } /* Nur Mobil sichtbar */
 
-        /* --- SOCIALBAR (FIXED ABOVE FOOTER) --- */
+        /* --- SOCIALBAR (DESKTOP RIGHT) --- */
         .sidebar-right { 
-            position: fixed; bottom: 50px; /* Platz für Footer */
-            right: 0; width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; 
-            z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; 
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px; 
+            display: flex; flex-direction: column; align-items: center; gap: 15px; 
+            z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); padding: 30px 0; border-radius: 25px 0 0 25px; 
+            border: 1px solid rgba(0,0,0,0.1); border-right: none; transition: all 0.5s ease;
         }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s; animation: ultraFlowWave 6s linear infinite; }
-        @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
-        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
-        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
-        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
-        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 1.5s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
+        .sidebar-right a i { color: #000; font-size: 1.4rem; transition: transform 0.3s; }
+        .sidebar-right a:hover i { transform: scale(1.3); color: var(--anton-red); }
 
-        /* --- FOOTER (FIXED BOTTOM) --- */
+        /* --- FOOTER (DESKTOP) --- */
         footer { 
             width: 100%; height: 50px; background: rgba(255,255,255,0.9); border-top: 2px solid #000; 
-            text-align: center; font-size: 0.85rem; z-index: 1000; position: fixed; bottom: 0; 
+            text-align: center; font-size: 0.9rem; z-index: 1000; position: fixed; bottom: 0; 
             display: flex; align-items: center; justify-content: center; transition: transform 0.8s ease;
         }
-        footer a { color: #000; text-decoration: none; margin: 0 10px; font-weight: bold; }
+        footer a { color: #000; text-decoration: none; margin: 0 15px; font-weight: bold; }
 
-        /* --- MOBILE OPTIMIZATION --- */
+        /* --- MOBILER BEREICH (MAX 800PX) --- */
         @media (max-width: 800px) {
             body { background: #ffffff !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
-            #mobile-bg-fix { display: block; position: fixed; top: 0; left: -100%; width: 300%; height: 100%; background: url('AFaPo Wall.jpg') no-repeat center center; background-size: cover; z-index: -1; }
+            
+            .header-title { font-size: 1.6rem; }
 
             .sidebar-left { 
                 left: 0 !important; top: -160px !important; bottom: auto !important; width: 100% !important; 
                 height: 85px !important; flex-direction: row !important; padding: 0 0 0 75px !important; 
-                border-top: 3px solid #000 !important; border-bottom: 3px solid #000 !important; 
+                border-right: none !important; border-top: 3px solid #000 !important; border-bottom: 3px solid #000 !important; 
                 justify-content: flex-start !important; align-items: center !important; 
                 background: var(--anton-yellow) !important; transition: top 0.8s ease-in-out !important;
             }
             .sidebar-left.open { top: 0 !important; }
-            .nav-item { margin: 0 10px !important; }
-            .sidebar-left .nav-label { display: flex !important; flex-direction: column !important; align-items: center !important; }
-            .sidebar-left .nav-label i { font-size: 1.4rem !important; display: block !important; visibility: visible !important; }
-            .sidebar-left .mobile-tag { display: block !important; font-size: 0.55rem !important; text-transform: uppercase; font-weight: bold; margin-top: 2px; }
+            .nav-item { margin: 0 10px !important; width: auto !important; }
+            
+            .sidebar-left .nav-label { flex-direction: column !important; }
+            .sidebar-left .nav-label i { margin-right: 0 !important; margin-bottom: 2px !important; font-size: 1.4rem !important; }
+            .mobile-tag { display: block !important; font-size: 0.55rem !important; text-transform: uppercase; }
+            .desktop-text { display: none !important; }
 
-            /* EPK am Rand */
+            /* EPK Spezial Mobil */
             .epk-container { 
                 position: absolute !important; right: 0 !important; height: 100% !important; width: 45px !important;
-                background: #fff; border-left: 2px solid #000; display: flex !important; align-items: center; justify-content: center;
+                background: #fff !important; border-left: 2px solid #000 !important; display: flex !important; align-items: center; justify-content: center;
+                margin: 0 !important; padding: 0 !important;
             }
-            .epk-text-only { transform: rotate(-90deg); font-size: 0.75rem !important; color: var(--anton-red) !important; font-weight: bold; white-space: nowrap; }
+            .epk-text-only { transform: rotate(-90deg); font-size: 0.75rem !important; color: var(--anton-red) !important; font-weight: bold; white-space: nowrap; display: block !important; }
 
-            /* Socialbar Mobile */
+            /* Socialbar Mobile unten */
             .sidebar-right { 
-                bottom: 40px !important; height: 45px !important; width: 100% !important; flex-direction: row !important; 
+                top: auto !important; bottom: 40px !important; left: 0 !important; width: 100% !important; 
+                height: 45px !important; flex-direction: row !important; transform: none !important; 
                 border-radius: 0 !important; border-top: 1.5px solid #000 !important; 
                 background: rgba(255,255,255,0.95) !important; justify-content: space-evenly !important; padding: 0 !important; 
             }
-            footer { height: 40px !important; font-size: 0.7rem !important; }
+            .sidebar-right.lowered { bottom: 0 !important; }
             
-            header.hide-mobile, footer.hide-mobile { transform: translateY(-100%); }
+            footer { height: 40px !important; font-size: 0.7rem !important; }
+            header.hide-mobile { transform: translateY(-100%); }
             footer.hide-mobile { transform: translateY(100%); }
         }
     </style>
 </head>
 <body>
-    <div id="mobile-bg-fix"></div>
     <header id="header-main"><div class="header-title">ANTON</div></header>
     <div class="menu-btn" onclick="toggleMenu()"></div>
     
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item">
             <a href="hauptseite.html">
-                <span class="nav-label"><i class="fa-solid fa-house main-icon"></i><span class="mobile-tag" style="display:none;">Start</span></span>
+                <span class="nav-label">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="desktop-text">START</span>
+                    <span class="mobile-tag">Start</span>
+                </span>
             </a>
         </div>
         <div class="nav-item">
             <a href="meinemusik.html">
-                <span class="nav-label"><i class="fa-solid fa-music main-icon"></i><span class="mobile-tag" style="display:none;">Musik</span></span>
+                <span class="nav-label">
+                    <i class="fa-solid fa-music"></i>
+                    <span class="desktop-text">MUSIK</span>
+                    <span class="mobile-tag">Musik</span>
+                </span>
             </a>
         </div>
         <div class="nav-item">
             <a href="shop.html">
-                <span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i><span class="mobile-tag" style="display:none;">Shop</span></span>
+                <span class="nav-label">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="desktop-text">SHOP</span>
+                    <span class="mobile-tag">Shop</span>
+                </span>
             </a>
         </div>
         <div class="nav-item">
             <a href="kontakt.html">
-                <span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i><span class="mobile-tag" style="display:none;">Kontakt</span></span>
+                <span class="nav-label">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span class="desktop-text">KONTAKT</span>
+                    <span class="mobile-tag">Kontakt</span>
+                </span>
             </a>
         </div>
         <div class="nav-item epk-container">
-            <a href="epk.html"><span class="epk-text-only">EPK/PRESSE</span></a>
+            <a href="epk.html">
+                <span class="nav-label desktop-text"><i class="fa-solid fa-bullhorn"></i>EPK/PRESSE</span>
+                <span class="epk-text-only" style="display:none;">EPK/PRESSE</span>
+            </a>
         </div>
     </nav>
 
-    <aside class="sidebar-right">
+    <aside class="sidebar-right" id="social-bar">
         <a href="#"><i class="fa-brands fa-youtube"></i></a>
         <a href="#"><i class="fa-brands fa-tiktok"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -158,6 +178,8 @@
         function toggleMenu() { 
             const sb = document.getElementById('sidebar');
             sb.classList.toggle('open'); 
+            
+            // Auto-Close nur auf Mobile (wenn Screen schmal)
             if (window.innerWidth <= 800) {
                 clearTimeout(autoCloseTimer);
                 if (sb.classList.contains('open')) {
@@ -166,10 +188,12 @@
             }
         }
         
+        // Mobile Auto-Hide nach 3 Sekunden
         if (window.innerWidth <= 800) {
             setTimeout(() => { 
                 document.getElementById('header-main').classList.add('hide-mobile'); 
                 document.getElementById('footer-main').classList.add('hide-mobile');
+                document.getElementById('social-bar').classList.add('lowered');
             }, 3000);
         }
     </script>
