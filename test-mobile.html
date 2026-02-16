@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | DESKTOP & MOBILE RESTORED</title>
+    <title>ANTON | LAYOUT PRECISION FIX</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -12,7 +12,7 @@
             --anton-yellow: #ffeb3b; 
         }
 
-        /* --- GLOBAL BASIS --- */
+        /* --- GLOBAL --- */
         html, body { height: 100%; margin: 0; padding: 0; background-color: #ffffff; font-family: 'Special Elite', cursive; }
         body { display: flex; flex-direction: column; background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; background-size: cover; overflow-x: hidden; }
 
@@ -23,7 +23,7 @@
         }
         .header-title { color: var(--anton-red); font-size: 2.2rem; text-decoration: none; letter-spacing: 3px; text-transform: uppercase; font-weight: bold; }
         
-        /* --- MENU BUTTON (UNIVERSAL) --- */
+        /* --- MENU BUTTON --- */
         .menu-btn { 
             position: fixed; top: 18px; left: 20px; z-index: 1500; background: #000; color: #fff; 
             width: 45px; height: 45px; border-radius: 5px; border: 2px solid #000; cursor: pointer;
@@ -31,7 +31,7 @@
         }
         .menu-btn::after { content: 'A'; font-weight: bold; font-size: 28px; }
 
-        /* --- SIDEBAR LEFT (DESKTOP DEFAULT) --- */
+        /* --- SIDEBAR LEFT (DESKTOP) --- */
         .sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: -300px; width: 260px; 
             background: rgba(255, 235, 59, 0.98); z-index: 1100; 
@@ -43,9 +43,9 @@
         .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.2rem; font-weight: bold; }
         .nav-label { display: flex; align-items: center; }
         .nav-label i { width: 35px; text-align: center; margin-right: 15px; font-size: 1.4rem; }
-        .mobile-tag { display: none; } /* Nur Mobil sichtbar */
+        .mobile-tag { display: none; }
 
-        /* --- SOCIALBAR (DESKTOP RIGHT) --- */
+        /* --- SOCIALBAR (DESKTOP) --- */
         .sidebar-right { 
             position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px; 
             display: flex; flex-direction: column; align-items: center; gap: 15px; 
@@ -53,9 +53,8 @@
             border: 1px solid rgba(0,0,0,0.1); border-right: none; transition: all 0.5s ease;
         }
         .sidebar-right a i { color: #000; font-size: 1.4rem; transition: transform 0.3s; }
-        .sidebar-right a:hover i { transform: scale(1.3); color: var(--anton-red); }
 
-        /* --- FOOTER (DESKTOP) --- */
+        /* --- FOOTER --- */
         footer { 
             width: 100%; height: 50px; background: rgba(255,255,255,0.9); border-top: 2px solid #000; 
             text-align: center; font-size: 0.9rem; z-index: 1000; position: fixed; bottom: 0; 
@@ -63,36 +62,37 @@
         }
         footer a { color: #000; text-decoration: none; margin: 0 15px; font-weight: bold; }
 
-        /* --- MOBILER BEREICH (MAX 800PX) --- */
+        /* --- MOBILER BEREICH --- */
         @media (max-width: 800px) {
             body { background: #ffffff !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
             
-            .header-title { font-size: 1.6rem; }
-
             .sidebar-left { 
                 left: 0 !important; top: -160px !important; bottom: auto !important; width: 100% !important; 
-                height: 85px !important; flex-direction: row !important; padding: 0 0 0 75px !important; 
+                height: 85px !important; flex-direction: row !important; padding: 0 45px 0 65px !important; 
                 border-right: none !important; border-top: 3px solid #000 !important; border-bottom: 3px solid #000 !important; 
-                justify-content: flex-start !important; align-items: center !important; 
+                justify-content: space-evenly !important; align-items: center !important; 
                 background: var(--anton-yellow) !important; transition: top 0.8s ease-in-out !important;
+                box-sizing: border-box !important;
             }
             .sidebar-left.open { top: 0 !important; }
-            .nav-item { margin: 0 10px !important; width: auto !important; }
+
+            /* Items enger zusammen */
+            .nav-item { margin: 0 4px !important; width: auto !important; }
             
             .sidebar-left .nav-label { flex-direction: column !important; }
-            .sidebar-left .nav-label i { margin-right: 0 !important; margin-bottom: 2px !important; font-size: 1.4rem !important; }
-            .mobile-tag { display: block !important; font-size: 0.55rem !important; text-transform: uppercase; }
+            .sidebar-left .nav-label i { margin-right: 0 !important; margin-bottom: 2px !important; font-size: 1.3rem !important; display: block !important; visibility: visible !important; }
+            .mobile-tag { display: block !important; font-size: 0.5rem !important; text-transform: uppercase; font-weight: bold; }
             .desktop-text { display: none !important; }
 
-            /* EPK Spezial Mobil */
+            /* EPK Box bündig nach rechts */
             .epk-container { 
-                position: absolute !important; right: 0 !important; height: 100% !important; width: 45px !important;
+                position: absolute !important; right: 0 !important; top: 0 !important; height: 100% !important; width: 45px !important;
                 background: #fff !important; border-left: 2px solid #000 !important; display: flex !important; align-items: center; justify-content: center;
-                margin: 0 !important; padding: 0 !important;
+                margin: 0 !important; padding: 0 !important; z-index: 5;
             }
-            .epk-text-only { transform: rotate(-90deg); font-size: 0.75rem !important; color: var(--anton-red) !important; font-weight: bold; white-space: nowrap; display: block !important; }
+            .epk-text-only { transform: rotate(-90deg); font-size: 0.7rem !important; color: var(--anton-red) !important; font-weight: bold; white-space: nowrap; display: block !important; }
 
-            /* Socialbar Mobile unten */
+            /* Socialbar & Footer Mobile */
             .sidebar-right { 
                 top: auto !important; bottom: 40px !important; left: 0 !important; width: 100% !important; 
                 height: 45px !important; flex-direction: row !important; transform: none !important; 
@@ -178,8 +178,6 @@
         function toggleMenu() { 
             const sb = document.getElementById('sidebar');
             sb.classList.toggle('open'); 
-            
-            // Auto-Close nur auf Mobile (wenn Screen schmal)
             if (window.innerWidth <= 800) {
                 clearTimeout(autoCloseTimer);
                 if (sb.classList.contains('open')) {
@@ -188,7 +186,6 @@
             }
         }
         
-        // Mobile Auto-Hide nach 3 Sekunden
         if (window.innerWidth <= 800) {
             setTimeout(() => { 
                 document.getElementById('header-main').classList.add('hide-mobile'); 
