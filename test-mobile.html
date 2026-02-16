@@ -15,56 +15,28 @@
             --amazon-blue: #00A8E1;
         }
 
-        html, body { height: 100%; margin: 0; padding: 0; overflow-x: hidden; width: 100%; }
+        html, body { height: 100%; margin: 0; padding: 0; }
         
-        /* Hintergrund-Container für das Wischen */
-        #bg-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: #ffffff;
-        }
-
-        .bg-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('AFaPo Wall.jpg') no-repeat center center;
-            background-size: cover;
-            background-blend-mode: multiply;
-        }
-        
+        /* DESKTOP BACKGROUND (MASTER) */
         body { 
             display: flex; 
             flex-direction: column; 
             font-family: 'Special Elite', cursive; 
-            min-height: 100vh;
+            background: #fff url('AFaPo Wall.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+            background-blend-mode: multiply; 
+            overflow-x: hidden; 
         }
         
         header { 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            height: 80px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            z-index: 100; 
-            background: rgba(255, 255, 255, 0.8); 
-            backdrop-filter: blur(10px); 
-            border-bottom: 2px solid #000;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: fixed; top: 0; width: 100%; height: 80px; 
+            display: flex; justify-content: center; align-items: center; 
+            z-index: 100; background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px); border-bottom: 2px solid #000;
+            transition: transform 0.8s ease;
         }
-        header.hide { transform: translateY(-100%); }
-
         .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
         
-        /* Menü-Button bleibt immer da */
         .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
         .menu-btn:hover { background: var(--anton-yellow); color: #000; }
         .menu-btn span { transition: opacity 0.2s; }
@@ -72,26 +44,27 @@
         .menu-btn:hover span { opacity: 0; }
         .menu-btn:hover::after { opacity: 1; }
         
-        /* SIDEBARS */
+        /* SIDEBAR LEFT */
         .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
         .sidebar-left.open { left: 0; }
-        
         .nav-item { margin-bottom: 20px; width: 100%; }
         .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
         .sidebar-left a:hover { color: var(--anton-red); }
         .nav-label { display: flex; align-items: center; width: 100%; }
         .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
-        
+        .arrow-wrapper { margin-left: auto; padding-right: 5px; }
+        .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
+        .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
         .submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
         .nav-item:hover .submenu { display: flex; }
         .submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
-        
+        .submenu a i { margin-right: 10px; width: 18px; text-align: center; }
         .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
         .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
         
+        /* SIDEBAR RIGHT */
         .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
         .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
-        
         @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
@@ -102,25 +75,11 @@
         .sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
         .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
-        
         .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
         .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-        /* MOBILE / TABLET OPTIMIERUNG */
-        @media (max-width: 1024px) {
-            .bg-image { 
-                width: 200%; /* Breiter für Wischeffekt */
-                cursor: grab;
-            }
-            .sidebar-right { 
-                top: auto; bottom: 20px; right: 0; left: 0; width: 100%; height: auto; 
-                flex-direction: row; justify-content: space-evenly; transform: none; 
-                border-radius: 0; background: rgba(255, 255, 255, 0.85); border-top: 1.5px solid #000; padding: 10px 0; 
-            }
-            footer { padding-bottom: 80px; }
-        }
-
-        .invisible-box { position: absolute; z-index: 10; background: transparent; border: none; cursor: pointer; }
+        /* HOTSPOTS */
+        .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
         .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
         .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
         .box-pause { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
@@ -128,34 +87,55 @@
         .box-pause3 { width: 5%; height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
         .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
 
-        main { flex: 1; padding: 120px 0 40px 0; z-index: 5; width: 100%; position: relative; }
+        main { flex: 1; padding: 120px 20px 40px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
-        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; margin-top: auto; }
-        footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
+        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
+        footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
+        footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+
+        /* MOBILE SPECIFIC */
+        @media (max-width: 800px) {
+            body { 
+                background: #fff; /* Fix für mobiles Wischen */
+                overflow-x: auto; 
+            }
+            #mobile-bg-container {
+                position: fixed; top: 0; left: 0; width: 200%; height: 100%;
+                background: url('AFaPo Wall.jpg') no-repeat center center;
+                background-size: cover; z-index: -1;
+            }
+            .sidebar-right { 
+                top: auto; bottom: 60px; right: 0; left: 0; width: 100%; height: auto; 
+                flex-direction: row; justify-content: space-evenly; transform: none; 
+                border-radius: 0; background: rgba(255, 255, 255, 0.85); border-top: 1.5px solid #000; padding: 12px 5px; 
+            }
+            .sidebar-right a i { font-size: 1.5rem; }
+            footer { padding-bottom: 70px; }
+            header.hide-mobile { transform: translateY(-100%); }
+            .invisible-box { position: absolute; } /* Damit sie mit dem Bild mitschwimmen */
+        }
     </style>
 </head>
 <body>
-    <div id="bg-wrapper">
-        <div class="bg-image" id="draggable-bg">
-            <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
-            <a href="neuesingle.html" class="invisible-box box-mitte"></a>
-            <a href="meinemusik.html" class="invisible-box box-pause"></a>
-            <a href="meinemusik.html" class="invisible-box box-pause2"></a>
-            <a href="meinemusik.html" class="invisible-box box-pause3"></a>
-            <a href="neuesingle.html" class="invisible-box box-riesenhunger"></a>
-        </div>
-    </div>
+    <div id="mobile-bg-container"></div>
 
-    <header id="main-header"><div class="header-title">ANTON</div></header>
+    <header id="header-main"><div class="header-title">ANTON</div></header>
     <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
+    
+    <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
+    <a href="neuesingle.html" class="invisible-box box-mitte"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause2"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause3"></a>
+    <a href="neuesingle.html" class="invisible-box box-riesenhunger"></a>
 
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
         <div class="nav-item">
-            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span></a>
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
             <div class="submenu">
                 <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
-                <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> RELEASES</a>
+                <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
                 <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
             </div>
         </div>
@@ -165,15 +145,15 @@
     </nav>
 
     <aside class="sidebar-right">
-        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-        <a href="#" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
-        <a href="#" aria-label="YouTube Vevo"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="#" aria-label="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
+        <a href="#" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="#" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+        <a href="#" target="_blank" aria-label="YouTube Vevo"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="#" target="_blank" aria-label="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
     <main></main>
@@ -184,50 +164,20 @@
     </footer>
 
     <script>
-        // Menü Toggle
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-
-        // Header nach 3 Sekunden verschwinden lassen
+        
+        // Header verschwindet nur mobil
         setTimeout(() => {
-            const header = document.getElementById('main-header');
-            if (window.innerWidth <= 1024) { header.classList.add('hide'); }
+            if (window.innerWidth <= 800) {
+                document.getElementById('header-main').classList.add('hide-mobile');
+            }
         }, 3000);
 
-        // Hintergrund-Wisch-Logik für Mobile
-        const bg = document.getElementById('draggable-bg');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        const startMoving = (e) => {
-            isDown = true;
-            startX = (e.pageX || e.touches[0].pageX) - bg.offsetLeft;
-            scrollLeft = bg.offsetLeft;
-        };
-
-        const stopMoving = () => { isDown = false; };
-
-        const move = (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = (e.pageX || e.touches[0].pageX) - bg.offsetLeft;
-            const walk = (x - startX); 
-            let newPos = scrollLeft + walk;
-            
-            // Grenzen setzen
-            const minPos = window.innerWidth - bg.offsetWidth;
-            if (newPos > 0) newPos = 0;
-            if (newPos < minPos) newPos = minPos;
-            
-            bg.style.left = newPos + 'px';
-        };
-
-        bg.addEventListener('mousedown', startMoving);
-        bg.addEventListener('touchstart', startMoving);
-        window.addEventListener('mouseup', stopMoving);
-        window.addEventListener('touchend', stopMoving);
-        window.addEventListener('mousemove', move);
-        window.addEventListener('touchmove', move, { passive: false });
+        document.addEventListener('click', function(e) {
+            const sb = document.getElementById("sidebar");
+            const btn = document.querySelector(".menu-btn");
+            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
+        });
     </script>
 </body>
 </html>
