@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MOBILE 800er I/D UPDATE</title>
+    <title>ANTON | MOBILE 800er PERMANENT SOCIAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -36,7 +36,7 @@
         }
         .menu-btn::after { content: 'A'; font-weight: bold; font-size: 28px; }
 
-        /* --- SIDEBAR / MENU (800er) --- */
+        /* --- SIDEBAR OBEN (800er) --- */
         .sidebar-left { 
             position: fixed; left: 0; top: -160px; width: 100%; height: 85px; 
             background: var(--anton-yellow); z-index: 1100; 
@@ -45,51 +45,47 @@
             transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-sizing: border-box;
         }
         .sidebar-left.open { top: 0 !important; }
-
-        .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
         .nav-label { display: flex; flex-direction: column; align-items: center; }
         .nav-label i { font-size: 1.3rem; margin-bottom: 4px; }
-        .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; line-height: 1; }
+        .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; }
 
-        /* EPK Box */
         .epk-container { 
             position: absolute !important; right: -1px; top: 0; height: 100%; width: 48px;
             background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; z-index: 1200;
         }
-        .epk-container a { text-decoration: none !important; } /* Unterstrich entfernt */
-        .epk-text-only { transform: rotate(-90deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; white-space: nowrap; display: block; text-decoration: none; }
+        .epk-text-only { transform: rotate(-90deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; white-space: nowrap; text-decoration: none; }
 
-        /* --- SOCIALBAR (MOBILE) --- */
+        /* --- I/D SYSTEM --- */
+        .id-button {
+            position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px);
+            border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000;
+            cursor: pointer; transition: transform 0.4s ease-in-out;
+        }
+        .id-button.hidden { transform: translateX(100%); }
+
+        .id-panel {
+            position: fixed; right: -300px; bottom: 150px; height: 45px; width: 280px;
+            background: rgba(255, 255, 255, 0.95); border: 2px solid #000; border-right: none;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1299; transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.9rem;
+        }
+        .id-panel.open { right: 0; }
+        .id-panel a { color: #000; text-decoration: none; margin: 0 10px; }
+        .id-panel span { color: #000; }
+
+        /* --- SOCIALBAR (NUN PERMANENT) --- */
         .sidebar-right { 
             position: fixed; bottom: 0; left: 0; width: 100%; height: 45px; 
             display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; 
             z-index: 999; background: rgba(255, 255, 255, 0.95); border-top: 1.5px solid #000; 
-            transition: transform 0.6s ease-in-out;
         }
-        .sidebar-right.lowered { transform: translateY(45px); }
         .sidebar-right a i { color: #000; font-size: 1.2rem; }
 
-        /* --- I/D SIDE MENU (NEU) --- */
-        .id-button {
-            position: fixed; right: 0; bottom: 150px; width: 45px; height: 45px;
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(5px);
-            border: 2px solid #000; border-right: none; border-radius: 8px 0 0 8px;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1300; font-weight: bold; font-size: 1rem; color: #000;
-            cursor: pointer; transition: transform 0.3s ease;
-        }
-        .id-panel {
-            position: fixed; right: -300px; bottom: 150px; height: 45px; width: 260px;
-            background: #fff; border: 2px solid #000; border-right: none;
-            display: flex; align-items: center; justify-content: space-evenly;
-            z-index: 1299; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 8px 0 0 8px;
-        }
-        .id-panel.open { right: 0; }
-        .id-panel a { color: #000; text-decoration: none; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
-
-        /* Animation State */
         header.hide-mobile { transform: translateY(-100%); }
 
     </style>
@@ -100,33 +96,26 @@
     
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item">
-            <a href="hauptseite.html">
-                <span class="nav-label"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></span>
-            </a>
+            <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></span></a>
         </div>
         <div class="nav-item">
-            <a href="meinemusik.html">
-                <span class="nav-label"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></span>
-            </a>
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></span></a>
         </div>
         <div class="nav-item">
-            <a href="shop.html">
-                <span class="nav-label"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></span>
-            </a>
+            <a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></span></a>
         </div>
         <div class="nav-item">
-            <a href="kontakt.html">
-                <span class="nav-label"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></span>
-            </a>
+            <a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></span></a>
         </div>
         <div class="epk-container">
-            <a href="epk.html"><span class="epk-text-only">EPK/PRESSE</span></a>
+            <a href="epk.html" style="text-decoration: none;"><span class="epk-text-only">EPK/PRESSE</span></a>
         </div>
     </nav>
 
-    <div class="id-button" onclick="toggleIDPanel()">I/D</div>
+    <div class="id-button" id="id-btn" onclick="openIDMenu()">I/D</div>
     <div class="id-panel" id="id-panel">
         <a href="impressum.html">Impressum</a>
+        <span>|</span>
         <a href="datenschutz.html">Datenschutz</a>
     </div>
 
@@ -147,33 +136,51 @@
 
     <script>
         const sidebar = document.getElementById('sidebar');
+        const idBtn = document.getElementById('id-btn');
         const idPanel = document.getElementById('id-panel');
+        let autoCloseTimer;
 
         function toggleMenu() { 
             sidebar.classList.toggle('open'); 
-        }
-
-        function toggleIDPanel() {
-            idPanel.classList.toggle('open');
-            // Automatisches Schließen nach 4 Sekunden
-            if(idPanel.classList.contains('open')) {
-                setTimeout(() => { idPanel.classList.remove('open'); }, 4000);
+            
+            // Auto-Close Logik für das gelbe Menü
+            clearTimeout(autoCloseTimer);
+            if (sidebar.classList.contains('open')) {
+                autoCloseTimer = setTimeout(() => {
+                    sidebar.classList.remove('open');
+                }, 5000);
             }
         }
+
+        function openIDMenu() {
+            idBtn.classList.add('hidden');
+            setTimeout(() => {
+                idPanel.classList.add('open');
+                setTimeout(() => {
+                    idPanel.classList.remove('open');
+                    setTimeout(() => {
+                        idBtn.classList.remove('hidden');
+                    }, 1500);
+                }, 5000);
+            }, 200);
+        }
         
-        // Swipe Logik oben
+        // Swipe Logik mit integriertem Auto-Close
         let touchStartY = 0;
         document.addEventListener('touchstart', e => { touchStartY = e.changedTouches[0].screenY; }, {passive: true});
         document.addEventListener('touchend', e => {
             const swipeDistance = e.changedTouches[0].screenY - touchStartY;
-            if (swipeDistance > 70 && touchStartY < 150) sidebar.classList.add('open');
+            if (swipeDistance > 70 && touchStartY < 150) {
+                sidebar.classList.add('open');
+                clearTimeout(autoCloseTimer);
+                autoCloseTimer = setTimeout(() => { sidebar.classList.remove('open'); }, 5000);
+            }
             if (swipeDistance < -70) sidebar.classList.remove('open');
         }, {passive: true});
 
-        // Auto-Hide Header & Socialbar nach 3 Sek
+        // Nur Header blendet sich automatisch aus
         setTimeout(() => { 
             document.getElementById('header-main').classList.add('hide-mobile'); 
-            document.getElementById('social-bar').classList.add('lowered');
         }, 3000);
     </script>
 </body>
