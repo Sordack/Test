@@ -49,15 +49,15 @@
                 background-size: cover;
             }
 
-            /* Navigation als Sidebar links - startet GESCHLOSSEN */
+            /* Komprimierte Sidebar links */
             .sidebar-left {
                 position: fixed !important;
-                left: -120px !important; /* Versteckt */
+                left: -120px !important;
                 top: 0 !important; 
-                width: 100px !important; 
+                width: 90px !important; 
                 height: 100vh !important;
                 flex-direction: column !important; 
-                padding: 100px 0 0 0 !important;
+                padding: 90px 0 0 0 !important; /* Weniger Padding oben */
                 border-bottom: none !important; 
                 border-right: 3px solid #000 !important;
                 justify-content: flex-start !important;
@@ -67,26 +67,33 @@
             }
             .sidebar-left.open { left: 0 !important; }
             
-            .nav-item { flex: none !important; margin-bottom: 30px !important; width: 100% !important; }
+            .nav-item { 
+                flex: none !important; 
+                margin-bottom: 15px !important; /* Abstand stark komprimiert */
+                width: 100% !important; 
+            }
+            .nav-item i { font-size: 1.2rem !important; } /* Icons etwas kleiner für Kompression */
+            .mobile-tag { font-size: 0.5rem !important; }
 
-            /* Socialbar als Sidebar rechts sauber integriert */
+            /* Komprimierte Socialbar rechts - ZENTRIERT */
             .sidebar-right {
-                bottom: auto !important; 
+                bottom: 0 !important; 
                 top: 0 !important; 
                 left: auto !important; 
                 right: 0 !important;
-                width: 65px !important; 
+                width: 55px !important; 
                 height: 100vh !important;
                 flex-direction: column !important; 
                 border-top: none !important;
                 border-left: 2px solid #000 !important; 
-                padding: 100px 0 !important;
+                padding: 0 !important;
                 background: rgba(255, 255, 255, 0.7) !important;
-                justify-content: center !important;
-                gap: 20px !important;
+                justify-content: center !important; /* Vertikale Zentrierung */
+                gap: 12px !important; /* Engere Abstände */
             }
+            .sidebar-right a i { font-size: 1.2rem !important; }
 
-            /* EPK Anpassung */
+            /* EPK Anpassung - Kompakter am Boden der linken Sidebar */
             .epk-container {
                 position: absolute !important; 
                 bottom: 0 !important; 
@@ -94,15 +101,15 @@
                 top: auto !important;
                 right: auto !important;
                 width: 100% !important; 
-                height: 150px !important;
+                height: 110px !important; /* Niedriger */
                 border-left: none !important; 
                 border-top: 3px solid #000 !important;
                 background: #fff !important;
             }
 
             .header-logo {
-                top: 110%;
-                max-height: 150px;
+                top: 105%;
+                max-height: 130px;
             }
         }
 
@@ -295,23 +302,6 @@
                 closeAllMenus();
             }
         });
-
-        // Mobile-Logic (Gesperrt für 800px und kleiner)
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let currentTranslateX = 0;
-        document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; }, {passive: true});
-        document.addEventListener('touchmove', e => {
-            if (window.innerWidth > 800) return; 
-            const moveX = e.touches[0].clientX;
-            const diffX = moveX - touchStartX;
-            if (Math.abs(diffX) > 10) {
-                let newX = currentTranslateX + diffX;
-                if (newX > window.innerWidth) newX = window.innerWidth; 
-                if (newX < -window.innerWidth) newX = -window.innerWidth;
-                bg.style.transform = `translateX(${newX}px)`;
-            }
-        }, {passive: true});
 
         setTimeout(() => { document.getElementById('header-main').style.transform = 'translateY(-100%)'; }, 3000);
     </script>
