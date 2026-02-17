@@ -42,75 +42,32 @@
             }
         }
 
-        /* --- MITTLERE VERSION (KOMPRIMIERUNG) --- */
-        @media (min-width: 801px) and (max-width: 1200px) {
-            .sidebar-left {
-                position: fixed !important;
-                left: -120px !important;
-                top: 0 !important; 
-                width: 90px !important; 
-                height: 100vh !important;
-                flex-direction: column !important; 
-                padding: 90px 0 0 0 !important;
-                border-bottom: none !important; 
-                border-right: 3px solid #000 !important;
-                justify-content: flex-start !important;
-                background: var(--anton-yellow) !important;
-                transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-                z-index: 1100 !important;
-            }
-            .sidebar-left.open { left: 0 !important; }
-            
-            /* Komprimierte Abstände links */
-            .nav-item { flex: none !important; margin-bottom: 18px !important; width: 100% !important; }
-            .nav-item i { font-size: 1.2rem !important; }
-
-            /* Komprimierte Socialbar rechts */
-            .sidebar-right {
-                bottom: 0 !important; 
-                top: 0 !important; 
-                left: auto !important; 
-                right: 0 !important;
-                width: 55px !important; 
-                height: 100vh !important;
-                flex-direction: column !important; 
-                border-top: none !important;
-                border-left: 2px solid #000 !important; 
-                background: rgba(255, 255, 255, 0.7) !important;
-                justify-content: center !important;
-                gap: 12px !important; /* Engere Abstände */
-                padding: 0 !important;
-            }
-            .sidebar-right a i { font-size: 1.25rem !important; }
-
-            /* EPK Container am Boden fixiert */
-            .epk-container {
-                position: absolute !important; 
-                bottom: 0 !important; 
-                left: 0 !important; 
-                top: auto !important;
-                right: auto !important;
-                width: 100% !important; 
-                height: 115px !important; 
-                border-left: none !important; 
-                border-top: 3px solid #000 !important;
-            }
-            .epk-text-only { transform: rotate(0deg) !important; font-size: 0.75rem !important; }
+        /* --- MOBILER HINTERGRUND (WISCHBAR) --- */
+        #mobile-bg-fix { 
+            display: none; 
         }
 
-        /* --- MOBILER HINTERGRUND --- */
-        #mobile-bg-fix { display: none; }
         @media (max-width: 800px) {
             body { background: #000 !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
+            
             #mobile-bg-fix { 
-                display: block; position: fixed; top: 0; left: -100%; width: 300%; height: 100%; 
-                background: url('Background.jpg') no-repeat center center; background-size: cover; z-index: -1; will-change: transform;
+                display: block; 
+                position: fixed; 
+                top: 0; 
+                left: -100%; 
+                width: 300%; 
+                height: 100%; 
+                background: url('Background.jpg') no-repeat center center; 
+                background-size: cover; 
+                z-index: -1; 
+                will-change: transform;
             }
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (Schmaler gestaltet) --- */
         header { 
-            position: fixed; top: 0; width: 100%; height: 80px; 
+            position: fixed; 
+            top: 0; width: 100%; height: 60px; /* Von 80px auf 60px reduziert */
             display: flex; justify-content: center; align-items: center; 
             z-index: 1000; background: rgba(255, 255, 255, 0.8); 
             backdrop-filter: blur(10px); border-bottom: 2px solid #000;
@@ -118,13 +75,16 @@
         }
         
         .header-logo { 
-            position: absolute; top: 120%; transform: translateY(-50%);
-            max-height: 185px; width: auto; 
+            position: absolute; 
+            top: 130%; /* Leicht angepasst für flacheren Header */
+            transform: translateY(-50%);
+            max-height: 185px; 
+            width: auto; 
             filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
         }
         
         .menu-btn { 
-            position: fixed; top: 18px; left: 15px; z-index: 1500; 
+            position: fixed; top: 8px; left: 15px; z-index: 1500; /* Von 18px auf 8px reduziert */
             background: #000; width: 45px; height: 45px; border-radius: 5px; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
             cursor: pointer; border: 2px solid #000;
@@ -134,6 +94,7 @@
         .menu-btn.active span { display: none; }
         .menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
 
+        /* --- SIDEBAR OBEN --- */
         .sidebar-left { 
             position: fixed; left: 0; top: -120px; width: 100%; height: 95px; 
             background: var(--anton-yellow); z-index: 1100; 
@@ -186,8 +147,16 @@
             padding: 0 10px; justify-content: space-evenly; 
         }
 
-        .sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: wave 6s linear infinite; }
-        @keyframes wave { 0% { transform: scale(1); color: #000; } 9% { transform: scale(1.4); color: var(--brand-color); } 23%, 100% { transform: scale(1); color: #000; } }
+        .sidebar-right a i { 
+            color: #000; font-size: 1.5rem; display: inline-block;
+            animation: ultraFlowWaveMobile 6s linear infinite; 
+        }
+        
+        @keyframes ultraFlowWaveMobile { 
+            0% { transform: scale(1); color: #000; } 
+            9.33% { transform: scale(1.4); color: var(--brand-color); } 
+            23.33%, 100% { transform: scale(1); color: #000; } 
+        }
         
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
@@ -281,6 +250,59 @@
                 closeAllMenus();
             }
         });
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let currentTranslateX = 0;
+        const screenWidth = window.innerWidth;
+
+        document.addEventListener('touchstart', e => { 
+            touchStartX = e.touches[0].clientX; 
+            touchStartY = e.touches[0].clientY; 
+        }, {passive: true});
+
+        document.addEventListener('touchmove', e => {
+            const moveX = e.touches[0].clientX;
+            const moveY = e.touches[0].clientY;
+            const diffX = moveX - touchStartX;
+            const diffY = moveY - touchStartY;
+
+            if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) {
+                if (!sidebar.contains(e.target)) {
+                    closeAllMenus();
+                }
+            }
+
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                if (window.innerWidth <= 800) {
+                    let newX = currentTranslateX + diffX;
+                    const limit = screenWidth; 
+                    if (newX > limit) newX = limit; 
+                    if (newX < -limit) newX = -limit;
+                    bg.style.transform = `translateX(${newX}px)`;
+                }
+            }
+        }, {passive: true});
+
+        document.addEventListener('touchend', e => {
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const diffX = endX - touchStartX;
+            const diffY = endY - touchStartY;
+
+            if (Math.abs(diffY) > Math.abs(diffX)) {
+                if (diffY > 60 && touchStartY < 250) { 
+                    closeAllMenus();
+                    sidebar.classList.add('open');
+                    menuBtn.classList.add('active');
+                    menuTimeout = setTimeout(closeAllMenus, 5000);
+                }
+            } else {
+                const style = window.getComputedStyle(bg);
+                const matrix = new WebKitCSSMatrix(style.transform);
+                currentTranslateX = matrix.m41;
+            }
+        }, {passive: true});
 
         setTimeout(() => { 
             document.getElementById('header-main').style.transform = 'translateY(-100%)'; 
