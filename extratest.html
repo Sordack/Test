@@ -75,8 +75,12 @@
         }
         
         .header-logo { 
-            position: absolute; top: 70%; transform: translateY(-50%);
-            max-height: 110px; width: auto; 
+            position: absolute; 
+            top: 70%; 
+            transform: translateY(-50%);
+            /* Vergrößert um 20% von 110px auf 132px */
+            max-height: 132px; 
+            width: auto; 
             filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
         }
         
@@ -214,23 +218,20 @@
         let idTimeout;
 
         function closeAllMenus() {
-            // Sidebar schließen
             sidebar.classList.remove('open');
             menuBtn.classList.remove('active');
             if (menuTimeout) clearTimeout(menuTimeout);
-
-            // I/D Panel schließen
             idPanel.classList.remove('open');
             idBtn.classList.remove('hidden');
             if (idTimeout) clearTimeout(idTimeout);
         }
 
         function toggleMenu(e) { 
-            e.stopPropagation(); // Verhindert sofortiges Schließen durch Body-Click
+            e.stopPropagation();
             if (sidebar.classList.contains('open')) {
                 closeAllMenus();
             } else {
-                closeAllMenus(); // Andere Menüs erst zu
+                closeAllMenus();
                 sidebar.classList.add('open'); 
                 menuBtn.classList.add('active');
                 menuTimeout = setTimeout(closeAllMenus, 5000);
@@ -238,23 +239,19 @@
         }
 
         function openIDMenu(e) {
-            e.stopPropagation(); // Verhindert sofortiges Schließen durch Body-Click
-            closeAllMenus(); // Andere Menüs erst zu
+            e.stopPropagation();
+            closeAllMenus();
             idBtn.classList.add('hidden');
             idPanel.classList.add('open');
             idTimeout = setTimeout(closeAllMenus, 5000);
         }
 
-        // --- GLOBALER KLICK-SCHUTZ ---
-        // Schließt Menüs bei Interaktion mit der Seite
         document.addEventListener('click', (e) => {
-            // Wenn der Klick NICHT im Menü oder auf den Buttons war -> Schließen
             if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !idPanel.contains(e.target) && !idBtn.contains(e.target)) {
                 closeAllMenus();
             }
         });
 
-        // --- WISCHFUNKTION ---
         let touchStartX = 0;
         let touchStartY = 0;
         let currentTranslateX = 0;
@@ -271,15 +268,12 @@
             const diffX = moveX - touchStartX;
             const diffY = moveY - touchStartY;
 
-            // Bei jeder nennenswerten Bewegung Menüs schließen
             if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) {
-                // Falls Sidebar offen ist und wir nicht darin wischen -> Schließen
                 if (!sidebar.contains(e.target)) {
                     closeAllMenus();
                 }
             }
 
-            // Hintergrund-Wischen (Horizontal)
             if (Math.abs(diffX) > Math.abs(diffY)) {
                 if (window.innerWidth <= 800) {
                     let newX = currentTranslateX + diffX;
@@ -297,7 +291,6 @@
             const diffX = endX - touchStartX;
             const diffY = endY - touchStartY;
 
-            // Vertikales Wischen für Menü-Öffnen
             if (Math.abs(diffY) > Math.abs(diffX)) {
                 if (diffY > 60 && touchStartY < 250) { 
                     closeAllMenus();
@@ -312,7 +305,6 @@
             }
         }, {passive: true});
 
-        // Header initial ausblenden
         setTimeout(() => { 
             document.getElementById('header-main').style.transform = 'translateY(-100%)'; 
         }, 3000);
