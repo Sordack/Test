@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER</title>
+    <title>ANTON | MASTER STRUCTURE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
+        /* ==========================================================================
+           1. GENERELLE BASIS-STLYES (Gültig für alle Varianten)
+           ========================================================================== */
         :root { 
             --anton-red: #ff0000; 
             --anton-yellow: #ffeb3b; 
@@ -15,158 +18,149 @@
         }
 
         html, body { 
-            height: 100%; 
-            margin: 0; 
-            padding: 0; 
+            height: 100%; margin: 0; padding: 0; 
             background-color: #ffffff; 
             font-family: 'Special Elite', cursive; 
             overflow-x: hidden;
-            overflow-y: auto; 
         }
 
-        body { 
-            display: flex; 
-            flex-direction: column; 
-            width: 100vw;
-            min-height: 100.5vh; 
-            touch-action: pan-y; 
-            background: #ffffff;
-        }
+        body { display: flex; flex-direction: column; width: 100vw; min-height: 100.5vh; }
 
-        /* --- DESKTOP HINTERGRUND --- */
-        @media (min-width: 801px) {
-            body {
-                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
-                background-size: cover; 
-                background-blend-mode: multiply;
-            }
-        }
-
-        /* --- MOBILER HINTERGRUND (WISCHBAR) --- */
-        #mobile-bg-fix { 
-            display: none; 
-        }
-
-        @media (max-width: 800px) {
-            body { background: #000 !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
-            
-            #mobile-bg-fix { 
-                display: block; 
-                position: fixed; 
-                top: 0; 
-                left: -100%; 
-                width: 300%; 
-                height: 100%; 
-                background: url('Background.jpg') no-repeat center center; 
-                background-size: cover; 
-                z-index: -1; 
-                will-change: transform;
-            }
-        }
-
-        /* --- HEADER (Schmaler gestaltet) --- */
+        /* --- ALLGEMEINER HEADER (60px schmal) --- */
         header { 
-            position: fixed; 
-            top: 0; width: 100%; height: 60px; /* Von 80px auf 60px reduziert */
+            position: fixed; top: 0; width: 100%; height: 60px; 
             display: flex; justify-content: center; align-items: center; 
             z-index: 1000; background: rgba(255, 255, 255, 0.8); 
             backdrop-filter: blur(10px); border-bottom: 2px solid #000;
             transition: transform 0.6s ease-in-out;
         }
-        
         .header-logo { 
-            position: absolute; 
-            top: 130%; /* Leicht angepasst für flacheren Header */
-            transform: translateY(-50%);
-            max-height: 185px; 
-            width: auto; 
+            position: absolute; top: 130%; transform: translateY(-50%);
+            max-height: 185px; width: auto; 
             filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
         }
-        
+
+        /* --- MENÜ-BUTTON --- */
         .menu-btn { 
-            position: fixed; top: 8px; left: 15px; z-index: 1500; /* Von 18px auf 8px reduziert */
+            position: fixed; top: 8px; left: 15px; z-index: 1500; 
             background: #000; width: 45px; height: 45px; border-radius: 5px; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
             cursor: pointer; border: 2px solid #000;
         }
-        .menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
+        .menu-btn span { display: block; width: 22px; height: 3px; background: #fff; }
         .menu-btn.active { background: var(--anton-yellow); }
         .menu-btn.active span { display: none; }
         .menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
 
-        /* --- SIDEBAR OBEN --- */
-        .sidebar-left { 
-            position: fixed; left: 0; top: -120px; width: 100%; height: 95px; 
-            background: var(--anton-yellow); z-index: 1100; 
-            display: flex; flex-direction: row; padding: 0 55px 0 75px; 
-            box-sizing: border-box; border-bottom: 3px solid #000; 
-            justify-content: space-between; align-items: center; 
-            transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        /* ==========================================================================
+           2. VARIANTE: MOBILE (bis 800px)
+           ========================================================================== */
+        @media (max-width: 800px) {
+            body { background: #000 !important; overflow: hidden !important; position: fixed; height: 100%; }
+            
+            #mobile-bg-fix { 
+                display: block; position: fixed; top: 0; left: -100%; width: 300%; height: 100%; 
+                background: url('Background.jpg') no-repeat center center; background-size: cover; 
+                z-index: -1; will-change: transform;
+            }
+
+            /* Sidebar Oben */
+            .sidebar-left { 
+                position: fixed; left: 0; top: -120px; width: 100%; height: 95px; 
+                background: var(--anton-yellow); z-index: 1100; display: flex; 
+                padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; 
+                justify-content: space-between; align-items: center; 
+                transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .sidebar-left.open { top: 0 !important; }
+
+            /* Socialbar Unten */
+            .sidebar-right { 
+                position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; 
+                display: flex; justify-content: space-evenly; align-items: center;
+                z-index: 999; background: rgba(255, 255, 255, 0.7); 
+                backdrop-filter: blur(8px); border-top: 2px solid #000;
+            }
         }
-        .sidebar-left.open { top: 0 !important; }
-        
-        .nav-item { flex: 1; text-align: center; }
+
+        /* ==========================================================================
+           3. VARIANTE: TABLET / MITTEL (801px bis 1200px)
+           ========================================================================== */
+        @media (min-width: 801px) and (max-width: 1200px) {
+            /* Sidebar wird linksbündig vertikal */
+            .sidebar-left {
+                position: fixed; left: -120px; top: 0; width: 90px; height: 100vh;
+                flex-direction: column; padding: 70px 0 0 0; 
+                border-right: 3px solid #000; background: var(--anton-yellow);
+                transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .sidebar-left.open { left: 0 !important; }
+            .nav-item { margin-bottom: 12px; }
+
+            /* Socialbar wird rechtsbündig vertikal */
+            .sidebar-right {
+                position: fixed; right: 0; top: 0; width: 50px; height: 100vh;
+                flex-direction: column; border-left: 2px solid #000; 
+                background: rgba(255, 255, 255, 0.7); justify-content: center; gap: 10px;
+            }
+            
+            /* EPK Spezialdrehung */
+            .epk-container {
+                position: absolute; bottom: 0; width: 100%; height: 110px; 
+                border-top: 3px solid #000; border-left: none;
+            }
+            .epk-text-only { writing-mode: vertical-rl; transform: rotate(0deg); }
+        }
+
+        /* ==========================================================================
+           4. VARIANTE: DESKTOP (ab 1201px)
+           ========================================================================== */
+        @media (min-width: 1201px) {
+            body { 
+                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
+                background-size: cover; background-blend-mode: multiply;
+            }
+            /* Sidebar Oben */
+            .sidebar-left { 
+                position: fixed; left: 0; top: -120px; width: 100%; height: 95px; 
+                background: var(--anton-yellow); z-index: 1100; display: flex; 
+                padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; 
+                justify-content: space-between; align-items: center; 
+                transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .sidebar-left.open { top: 0 !important; }
+            
+            /* Socialbar Unten */
+            .sidebar-right { 
+                position: fixed; bottom: 0; width: 100%; height: 65px; 
+                display: flex; justify-content: space-evenly; align-items: center;
+                background: rgba(255, 255, 255, 0.7); border-top: 2px solid #000;
+            }
+        }
+
+        /* --- I/D SYSTEM & ANIMATIONEN --- */
+        .id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1300; cursor: pointer; transition: 0.4s; border-radius: 6px 0 0 6px; }
+        .id-button.hidden { transform: translateX(100%); }
+        .id-panel { position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px; background: rgba(255,255,255,0.7); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: 0.5s; border-radius: 8px 0 0 8px; }
+        .id-panel.open { right: 0; }
+        .id-panel a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; font-size: 0.85rem; }
+
         .nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
         .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
-
-        .epk-container { 
-            position: absolute; right: 0; top: 0; height: 100%; width: 45px;
-            background: #fff; border-left: 3px solid #000; 
-            display: flex; align-items: center; justify-content: center;
-        }
+        .epk-container { background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
         .epk-text-only { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
-
-        /* --- I/D SYSTEM --- */
-        .id-button {
-            position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px;
-            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px);
-            border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000;
-            cursor: pointer; transition: transform 0.4s ease-in-out;
-        }
-        .id-button.hidden { transform: translateX(100%); }
-
-        .id-panel {
-            position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px;
-            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px);
-            border: 2px solid #000; border-right: none;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1299; transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem;
-        }
-        .id-panel.open { right: 0; }
-        .id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
-
-        /* --- SOCIALBAR --- */
-        .sidebar-right { 
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; 
-            display: flex; flex-direction: row; align-items: center; 
-            z-index: 999; background: rgba(255, 255, 255, 0.7); 
-            backdrop-filter: blur(8px); border-top: 2px solid #000;
-            padding: 0 10px; justify-content: space-evenly; 
-        }
-
-        .sidebar-right a i { 
-            color: #000; font-size: 1.5rem; display: inline-block;
-            animation: ultraFlowWaveMobile 6s linear infinite; 
-        }
         
-        @keyframes ultraFlowWaveMobile { 
-            0% { transform: scale(1); color: #000; } 
-            9.33% { transform: scale(1.4); color: var(--brand-color); } 
-            23.33%, 100% { transform: scale(1); color: #000; } 
-        }
-        
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
-        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
-        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
-        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
-        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
+        .sidebar-right a i { color: #000; font-size: 1.5rem; animation: ultraFlowWaveMobile 6s linear infinite; }
+        @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+        .sidebar-right a:nth-child(1) i { --brand-color: #f00; }
+        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; }
+        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; }
+        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; }
+        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; }
+        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; }
+        .sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); }
+        .sidebar-right a:nth-child(8) i { --brand-color: #f00; }
+        .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); }
     </style>
 </head>
 <body>
@@ -213,16 +207,13 @@
         const idBtn = document.getElementById('id-btn');
         const idPanel = document.getElementById('id-panel');
         const bg = document.getElementById('mobile-bg-fix');
-        let menuTimeout;
-        let idTimeout;
+        let menuTimeout, idTimeout;
 
         function closeAllMenus() {
             sidebar.classList.remove('open');
             menuBtn.classList.remove('active');
-            if (menuTimeout) clearTimeout(menuTimeout);
             idPanel.classList.remove('open');
             idBtn.classList.remove('hidden');
-            if (idTimeout) clearTimeout(idTimeout);
         }
 
         function toggleMenu(e) { 
@@ -246,67 +237,29 @@
         }
 
         document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !idPanel.contains(e.target) && !idBtn.contains(e.target)) {
-                closeAllMenus();
-            }
+            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) closeAllMenus();
         });
 
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let currentTranslateX = 0;
-        const screenWidth = window.innerWidth;
+        // Header nach 3 Sek ausblenden
+        setTimeout(() => { document.getElementById('header-main').style.transform = 'translateY(-100%)'; }, 3000);
 
-        document.addEventListener('touchstart', e => { 
-            touchStartX = e.touches[0].clientX; 
-            touchStartY = e.touches[0].clientY; 
-        }, {passive: true});
-
+        // Mobile Hintergrund Logik
+        let touchStartX = 0, currentTranslateX = 0;
+        document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive: true});
         document.addEventListener('touchmove', e => {
-            const moveX = e.touches[0].clientX;
-            const moveY = e.touches[0].clientY;
-            const diffX = moveX - touchStartX;
-            const diffY = moveY - touchStartY;
-
-            if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) {
-                if (!sidebar.contains(e.target)) {
-                    closeAllMenus();
-                }
-            }
-
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (window.innerWidth <= 800) {
-                    let newX = currentTranslateX + diffX;
-                    const limit = screenWidth; 
-                    if (newX > limit) newX = limit; 
-                    if (newX < -limit) newX = -limit;
-                    bg.style.transform = `translateX(${newX}px)`;
-                }
+            if (window.innerWidth <= 800) {
+                const diffX = e.touches[0].clientX - touchStartX;
+                let newX = currentTranslateX + diffX;
+                bg.style.transform = `translateX(${newX}px)`;
             }
         }, {passive: true});
-
         document.addEventListener('touchend', e => {
-            const endX = e.changedTouches[0].clientX;
-            const endY = e.changedTouches[0].clientY;
-            const diffX = endX - touchStartX;
-            const diffY = endY - touchStartY;
-
-            if (Math.abs(diffY) > Math.abs(diffX)) {
-                if (diffY > 60 && touchStartY < 250) { 
-                    closeAllMenus();
-                    sidebar.classList.add('open');
-                    menuBtn.classList.add('active');
-                    menuTimeout = setTimeout(closeAllMenus, 5000);
-                }
-            } else {
+            if (window.innerWidth <= 800) {
                 const style = window.getComputedStyle(bg);
                 const matrix = new WebKitCSSMatrix(style.transform);
                 currentTranslateX = matrix.m41;
             }
         }, {passive: true});
-
-        setTimeout(() => { 
-            document.getElementById('header-main').style.transform = 'translateY(-100%)'; 
-        }, 3000);
     </script>
 </body>
 </html>
