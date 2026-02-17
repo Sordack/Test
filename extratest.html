@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
         /* ==========================================================================
-           1. GENERELLE BASIS-STLYES (Gültig für alle Varianten)
+           1. BASIS-STLYES & GEMEINSAME ELEMENTE (Gültig für alle Varianten)
            ========================================================================== */
         :root { 
             --anton-red: #ff0000; 
@@ -19,14 +19,14 @@
 
         html, body { 
             height: 100%; margin: 0; padding: 0; 
-            background-color: #ffffff; 
+            background-color: #ffffff; /* Gemäß Ihrer Anweisung auf #ffffff fixiert */
             font-family: 'Special Elite', cursive; 
             overflow-x: hidden;
         }
 
         body { display: flex; flex-direction: column; width: 100vw; min-height: 100.5vh; }
 
-        /* --- ALLGEMEINER HEADER (60px schmal) --- */
+        /* Gemeinsamer Header (60px schmaler) */
         header { 
             position: fixed; top: 0; width: 100%; height: 60px; 
             display: flex; justify-content: center; align-items: center; 
@@ -34,26 +34,32 @@
             backdrop-filter: blur(10px); border-bottom: 2px solid #000;
             transition: transform 0.6s ease-in-out;
         }
+        
         .header-logo { 
             position: absolute; top: 130%; transform: translateY(-50%);
             max-height: 185px; width: auto; 
             filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
         }
 
-        /* --- MENÜ-BUTTON --- */
         .menu-btn { 
             position: fixed; top: 8px; left: 15px; z-index: 1500; 
             background: #000; width: 45px; height: 45px; border-radius: 5px; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
             cursor: pointer; border: 2px solid #000;
         }
-        .menu-btn span { display: block; width: 22px; height: 3px; background: #fff; }
+        .menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
         .menu-btn.active { background: var(--anton-yellow); }
         .menu-btn.active span { display: none; }
         .menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
 
+        /* Gemeinsame Navigations-Elemente */
+        .nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
+        .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
+        .epk-container { background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
+        .epk-text-only { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
+
         /* ==========================================================================
-           2. VARIANTE: MOBILE (bis 800px)
+           2. VARIANTE: MOBIL (0px bis 800px)
            ========================================================================== */
         @media (max-width: 800px) {
             body { background: #000 !important; overflow: hidden !important; position: fixed; height: 100%; }
@@ -64,7 +70,6 @@
                 z-index: -1; will-change: transform;
             }
 
-            /* Sidebar Oben */
             .sidebar-left { 
                 position: fixed; left: 0; top: -120px; width: 100%; height: 95px; 
                 background: var(--anton-yellow); z-index: 1100; display: flex; 
@@ -74,42 +79,36 @@
             }
             .sidebar-left.open { top: 0 !important; }
 
-            /* Socialbar Unten */
             .sidebar-right { 
                 position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; 
                 display: flex; justify-content: space-evenly; align-items: center;
                 z-index: 999; background: rgba(255, 255, 255, 0.7); 
                 backdrop-filter: blur(8px); border-top: 2px solid #000;
             }
+            .epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; }
         }
 
         /* ==========================================================================
-           3. VARIANTE: TABLET / MITTEL (801px bis 1200px)
+           3. VARIANTE: TABLET / MEDIUM (801px bis 1200px)
            ========================================================================== */
         @media (min-width: 801px) and (max-width: 1200px) {
-            /* Sidebar wird linksbündig vertikal */
-            .sidebar-left {
-                position: fixed; left: -120px; top: 0; width: 90px; height: 100vh;
-                flex-direction: column; padding: 70px 0 0 0; 
-                border-right: 3px solid #000; background: var(--anton-yellow);
-                transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            body { 
+                background: url('Background.jpg') no-repeat center center fixed; background-size: cover; 
             }
-            .sidebar-left.open { left: 0 !important; }
-            .nav-item { margin-bottom: 12px; }
-
-            /* Socialbar wird rechtsbündig vertikal */
-            .sidebar-right {
-                position: fixed; right: 0; top: 0; width: 50px; height: 100vh;
-                flex-direction: column; border-left: 2px solid #000; 
-                background: rgba(255, 255, 255, 0.7); justify-content: center; gap: 10px;
+            .sidebar-left { 
+                position: fixed; left: 0; top: -120px; width: 100%; height: 95px; 
+                background: var(--anton-yellow); z-index: 1100; display: flex; 
+                padding: 0 55px 0 75px; border-bottom: 3px solid #000; 
+                justify-content: space-between; align-items: center; 
+                transition: top 0.5s ease;
             }
-            
-            /* EPK Spezialdrehung */
-            .epk-container {
-                position: absolute; bottom: 0; width: 100%; height: 110px; 
-                border-top: 3px solid #000; border-left: none;
+            .sidebar-left.open { top: 0 !important; }
+            .sidebar-right { 
+                position: fixed; bottom: 0; left: 0; width: 100%; height: 75px; 
+                display: flex; justify-content: space-around; align-items: center;
+                background: rgba(255, 255, 255, 0.7); border-top: 2px solid #000;
             }
-            .epk-text-only { writing-mode: vertical-rl; transform: rotate(0deg); }
+            .epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; }
         }
 
         /* ==========================================================================
@@ -120,38 +119,32 @@
                 background: #ffffff url('Background.jpg') no-repeat center center fixed; 
                 background-size: cover; background-blend-mode: multiply;
             }
-            /* Sidebar Oben */
             .sidebar-left { 
                 position: fixed; left: 0; top: -120px; width: 100%; height: 95px; 
                 background: var(--anton-yellow); z-index: 1100; display: flex; 
-                padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; 
+                padding: 0 15% 0 15%; box-sizing: border-box; border-bottom: 3px solid #000; 
                 justify-content: space-between; align-items: center; 
                 transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             }
             .sidebar-left.open { top: 0 !important; }
-            
-            /* Socialbar Unten */
+
             .sidebar-right { 
                 position: fixed; bottom: 0; width: 100%; height: 65px; 
                 display: flex; justify-content: space-evenly; align-items: center;
                 background: rgba(255, 255, 255, 0.7); border-top: 2px solid #000;
             }
+            .epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 60px; }
         }
 
-        /* --- I/D SYSTEM & ANIMATIONEN --- */
-        .id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1300; cursor: pointer; transition: 0.4s; border-radius: 6px 0 0 6px; }
+        /* --- I/D SYSTEM & SOCIAL ANIMATION --- */
+        .id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1300; cursor: pointer; transition: 0.4s; border-radius: 6px 0 0 6px; font-weight: bold; font-size: 0.85rem; }
         .id-button.hidden { transform: translateX(100%); }
         .id-panel { position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px; background: rgba(255,255,255,0.7); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: 0.5s; border-radius: 8px 0 0 8px; }
         .id-panel.open { right: 0; }
-        .id-panel a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; font-size: 0.85rem; }
+        .id-panel a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; }
 
-        .nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
-        .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
-        .epk-container { background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
-        .epk-text-only { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
-        
-        .sidebar-right a i { color: #000; font-size: 1.5rem; animation: ultraFlowWaveMobile 6s linear infinite; }
-        @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+        .sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWave 6s linear infinite; }
+        @keyframes ultraFlowWave { 0% { transform: scale(1); } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; }
@@ -237,13 +230,13 @@
         }
 
         document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) closeAllMenus();
+            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !idPanel.contains(e.target) && !idBtn.contains(e.target)) closeAllMenus();
         });
 
-        // Header nach 3 Sek ausblenden
+        // Automatisches Header-Ausblenden
         setTimeout(() => { document.getElementById('header-main').style.transform = 'translateY(-100%)'; }, 3000);
 
-        // Mobile Hintergrund Logik
+        // Mobile Wisch-Logik
         let touchStartX = 0, currentTranslateX = 0;
         document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive: true});
         document.addEventListener('touchmove', e => {
