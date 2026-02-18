@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER HYBRID FIXED</title>
+    <title>ANTON | MASTER UNIFIED</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -27,8 +27,9 @@
             min-height: 100.5vh; touch-action: pan-y; background: #ffffff;
         }
 
-        /* --- MOBILER HINTERGRUND (WISCHBAR - UNVERÄNDERT) --- */
+        /* --- BACKGROUND LOGIC --- */
         #mobile-bg-fix { display: none; }
+        
         @media (max-width: 800px) {
             body { background: #000 !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
             #mobile-bg-fix { 
@@ -38,7 +39,14 @@
             }
         }
 
-        /* --- HEADER & LOGO --- */
+        @media (min-width: 801px) {
+            body {
+                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
+                background-size: cover;
+            }
+        }
+
+        /* --- HEADER --- */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
@@ -51,6 +59,8 @@
             max-height: 185px; width: auto; 
             filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
         }
+        
+        /* MENU BUTTON */
         .menu-btn { 
             position: fixed; top: 18px; left: 15px; z-index: 1500; 
             background: #000; width: 45px; height: 45px; border-radius: 5px; 
@@ -62,103 +72,50 @@
         .menu-btn.active span { display: none; }
         .menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
 
-        /* --- SIDEBAR LOGIK --- */
+        /* --- SIDEBAR TOP (UNIFIED MOBILE & TABLET) --- */
         .sidebar-left { 
-            position: fixed; background: var(--anton-yellow); 
-            z-index: 1100; box-sizing: border-box; 
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: fixed; left: 0; top: -130px; width: 100%; height: 95px; 
+            background: var(--anton-yellow); z-index: 1100; 
+            display: flex; flex-direction: row; align-items: center;
+            box-sizing: border-box; border-bottom: 3px solid #000; 
+            transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Padding für Mobile & Tablet unterschiedlich für bessere Zentrierung */
+            padding: 0 60px 0 80px; 
+            justify-content: space-between;
         }
+        .sidebar-left.open { top: 0 !important; }
 
-        /* --- MOBILE ANSICHT (STRENG 1:1) --- */
-        @media (max-width: 800px) {
-            .sidebar-left {
-                left: 0; top: -120px; width: 100%; height: 95px; 
-                display: flex; flex-direction: row; padding: 0 55px 0 75px; 
-                justify-content: space-between; align-items: center;
-                border-bottom: 3px solid #000;
-            }
-            .sidebar-left.open { top: 0 !important; }
-            .desktop-label { display: none; }
-            .epk-container { 
-                position: absolute; right: 0; top: 0; height: 100%; width: 45px;
-                background: #fff; border-left: 3px solid #000; 
-                display: flex; align-items: center; justify-content: center;
-            }
-            .epk-text-only { 
-                writing-mode: vertical-rl; transform: rotate(180deg); 
-                font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; 
-            }
-            .sidebar-right { 
-                position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; 
-                display: flex; flex-direction: row; align-items: center; 
-                z-index: 999; background: rgba(255, 255, 255, 0.7); 
-                backdrop-filter: blur(8px); border-top: 2px solid #000;
-                padding: 0 15px; justify-content: space-around; 
-            }
-        }
-
-        /* --- TABLET ANSICHT (AB 801px) --- */
         @media (min-width: 801px) {
-            body {
-                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
-                background-size: cover;
-            }
-            .sidebar-left {
-                top: 0; bottom: 0; left: -320px; width: 280px; height: 100%;
-                flex-direction: column; padding: 120px 30px 40px 30px;
-                border-right: 4px solid #000; border-bottom: none;
-                justify-content: flex-start;
-            }
-            .sidebar-left.open { left: 0 !important; }
-            
-            .nav-item { width: 100%; margin-bottom: 30px; flex: none; }
-            .nav-item a { flex-direction: row; gap: 20px; align-items: center; }
-            .nav-item i { font-size: 1.8rem; width: 35px; text-align: center; }
-            .mobile-tag { display: none; }
-            .desktop-label { display: block; font-size: 1.4rem; font-weight: bold; letter-spacing: 1px; }
-
-            .epk-container { 
-                margin-top: auto; padding-top: 25px; border-top: 3px solid #000; width: 100%;
-                background: transparent; border-left: none; position: static; height: auto;
-            }
-            .epk-text-only { 
-                writing-mode: horizontal-tb; transform: none; 
-                font-size: 1.3rem; color: var(--anton-red); font-weight: bold; 
-                text-decoration: none; display: block;
-            }
-
-            .sidebar-right {
-                position: fixed; top: 50%; right: 20px; transform: translateY(-50%);
-                width: 65px; height: auto; flex-direction: column;
-                background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px);
-                border: 3px solid #000; border-radius: 50px; 
-                padding: 30px 0; gap: 25px; z-index: 999;
-                display: flex; align-items: center; justify-content: center;
-            }
+            .sidebar-left { padding: 0 15% 0 15%; } /* Tablet breiteres Padding */
         }
 
-        /* --- ALLGEMEINE ELEMENTE --- */
+        .nav-item { flex: 1; text-align: center; }
         .nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
         .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
+        
+        .epk-container { 
+            position: absolute; right: 0; top: 0; height: 100%; width: 45px;
+            background: #fff; border-left: 3px solid #000; 
+            display: flex; align-items: center; justify-content: center;
+        }
+        .epk-text-only { 
+            writing-mode: vertical-rl; transform: rotate(180deg); 
+            font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; 
+        }
 
-        .id-button {
-            position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px;
-            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px);
-            border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000;
-            cursor: pointer; transition: transform 0.4s ease-in-out;
+        /* --- SOCIALBAR BOTTOM (UNIFIED) --- */
+        .sidebar-right { 
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; 
+            display: flex; flex-direction: row; align-items: center; 
+            z-index: 999; background: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(8px); border-top: 2px solid #000;
+            padding: 0 15px; justify-content: space-around; 
+            box-sizing: border-box;
         }
-        .id-button.hidden { transform: translateX(100%); }
-        .id-panel {
-            position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px;
-            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px);
-            border: 2px solid #000; border-right: none; border-radius: 8px 0 0 8px;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1299; transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+        @media (min-width: 801px) {
+            .sidebar-right { padding: 0 10%; } /* Tablet breitere Verteilung */
         }
-        .id-panel.open { right: 0; }
-        .id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; font-weight: bold; font-size: 0.85rem; }
 
         .sidebar-right a { display: flex; align-items: center; justify-content: center; text-decoration: none; }
         .sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
@@ -177,6 +134,26 @@
         .sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
         .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
+
+        /* --- I/D SYSTEM --- */
+        .id-button {
+            position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px);
+            border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000;
+            cursor: pointer; transition: transform 0.4s ease-in-out;
+        }
+        .id-button.hidden { transform: translateX(100%); }
+        .id-panel {
+            position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px;
+            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px);
+            border: 2px solid #000; border-right: none; border-radius: 8px 0 0 8px;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1299; transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .id-panel.open { right: 0; }
+        .id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; font-weight: bold; font-size: 0.85rem; }
     </style>
 </head>
 <body>
@@ -191,10 +168,10 @@
     </div>
 
     <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span><span class="desktop-label">START</span></a></div>
-        <div class="nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span><span class="desktop-label">MUSIK</span></a></div>
-        <div class="nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span><span class="desktop-label">SHOP</span></a></div>
-        <div class="nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span><span class="desktop-label">KONTAKT</span></a></div>
+        <div class="nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
+        <div class="nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
+        <div class="nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
+        <div class="nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></a></div>
         <div class="epk-container"><a href="epk.html" class="epk-text-only">EPK/PRESSE</a></div>
     </nav>
 
@@ -244,21 +221,32 @@
             if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !idPanel.contains(e.target) && !idBtn.contains(e.target)) closeAllMenus();
         });
 
-        // SWIPE & TOUCH LOGIC (1:1 ORIGINAL FÜR MOBILE)
+        // SWIPE LOGIC (IDENTICAL TO MOBILE)
         let touchStartX = 0, touchStartY = 0, currentTranslateX = 0;
+        const screenWidth = window.innerWidth;
+
         document.addEventListener('touchstart', e => { 
             touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; 
         }, {passive: true});
 
         document.addEventListener('touchmove', e => {
-            if (window.innerWidth <= 800) {
-                const moveX = e.touches[0].clientX, moveY = e.touches[0].clientY;
+            if (window.innerWidth <= 800) { // Swipe nur auf mobilem Hintergrund
+                const moveX = e.touches[0].clientX;
                 const diffX = moveX - touchStartX;
-                if (Math.abs(diffX) > 10) bg.style.transform = `translateX(${currentTranslateX + diffX}px)`;
+                let newX = currentTranslateX + diffX;
+                if (newX > screenWidth) newX = screenWidth; 
+                if (newX < -screenWidth) newX = -screenWidth;
+                bg.style.transform = `translateX(${newX}px)`;
             }
         }, {passive: true});
 
         document.addEventListener('touchend', e => {
+            const endY = e.changedTouches[0].clientY;
+            const diffY = endY - touchStartY;
+            if (diffY > 60 && touchStartY < 250) { 
+                closeAllMenus(); sidebar.classList.add('open'); menuBtn.classList.add('active');
+                menuTimeout = setTimeout(closeAllMenus, 5000);
+            }
             if (window.innerWidth <= 800) {
                 const matrix = new WebKitCSSMatrix(window.getComputedStyle(bg).transform);
                 currentTranslateX = matrix.m41;
