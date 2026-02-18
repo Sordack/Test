@@ -3,6 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ANTON | MASTER</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
+    <style>
+        :root { 
+            --anton-red: #ff0000; 
+            --anton-yellow: #ffeb3b; 
+            --apple-gray: #A2AAAD;
+            --amazon-blue: #00A8E1;
+            --sidebar-width: 240px;
+        }
+
+        html, body { 
+            height: 100%; margin: 0; padding: 0; 
+            background-color: #ffffff; 
+            font-family: 'Special Elite', cursive; 
+            overflow-x: hidden;
+        }
+
+        /* --- DESKTOP SETUP (AB 801PX) --- */
+        @media (min-width: 801px) {
+            body { 
+                display: flex; flex-direction: column;
+                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
+                background-size: cover; background-blend-mode: multiply;
+                overflow-y: auto;
+            }
+            #mobile-bg-fix, .header-logo, .mobile-only { display: none !important; }
+
+            header { 
+                position: fixed; top: 0; width: 100%; height: 80px; 
+                display: flex; justify-content: center; align-items: center; 
+                z-index: 100; background: rgba(255, 255, 255, 0.8); 
+                backdrop-filter: blur(10px); border-bottom: 2px solid #000;
+            }
+            .header-title { color: var(--anton-red); font-size: 1.8rem; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; }
+
+            .menu-btn { 
+                position: fixed; top: 18px; left: 20px; z-index: 210; background: #000; 
+                color: #fff; width: 45px; height: 45px; display: flex; align-items: center; 
+                justify-content: center; border-radius: 5px; border: 2px solid #000; cursor: pointer;
+            }
+            .menu-btn::after { content: '☰'; font-size: 24px; }
+            .menu-btn:hover { background: var(--anton-yellow); color: #000; }
+            .menu-btn:hover::after { content: 'A'; font-weight: bold; }
+
+            .sidebar-left { 
+                position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); 
+                background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; 
+                flex-direction: column; padding: 100px 15px 30px 15px; 
+                transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; 
+            }
+            .sidebar-left.open { left: 0; }
+            .nav-item { margin-bottom: 20px; width: 100%; }
+            .nav-item a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
+            .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
+            
+            .submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; }
+            .nav-item:hover .submenu { display: flex; }
+            .submenu a { font-size: 0.85rem; margin-bottom: 12px; }
+            .submenu a i { margin-right: 10px; width: 18px; text-align: center; }
+
+            .sidebar-right { 
+                position: fixed; top: 50%; right: 0; transform: translateY(-50%); 
+                width: 50px; display: flex; flex-direction: column; align-items: center; 
+                gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); 
+                backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; 
+            }
+            .sidebar-right a i { color: #000; font-size: 1.2rem; animation: flowDesktop 6s linear infinite; }
+            
+            .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
+            .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
+            .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
+            .box-pause { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
+            .box-pause2 { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
+            .box-pause3 { width: 5%; height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
+            .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
+
+            footer { 
+                position: relative; width: 100%; padding: 10px 0; 
+                background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; 
+                text-align: center; font-size: 0.75rem; z-index: 100; margin-top: auto; 
+            }
+        }
+
+        /* --- MOBILE SETUP (MAX 800PX) --- */
+        @media (max-width: 800px) {
+            body { background: #000 !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
+            .header-title, .desktop-only, .invisible-box, footer { display: none !important; }
+            
+            #mobile-bg-fix { 
+                display: block; position: fixed; top: 0; left: -100%; width: 300%; height: 100%; 
+                background: url('Background.jpg') no-repeat center center; background-size: cover; 
+                z-index: -1; will-change: transform;
+            }
+
+            header { 
+                position: fixed; top: 0; width: 100%; height: 80px; 
+                display: flex; justify-content: center; align-items: center; 
+                z-index: 1000; background: rgba(255, 255, 255, 0.8); 
+                backdrop-filter: blur(10px); border-bottom: 2px solid #000;
+                transition: transform 0.6s ease-in-out;
+            }
+
+            .header-logo { 
+                position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; 
+                filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
+            }
+
+            .menu-btn { 
+                position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; 
+                width: 45px; height: 45px; border-radius: 5px; display: flex; 
+                flex-direction: column; align-items: center; justify-content: center; gap: 5px; 
+                cursor: pointer; border: 2px solid #000;
+            }
+            .menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
+            .menu-btn.active span { display: none; }
+            .menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
+
+            .sidebar-left { 
+                position: fixed; left: 0; top: -120px; width: 100%; height: 95px; 
+                background: var(--anton-yellow); z-index: 1100; display: flex; 
+                flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; 
+                border-bottom: 3px solid #000; justify-content: space-between; align-items: center; 
+                transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .sidebar-left.open { top: 0 !important; }
+
+            .sidebar-right { 
+                position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; 
+                display: flex; flex-direction: row; align-items: center; z-index: 999; 
+                background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); 
+                border-top: 2px solid #000; justify-content: space-evenly; 
+            }
+            .sidebar-right a i { color: #000; font-size: 1.5rem; animation: flowMobile 6s linear infinite; }
+        }
+
+        /* --- ALLGEMEINE ELEMENTE --- */
+        .id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255, 255, 255, 0.4); border: 2px solid #000; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; cursor: pointer; transition: transform 0.4s; }
+        .id-button.hidden { transform: translateX(100%); }
+        .id-panel { position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px; background: rgba(255, 255, 255, 0.7); border: 2px solid #000; border-radius: 8px 0 0 8px; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s; font-weight: bold; }
+        .id-panel.open { right: 0; }
+        .id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; font-size: 0.85rem; }
+
+        @keyframes flowMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+        @keyframes flowDesktop { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+
+        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
+        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
+        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
+        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
+        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
+        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
+        .sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
+        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
+        .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
+
+        .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
+        .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
+
+        main { flex: 1; padding: 120px 20px 40px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+    <div id="mobile-bg-fix"></div>
+
+    <header id="header-main">
+        <div class="header-title">ANTON</div>
+        <img src="Antonlogo.png" alt="ANTON Logo" class="header-logo">
+    </header>
+
+    <div class="menu-btn" id="menu-trigger" onclick="toggleMenu(event)">
+        <span></span><span></span><span></span>
+    </div>
+
+    <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
+    <a href="neuesingle.html" class="invisible-box box-mitte"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause2"></a>
+    <a href="meinemusik.html" class="invisible-box box-pause3"></a>
+    <a href="neuesingle.html" class="invisible-box box-riesenhunger"></a>
+
+    <nav class="sidebar-left" id="sidebar">
+        <div class="mobile-only nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
+        <div class="mobile-only nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
+        <div class="mobile-only nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
+        <div class="mobile-only nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></a></div>
+        <div class="mobile-only epk-container"><a href="epk.html" class="epk-text-only">EPK/PRESSE</a></div>
+        
+        <div class="desktop-only nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
+        <div class="desktop-only nav-item">
+            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><i class="fa-solid fa-caret-down" style="margin-left:auto"></i></a>
+            <div class="submenu">
+                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
+                <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
+                <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
+            </div>
+        </div>
+        <div class="desktop-only nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
+        <div class="desktop-only nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
+        <div class="desktop-only nav-item nav-item-epk" style="margin-top:auto"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a></div>
+    </nav>
+
+    <div class="id-button" id="id-btn" onclick="openIDMenu(event)">I/D</div>
+    <div class="id-panel" id="id-panel"><a href="impressum.html">Impressum</a><span>|</span><a href="datenschutz.html">Datenschutz</a></div>
+
+    <aside class="sidebar-right">
+        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://open.spotify.com/intl-de/artist/348545011" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+    </aside>
+
+    <main></main>
+
+    <footer class="desktop-only">
+        <div><a href="index.html">www.anton-familienpop.de</a></div>
+        <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
+    </footer>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.getElementById('menu-trigger');
+        const idBtn = document.getElementById('id-btn');
+        const idPanel = document.getElementById('id-panel');
+        const bg = document.getElementById('mobile-bg-fix');
+        let menuTimeout, idTimeout;
+
+        function closeAllMenus() {
+            sidebar.classList.remove('open');
+            menuBtn.classList.remove('active');
+            idPanel.classList.remove('open');
+            idBtn.classList.remove('hidden');
+        }
+
+        function toggleMenu(e) {
+            e.stopPropagation();
+            if (sidebar.classList.contains('open')) { closeAllMenus(); } 
+            else { 
+                closeAllMenus(); sidebar.classList.add('open'); menuBtn.classList.add('active'); 
+                if(window.innerWidth <= 800) menuTimeout = setTimeout(closeAllMenus, 5000); 
+            }
+        }
+
+        function openIDMenu(e) {
+            e.stopPropagation(); closeAllMenus();
+            idBtn.classList.add('hidden'); idPanel.classList.add('open');
+            idTimeout = setTimeout(closeAllMenus, 5000);
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !idPanel.contains(e.target)) closeAllMenus();
+        });
+
+        // SWIPE LOGIK (NUR MOBIL)
+        let touchStartX = 0, touchStartY = 0, currentTranslateX = 0;
+        document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; }, {passive: true});
+        document.addEventListener('touchmove', e => {
+            if(window.innerWidth > 800) return;
+            const diffX = e.touches[0].clientX - touchStartX;
+            const diffY = e.touches[0].clientY - touchStartY;
+            if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) closeAllMenus();
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                let newX = currentTranslateX + diffX;
+                const limit = window.innerWidth;
+                if (newX > limit) newX = limit; if (newX < -limit) newX = -limit;
+                bg.style.transform = `translateX(${newX}px)`;
+            }
+        }, {passive: true});
+        document.addEventListener('touchend', e => {
+            if(window.innerWidth > 800) return;
+            const diffX = e.changedTouches[0].clientX - touchStartX;
+            const diffY = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(diffY) > Math.abs(diffX) && diffY > 60 && touchStartY < 250) { 
+                closeAllMenus(); sidebar.classList.add('open'); menuBtn.classList.add('active');
+            } else {
+                const style = window.getComputedStyle(bg);
+                const matrix = new WebKitCSSMatrix(style.transform);
+                currentTranslateX = matrix.m41;
+            }
+        }, {passive: true});
+
+        if(window.innerWidth <= 800) { setTimeout(() => { document.getElementById('header-main').style.transform = 'translateY(-100%)'; }, 3000); }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ANTON | STRIKTE TRENNUNG</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
