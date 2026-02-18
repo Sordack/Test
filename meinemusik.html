@@ -111,14 +111,6 @@
             .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
             .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-            .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
-            .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
-            .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
-            .box-pause { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
-            .box-pause2 { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
-            .box-pause3 { width: 5%; height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
-            .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
-
             main { 
                 flex: 1; 
                 padding: 240px 20px 120px 20px; 
@@ -137,7 +129,7 @@
                 gap: 30px;
             }
             .bento-box {
-                background: rgba(255, 255, 255, 0.7); 
+                background: rgba(255, 255, 255, 0.45); /* Transparenz um 35% erhöht */
                 border: 2.5px solid #000;
                 border-radius: 20px;
                 padding: 20px;
@@ -150,15 +142,19 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                transition: all 0.3s ease;
-                backdrop-filter: blur(8px);
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                backdrop-filter: blur(12px); /* Blur leicht erhöht für besseren Kontrast bei hoher Transparenz */
+                cursor: pointer;
+                box-sizing: border-box;
             }
             .bento-box:hover {
-                background: rgba(255, 235, 59, 0.9);
-                transform: scale(1.05) translateY(-5px);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                background: rgba(255, 235, 59, 0.75); /* Gelb auch leicht transparent beim Hover */
+                transform: scale(1.08) translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+                border-color: var(--anton-red);
             }
-            .bento-box i { font-size: 2.5rem; margin-bottom: 15px; color: var(--anton-red); }
+            .bento-box i { font-size: 2.5rem; margin-bottom: 15px; color: var(--anton-red); transition: transform 0.4s ease; }
+            .bento-box:hover i { transform: scale(1.15) rotate(5deg); }
             .bento-box span { font-size: 0.85rem; font-weight: bold; text-transform: uppercase; line-height: 1.2; }
 
             .d-footer { 
@@ -221,7 +217,7 @@
                 gap: 20px;
             }
             .bento-box {
-                background: rgba(255, 255, 255, 0.8);
+                background: rgba(255, 255, 255, 0.5); /* Mobile ebenfalls transparenter */
                 border: 2px solid #000;
                 border-radius: 20px;
                 padding: 18px;
@@ -233,7 +229,10 @@
                 flex-direction: column;
                 align-items: center;
                 box-shadow: 5px 5px 0px #000;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(8px);
             }
+            .bento-box:active { background: var(--anton-yellow); transform: scale(0.98); }
             .bento-box i { font-size: 2rem; margin-bottom: 10px; color: var(--anton-red); }
             .bento-box span { font-size: 0.85rem; font-weight: bold; text-transform: uppercase; }
 
@@ -270,13 +269,6 @@
         </header>
         <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
         
-        <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
-        <a href="neuesingle.html" class="invisible-box box-mitte"></a>
-        <a href="meinemusik.html" class="invisible-box box-pause"></a>
-        <a href="meinemusik.html" class="invisible-box box-pause2"></a>
-        <a href="meinemusik.html" class="invisible-box box-pause3"></a>
-        <a href="neuesingle.html" class="invisible-box box-riesenhunger"></a>
-
         <nav class="d-sidebar-left" id="d-sidebar">
             <div class="d-nav-item"><a href="hauptseite.html"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
             <div class="d-nav-item">
