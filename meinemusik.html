@@ -129,7 +129,7 @@
                 gap: 30px;
             }
             .bento-box {
-                background: rgba(255, 255, 255, 0.45); /* Transparenz um 35% erhöht */
+                background: rgba(255, 255, 255, 0.3); /* Transparenz erneut um 15% erhöht (0.45 -> 0.30) */
                 border: 2.5px solid #000;
                 border-radius: 20px;
                 padding: 20px;
@@ -143,12 +143,12 @@
                 justify-content: center;
                 align-items: center;
                 transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                backdrop-filter: blur(12px); /* Blur leicht erhöht für besseren Kontrast bei hoher Transparenz */
+                backdrop-filter: blur(15px); /* Blur leicht verstärkt für Lesbarkeit */
                 cursor: pointer;
                 box-sizing: border-box;
             }
             .bento-box:hover {
-                background: rgba(255, 235, 59, 0.75); /* Gelb auch leicht transparent beim Hover */
+                background: rgba(255, 235, 59, 0.6); 
                 transform: scale(1.08) translateY(-8px);
                 box-shadow: 0 20px 40px rgba(0,0,0,0.2);
                 border-color: var(--anton-red);
@@ -217,7 +217,7 @@
                 gap: 20px;
             }
             .bento-box {
-                background: rgba(255, 255, 255, 0.5); /* Mobile ebenfalls transparenter */
+                background: rgba(255, 255, 255, 0.35); /* Auch mobil deutlich transparenter */
                 border: 2px solid #000;
                 border-radius: 20px;
                 padding: 18px;
@@ -230,7 +230,7 @@
                 align-items: center;
                 box-shadow: 5px 5px 0px #000;
                 transition: all 0.3s ease;
-                backdrop-filter: blur(8px);
+                backdrop-filter: blur(10px);
             }
             .bento-box:active { background: var(--anton-yellow); transform: scale(0.98); }
             .bento-box i { font-size: 2rem; margin-bottom: 10px; color: var(--anton-red); }
