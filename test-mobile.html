@@ -46,12 +46,13 @@
                 z-index: 100; background: rgba(255, 255, 255, 0.8); 
                 backdrop-filter: blur(10px); border-bottom: 2px solid #000; 
             }
-               .d-header-logo {
-                max-height: 285px; 
+            
+            .d-header-logo {
+                max-height: 90px; 
                 width: auto;
                 object-fit: contain;
                 filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
-                transform: translateY(82px); 
+                transform: translateY(24px); 
             }
             
             .d-menu-btn { 
@@ -138,7 +139,7 @@
             body { 
                 height: 100vh; width: 100vw; overflow: hidden !important; 
                 position: fixed; display: flex; flex-direction: column; touch-action: pan-y;
-                overscroll-behavior-x: none; /* Lösung gegen weiße Ränder */
+                overscroll-behavior-x: none; 
             }
             #m-bg-fix { 
                 display: block; position: fixed; top: 0; left: -100%; 
@@ -153,14 +154,21 @@
                 transition: transform 0.6s ease-in-out; 
             }
             .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            
+            /* Burger Button Fix: Sicherstellen, dass 3 Striche untereinander stehen */
             .m-menu-btn { 
                 position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; 
                 width: 45px; height: 45px; border-radius: 5px; display: flex; 
                 flex-direction: column; align-items: center; justify-content: center; 
-                gap: 4px; cursor: pointer; border: 2px solid #000;            .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
+                gap: 4px; cursor: pointer; border: 2px solid #000; 
+            }
+            .m-menu-btn span { 
+                display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; 
+            }
             .m-menu-btn.active { background: var(--anton-yellow); }
             .m-menu-btn.active span { display: none; }
             .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
+
             .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
             .m-sidebar.open { top: 0 !important; }
             .m-nav-item { flex: 1; text-align: center; }
@@ -241,7 +249,13 @@
     <div id="mobile-wrapper">
         <div id="m-bg-fix"></div>
         <header class="m-header" id="m-header-main"><img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo"></header>
-        <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)"><span></span><span></span><span></span></div>
+        
+        <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
         <nav class="m-sidebar" id="m-sidebar">
             <div class="m-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
             <div class="m-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
@@ -333,7 +347,6 @@
             mIdTimeout = setTimeout(mCloseAllMenus, 5000);
         }
 
-        /* MOBILE TOUCH & SWIPE MIT HARD-LIMIT GEGEN WEISSE RÄNDER */
         let touchStartX = 0, touchStartY = 0, currentTranslateX = 0;
 
         document.addEventListener('touchstart', e => { 
@@ -344,19 +357,14 @@
             if(window.innerWidth <= 800) {
                 const moveX = e.touches[0].clientX, moveY = e.touches[0].clientY;
                 const diffX = moveX - touchStartX, diffY = moveY - touchStartY;
-
                 if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) { 
                     if (!mSidebar.contains(e.target)) mCloseAllMenus(); 
                 }
-
                 if (Math.abs(diffX) > Math.abs(diffY)) {
                     let newX = currentTranslateX + diffX;
-                    
-                    // Begrenzung berechnen: Das 300% Bild darf nicht über die Screen-Breite hinaus
                     const limit = window.innerWidth; 
                     if (newX > limit) newX = limit;
                     if (newX < -limit) newX = -limit;
-
                     if(mBg) mBg.style.transform = `translateX(${newX}px)`;
                 }
             }
