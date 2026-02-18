@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER HYBRID SEPARATION</title>
+    <title>ANTON | MASTER 1:1 RECOVERY</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -24,7 +24,7 @@
 
         body { display: flex; flex-direction: column; width: 100vw; min-height: 100.5vh; background: #ffffff; }
 
-        /* --- LOGO & HEADER GLOBAL --- */
+        /* --- HEADER & LOGO --- */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
@@ -50,52 +50,43 @@
         .menu-btn.active span { display: none; }
         .menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
 
-        /* --- SIDEBAR & SOCIALBAR BASIS --- */
-        .sidebar-left { position: fixed; left: 0; width: 100%; background: var(--anton-yellow); z-index: 1100; border-bottom: 3px solid #000; transition: top 0.5s ease; display: flex; align-items: center; }
-        .sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; display: flex; align-items: center; }
+        /* --- ELEMENT BASIS --- */
+        .sidebar-left { position: fixed; left: 0; width: 100%; background: var(--anton-yellow); z-index: 1100; border-bottom: 3px solid #000; transition: top 0.5s ease; display: flex; align-items: center; box-sizing: border-box; }
+        .sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; display: flex; align-items: center; box-sizing: border-box; }
         
         .nav-item { flex: 1; text-align: center; }
         .nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
         .sidebar-right a { flex: 1; display: flex; justify-content: center; text-decoration: none; }
-        .sidebar-right a i { color: #000; font-size: 1.4rem; animation: ultraFlowWaveMobile 6s linear infinite; }
+        .sidebar-right a i { color: #000; font-size: 1.5rem; animation: ultraFlowWaveMobile 6s linear infinite; }
 
         .epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
-        .epk-text-only { writing-mode: vertical-rl; transform: rotate(180deg); color: var(--anton-red); font-weight: bold; text-decoration: none; }
+        .epk-text-only { writing-mode: vertical-rl; transform: rotate(180deg); color: var(--anton-red); font-weight: bold; text-decoration: none; font-size: 0.7rem; }
 
-        /* =============================================
-           VERSION 1: MOBILE (BIS 800PX) 
-           ============================================= */
+        /* --- MOBILE STANDARDS (1:1) --- */
         @media (max-width: 800px) {
             body { background: #000 !important; overflow: hidden !important; position: fixed; height: 100%; }
             #mobile-bg-fix { display: block; position: fixed; top: 0; left: -100%; width: 300%; height: 100%; background: url('Background.jpg') no-repeat center center; background-size: cover; z-index: -1; }
             
-            .sidebar-left { height: 95px; top: -130px; padding: 0 55px 0 75px; justify-content: space-between; }
-            .sidebar-right { height: 65px; padding: 0 15px; justify-content: space-around; }
-            .menu-btn { top: 25px; } /* Zentriert in 95px ( (95-45)/2 = 25 ) */
+            .sidebar-left { height: 95px; top: -120px; padding: 0 55px 0 75px; justify-content: space-between; }
+            .sidebar-right { height: 65px; padding: 0 10px; justify-content: space-around; }
+            .menu-btn { top: 25px; } /* Zentriert in 95px */
             
             .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
-            .epk-text-only { font-size: 0.7rem; }
         }
 
-        /* =============================================
-           VERSION 2: TABLET (AB 801PX) 
-           ============================================= */
+        /* --- TABLET ADAPTATION (ISOLIERT) --- */
         @media (min-width: 801px) {
             body { background: #ffffff url('Background.jpg') no-repeat center center fixed; background-size: cover; }
-            #mobile-bg-fix { display: none; }
-
-            .sidebar-left { height: 75px; top: -110px; padding: 0 10% 0 12%; justify-content: space-between; }
-            .sidebar-right { height: 55px; padding: 0 5%; justify-content: space-between; }
-            .menu-btn { top: 15px; } /* Zentriert in 75px ( (75-45)/2 = 15 ) */
-
+            .sidebar-left { height: 75px; top: -110px; padding: 0 15%; justify-content: space-between; }
+            .sidebar-right { height: 55px; padding: 0 10%; justify-content: space-between; }
+            .menu-btn { top: 15px; } /* Zentriert in 75px */
             .mobile-tag { font-size: 0.5rem; text-transform: uppercase; font-weight: bold; margin-top: 2px; }
-            .epk-text-only { font-size: 0.65rem; }
         }
 
         .sidebar-left.open { top: 0 !important; }
 
-        /* --- ANIMATION & I/D --- */
-        @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.3); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+        /* --- ANIMATION & ID --- */
+        @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.2s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.4s; }
@@ -106,9 +97,9 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.4s; }
         .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 1.6s; }
 
-        .id-button { position: fixed; right: 0; bottom: 120px; width: 38px; height: 38px; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: transform 0.4s; }
+        .id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: transform 0.4s; }
         .id-button.hidden { transform: translateX(100%); }
-        .id-panel { position: fixed; right: -250px; bottom: 120px; height: 45px; width: 230px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; border-radius: 8px 0 0 8px; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s; }
+        .id-panel { position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; border-radius: 8px 0 0 8px; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s; }
         .id-panel.open { right: 0; }
         .id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; font-weight: bold; font-size: 0.85rem; }
     </style>
@@ -178,7 +169,6 @@
             if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !idPanel.contains(e.target) && !idBtn.contains(e.target)) closeAllMenus();
         });
 
-        // SWIPE LOGIC
         let touchStartX = 0, touchStartY = 0;
         document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; }, {passive: true});
         document.addEventListener('touchmove', e => {
