@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER</title>
+    <title>ANTON | MASTER SPLIT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
         /* ==========================================================================
-           1. BASIS-STYLES
+           1. BASIS & GEMEINSAME ELEMENTE
            ========================================================================== */
         :root { 
             --anton-red: #ff0000; 
             --anton-yellow: #ffeb3b; 
-            --sidebar-width: 240px; 
             --apple-gray: #A2AAAD;
             --amazon-blue: #00A8E1;
+            --sidebar-width: 240px;
         }
 
-        html, body { height: 100%; margin: 0; padding: 0; background-color: #ffffff; }
-        
-        body { 
-            display: flex; flex-direction: column; 
+        html, body { 
+            height: 100%; margin: 0; padding: 0; 
+            background-color: #ffffff; 
             font-family: 'Special Elite', cursive; 
             overflow-x: hidden; 
         }
-        
+
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
@@ -33,42 +32,43 @@
             backdrop-filter: blur(10px); border-bottom: 2px solid #000;
             transition: transform 0.6s ease-in-out;
         }
-
+        
         .header-logo { 
             position: absolute; top: 120%; transform: translateY(-50%);
             max-height: 185px; width: auto; 
             filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
         }
-        
-        .menu-btn { 
-            position: fixed; top: 18px; left: 20px; z-index: 1500; 
-            background: #000; width: 45px; height: 45px; border-radius: 5px; 
-            display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; border: 2px solid #000; transition: all 0.3s ease;
-        }
-        .menu-btn span { color: #fff; font-size: 24px; }
-        .menu-btn:hover { background: var(--anton-yellow); }
-        .menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; color: #000; transition: opacity 0.2s; }
-        .menu-btn:hover span { opacity: 0; }
-        .menu-btn:hover::after { opacity: 1; }
 
-        /* Social Icons Animation Basis */
+        /* Menu Button - Mobile Master Style */
+        .menu-btn { 
+            position: fixed; top: 18px; left: 15px; z-index: 1500; 
+            background: #000; width: 45px; height: 45px; border-radius: 5px; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+            cursor: pointer; border: 2px solid #000;
+        }
+        .menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
+        .menu-btn.active { background: var(--anton-yellow); }
+        .menu-btn.active span { display: none; }
+        .menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
+
         @keyframes ultraFlowWave { 
             0% { transform: scale(1); color: #000; } 
-            9.33% { transform: scale(1.55); color: var(--brand-color); } 
+            9.33% { transform: scale(1.4); color: var(--brand-color); } 
             23.33%, 100% { transform: scale(1); color: #000; } 
         }
 
         /* ==========================================================================
-           2. VARIANTE: MOBIL (bis 800px)
+           2. NUR MOBIL & TABLET (bis 800px)
            ========================================================================== */
         @media (max-width: 800px) {
             body { background: #000 !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
+            
             #mobile-bg-fix { 
                 display: block; position: fixed; top: 0; left: -100%; width: 300%; height: 100%; 
                 background: url('Background.jpg') no-repeat center center; background-size: cover; 
-                z-index: -1; 
+                z-index: -1; will-change: transform;
             }
+
             .sidebar-left { 
                 position: fixed; left: 0; top: -120px; width: 100%; height: 95px; 
                 background: var(--anton-yellow); z-index: 1100; 
@@ -78,23 +78,35 @@
                 transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             }
             .sidebar-left.open { top: 0 !important; }
-            .nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
-            .nav-item i { font-size: 1.2rem; }
-            .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
-            .submenu, .epk-container { display: none; } /* Mobil vereinfacht */
             
+            .nav-item { flex: 1; text-align: center; }
+            .nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
+            .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
+            .nav-item i { font-size: 1.2rem; }
+
+            /* EPK Box Mobil */
+            .epk-container { 
+                position: absolute; right: 0; top: 0; height: 100%; width: 45px;
+                background: #fff; border-left: 3px solid #000; 
+                display: flex; align-items: center; justify-content: center;
+            }
+            .epk-text-only { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
+
             .sidebar-right { 
                 position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; 
                 display: flex; flex-direction: row; align-items: center; 
-                z-index: 999; background: rgba(255, 255, 255, 0.85); 
-                border-top: 1.5px solid #000; justify-content: space-evenly; 
+                z-index: 999; background: rgba(255, 255, 255, 0.7); 
+                backdrop-filter: blur(8px); border-top: 2px solid #000;
+                padding: 0 10px; justify-content: space-evenly; 
             }
             .sidebar-right a i { font-size: 1.5rem; animation: ultraFlowWave 6s linear infinite; }
-            footer { display: none; }
+            
+            /* Verstecke Desktop-Elemente auf Mobil */
+            footer, .invisible-box, .submenu, .arrow-wrapper { display: none; }
         }
 
         /* ==========================================================================
-           3. VARIANTE: DESKTOP (ab 801px)
+           3. NUR DESKTOP (ab 801px)
            ========================================================================== */
         @media (min-width: 801px) {
             body { 
@@ -103,7 +115,7 @@
             }
             #mobile-bg-fix { display: none; }
 
-            /* Desktop Sidebar Left */
+            /* Desktop Sidebar (Vertikal von Links) */
             .sidebar-left { 
                 position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); 
                 background: rgba(255, 235, 59, 0.98); z-index: 1100; 
@@ -111,13 +123,12 @@
                 transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; 
             }
             .sidebar-left.open { left: 0 !important; }
+            .nav-item { width: 100%; margin-bottom: 20px; }
+            .nav-item a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
+            .nav-item i { width: 30px; text-align: center; margin-right: 10px; }
+            .mobile-tag { display: none; }
 
-            .nav-item { margin-bottom: 20px; width: 100%; }
-            .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
-            .sidebar-left a:hover { color: var(--anton-red); }
-            .nav-label i { width: 30px; text-align: center; margin-right: 10px; }
-            
-            /* Untermenü Desktop */
+            /* Desktop Untermenü */
             .arrow-wrapper { margin-left: auto; padding-right: 5px; }
             .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
             .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
@@ -125,31 +136,31 @@
             .nav-item:hover .submenu { display: flex; }
             .submenu a { font-size: 0.85rem; margin-bottom: 12px; }
 
-            /* Trennstrich EPK */
-            .nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
-            .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
+            /* Desktop EPK Trenner */
+            .epk-container { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.2); padding-top: 15px; }
+            .epk-text-only { color: var(--anton-red); font-weight: bold; text-decoration: none; font-size: 1.1rem; }
+            .epk-text-only::before { content: "\f0a1"; font-family: "Font Awesome 6 Free"; font-weight: 900; margin-right: 10px; }
 
-            /* Desktop Social Bar Rechts */
+            /* Desktop Social Bar (Rechts) */
             .sidebar-right { 
                 position: fixed; top: 50%; right: 0; transform: translateY(-50%); 
                 width: 50px; display: flex; flex-direction: column; align-items: center; 
                 gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); 
                 backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; 
             }
-            .sidebar-right a i { font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; }
-            .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
-            .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
+            .sidebar-right a i { font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; color: #000; }
+            .sidebar-right:hover a i { animation-play-state: paused; transform: scale(1); color: #000; }
+            .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.5); }
 
-            /* Footer Desktop */
+            /* Desktop Footer */
             footer { 
-                width: 100%; padding: 15px 0; background: rgba(255,255,255,0.9); 
-                border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; 
-                z-index: 100; position: fixed; bottom: 0; 
+                position: fixed; bottom: 0; width: 100%; padding: 15px 0; 
+                background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; 
+                text-align: center; font-size: 0.75rem; z-index: 100; 
             }
             footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; }
-            footer a:hover { color: var(--anton-yellow); text-shadow: 1px 1px 0 #000; }
 
-            /* Klick-Boxen */
+            /* Desktop Klick-Boxen */
             .invisible-box { position: fixed; z-index: 10; background: transparent; cursor: pointer; }
             .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
             .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
@@ -159,7 +170,28 @@
             .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
         }
 
-        /* Animation Delays Icons */
+        /* I/D System (beide) */
+        .id-button {
+            position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px);
+            border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000;
+            cursor: pointer; transition: transform 0.4s ease-in-out;
+        }
+        .id-button.hidden { transform: translateX(100%); }
+        .id-panel {
+            position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px;
+            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px);
+            border: 2px solid #000; border-right: none;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1299; transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem;
+        }
+        .id-panel.open { right: 0; }
+        .id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
+
+        /* Animation Delays */
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
@@ -186,16 +218,16 @@
     </header>
 
     <div class="menu-btn" id="menu-trigger" onclick="toggleMenu(event)">
-        <span>☰</span>
+        <span></span><span></span><span></span>
     </div>
 
     <nav class="sidebar-left" id="sidebar">
         <div class="nav-item">
-            <a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house"></i> START</span></a>
+            <a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span> START</a>
         </div>
         <div class="nav-item">
             <a href="meinemusik.html">
-                <span class="nav-label"><i class="fa-solid fa-music"></i> MUSIK</span>
+                <i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span> MUSIK
                 <div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div>
             </a>
             <div class="submenu">
@@ -205,15 +237,22 @@
             </div>
         </div>
         <div class="nav-item">
-            <a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping"></i> SHOP</span></a>
+            <a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span> SHOP</a>
         </div>
         <div class="nav-item">
-            <a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope"></i> KONTAKT</span></a>
+            <a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span> KONTAKT</a>
         </div>
-        <div class="nav-item nav-item-epk">
-            <a href="epk.html"><span class="nav-label"><i class="fa-solid fa-bullhorn"></i> EPK / PRESSE</span></a>
+        <div class="epk-container">
+            <a href="epk.html" class="epk-text-only">EPK/PRESSE</a>
         </div>
     </nav>
+
+    <div class="id-button" id="id-btn" onclick="openIDMenu(event)">I/D</div>
+    <div class="id-panel" id="id-panel">
+        <a href="impressum.html">Impressum</a>
+        <span>|</span>
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
 
     <aside class="sidebar-right">
         <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
@@ -227,8 +266,6 @@
         <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
-    <main></main>
-
     <footer>
         <div><a href="index.html">www.anton-familienpop.de</a></div>
         <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
@@ -237,11 +274,17 @@
     <script>
         const sidebar = document.getElementById('sidebar');
         const menuBtn = document.getElementById('menu-trigger');
+        const idBtn = document.getElementById('id-btn');
+        const idPanel = document.getElementById('id-panel');
+        const bg = document.getElementById('mobile-bg-fix');
         let menuTimeout;
+        let idTimeout;
 
         function closeAllMenus() {
             sidebar.classList.remove('open');
-            if (menuTimeout) clearTimeout(menuTimeout);
+            menuBtn.classList.remove('active');
+            idPanel.classList.remove('open');
+            idBtn.classList.remove('hidden');
         }
 
         function toggleMenu(e) { 
@@ -249,21 +292,58 @@
             if (sidebar.classList.contains('open')) {
                 closeAllMenus();
             } else {
+                closeAllMenus();
                 sidebar.classList.add('open'); 
+                menuBtn.classList.add('active');
                 menuTimeout = setTimeout(closeAllMenus, 5000);
             }
         }
 
+        function openIDMenu(e) {
+            e.stopPropagation();
+            closeAllMenus();
+            idBtn.classList.add('hidden');
+            idPanel.classList.add('open');
+            idTimeout = setTimeout(closeAllMenus, 5000);
+        }
+
         document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !idPanel.contains(e.target) && !idBtn.contains(e.target)) {
                 closeAllMenus();
             }
         });
 
-        // Logo verschwinden lassen
-        setTimeout(() => { 
-            document.getElementById('header-main').style.transform = 'translateY(-100%)'; 
-        }, 3000);
+        // Swipe & Background Logic
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let currentTranslateX = 0;
+        const screenWidth = window.innerWidth;
+
+        document.addEventListener('touchstart', e => { 
+            touchStartX = e.touches[0].clientX; 
+            touchStartY = e.touches[0].clientY; 
+        }, {passive: true});
+
+        document.addEventListener('touchmove', e => {
+            if (window.innerWidth <= 800) {
+                const diffX = e.touches[0].clientX - touchStartX;
+                const diffY = e.touches[0].clientY - touchStartY;
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    let newX = currentTranslateX + diffX;
+                    bg.style.transform = `translateX(${newX}px)`;
+                }
+            }
+        }, {passive: true});
+
+        document.addEventListener('touchend', e => {
+            if (window.innerWidth <= 800) {
+                const style = window.getComputedStyle(bg);
+                const matrix = new WebKitCSSMatrix(style.transform);
+                currentTranslateX = matrix.m41;
+            }
+        }, {passive: true});
+
+        setTimeout(() => { document.getElementById('header-main').style.transform = 'translateY(-100%)'; }, 3000);
     </script>
 </body>
 </html>
