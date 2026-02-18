@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER SLIM EDITION</title>
+    <title>ANTON | MASTER HYBRID SEPARATION</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -22,29 +22,9 @@
             overflow-y: auto; 
         }
 
-        body { 
-            display: flex; flex-direction: column; width: 100vw;
-            min-height: 100.5vh; touch-action: pan-y; background: #ffffff;
-        }
+        body { display: flex; flex-direction: column; width: 100vw; min-height: 100.5vh; background: #ffffff; }
 
-        /* --- BACKGROUND LOGIC --- */
-        #mobile-bg-fix { display: none; }
-        @media (max-width: 800px) {
-            body { background: #000 !important; overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
-            #mobile-bg-fix { 
-                display: block; position: fixed; top: 0; left: -100%; width: 300%; height: 100%; 
-                background: url('Background.jpg') no-repeat center center; 
-                background-size: cover; z-index: -1; will-change: transform;
-            }
-        }
-        @media (min-width: 801px) {
-            body {
-                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
-                background-size: cover;
-            }
-        }
-
-        /* --- HEADER & LOGO --- */
+        /* --- LOGO & HEADER GLOBAL --- */
         header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
@@ -58,9 +38,9 @@
             filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
         }
 
-        /* --- MENU BUTTON (ZENTRIERT IN 75PX LEISTE) --- */
+        /* --- MENU BUTTON BASIS --- */
         .menu-btn { 
-            position: fixed; top: 15px; left: 15px; z-index: 1500; 
+            position: fixed; left: 15px; z-index: 1500; 
             background: #000; width: 45px; height: 45px; border-radius: 5px; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
             cursor: pointer; border: 2px solid #000;
@@ -70,54 +50,52 @@
         .menu-btn.active span { display: none; }
         .menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
 
-        /* --- SIDEBAR TOP (SCHMALER: 75PX) --- */
-        .sidebar-left { 
-            position: fixed; left: 0; top: -110px; width: 100%; height: 75px; 
-            background: var(--anton-yellow); z-index: 1100; 
-            display: flex; flex-direction: row; align-items: center;
-            box-sizing: border-box; border-bottom: 3px solid #000; 
-            transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            /* BREITE VERTEILUNG ICON-SET */
-            padding: 0 65px 0 85px; 
-            justify-content: space-between;
-        }
-        .sidebar-left.open { top: 0 !important; }
-
+        /* --- SIDEBAR & SOCIALBAR BASIS --- */
+        .sidebar-left { position: fixed; left: 0; width: 100%; background: var(--anton-yellow); z-index: 1100; border-bottom: 3px solid #000; transition: top 0.5s ease; display: flex; align-items: center; }
+        .sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; display: flex; align-items: center; }
+        
         .nav-item { flex: 1; text-align: center; }
         .nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
-        .nav-item i { font-size: 1.3rem; }
-        .mobile-tag { font-size: 0.5rem; text-transform: uppercase; font-weight: bold; margin-top: 2px; }
-        
-        /* EPK RECHTS FIXIERT */
-        .epk-container { 
-            position: absolute; right: 0; top: 0; height: 100%; width: 40px;
-            background: #fff; border-left: 3px solid #000; 
-            display: flex; align-items: center; justify-content: center;
-        }
-        .epk-text-only { 
-            writing-mode: vertical-rl; transform: rotate(180deg); 
-            font-size: 0.65rem; color: var(--anton-red); font-weight: bold; text-decoration: none; 
+        .sidebar-right a { flex: 1; display: flex; justify-content: center; text-decoration: none; }
+        .sidebar-right a i { color: #000; font-size: 1.4rem; animation: ultraFlowWaveMobile 6s linear infinite; }
+
+        .epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
+        .epk-text-only { writing-mode: vertical-rl; transform: rotate(180deg); color: var(--anton-red); font-weight: bold; text-decoration: none; }
+
+        /* =============================================
+           VERSION 1: MOBILE (BIS 800PX) 
+           ============================================= */
+        @media (max-width: 800px) {
+            body { background: #000 !important; overflow: hidden !important; position: fixed; height: 100%; }
+            #mobile-bg-fix { display: block; position: fixed; top: 0; left: -100%; width: 300%; height: 100%; background: url('Background.jpg') no-repeat center center; background-size: cover; z-index: -1; }
+            
+            .sidebar-left { height: 95px; top: -130px; padding: 0 55px 0 75px; justify-content: space-between; }
+            .sidebar-right { height: 65px; padding: 0 15px; justify-content: space-around; }
+            .menu-btn { top: 25px; } /* Zentriert in 95px ( (95-45)/2 = 25 ) */
+            
+            .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
+            .epk-text-only { font-size: 0.7rem; }
         }
 
-        /* --- SOCIALBAR BOTTOM (SCHMALER: 55PX & VOLLE BREITE) --- */
-        .sidebar-right { 
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 55px; 
-            display: flex; flex-direction: row; align-items: center; 
-            z-index: 999; background: rgba(255, 255, 255, 0.7); 
-            backdrop-filter: blur(8px); border-top: 2px solid #000;
-            padding: 0 20px; justify-content: space-between; 
-            box-sizing: border-box;
+        /* =============================================
+           VERSION 2: TABLET (AB 801PX) 
+           ============================================= */
+        @media (min-width: 801px) {
+            body { background: #ffffff url('Background.jpg') no-repeat center center fixed; background-size: cover; }
+            #mobile-bg-fix { display: none; }
+
+            .sidebar-left { height: 75px; top: -110px; padding: 0 10% 0 12%; justify-content: space-between; }
+            .sidebar-right { height: 55px; padding: 0 5%; justify-content: space-between; }
+            .menu-btn { top: 15px; } /* Zentriert in 75px ( (75-45)/2 = 15 ) */
+
+            .mobile-tag { font-size: 0.5rem; text-transform: uppercase; font-weight: bold; margin-top: 2px; }
+            .epk-text-only { font-size: 0.65rem; }
         }
 
-        .sidebar-right a { display: flex; align-items: center; justify-content: center; text-decoration: none; flex: 1; }
-        .sidebar-right a i { color: #000; font-size: 1.4rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
-        
-        @keyframes ultraFlowWaveMobile { 
-            0% { transform: scale(1); color: #000; } 
-            9.33% { transform: scale(1.3); color: var(--brand-color); } 
-            23.33%, 100% { transform: scale(1); color: #000; } 
-        }
-        /* Delays für flüssige Welle */
+        .sidebar-left.open { top: 0 !important; }
+
+        /* --- ANIMATION & I/D --- */
+        @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.3); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
         .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0s; }
         .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.2s; }
         .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.4s; }
@@ -128,23 +106,9 @@
         .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.4s; }
         .sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 1.6s; }
 
-        /* --- I/D SYSTEM --- */
-        .id-button {
-            position: fixed; right: 0; bottom: 120px; width: 38px; height: 38px;
-            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px);
-            border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000;
-            cursor: pointer; transition: transform 0.4s ease-in-out;
-        }
+        .id-button { position: fixed; right: 0; bottom: 120px; width: 38px; height: 38px; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: transform 0.4s; }
         .id-button.hidden { transform: translateX(100%); }
-        .id-panel {
-            position: fixed; right: -250px; bottom: 120px; height: 45px; width: 230px;
-            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px);
-            border: 2px solid #000; border-right: none; border-radius: 8px 0 0 8px;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1299; transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .id-panel { position: fixed; right: -250px; bottom: 120px; height: 45px; width: 230px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; border-radius: 8px 0 0 8px; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s; }
         .id-panel.open { right: 0; }
         .id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; font-weight: bold; font-size: 0.85rem; }
     </style>
@@ -189,7 +153,7 @@
         const idBtn = document.getElementById('id-btn');
         const idPanel = document.getElementById('id-panel');
         const bg = document.getElementById('mobile-bg-fix');
-        let menuTimeout, idTimeout;
+        let menuTimeout, idTimeout, currentTranslateX = 0;
 
         function closeAllMenus() {
             sidebar.classList.remove('open');
@@ -214,25 +178,18 @@
             if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && !idPanel.contains(e.target) && !idBtn.contains(e.target)) closeAllMenus();
         });
 
-        // SWIPE & TOUCH LOGIC
-        let touchStartX = 0, touchStartY = 0, currentTranslateX = 0;
-        document.addEventListener('touchstart', e => { 
-            touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; 
-        }, {passive: true});
-
+        // SWIPE LOGIC
+        let touchStartX = 0, touchStartY = 0;
+        document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; }, {passive: true});
         document.addEventListener('touchmove', e => {
             if (window.innerWidth <= 800) {
                 const moveX = e.touches[0].clientX;
-                const diffX = moveX - touchStartX;
-                bg.style.transform = `translateX(${currentTranslateX + diffX}px)`;
+                bg.style.transform = `translateX(${currentTranslateX + (moveX - touchStartX)}px)`;
             }
         }, {passive: true});
-
         document.addEventListener('touchend', e => {
             const endY = e.changedTouches[0].clientY;
-            if (endY - touchStartY > 60 && touchStartY < 200) { 
-                closeAllMenus(); sidebar.classList.add('open'); menuBtn.classList.add('active');
-            }
+            if (endY - touchStartY > 60 && touchStartY < 200) { closeAllMenus(); sidebar.classList.add('open'); menuBtn.classList.add('active'); }
             if (window.innerWidth <= 800) {
                 const matrix = new WebKitCSSMatrix(window.getComputedStyle(bg).transform);
                 currentTranslateX = matrix.m41;
