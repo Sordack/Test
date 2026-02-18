@@ -2,199 +2,239 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ANTON | VERÖFFENTLICHUNGEN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
-        :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 240px; }
-        html, body { height: 100%; margin: 0; padding: 0; }
-
-        body { 
-            display: flex; 
-            flex-direction: column; 
-            font-family: 'Special Elite', cursive; 
-            background: #fff url('AFaPo Wall.jpg') fixed center/cover no-repeat; 
-            background-blend-mode: multiply; 
-            overflow-x: hidden; 
+        :root { 
+            --anton-red: #ff0000; 
+            --anton-yellow: #ffeb3b; 
+            --sidebar-width: 240px; 
+            --apple-gray: #A2AAAD;
+            --amazon-blue: #00A8E1;
         }
 
-        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
-
-        /* MENU BUTTON (MASTER) */
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
-        .menu-btn:hover { background: var(--anton-yellow); color: #000; }
-        .menu-btn span { transition: opacity 0.2s; }
-        .menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
-        .menu-btn:hover span { opacity: 0; }
-        .menu-btn:hover::after { opacity: 1; }
-
-        /* SIDEBAR LINKS (MASTER) */
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
-        .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
-
-        .nav-label { display: flex; align-items: center; width: 100%; }
-        .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
-        .arrow-wrapper { margin-left: auto; padding-right: 5px; }
-        .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
-        .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
-        .submenu { display: none; flex-direction: column; padding-left: 40px; margin-top: 10px; }
-        .nav-item:hover .submenu { display: flex; }
-        .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
-
-        .nav-item-bottom-group { margin-top: auto; }
-        .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
-
-        /* SIDEBAR RECHTS (MASTER) */
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
-        @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
-        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
-        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
-        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
-        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 1.5s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
-        .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
-        .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
-
-        /* BENTO-CONTENT STYLES */
-        .master-bento-container {
-            max-width: 990px;
-            margin: 40px auto;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border: 2px solid #000;
-            border-radius: 20px;
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+        html, body { 
+            margin: 0; padding: 0; background-color: #ffffff; 
+            font-family: 'Special Elite', cursive; height: 100%; width: 100%;
         }
 
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(216px, 1fr));
-            gap: 20px;
+        /* ================================================================= */
+        /* 1. DESKTOP STYLES                                                 */
+        /* ================================================================= */
+        @media (min-width: 801px) {
+            #mobile-wrapper { display: none !important; }
+            body { 
+                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
+                background-size: cover !important; overflow-x: hidden;
+                display: flex; flex-direction: column; min-height: 100vh;
+            }
+            
+            .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+            .d-header-logo { max-height: 285px; transform: translateY(82px); filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .d-menu-btn { position: fixed; top: 18px; left: 20px; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; cursor: pointer; border: 2px solid #000; }
+            
+            .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
+            .d-sidebar-left.open { left: 0; }
+            
+            main { flex: 1; padding: 240px 20px 120px 20px; z-index: 5; width: 100%; box-sizing: border-box; display: flex; justify-content: center; }
+
+            /* Bento Box Large für Karussell */
+            .bento-box.large {
+                background: rgba(255, 255, 255, 0.2); 
+                border: 2.5px solid #000;
+                border-radius: 20px;
+                padding: 40px;
+                width: 850px; 
+                height: 500px;
+                backdrop-filter: blur(20px);
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+                perspective: 1000px; /* Tiefe für 3D */
+            }
+
+            .carousel-container {
+                position: relative;
+                width: 200px;
+                height: 200px;
+                margin-top: 80px;
+                transform-style: preserve-3d;
+                animation: rotateCarousel 40s linear infinite;
+            }
+
+            .carousel-item {
+                position: absolute;
+                width: 180px;
+                height: 180px;
+                left: 10px;
+                top: 10px;
+                border: 2px solid #000;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            }
+
+            .carousel-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* Rotation der 11 Elemente (360 / 11 = 32.72deg) */
+            /* Radius r = 350px für weite Drehung */
+            .carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(350px); }
+            .carousel-item:nth-child(2) { transform: rotateY(32.72deg) translateZ(350px); }
+            .carousel-item:nth-child(3) { transform: rotateY(65.45deg) translateZ(350px); }
+            .carousel-item:nth-child(4) { transform: rotateY(98.18deg) translateZ(350px); }
+            .carousel-item:nth-child(5) { transform: rotateY(130.9deg) translateZ(350px); }
+            .carousel-item:nth-child(6) { transform: rotateY(163.63deg) translateZ(350px); }
+            .carousel-item:nth-child(7) { transform: rotateY(196.36deg) translateZ(350px); }
+            .carousel-item:nth-child(8) { transform: rotateY(229.09deg) translateZ(350px); }
+            .carousel-item:nth-child(9) { transform: rotateY(261.81deg) translateZ(350px); }
+            .carousel-item:nth-child(10) { transform: rotateY(294.54deg) translateZ(350px); }
+            .carousel-item:nth-child(11) { transform: rotateY(327.27deg) translateZ(350px); }
+
+            @keyframes rotateCarousel {
+                from { transform: rotateY(0deg); }
+                to { transform: rotateY(360deg); }
+            }
+
+            .bento-box.large:hover .carousel-container {
+                animation-play-state: paused; /* Stoppt bei Hover zum Anschauen */
+            }
+
+            .d-footer { width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); border-top: 1.5px solid #000; text-align: center; position: fixed; bottom: 0; font-size: 0.75rem; z-index: 100; }
         }
 
-        .bento-item {
-            background: #fff;
-            border: 2px solid #000;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: #000;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
-        }
-
-        .bento-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 6px 6px 0px var(--anton-yellow);
-        }
-
-        .bento-img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-bottom: 2px solid #000;
-        }
-
-        .bento-content {
-            padding: 12px;
-            text-align: center;
-        }
-
-        .bento-content h3 {
-            margin: 0;
-            font-size: 1rem;
-            text-transform: uppercase;
-        }
-
+        /* ================================================================= */
+        /* 2. MOBILE STYLES                                                 */
+        /* ================================================================= */
         @media (max-width: 800px) {
-            .sidebar-right { position: fixed; bottom: 0; top: auto; right: 0; left: 0; width: 100%; height: 60px; flex-direction: row; justify-content: space-evenly; transform: none; border-radius: 0; background: rgba(255, 255, 255, 0.95); border-top: 2px solid #000; padding: 0; z-index: 1000; }
-            .master-bento-container { margin: 20px; padding: 20px; }
-            main { padding-bottom: 80px; }
+            #desktop-wrapper { display: none !important; }
+            body { height: 100vh; overflow: hidden; background-color: #ffffff; }
+            #m-bg-fix { position: fixed; top: 0; left: -100%; width: 300%; height: 100%; background: url('Background.jpg') no-repeat center center; background-size: cover; z-index: -1; }
+            .m-header { position: fixed; top: 0; width: 100%; height: 80px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; z-index: 1000; display: flex; justify-content: center; }
+            .m-header-logo { position: absolute; top: 120%; max-height: 185px; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+
+            .m-scroll-content { position: absolute; top: 130px; bottom: 80px; width: 100%; overflow-y: auto; padding: 20px; box-sizing: border-box; }
+            
+            .bento-box.large {
+                background: rgba(255, 255, 255, 0.2); 
+                border: 2px solid #000;
+                border-radius: 20px;
+                padding: 20px;
+                width: 100%;
+                min-height: 400px;
+                backdrop-filter: blur(12px);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                perspective: 800px;
+            }
+
+            .carousel-container {
+                width: 120px;
+                height: 120px;
+                transform-style: preserve-3d;
+                animation: rotateCarousel 40s linear infinite;
+            }
+
+            .carousel-item {
+                position: absolute;
+                width: 110px;
+                height: 110px;
+                border: 1px solid #000;
+                background: #fff;
+            }
+
+            /* Kleinerer Radius für Mobile (150px) */
+            .carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(150px); }
+            .carousel-item:nth-child(2) { transform: rotateY(32.72deg) translateZ(150px); }
+            .carousel-item:nth-child(3) { transform: rotateY(65.45deg) translateZ(150px); }
+            .carousel-item:nth-child(4) { transform: rotateY(98.18deg) translateZ(150px); }
+            .carousel-item:nth-child(5) { transform: rotateY(130.9deg) translateZ(150px); }
+            .carousel-item:nth-child(6) { transform: rotateY(163.63deg) translateZ(150px); }
+            .carousel-item:nth-child(7) { transform: rotateY(196.36deg) translateZ(150px); }
+            .carousel-item:nth-child(8) { transform: rotateY(229.09deg) translateZ(150px); }
+            .carousel-item:nth-child(9) { transform: rotateY(261.81deg) translateZ(150px); }
+            .carousel-item:nth-child(10) { transform: rotateY(294.54deg) translateZ(150px); }
+            .carousel-item:nth-child(11) { transform: rotateY(327.27deg) translateZ(150px); }
         }
-
-        main { flex: 1; padding: 120px 20px 40px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
-
-        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: relative; }
-        footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
-        footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
     </style>
 </head>
 <body>
-    <header><div class="header-title">Veröffentlichungen</div></header>
-    <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
 
-    <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
-        <div class="nav-item">
-            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
-            <div class="submenu">
-                <a href="ueber-mich.html">ÜBER MICH</a>
-                <a href="veroffentlichungen.html">VERÖFFENTLICHUNGEN</a>
-                <a href="konzerte.html">KONZERTE</a>
+    <div id="desktop-wrapper">
+        <header class="d-header"><img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo"></header>
+        <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
+        
+        <nav class="d-sidebar-left" id="d-sidebar">
+            <div class="d-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i> START</a></div>
+            <div class="d-nav-item"><a href="ueber-mich.html"><i class="fa-solid fa-user"></i> ÜBER MICH</a></div>
+            <div class="d-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> SHOP</a></div>
+        </nav>
+
+        <main>
+            <div class="bento-box large">
+                <h2 style="color: var(--anton-red); margin-bottom: 0;">VERÖFFENTLICHUNGEN</h2>
+                <p style="font-size: 0.8rem;">(Klicke auf ein Bild für Details - bald verfügbar)</p>
+                
+                <div class="carousel-container">
+                    <div class="carousel-item"><img src="cover1.jpg" alt="Release 1"></div>
+                    <div class="carousel-item"><img src="cover2.jpg" alt="Release 2"></div>
+                    <div class="carousel-item"><img src="cover3.jpg" alt="Release 3"></div>
+                    <div class="carousel-item"><img src="cover4.jpg" alt="Release 4"></div>
+                    <div class="carousel-item"><img src="cover5.jpg" alt="Release 5"></div>
+                    <div class="carousel-item"><img src="cover6.jpg" alt="Release 6"></div>
+                    <div class="carousel-item"><img src="cover7.jpg" alt="Release 7"></div>
+                    <div class="carousel-item"><img src="cover8.jpg" alt="Release 8"></div>
+                    <div class="carousel-item"><img src="cover9.jpg" alt="Release 9"></div>
+                    <div class="carousel-item"><img src="cover10.jpg" alt="Release 10"></div>
+                    <div class="carousel-item"><img src="cover11.jpg" alt="Release 11"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="d-footer">
+            <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
+        </footer>
+    </div>
+
+    <div id="mobile-wrapper">
+        <div id="m-bg-fix"></div>
+        <header class="m-header"><img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo"></header>
+        <div class="m-scroll-content">
+            <div class="bento-box large">
+                <h2 style="color: var(--anton-red); font-size: 1.2rem;">VERÖFFENTLICHUNGEN</h2>
+                <div class="carousel-container">
+                    <div class="carousel-item"></div><div class="carousel-item"></div>
+                    <div class="carousel-item"></div><div class="carousel-item"></div>
+                    <div class="carousel-item"></div><div class="carousel-item"></div>
+                    <div class="carousel-item"></div><div class="carousel-item"></div>
+                    <div class="carousel-item"></div><div class="carousel-item"></div>
+                    <div class="carousel-item"></div>
+                </div>
             </div>
         </div>
-        <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
-
-        <div class="nav-item-bottom-group">
-            <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-            <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span></a></div>
-        </div>
-    </nav>
-
-    <aside class="sidebar-right">
-        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://www.spotify.com" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
-    </aside>
-
-    <main>
-        <div class="master-bento-container">
-            <div class="bento-grid">
-                <a href="ertappt.html" class="bento-item">
-                    <img src="Album Ertappt.jpg" alt="Ertappt" class="bento-img">
-                    <div class="bento-content"><h3>Ertappt</h3></div>
-                </a>
-                <a href="grossepause.html" class="bento-item">
-                    <img src="Album Große Pause.jpg" alt="Große Pause" class="bento-img">
-                    <div class="bento-content"><h3>Große Pause</h3></div>
-                </a>
-                <a href="neuesingle.html" class="bento-item">
-                    <img src="Hunger.JPG" alt="Hunger" class="bento-img">
-                    <div class="bento-content"><h3 style="color: var(--anton-red);">Neue Single: Riesenhunger</h3></div>
-                </a>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div><a href="hauptseite.html">www.anton-familienpop.de</a></div>
-        <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
-    </footer>
+    </div>
 
     <script>
-        function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-        document.addEventListener('click', function(e) {
-            const sb = document.getElementById("sidebar");
-            const btn = document.querySelector(".menu-btn");
-            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
+        let dSidebar = document.getElementById('d-sidebar');
+        function toggleDesktopMenu() { dSidebar.classList.toggle('open'); }
+        document.addEventListener('click', (e) => {
+            if (!dSidebar.contains(e.target) && !e.target.closest('.d-menu-btn')) {
+                dSidebar.classList.remove('open');
+            }
         });
     </script>
 </body>
