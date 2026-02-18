@@ -2,125 +2,246 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ANTON | MEINE MUSIK</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
-        :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 240px; }
-        html, body { height: 100%; margin: 0; padding: 0; }
-        body { display: flex; flex-direction: column; font-family: 'Special Elite', cursive; background: #fff url('AFaPo Wall.png') fixed center/cover no-repeat; background-blend-mode: multiply; overflow-x: hidden; }
-        
-        header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-        .header-title { color: var(--anton-red); font-size: 1.8rem; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
-        
-        /* MENU BUTTON TRANSFORMATION (MASTER) */
-        .menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
-        .menu-btn:hover { background: var(--anton-yellow); color: #000; }
-        .menu-btn span { transition: opacity 0.2s; }
-        .menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
-        .menu-btn:hover span { opacity: 0; }
-        .menu-btn:hover::after { opacity: 1; }
-        
-        /* LINKE SIDEBAR (MASTER) */
-        .sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
-        .sidebar-left.open { left: 0; }
-        .nav-item { margin-bottom: 20px; width: 100%; }
-        .sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
-        .nav-item-epk { margin-top: auto; }
-        .nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
-        .nav-label { display: flex; align-items: center; width: 100%; }
-        .nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
-        .arrow-wrapper { margin-left: auto; padding-right: 5px; }
-        .submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
-        .nav-item:hover .submenu-indicator { transform: rotate(180deg); }
-        .submenu { display: none; flex-direction: column; padding-left: 40px; margin-top: 10px; }
-        .nav-item:hover .submenu { display: flex; }
-        .submenu a { font-size: 0.95rem; margin-bottom: 10px; }
-        
-        /* RECHTE SIDEBAR (MASTER - 6s Linear Flow) */
-        .sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-        .sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
-        @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-        .sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-        .sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
-        .sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
-        .sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
-        .sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
-        .sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
-        .sidebar-right a:nth-child(7) i { --brand-color: #A2AAAD; animation-delay: 1.5s; }
-        .sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-        .sidebar-right a:nth-child(9) i { --brand-color: #00A8E1; animation-delay: 2.0s; }
-        .sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
-        .sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; transition: transform 0.3s ease-out !important; }
+        :root { 
+            --anton-red: #ff0000; 
+            --anton-yellow: #ffeb3b; 
+            --sidebar-width: 240px; 
+            --apple-gray: #A2AAAD;
+            --amazon-blue: #00A8E1;
+        }
 
-        main { flex: 1; padding: 120px 20px 40px 20px; max-width: 1100px; margin: 0 auto; z-index: 10; width: 100%; box-sizing: border-box; }
-        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-        .bento-box { background: rgba(255, 255, 255, 0.95); border: 3px solid #000; padding: 30px; border-radius: 20px; transition: all 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: center; text-align: center; }
-        .bento-box:hover { transform: translateY(-5px); background: var(--anton-yellow); }
-        .bento-box h2 { margin: 0 0 10px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.5rem; }
-        .box-full { grid-column: span 2; }
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #ffffff; 
+            font-family: 'Special Elite', cursive;
+            height: 100%; 
+            width: 100%;
+        }
 
-        /* FOOTER (MASTER - Outline Hover) */
-        footer { width: 100%; padding: 10px 0; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
-        footer a { color: #000; text-decoration: none; margin: 0 8px; font-weight: bold; transition: all 0.3s ease; }
-        footer a:hover, .footer-link-main:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; opacity: 1 !important; }
-        .footer-link-main { display: inline-block; margin-bottom: 5px; opacity: 0.8; transition: all 0.3s ease; }
+        /* ================================================================= */
+        /* 1. DESKTOP STYLES (MASTER)                                        */
+        /* ================================================================= */
+        @media (min-width: 801px) {
+            #mobile-wrapper { display: none !important; }
+            body { 
+                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
+                background-size: cover !important; 
+                background-attachment: fixed;
+                overflow-x: hidden;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .d-header { 
+                position: fixed; top: 0; width: 100%; height: 80px; 
+                display: flex; justify-content: center; align-items: center; 
+                z-index: 100; background: rgba(255, 255, 255, 0.8); 
+                backdrop-filter: blur(10px); border-bottom: 2px solid #000; 
+            }
+            .d-header-logo {
+                max-height: 285px; width: auto; object-fit: contain;
+                filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
+                transform: translateY(82px); 
+            }
+            .d-menu-btn { 
+                position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
+                z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; 
+                display: flex; align-items: center; justify-content: center; 
+                border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; 
+                overflow: hidden; 
+            }
+            .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
+            .d-menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
+            .d-menu-btn:hover span { opacity: 0; }
+            .d-menu-btn:hover::after { opacity: 1; }
 
-        @media (max-width: 600px) { .bento-grid { grid-template-columns: 1fr; } .box-full { grid-column: span 1; } .sidebar-right { display: none; } }
+            .d-sidebar-left { 
+                position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); 
+                background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; 
+                flex-direction: column; padding: 100px 15px 30px 15px; 
+                transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; 
+            }
+            .d-sidebar-left.open { left: 0; }
+            .d-nav-item { margin-bottom: 20px; width: 100%; }
+            .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
+            .d-sidebar-left a:hover { color: var(--anton-red); }
+            
+            .d-nav-label { display: flex; align-items: center; width: 100%; }
+            .d-nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
+            .d-submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; margin-left: auto; }
+            .d-nav-item:hover .d-submenu-indicator { transform: rotate(180deg); }
+            
+            .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
+            .d-nav-item:hover .d-submenu { display: flex; }
+            .d-submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; }
+
+            .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+            .d-sidebar-right a i { color: #000; font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; }
+            @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+
+            main { 
+                flex: 1; padding: 180px 80px 100px 80px; z-index: 5; 
+                display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+                gap: 40px; width: 100%; box-sizing: border-box; 
+            }
+
+            .release-card { background: rgba(255,255,255,0.9); border: 2px solid #000; padding: 15px; text-align: center; transition: transform 0.3s; }
+            .release-card:hover { transform: scale(1.05); }
+            .release-card img { width: 100%; height: auto; border: 1.5px solid #000; margin-bottom: 10px; }
+            .release-card h3 { margin: 10px 0 5px 0; font-size: 1.2rem; }
+            .release-card p { font-size: 0.9rem; margin: 0; opacity: 0.8; }
+
+            .d-footer { position: fixed; bottom: 0; width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; }
+            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; }
+        }
+
+        /* ================================================================= */
+        /* 2. MOBILE STYLES (MASTER)                                         */
+        /* ================================================================= */
+        @media (max-width: 800px) {
+            #desktop-wrapper { display: none !important; }
+            body { height: 100vh; width: 100vw; overflow: hidden; position: fixed; }
+            #m-bg-fix { position: fixed; top: 0; left: -100%; width: 300%; height: 100%; background: url('Background.jpg') no-repeat center center; background-size: cover; z-index: -1; }
+            
+            .m-header { position: fixed; top: 0; width: 100%; height: 80px; z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+            .m-header-logo { position: absolute; top: 120%; left: 50%; transform: translate(-50%, -50%); max-height: 185px; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            
+            .m-content-scroll { 
+                position: absolute; top: 80px; bottom: 65px; width: 100%; 
+                overflow-y: auto; padding: 20px; box-sizing: border-box; 
+                -webkit-overflow-scrolling: touch;
+            }
+            .m-release-item { background: rgba(255,255,255,0.85); border: 2px solid #000; margin-bottom: 20px; padding: 15px; text-align: center; }
+            .m-release-item img { width: 100%; border: 1px solid #000; }
+
+            .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border: 2px solid #000; }
+            .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; }
+            .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
+            .m-menu-btn.active span { display: none; }
+
+            .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s ease; }
+            .m-sidebar.open { top: 0 !important; }
+            .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
+
+            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; align-items: center; z-index: 1100; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; justify-content: space-evenly; }
+            .m-sidebar-right a i { color: #000; font-size: 1.5rem; animation: ultraFlowWaveMobile 6s linear infinite; }
+            @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+            
+            .m-id-button { position: fixed; right: 0; bottom: 80px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1001; font-weight: bold; }
+        }
     </style>
 </head>
 <body>
-    <header><div class="header-title">Meine Musik</div></header>
-    <div class="menu-btn" onclick="toggleMenu()"><span>☰</span></div>
-    
-    <nav class="sidebar-left" id="sidebar">
-        <div class="nav-item"><a href="hauptseite.html"><span class="nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
-        <div class="nav-item">
-            <a href="meinemusik.html"><span class="nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="arrow-wrapper"><i class="fa-solid fa-caret-down submenu-indicator"></i></div></a>
-            <div class="submenu">
-                <a href="ueber-mich.html"><i class="fa-regular fa-face-smile" style="margin-right:10px"></i> ÜBER MICH</a>
-                <a href="konzerte.html"><i class="fa-solid fa-microphone-lines" style="margin-right:10px"></i> KONZERTE</a>
+
+    <div id="desktop-wrapper">
+        <header class="d-header"><img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo"></header>
+        <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
+        
+        <nav class="d-sidebar-left" id="d-sidebar">
+            <div class="d-nav-item"><a href="hauptseite.html"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
+            <div class="d-nav-item">
+                <a href="meinemusik.html"><span class="d-nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><i class="fa-solid fa-caret-down d-submenu-indicator"></i></a>
+                <div class="d-submenu">
+                    <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
+                    <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> RELEASES</a>
+                </div>
+            </div>
+            <div class="d-nav-item"><a href="shop.html"><span class="d-nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
+            <div class="d-nav-item d-nav-item-epk"><a href="epk.html"><span class="d-nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a></div>
+        </nav>
+
+        <aside class="d-sidebar-right">
+            <a href="#" style="--brand-color:#f00"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" style="--brand-color:#25F4EE"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" style="--brand-color:#E1306C"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" style="--brand-color:#1DB954"><i class="fa-brands fa-spotify"></i></a>
+        </aside>
+
+        <main>
+            <div class="release-card">
+                <img src="ertappt_cover.jpg" alt="Ertappt">
+                <h3>ERTAPPT</h3>
+                <p>Single (2023)</p>
+            </div>
+            <div class="release-card">
+                <img src="riesenhunger_cover.jpg" alt="Riesenhunger">
+                <h3>RIESENHUNGER</h3>
+                <p>Album (2023)</p>
+            </div>
+            </main>
+
+        <footer class="d-footer">
+            <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
+        </footer>
+    </div>
+
+    <div id="mobile-wrapper">
+        <div id="m-bg-fix"></div>
+        <header class="m-header" id="m-header-main"><img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo"></header>
+        
+        <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)"><span></span><span></span><span></span></div>
+        
+        <nav class="m-sidebar" id="m-sidebar">
+            <div class="m-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
+            <div class="m-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
+            <div class="m-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
+        </nav>
+
+        <div class="m-content-scroll">
+            <div class="m-release-item">
+                <img src="ertappt_cover.jpg" alt="Ertappt">
+                <h3>ERTAPPT</h3>
+                <p>Single</p>
+            </div>
+            <div class="m-release-item">
+                <img src="riesenhunger_cover.jpg" alt="Riesenhunger">
+                <h3>RIESENHUNGER</h3>
+                <p>Album</p>
             </div>
         </div>
-        <div class="nav-item"><a href="shop.html"><span class="nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
-        <div class="nav-item"><a href="kontakt.html"><span class="nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-        <div class="nav-item nav-item-epk"><a href="epk.html"><span class="nav-label"><i class="fa-solid fa-lock main-icon"></i> EPK / PRESSE</span></a></div>
-    </nav>
 
-    <aside class="sidebar-right">
-        <a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-tiktok"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-whatsapp"></i></a><a href="#"><i class="fa-brands fa-facebook"></i></a><a href="#"><i class="fa-brands fa-spotify"></i></a><a href="#"><i class="fa-brands fa-apple"></i></a><a href="#"><i class="fa-solid fa-circle-play"></i></a><a href="#"><i class="fa-brands fa-amazon"></i></a>
-    </aside>
+        <div class="m-id-button" onclick="mToggleID(event)">I/D</div>
 
-    <main>
-        <div class="bento-grid">
-            <div class="bento-box box-full">
-                <h2>Streaming & Player</h2>
-                <p>Hier wird bald der Player für die neuesten Songs integriert.</p>
-            </div>
-            <a href="ueber-mich.html" class="bento-box">
-                <h2>Über Mich</h2>
-                <p>Erfahre mehr über die Geschichte hinter der Musik.</p>
-            </a>
-            <a href="konzerte.html" class="bento-box">
-                <h2>Konzerte</h2>
-                <p>Alle Live-Termine und Tickets auf einen Blick.</p>
-            </a>
-        </div>
-    </main>
-
-    <footer>
-        <div><a href="hauptseite.html" class="footer-link-main">www.anton-familienpop.de</a></div>
-        <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
-    </footer>
+        <aside class="m-sidebar-right">
+            <a href="#" style="--brand-color:#f00"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" style="--brand-color:#25F4EE"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" style="--brand-color:#E1306C"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" style="--brand-color:#1DB954"><i class="fa-brands fa-spotify"></i></a>
+        </aside>
+    </div>
 
     <script>
-        function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
-        document.addEventListener('click', function(e) {
-            const sb = document.getElementById("sidebar");
-            const btn = document.querySelector(".menu-btn");
-            if (sb && !sb.contains(e.target) && !btn.contains(e.target) && sb.classList.contains("open")) sb.classList.remove("open");
-        });
+        /* --- LOGIK (EXAKT WIE IM MASTER) --- */
+        let dSidebarTimeout;
+        const dSidebar = document.getElementById('d-sidebar');
+
+        function toggleDesktopMenu() {
+            dSidebar.classList.toggle('open');
+            clearTimeout(dSidebarTimeout);
+            if (dSidebar.classList.contains('open')) dSidebarTimeout = setTimeout(() => dSidebar.classList.remove('open'), 5000);
+        }
+
+        const mSidebar = document.getElementById('m-sidebar');
+        const mMenuBtn = document.getElementById('m-menu-trigger');
+
+        function mToggleMenu(e) {
+            e.stopPropagation();
+            mSidebar.classList.toggle('open');
+            mMenuBtn.classList.toggle('active');
+            setTimeout(() => { mSidebar.classList.remove('open'); mMenuBtn.classList.remove('active'); }, 5000);
+        }
+
+        /* Auto-Hide Header Mobile */
+        setTimeout(() => {
+            const mh = document.getElementById('m-header-main');
+            if(mh && window.innerWidth <= 800) mh.style.transform = 'translateY(-100%)';
+        }, 3000);
     </script>
 </body>
 </html>
