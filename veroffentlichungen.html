@@ -25,7 +25,7 @@
         }
 
         /* ================================================================= */
-        /* 1. DESKTOP STYLES (3D CAROUSEL)                                   */
+        /* 1. DESKTOP STYLES (3D CAROUSEL & LINKS)                           */
         /* ================================================================= */
         @media (min-width: 801px) {
             #mobile-wrapper { display: none !important; }
@@ -34,7 +34,7 @@
                 background: #ffffff url('Background.jpg') no-repeat center center fixed; 
                 background-size: cover !important; 
                 background-attachment: fixed;
-                overflow: hidden; /* Fixiert für das 3D Karussell */
+                overflow: hidden;
                 display: flex;
                 flex-direction: column;
                 min-height: 100vh;
@@ -87,6 +87,7 @@
             .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
             .d-nav-item:hover .d-submenu { display: flex; }
             .d-submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
+            .d-submenu a i { margin-right: 10px; width: 18px; text-align: center; }
 
             .d-nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
             .d-nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
@@ -137,7 +138,7 @@
         }
 
         /* ================================================================= */
-        /* 2. MOBILE STYLES (EXACTLY YOUR MASTER CODE)                      */
+        /* 2. MOBILE STYLES (MASTER ALIGNMENT)                              */
         /* ================================================================= */
         @media (max-width: 800px) {
             #desktop-wrapper { display: none !important; }
@@ -177,7 +178,6 @@
             .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
             .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
             
-            /* MOBILE CONTENT AREA */
             .m-content-scroll {
                 flex: 1; margin-top: 140px; margin-bottom: 80px; overflow-y: auto; padding: 20px;
                 display: flex; flex-direction: column; align-items: center; gap: 30px;
@@ -195,6 +195,16 @@
             .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; padding: 0 10px; justify-content: space-evenly; }
             .m-sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
             @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+            
+            .m-sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
+            .m-sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
+            .m-sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
+            .m-sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
+            .m-sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
+            .m-sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
+            .m-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
+            .m-sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
+            .m-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
         }
     </style>
 </head>
@@ -236,7 +246,7 @@
             <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://open.spotify.com/intl-de/artist/348545011" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://open.spotify.com/intl-de/artist/0" target="_blank"><i class="fa-brands fa-spotify"></i></a>
             <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
             <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
             <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
@@ -279,7 +289,7 @@
             <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://open.spotify.com/intl-de/artist/348545011" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://open.spotify.com/intl-de/artist/0" target="_blank"><i class="fa-brands fa-spotify"></i></a>
             <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
             <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
             <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
@@ -315,7 +325,7 @@
             }
         });
 
-        /* --- MOBILE LOGIC (MASTER) --- */
+        /* --- MOBILE LOGIC --- */
         const mSidebar = document.getElementById('m-sidebar');
         const mMenuBtn = document.getElementById('m-menu-trigger');
         const mIdBtn = document.getElementById('m-id-btn');
@@ -345,7 +355,6 @@
             mIdTimeout = setTimeout(mCloseAllMenus, 5000);
         }
 
-        /* MOBILE TOUCH & BACKGROUND MOVE */
         let touchStartX = 0, currentTranslateX = 0;
         document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive: true});
         document.addEventListener('touchmove', e => {
