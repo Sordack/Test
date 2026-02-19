@@ -111,7 +111,19 @@
             .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
             .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-            .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
+            .invisible-box { 
+                position: fixed; 
+                z-index: 10; 
+                background: rgba(255, 255, 255, 0.2); 
+                border: 1px solid rgba(0, 0, 0, 0.3); 
+                cursor: pointer; 
+                border-radius: 8px;
+                transition: background 0.3s ease;
+            }
+            .invisible-box:hover {
+                background: rgba(255, 255, 255, 0.4);
+            }
+
             .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
             .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
             .box-pause { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
@@ -139,7 +151,7 @@
             body { 
                 height: 100vh; width: 100vw; overflow: hidden !important; 
                 position: fixed; display: flex; flex-direction: column; touch-action: pan-y;
-                overscroll-behavior-x: none; /* Lösung gegen weiße Ränder */
+                overscroll-behavior-x: none;
             }
             #m-bg-fix { 
                 display: block; position: fixed; top: 0; left: -100%; 
@@ -265,7 +277,6 @@
     </div>
 
     <script>
-        /* --- GLOBAL VARIABLES & HELPER --- */
         let dSidebarTimeout;
         const dSidebar = document.getElementById('d-sidebar');
 
@@ -278,7 +289,6 @@
             }
         }
 
-        /* --- DESKTOP LOGIC --- */
         function toggleDesktopMenu() {
             if (dSidebar) {
                 dSidebar.classList.toggle('open');
@@ -301,7 +311,6 @@
             }
         });
 
-        /* --- MOBILE LOGIC --- */
         const mSidebar = document.getElementById('m-sidebar');
         const mMenuBtn = document.getElementById('m-menu-trigger');
         const mIdBtn = document.getElementById('m-id-btn');
@@ -331,7 +340,6 @@
             mIdTimeout = setTimeout(mCloseAllMenus, 5000);
         }
 
-        /* MOBILE TOUCH & SWIPE MIT HARD-LIMIT GEGEN WEISSE RÄNDER */
         let touchStartX = 0, touchStartY = 0, currentTranslateX = 0;
 
         document.addEventListener('touchstart', e => { 
@@ -349,12 +357,9 @@
 
                 if (Math.abs(diffX) > Math.abs(diffY)) {
                     let newX = currentTranslateX + diffX;
-                    
-                    // Begrenzung berechnen: Das 300% Bild darf nicht über die Screen-Breite hinaus
                     const limit = window.innerWidth; 
                     if (newX > limit) newX = limit;
                     if (newX < -limit) newX = -limit;
-
                     if(mBg) mBg.style.transform = `translateX(${newX}px)`;
                 }
             }
