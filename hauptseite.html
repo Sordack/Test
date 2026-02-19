@@ -53,6 +53,8 @@
                 object-fit: contain;
                 filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
                 transform: translateY(82px); 
+                /* NEU: Verhindert, dass das Logo Klicks/Hover blockiert */
+                pointer-events: none; 
             }
             
             .d-menu-btn { 
