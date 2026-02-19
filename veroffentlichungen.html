@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER RESPONSIVE</title>
+    <title>ANTON</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -111,7 +111,15 @@
             .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
             .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-            main { flex: 1; padding: 120px 20px 80px 20px; z-index: 5; width: 100%; box-sizing: border-box; display: flex; justify-content: center; align-items: center; }
+            .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
+            .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
+            .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
+            .box-pause { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
+            .box-pause2 { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
+            .box-pause3 { width: 5%; height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
+            .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
+
+            main { flex: 1; padding: 120px 20px 80px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
             .d-footer { 
                 width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); 
@@ -131,7 +139,7 @@
             body { 
                 height: 100vh; width: 100vw; overflow: hidden !important; 
                 position: fixed; display: flex; flex-direction: column; touch-action: pan-y;
-                overscroll-behavior-x: none;
+                overscroll-behavior-x: none; /* Lösung gegen weiße Ränder */
             }
             #m-bg-fix { 
                 display: block; position: fixed; top: 0; left: -100%; 
@@ -175,50 +183,6 @@
             .m-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
             .m-sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
             .m-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
-            
-            main { flex: 1; padding: 100px 10px 80px 10px; z-index: 5; display: flex; justify-content: center; align-items: center; overflow: hidden; }
-        }
-
-        /* ================================================================= */
-        /* 3. CAROUSEL STYLES (NEW)                                         */
-        /* ================================================================= */
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            height: 450px;
-            overflow: hidden;
-            border: 3px solid #000;
-            background: #000;
-            box-shadow: 10px 10px 0px var(--anton-yellow);
-        }
-        .carousel-slide {
-            display: none;
-            width: 100%;
-            height: 100%;
-            animation: fade 0.5s ease-in-out;
-        }
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .carousel-slide.active { display: block; }
-        
-        .carousel-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.7); color: #fff; border: none;
-            padding: 15px; cursor: pointer; z-index: 10; font-size: 20px;
-        }
-        .carousel-btn:hover { background: var(--anton-yellow); color: #000; }
-        .prev { left: 0; border-radius: 0 5px 5px 0; }
-        .next { right: 0; border-radius: 5px 0 0 5px; }
-
-        @keyframes fade { from { opacity: 0.4; } to { opacity: 1; } }
-
-        @media (max-width: 800px) {
-            .carousel-container { height: 300px; box-shadow: 5px 5px 0px var(--anton-yellow); }
-            .carousel-btn { display: none; } /* Hide buttons on mobile, use swipe */
         }
     </style>
 </head>
@@ -230,6 +194,13 @@
         </header>
         <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
         
+        <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
+        <a href="neuesingle.html" class="invisible-box box-mitte"></a>
+        <a href="meinemusik.html" class="invisible-box box-pause"></a>
+        <a href="meinemusik.html" class="invisible-box box-pause2"></a>
+        <a href="meinemusik.html" class="invisible-box box-pause3"></a>
+        <a href="neuesingle.html" class="invisible-box box-riesenhunger"></a>
+
         <nav class="d-sidebar-left" id="d-sidebar">
             <div class="d-nav-item"><a href="hauptseite.html"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
             <div class="d-nav-item">
@@ -257,16 +228,7 @@
             <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         </aside>
 
-        <main>
-            <div class="carousel-container" id="mainCarousel">
-                <div class="carousel-slide active"><img src="slide1.jpg" alt="Anton 1"></div>
-                <div class="carousel-slide"><img src="slide2.jpg" alt="Anton 2"></div>
-                <div class="carousel-slide"><img src="slide3.jpg" alt="Anton 3"></div>
-                
-                <button class="carousel-btn prev" onclick="changeSlide(-1)">&#10094;</button>
-                <button class="carousel-btn next" onclick="changeSlide(1)">&#10095;</button>
-            </div>
-        </main>
+        <main></main>
 
         <footer class="d-footer">
             <div><a href="index.html">www.anton-familienpop.de</a></div>
@@ -369,7 +331,7 @@
             mIdTimeout = setTimeout(mCloseAllMenus, 5000);
         }
 
-        /* MOBILE TOUCH & SWIPE (Background & Menus) */
+        /* MOBILE TOUCH & SWIPE MIT HARD-LIMIT GEGEN WEISSE RÄNDER */
         let touchStartX = 0, touchStartY = 0, currentTranslateX = 0;
 
         document.addEventListener('touchstart', e => { 
@@ -381,14 +343,14 @@
                 const moveX = e.touches[0].clientX, moveY = e.touches[0].clientY;
                 const diffX = moveX - touchStartX, diffY = moveY - touchStartY;
 
-                // Close menus on swipe
                 if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) { 
-                    if (!mSidebar.contains(e.target) && !document.getElementById('mainCarousel').contains(e.target)) mCloseAllMenus(); 
+                    if (!mSidebar.contains(e.target)) mCloseAllMenus(); 
                 }
 
-                // Move background (only if not swiping inside carousel)
-                if (Math.abs(diffX) > Math.abs(diffY) && !document.getElementById('mainCarousel').contains(e.target)) {
+                if (Math.abs(diffX) > Math.abs(diffY)) {
                     let newX = currentTranslateX + diffX;
+                    
+                    // Begrenzung berechnen: Das 300% Bild darf nicht über die Screen-Breite hinaus
                     const limit = window.innerWidth; 
                     if (newX > limit) newX = limit;
                     if (newX < -limit) newX = -limit;
@@ -416,39 +378,6 @@
             const mh = document.getElementById('m-header-main');
             if(mh && window.innerWidth <= 800) mh.style.transform = 'translateY(-100%)'; 
         }, 3000);
-
-        /* --- CAROUSEL & SWIPE LOGIC (NEW) --- */
-        let slideIndex = 0;
-        const slides = document.getElementsByClassName("carousel-slide");
-
-        function changeSlide(n) {
-            slideIndex += n;
-            if (slideIndex >= slides.length) slideIndex = 0;
-            if (slideIndex < 0) slideIndex = slides.length - 1;
-            showSlides();
-        }
-
-        function showSlides() {
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-            slides[slideIndex].classList.add("active");
-        }
-
-        // Specific Swipe for Carousel
-        const carousel = document.getElementById('mainCarousel');
-        let carouselTouchStart = 0;
-
-        carousel.addEventListener('touchstart', e => {
-            carouselTouchStart = e.touches[0].clientX;
-        }, {passive: true});
-
-        carousel.addEventListener('touchend', e => {
-            let touchEnd = e.changedTouches[0].clientX;
-            if (carouselTouchStart - touchEnd > 50) changeSlide(1); // Swipe Left
-            if (carouselTouchStart - touchEnd < -50) changeSlide(-1); // Swipe Right
-        }, {passive: true});
-        
     </script>
 </body>
 </html>
