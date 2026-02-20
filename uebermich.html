@@ -13,30 +13,22 @@
             --sidebar-width: 240px; 
         }
 
-        /* FIX: Hintergrund direkt auf HTML/BODY ohne Lücken */
-        html {
-            background: #ffffff url('Background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        body { 
+        /* Grund-Reset gegen weiße Balken */
+        * { box-sizing: border-box; }
+        html, body { 
             margin: 0; 
             padding: 0; 
-            background: transparent; /* Verhindert den weißen Layer über dem Bild */
+            background-color: #ffffff; 
             font-family: 'Special Elite', cursive;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            min-height: 100%; 
+            width: 100%;
         }
 
-        /* Bento Box Optimierung */
+        /* Bento Box Design */
         .detail-bento {
             max-width: 1100px; 
             margin: 0 auto; 
-            background: rgba(255, 255, 255, 0.92); 
+            background: rgba(255, 255, 255, 0.9); 
             backdrop-filter: blur(15px); 
             padding: 40px; 
             border: 2px solid #000;
@@ -44,12 +36,11 @@
             display: flex; 
             gap: 50px; 
             align-items: flex-start;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             position: relative;
             z-index: 10;
         }
-
-        .image-container { flex-shrink: 0; width: 175px; }
+        .image-container { flex-shrink: 0; width: 175px; position: sticky; top: 110px; }
         .album-cover { border: 2px solid #000; border-radius: 15px; overflow: hidden; box-shadow: 5px 5px 0px var(--anton-yellow); background: #fff; }
         .album-cover img { width: 100%; height: auto; display: block; }
         .album-text { color: #000; line-height: 1.6; font-size: 1.15rem; flex: 1; }
@@ -57,64 +48,76 @@
         .album-text .intro { font-weight: bold; color: var(--anton-red); font-size: 1.25rem; }
 
         /* ================================================================= */
-        /* DESKTOP                                                           */
+        /* DESKTOP STYLES                                                    */
         /* ================================================================= */
         @media (min-width: 801px) {
             #mobile-wrapper { display: none !important; }
-            
+            body { 
+                background: url('Background.jpg') no-repeat center center fixed; 
+                background-size: cover; 
+            }
             .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
             .d-header-logo { max-height: 285px; width: auto; transform: translateY(82px); filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
             
-            .d-menu-btn { position: fixed; top: 18px; left: 20px; z-index: 1200; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; cursor: pointer; border: 2px solid #000; }
+            .d-menu-btn { position: fixed; top: 18px; left: 20px; z-index: 1200; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; cursor: pointer; }
             
-            .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: column; padding: 120px 25px; transition: left 0.4s ease; border-right: 2px solid #000; }
+            .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 1100; display: flex; flex-direction: column; padding: 120px 20px; transition: left 0.4s ease; border-right: 2px solid #000; }
             .d-sidebar-left.open { left: 0; }
             
-            .d-nav-item { margin-bottom: 20px; }
-            .d-nav-item a { color: #000; text-decoration: none; font-size: 1.1rem; font-weight: bold; }
-            .d-submenu { padding-left: 15px; margin-top: 8px; display: flex; flex-direction: column; gap: 5px; }
-            .d-submenu a { font-size: 0.9rem; opacity: 0.8; }
+            .d-nav-item { margin-bottom: 25px; }
+            .d-nav-item a { color: #000; text-decoration: none; font-size: 1.2rem; font-weight: bold; }
+            .d-submenu { padding-left: 15px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+            .d-submenu a { font-size: 0.9rem; opacity: 0.7; transition: 0.2s; }
+            .d-submenu a:hover { opacity: 1; color: var(--anton-red); }
 
-            .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 55px; display: flex; flex-direction: column; align-items: center; gap: 20px; z-index: 999; background: rgba(255, 255, 255, 0.8); padding: 25px 0; border: 2px solid #000; border-right: none; border-radius: 15px 0 0 15px; }
-            .d-sidebar-right a i { color: #000; font-size: 1.3rem; }
+            .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px; display: flex; flex-direction: column; align-items: center; gap: 20px; z-index: 1000; background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(5px); padding: 30px 0; border: 2px solid #000; border-right: none; border-radius: 20px 0 0 20px; }
+            .d-sidebar-right a i { color: #000; font-size: 1.5rem; transition: 0.3s; }
+            .d-sidebar-right a i:hover { color: var(--anton-red); transform: scale(1.2); }
 
-            main { flex: 1; padding: 220px 20px 100px 20px; }
+            main { padding: 220px 80px 100px 80px; min-height: 100vh; }
             
-            .d-footer { position: fixed; bottom: 0; width: 100%; background: #fff; border-top: 2px solid #000; padding: 12px; text-align: center; z-index: 1000; font-size: 0.75rem; }
-            .d-footer a { color: #000; text-decoration: none; margin: 0 10px; }
+            .d-footer { position: fixed; bottom: 0; width: 100%; background: #fff; border-top: 2px solid #000; padding: 15px; text-align: center; z-index: 1000; font-size: 0.8rem; }
+            .d-footer a { color: #000; text-decoration: none; margin: 0 15px; font-weight: bold; }
         }
 
         /* ================================================================= */
-        /* MOBILE                                                            */
+        /* MOBILE STYLES                                                     */
         /* ================================================================= */
         @media (max-width: 800px) {
             #desktop-wrapper { display: none !important; }
-            html { background-attachment: scroll; } /* Performance auf Mobilgeräten */
+            #m-bg-fix { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('Background.jpg') no-repeat center center; background-size: cover; z-index: -1; }
             
-            .m-header { position: fixed; top: 0; width: 100%; height: 70px; z-index: 1000; background: rgba(255, 255, 255, 0.95); border-bottom: 2px solid #000; display: flex; justify-content: center; align-items: center; }
+            .m-header { position: fixed; top: 0; width: 100%; height: 70px; z-index: 1000; background: rgba(255, 255, 255, 0.9); border-bottom: 2px solid #000; display: flex; justify-content: center; align-items: center; }
             .m-header-logo { max-height: 45px; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
             
-            .m-menu-btn { position: fixed; top: 12px; left: 12px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
-            .m-menu-btn span { width: 22px; height: 3px; background: #fff; }
+            .m-menu-btn { position: fixed; top: 12px; left: 12px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; }
+            .m-menu-btn span { width: 25px; height: 3px; background: #fff; }
             
-            .m-sidebar { position: fixed; left: 0; top: -110px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; padding: 0 15px 0 75px; border-bottom: 2px solid #000; align-items: center; justify-content: space-between; transition: top 0.4s ease; }
+            .m-sidebar { position: fixed; left: 0; top: -110px; width: 100%; height: 100px; background: var(--anton-yellow); z-index: 1100; display: flex; padding: 0 20px 0 80px; border-bottom: 3px solid #000; align-items: center; justify-content: space-between; transition: top 0.4s ease; }
             .m-sidebar.open { top: 0; }
             
-            main { padding: 100px 15px 100px 15px; }
-            .detail-bento { flex-direction: column; padding: 25px; gap: 20px; align-items: center; text-align: center; }
-            .image-container { width: 140px; }
-            .album-text { text-align: left; }
+            .m-nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; font-size: 0.75rem; }
+            .m-nav-item i { font-size: 1.3rem; margin-bottom: 5px; }
+
+            main { padding: 100px 15px 120px 15px; }
+            .detail-bento { flex-direction: column; padding: 25px; gap: 20px; align-items: center; }
+            .image-container { width: 150px; position: relative; top: 0; }
             
-            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; align-items: center; justify-content: space-evenly; z-index: 1000; background: #fff; border-top: 2px solid #000; }
+            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 70px; display: flex; align-items: center; justify-content: space-evenly; z-index: 1000; background: rgba(255, 255, 255, 0.95); border-top: 2px solid #000; }
+            .m-sidebar-right a i { color: #000; font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <div id="desktop-wrapper">
-        <header class="d-header"><img src="Antonlogo.png" class="d-header-logo"></header>
-        <div class="d-menu-btn" onclick="toggleMenu()">☰</div>
-        <nav class="d-sidebar-left" id="d-nav">
+        <header class="d-header">
+            <img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo">
+        </header>
+        
+        <div class="d-menu-btn" onclick="toggleDesktopMenu()">☰</div>
+        
+        <nav class="d-sidebar-left" id="d-sidebar">
             <div class="d-nav-item"><a href="hauptseite.html">START</a></div>
             <div class="d-nav-item">
                 <a href="meinemusik.html">MEINE MUSIK</a>
@@ -126,43 +129,70 @@
             <div class="d-nav-item"><a href="shop.html">SHOP</a></div>
             <div class="d-nav-item"><a href="kontakt.html">KONTAKT</a></div>
         </nav>
+
         <aside class="d-sidebar-right">
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
             <a href="#"><i class="fa-brands fa-tiktok"></i></a>
             <a href="#"><i class="fa-brands fa-instagram"></i></a>
             <a href="#"><i class="fa-brands fa-spotify"></i></a>
         </aside>
+
         <main>
             <div class="detail-bento">
-                <div class="image-container"><div class="album-cover"><img src="Ich.jpg"></div></div>
+                <div class="image-container">
+                    <div class="album-cover"><img src="Ich.jpg" alt="ANTON"></div>
+                </div>
                 <div class="album-text">
-                    <p class="intro">Ihr wollt mehr über mich wissen?</p>
-                    <p>Anton ist Papa. Und Bruder. Geboren wurde er als Anton Nachtwey in Berlin-Friedenau...</p>
-                    <p>Kurz gesagt: Anton kennt große Bühnen. Er weiß, wie sich 15.000 Leute anhören. Aber er kennt auch die Familyparty im Wohnzimmer.</p>
+                    <p class="intro">Ihr wollt mehr über mich und mein laaaanges Leben wissen? Wer Anton ist? Na dann passt mal auf:</p>
+                    <p>Anton ist Papa. Und Bruder. Geboren wurde er als Anton Nachtwey in Berlin-Friedenau.</p>
+                    <p>Mit sechs sitzt er am Klavier, und bleibt da auch erst mal zwölf Jahre. Klassische Ausbildung, Tonleitern, Disziplin. Seit seinem zehnten Lebensjahr steht er außerdem auf Bühnen.</p>
+                    <p>Irgendwann merkt er: Ein Klavier passt schlecht in einen Rucksack. Also bringt er sich selbst Gitarre bei. Autodidaktisch, nach Gehör, nach Gefühl. Ende der 90er baut er sein eigenes Studio auf, schreibt Songs, produziert.</p>
+                    <p>2004 macht Anton seinen Abschluss als Audio Engineer. 2005 läuft er dann bei Unser Block auf VIVA im Fernsehen – als Hauptdarsteller.</p>
+                    <p>Danach wird’s voll. Studios. Nächte. Bühnen. Er arbeitet mit Leuten wie Mark Forster, Havoc (Mobb Deep), Kool Savas. Nicht als Fan. Sondern mittendrin.</p>
+                    <p>2014 und 2015 steht er mit Sido auf der Bühne – Abend für Abend, Halle für Halle. In dieser Zeit entsteht unter dem Namen BSH das Album „Endlich erwachsen“. Platz 3 der deutschen Charts.</p>
+                    <p>Dann folgte Werbung, Kunst und Leben.</p>
+                    <p>Kurz gesagt: Anton kennt große Bühnen. Er weiß, wie sich 15.000 Leute anhören. Aber er kennt auch die Familyparty im Wohnzimmer. Und wie sich ein Raum anfühlt, kurz bevor jemand sagt: „Mach mal lauter“.</p>
+                    <p>Anton gehört nicht dazu.</p>
                 </div>
             </div>
         </main>
-        <footer class="d-footer"><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></footer>
+
+        <footer class="d-footer">
+            <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
+        </footer>
     </div>
 
     <div id="mobile-wrapper">
-        <header class="m-header"><img src="Antonlogo.png" class="m-header-logo"></header>
-        <div class="m-menu-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
-        <nav class="m-sidebar" id="m-nav">
+        <div id="m-bg-fix"></div>
+        <header class="m-header">
+            <img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo">
+        </header>
+        
+        <div class="m-menu-btn" onclick="mToggleMenu(event)">
+            <span></span><span></span><span></span>
+        </div>
+        
+        <nav class="m-sidebar" id="m-sidebar">
             <div class="m-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span>Start</span></a></div>
             <div class="m-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span>Musik</span></a></div>
             <div class="m-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span>Shop</span></a></div>
             <div class="m-nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span>Kontakt</span></a></div>
         </nav>
+
         <main>
             <div class="detail-bento">
-                <div class="image-container"><div class="album-cover"><img src="Ich.jpg"></div></div>
+                <div class="image-container">
+                    <div class="album-cover"><img src="Ich.jpg" alt="ANTON"></div>
+                </div>
                 <div class="album-text">
-                    <p class="intro">Ihr wollt mehr über mich wissen?</p>
-                    <p>Anton ist Papa. Und Bruder. Geboren wurde er als Anton Nachtwey in Berlin-Friedenau...</p>
+                    <p class="intro">Ihr wollt mehr über mich und mein laaaanges Leben wissen? Wer Anton ist? Na dann passt mal auf:</p>
+                    <p>Anton ist Papa. Und Bruder. Geboren wurde er als Anton Nachtwey in Berlin-Friedenau.</p>
+                    <p>Mit sechs sitzt er am Klavier... (Rest wie oben)</p>
+                    <p>Anton gehört nicht dazu.</p>
                 </div>
             </div>
         </main>
+
         <aside class="m-sidebar-right">
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
             <a href="#"><i class="fa-brands fa-tiktok"></i></a>
@@ -172,17 +202,25 @@
     </div>
 
     <script>
-        function toggleMenu() { document.getElementById('d-nav').classList.toggle('open'); }
-        function toggleMobileMenu() { document.getElementById('m-nav').classList.toggle('open'); }
-        
-        window.onclick = function(event) {
-            if (!event.target.closest('.d-menu-btn') && !event.target.closest('#d-nav')) {
-                document.getElementById('d-nav').classList.remove('open');
-            }
-            if (!event.target.closest('.m-menu-btn') && !event.target.closest('#m-nav')) {
-                document.getElementById('m-nav').classList.remove('open');
-            }
+        const dSidebar = document.getElementById('d-sidebar');
+        function toggleDesktopMenu() {
+            dSidebar.classList.toggle('open');
         }
+
+        const mSidebar = document.getElementById('m-sidebar');
+        function mToggleMenu(e) { 
+            e.stopPropagation();
+            mSidebar.classList.toggle('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            if (dSidebar && !dSidebar.contains(e.target) && !e.target.closest('.d-menu-btn')) {
+                dSidebar.classList.remove('open');
+            }
+            if (mSidebar && !mSidebar.contains(e.target) && !e.target.closest('.m-menu-btn')) {
+                mSidebar.classList.remove('open');
+            }
+        });
     </script>
 </body>
 </html>
