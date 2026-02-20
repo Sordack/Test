@@ -48,9 +48,7 @@
             }
             
             .d-header-logo {
-                max-height: 285px; 
-                width: auto;
-                object-fit: contain;
+                max-height: 285px; width: auto; object-fit: contain;
                 filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
                 transform: translateY(82px); 
             }
@@ -60,13 +58,7 @@
                 z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; 
                 display: flex; align-items: center; justify-content: center; 
                 border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; 
-                overflow: hidden; 
             }
-            .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
-            .d-menu-btn span { transition: opacity 0.2s; }
-            .d-menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
-            .d-menu-btn:hover span { opacity: 0; }
-            .d-menu-btn:hover::after { opacity: 1; }
             
             .d-sidebar-left { 
                 position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); 
@@ -113,9 +105,6 @@
             .d-sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
             .d-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
             
-            .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
-            .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
-
             main { flex: 1; padding: 190px 20px 100px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
             .d-footer { 
@@ -123,8 +112,7 @@
                 border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; 
                 z-index: 100; position: fixed; bottom: 0; left: 0; 
             }
-            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; transition: all 0.3s ease; }
-            .d-footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; }
         }
 
         /* ================================================================= */
@@ -141,17 +129,18 @@
             display: flex;
             gap: 50px;
             align-items: flex-start;
-            box-shadow: none; /* Balken/Schatten entfernt */
+            box-shadow: none; 
             position: relative;
         }
 
         .image-container {
             flex-shrink: 0;
-            width: 175px; /* 50% kleiner (vorher 350px) */
+            width: 175px; 
             display: flex;
             flex-direction: column;
             gap: 10px;
-            position: relative;
+            position: sticky;
+            top: 20px;
         }
 
         .album-cover {
@@ -163,8 +152,9 @@
 
         .album-cover img { width: 100%; height: auto; display: block; }
 
-        .album-text { color: #000; line-height: 1.6; font-size: 1.15rem; padding-bottom: 20px; }
+        .album-text { color: #000; line-height: 1.6; font-size: 1.15rem; padding-bottom: 20px; flex: 1; }
         .album-text p { margin-bottom: 20px; }
+        .album-text .intro { font-weight: bold; color: var(--anton-red); font-size: 1.25rem; }
 
         /* ================================================================= */
         /* 3. MOBILE STYLES                                                  */
@@ -175,42 +165,33 @@
             body { 
                 height: 100vh; width: 100vw; overflow: hidden !important; 
                 position: fixed; display: flex; flex-direction: column; touch-action: pan-y;
-                overscroll-behavior-x: none;
             }
             #m-bg-fix { 
                 display: block; position: fixed; top: 0; left: -100%; 
                 width: 300%; height: 100%; background: url('Background.jpg') no-repeat center center; 
-                background-size: cover; z-index: -1; will-change: transform; 
+                background-size: cover; z-index: -1; 
             }
             .m-header { 
                 position: fixed; top: 0; width: 100%; height: 80px; 
                 display: flex; justify-content: center; align-items: center; 
                 z-index: 1000; background: rgba(255, 255, 255, 0.8); 
                 backdrop-filter: blur(10px); border-bottom: 2px solid #000; 
-                transition: transform 0.6s ease-in-out; 
             }
             .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
-            .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
-            .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
-            .m-menu-btn.active { background: var(--anton-yellow); }
-            .m-menu-btn.active span { display: none; }
-            .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
+            .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border: 2px solid #000; }
+            .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; }
             
-            .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+            .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s ease; }
             .m-sidebar.open { top: 0 !important; }
-            .m-nav-item { flex: 1; text-align: center; }
-            .m-nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
-            .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
             
             main { padding: 100px 15px 100px 15px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
             
             .detail-bento { flex-direction: column; padding: 20px; gap: 20px; align-items: center; }
-            .image-container { width: 140px; } /* Mobile 50% kleiner angepasst */
-            .album-text { padding-bottom: 0; font-size: 1rem; text-align: center; }
+            .image-container { width: 140px; position: static; }
+            .album-text { font-size: 1rem; text-align: left; }
 
             .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; padding: 0 10px; justify-content: space-evenly; }
-            .m-sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
-            @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+            .m-sidebar-right a i { color: #000; font-size: 1.5rem; animation: ultraFlowWaveMobile 6s linear infinite; }
         }
     </style>
 </head>
@@ -257,9 +238,15 @@
                     </div>
                 </div>
                 <div class="album-text">
-                    <p>Hier kommt Anton! Er ist ein kleiner Bruder, großer Bruder, Papa und Musiker. Er hat Songs für die Menschen im Gepäck, die zu groß für klassische Kinderlieder sind, aber doch noch ein paar Jahre von den Problemen eines pubertären Teenies entfernt sind.</p>
-                    <p>Auf dem Debütalbum “ertappt” singt Anton in 14 Songs über Alltagssituationen im Familienbetrieb und knifflige Entscheidungen. Der Ohrwurm “Monsterparty” darf auf absolut keiner Halloweenparty fehlen!</p>
-                    <p>Antons Musik macht Spaß und gibt Kraft. Auf der Rückbank UND den Vordersitzen der Familienkutsche. Familienpop eben!</p>
+                    <p class="intro">Ihr wollt mehr über mich und mein laaaanges Leben wissen? Wollt wissen wer da immer so aufdreht? Wer Anton ist? Na dann passt mal auf:</p>
+                    <p>Anton ist Papa. Und Bruder. Großer und kleiner – je nachdem, wen man fragt. Geboren wurde er als Anton Nachtwey in Berlin-Friedenau.</p>
+                    <p>Mit sechs sitzt er am Klavier, und bleibt da auch erst mal zwölf Jahre. Klassische Ausbildung, Tonleitern, Disziplin. Seit seinem zehnten Lebensjahr steht er außerdem auf Bühnen – als Sänger, als Performer, als jemand, der offensichtlich lieber vorne steht als hinten.</p>
+                    <p>Irgendwann merkt er: Ein Klavier passt schlecht in einen Rucksack. Also bringt er sich selbst Gitarre bei. Autodidaktisch, nach Gehör, nach Gefühl. Ende der 90er baut er sein eigenes Studio auf, schreibt Songs, produziert – dreht an Knöpfen, bis es nach ihm klingt.</p>
+                    <p>2004 macht Anton seinen Abschluss als Audio Engineer. Er weiß jetzt offiziell, was er da eigentlich die ganze Zeit schon macht. 2005 läuft er dann bei Unser Block auf VIVA im Fernsehen – als Hauptdarsteller.</p>
+                    <p>Danach wird’s voll. Studios. Nächte. Bühnen. Lautsprecher, die größer sind als Wohnzimmer. Er arbeitet mit Leuten wie Mark Forster, Havoc (Mobb Deep), Kool Savas. Nicht als Fan. Sondern mittendrin.</p>
+                    <p>2014 und 2015 steht er mit Sido auf der Bühne – Abend für Abend, Halle für Halle. In dieser Zeit entsteht unter dem Namen BSH das Album „Endlich erwachsen“. Platz 3 der deutschen Charts.</p>
+                    <p>Dann folgte Werbung, Kunst und Leben.</p>
+                    <p>Kurz gesagt: Anton kennt große Bühnen. Er weiß, wie sich 15.000 Leute anhören. Aber er kennt auch die Familyparty im Wohnzimmer. Und wie sich ein Raum anfühlt, kurz bevor jemand sagt: „Mach mal lauter“. Man kann ja vieles runterregeln. Anton gehört nicht dazu.</p>
                 </div>
             </div>
         </main>
@@ -286,7 +273,10 @@
                     <div class="album-cover"><img src="Ich.jpg" alt="ANTON Portrait"></div>
                 </div>
                 <div class="album-text">
-                    <p>Hier kommt Anton! Debütalbum "ertappt" ist da.</p>
+                    <p class="intro">Ihr wollt mehr über mich wissen? Wer Anton ist? Passt mal auf:</p>
+                    <p>Anton ist Papa und Bruder. Geboren in Berlin-Friedenau. Mit sechs am Klavier, mit zehn auf der Bühne.</p>
+                    <p>Audio Engineer Abschluss 2004, Hauptdarsteller bei VIVA 2005. Arbeitete mit Mark Forster, Kool Savas und Sido. Platz 3 der Charts mit „Endlich erwachsen“.</p>
+                    <p>Er kennt die 15.000er Hallen und die Wohnzimmer-Partys. Er lässt sich nicht leiser drehen.</p>
                 </div>
             </div>
         </main>
