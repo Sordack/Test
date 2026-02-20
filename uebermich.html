@@ -15,10 +15,11 @@
             --amazon-blue: #00A8E1;
         }
 
+        /* Hintergrund-Reset: Weißer Balken entfernt */
         html, body { 
             margin: 0; 
             padding: 0; 
-            background-color: #ffffff; 
+            background: transparent; 
             font-family: 'Special Elite', cursive;
             height: 100%; 
             width: 100%;
@@ -30,76 +31,41 @@
         @media (min-width: 801px) {
             #mobile-wrapper { display: none !important; }
             body { 
-                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
+                background: url('Background.jpg') no-repeat center center fixed; 
                 background-size: cover !important; 
-                background-attachment: fixed;
                 overflow-x: hidden;
                 display: flex;
                 flex-direction: column;
-                min-height: 100vh;
             }
             .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
-            .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
-            .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
-            .d-menu-btn span { transition: opacity 0.2s; }
-            .d-menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
-            .d-menu-btn:hover span { opacity: 0; }
-            .d-menu-btn:hover::after { opacity: 1; }
+            .d-header-logo { max-height: 285px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
+            .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 2px solid #000; }
             .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
             .d-sidebar-left.open { left: 0; }
             .d-nav-item { margin-bottom: 20px; width: 100%; }
-            .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
-            .d-sidebar-left a:hover { color: var(--anton-red); }
-            .d-nav-label { display: flex; align-items: center; width: 100%; }
-            .d-nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
-            .d-arrow-wrapper { margin-left: auto; padding-right: 5px; }
-            .d-submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
-            .d-nav-item:hover .d-submenu-indicator { transform: rotate(180deg); }
-            .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
+            .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
+            .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; }
             .d-nav-item:hover .d-submenu { display: flex; }
-            .d-submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
-            .d-submenu a i { margin-right: 10px; width: 18px; text-align: center; }
-            .d-nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
-            .d-nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
             .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-            .d-sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
-            @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-            .d-sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-            .d-sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
-            .d-sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
-            .d-sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
-            .d-sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
-            .d-sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
-            .d-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
-            .d-sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-            .d-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
-            .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
-            .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
-            .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
-            .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
-            .box-mitte { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
-            .box-pause { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
-            .box-pause2 { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
-            .box-pause3 { width: 5%; height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
-            .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
-            main { flex: 1; padding: 190px 20px 60px 20px; z-index: 5; width: 100%; box-sizing: border-box; background: transparent; }
+            .d-sidebar-right a i { color: #000; font-size: 1.2rem; }
+            
+            main { flex: 1; padding: 190px 20px 60px 20px; z-index: 5; }
             .d-footer { position: fixed; bottom: 0; width: 100%; height: 45px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; border-top: 2px solid #000; z-index: 100; }
-            .d-footer a { color: #000; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 0.9rem; }
-            .d-footer a:hover { color: var(--anton-red); }
-            .m-separator { display: none; }
+            .d-footer a { color: #000; text-decoration: none; margin: 0 15px; font-weight: bold; }
         }
 
         /* ================================================================= */
-        /* 2. SHARED BENTO STYLE                                             */
+        /* 2. SHARED BENTO STYLE (TRANSPARENTE MASKE)                        */
         /* ================================================================= */
         .detail-bento {
-            max-width: 1100px; margin: 0 auto; background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px); padding: 40px; border: 2px solid #000;
+            max-width: 1100px; margin: 0 auto; 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(15px); 
+            padding: 40px; border: 2px solid #000;
             border-radius: 20px; display: flex; gap: 50px; align-items: flex-start;
-            position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .image-container { flex-shrink: 0; width: 175px; display: flex; flex-direction: column; gap: 10px; position: sticky; top: 20px; z-index: 10; }
+        .image-container { flex-shrink: 0; width: 175px; position: sticky; top: 20px; }
         .album-cover { border: 2px solid #000; border-radius: 15px; overflow: hidden; box-shadow: 5px 5px 0px var(--anton-yellow); background: #fff; }
         .album-cover img { width: 100%; height: auto; display: block; }
         .album-text { color: #000; line-height: 1.6; font-size: 1.15rem; flex: 1; }
@@ -112,56 +78,32 @@
         @media (max-width: 800px) {
             #desktop-wrapper { display: none !important; }
             body { 
-                height: 100vh; width: 100vw; overflow: hidden !important; 
-                position: fixed; display: flex; flex-direction: column;
-            }
-            #m-bg-fix { 
-                display: block; position: fixed; top: 0; left: 0; 
-                width: 100%; height: 100%; 
-                background: url('Background.jpg') no-repeat center center; 
+                background: url('Background.jpg') no-repeat center center fixed; 
                 background-size: cover; 
-                background-attachment: fixed; 
-                z-index: -1; 
+                overflow-y: auto !important; 
             }
-            .m-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; transition: transform 0.6s ease-in-out; }
-            .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
-            .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
-            .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
-            .m-menu-btn.active { background: var(--anton-yellow); }
-            .m-menu-btn.active span { display: none; }
-            .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
-            .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-            .m-sidebar.open { top: 0 !important; }
-            .m-nav-item { flex: 1; text-align: center; }
-            .m-nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
-            .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
-            .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
-            .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
-            .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; }
-            .m-id-button.hidden { transform: translateX(100%); }
-            .m-id-panel { position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem; }
-            .m-id-panel.open { right: 0; }
-            .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
+            
+            .m-header { position: fixed; top: 0; width: 100%; height: 80px; z-index: 1000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border-bottom: 2px solid #000; display: flex; justify-content: center; align-items: center; }
+            .m-header-logo { max-height: 60px; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            
+            .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border: 2px solid #000; }
+            .m-menu-btn span { width: 22px; height: 3px; background: #fff; }
 
-            main { padding: 100px 15px 80px 15px; flex: 1; z-index: 5; overflow: hidden; display: flex; flex-direction: column; }
-            .detail-bento { flex-direction: column; padding: 0; gap: 0; align-items: center; height: 100%; overflow: hidden; display: flex; }
-            .image-container { width: 100%; position: sticky; top: 0; padding: 20px 20px 10px 20px; box-sizing: border-box; background: rgba(255, 255, 255, 0.0); backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center; z-index: 20; }
-            .album-cover { width: 140px; }
-            .m-separator { display: block; width: 90%; height: 2px; background: #000; margin: 10px auto 0 auto; border-radius: 2px; }
-            .album-text { font-size: 1rem; text-align: left; padding: 20px; overflow-y: auto; width: 100%; box-sizing: border-box; -webkit-overflow-scrolling: touch; z-index: 5; }
-            .album-text .intro { font-size: 1.1rem; }
-            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; padding: 0 10px; justify-content: space-evenly; }
-            .m-sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
-            @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-            .m-sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-            .m-sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
-            .m-sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
-            .m-sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
-            .m-sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
-            .m-sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
-            .m-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
-            .m-sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-            .m-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
+            main { padding: 100px 15px 100px 15px; }
+            
+            .detail-bento { 
+                flex-direction: column; 
+                padding: 20px; 
+                gap: 20px; 
+                align-items: center; 
+                background: rgba(255, 255, 255, 0.9); 
+            }
+
+            .image-container { width: 140px; position: relative; top: 0; }
+            .album-text { font-size: 1rem; width: 100%; }
+
+            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; display: flex; align-items: center; justify-content: space-evenly; z-index: 999; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-top: 2px solid #000; }
+            .m-sidebar-right a i { color: #000; font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -173,38 +115,24 @@
         </header>
         <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
         
-        <a href="meinemusik.html" class="invisible-box box-ertappt"></a>
-        <a href="neuesingle.html" class="invisible-box box-mitte"></a>
-        <a href="meinemusik.html" class="invisible-box box-pause"></a>
-        <a href="meinemusik.html" class="invisible-box box-pause2"></a>
-        <a href="meinemusik.html" class="invisible-box box-pause3"></a>
-        <a href="neuesingle.html" class="invisible-box box-riesenhunger"></a>
-
         <nav class="d-sidebar-left" id="d-sidebar">
-            <div class="d-nav-item"><a href="hauptseite.html"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
+            <div class="d-nav-item"><a href="hauptseite.html">START</a></div>
             <div class="d-nav-item">
-                <a href="meinemusik.html"><span class="d-nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="d-arrow-wrapper"><i class="fa-solid fa-caret-down d-submenu-indicator"></i></div></a>
+                <a href="meinemusik.html">MEINE MUSIK</a>
                 <div class="d-submenu">
-                    <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
-                    <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
-                    <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
+                    <a href="ueber-mich.html">ÜBER MICH</a>
+                    <a href="meinemusik.html">RELEASES</a>
                 </div>
             </div>
-            <div class="d-nav-item"><a href="shop.html"><span class="d-nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
-            <div class="d-nav-item"><a href="kontakt.html"><span class="d-nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-            <div class="d-nav-item d-nav-item-epk"><a href="epk.html"><span class="d-nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a></div>
+            <div class="d-nav-item"><a href="shop.html">SHOP</a></div>
+            <div class="d-nav-item"><a href="kontakt.html">KONTAKT</a></div>
         </nav>
 
         <aside class="d-sidebar-right">
-            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://open.spotify.com/intl-de/artist/348545011" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
-            <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
-            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-spotify"></i></a>
         </aside>
 
         <main>
@@ -222,7 +150,7 @@
                     <p>2014 und 2015 steht er mit Sido auf der Bühne – Abend für Abend, Halle für Halle. In dieser Zeit entsteht unter dem Namen BSH das Album „Endlich erwachsen“. Platz 3 der deutschen Charts.</p>
                     <p>Dann folgte Werbung, Kunst und Leben.</p>
                     <p>Kurz gesagt: Anton kennt große Bühnen. Er weiß, wie sich 15.000 Leute anhören. Aber er kennt auch die Familyparty im Wohnzimmer. Und wie sich ein Raum anfühlt, kurz bevor jemand sagt: „Mach mal lauter“.</p>
-                    <p>Man kann ja vieles runterregeln. Anton gehört nicht dazu.</p>
+                    <p>Anton gehört nicht dazu.</p>
                 </div>
             </div>
         </main>
@@ -234,126 +162,42 @@
     </div>
 
     <div id="mobile-wrapper">
-        <div id="m-bg-fix"></div>
-        <header class="m-header" id="m-header-main"><img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo"></header>
-        <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)"><span></span><span></span><span></span></div>
+        <header class="m-header"><img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo"></header>
+        <div class="m-menu-btn"><span></span><span></span><span></span></div>
         
-        <nav class="m-sidebar" id="m-sidebar">
-            <div class="m-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
-            <div class="m-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
-            <div class="m-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
-            <div class="m-nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></a></div>
-            <div class="m-epk-container"><a href="epk.html" class="m-epk-text">EPK/PRESSE</a></div>
-        </nav>
-
-        <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
-        <div class="m-id-panel" id="m-id-panel">
-            <a href="impressum.html">Impressum</a><span>|</span><a href="datenschutz.html">Datenschutz</a>
-        </div>
-
         <main>
             <div class="detail-bento">
                 <div class="image-container">
                     <div class="album-cover"><img src="Ich.jpg" alt="ANTON Portrait"></div>
-                    <div class="m-separator"></div>
                 </div>
                 <div class="album-text">
-                    <p class="intro">Ihr wollt mehr über mich und mein laaaanges Leben wissen? Wollt wissen wer da immer so aufdreht? Wer Anton ist? Na dann passt mal auf:</p>
+                    <p class="intro">Ihr wollt mehr über mich und mein laaaanges Leben wissen? Wer Anton ist? Na dann passt mal auf:</p>
                     <p>Anton ist Papa. Und Bruder. Großer und kleiner – je nachdem, wen man fragt. Geboren wurde er als Anton Nachtwey in Berlin-Friedenau.</p>
-                    <p>Mit sechs sitzt er am Klavier, und bleibt da auch erst mal zwölf Jahre. Klassische Ausbildung, Tonleitern, Disziplin. Seit seinem zehnten Lebensjahr steht er außerdem auf Bühnen – als Sänger, als Performer, als jemand, der offensichtlich lieber vorne steht als hinten.</p>
-                    <p>Irgendwann merkt er: Ein Klavier passt schlecht in einen Rucksack. Also bringt er sich selbst Gitarre bei. Autodidaktisch, nach Gehör, nach Gefühl. Ende der 90er baut er sein eigenes Studio auf, schreibt Songs, produziert – dreht an Knöpfen, bis es nach ihm klingt.</p>
-                    <p>2004 macht Anton seinen Abschluss als Audio Engineer. Er weiß jetzt offiziell, was er da eigentlich die ganze Zeit schon macht. 2005 läuft er dann bei Unser Block auf VIVA im Fernsehen – als Hauptdarsteller.</p>
-                    <p>Danach wird’s voll. Studios. Nächte. Bühnen. Lautsprecher, die größer sind als Wohnzimmer. Er arbeitet mit Leuten wie Mark Forster, Havoc (Mobb Deep), Kool Savas. Nicht als Fan. Sondern mittendrin.</p>
+                    <p>Mit sechs sitzt er am Klavier, und bleibt da auch erst mal zwölf Jahre. Klassische Ausbildung, Tonleitern, Disziplin. Seit seinem zehnten Lebensjahr steht er außerdem auf Bühnen.</p>
+                    <p>Irgendwann merkt er: Ein Klavier passt schlecht in einen Rucksack. Also bringt er sich selbst Gitarre bei. Autodidaktisch, nach Gehör, nach Gefühl. Ende der 90er baut er sein eigenes Studio auf, schreibt Songs, produziert.</p>
+                    <p>2004 macht Anton seinen Abschluss als Audio Engineer. 2005 läuft er dann bei Unser Block auf VIVA im Fernsehen – als Hauptdarsteller.</p>
+                    <p>Danach wird’s voll. Studios. Nächte. Bühnen. Er arbeitet mit Leuten wie Mark Forster, Havoc (Mobb Deep), Kool Savas. Nicht als Fan. Sondern mittendrin.</p>
                     <p>2014 und 2015 steht er mit Sido auf der Bühne – Abend für Abend, Halle für Halle. In dieser Zeit entsteht unter dem Namen BSH das Album „Endlich erwachsen“. Platz 3 der deutschen Charts.</p>
                     <p>Dann folgte Werbung, Kunst und Leben.</p>
-                    <p>Kurz gesagt: Anton kennt große Bühnen. Er weiß, wie sich 15.000 Leute anhören. Aber er kennt auch die Familyparty im Wohnzimmer. Und wie sich ein Raum anfühlt, kurz bevor jemand sagt: „Mach mal lauter“. Man kann ja vieles runterregeln.</p>
+                    <p>Kurz gesagt: Anton kennt große Bühnen. Er weiß, wie sich 15.000 Leute anhören. Aber er kennt auch die Familyparty im Wohnzimmer. Und wie sich ein Raum anfühlt, kurz bevor jemand sagt: „Mach mal lauter“.</p>
                     <p>Anton gehört nicht dazu.</p>
                 </div>
             </div>
         </main>
 
         <aside class="m-sidebar-right">
-            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://open.spotify.com/intl-de/artist/348545011" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
-            <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
-            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-spotify"></i></a>
         </aside>
     </div>
 
     <script>
-        // Desktop
-        let dSidebarTimeout;
         const dSidebar = document.getElementById('d-sidebar');
-        function resetDSidebarTimer() {
-            clearTimeout(dSidebarTimeout);
-            if (dSidebar && dSidebar.classList.contains('open')) {
-                dSidebarTimeout = setTimeout(() => { dSidebar.classList.remove('open'); }, 5000); 
-            }
-        }
         function toggleDesktopMenu() {
-            if (dSidebar) {
-                dSidebar.classList.toggle('open');
-                if (dSidebar.classList.contains('open')) resetDSidebarTimer();
-            }
+            if (dSidebar) dSidebar.classList.toggle('open');
         }
-        if (dSidebar) {
-            dSidebar.addEventListener('mousemove', resetDSidebarTimer);
-            dSidebar.addEventListener('click', resetDSidebarTimer);
-        }
-        document.addEventListener('click', function(e) {
-            if(window.innerWidth > 800) {
-                const btn = document.querySelector(".d-menu-btn");
-                if (dSidebar && !dSidebar.contains(e.target) && !btn.contains(e.target) && dSidebar.classList.contains("open")) {
-                    dSidebar.classList.remove("open");
-                    clearTimeout(dSidebarTimeout);
-                }
-            }
-        });
-
-        // Mobile
-        const mSidebar = document.getElementById('m-sidebar');
-        const mMenuBtn = document.getElementById('m-menu-trigger');
-        const mIdBtn = document.getElementById('m-id-btn');
-        const mIdPanel = document.getElementById('m-id-panel');
-        let mMenuTimeout, mIdTimeout;
-
-        function mCloseAllMenus() {
-            if(mSidebar) mSidebar.classList.remove('open');
-            if(mMenuBtn) mMenuBtn.classList.remove('active');
-            if(mMenuTimeout) clearTimeout(mMenuTimeout);
-            if(mIdPanel) mIdPanel.classList.remove('open');
-            if(mIdBtn) mIdBtn.classList.remove('hidden');
-            if(mIdTimeout) clearTimeout(mIdTimeout);
-        }
-
-        function mToggleMenu(e) { 
-            e.stopPropagation();
-            if (mSidebar.classList.contains('open')) { mCloseAllMenus(); } 
-            else { mCloseAllMenus(); mSidebar.classList.add('open'); mMenuBtn.classList.add('active'); mMenuTimeout = setTimeout(mCloseAllMenus, 5000); }
-        }
-
-        function mOpenIDMenu(e) {
-            e.stopPropagation(); mCloseAllMenus();
-            if(mIdBtn) mIdBtn.classList.add('hidden'); 
-            if(mIdPanel) mIdPanel.classList.add('open');
-            mIdTimeout = setTimeout(mCloseAllMenus, 5000);
-        }
-
-        document.addEventListener('click', (e) => {
-            if(window.innerWidth <= 800) {
-                if (!mSidebar.contains(e.target) && !mMenuBtn.contains(e.target) && !mIdPanel.contains(e.target) && !mIdBtn.contains(e.target)) mCloseAllMenus();
-            }
-        });
-
-        setTimeout(() => { 
-            const mh = document.getElementById('m-header-main');
-            if(mh && window.innerWidth <= 800) mh.style.transform = 'translateY(-100%)'; 
-        }, 3000);
     </script>
 </body>
 </html>
