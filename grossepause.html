@@ -20,7 +20,6 @@
             padding: 0; 
             background-color: #ffffff; 
             font-family: 'Special Elite', cursive;
-            height: 100%; 
             width: 100%;
         }
 
@@ -33,18 +32,13 @@
             body { 
                 background: #ffffff url('Background.jpg') no-repeat center center fixed; 
                 background-size: cover !important; 
-                background-attachment: fixed;
                 overflow-x: hidden;
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
             }
             
             .d-header { 
                 position: fixed; top: 0; width: 100%; height: 80px; 
                 display: flex; justify-content: center; align-items: center; 
-                z-index: 100; background: rgba(255, 255, 255, 0.8); 
-                backdrop-filter: blur(10px); border-bottom: 2px solid #000; 
+                z-index: 100; background: transparent; border-bottom: none;
             }
             
             .d-header-logo {
@@ -116,7 +110,7 @@
             .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
             .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-            main { flex: 1; padding: 190px 20px 100px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
+            main { padding: 190px 20px 140px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
             .d-footer { 
                 width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); 
@@ -175,20 +169,10 @@
             z-index: 20;
             background: #fff;
         }
-        .mini-link-bottom-left:hover {
-            transform: scale(1.15) rotate(-2deg);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-        }
+        .mini-link-bottom-left:hover { transform: scale(1.15) rotate(-2deg); box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
         .mini-link-bottom-left img { width: 100%; display: block; }
 
-        .image-source {
-            font-size: 0.7rem;
-            font-style: italic;
-            color: #333;
-            text-align: left;
-            padding-left: 5px;
-        }
-
+        .image-source { font-size: 0.7rem; font-style: italic; color: #333; text-align: left; padding-left: 5px; }
         .album-text { color: #000; line-height: 1.6; font-size: 1.15rem; padding-bottom: 60px; }
         .album-text p { margin-bottom: 20px; }
 
@@ -201,12 +185,11 @@
             body { 
                 height: 100vh; width: 100vw; overflow: hidden !important; 
                 position: fixed; display: flex; flex-direction: column; touch-action: pan-y;
-                overscroll-behavior-x: none;
             }
             #m-bg-fix { 
                 display: block; position: fixed; top: 0; left: -100%; 
                 width: 300%; height: 100%; background: #ffffff url('Background.jpg') no-repeat center center; 
-                background-size: cover; z-index: -1; will-change: transform; 
+                background-size: cover; z-index: -1; 
             }
             .m-header { 
                 position: fixed; top: 0; width: 100%; height: 80px; 
@@ -229,7 +212,6 @@
             .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
             
             main { padding: 100px 15px 100px 15px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-            
             .detail-bento { flex-direction: column; padding: 20px; gap: 20px; align-items: center; }
             .image-container { width: 100%; max-width: 280px; }
             .mini-link-bottom-left { position: relative; bottom: 0; left: 0; margin-top: 10px; width: 80px; }
@@ -244,9 +226,7 @@
 <body>
 
     <div id="desktop-wrapper">
-        <header class="d-header">
-            <img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo">
-        </header>
+        <header class="d-header"><img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo"></header>
         <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
         
         <nav class="d-sidebar-left" id="d-sidebar">
@@ -279,9 +259,7 @@
         <main>
             <div class="detail-bento">
                 <div class="image-container">
-                    <div class="album-cover">
-                        <img src="Album Große Pause.jpg" alt="Album Große Pause">
-                    </div>
+                    <div class="album-cover"><img src="Album Große Pause.jpg" alt="Album Große Pause"></div>
                     <div class="image-source">Quelltext-/bild: Universal Music Group</div>
                 </div>
                 <div class="album-text">
