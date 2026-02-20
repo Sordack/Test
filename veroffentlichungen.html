@@ -131,7 +131,7 @@
                 pointer-events: none;
             }
 
-            /* Balken: Vollflächig, weiß-transparent, schmaler in der Höhe */
+            /* Balken: Nochmals 5% schmaler durch reduziertes Padding */
             .item-label {
                 position: absolute;
                 bottom: 0;
@@ -140,14 +140,13 @@
                 background: rgba(255, 255, 255, 0.7);
                 color: #000;
                 text-align: center;
-                padding: 8px 0; /* 10% schmaler von oben nach unten */
+                padding: 6px 0; 
                 font-size: 0.75rem;
                 border-top: 2px solid #000;
                 box-sizing: border-box;
                 z-index: 10;
             }
 
-            /* Umgekehrte Drehrichtung */
             @keyframes rotateCarousel {
                 from { transform: rotateY(0deg); }
                 to { transform: rotateY(-360deg); }
@@ -197,31 +196,19 @@
         <div class="carousel-viewport" id="carouselViewport">
             <div class="carousel-inner" id="carouselInner">
                 <div class="carousel-item">
-                    <img src="monsterparty-anton.jpg" alt="2020">
-                    <div class="item-label">Debütsingle (2020)</div>
+                    <img src="Hunger.JPG" alt="2026">
+                    <div class="item-label">neue Single (Februar 2026)</div>
                 </div>
                 <div class="carousel-item">
-                    <img src="Album Ertappt.jpg" alt="2021">
-                    <div class="item-label">Debütalbum (2021)</div>
+                    <img src="Hunger.JPG" alt="2026">
+                    <div class="item-label">neue Single (Februar 2026)</div>
                 </div>
                 <div class="carousel-item">
-                    <img src="anton-album-cover-grosse-pause-vjpg.jpg" alt="2023">
-                    <div class="item-label">2. Album (2023)</div>
+                    <img src="Hunger.JPG" alt="2026">
+                    <div class="item-label">neue Single (Februar 2026)</div>
                 </div>
                 <div class="carousel-item">
-                    <img src="cover-mein-name-ist-hase-esinglejpg.jpg" alt="2023">
-                    <div class="item-label">Meist gehört (2023)</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="anton-cover-single-raumschiff-1jpg.jpg" alt="Single">
-                    <div class="item-label">Single</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="anton-cover-single-weihnachtenjpg.jpg" alt="Single">
-                    <div class="item-label">Single</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="anton-eiswurfel-coverjpg.jpg" alt="Single">
+                    <img src="fanny-furzfliege-ecover-3k-srgb-lzwjpg.jpg" alt="Single">
                     <div class="item-label">Single</div>
                 </div>
                 <div class="carousel-item">
@@ -229,20 +216,32 @@
                     <div class="item-label">Single</div>
                 </div>
                 <div class="carousel-item">
-                    <img src="fanny-furzfliege-ecover-3k-srgb-lzwjpg.jpg" alt="Single">
+                    <img src="anton-eiswurfel-coverjpg.jpg" alt="Single">
                     <div class="item-label">Single</div>
                 </div>
                 <div class="carousel-item">
-                    <img src="Hunger.JPG" alt="2026">
-                    <div class="item-label">neue Single (Februar 2026)</div>
+                    <img src="anton-cover-single-weihnachtenjpg.jpg" alt="Single">
+                    <div class="item-label">Single</div>
                 </div>
                 <div class="carousel-item">
-                    <img src="Hunger.JPG" alt="2026">
-                    <div class="item-label">neue Single (Februar 2026)</div>
+                    <img src="anton-cover-single-raumschiff-1jpg.jpg" alt="Single">
+                    <div class="item-label">Single</div>
                 </div>
                 <div class="carousel-item">
-                    <img src="Hunger.JPG" alt="2026">
-                    <div class="item-label">neue Single (Februar 2026)</div>
+                    <img src="cover-mein-name-ist-hase-esinglejpg.jpg" alt="2023">
+                    <div class="item-label">Meist gehört (2023)</div>
+                </div>
+                <div class="carousel-item">
+                    <img src="anton-album-cover-grosse-pause-vjpg.jpg" alt="2023">
+                    <div class="item-label">2. Album (2023)</div>
+                </div>
+                <div class="carousel-item">
+                    <img src="Album Ertappt.jpg" alt="2021">
+                    <div class="item-label">Debütalbum (2021)</div>
+                </div>
+                <div class="carousel-item">
+                    <img src="monsterparty-anton.jpg" alt="2020">
+                    <div class="item-label">Debütsingle (2020)</div>
                 </div>
             </div>
         </div>
