@@ -116,8 +116,15 @@
             .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
             .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-            /* Hier: Box auf 190px hoeher gesetzt */
-            main { flex: 1; padding: 190px 20px 80px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
+            main { flex: 1; padding: 190px 20px 100px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
+
+            .d-footer { 
+                width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); 
+                border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; 
+                z-index: 100; position: fixed; bottom: 0; left: 0; 
+            }
+            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; transition: all 0.3s ease; }
+            .d-footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
         }
 
         /* ================================================================= */
@@ -278,6 +285,11 @@
                 </a>
             </div>
         </main>
+
+        <footer class="d-footer">
+            <div><a href="index.html">www.anton-familienpop.de</a></div>
+            <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
+        </footer>
     </div>
 
     <div id="mobile-wrapper">
