@@ -124,7 +124,7 @@
             }
 
             .d-bento-box {
-                background: rgba(255, 255, 255, 0.7);
+                background: rgba(255, 255, 255, 0.8);
                 border: 4px solid #000;
                 box-shadow: 10px 10px 0 #000;
                 padding: 0;
@@ -136,7 +136,6 @@
                 transition: all 0.3s ease;
                 cursor: pointer;
             }
-            /* Hover Effekt über die gesamte Fläche */
             .d-bento-box:hover { 
                 transform: scale(1.05); 
                 background: var(--anton-yellow);
@@ -147,11 +146,17 @@
                 width: 100%; 
                 height: 100%; 
                 display: flex; 
+                flex-direction: column;
                 align-items: center; 
                 justify-content: center; 
                 font-weight: bold;
                 text-align: center;
-                padding: 20px; /* Textabstand innerhalb der Fläche */
+                padding: 20px;
+                font-size: 1.1rem;
+            }
+            .d-bento-box a i {
+                font-size: 2.2rem;
+                margin-bottom: 12px;
             }
 
             .d-footer { 
@@ -209,7 +214,7 @@
                 width: 170px; 
                 border: 4px solid #000; 
                 box-shadow: 8px 8px 0 #000; 
-                background: rgba(255, 255, 255, 0.7); 
+                background: rgba(255, 255, 255, 0.8); 
                 padding: 0; 
                 min-height: 120px; 
                 border-radius: 20px;
@@ -225,12 +230,17 @@
                 width: 100%; 
                 height: 100%; 
                 display: flex; 
+                flex-direction: column;
                 align-items: center; 
                 justify-content: center; 
                 font-weight: bold;
-                font-size: 0.9rem;
+                font-size: 1rem;
                 text-align: center;
                 padding: 15px;
+            }
+            .m-bento-box a i {
+                font-size: 1.8rem;
+                margin-bottom: 8px;
             }
 
             .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; }
@@ -289,13 +299,13 @@
         </aside>
 
         <main>
-            <div class="d-bento-box"><a href="uebermich.html">Über mich</a></div>
-            <div class="d-bento-box"><a href="veroffentlichungen.html">Veröffentlichungen</a></div>
-            <div class="d-bento-box"><a href="konzerte.html">Konzerte</a></div>
+            <div class="d-bento-box"><a href="uebermich.html"><i class="fa-regular fa-face-smile"></i>Über mich</a></div>
+            <div class="d-bento-box"><a href="veroffentlichungen.html"><i class="fa-solid fa-volume-high"></i>Veröffentlichungen</a></div>
+            <div class="d-bento-box"><a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i>Konzerte</a></div>
         </main>
 
         <footer class="d-footer">
-            <div><a href="index.html">www.anton-familienpop.de</a></div>
+            <div><a href="hauptseite.html">www.anton-familienpop.de</a></div>
             <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
         </footer>
     </div>
@@ -313,9 +323,9 @@
         </nav>
 
         <div class="m-content-scroll">
-            <div class="m-bento-box"><a href="uebermich.html">Über mich</a></div>
-            <div class="m-bento-box"><a href="veroffentlichungen.html">Veröffentlichungen</a></div>
-            <div class="m-bento-box"><a href="konzerte.html">Konzerte</a></div>
+            <div class="m-bento-box"><a href="uebermich.html"><i class="fa-regular fa-face-smile"></i>Über mich</a></div>
+            <div class="m-bento-box"><a href="veroffentlichungen.html"><i class="fa-solid fa-volume-high"></i>Veröffentlichungen</a></div>
+            <div class="m-bento-box"><a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i>Konzerte</a></div>
         </div>
 
         <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
