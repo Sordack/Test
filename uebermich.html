@@ -15,55 +15,33 @@
             --amazon-blue: #00A8E1;
         }
 
-        /* Hintergrund-Reset: Weißer Balken entfernt */
+        /* Hintergrund-Reset */
         html, body { 
             margin: 0; 
             padding: 0; 
-            background: transparent; 
+            background-color: #ffffff; 
             font-family: 'Special Elite', cursive;
             height: 100%; 
             width: 100%;
         }
 
         /* ================================================================= */
-        /* 1. DESKTOP STYLES                                                 */
-        /* ================================================================= */
-        @media (min-width: 801px) {
-            #mobile-wrapper { display: none !important; }
-            body { 
-                background: url('Background.jpg') no-repeat center center fixed; 
-                background-size: cover !important; 
-                overflow-x: hidden;
-                display: flex;
-                flex-direction: column;
-            }
-            .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .d-header-logo { max-height: 285px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
-            .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 2px solid #000; }
-            .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
-            .d-sidebar-left.open { left: 0; }
-            .d-nav-item { margin-bottom: 20px; width: 100%; }
-            .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
-            .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; }
-            .d-nav-item:hover .d-submenu { display: flex; }
-            .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-            .d-sidebar-right a i { color: #000; font-size: 1.2rem; }
-            
-            main { flex: 1; padding: 190px 20px 60px 20px; z-index: 5; }
-            .d-footer { position: fixed; bottom: 0; width: 100%; height: 45px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; border-top: 2px solid #000; z-index: 100; }
-            .d-footer a { color: #000; text-decoration: none; margin: 0 15px; font-weight: bold; }
-        }
-
-        /* ================================================================= */
-        /* 2. SHARED BENTO STYLE (TRANSPARENTE MASKE)                        */
+        /* BENTO BOX STYLE (Transparente Maske)                              */
         /* ================================================================= */
         .detail-bento {
-            max-width: 1100px; margin: 0 auto; 
+            max-width: 1100px; 
+            margin: 0 auto; 
             background: rgba(255, 255, 255, 0.85); 
             backdrop-filter: blur(15px); 
-            padding: 40px; border: 2px solid #000;
-            border-radius: 20px; display: flex; gap: 50px; align-items: flex-start;
+            padding: 40px; 
+            border: 2px solid #000;
+            border-radius: 20px; 
+            display: flex; 
+            gap: 50px; 
+            align-items: flex-start;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 20;
         }
         .image-container { flex-shrink: 0; width: 175px; position: sticky; top: 20px; }
         .album-cover { border: 2px solid #000; border-radius: 15px; overflow: hidden; box-shadow: 5px 5px 0px var(--anton-yellow); background: #fff; }
@@ -73,36 +51,61 @@
         .album-text .intro { font-weight: bold; color: var(--anton-red); font-size: 1.25rem; }
 
         /* ================================================================= */
-        /* 3. MOBILE STYLES                                                  */
+        /* 1. DESKTOP STYLES                                                 */
+        /* ================================================================= */
+        @media (min-width: 801px) {
+            #mobile-wrapper { display: none !important; }
+            body { 
+                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
+                background-size: cover !important; 
+                overflow-x: hidden;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+            .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
+            .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 2px solid #000; }
+            .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
+            .d-sidebar-left.open { left: 0; }
+            .d-nav-item { margin-bottom: 20px; width: 100%; }
+            .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
+            .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; }
+            .d-nav-item:hover .d-submenu { display: flex; }
+            .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+            .d-sidebar-right a i { color: #000; font-size: 1.2rem; }
+            main { flex: 1; padding: 190px 20px 100px 20px; z-index: 5; }
+            .d-footer { width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: fixed; bottom: 0; left: 0; }
+            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; }
+        }
+
+        /* ================================================================= */
+        /* 2. MOBILE STYLES                                                  */
         /* ================================================================= */
         @media (max-width: 800px) {
             #desktop-wrapper { display: none !important; }
             body { 
-                background: url('Background.jpg') no-repeat center center fixed; 
-                background-size: cover; 
+                overflow-x: hidden !important;
                 overflow-y: auto !important; 
+                position: relative;
+                display: block;
             }
-            
+            #m-bg-fix { 
+                display: block; position: fixed; top: 0; left: 0; 
+                width: 100%; height: 100%; background: url('Background.jpg') no-repeat center center; 
+                background-size: cover; z-index: -1; 
+            }
             .m-header { position: fixed; top: 0; width: 100%; height: 80px; z-index: 1000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border-bottom: 2px solid #000; display: flex; justify-content: center; align-items: center; }
             .m-header-logo { max-height: 60px; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
-            
             .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border: 2px solid #000; }
             .m-menu-btn span { width: 22px; height: 3px; background: #fff; }
-
-            main { padding: 100px 15px 100px 15px; }
-            
-            .detail-bento { 
-                flex-direction: column; 
-                padding: 20px; 
-                gap: 20px; 
-                align-items: center; 
-                background: rgba(255, 255, 255, 0.9); 
-            }
-
+            .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s ease; }
+            .m-sidebar.open { top: 0 !important; }
+            main { padding: 100px 15px 100px 15px; position: relative; z-index: 10; }
+            .detail-bento { flex-direction: column; padding: 25px; gap: 20px; align-items: center; margin-bottom: 50px; }
             .image-container { width: 140px; position: relative; top: 0; }
             .album-text { font-size: 1rem; width: 100%; }
-
-            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; display: flex; align-items: center; justify-content: space-evenly; z-index: 999; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-top: 2px solid #000; }
+            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; align-items: center; justify-content: space-evenly; z-index: 999; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-top: 2px solid #000; }
             .m-sidebar-right a i { color: #000; font-size: 1.4rem; }
         }
     </style>
@@ -141,12 +144,12 @@
                     <div class="album-cover"><img src="Ich.jpg" alt="ANTON Portrait"></div>
                 </div>
                 <div class="album-text">
-                    <p class="intro">Ihr wollt mehr über mich und mein laaaanges Leben wissen? Wollt wissen wer da immer so aufdreht? Wer Anton ist? Na dann passt mal auf:</p>
-                    <p>Anton ist Papa. Und Bruder. Großer und kleiner – je nachdem, wen man fragt. Geboren wurde er als Anton Nachtwey in Berlin-Friedenau.</p>
-                    <p>Mit sechs sitzt er am Klavier, und bleibt da auch erst mal zwölf Jahre. Klassische Ausbildung, Tonleitern, Disziplin. Seit seinem zehnten Lebensjahr steht er außerdem auf Bühnen – als Sänger, als Performer, als jemand, der offensichtlich lieber vorne steht als hinten.</p>
-                    <p>Irgendwann merkt er: Ein Klavier passt schlecht in einen Rucksack. Also bringt er sich selbst Gitarre bei. Autodidaktisch, nach Gehör, nach Gefühl. Ende der 90er baut er sein eigenes Studio auf, schreibt Songs, produziert – dreht an Knöpfen, bis es nach ihm klingt.</p>
-                    <p>2004 macht Anton seinen Abschluss als Audio Engineer. Er weiß jetzt offiziell, was er da eigentlich die ganze Zeit schon macht. 2005 läuft er dann bei Unser Block auf VIVA im Fernsehen – als Hauptdarsteller.</p>
-                    <p>Danach wird’s voll. Studios. Nächte. Bühnen. Lautsprecher, die größer sind als Wohnzimmer. Er arbeitet mit Leuten wie Mark Forster, Havoc (Mobb Deep), Kool Savas. Nicht als Fan. Sondern mittendrin.</p>
+                    <p class="intro">Ihr wollt mehr über mich und mein laaaanges Leben wissen? Wer Anton ist? Na dann passt mal auf:</p>
+                    <p>Anton ist Papa. Und Bruder. Geboren wurde er als Anton Nachtwey in Berlin-Friedenau.</p>
+                    <p>Mit sechs sitzt er am Klavier, und bleibt da auch erst mal zwölf Jahre. Klassische Ausbildung, Tonleitern, Disziplin. Seit seinem zehnten Lebensjahr steht er außerdem auf Bühnen.</p>
+                    <p>Irgendwann merkt er: Ein Klavier passt schlecht in einen Rucksack. Also bringt er sich selbst Gitarre bei. Autodidaktisch, nach Gehör, nach Gefühl. Ende der 90er baut er sein eigenes Studio auf, schreibt Songs, produziert.</p>
+                    <p>2004 macht Anton seinen Abschluss als Audio Engineer. 2005 läuft er dann bei Unser Block auf VIVA im Fernsehen – als Hauptdarsteller.</p>
+                    <p>Danach wird’s voll. Studios. Nächte. Bühnen. Er arbeitet mit Leuten wie Mark Forster, Havoc (Mobb Deep), Kool Savas. Nicht als Fan. Sondern mittendrin.</p>
                     <p>2014 und 2015 steht er mit Sido auf der Bühne – Abend für Abend, Halle für Halle. In dieser Zeit entsteht unter dem Namen BSH das Album „Endlich erwachsen“. Platz 3 der deutschen Charts.</p>
                     <p>Dann folgte Werbung, Kunst und Leben.</p>
                     <p>Kurz gesagt: Anton kennt große Bühnen. Er weiß, wie sich 15.000 Leute anhören. Aber er kennt auch die Familyparty im Wohnzimmer. Und wie sich ein Raum anfühlt, kurz bevor jemand sagt: „Mach mal lauter“.</p>
@@ -156,15 +159,22 @@
         </main>
 
         <footer class="d-footer">
-            <a href="impressum.html">IMPRESSUM</a>
-            <a href="datenschutz.html">DATENSCHUTZ</a>
+            <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
         </footer>
     </div>
 
     <div id="mobile-wrapper">
-        <header class="m-header"><img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo"></header>
-        <div class="m-menu-btn"><span></span><span></span><span></span></div>
+        <div id="m-bg-fix"></div>
+        <header class="m-header" id="m-header-main"><img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo"></header>
+        <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)"><span></span><span></span><span></span></div>
         
+        <nav class="m-sidebar" id="m-sidebar">
+            <div class="m-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
+            <div class="m-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
+            <div class="m-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
+            <div class="m-nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></a></div>
+        </nav>
+
         <main>
             <div class="detail-bento">
                 <div class="image-container">
@@ -172,7 +182,7 @@
                 </div>
                 <div class="album-text">
                     <p class="intro">Ihr wollt mehr über mich und mein laaaanges Leben wissen? Wer Anton ist? Na dann passt mal auf:</p>
-                    <p>Anton ist Papa. Und Bruder. Großer und kleiner – je nachdem, wen man fragt. Geboren wurde er als Anton Nachtwey in Berlin-Friedenau.</p>
+                    <p>Anton ist Papa. Und Bruder. Geboren wurde er als Anton Nachtwey in Berlin-Friedenau.</p>
                     <p>Mit sechs sitzt er am Klavier, und bleibt da auch erst mal zwölf Jahre. Klassische Ausbildung, Tonleitern, Disziplin. Seit seinem zehnten Lebensjahr steht er außerdem auf Bühnen.</p>
                     <p>Irgendwann merkt er: Ein Klavier passt schlecht in einen Rucksack. Also bringt er sich selbst Gitarre bei. Autodidaktisch, nach Gehör, nach Gefühl. Ende der 90er baut er sein eigenes Studio auf, schreibt Songs, produziert.</p>
                     <p>2004 macht Anton seinen Abschluss als Audio Engineer. 2005 läuft er dann bei Unser Block auf VIVA im Fernsehen – als Hauptdarsteller.</p>
@@ -198,6 +208,23 @@
         function toggleDesktopMenu() {
             if (dSidebar) dSidebar.classList.toggle('open');
         }
+
+        const mSidebar = document.getElementById('m-sidebar');
+        const mMenuBtn = document.getElementById('m-menu-trigger');
+        function mToggleMenu(e) { 
+            e.stopPropagation();
+            mSidebar.classList.toggle('open');
+            mMenuBtn.classList.toggle('active');
+        }
+
+        document.addEventListener('click', (e) => {
+            if(window.innerWidth <= 800) {
+                if (!mSidebar.contains(e.target) && !mMenuBtn.contains(e.target)) {
+                    mSidebar.classList.remove('open');
+                    mMenuBtn.classList.remove('active');
+                }
+            }
+        });
     </script>
 </body>
 </html>
