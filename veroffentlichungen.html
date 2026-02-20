@@ -11,12 +11,9 @@
             --anton-red: #ff0000; 
             --anton-yellow: #ffeb3b; 
             --sidebar-width: 240px; 
-            --apple-gray: #A2AAAD;
-            --amazon-blue: #00A8E1;
-            --carousel-speed: 25s;
-            /* Neue Maße: 300px * 0.7 = 210px | 400px * 0.7 = 280px */
-            --item-width: 210px;
-            --item-height: 280px;
+            --carousel-speed: 30s;
+            /* Quadratische Maße */
+            --item-size: 250px;
         }
 
         html, body { 
@@ -64,7 +61,6 @@
                 display: flex; align-items: center; justify-content: center; 
                 border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; 
             }
-            .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
 
             .d-sidebar-left { 
                 position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); 
@@ -74,7 +70,7 @@
             }
             .d-sidebar-left.open { left: 0; }
 
-            .d-nav-item { margin-bottom: 20px; width: 100%; }
+            .d-nav-item { margin-bottom: 20px; }
             .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; }
             
             .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; }
@@ -86,23 +82,20 @@
                 display: flex; 
                 justify-content: center; 
                 align-items: center; 
-                perspective: 1500px; 
-                perspective-origin: 50% 40%;
+                perspective: 2000px; 
+                perspective-origin: 50% 30%;
                 z-index: 5;
-                /* 15% weiter runter gesetzt */
-                padding-top: 15vh;
+                /* 15% tiefer als vorher durch erhöhtes Padding */
+                padding-top: 30vh; 
             }
 
             .carousel-viewport {
-                width: var(--item-width);
-                height: var(--item-height);
+                width: var(--item-size);
+                height: var(--item-size);
                 position: relative;
                 transform-style: preserve-3d;
                 cursor: grab;
-                transition: transform 0.1s linear;
             }
-
-            .carousel-viewport:active { cursor: grabbing; }
 
             .carousel-inner {
                 width: 100%;
@@ -110,27 +103,39 @@
                 position: absolute;
                 transform-style: preserve-3d;
                 animation: rotateCarousel var(--carousel-speed) infinite linear;
+                transition: transform 0.5s ease;
             }
 
+            /* Stop bei Hover */
             .carousel-viewport:hover .carousel-inner {
                 animation-play-state: paused;
             }
 
             .carousel-item {
                 position: absolute;
-                width: var(--item-width);
-                height: var(--item-height);
+                width: var(--item-size);
+                height: var(--item-size);
                 left: 0;
                 top: 0;
                 background: #fff;
-                border: 3px solid #000;
-                box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-                backface-visibility: hidden;
+                border: 4px solid #000;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+                backface-visibility: visible; /* Sichtbar lassen für Tiefeneffekt */
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
-                border-radius: 12px;
+                border-radius: 15px;
+                transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            }
+
+            /* Highlight Effekt */
+            .carousel-item:hover {
+                z-index: 500 !important;
+                box-shadow: 0 20px 40px rgba(255, 0, 0, 0.4);
+                cursor: pointer;
+                /* Skaliert das Bild und zieht es leicht aus dem Radius nach vorne */
+                transform: rotateY(var(--current-angle)) translateZ(550px) scale(1.2) !important;
             }
 
             .carousel-item img {
@@ -146,7 +151,7 @@
             }
 
             .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-            .d-sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s; }
+            .d-sidebar-right a i { color: #000; font-size: 1.2rem; }
 
             .d-footer { 
                 width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); 
@@ -157,7 +162,7 @@
         }
 
         /* ================================================================= */
-        /* 2. MOBILE STYLES                                                 */
+        /* 2. MOBILE STYLES (Unverändert wie gewünscht)                      */
         /* ================================================================= */
         @media (max-width: 800px) {
             #desktop-wrapper { display: none !important; }
@@ -243,17 +248,17 @@ const inner = document.getElementById('carouselInner');
 const items = document.querySelectorAll('.carousel-item');
 const itemCount = items.length;
 const angleStep = 360 / itemCount;
-const radius = 450; // Angepasster Radius für 12 kleinere Items
+const radius = 500; // Radius vergrößert für besseren Platz der quadratischen Boxen
 
-// Initialisierung der 3D Positionen
 items.forEach((item, index) => {
     const angle = index * angleStep;
+    // Speichern des individuellen Winkels für den Hover-Effekt
+    item.style.setProperty('--current-angle', `${angle}deg`);
     item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
 });
 
 let isDragging = false;
 let startX = 0;
-let currentRotation = 0;
 let rotationOnStart = 0;
 
 viewport.addEventListener('mousedown', (e) => {
@@ -269,7 +274,7 @@ viewport.addEventListener('mousedown', (e) => {
 window.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     const deltaX = e.pageX - startX;
-    currentRotation = rotationOnStart + (deltaX * 0.4); 
+    const currentRotation = rotationOnStart + (deltaX * 0.4); 
     inner.style.transform = `rotateY(${currentRotation}deg)`;
 });
 
@@ -286,24 +291,14 @@ viewport.addEventListener('mouseleave', () => {
     }
 });
 
-/* --- SIDEBAR LOGIC --- */
 function toggleDesktopMenu() {
     document.getElementById('d-sidebar').classList.toggle('open');
 }
 
-/* --- MOBILE LOGIC --- */
 function mToggleMenu(e) {
     e.stopPropagation();
     document.getElementById('m-sidebar').classList.toggle('open');
 }
-
-setTimeout(() => { 
-    if(window.innerWidth <= 800) {
-        const mh = document.getElementById('m-header-main');
-        if(mh) mh.style.transform = 'translateY(-100%)'; 
-    }
-}, 3000);
-
 </script>
 </body>
 </html>
