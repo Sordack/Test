@@ -41,118 +41,76 @@
             .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
             .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
             .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
-            .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
-            .d-menu-btn span { transition: opacity 0.2s; }
-            .d-menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
-            .d-menu-btn:hover span { opacity: 0; }
-            .d-menu-btn:hover::after { opacity: 1; }
             .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
             .d-sidebar-left.open { left: 0; }
-            .d-nav-item { margin-bottom: 20px; width: 100%; }
-            .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
-            .d-sidebar-left a:hover { color: var(--anton-red); }
-            .d-nav-label { display: flex; align-items: center; width: 100%; }
-            .d-nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
-            .d-arrow-wrapper { margin-left: auto; padding-right: 5px; }
-            .d-submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
-            .d-nav-item:hover .d-submenu-indicator { transform: rotate(180deg); }
-            .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
+            .d-nav-item { margin-bottom: 20px; }
+            .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; transition: color 0.3s; }
+            .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; }
             .d-nav-item:hover .d-submenu { display: flex; }
-            .d-submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
-            .d-submenu a i { margin-right: 10px; width: 18px; text-align: center; }
-            .d-nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
-            .d-nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
             .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-            .d-sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
-            @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-            .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
-            .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
-            main { flex: 1; display: flex; justify-content: center; align-items: center; perspective: 2000px; perspective-origin: 50% 30%; z-index: 5; padding: 220px 20px 80px 20px; width: 100%; box-sizing: border-box; }
-            .carousel-viewport { width: var(--item-size); height: var(--item-size); position: relative; transform-style: preserve-3d; cursor: grab; }
-            .carousel-inner { width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; animation: rotateCarousel var(--carousel-speed) infinite linear; transition: transform 0.5s ease; }
-            .carousel-viewport:hover .carousel-inner { animation-play-state: paused; }
-            .carousel-item { position: absolute; width: var(--item-size); height: var(--item-size); left: 0; top: 0; background: #eee; border: 4px solid #000; box-shadow: 0 10px 25px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 15px; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-            .carousel-item:hover { z-index: 500 !important; transform: rotateY(var(--current-angle)) translateZ(550px) scale(1.2) !important; }
-            .carousel-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-            .item-label { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.7); color: #000; text-align: center; padding: 6px 0; font-size: 0.75rem; border-top: 2px solid #000; box-sizing: border-box; z-index: 10; }
+            .d-sidebar-right a i { color: #000; font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; }
+            @keyframes ultraFlowWave { 0% { transform: scale(1); } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); } }
+            main { flex: 1; display: flex; justify-content: center; align-items: center; perspective: 2000px; padding: 220px 20px 80px 20px; }
+            .carousel-viewport { width: var(--item-size); height: var(--item-size); position: relative; transform-style: preserve-3d; }
+            .carousel-inner { width: 100%; height: 100%; position: absolute; transform-style: preserve-3d; animation: rotateCarousel var(--carousel-speed) infinite linear; }
+            .carousel-item { position: absolute; width: var(--item-size); height: var(--item-size); border: 4px solid #000; border-radius: 15px; overflow: hidden; background: #fff; }
+            .carousel-item img { width: 100%; height: 100%; object-fit: cover; }
+            .item-label { position: absolute; bottom: 0; width: 100%; background: rgba(255,255,255,0.7); text-align: center; padding: 5px 0; font-size: 0.7rem; border-top: 2px solid #000; }
             @keyframes rotateCarousel { from { transform: rotateY(0deg); } to { transform: rotateY(-360deg); } }
-            .d-footer { width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: fixed; bottom: 0; left: 0; }
-            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; transition: all 0.3s ease; }
-            .d-footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+            .d-footer { position: fixed; bottom: 0; width: 100%; padding: 15px; background: rgba(255,255,255,0.9); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; }
         }
 
         /* ================================================================= */
-        /* 2. MOBILE STYLES (NEU: BENTO SLIDER)                              */
+        /* 2. MOBILE STYLES (NEU: SINGLE-ITEM-SWIPER MIT DOTS)              */
         /* ================================================================= */
         @media (max-width: 800px) {
             #desktop-wrapper { display: none !important; }
-            body { height: 100vh; width: 100vw; overflow: hidden !important; position: fixed; display: flex; flex-direction: column; }
+            body { height: 100vh; width: 100vw; overflow: hidden; position: fixed; }
             
-            /* Fixierter Hintergrund für Mobile */
             #m-bg-fix { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('Background.jpg') no-repeat center center; background-size: cover; background-attachment: fixed; z-index: -1; }
             
-            .m-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .m-header-logo { position: absolute; top: 60px; max-height: 120px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
-            
-            /* BENTO SLIDER CONTAINER */
-            .m-bento-container {
-                flex: 1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 100px 20px 80px 20px;
-                box-sizing: border-box;
+            .m-header { position: fixed; top: 0; width: 100%; height: 70px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); border-bottom: 2px solid #000; }
+            .m-header-logo { max-height: 50px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+
+            /* DER SWIPER RAHMEN */
+            .m-swiper-container {
+                position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
+                width: 85vw; max-width: 320px; display: flex; flex-direction: column; align-items: center;
             }
 
-            .m-bento-slider {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                gap: 20px;
-                padding: 20px;
-                width: 100%;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none; /* Firefox */
+            .m-frame {
+                width: 100%; aspect-ratio: 1/1; border: 4px solid #000; border-radius: 20px;
+                background: #fff; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+                display: flex; scroll-snap-type: x mandatory; overflow-x: scroll;
+                scrollbar-width: none; -webkit-overflow-scrolling: touch;
             }
-            .m-bento-slider::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+            .m-frame::-webkit-scrollbar { display: none; }
 
-            .m-bento-item {
-                flex: 0 0 280px;
-                height: 280px;
-                background: #fff;
-                border: 3px solid #000;
-                border-radius: 15px;
-                scroll-snap-align: center;
-                position: relative;
-                overflow: hidden;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            .m-slide {
+                min-width: 100%; height: 100%; scroll-snap-align: center;
+                position: relative; display: flex; align-items: center; justify-content: center;
             }
-
-            .m-bento-item img { width: 100%; height: 100%; object-fit: cover; }
-            .m-bento-item .label {
-                position: absolute; bottom: 0; left: 0; width: 100%;
-                background: rgba(255, 235, 59, 0.9); color: #000;
-                text-align: center; padding: 8px 0; font-size: 0.7rem;
-                border-top: 2px solid #000; font-weight: bold;
+            .m-slide img { width: 100%; height: 100%; object-fit: cover; }
+            .m-slide .m-label {
+                position: absolute; bottom: 0; width: 100%; background: var(--anton-yellow);
+                color: #000; text-align: center; padding: 10px 0; font-size: 0.75rem;
+                font-weight: bold; border-top: 3px solid #000;
             }
-            .m-bento-text { font-size: 1.5rem; font-weight: bold; text-align: center; padding: 10px; }
+            .m-album3-box { font-size: 1.8rem; font-weight: bold; color: #000; text-align: center; padding: 20px; }
 
-            /* Mobile UI Elemente */
-            .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border: 2px solid #000; }
-            .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; }
-            .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s ease; }
-            .m-sidebar.open { top: 0 !important; }
-            .m-nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
-            .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
-            .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
-            .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
-            
-            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; padding: 0 10px; justify-content: space-evenly; }
-            .m-sidebar-right a i { color: #000; font-size: 1.5rem; animation: ultraFlowWaveMobile 6s linear infinite; }
-            @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); } }
+            /* DIE DOTS */
+            .m-dots { display: flex; gap: 8px; margin-top: 20px; }
+            .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(0,0,0,0.3); border: 1px solid #000; transition: all 0.3s ease; }
+            .dot.active { background: var(--anton-red); transform: scale(1.3); }
+
+            /* UI ELEMENTE */
+            .m-menu-btn { position: fixed; top: 12px; left: 12px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+            .m-menu-btn span { width: 22px; height: 3px; background: #fff; }
+            .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 90px; background: var(--anton-yellow); z-index: 1100; display: flex; align-items: center; justify-content: space-around; border-bottom: 3px solid #000; transition: top 0.4s ease; }
+            .m-sidebar.open { top: 0; }
+            .m-nav-item a { text-decoration: none; color: #000; font-size: 0.6rem; font-weight: bold; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+            .m-sidebar-right { position: fixed; bottom: 0; width: 100%; height: 60px; background: rgba(255,255,255,0.8); backdrop-filter: blur(5px); border-top: 2px solid #000; display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
+            .m-sidebar-right i { font-size: 1.4rem; color: #000; }
         }
     </style>
 </head>
@@ -162,50 +120,39 @@
         <header class="d-header"><img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo"></header>
         <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
         <nav class="d-sidebar-left" id="d-sidebar">
-            <div class="d-nav-item"><a href="hauptseite.html"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
+            <div class="d-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i> &nbsp; START</a></div>
             <div class="d-nav-item">
-                <a href="meinemusik.html"><span class="d-nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="d-arrow-wrapper"><i class="fa-solid fa-caret-down d-submenu-indicator"></i></div></a>
+                <a href="#"><i class="fa-solid fa-music"></i> &nbsp; MEINE MUSIK</a>
                 <div class="d-submenu">
-                    <a href="ueber-mich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
-                    <a href="meinemusik.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
-                    <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
+                    <a href="ueber-mich.html">ÜBER MICH</a>
+                    <a href="meinemusik.html">RELEASES</a>
                 </div>
             </div>
-            <div class="d-nav-item"><a href="shop.html"><span class="d-nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
-            <div class="d-nav-item"><a href="kontakt.html"><span class="d-nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
-            <div class="d-nav-item d-nav-item-epk"><a href="epk.html"><span class="d-nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a></div>
+            <div class="d-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> &nbsp; SHOP</a></div>
         </nav>
         <aside class="d-sidebar-right">
             <a href="#" style="--brand-color: #f00"><i class="fa-brands fa-youtube"></i></a>
             <a href="#" style="--brand-color: #25F4EE"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="#" style="--brand-color: #E1306C"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" style="--brand-color: #25D366"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#" style="--brand-color: #1877F2"><i class="fa-brands fa-facebook"></i></a>
             <a href="#" style="--brand-color: #1DB954"><i class="fa-brands fa-spotify"></i></a>
-            <a href="#" style="--brand-color: #A2AAAD"><i class="fa-brands fa-apple"></i></a>
-            <a href="#" style="--brand-color: #f00"><i class="fa-solid fa-circle-play"></i></a>
-            <a href="#" style="--brand-color: #00A8E1"><i class="fa-brands fa-amazon"></i></a>
         </aside>
         <main>
-            <div class="carousel-viewport" id="carouselViewport">
+            <div class="carousel-viewport">
                 <div class="carousel-inner" id="carouselInner">
                     <div class="carousel-item"><img src="Hunger.JPG"><div class="item-label">neue Single (Februar 2026)</div></div>
-                    <div class="carousel-item"><div class="m-bento-text">(Album 3)</div><div class="item-label">In Planung</div></div>
+                    <div class="carousel-item"><div class="m-album3-box">(Album 3)</div><div class="item-label">In Planung</div></div>
                     <div class="carousel-item"><img src="fanny-furzfliege-ecover-3k-srgb-lzwjpg.jpg"><div class="item-label">Single</div></div>
                     <div class="carousel-item"><img src="anton-noch-5-minuten.jpg"><div class="item-label">Single</div></div>
                     <div class="carousel-item"><img src="anton-eiswurfel-coverjpg.jpg"><div class="item-label">Single</div></div>
                     <div class="carousel-item"><img src="anton-cover-single-weihnachtenjpg.jpg"><div class="item-label">Single</div></div>
                     <div class="carousel-item"><img src="anton-cover-single-raumschiff-1jpg.jpg"><div class="item-label">Single</div></div>
-                    <div class="carousel-item"><img src="cover-mein-name-ist-hase-esinglejpg.jpg"><div class="item-label">Meist gehört (2023)</div></div>
-                    <div class="carousel-item"><img src="anton-album-cover-grosse-pause-vjpg.jpg"><div class="item-label">2. Album (2023)</div></div>
-                    <div class="carousel-item"><img src="Album Ertappt.jpg"><div class="item-label">Debütalbum (2021)</div></div>
-                    <div class="carousel-item"><img src="monsterparty-anton.jpg"><div class="item-label">Debütsingle (2020)</div></div>
+                    <div class="carousel-item"><img src="cover-mein-name-ist-hase-esinglejpg.jpg"><div class="item-label">Meist gehört</div></div>
+                    <div class="carousel-item"><img src="anton-album-cover-grosse-pause-vjpg.jpg"><div class="item-label">2. Album</div></div>
+                    <div class="carousel-item"><img src="Album Ertappt.jpg"><div class="item-label">Debütalbum</div></div>
+                    <div class="carousel-item"><img src="monsterparty-anton.jpg"><div class="item-label">Debütsingle</div></div>
                 </div>
             </div>
         </main>
-        <footer class="d-footer">
-            <a href="index.html">www.anton-familienpop.de</a> | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
-        </footer>
+        <footer class="d-footer">© 2026 ANTON - Familienpop</footer>
     </div>
 
     <div id="mobile-wrapper">
@@ -215,57 +162,72 @@
         <div class="m-menu-btn" onclick="mToggleMenu()"><span></span><span></span><span></span></div>
         
         <nav class="m-sidebar" id="m-sidebar">
-            <div class="m-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
-            <div class="m-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
-            <div class="m-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
-            <div class="m-nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></a></div>
-            <div class="m-epk-container"><a href="epk.html" class="m-epk-text">EPK/PRESSE</a></div>
+            <div class="m-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span>Start</span></a></div>
+            <div class="m-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span>Musik</span></a></div>
+            <div class="m-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span>Shop</span></a></div>
+            <div class="m-nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span>Kontakt</span></a></div>
         </nav>
 
-        <div class="m-bento-container">
-            <div class="m-bento-slider">
-                <div class="m-bento-item"><img src="Hunger.JPG"><div class="label">neue Single (Februar 2026)</div></div>
-                <div class="m-bento-item"><div class="m-bento-text">(Album 3)</div><div class="label">In Planung</div></div>
-                <div class="m-bento-item"><img src="fanny-furzfliege-ecover-3k-srgb-lzwjpg.jpg"><div class="label">Single</div></div>
-                <div class="m-bento-item"><img src="anton-noch-5-minuten.jpg"><div class="label">Single</div></div>
-                <div class="m-bento-item"><img src="anton-eiswurfel-coverjpg.jpg"><div class="label">Single</div></div>
-                <div class="m-bento-item"><img src="anton-cover-single-weihnachtenjpg.jpg"><div class="label">Single</div></div>
-                <div class="m-bento-item"><img src="anton-cover-single-raumschiff-1jpg.jpg"><div class="label">Single</div></div>
-                <div class="m-bento-item"><img src="cover-mein-name-ist-hase-esinglejpg.jpg"><div class="label">Meist gehört (2023)</div></div>
-                <div class="m-bento-item"><img src="anton-album-cover-grosse-pause-vjpg.jpg"><div class="label">2. Album (2023)</div></div>
-                <div class="m-bento-item"><img src="Album Ertappt.jpg"><div class="label">Debütalbum (2021)</div></div>
-                <div class="m-bento-item"><img src="monsterparty-anton.jpg"><div class="label">Debütsingle (2020)</div></div>
+        <div class="m-swiper-container">
+            <div class="m-frame" id="mFrame">
+                <div class="m-slide"><img src="Hunger.JPG"><div class="m-label">neue Single (Februar 2026)</div></div>
+                <div class="m-slide"><div class="m-album3-box">(Album 3)</div><div class="m-label">In Planung</div></div>
+                <div class="m-slide"><img src="fanny-furzfliege-ecover-3k-srgb-lzwjpg.jpg"><div class="m-label">Single</div></div>
+                <div class="m-slide"><img src="anton-noch-5-minuten.jpg"><div class="m-label">Single</div></div>
+                <div class="m-slide"><img src="anton-eiswurfel-coverjpg.jpg"><div class="m-label">Single</div></div>
+                <div class="m-slide"><img src="anton-cover-single-weihnachtenjpg.jpg"><div class="m-label">Single</div></div>
+                <div class="m-slide"><img src="anton-cover-single-raumschiff-1jpg.jpg"><div class="m-label">Single</div></div>
+                <div class="m-slide"><img src="cover-mein-name-ist-hase-esinglejpg.jpg"><div class="m-label">Meist gehört (2023)</div></div>
+                <div class="m-slide"><img src="anton-album-cover-grosse-pause-vjpg.jpg"><div class="m-label">2. Album (2023)</div></div>
+                <div class="m-slide"><img src="Album Ertappt.jpg"><div class="m-label">Debütalbum (2021)</div></div>
+                <div class="m-slide"><img src="monsterparty-anton.jpg"><div class="m-label">Debütsingle (2020)</div></div>
             </div>
+            
+            <div class="m-dots" id="mDots"></div>
         </div>
 
         <aside class="m-sidebar-right">
-            <a href="#" style="--brand-color: #f00"><i class="fa-brands fa-youtube"></i></a>
-            <a href="#" style="--brand-color: #25F4EE"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="#" style="--brand-color: #E1306C"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" style="--brand-color: #1DB954"><i class="fa-brands fa-spotify"></i></a>
-            <a href="#" style="--brand-color: #A2AAAD"><i class="fa-brands fa-apple"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-spotify"></i></a>
+            <a href="#"><i class="fa-brands fa-apple"></i></a>
         </aside>
     </div>
 
     <script>
-        /* Desktop Carousel JS (wie zuvor) */
-        const inner = document.getElementById('carouselInner');
-        const items = document.querySelectorAll('.carousel-item');
-        const radius = 500;
-        items.forEach((item, i) => {
-            const angle = i * (360 / items.length);
-            item.style.setProperty('--current-angle', `${angle}deg`);
-            item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+        /* Desktop Logic */
+        const dItems = document.querySelectorAll('.carousel-item');
+        dItems.forEach((item, i) => {
+            const angle = i * (360 / dItems.length);
+            item.style.transform = `rotateY(${angle}deg) translateZ(500px)`;
+        });
+        function toggleDesktopMenu() { document.getElementById('d-sidebar').classList.toggle('open'); }
+
+        /* Mobile Swiper Logic */
+        const mFrame = document.getElementById('mFrame');
+        const mDotsContainer = document.getElementById('mDots');
+        const mSlides = document.querySelectorAll('.m-slide');
+
+        // Dots generieren
+        mSlides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if(i === 0) dot.classList.add('active');
+            mDotsContainer.appendChild(dot);
         });
 
-        /* Mobile Menu JS */
-        function mToggleMenu() {
-            document.getElementById('m-sidebar').classList.toggle('open');
-        }
+        const dots = document.querySelectorAll('.dot');
 
-        function toggleDesktopMenu() {
-            document.getElementById('d-sidebar').classList.toggle('open');
-        }
+        // Scroll-Event für Dots-Update
+        mFrame.addEventListener('scroll', () => {
+            const index = Math.round(mFrame.scrollLeft / mFrame.offsetWidth);
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        });
+
+        function mToggleMenu() { document.getElementById('m-sidebar').classList.toggle('open'); }
     </script>
 </body>
 </html>
