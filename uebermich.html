@@ -16,50 +16,28 @@
         }
 
         html, body { 
-            margin: 0; padding: 0; background-color: #ffffff; 
-            font-family: 'Special Elite', cursive; height: 100%; width: 100%;
+            margin: 0; 
+            padding: 0; 
+            background-color: #ffffff; 
+            font-family: 'Special Elite', cursive;
+            height: 100%; 
+            width: 100%;
         }
 
-        /* Hintergrund-Fixierung */
-        .bg-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #ffffff url('Background.jpg') no-repeat center center fixed;
-            background-size: cover; z-index: -1;
+        /* Desktop Background */
+        @media (min-width: 801px) {
+            body { 
+                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
+                background-size: cover !important; 
+                background-attachment: fixed;
+                overflow-x: hidden;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
         }
 
-        /* ================================================================= */
-        /* GEMEINSAME ULTRA-STYLES                                           */
-        /* ================================================================= */
-        .ultra-container {
-            display: flex; flex-wrap: wrap; gap: 30px; padding: 120px 50px 100px 50px;
-            max-width: 1200px; margin: 0 auto; box-sizing: border-box;
-        }
-
-        .ultra-box {
-            background: rgba(255, 255, 255, 0.9);
-            border: 4px solid #000;
-            box-shadow: 12px 12px 0 #000;
-            border-radius: 20px;
-            overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        /* Kleine Box oben links für das Bild */
-        .ultra-img-box {
-            flex: 0 0 300px; height: 300px;
-        }
-        .ultra-img-box img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
-
-        /* Große Box für den Text */
-        .ultra-text-box {
-            flex: 1 1 500px; min-height: 450px; padding: 40px;
-            text-align: center; line-height: 1.6; font-size: 1.2rem;
-        }
-
-        /* Header & Navigation (Analog zur Hauptseite) */
+        /* --- HEADER & NAV (IDENTISCH ZUM HAUPTCODE) --- */
         .d-header { 
             position: fixed; top: 0; width: 100%; height: 80px; 
             display: flex; justify-content: center; align-items: center; 
@@ -67,17 +45,16 @@
             backdrop-filter: blur(10px); border-bottom: 2px solid #000; 
         }
         .d-header-logo {
-            max-height: 285px; width: auto; transform: translateY(82px);
+            max-height: 285px; width: auto; object-fit: contain;
             filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
+            transform: translateY(82px); 
         }
         .d-menu-btn { 
             position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
             z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; 
             display: flex; align-items: center; justify-content: center; 
-            border-radius: 5px; border: 2px solid #000; 
+            border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; 
         }
-
-        /* Sidebar & Footer wie gehabt */
         .d-sidebar-left { 
             position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); 
             background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; 
@@ -86,7 +63,56 @@
         }
         .d-sidebar-left.open { left: 0; }
         .d-nav-item { margin-bottom: 20px; width: 100%; }
-        .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; }
+        .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
+        .d-sidebar-left a:hover { color: var(--anton-red); }
+
+        /* --- ULTRA LAYOUT BOXEN --- */
+        .ultra-main {
+            flex: 1;
+            padding: 180px 80px 120px 80px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            z-index: 5;
+        }
+
+        .ultra-box {
+            background: rgba(255, 255, 255, 0.8);
+            border: 4px solid #000;
+            box-shadow: 10px 10px 0 #000;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .img-box-small {
+            flex: 0 0 300px;
+            height: 300px;
+            background: #eee; /* Platzhalter Farbe */
+        }
+        .img-box-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-box-large {
+            flex: 1;
+            max-width: 800px;
+            min-height: 500px;
+            padding: 40px;
+            display: block; /* Für normalen Textfluss */
+            text-align: left;
+        }
+
+        /* --- SIDEBAR RIGHT (IDENTISCH) --- */
+        .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+        .d-sidebar-right a i { color: #000; font-size: 1.2rem; }
+
+        /* --- FOOTER --- */
         .d-footer { 
             width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); 
             border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; 
@@ -94,40 +120,45 @@
         }
         .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; }
 
+        /* Mobile Fixes */
         @media (max-width: 800px) {
-            .ultra-container { padding: 140px 20px 100px 20px; flex-direction: column; align-items: center; }
-            .ultra-img-box { flex: 0 0 200px; width: 200px; height: 200px; }
-            .ultra-text-box { width: 100%; font-size: 1rem; min-height: auto; }
-            .d-header-logo { max-height: 185px; }
+            .ultra-main { flex-direction: column; align-items: center; padding: 140px 20px 100px 20px; }
+            .img-box-small { flex: 0 0 200px; width: 200px; height: 200px; }
+            .text-box-large { width: 100%; min-height: auto; }
+            .d-sidebar-right { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-container"></div>
-
     <header class="d-header">
         <img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo">
     </header>
 
-    <div class="d-menu-btn" onclick="toggleMenu()"><span>☰</span></div>
+    <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
     
-    <nav class="d-sidebar-left" id="sidebar">
+    <nav class="d-sidebar-left" id="d-sidebar">
         <div class="d-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i> &nbsp; START</a></div>
         <div class="d-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i> &nbsp; MEINE MUSIK</a></div>
         <div class="d-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> &nbsp; SHOP</a></div>
         <div class="d-nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i> &nbsp; KONTAKT</a></div>
     </nav>
 
-    <main class="ultra-container">
-        <div class="ultra-box ultra-img-box">
-            <img src="UeberMich.jpg" alt="ANTON Porträt">
+    <aside class="d-sidebar-right">
+        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://open.spotify.com/intl-de/artist/348545011" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+    </aside>
+
+    <main class="ultra-main">
+        <div class="ultra-box img-box-small">
+            <img src="Platzhalter_UeberMich.jpg" alt="ANTON" onerror="this.src='https://via.placeholder.com/300?text=Foto+ANTON'">
         </div>
 
-        <div class="ultra-box ultra-text-box">
-            <div id="text-content">
-                <h2 style="color: var(--anton-red);">ÜBER MICH</h2>
-                <p>[HIER DEINEN TEXT EINFÜGEN - ICH WARTE AUF DEINE NACHRICHT]</p>
+        <div class="ultra-box text-box-large">
+            <h1 style="color: var(--anton-red); margin-top: 0;">Über mich</h1>
+            <div id="user-text">
+                <p><em>Warte auf Textinput...</em></p>
             </div>
         </div>
     </main>
@@ -138,16 +169,16 @@
     </footer>
 
     <script>
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('open');
+        function toggleDesktopMenu() {
+            const sb = document.getElementById('d-sidebar');
+            sb.classList.toggle('open');
         }
 
-        // Schließen bei Klick außerhalb
         document.addEventListener('click', function(e) {
-            const sidebar = document.getElementById('sidebar');
+            const sb = document.getElementById('d-sidebar');
             const btn = document.querySelector('.d-menu-btn');
-            if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !btn.contains(e.target)) {
-                sidebar.classList.remove('open');
+            if (sb.classList.contains('open') && !sb.contains(e.target) && !btn.contains(e.target)) {
+                sb.classList.remove('open');
             }
         });
     </script>
