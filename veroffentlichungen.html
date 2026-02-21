@@ -618,11 +618,34 @@
                 viewport.style.cursor = 'grab';
                 const deltaX = e.pageX - startX;
                 currentRotation += deltaX * 0.4;
+                // Animation ab aktueller Position neu starten
+                restartAnimation();
             });
 
             viewport.addEventListener('mouseleave', () => {
-                if (!isDragging) inner.style.animation = `rotateCarousel var(--carousel-speed) infinite linear`;
+                if (!isDragging) restartAnimation();
             });
+
+            function restartAnimation() {
+                // Dynamische Keyframes ab currentRotation
+                const styleId = 'carousel-anim-style';
+                let styleEl = document.getElementById(styleId);
+                if (!styleEl) {
+                    styleEl = document.createElement('style');
+                    styleEl.id = styleId;
+                    document.head.appendChild(styleEl);
+                }
+                styleEl.textContent = `
+                    @keyframes rotateCarouselDynamic {
+                        from { transform: rotateY(${currentRotation}deg); }
+                        to   { transform: rotateY(${currentRotation - 360}deg); }
+                    }
+                `;
+                inner.style.animation = 'none';
+                // Reflow erzwingen damit der Browser die neue Animation übernimmt
+                void inner.offsetWidth;
+                inner.style.animation = `rotateCarouselDynamic var(--carousel-speed) linear infinite`;
+            }
         }
 
         /* ================================================================= */
