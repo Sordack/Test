@@ -38,7 +38,6 @@
                 min-height: 100vh;
             }
 
-            /* Hintergrund-Crossfade Layer – Desktop */
             #bg-layer-a, #bg-layer-b {
                 position: fixed; top: 0; left: 0; width: 100%; height: 100%;
                 background-size: cover; background-position: center center;
@@ -120,7 +119,6 @@
 
             main { flex: 1; padding: 120px 20px 80px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
-            /* BENTOBOXEN – DESKTOP */
             .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
             .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
             .box-mitte   { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); z-index: 1001; }
@@ -128,7 +126,6 @@
             .box-pause2  { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
             .box-pause3  { width: 5%;  height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
 
-            /* FOOTER – DESKTOP */
             .d-footer { 
                 width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); 
                 border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; 
@@ -147,7 +144,6 @@
                 display: flex; align-items: center;
             }
             .d-footer-ff a { margin: 0; }
-            /* FF.png – Hover weiß */
             .d-footer-ff img { 
                 height: 32px; width: auto; display: block; 
                 opacity: 0.85; 
@@ -160,13 +156,12 @@
         }
 
         /* ================================================================= */
-        /* 2. MOBILE BASIS – gilt für Portrait UND Landscape                 */
+        /* 2. MOBILE BASIS                                                   */
         /* ================================================================= */
         @media (max-width: 800px), (orientation: landscape) and (max-height: 500px) {
             #desktop-wrapper { display: none !important; }
             #mobile-wrapper  { display: block !important; }
 
-            /* BENTOBOXEN – MOBILE */
             .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
             .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
             .box-mitte   { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); z-index: 1001; }
@@ -235,7 +230,7 @@
         }
 
         /* ================================================================= */
-        /* 2a. MOBILE PORTRAIT – Swipe-Hintergrund                          */
+        /* 2a. MOBILE PORTRAIT                                               */
         /* ================================================================= */
         @media (max-width: 800px) and (orientation: portrait) {
             #m-bg-fix { 
@@ -246,22 +241,10 @@
         }
 
         /* ================================================================= */
-        /* 3. MOBILE LANDSCAPE – Desktop-ähnliches Layout                    */
+        /* 3. MOBILE LANDSCAPE                                               */
         /* ================================================================= */
-
-        /* 
-         * NACHT-ANIMATION (für spätere Nachtversion gespeichert):
-         * .m-sidebar-right a i { animation: ultraFlowWaveNight 6s linear infinite; }
-         * @keyframes ultraFlowWaveNight { 
-         *   0% { transform: scale(1); color: #aaa; } 
-         *   9.33% { transform: scale(1.4); color: var(--brand-color); filter: drop-shadow(0 0 6px var(--brand-color)); } 
-         *   23.33%, 100% { transform: scale(1); color: #aaa; } 
-         * }
-         */
-
         @media (orientation: landscape) and (max-height: 500px) {
 
-            /* Hintergrund – normal, kein Swipe-Offset */
             #mobile-wrapper #m-bg-fix { 
                 display: block !important;
                 position: fixed !important;
@@ -274,15 +257,10 @@
                 transform: none !important;
             }
 
-            /* Header – im Landscape kompakter, sitzt tiefer */
             #mobile-wrapper .m-header { height: 60px; }
             #mobile-wrapper .m-header-logo { top: 145%; }
-            #mobile-wrapper .m-menu-btn { top: 10px; }
-
-            /* Hamburger-Button */
             #mobile-wrapper .m-menu-btn { top: 8px; left: 12px; width: 38px; height: 38px; }
 
-            /* Nav-Sidebar – von links einfahren */
             #mobile-wrapper .m-sidebar { 
                 top: 0 !important;
                 left: -220px !important;
@@ -306,7 +284,6 @@
             #mobile-wrapper .m-nav-item a i { font-size: 1rem; width: 22px; text-align: center; }
             #mobile-wrapper .mobile-tag { font-size: 0.72rem; writing-mode: horizontal-tb !important; transform: none !important; margin-top: 0; }
 
-            /* EPK in der Sidebar */
             #mobile-wrapper .m-epk-container { 
                 position: static !important;
                 width: 100% !important; height: auto !important;
@@ -322,7 +299,6 @@
                 font-size: 0.78rem;
             }
 
-            /* Social-Icons – rechte vertikale Sidebar, volle Höhe */
             #mobile-wrapper .m-sidebar-right { 
                 position: fixed !important;
                 top: 0 !important;
@@ -345,10 +321,8 @@
             }
             #mobile-wrapper .m-sidebar-right a i { font-size: 1.3rem !important; }
 
-            /* I/D Button – ausblenden */
             #mobile-wrapper .m-id-button { display: none !important; }
 
-            /* I/D Panel – permanent sichtbar, mittig unten */
             #mobile-wrapper .m-id-panel { 
                 position: fixed !important;
                 bottom: -4px !important;
@@ -389,7 +363,6 @@
         <a href="veroffentlichungen.html" class="invisible-box box-pause3"></a>
 
         <nav class="d-sidebar-left" id="d-sidebar">
-            
             <div class="d-nav-item"><a href="hauptseite.html"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
             <div class="d-nav-item">
                 <a href="meinemusik.html"><span class="d-nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="d-arrow-wrapper"><i class="fa-solid fa-caret-down d-submenu-indicator"></i></div></a>
@@ -412,7 +385,7 @@
             <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
             <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank"><i class="fa-brands fa-spotify"></i></a>
             <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
-            <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+            <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
             <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         </aside>
 
@@ -457,6 +430,7 @@
         <a href="veroffentlichungen.html" class="invisible-box box-pause"></a>
         <a href="veroffentlichungen.html" class="invisible-box box-pause2"></a>
         <a href="veroffentlichungen.html" class="invisible-box box-pause3"></a>
+
         <div class="m-id-panel" id="m-id-panel">
             <div class="m-id-panel-links">
                 <a href="impressum.html">Impressum</a>
@@ -479,7 +453,7 @@
             <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
             <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank"><i class="fa-brands fa-spotify"></i></a>
             <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
-            <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+            <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
             <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         </aside>
     </div>
@@ -537,7 +511,6 @@
             if(mSidebar) mSidebar.classList.remove('open');
             if(mMenuBtn) mMenuBtn.classList.remove('active');
             if(mMenuTimeout) clearTimeout(mMenuTimeout);
-            // Im Landscape: ID-Panel bleibt immer sichtbar
             if(!isLandscapeMobile()) {
                 if(mIdPanel) mIdPanel.classList.remove('open');
                 if(mIdBtn) mIdBtn.classList.remove('hidden');
@@ -558,7 +531,6 @@
             mIdTimeout = setTimeout(mCloseAllMenus, 5000);
         }
 
-        // Landscape: ID-Panel permanent einblenden
         function applyLandscapeState() {
             if(isLandscapeMobile()) {
                 if(mIdPanel) mIdPanel.style.cssText = '';
@@ -618,17 +590,15 @@
         (function() {
             const now   = new Date();
             const hour  = now.getHours();
-            const month = now.getMonth(); // 0=Jan … 11=Dez
+            const month = now.getMonth();
 
-            // Saison bestimmen
             function getSeason(m) {
-                if (m >= 2 && m <= 4) return 'fruehling';  // Mär–Mai
-                if (m >= 5 && m <= 7) return 'sommer';     // Jun–Aug
-                if (m >= 8 && m <= 10) return 'herbst';    // Sep–Nov
-                return 'winter';                             // Dez–Feb
+                if (m >= 2 && m <= 4) return 'fruehling';
+                if (m >= 5 && m <= 7) return 'sommer';
+                if (m >= 8 && m <= 10) return 'herbst';
+                return 'winter';
             }
 
-            // Tageszeit bestimmen
             function getDaytime(h) {
                 if (h >= 5  && h < 10) return 'morgen';
                 if (h >= 10 && h < 18) return 'tag';
@@ -638,16 +608,12 @@
 
             const season  = getSeason(month);
             const daytime = getDaytime(hour);
-
-            // Dateiname: z.B. "bg-sommer-tag.jpg"
-            // Falls eine Kombination nicht existiert, fällt es auf Background.jpg zurück
             const filename = `bg-${season}-${daytime}.jpg`;
 
             function setBackground(src, fallback) {
                 const isDesktop = window.innerWidth > 800;
 
                 if (isDesktop) {
-                    // Desktop: Crossfade über zwei Layer
                     const layerA = document.getElementById('bg-layer-a');
                     const layerB = document.getElementById('bg-layer-b');
                     if (!layerA) return;
@@ -666,7 +632,6 @@
                     };
                     img.src = src;
                 } else {
-                    // Mobile: #m-bg-fix background setzen
                     const mBgEl = document.getElementById('m-bg-fix');
                     if (!mBgEl) return;
 
@@ -682,8 +647,6 @@
             }
 
             setBackground(filename, 'Background.jpg');
-
-            // Konsolenausgabe zum Testen
             console.log(`[ANTON BG] Saison: ${season} | Tageszeit: ${daytime} | Bild: ${filename}`);
         })();
 
@@ -691,7 +654,7 @@
             const mh = document.getElementById('m-header-main');
             const isLandscape = window.innerHeight <= 500 && window.innerWidth > window.innerHeight;
             if(mh && (window.innerWidth <= 800 || isLandscape)) {
-                mh.style.transform = 'translateY(0)'; // sichtbar
+                mh.style.transform = 'translateY(0)';
                 setTimeout(() => { mh.style.transform = 'translateY(-100%)'; }, 3000);
             }
         }, 100);
