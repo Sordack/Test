@@ -155,15 +155,13 @@
             .carousel-item {
                 position: absolute;
                 width: var(--item-size);
-                height: var(--item-size);
-                background: #eee;
-                border: 4px solid #000;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.4);
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                overflow: hidden;
-                border-radius: 15px;
+                overflow: visible;
+                border: none;
+                background: none;
+                box-shadow: none;
                 transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             }
 
@@ -172,25 +170,35 @@
                 transform: rotateY(var(--current-angle)) translateZ(550px) scale(1.2) !important;
             }
 
+            .carousel-item-img-wrap {
+                width: var(--item-size);
+                height: var(--item-size);
+                border: 4px solid #000;
+                border-radius: 15px 15px 0 0;
+                overflow: hidden;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+                flex-shrink: 0;
+            }
+
             .carousel-item img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 pointer-events: none;
+                display: block;
             }
 
             .item-label {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.7);
+                width: calc(var(--item-size) - 0px);
+                background: rgba(255, 255, 255, 0.9);
                 color: #000;
                 text-align: center;
-                padding: 6px 0;
+                padding: 5px 0;
                 font-size: 0.75rem;
                 font-family: 'Special Elite', cursive;
-                border-top: 2px solid #000;
+                border: 4px solid #000;
+                border-top: none;
+                border-radius: 0 0 12px 12px;
                 box-sizing: border-box;
             }
 
@@ -311,13 +319,23 @@
 
             .m-card {
                 width: 230px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: none;
+                border: none;
+                box-shadow: none;
+                overflow: visible;
+            }
+
+            .m-card-img-wrap {
+                width: 230px;
                 height: 230px;
-                background: #fff;
                 border: 4px solid #000;
-                border-radius: 18px;
-                position: relative;
+                border-radius: 18px 18px 0 0;
                 overflow: hidden;
                 box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+                flex-shrink: 0;
             }
 
             .m-card img {
@@ -329,17 +347,16 @@
             }
 
             .m-card-label {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.75);
+                width: 230px;
+                background: rgba(255, 255, 255, 0.9);
                 color: #000;
                 text-align: center;
                 padding: 6px 0;
                 font-size: 0.72rem;
                 font-family: 'Special Elite', cursive;
-                border-top: 2px solid #000;
+                border: 4px solid #000;
+                border-top: none;
+                border-radius: 0 0 14px 14px;
                 box-sizing: border-box;
             }
 
@@ -445,16 +462,16 @@
         <main>
             <div class="carousel-viewport" id="carouselViewport">
                 <div class="carousel-inner" id="carouselInner">
-                    <div class="carousel-item"><img src="Hunger.JPG"><div class="item-label">neue Single (Februar 2026)</div></div>
-                    <div class="carousel-item"><img src="fanny-furzfliege-ecover-3k-srgb-lzwjpg.jpg"><div class="item-label">Single</div></div>
-                    <div class="carousel-item"><img src="anton-noch-5-minuten.jpg"><div class="item-label">Single</div></div>
-                    <div class="carousel-item"><img src="anton-eiswurfel-coverjpg.jpg"><div class="item-label">Single</div></div>
-                    <div class="carousel-item"><img src="anton-cover-single-weihnachtenjpg.jpg"><div class="item-label">Single</div></div>
-                    <div class="carousel-item"><img src="anton-cover-single-raumschiff-1jpg.jpg"><div class="item-label">Single</div></div>
-                    <div class="carousel-item"><img src="cover-mein-name-ist-hase-esinglejpg.jpg"><div class="item-label">Meist gehört (2023)</div></div>
-                    <div class="carousel-item"><img src="anton-album-cover-grosse-pause-vjpg.jpg"><div class="item-label">2. Album (2023)</div></div>
-                    <div class="carousel-item"><img src="Album Ertappt.jpg"><div class="item-label">Debütalbum (2021)</div></div>
-                    <div class="carousel-item"><img src="monsterparty-anton.jpg"><div class="item-label">Debütsingle (2020)</div></div>
+                    <div class="carousel-item"><div class="carousel-item-img-wrap"><img src="Hunger.JPG"></div><div class="item-label">neue Single (Februar 2026)</div></div>
+                    <div class="carousel-item"><div class="carousel-item-img-wrap"><img src="fanny-furzfliege-ecover-3k-srgb-lzwjpg.jpg"></div><div class="item-label">Single</div></div>
+                    <div class="carousel-item"><div class="carousel-item-img-wrap"><img src="anton-noch-5-minuten.jpg"></div><div class="item-label">Single</div></div>
+                    <div class="carousel-item"><div class="carousel-item-img-wrap"><img src="anton-eiswurfel-coverjpg.jpg"></div><div class="item-label">Single</div></div>
+                    <div class="carousel-item"><div class="carousel-item-img-wrap"><img src="anton-cover-single-weihnachtenjpg.jpg"></div><div class="item-label">Single</div></div>
+                    <div class="carousel-item"><div class="carousel-item-img-wrap"><img src="anton-cover-single-raumschiff-1jpg.jpg"></div><div class="item-label">Single</div></div>
+                    <div class="carousel-item"><div class="carousel-item-img-wrap"><img src="cover-mein-name-ist-hase-esinglejpg.jpg"></div><div class="item-label">Meist gehört (2023)</div></div>
+                    <div class="carousel-item"><div class="carousel-item-img-wrap"><img src="anton-album-cover-grosse-pause-vjpg.jpg"></div><div class="item-label">2. Album (2023)</div></div>
+                    <div class="carousel-item"><div class="carousel-item-img-wrap"><img src="Album Ertappt.jpg"></div><div class="item-label">Debütalbum (2021)</div></div>
+                    <div class="carousel-item"><div class="carousel-item-img-wrap"><img src="monsterparty-anton.jpg"></div><div class="item-label">Debütsingle (2020)</div></div>
                 </div>
             </div>
         </main>
@@ -489,16 +506,16 @@
         <div class="m-bento-container">
             <div class="m-swiper-viewport">
                 <div class="m-frame" id="m-frame">
-                    <div class="m-slide"><div class="m-card"><img src="Hunger.JPG"><div class="m-card-label">neue Single (Februar 2026)</div></div></div>
-                    <div class="m-slide"><div class="m-card"><img src="fanny-furzfliege-ecover-3k-srgb-lzwjpg.jpg"><div class="m-card-label">Single</div></div></div>
-                    <div class="m-slide"><div class="m-card"><img src="anton-noch-5-minuten.jpg"><div class="m-card-label">Single</div></div></div>
-                    <div class="m-slide"><div class="m-card"><img src="anton-eiswurfel-coverjpg.jpg"><div class="m-card-label">Single</div></div></div>
-                    <div class="m-slide"><div class="m-card"><img src="anton-cover-single-weihnachtenjpg.jpg"><div class="m-card-label">Single</div></div></div>
-                    <div class="m-slide"><div class="m-card"><img src="anton-cover-single-raumschiff-1jpg.jpg"><div class="m-card-label">Single</div></div></div>
-                    <div class="m-slide"><div class="m-card"><img src="cover-mein-name-ist-hase-esinglejpg.jpg"><div class="m-card-label">Meist gehört (2023)</div></div></div>
-                    <div class="m-slide"><div class="m-card"><img src="anton-album-cover-grosse-pause-vjpg.jpg"><div class="m-card-label">2. Album (2023)</div></div></div>
-                    <div class="m-slide"><div class="m-card"><img src="Album Ertappt.jpg"><div class="m-card-label">Debütalbum (2021)</div></div></div>
-                    <div class="m-slide"><div class="m-card"><img src="monsterparty-anton.jpg"><div class="m-card-label">Debütsingle (2020)</div></div></div>
+                    <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="Hunger.JPG"></div><div class="m-card-label">neue Single (Februar 2026)</div></div></div>
+                    <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="fanny-furzfliege-ecover-3k-srgb-lzwjpg.jpg"></div><div class="m-card-label">Single</div></div></div>
+                    <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="anton-noch-5-minuten.jpg"></div><div class="m-card-label">Single</div></div></div>
+                    <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="anton-eiswurfel-coverjpg.jpg"></div><div class="m-card-label">Single</div></div></div>
+                    <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="anton-cover-single-weihnachtenjpg.jpg"></div><div class="m-card-label">Single</div></div></div>
+                    <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="anton-cover-single-raumschiff-1jpg.jpg"></div><div class="m-card-label">Single</div></div></div>
+                    <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="cover-mein-name-ist-hase-esinglejpg.jpg"></div><div class="m-card-label">Meist gehört (2023)</div></div></div>
+                    <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="anton-album-cover-grosse-pause-vjpg.jpg"></div><div class="m-card-label">2. Album (2023)</div></div></div>
+                    <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="Album Ertappt.jpg"></div><div class="m-card-label">Debütalbum (2021)</div></div></div>
+                    <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="monsterparty-anton.jpg"></div><div class="m-card-label">Debütsingle (2020)</div></div></div>
                 </div>
             </div>
             <div class="m-dots" id="m-dots"></div>
