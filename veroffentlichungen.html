@@ -301,19 +301,19 @@
 
             .m-frame {
                 display: flex;
-                overflow-x: hidden;
-                scrollbar-width: none;
+                overflow: visible;
                 padding: 0;
                 transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                touch-action: pan-y;
+                will-change: transform;
             }
             .m-frame::-webkit-scrollbar { display: none; }
 
             .m-slide {
-                min-width: 100%;
+                flex-shrink: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                scroll-snap-align: center;
                 padding: 5px 0;
             }
 
@@ -505,7 +505,7 @@
 
         <!-- Bento Box mit Swiper -->
         <div class="m-bento-container">
-            <div class="m-swiper-viewport">
+            <div class="m-swiper-viewport" id="m-swiper-viewport">
                 <div class="m-frame" id="m-frame">
                     <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="Hunger.JPG"></div><div class="m-card-label">neue Single (Februar 2026)</div></div></div>
                     <div class="m-slide"><div class="m-card"><div class="m-card-img-wrap"><img src="fanny-furzfliege-ecover-3k-srgb-lzwjpg.jpg"></div><div class="m-card-label">Single (2025)</div></div></div>
@@ -683,34 +683,43 @@
         /* ---- MOBILE SWIPER DOTS & TOUCH (Endlos-Loop) ---- */
         const mFrame = document.getElementById('m-frame');
         const mDotsContainer = document.getElementById('m-dots');
+        const mSwiperViewport = document.getElementById('m-swiper-viewport');
 
-        if (mFrame && mDotsContainer) {
+        if (mFrame && mDotsContainer && mSwiperViewport) {
             const originalSlides = Array.from(mFrame.querySelectorAll('.m-slide'));
             const total = originalSlides.length;
 
-            // Klone vorne und hinten einfügen für Endlos-Effekt
+            // Klone für Endlos-Loop
             const firstClone = originalSlides[0].cloneNode(true);
             const lastClone  = originalSlides[total - 1].cloneNode(true);
             mFrame.appendChild(firstClone);
             mFrame.insertBefore(lastClone, originalSlides[0]);
 
-            // Start-Index: 1 (nach dem lastClone)
+            const allSlides = Array.from(mFrame.querySelectorAll('.m-slide'));
+
             let currentIndex = 1;
             let swipeStartX = 0;
             let swipeStartY = 0;
             let isSwiping = false;
             let isTransitioning = false;
 
-            // Dots erzeugen (nur für echte Slides)
+            // Slide-Breite explizit in px setzen (Android + iOS kompatibel)
+            function setSlideWidths() {
+                const w = mSwiperViewport.offsetWidth;
+                allSlides.forEach(s => { s.style.width = w + 'px'; });
+                // Nach Resize ohne Animation neu positionieren
+                goTo(currentIndex, false);
+            }
+
+            // Dots erzeugen
             originalSlides.forEach((_, i) => {
                 const dot = document.createElement('div');
                 dot.className = 'm-dot' + (i === 0 ? ' active' : '');
-                dot.addEventListener('click', () => goTo(i + 1));
+                dot.addEventListener('click', () => goTo(i + 1, true));
                 mDotsContainer.appendChild(dot);
             });
 
             function updateDots() {
-                // currentIndex 1..total → dot 0..total-1
                 let dotIndex = currentIndex - 1;
                 if (dotIndex < 0) dotIndex = total - 1;
                 if (dotIndex >= total) dotIndex = 0;
@@ -719,36 +728,37 @@
                 });
             }
 
-            function goTo(index, animate = true) {
+            function goTo(index, animate) {
                 mFrame.style.transition = animate ? 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
                 currentIndex = index;
-                mFrame.style.transform = `translateX(-${currentIndex * 100}%)`;
+                const w = mSwiperViewport.offsetWidth;
+                mFrame.style.transform = `translateX(-${currentIndex * w}px)`;
                 updateDots();
             }
 
-            // Endlos-Loop: nach Transition an echte Position springen
+            // Endlos-Loop nach Transition
             mFrame.addEventListener('transitionend', () => {
                 isTransitioning = false;
                 if (currentIndex === 0) {
-                    // War am lastClone — lautlos zu echtem letzten Slide
                     goTo(total, false);
                 } else if (currentIndex === total + 1) {
-                    // War am firstClone — lautlos zu echtem ersten Slide
                     goTo(1, false);
                 }
             });
 
-            // Sofort zur Startposition (ohne Animation)
-            goTo(1, false);
+            // Init
+            setSlideWidths();
+            window.addEventListener('resize', setSlideWidths);
 
-            mFrame.addEventListener('touchstart', e => {
+            // Touch-Events auf Viewport
+            mSwiperViewport.addEventListener('touchstart', e => {
                 if (isTransitioning) return;
                 swipeStartX = e.touches[0].clientX;
                 swipeStartY = e.touches[0].clientY;
                 isSwiping = false;
             }, { passive: true });
 
-            mFrame.addEventListener('touchmove', e => {
+            mSwiperViewport.addEventListener('touchmove', e => {
                 const diffX = e.touches[0].clientX - swipeStartX;
                 const diffY = e.touches[0].clientY - swipeStartY;
                 if (!isSwiping && Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 8) {
@@ -756,15 +766,18 @@
                 }
             }, { passive: true });
 
-            mFrame.addEventListener('touchend', e => {
+            mSwiperViewport.addEventListener('touchend', e => {
                 if (!isSwiping) return;
                 isSwiping = false;
-                isTransitioning = true;
                 const diffX = e.changedTouches[0].clientX - swipeStartX;
                 const threshold = 60;
-                if (diffX < -threshold) goTo(currentIndex + 1);
-                else if (diffX > threshold) goTo(currentIndex - 1);
-                else { isTransitioning = false; }
+                if (diffX < -threshold) {
+                    isTransitioning = true;
+                    goTo(currentIndex + 1, true);
+                } else if (diffX > threshold) {
+                    isTransitioning = true;
+                    goTo(currentIndex - 1, true);
+                }
             }, { passive: true });
         }
 
