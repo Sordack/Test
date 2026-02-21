@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER RESPONSIVE</title>
+    <title>ANTON | HAUPTSEITE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -31,7 +31,7 @@
             #mobile-wrapper { display: none !important; }
 
             body { 
-                background: #ffffff url('Background.jpg') no-repeat center center fixed; 
+                background: #ffffff url('AFaPo Wall.jpg') no-repeat center center fixed; 
                 background-size: cover !important; 
                 background-attachment: fixed;
                 overflow-x: hidden;
@@ -40,17 +40,11 @@
                 min-height: 100vh;
             }
             
-            /* ---- HEADER ---- */
             .d-header { 
                 position: fixed; top: 0; width: 100%; height: 80px; 
                 display: flex; justify-content: center; align-items: center; 
-                z-index: 100;
-                background: rgba(255, 255, 255, 0.82); 
-                backdrop-filter: blur(14px) saturate(180%);
-                -webkit-backdrop-filter: blur(14px) saturate(180%);
-                border-bottom: 2px solid #000;
-                box-shadow: 0 2px 18px rgba(0,0,0,0.07);
-                transition: box-shadow 0.3s;
+                z-index: 100; background: rgba(255, 255, 255, 0.8); 
+                backdrop-filter: blur(10px); border-bottom: 2px solid #000; 
             }
             
             .d-header-logo {
@@ -61,45 +55,30 @@
                 transform: translateY(82px); 
             }
             
-            /* ---- MENU BUTTON ---- */
             .d-menu-btn { 
                 position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; 
                 z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; 
                 display: flex; align-items: center; justify-content: center; 
                 border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; 
-                overflow: hidden;
-                box-shadow: 3px 3px 0px var(--anton-yellow);
+                overflow: hidden; 
             }
-            .d-menu-btn:hover { 
-                background: var(--anton-yellow); 
-                color: #000;
-                box-shadow: 3px 3px 0px #000;
-            }
+            .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
             .d-menu-btn span { transition: opacity 0.2s; }
-            .d-menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; font-family: 'Special Elite', cursive; }
+            .d-menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
             .d-menu-btn:hover span { opacity: 0; }
             .d-menu-btn:hover::after { opacity: 1; }
             
-            /* ---- SIDEBAR LEFT ---- */
             .d-sidebar-left { 
                 position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); 
                 background: rgba(255, 235, 59, 0.98); z-index: 200; display: flex; 
                 flex-direction: column; padding: 100px 15px 30px 15px; 
-                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                border-right: 2px solid #000;
-                box-sizing: border-box;
-                box-shadow: 4px 0 24px rgba(0,0,0,0.13);
+                transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; 
             }
             .d-sidebar-left.open { left: 0; }
             
             .d-nav-item { margin-bottom: 20px; width: 100%; }
-            .d-sidebar-left a { 
-                display: flex; align-items: center; color: #000; text-decoration: none; 
-                font-size: 1.1rem; width: 100%;
-                transition: color 0.25s, letter-spacing 0.25s;
-                letter-spacing: 0.02em;
-            }
-            .d-sidebar-left a:hover { color: var(--anton-red); letter-spacing: 0.06em; }
+            .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
+            .d-sidebar-left a:hover { color: var(--anton-red); }
             
             .d-nav-label { display: flex; align-items: center; width: 100%; }
             .d-nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
@@ -107,41 +86,15 @@
             .d-submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
             .d-nav-item:hover .d-submenu-indicator { transform: rotate(180deg); }
             
-            /* Hover-Trennlinie je Nav-Item */
-            .d-nav-item { 
-                border-bottom: 1px solid rgba(0,0,0,0.08); 
-                padding-bottom: 10px; margin-bottom: 10px;
-            }
-            .d-nav-item:last-child { border-bottom: none; }
-
             .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
             .d-nav-item:hover .d-submenu { display: flex; }
             .d-submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
             .d-submenu a i { margin-right: 10px; width: 18px; text-align: center; }
 
-            .d-nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.15) !important; padding-top: 15px; border-bottom: none !important; }
+            .d-nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
             .d-nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
-            .d-nav-item-epk a:hover { letter-spacing: 0.1em; }
             
-            /* ---- SIDEBAR RIGHT (Social) ---- */
-            .d-sidebar-right { 
-                position: fixed; top: 50%; right: 0; transform: translateY(-50%); 
-                width: 50px; display: flex; flex-direction: column; align-items: center; 
-                gap: 15px; z-index: 999; 
-                background: rgba(255, 255, 255, 0.22); 
-                backdrop-filter: blur(6px) saturate(120%);
-                -webkit-backdrop-filter: blur(6px) saturate(120%);
-                padding: 25px 0; border-radius: 20px 0 0 20px; 
-                border: 1.5px solid rgba(0,0,0,0.10);
-                border-right: none;
-                box-shadow: -3px 0 18px rgba(0,0,0,0.08);
-            }
-            .d-sidebar-right a { 
-                display: flex; align-items: center; justify-content: center;
-                width: 36px; height: 36px; border-radius: 50%;
-                transition: background 0.3s;
-            }
-            .d-sidebar-right a:hover { background: rgba(255,235,59,0.55); }
+            .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
             .d-sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
             @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
             
@@ -160,30 +113,22 @@
 
             main { flex: 1; padding: 120px 20px 80px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
-            /* ---- FOOTER ---- */
+            /* BENTOBOXEN – DESKTOP */
+            .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
+            .box-ertappt    { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
+            .box-mitte      { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
+            .box-pause      { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
+            .box-pause2     { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
+            .box-pause3     { width: 5%;  height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
+            .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
+
             .d-footer { 
-                width: 100%; padding: 15px 0; 
-                background: rgba(255,255,255,0.95); 
-                backdrop-filter: blur(8px);
-                border-top: 2px solid #000; text-align: center; font-size: 0.75rem; 
-                z-index: 100; position: fixed; bottom: 0; left: 0;
-                letter-spacing: 0.03em;
+                width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); 
+                border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; 
+                z-index: 100; position: fixed; bottom: 0; left: 0; 
             }
             .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; transition: all 0.3s ease; }
-            .d-footer a:hover { 
-                color: var(--anton-red) !important; 
-                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
-            }
-
-            /* ---- SIDEBAR OPEN: Leichter Overlay-Hinweis ---- */
-            .d-overlay {
-                display: none;
-                position: fixed; inset: 0; z-index: 199;
-                background: rgba(0,0,0,0.18);
-                backdrop-filter: blur(1px);
-                transition: opacity 0.4s;
-            }
-            .d-overlay.active { display: block; }
+            .d-footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
         }
 
         /* ================================================================= */
@@ -199,122 +144,35 @@
             }
             #m-bg-fix { 
                 display: block; position: fixed; top: 0; left: -100%; 
-                width: 300%; height: 100%; background: url('Background.jpg') no-repeat center center; 
+                width: 300%; height: 100%; background: url('AFaPo Wall.jpg') no-repeat center center; 
                 background-size: cover; z-index: -1; will-change: transform; 
             }
-
-            /* ---- HEADER ---- */
             .m-header { 
                 position: fixed; top: 0; width: 100%; height: 80px; 
                 display: flex; justify-content: center; align-items: center; 
-                z-index: 1000; 
-                background: rgba(255, 255, 255, 0.82); 
-                backdrop-filter: blur(14px) saturate(180%);
-                -webkit-backdrop-filter: blur(14px) saturate(180%);
-                border-bottom: 2px solid #000;
-                box-shadow: 0 2px 14px rgba(0,0,0,0.07);
-                transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+                z-index: 1000; background: rgba(255, 255, 255, 0.8); 
+                backdrop-filter: blur(10px); border-bottom: 2px solid #000; 
+                transition: transform 0.6s ease-in-out; 
             }
-            .m-header-logo { 
-                position: absolute; top: 120%; transform: translateY(-50%); 
-                max-height: 185px; width: auto; 
-                filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); 
-            }
-
-            /* ---- MENU BUTTON ---- */
-            .m-menu-btn { 
-                position: fixed; top: 18px; left: 15px; z-index: 1500; 
-                background: #000; width: 45px; height: 45px; border-radius: 5px; 
-                display: flex; flex-direction: column; align-items: center; justify-content: center; 
-                gap: 5px; cursor: pointer; border: 2px solid #000;
-                box-shadow: 3px 3px 0px var(--anton-yellow);
-                transition: box-shadow 0.3s, background 0.3s;
-            }
+            .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
             .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
-            .m-menu-btn.active { background: var(--anton-yellow); box-shadow: 3px 3px 0px #000; }
+            .m-menu-btn.active { background: var(--anton-yellow); }
             .m-menu-btn.active span { display: none; }
-            .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; font-family: 'Special Elite', cursive; }
-
-            /* ---- SIDEBAR TOP (Mobile Nav) ---- */
-            .m-sidebar { 
-                position: fixed; left: 0; top: -120px; width: 100%; height: 95px; 
-                background: var(--anton-yellow); z-index: 1100; 
-                display: flex; flex-direction: row; 
-                padding: 0 55px 0 75px; box-sizing: border-box; 
-                border-bottom: 3px solid #000; 
-                justify-content: space-between; align-items: center; 
-                transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: 0 4px 18px rgba(0,0,0,0.12);
-            }
+            .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
+            .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
             .m-sidebar.open { top: 0 !important; }
             .m-nav-item { flex: 1; text-align: center; }
-            .m-nav-item a { 
-                text-decoration: none; color: #000; 
-                display: flex; flex-direction: column; align-items: center;
-                transition: transform 0.2s;
-            }
-            .m-nav-item a:active { transform: scale(0.92); }
-            .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; letter-spacing: 0.05em; }
-            .m-epk-container { 
-                position: absolute; right: 0; top: 0; height: 100%; width: 45px; 
-                background: #fff; border-left: 3px solid #000; 
-                display: flex; align-items: center; justify-content: center; 
-            }
-            .m-epk-text { 
-                writing-mode: vertical-rl; transform: rotate(180deg); 
-                font-size: 0.7rem; color: var(--anton-red); font-weight: bold; 
-                text-decoration: none; letter-spacing: 0.08em;
-            }
-
-            /* ---- I/D BUTTON & PANEL ---- */
-            .m-id-button { 
-                position: fixed; right: 0; bottom: 150px; 
-                width: 38px; height: 38px; 
-                background: rgba(255, 255, 255, 0.5); 
-                backdrop-filter: blur(6px);
-                border: 2px solid #000; border-right: none; 
-                border-radius: 6px 0 0 6px; 
-                display: flex; align-items: center; justify-content: center; 
-                z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; 
-                cursor: pointer; 
-                transition: transform 0.4s ease-in-out, background 0.3s;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.08);
-            }
-            .m-id-button:active { background: var(--anton-yellow); }
+            .m-nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
+            .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
+            .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
+            .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
+            .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; }
             .m-id-button.hidden { transform: translateX(100%); }
-            .m-id-panel { 
-                position: fixed; right: -250px; bottom: 150px; 
-                height: 45px; width: 230px; 
-                background: rgba(255, 255, 255, 0.78); 
-                backdrop-filter: blur(10px) saturate(140%);
-                border: 2px solid #000; border-right: none; 
-                display: flex; align-items: center; justify-content: center; 
-                z-index: 1299; 
-                transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
-                border-radius: 8px 0 0 8px; 
-                font-weight: bold; font-size: 0.85rem;
-                box-shadow: -3px 0 14px rgba(0,0,0,0.10);
-            }
+            .m-id-panel { position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem; }
             .m-id-panel.open { right: 0; }
-            .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; transition: color 0.2s; }
-            .m-id-panel a:hover { color: var(--anton-red); }
-
-            /* ---- SOCIAL BAR (Mobile Bottom) ---- */
-            .m-sidebar-right { 
-                position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; 
-                display: flex; flex-direction: row; align-items: center; z-index: 999; 
-                background: rgba(255, 255, 255, 0.78); 
-                backdrop-filter: blur(10px) saturate(140%);
-                border-top: 2px solid #000; 
-                padding: 0 10px; justify-content: space-evenly;
-                box-shadow: 0 -2px 14px rgba(0,0,0,0.07);
-            }
-            .m-sidebar-right a { 
-                display: flex; align-items: center; justify-content: center;
-                width: 36px; height: 36px; border-radius: 50%;
-                transition: background 0.25s;
-            }
-            .m-sidebar-right a:active { background: rgba(255,235,59,0.5); }
+            .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
+            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; padding: 0 10px; justify-content: space-evenly; }
             .m-sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
             @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
             .m-sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
@@ -326,6 +184,15 @@
             .m-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
             .m-sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
             .m-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
+
+            /* BENTOBOXEN – MOBILE (gleiche Positionen, touch-freundlich) */
+            .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
+            .box-ertappt    { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
+            .box-mitte      { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
+            .box-pause      { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
+            .box-pause2     { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
+            .box-pause3     { width: 5%;  height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
+            .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
         }
     </style>
 </head>
@@ -340,9 +207,14 @@
         </header>
         <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
 
-        <!-- Overlay beim Öffnen der Sidebar -->
-        <div class="d-overlay" id="d-overlay" onclick="closeDesktopMenu()"></div>
-        
+        <!-- BENTOBOXEN -->
+        <a href="meinemusik.html"  class="invisible-box box-ertappt"></a>
+        <a href="neuesingle.html"  class="invisible-box box-mitte"></a>
+        <a href="meinemusik.html"  class="invisible-box box-pause"></a>
+        <a href="meinemusik.html"  class="invisible-box box-pause2"></a>
+        <a href="meinemusik.html"  class="invisible-box box-pause3"></a>
+        <a href="neuesingle.html"  class="invisible-box box-riesenhunger"></a>
+
         <nav class="d-sidebar-left" id="d-sidebar">
             <div class="d-nav-item"><a href="hauptseite.html"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
             <div class="d-nav-item">
@@ -359,15 +231,15 @@
         </nav>
 
         <aside class="d-sidebar-right">
-            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/anton.familienpop" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
-            <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank" title="YouTube VEVO"><i class="fa-solid fa-circle-play"></i></a>
-            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" title="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
+            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         </aside>
 
         <main></main>
@@ -383,10 +255,17 @@
     <!-- ================================================================= -->
     <div id="mobile-wrapper">
         <div id="m-bg-fix"></div>
-        <header class="m-header" id="m-header-main">
-            <img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo">
-        </header>
+        <header class="m-header" id="m-header-main"><img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo"></header>
         <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)"><span></span><span></span><span></span></div>
+
+        <!-- BENTOBOXEN (auch im Mobile-Wrapper, über dem Hintergrundbild) -->
+        <a href="meinemusik.html"  class="invisible-box box-ertappt"></a>
+        <a href="neuesingle.html"  class="invisible-box box-mitte"></a>
+        <a href="meinemusik.html"  class="invisible-box box-pause"></a>
+        <a href="meinemusik.html"  class="invisible-box box-pause2"></a>
+        <a href="meinemusik.html"  class="invisible-box box-pause3"></a>
+        <a href="neuesingle.html"  class="invisible-box box-riesenhunger"></a>
+
         <nav class="m-sidebar" id="m-sidebar">
             <div class="m-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
             <div class="m-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
@@ -399,15 +278,15 @@
             <a href="impressum.html">Impressum</a><span>|</span><a href="datenschutz.html">Datenschutz</a>
         </div>
         <aside class="m-sidebar-right">
-            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/anton.familienpop" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
-            <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank" title="YouTube VEVO"><i class="fa-solid fa-circle-play"></i></a>
-            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" title="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
+            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/anton.familienpop" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://www.youtube.com/@AntonMusikVEVO" target="_blank"><i class="fa-solid fa-circle-play"></i></a>
+            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank"><i class="fa-brands fa-amazon"></i></a>
         </aside>
     </div>
 
@@ -415,14 +294,12 @@
         /* --- GLOBAL VARIABLES & HELPER --- */
         let dSidebarTimeout;
         const dSidebar = document.getElementById('d-sidebar');
-        const dOverlay = document.getElementById('d-overlay');
 
         function resetDSidebarTimer() {
             clearTimeout(dSidebarTimeout);
             if (dSidebar && dSidebar.classList.contains('open')) {
                 dSidebarTimeout = setTimeout(() => {
                     dSidebar.classList.remove('open');
-                    if (dOverlay) dOverlay.classList.remove('active');
                 }, 5000); 
             }
         }
@@ -431,15 +308,8 @@
         function toggleDesktopMenu() {
             if (dSidebar) {
                 dSidebar.classList.toggle('open');
-                if (dOverlay) dOverlay.classList.toggle('active', dSidebar.classList.contains('open'));
                 if (dSidebar.classList.contains('open')) resetDSidebarTimer();
             }
-        }
-
-        function closeDesktopMenu() {
-            if (dSidebar) dSidebar.classList.remove('open');
-            if (dOverlay) dOverlay.classList.remove('active');
-            clearTimeout(dSidebarTimeout);
         }
 
         if (dSidebar) {
@@ -450,8 +320,9 @@
         document.addEventListener('click', function(e) {
             if(window.innerWidth > 800) {
                 const btn = document.querySelector(".d-menu-btn");
-                if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains("open")) {
-                    closeDesktopMenu();
+                if (dSidebar && !dSidebar.contains(e.target) && !btn.contains(e.target) && dSidebar.classList.contains("open")) {
+                    dSidebar.classList.remove("open");
+                    clearTimeout(dSidebarTimeout);
                 }
             }
         });
@@ -507,6 +378,7 @@
                     const limit = window.innerWidth; 
                     if (newX > limit) newX = limit;
                     if (newX < -limit) newX = -limit;
+
                     if(mBg) mBg.style.transform = `translateX(${newX}px)`;
                 }
             }
@@ -515,7 +387,7 @@
         document.addEventListener('touchend', e => {
             if(window.innerWidth <= 800 && mBg) {
                 const style = window.getComputedStyle(mBg);
-                const matrix = new DOMMatrix(style.transform);
+                const matrix = new WebKitCSSMatrix(style.transform);
                 currentTranslateX = matrix.m41;
             }
         }, {passive: true});
