@@ -152,20 +152,16 @@
         }
 
         /* ================================================================= */
-        /* 2. MOBILE STYLES                                                  */
+        /* 2. MOBILE BASIS – gilt für Portrait UND Landscape                 */
         /* ================================================================= */
-        @media (max-width: 800px) {
+        @media (max-width: 800px), (orientation: landscape) and (max-height: 500px) {
             #desktop-wrapper { display: none !important; }
+            #mobile-wrapper  { display: block !important; }
 
             body { 
                 height: 100vh; width: 100vw; overflow: hidden !important; 
                 position: fixed; display: flex; flex-direction: column; touch-action: pan-y;
                 overscroll-behavior-x: none;
-            }
-            #m-bg-fix { 
-                display: block; position: fixed; top: 0; left: -100%; 
-                width: 300%; height: 100%; background: url('Background.jpg') no-repeat center center; 
-                background-size: cover; z-index: -1; will-change: transform; 
             }
             .m-header { 
                 position: fixed; top: 0; width: 100%; height: 80px; 
@@ -190,7 +186,6 @@
             .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; }
             .m-id-button.hidden { transform: translateX(100%); }
 
-            /* I/D PANEL – erweitert mit FF.png rechts vom Trennstrich */
             .m-id-panel { 
                 position: fixed; right: -270px; bottom: 150px; 
                 height: 45px; width: 250px; 
@@ -202,18 +197,10 @@
                 overflow: hidden;
             }
             .m-id-panel.open { right: 0; }
-            .m-id-panel-links {
-                display: flex; align-items: center; justify-content: center;
-                flex: 1; gap: 8px; padding: 0 10px;
-            }
+            .m-id-panel-links { display: flex; align-items: center; justify-content: center; flex: 1; gap: 8px; padding: 0 10px; }
             .m-id-panel a { color: #000; text-decoration: none; text-transform: uppercase; }
-            .m-id-panel-divider {
-                width: 1.5px; height: 100%; background: #000; flex-shrink: 0;
-                margin-left: auto;
-            }
-            .m-id-panel-ff {
-                width: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding-right: 2px;
-            }
+            .m-id-panel-divider { width: 1.5px; height: 100%; background: #000; flex-shrink: 0; margin-left: auto; }
+            .m-id-panel-ff { width: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding-right: 2px; }
             .m-id-panel-ff a { display: flex; align-items: center; justify-content: center; margin: 0; }
             .m-id-panel-ff img { height: 20px; width: auto; display: block; }
 
@@ -229,52 +216,43 @@
             .m-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
             .m-sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
             .m-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
-
         }
 
         /* ================================================================= */
-        /* 3. MOBILE LANDSCAPE                                               */
+        /* 2a. MOBILE PORTRAIT – Swipe-Hintergrund                          */
+        /* ================================================================= */
+        @media (max-width: 800px) and (orientation: portrait) {
+            #m-bg-fix { 
+                display: block; position: fixed; top: 0; left: -100%; 
+                width: 300%; height: 100%; background: url('Background.jpg') no-repeat center center; 
+                background-size: cover; z-index: -1; will-change: transform; 
+            }
+        }
+
+        /* ================================================================= */
+        /* 3. MOBILE LANDSCAPE – kompakteres Layout                          */
         /* ================================================================= */
         @media (orientation: landscape) and (max-height: 500px) {
-            #desktop-wrapper { display: none !important; }
-            #mobile-wrapper  { display: block !important; }
-
-            body { 
-                height: 100vh; width: 100vw; overflow: hidden !important; 
-                position: fixed; display: flex; flex-direction: column; touch-action: pan-y;
-                overscroll-behavior-x: none;
-            }
-
             #m-bg-fix { 
                 display: block; position: fixed; top: 0; left: 0; 
                 width: 100%; height: 100%; 
                 background: url('Background.jpg') no-repeat center center; 
                 background-size: cover; z-index: -1; will-change: unset; transform: none !important;
             }
-
-            /* Header – flacher */
             .m-header { height: 48px; }
             .m-header-logo { max-height: 110px; top: 115%; }
-
-            /* Hamburger-Button */
             .m-menu-btn { top: 8px; left: 12px; width: 38px; height: 38px; }
-
-            /* Nav-Sidebar */
-            .m-sidebar { height: 62px; top: -80px; padding: 0 45px 0 60px; align-items: center; }
+            .m-sidebar { height: 62px; top: -80px; padding: 0 45px 0 60px; }
             .m-sidebar.open { top: 0 !important; }
             .m-nav-item a { font-size: 0.85rem; }
             .m-nav-item a i { font-size: 1rem; }
             .mobile-tag { font-size: 0.45rem; }
             .m-epk-container { width: 38px; }
             .m-epk-text { font-size: 0.6rem; }
-
-            /* Social-Icons Bottom-Bar */
             .m-sidebar-right { height: 44px; padding: 0 6px; }
             .m-sidebar-right a i { font-size: 1.1rem; }
-
-            /* I/D Button und Panel */
-            .m-id-button { bottom: 100px; width: 34px; height: 34px; font-size: 0.75rem; }
-            .m-id-panel  { bottom: 100px; height: 40px; width: 260px; right: -280px; font-size: 0.75rem; }
+            .m-id-button { bottom: 58px; width: 34px; height: 34px; font-size: 0.75rem; }
+            .m-id-panel  { bottom: 58px; height: 40px; width: 260px; right: -280px; font-size: 0.75rem; }
             .m-id-panel-ff img { height: 20px; }
         }
     </style>
