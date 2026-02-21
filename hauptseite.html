@@ -120,6 +120,14 @@
 
             main { flex: 1; padding: 120px 20px 80px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
+            /* BENTOBOXEN – DESKTOP */
+            .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
+            .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
+            .box-mitte   { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); z-index: 15; }
+            .box-pause   { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
+            .box-pause2  { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
+            .box-pause3  { width: 5%;  height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
+
             /* FOOTER – DESKTOP */
             .d-footer { 
                 width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); 
@@ -158,6 +166,14 @@
             #desktop-wrapper { display: none !important; }
             #mobile-wrapper  { display: block !important; }
 
+            /* BENTOBOXEN – MOBILE */
+            .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
+            .box-ertappt { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
+            .box-mitte   { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); z-index: 15; }
+            .box-pause   { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
+            .box-pause2  { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
+            .box-pause3  { width: 5%;  height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
+
             body { 
                 height: 100vh; width: 100vw; overflow: hidden !important; 
                 position: fixed; display: flex; flex-direction: column; touch-action: pan-y;
@@ -170,7 +186,7 @@
                 backdrop-filter: blur(10px); border-bottom: 2px solid #000; 
                 transition: transform 0.6s ease-in-out; 
             }
-            .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .m-header-logo { position: absolute; top: 130%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
             .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
             .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
             .m-menu-btn.active { background: var(--anton-yellow); }
@@ -260,7 +276,7 @@
 
             /* Header – im Landscape kompakter, sitzt tiefer */
             #mobile-wrapper .m-header { height: 60px; }
-            #mobile-wrapper .m-header-logo { top: 140%; }
+            #mobile-wrapper .m-header-logo { top: 145%; }
             #mobile-wrapper .m-menu-btn { top: 10px; }
 
             /* Hamburger-Button */
@@ -365,7 +381,15 @@
         </header>
         <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
 
+        <!-- BENTOBOXEN – DESKTOP -->
+        <a href="veroffentlichungen.html" class="invisible-box box-ertappt"></a>
+        <a href="neuesingle.html" class="invisible-box box-mitte"></a>
+        <a href="veroffentlichungen.html" class="invisible-box box-pause"></a>
+        <a href="veroffentlichungen.html" class="invisible-box box-pause2"></a>
+        <a href="veroffentlichungen.html" class="invisible-box box-pause3"></a>
+
         <nav class="d-sidebar-left" id="d-sidebar">
+            
             <div class="d-nav-item"><a href="hauptseite.html"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
             <div class="d-nav-item">
                 <a href="meinemusik.html"><span class="d-nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="d-arrow-wrapper"><i class="fa-solid fa-caret-down d-submenu-indicator"></i></div></a>
@@ -426,6 +450,13 @@
         </nav>
 
         <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
+
+        <!-- BENTOBOXEN – MOBILE -->
+        <a href="veroffentlichungen.html" class="invisible-box box-ertappt"></a>
+        <a href="neuesingle.html" class="invisible-box box-mitte"></a>
+        <a href="veroffentlichungen.html" class="invisible-box box-pause"></a>
+        <a href="veroffentlichungen.html" class="invisible-box box-pause2"></a>
+        <a href="veroffentlichungen.html" class="invisible-box box-pause3"></a>
         <div class="m-id-panel" id="m-id-panel">
             <div class="m-id-panel-links">
                 <a href="impressum.html">Impressum</a>
@@ -667,4 +698,3 @@
     </script>
 </body>
 </html>
-
