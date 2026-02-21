@@ -111,16 +111,16 @@
             .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
             .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-            main { flex: 1; padding: 120px 20px 80px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
-
-            /* BENTOBOXEN – DESKTOP */
+            /* BENTOBOXEN – exakt aus Original */
             .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
-            .box-ertappt    { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
-            .box-mitte      { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
-            .box-pause      { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
-            .box-pause2     { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
-            .box-pause3     { width: 5%;  height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
-            .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
+            .box-ertappt      { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
+            .box-mitte        { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
+            .box-pause        { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
+            .box-pause2       { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
+            .box-pause3       { width: 5%;  height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
+            .box-riesenhunger { width: 10%; height: 3%;  top: 67%; left: 43%; }
+
+            main { flex: 1; padding: 120px 20px 80px 20px; z-index: 5; width: 100%; box-sizing: border-box; }
 
             .d-footer { 
                 width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); 
@@ -185,14 +185,8 @@
             .m-sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
             .m-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
 
-            /* BENTOBOXEN – MOBILE (gleiche Positionen, touch-freundlich) */
-            .invisible-box { position: fixed; z-index: 10; background: transparent; border: none; cursor: pointer; }
-            .box-ertappt    { width: 19%; height: 43%; top: 16%; left: 17%; transform: rotate(-4deg); }
-            .box-mitte      { width: 20%; height: 42%; top: 17%; left: 38%; transform: rotate(3deg); }
-            .box-pause      { width: 10%; height: 43%; top: 21%; left: 70%; transform: rotate(1deg); }
-            .box-pause2     { width: 10%; height: 30%; top: 34%; left: 60%; transform: rotate(1deg); }
-            .box-pause3     { width: 5%;  height: 18%; top: 21%; left: 66%; transform: rotate(45deg); }
-            .box-riesenhunger { width: 10%; height: 3%; top: 67%; left: 43%; }
+            /* Bentoboxen auf Mobile ausblenden – auf das Desktop-Hintergrundbild abgestimmt */
+            .invisible-box { display: none !important; }
         }
     </style>
 </head>
@@ -257,15 +251,6 @@
         <div id="m-bg-fix"></div>
         <header class="m-header" id="m-header-main"><img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo"></header>
         <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)"><span></span><span></span><span></span></div>
-
-        <!-- BENTOBOXEN (auch im Mobile-Wrapper, über dem Hintergrundbild) -->
-        <a href="meinemusik.html"  class="invisible-box box-ertappt"></a>
-        <a href="neuesingle.html"  class="invisible-box box-mitte"></a>
-        <a href="meinemusik.html"  class="invisible-box box-pause"></a>
-        <a href="meinemusik.html"  class="invisible-box box-pause2"></a>
-        <a href="meinemusik.html"  class="invisible-box box-pause3"></a>
-        <a href="neuesingle.html"  class="invisible-box box-riesenhunger"></a>
-
         <nav class="m-sidebar" id="m-sidebar">
             <div class="m-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
             <div class="m-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
@@ -378,7 +363,6 @@
                     const limit = window.innerWidth; 
                     if (newX > limit) newX = limit;
                     if (newX < -limit) newX = -limit;
-
                     if(mBg) mBg.style.transform = `translateX(${newX}px)`;
                 }
             }
