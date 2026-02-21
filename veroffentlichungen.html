@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | MASTER RESPONSIVE</title>
+    <title>ANTON | ULTRA GERÜST 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -15,6 +15,7 @@
             --item-size: 250px;
         }
 
+        /* Grundgesetz: Weißer Hintergrund */
         html, body { 
             margin: 0; 
             padding: 0; 
@@ -38,20 +39,97 @@
             }
 
             /* Header & Logo */
-            .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .d-header-logo { max-height: 285px; width: auto; transform: translateY(82px); filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .d-header { 
+                position: fixed; 
+                top: 0; 
+                width: 100%; 
+                height: 80px; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                z-index: 100; 
+                background: rgba(255, 255, 255, 0.8); 
+                backdrop-filter: blur(10px); 
+                border-bottom: 2px solid #000; 
+            }
+            .d-header-logo { 
+                max-height: 285px; 
+                width: auto; 
+                transform: translateY(82px); 
+                filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); 
+            }
 
             /* Linke Sidebar */
-            .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
-            .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: var(--anton-yellow); z-index: 200; display: flex; flex-direction: column; padding: 120px 20px 30px 20px; transition: left 0.4s ease; border-right: 3px solid #000; box-sizing: border-box; }
+            .d-menu-btn { 
+                position: fixed; 
+                top: 18px; 
+                left: 20px; 
+                font-size: 24px; 
+                cursor: pointer; 
+                z-index: 210; 
+                background: #000; 
+                color: #fff; 
+                width: 45px; 
+                height: 45px; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                border-radius: 5px; 
+            }
+            .d-sidebar-left { 
+                position: fixed; 
+                top: 0; 
+                bottom: 0; 
+                left: -300px; 
+                width: var(--sidebar-width); 
+                background: var(--anton-yellow); 
+                z-index: 200; 
+                display: flex; 
+                flex-direction: column; 
+                padding: 120px 20px 30px 20px; 
+                transition: left 0.4s ease; 
+                border-right: 3px solid #000; 
+                box-sizing: border-box; 
+            }
             .d-sidebar-left.open { left: 0; }
             .d-nav-item { margin-bottom: 25px; }
             .d-nav-item a { color: #000; text-decoration: none; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+            
+            /* EPK Markierung Rot */
             .d-nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
 
-            /* Rechte Social Bar */
-            .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 60px; display: flex; flex-direction: column; align-items: center; gap: 20px; z-index: 999; background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(5px); padding: 30px 0; border-radius: 20px 0 0 20px; border: 2px solid #000; border-right: none; }
-            .d-sidebar-right a i { color: #000; font-size: 1.5rem; transition: transform 0.3s; }
+            /* Rechte Social Bar mit Wave Animation */
+            .d-sidebar-right { 
+                position: fixed; 
+                top: 50%; 
+                right: 0; 
+                transform: translateY(-50%); 
+                width: 60px; 
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 20px; 
+                z-index: 999; 
+                background: rgba(255, 255, 255, 0.3); 
+                backdrop-filter: blur(5px); 
+                padding: 30px 0; 
+                border-radius: 20px 0 0 20px; 
+                border: 2px solid #000; 
+                border-right: none; 
+            }
+            .d-sidebar-right a i { 
+                color: #000; 
+                font-size: 1.5rem; 
+                animation: wave 3s infinite ease-in-out;
+            }
+            .d-sidebar-right a:nth-child(2) i { animation-delay: 0.2s; }
+            .d-sidebar-right a:nth-child(3) i { animation-delay: 0.4s; }
+            .d-sidebar-right a:nth-child(4) i { animation-delay: 0.6s; }
+
+            @keyframes wave {
+                0%, 100% { transform: translateX(0); }
+                50% { transform: translateX(-5px); }
+            }
             
             /* Karussell */
             main.d-main-content { height: 100vh; display: flex; justify-content: center; align-items: center; perspective: 2000px; }
@@ -67,21 +145,49 @@
         }
 
         /* ================================================================= */
-        /* 2. MOBILE STYLES (Max-Width: 800px)                              */
+        /* 2. MOBILE STYLES (Max-Width: 800px)                               */
         /* ================================================================= */
         @media (max-width: 800px) {
             #desktop-wrapper { display: none !important; }
             body { height: 100vh; overflow: hidden; position: fixed; background-color: #ffffff; }
             #m-bg-fix { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: url('Background.jpg') no-repeat center center; background-size: cover; z-index: -1; }
 
-            /* Mobile Header */
-            .m-header { position: fixed; top: 0; width: 100%; height: 70px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; transition: transform 0.5s ease; }
+            /* Mobile Header - Versteckt sich nach 3 Sek */
+            .m-header { 
+                position: fixed; 
+                top: 0; 
+                width: 100%; 
+                height: 70px; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                z-index: 1000; 
+                background: rgba(255, 255, 255, 0.8); 
+                backdrop-filter: blur(10px); 
+                border-bottom: 2px solid #000; 
+                transition: transform 0.5s ease; 
+            }
             .m-header-logo { position: absolute; top: 110%; max-height: 160px; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
 
-            /* Mobile Sidebar (Top) */
+            /* Mobile Sidebar (Oben, Gelb) */
             .m-menu-btn { position: fixed; top: 12px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
             .m-menu-btn span { width: 22px; height: 3px; background: #fff; }
-            .m-sidebar { position: fixed; left: 0; top: -150px; width: 100%; height: 100px; background: var(--anton-yellow); z-index: 1100; display: flex; align-items: center; justify-content: space-evenly; border-bottom: 3px solid #000; transition: top 0.4s ease; padding-left: 60px; box-sizing: border-box; }
+            .m-sidebar { 
+                position: fixed; 
+                left: 0; 
+                top: -150px; 
+                width: 100%; 
+                height: 100px; 
+                background: var(--anton-yellow); 
+                z-index: 1100; 
+                display: flex; 
+                align-items: center; 
+                justify-content: space-evenly; 
+                border-bottom: 3px solid #000; 
+                transition: top 0.4s ease; 
+                padding-left: 60px; 
+                box-sizing: border-box; 
+            }
             .m-sidebar.open { top: 0; }
             .m-sidebar a { color: #000; font-size: 1.5rem; text-decoration: none; }
             .m-sidebar .epk-link { color: var(--anton-red); font-weight: bold; font-size: 1rem; }
@@ -100,34 +206,41 @@
             .m-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.2); border: 1px solid #000; }
             .m-dot.active { background: #000; transform: scale(1.2); }
 
-            /* Mobile Social Bar (KLEBT AM UNTEREN RAND) */
+            /* Mobile Social Bar (Unten) */
             .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-top: 2px solid #000; display: flex; justify-content: space-around; align-items: center; z-index: 2000; }
             .m-sidebar-right a i { color: #000; font-size: 1.4rem; }
 
-            /* I/D Panel */
-            .m-id-button { position: fixed; right: 0; bottom: 100px; width: 40px; height: 40px; background: #fff; border: 2px solid #000; border-right: none; border-radius: 5px 0 0 5px; display: flex; align-items: center; justify-content: center; z-index: 1001; font-weight: bold; font-size: 0.8rem; }
+            /* I/D Button & Panel unten rechts */
+            .m-id-button { position: fixed; right: 0; bottom: 100px; width: 40px; height: 40px; background: #fff; border: 2px solid #000; border-right: none; border-radius: 5px 0 0 5px; display: flex; align-items: center; justify-content: center; z-index: 1001; font-weight: bold; font-size: 0.8rem; cursor: pointer; }
             .m-id-panel { position: fixed; right: -250px; bottom: 100px; height: 40px; width: 220px; background: #fff; border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1000; transition: right 0.4s ease; gap: 10px; font-size: 0.75rem; border-radius: 5px 0 0 5px; }
             .m-id-panel.open { right: 0; }
+            .m-id-panel a { color: #000; text-decoration: none; }
         }
     </style>
 </head>
 <body>
 
     <div id="desktop-wrapper">
-        <header class="d-header"><img src="Antonlogo.png" alt="Logo" class="d-header-logo"></header>
+        <header class="d-header">
+            <img src="Antonlogo.png" alt="Logo" class="d-header-logo">
+        </header>
+        
         <div class="d-menu-btn" onclick="toggleDMenu()">☰</div>
+        
         <nav class="d-sidebar-left" id="d-sidebar">
             <div class="d-nav-item"><a href="hauptseite.html"><i class="fa-solid fa-house"></i> START</a></div>
             <div class="d-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i> MUSIK</a></div>
             <div class="d-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i> SHOP</a></div>
             <div class="d-nav-item d-nav-item-epk"><a href="epk.html"><i class="fa-solid fa-bullhorn"></i> EPK</a></div>
         </nav>
+
         <aside class="d-sidebar-right">
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
             <a href="#"><i class="fa-brands fa-tiktok"></i></a>
             <a href="#"><i class="fa-brands fa-instagram"></i></a>
             <a href="#"><i class="fa-brands fa-spotify"></i></a>
         </aside>
+
         <main class="d-main-content">
             <div class="carousel-viewport">
                 <div class="carousel-inner" id="d-inner">
@@ -144,13 +257,23 @@
                 </div>
             </div>
         </main>
-        <footer class="d-footer"><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></footer>
+
+        <footer class="d-footer">
+            <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
+        </footer>
     </div>
 
     <div id="mobile-wrapper">
         <div id="m-bg-fix"></div>
-        <header class="m-header" id="m-header"><img src="Antonlogo.png" alt="Logo" class="m-header-logo"></header>
-        <div class="m-menu-btn" onclick="toggleMMenu(event)"><span></span><span></span><span></span></div>
+        
+        <header class="m-header" id="m-header">
+            <img src="Antonlogo.png" alt="Logo" class="m-header-logo">
+        </header>
+
+        <div class="m-menu-btn" onclick="toggleMMenu(event)">
+            <span></span><span></span><span></span>
+        </div>
+
         <nav class="m-sidebar" id="m-sidebar">
             <a href="hauptseite.html"><i class="fa-solid fa-house"></i></a>
             <a href="meinemusik.html"><i class="fa-solid fa-music"></i></a>
@@ -170,14 +293,14 @@
                 <div class="m-slide"><div class="m-card"><img src="cover-mein-name-ist-hase-esinglejpg.jpg"><div class="m-card-label">Mein Name ist Hase</div></div></div>
                 <div class="m-slide"><div class="m-card"><img src="anton-album-cover-grosse-pause-vjpg.jpg"><div class="m-card-label">Grosse Pause</div></div></div>
                 <div class="m-slide"><div class="m-card"><img src="Album Ertappt.jpg"><div class="m-card-label">Ertappt</div></div></div>
-                <div class="m-slide"><div class="m-card"><img src="monsterparty-anton.jpg"><div class="m-card-label">Monsterparty</div></div></div>
-                <div class="m-slide"><div class="m-card"><img src="Hunger.JPG"><div class="m-card-label">Hunger</div></div></div>
             </div>
             <div class="m-dots-container" id="m-dots"></div>
         </div>
 
         <div class="m-id-button" onclick="toggleID(event)">I/D</div>
-        <div class="m-id-panel" id="m-id-panel"><a href="impressum.html">Impressum</a><span>|</span><a href="datenschutz.html">Datenschutz</a></div>
+        <div class="m-id-panel" id="m-id-panel">
+            <a href="impressum.html">Impressum</a><span>|</span><a href="datenschutz.html">Datenschutz</a>
+        </div>
 
         <aside class="m-sidebar-right">
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
@@ -189,23 +312,27 @@
     </div>
 
     <script>
-        // Desktop Sidebar Timer
+        // 1. Desktop Sidebar Timer (5 Sek)
         let dTimer;
         function toggleDMenu() {
             const sb = document.getElementById('d-sidebar');
             sb.classList.toggle('open');
             clearTimeout(dTimer);
-            if(sb.classList.contains('open')) dTimer = setTimeout(() => sb.classList.remove('open'), 5000);
+            if(sb.classList.contains('open')) {
+                dTimer = setTimeout(() => {
+                    sb.classList.remove('open');
+                }, 5000);
+            }
         }
 
-        // Desktop Carousel Init
+        // 2. Desktop Carousel Berechnung
         const dInner = document.getElementById('d-inner');
         const dItems = dInner.querySelectorAll('.carousel-item');
         dItems.forEach((item, i) => {
             item.style.transform = `rotateY(${i * (360/dItems.length)}deg) translateZ(500px)`;
         });
 
-        // Mobile Logic
+        // 3. Mobile Logic (Slider & Dots)
         const mFrame = document.getElementById('m-frame');
         const mDots = document.getElementById('m-dots');
         const slidesCount = 10;
@@ -216,25 +343,35 @@
             mDots.appendChild(dot);
         }
 
-        mFrame.scrollLeft = mFrame.offsetWidth;
         mFrame.addEventListener('scroll', () => {
             const w = mFrame.offsetWidth;
-            if(mFrame.scrollLeft <= 0) mFrame.scrollLeft = w * slidesCount;
-            if(mFrame.scrollLeft >= w * (slidesCount + 1)) mFrame.scrollLeft = w;
-            
-            const idx = Math.round(mFrame.scrollLeft / w) - 1;
-            document.querySelectorAll('.m-dot').forEach((d, i) => d.classList.toggle('active', i === (idx % slidesCount + slidesCount) % slidesCount));
+            const idx = Math.round(mFrame.scrollLeft / w);
+            document.querySelectorAll('.m-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === idx);
+            });
         });
 
-        function toggleMMenu(e) { e.stopPropagation(); document.getElementById('m-sidebar').classList.toggle('open'); }
-        function toggleID(e) { e.stopPropagation(); document.getElementById('m-id-panel').classList.toggle('open'); }
+        // 4. Mobile Menu & ID Panel Toggles
+        function toggleMMenu(e) { 
+            e.stopPropagation(); 
+            document.getElementById('m-sidebar').classList.toggle('open'); 
+        }
+        function toggleID(e) { 
+            e.stopPropagation(); 
+            document.getElementById('m-id-panel').classList.toggle('open'); 
+        }
         
         document.addEventListener('click', () => {
             document.getElementById('m-sidebar').classList.remove('open');
             document.getElementById('m-id-panel').classList.remove('open');
         });
 
-        setTimeout(() => { if(window.innerWidth <= 800) document.getElementById('m-header').style.transform = 'translateY(-100%)'; }, 3000);
+        // 5. Mobile Header Hide Timer (3 Sek)
+        setTimeout(() => { 
+            if(window.innerWidth <= 800) {
+                document.getElementById('m-header').style.transform = 'translateY(-100%)'; 
+            }
+        }, 3000);
     </script>
 </body>
 </html>
