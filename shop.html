@@ -72,7 +72,7 @@
 
             main { flex: 1; padding: 95px 55px 65px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; }
 
-            /* ---- DESKTOP FOOTER ---- */
+            /* ---- DESKTOP FOOTER – nur Links, kein Logo ---- */
             .d-footer {
                 width: 100%;
                 height: 50px;
@@ -83,26 +83,12 @@
                 z-index: 100;
                 position: fixed;
                 bottom: 0; left: 0;
-                display: grid;
-                grid-template-columns: auto 1fr auto;
+                display: flex;
                 align-items: center;
+                justify-content: center;
                 box-sizing: border-box;
                 overflow: hidden;
             }
-
-            /* Links: offizielles Logo */
-            .d-footer-fh {
-                display: flex;
-                align-items: center;
-                height: 100%;
-                padding: 0 12px;
-                border-right: 1.5px solid rgba(0,0,0,0.12);
-                flex-shrink: 0;
-            }
-            .d-footer-fh a { display: flex; align-items: center; text-decoration: none; }
-            .d-footer-fh img { height: 34px; width: auto; display: block; object-fit: contain; }
-
-            /* Mitte zentriert */
             .d-footer-center {
                 display: flex;
                 flex-direction: column;
@@ -123,6 +109,7 @@
                 display: flex;
                 align-items: center;
             }
+            /* ALLE 4 gleichzeitig aufleuchten – kein delay */
             .d-footer-center-links a {
                 color: #000;
                 text-decoration: none;
@@ -137,23 +124,11 @@
             }
             .d-footer-center-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.18); }
             .d-footer-center-links a:hover { color: var(--anton-red) !important; animation: none; }
-            .d-footer-center-links a:nth-child(1) { animation-delay: 0s; }
-            .d-footer-center-links a:nth-child(2) { animation-delay: 0.2s; }
-            .d-footer-center-links a:nth-child(3) { animation-delay: 0.4s; }
-            .d-footer-center-links a:nth-child(4) { animation-delay: 0.6s; }
 
             @keyframes footerFlash {
                 0%,46% { color: #000; }
                 50%     { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,1); }
                 54%,100%{ color: #000; }
-            }
-
-            /* Rechts: Spiegel-Spacer für optische Zentrierung */
-            .d-footer-mirror {
-                height: 100%;
-                /* gleiche Breite wie .d-footer-fh: padding(24px) + img-Breite schätzen wir dynamisch.
-                   Wir geben ihr einfach die gleiche min-Breite damit grid symmetrisch bleibt. */
-                min-width: 90px;
             }
         }
 
@@ -201,12 +176,9 @@
             .m-id-panel.open { right: 0; }
             .m-id-panel-label { font-size: 0.48rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; color: rgba(0,0,0,0.38); line-height: 1; }
             .m-id-panel-links { display: flex; align-items: center; flex-wrap: nowrap; }
+            /* ALLE gleichzeitig – kein delay */
             .m-id-panel-links a { color: #000; text-decoration: none; text-transform: uppercase; font-size: 0.6rem; font-weight: bold; padding: 0 5px; white-space: nowrap; animation: footerFlashMobile 3s ease-in-out infinite; }
             .m-id-panel-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
-            .m-id-panel-links a:nth-child(1) { animation-delay: 0s; }
-            .m-id-panel-links a:nth-child(2) { animation-delay: 0.2s; }
-            .m-id-panel-links a:nth-child(3) { animation-delay: 0.4s; }
-            .m-id-panel-links a:nth-child(4) { animation-delay: 0.6s; }
             @keyframes footerFlashMobile { 0%,46%{color:#000;} 50%{color:#fff;text-shadow:0 0 8px rgba(255,255,255,1);} 54%,100%{color:#000;} }
 
             .m-footer-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; box-sizing: border-box; overflow: hidden; }
@@ -252,6 +224,141 @@
         }
 
         /* ================================================================= */
+        /* BENTO BOXES                                                        */
+        /* ================================================================= */
+
+        .bento-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        /* --- Große quadratische Fanshop-Box --- */
+        .bento-fanshop {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 3px solid #000;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.5);
+            border-radius: 18px;
+            aspect-ratio: 1 / 1;
+            max-width: 420px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #000;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .bento-fanshop:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 rgba(0,0,0,0.55);
+        }
+        .bento-fanshop::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,0,0,0.08) 0%, transparent 65%);
+            animation: bento-pulse 3s ease-in-out infinite;
+        }
+        @keyframes bento-pulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.9); }
+            50%       { opacity: 1;   transform: scale(1.05); }
+        }
+        .bento-fanshop-icon {
+            font-size: clamp(2.8rem, 8vw, 4.5rem);
+            margin-bottom: 18px;
+            animation: cart-bounce 2.5s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes cart-bounce {
+            0%, 100% { transform: translateY(0); }
+            40%       { transform: translateY(-8px); }
+            60%       { transform: translateY(-4px); }
+        }
+        .bento-fanshop-text {
+            font-family: 'Special Elite', cursive;
+            font-size: clamp(0.85rem, 2.5vw, 1.2rem);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+            line-height: 1.5;
+        }
+        .bento-fanshop-text strong {
+            display: block;
+            font-size: clamp(1.1rem, 3.5vw, 1.7rem);
+            color: var(--anton-red);
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+        }
+        .bento-fanshop-arrow {
+            margin-top: 22px;
+            font-size: clamp(0.7rem, 1.8vw, 0.95rem);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #000;
+            color: var(--anton-yellow);
+            padding: 9px 22px;
+            border-radius: 30px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .bento-fanshop:hover .bento-fanshop-arrow {
+            background: var(--anton-red);
+            color: #fff;
+        }
+
+        /* --- Fairness-Logo Box --- */
+        .bento-fairness {
+            background: var(--glass-light);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(0,0,0,0.5);
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.28);
+            border-radius: 14px;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            max-width: 420px;
+            width: 100%;
+            box-sizing: border-box;
+            text-decoration: none;
+            transition: transform 0.15s ease;
+        }
+        .bento-fairness:hover { transform: translate(-2px, -2px); }
+        .bento-fairness img {
+            height: 36px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+        .bento-fairness-label {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(0,0,0,0.5);
+            line-height: 1.5;
+        }
+
+        /* ================================================================= */
         /* ECWID SHOP WRAPPER                                                 */
         /* ================================================================= */
         .ecwid-shop-wrap {
@@ -288,6 +395,8 @@
 
         @media (max-width: 800px) {
             .ecwid-shop-wrap { padding: 12px; border-radius: 12px; margin-bottom: 20px; }
+            .bento-fanshop { max-width: 100%; }
+            .bento-fairness { max-width: 100%; }
         }
     </style>
 </head>
@@ -329,22 +438,39 @@
 
     <main>
         <h1 class="shop-page-title"><span class="title-dot"></span> Fanartikel Shop</h1>
+
+        <!-- BENTO GRID -->
+        <div class="bento-grid">
+
+            <!-- Große quadratische Fanshop-Eingangs-Box -->
+            <a href="shopeingang.html" class="bento-fanshop">
+                <div class="bento-fanshop-icon">🛍️</div>
+                <div class="bento-fanshop-text">
+                    <strong>Fanshop</strong>
+                    Hier geht's zum Fanshop von ANTON.
+                </div>
+                <div class="bento-fanshop-arrow">
+                    <i class="fa-solid fa-arrow-right"></i> Jetzt entdecken
+                </div>
+            </a>
+
+            <!-- Fairness-Logo Bento-Box -->
+            <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener" class="bento-fairness">
+                <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
+                     alt="Mitglied der Initiative Fairness im Handel">
+                <span class="bento-fairness-label">Mitglied der Initiative<br>Fairness im Handel</span>
+            </a>
+
+        </div>
+
+        <!-- ECWID Shop -->
         <div class="ecwid-shop-wrap">
             <div id="my-store-132126030"></div>
         </div>
     </main>
 
-    <!-- DESKTOP FOOTER -->
+    <!-- DESKTOP FOOTER – Fairness-Logo entfernt, nur Links, alle gleichzeitig -->
     <footer class="d-footer">
-        <!-- Links: offizielles Fairness-im-Handel Logo -->
-        <div class="d-footer-fh">
-            <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener">
-                <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
-                     alt="Mitglied der Initiative Fairness im Handel">
-            </a>
-        </div>
-
-        <!-- Mitte: "Shop" + Links darunter, optisch zentriert -->
         <div class="d-footer-center">
             <span class="d-footer-center-label">Shop</span>
             <nav class="d-footer-center-links">
@@ -354,9 +480,6 @@
                 <a href="shopwiderruf.html">Widerrufsbelehrung</a>
             </nav>
         </div>
-
-        <!-- Rechts: Spiegel-Spacer (keine Inhalte, nur Balance) -->
-        <div class="d-footer-mirror"></div>
     </footer>
 </div>
 
@@ -379,6 +502,29 @@
 
     <div class="m-content-scroll" id="m-scroll-area">
         <h1 class="shop-page-title"><span class="title-dot"></span> Fanartikel Shop</h1>
+
+        <!-- BENTO GRID MOBILE -->
+        <div class="bento-grid">
+
+            <a href="shopeingang.html" class="bento-fanshop">
+                <div class="bento-fanshop-icon">🛍️</div>
+                <div class="bento-fanshop-text">
+                    <strong>Fanshop</strong>
+                    Hier geht's zum Fanshop von ANTON.
+                </div>
+                <div class="bento-fanshop-arrow">
+                    <i class="fa-solid fa-arrow-right"></i> Jetzt entdecken
+                </div>
+            </a>
+
+            <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener" class="bento-fairness">
+                <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
+                     alt="Mitglied der Initiative Fairness im Handel">
+                <span class="bento-fairness-label">Mitglied der Initiative<br>Fairness im Handel</span>
+            </a>
+
+        </div>
+
         <div class="ecwid-shop-wrap">
             <div id="my-store-132126030-mobile"></div>
         </div>
