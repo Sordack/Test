@@ -342,24 +342,7 @@
             transform: scale(1.06);
         }
 
-        /* ================================================================= */
-        /* ECWID SHOP WRAPPER                                                 */
-        /* ================================================================= */
-        .ecwid-shop-wrap {
-            background: var(--glass);
-            backdrop-filter: blur(8px);
-            border: 3px solid #000;
-            box-shadow: 5px 5px 0 rgba(0,0,0,0.45);
-            border-radius: 18px;
-            padding: 22px;
-            margin-bottom: 50px;
-            min-height: 400px;
-        }
-
-        #my-store-132126030 { font-family: 'Special Elite', cursive !important; }
-
         @media (max-width: 800px) {
-            .ecwid-shop-wrap { padding: 12px; border-radius: 12px; margin-bottom: 20px; }
             .bento-fanshop { max-width: 90%; width: 90%; }
         }
     </style>
@@ -417,11 +400,6 @@
                 </div>
             </a>
         </div>
-
-        <!-- ECWID Shop -->
-        <div class="ecwid-shop-wrap">
-            <div id="my-store-132126030"></div>
-        </div>
     </main>
 
     <footer class="d-footer">
@@ -471,10 +449,6 @@
                 </div>
             </a>
         </div>
-
-        <div class="ecwid-shop-wrap">
-            <div id="my-store-132126030-mobile"></div>
-        </div>
     </div>
 
     <!-- MOBILE FOOTER BAR -->
@@ -504,36 +478,6 @@
         </div>
     </div>
 </div>
-
-<!-- ===================== ECWID SCRIPT ===================== -->
-<script data-cfasync="false" type="text/javascript"
-    src="https://app.ecwid.com/script.js?132126030&data_platform=code&data_date=2026-03-26"
-    charset="utf-8"></script>
-<script type="text/javascript">
-    xProductBrowser(
-        "categoriesPerRow=3",
-        "views=grid(20,3) list(60) table(60)",
-        "categoryView=grid",
-        "searchView=list",
-        "id=my-store-132126030"
-    );
-
-    function moveEcwidToCorrectContainer() {
-        var isMobile = window.innerWidth <= 800;
-        var desktopWrap = document.getElementById('my-store-132126030');
-        var mobileWrap  = document.getElementById('my-store-132126030-mobile');
-        if (!desktopWrap || !mobileWrap) return;
-        if (isMobile) {
-            if (!mobileWrap.contains(desktopWrap)) mobileWrap.appendChild(desktopWrap);
-        } else {
-            var desktopTarget = document.querySelector('#desktop-wrapper .ecwid-shop-wrap');
-            if (desktopTarget && !desktopTarget.contains(desktopWrap)) desktopTarget.appendChild(desktopWrap);
-        }
-    }
-    window.addEventListener('load', moveEcwidToCorrectContainer);
-    window.addEventListener('resize', moveEcwidToCorrectContainer);
-    setTimeout(moveEcwidToCorrectContainer, 300);
-</script>
 
 <!-- ===================== NAV SCRIPTS ===================== -->
 <script>
