@@ -296,7 +296,9 @@
     <div class="m-content-scroll" id="m-scroll-area">
         <h1 class="shop-page-title"><span class="title-dot"></span> Fanartikel Shop</h1>
         <div class="ecwid-shop-wrap">
-            <div id="my-store-132126030-mobile"></div>
+            <div id="my-store-132126030-mobile">
+                <!-- Ecwid wird per JS in diesen Container verschoben (mobile) -->
+            </div>
         </div>
     </div>
 
@@ -323,7 +325,11 @@
     src="https://app.ecwid.com/script.js?132126030&data_platform=code&data_date=2026-03-26"
     charset="utf-8"></script>
 <script type="text/javascript">
-    // Desktop store
+    // Ecwid kann nur EINMAL pro Seite initialisiert werden.
+    // Wir rendern in #my-store-132126030 (Desktop-Container),
+    // und verschieben den fertigen Node per JS in den Mobile-Container,
+    // wenn das Gerät mobil ist.
+
     xProductBrowser(
         "categoriesPerRow=3",
         "views=grid(20,3) list(60) table(60)",
@@ -331,14 +337,32 @@
         "searchView=list",
         "id=my-store-132126030"
     );
-    // Mobile store
-    xProductBrowser(
-        "categoriesPerRow=1",
-        "views=grid(20,1) list(60)",
-        "categoryView=grid",
-        "searchView=list",
-        "id=my-store-132126030-mobile"
-    );
+
+    function moveEcwidToCorrectContainer() {
+        var isMobile = window.innerWidth <= 800;
+        var desktopWrap = document.getElementById('my-store-132126030');
+        var mobileWrap  = document.getElementById('my-store-132126030-mobile');
+        if (!desktopWrap || !mobileWrap) return;
+
+        if (isMobile) {
+            // Bewege den Ecwid-Node in den Mobile-Container
+            if (!mobileWrap.contains(desktopWrap)) {
+                mobileWrap.appendChild(desktopWrap);
+            }
+        } else {
+            // Bewege zurück in den Desktop-main
+            var desktopTarget = document.querySelector('#desktop-wrapper .ecwid-shop-wrap');
+            if (desktopTarget && !desktopTarget.contains(desktopWrap)) {
+                desktopTarget.appendChild(desktopWrap);
+            }
+        }
+    }
+
+    // Beim Laden und bei Resize ausführen
+    window.addEventListener('load', moveEcwidToCorrectContainer);
+    window.addEventListener('resize', moveEcwidToCorrectContainer);
+    // Sofort ausführen (nach kurzem Delay damit Ecwid Zeit hat zu initialisieren)
+    setTimeout(moveEcwidToCorrectContainer, 300);
 </script>
 
 <!-- ===================== NAV SCRIPTS ===================== -->
