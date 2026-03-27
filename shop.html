@@ -13,37 +13,31 @@
             --sidebar-width: 240px;
             --apple-gray: #A2AAAD;
             --amazon-blue: #00A8E1;
+            --glass: rgba(255,255,255,0.63);
+            --glass-light: rgba(255,255,255,0.41);
+            --glass-footer: rgba(255,255,255,0.38);
         }
 
-        html, body {
-            margin: 0; padding: 0;
-            background-color: #ffffff;
-            font-family: 'Special Elite', cursive;
-            height: 100%; width: 100%;
-        }
+        html, body { margin: 0; padding: 0; background-color: transparent; font-family: 'Special Elite', cursive; height: 100%; width: 100%; }
 
         /* ================================================================= */
         /* DESKTOP                                                            */
         /* ================================================================= */
         @media (min-width: 801px) {
             #mobile-wrapper { display: none !important; }
-
-            html { background-color: transparent !important; }
-            body {
-                background: url('Background.jpg') no-repeat center center fixed;
-                background-size: cover !important;
-                background-color: transparent !important;
-                overflow-x: hidden;
-            }
+            html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; }
+            body { background: transparent; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
 
             .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
             .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
+
             .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
             .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
             .d-menu-btn span { transition: opacity 0.2s; }
             .d-menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
             .d-menu-btn:hover span { opacity: 0; }
             .d-menu-btn:hover::after { opacity: 1; }
+
             .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255,235,59,0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
             .d-sidebar-left.open { left: 0; }
             .d-nav-item { margin-bottom: 20px; width: 100%; }
@@ -77,98 +71,118 @@
             .d-sidebar-right:hover a i { animation-play-state:paused!important; transform:scale(1)!important; color:#000!important; }
             .d-sidebar-right a:hover i { color:var(--brand-color)!important; transform:scale(1.55)!important; }
 
-            main {
-                padding: 180px 80px 200px 80px;
-                z-index: 5; width: 100%; box-sizing: border-box;
-                display: flex; flex-direction: column;
-                align-items: center; gap: 20px;
+            main { flex: 1; padding: 95px 55px 60px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; }
+
+            /* ---- DESKTOP FOOTER ---- */
+            .d-footer {
+                width: 100%;
+                height: 38px;
+                padding: 0;
+                background: rgba(255,255,255,0.75);
+                backdrop-filter: blur(10px);
+                border-top: 1.5px solid #000;
+                z-index: 100;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                box-sizing: border-box;
+                overflow: hidden;
             }
 
-            /* ── Shop-Eingang Box (breit, flach) ── */
-            .d-shop-enter-box {
-                background: rgba(255,255,255,0.90);
-                border: 4px solid #000;
-                box-shadow: 10px 10px 0 #000;
-                border-radius: 20px;
-                overflow: hidden;
-                width: 100%;
-                max-width: 760px;
-                height: 110px;
+            /* Fairness-Handel Banner – linke Seite, kompakt */
+            .d-footer-fairness {
                 display: flex;
-                transition: all 0.3s ease;
-                cursor: pointer;
-                position: relative;
+                align-items: center;
+                gap: 5px;
+                padding: 0 10px;
+                height: 100%;
+                border-right: 1.5px solid rgba(0,0,0,0.15);
+                flex-shrink: 0;
+                white-space: nowrap;
             }
-            .d-shop-enter-box:hover {
-                transform: scale(1.03);
-                background: var(--anton-yellow);
+            .d-footer-fairness .fh-badge {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                font-size: 0.6rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                color: #1a7a3c;
+                text-decoration: none;
             }
-            .d-shop-enter-box a {
-                text-decoration: none; color: #000;
-                width: 100%; height: 100%;
-                display: flex; align-items: center; justify-content: center;
-                gap: 18px; font-size: 1.3rem; font-weight: bold;
-                text-transform: uppercase; letter-spacing: 3px;
+            .d-footer-fairness .fh-badge .fh-icon {
+                width: 22px;
+                height: 22px;
+                background: #1a7a3c;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
             }
-            .d-shop-enter-box a i { font-size: 2rem; }
-            .d-shop-enter-box::before {
-                content: 'Exklusiv';
-                position: absolute;
-                top: 16px; left: -24px;
-                background: var(--anton-red);
-                color: #fff;
-                font-family: 'Special Elite', cursive;
-                font-size: 0.55rem;
+            .d-footer-fairness .fh-badge .fh-icon svg {
+                width: 13px; height: 13px; fill: #fff;
+            }
+            .d-footer-fairness .fh-lines {
+                display: flex;
+                flex-direction: column;
+                line-height: 1.2;
+            }
+            .d-footer-fairness .fh-top { font-size: 0.55rem; color: #1a7a3c; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+            .d-footer-fairness .fh-bottom { font-size: 0.62rem; color: #000; font-weight: bold; }
+
+            /* Shop-Label */
+            .d-footer-shop-label {
+                font-size: 0.65rem;
                 font-weight: bold;
                 text-transform: uppercase;
                 letter-spacing: 1px;
-                padding: 5px 36px;
-                transform: rotate(-45deg);
-                border-top: 2px solid rgba(255,255,255,0.4);
-                border-bottom: 2px solid rgba(255,255,255,0.4);
-                z-index: 2;
-                pointer-events: none;
+                color: #000;
+                padding: 0 10px;
+                flex-shrink: 0;
+                border-right: 1.5px solid rgba(0,0,0,0.15);
             }
 
-            /* ── Vier kleine Legal-Boxen ── */
-            .d-legal-row {
+            /* Nav-Links – rechte Seite */
+            .d-footer-links {
                 display: flex;
-                gap: 14px;
-                width: 100%;
-                max-width: 760px;
-                justify-content: center;
-            }
-            .d-legal-box {
-                background: rgba(255,255,255,0.90);
-                border: 3px solid #000;
-                box-shadow: 6px 6px 0 #000;
-                border-radius: 14px;
-                overflow: hidden;
+                align-items: center;
+                gap: 0;
+                padding: 0 10px;
                 flex: 1;
-                height: 62px;
-                display: flex;
-                transition: all 0.25s ease;
-                cursor: pointer;
+                justify-content: flex-end;
             }
-            .d-legal-box:hover {
-                transform: scale(1.05);
-                background: var(--anton-yellow);
+            .d-footer-links a {
+                color: #000;
+                text-decoration: none;
+                font-size: 0.65rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                padding: 0 8px;
+                transition: color 0.3s;
+                animation: footerFlash 3s ease-in-out infinite;
             }
-            .d-legal-box a {
-                text-decoration: none; color: #000;
-                width: 100%; height: 100%;
-                display: flex; flex-direction: column;
-                align-items: center; justify-content: center;
-                font-size: 0.68rem; font-weight: bold;
-                text-transform: uppercase; letter-spacing: 1px;
-                text-align: center; padding: 4px 6px;
-                gap: 4px;
-            }
-            .d-legal-box a i { font-size: 1rem; }
+            .d-footer-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
+            .d-footer-links a:hover { color: var(--anton-red) !important; animation: none; }
 
-            .d-footer { width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: fixed; bottom: 0; left: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; transition: all 0.3s ease; }
-            .d-footer a:hover { color: var(--anton-yellow)!important; text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; }
+            /* Jeder Link bekommt einen leicht versetzten delay damit sie nacheinander aufleuchten */
+            .d-footer-links a:nth-child(1) { animation-delay: 0s; }
+            .d-footer-links a:nth-child(2) { animation-delay: 0.15s; }
+            .d-footer-links a:nth-child(3) { animation-delay: 0.30s; }
+            .d-footer-links a:nth-child(4) { animation-delay: 0.45s; }
+
+            @keyframes footerFlash {
+                0%   { color: #000; }
+                48%  { color: #000; }
+                50%  { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.9); }
+                52%  { color: #000; }
+                100% { color: #000; }
+            }
         }
 
         /* ================================================================= */
@@ -176,17 +190,43 @@
         /* ================================================================= */
         @media (max-width: 800px), (orientation: landscape) and (max-height: 500px) {
             #desktop-wrapper { display: none !important; }
-            #mobile-wrapper  { display: block !important; }
+            #mobile-wrapper  { display: flex !important; flex-direction: column; }
 
-            body { height: 100vh; width: 100vw; overflow: hidden !important; position: fixed; display: flex; flex-direction: column; touch-action: pan-y; overscroll-behavior-x: none; }
+            html {
+                background: url('Background.jpg') no-repeat center center fixed;
+                background-size: cover;
+                height: 100%;
+                overflow: hidden;
+            }
+            body {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                background: transparent;
+                margin: 0;
+                padding: 0;
+            }
 
-            .m-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+            #mobile-wrapper {
+                display: flex !important;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .m-header { position: relative; flex-shrink: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
             .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
-            .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
+            .m-menu-btn { position: absolute; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
             .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
             .m-menu-btn.active { background: var(--anton-yellow); }
             .m-menu-btn.active span { display: none; }
             .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
+
             .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s cubic-bezier(0.4,0,0.2,1); }
             .m-sidebar.open { top: 0 !important; }
             .m-nav-item { flex: 1; text-align: center; }
@@ -197,98 +237,94 @@
 
             .m-content-scroll {
                 flex: 1;
-                margin-top: 140px;
-                margin-bottom: 80px;
-                overflow-y: auto;
-                padding: 20px 16px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 16px;
+                overflow-y: scroll;
+                overflow-x: hidden;
                 -webkit-overflow-scrolling: touch;
-            }
-
-            /* ── Shop-Eingang Box ── */
-            .m-shop-enter-box {
-                width: 100%;
-                max-width: 340px;
-                height: 80px;
-                border: 4px solid #000;
-                box-shadow: 8px 8px 0 #000;
-                background: rgba(255,255,255,0.90);
-                border-radius: 18px;
-                overflow: hidden;
-                display: flex;
+                overscroll-behavior: contain;
+                box-sizing: border-box;
+                padding: 10px 8px 80px 8px;
+                touch-action: pan-y;
                 position: relative;
-                transition: background 0.2s ease;
-            }
-            .m-shop-enter-box:active { background: var(--anton-yellow); }
-            .m-shop-enter-box a {
-                text-decoration: none; color: #000;
-                width: 100%; height: 100%;
-                display: flex; align-items: center; justify-content: center;
-                gap: 12px; font-size: 0.95rem; font-weight: bold;
-                text-transform: uppercase; letter-spacing: 2px;
-            }
-            .m-shop-enter-box a i { font-size: 1.5rem; }
-            .m-shop-enter-box::before {
-                content: 'Exklusiv';
-                position: absolute;
-                top: 13px; left: -20px;
-                background: var(--anton-red);
-                color: #fff;
-                font-family: 'Special Elite', cursive;
-                font-size: 0.48rem;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                padding: 4px 30px;
-                transform: rotate(-45deg);
-                border-top: 1.5px solid rgba(255,255,255,0.4);
-                border-bottom: 1.5px solid rgba(255,255,255,0.4);
-                z-index: 2;
-                pointer-events: none;
+                z-index: 1;
             }
 
-            /* ── Vier kleine Legal-Boxen (2×2 Grid) ── */
-            .m-legal-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-                width: 100%;
-                max-width: 340px;
-            }
-            .m-legal-box {
-                height: 52px;
-                border: 3px solid #000;
-                box-shadow: 5px 5px 0 #000;
-                background: rgba(255,255,255,0.90);
-                border-radius: 12px;
-                overflow: hidden;
-                display: flex;
-                transition: background 0.2s ease;
-            }
-            .m-legal-box:active { background: var(--anton-yellow); }
-            .m-legal-box a {
-                text-decoration: none; color: #000;
-                width: 100%; height: 100%;
-                display: flex; flex-direction: column;
-                align-items: center; justify-content: center;
-                font-size: 0.58rem; font-weight: bold;
-                text-transform: uppercase; letter-spacing: 0.5px;
-                text-align: center; padding: 3px 5px; gap: 3px;
-            }
-            .m-legal-box a i { font-size: 0.9rem; }
-
-            .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; }
+            .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
             .m-id-button.hidden { transform: translateX(100%); }
-            .m-id-panel { position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem; }
+            .m-id-panel { position: fixed; right: -280px; bottom: 150px; height: 45px; width: 260px; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.7rem; flex-wrap: nowrap; gap: 3px; overflow: hidden; }
             .m-id-panel.open { right: 0; }
-            .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
+            .m-id-panel a {
+                color: #000;
+                text-decoration: none;
+                text-transform: uppercase;
+                padding: 0 3px;
+                animation: footerFlashMobile 3s ease-in-out infinite;
+            }
+            .m-id-panel a:nth-child(1) { animation-delay: 0s; }
+            .m-id-panel a:nth-child(3) { animation-delay: 0.2s; }
+            .m-id-panel a:nth-child(5) { animation-delay: 0.4s; }
+            .m-id-panel a:nth-child(7) { animation-delay: 0.6s; }
+            @keyframes footerFlashMobile {
+                0%   { color: #000; }
+                48%  { color: #000; }
+                50%  { color: #fff; text-shadow: 0 0 6px rgba(255,255,255,0.9); }
+                52%  { color: #000; }
+                100% { color: #000; }
+            }
+            .m-id-panel span { color: rgba(0,0,0,0.3); font-size: 0.6rem; }
 
-            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; padding: 0 10px; justify-content: space-evenly; }
+            /* Mobile footer: compact fairness + shop-label */
+            .m-footer-bar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 65px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                z-index: 999;
+                background: rgba(255,255,255,0.7);
+                backdrop-filter: blur(8px);
+                border-top: 2px solid #000;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+
+            /* Fairness-Handel Badge links */
+            .m-fh-badge {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                padding: 0 8px;
+                border-right: 1.5px solid rgba(0,0,0,0.15);
+                height: 100%;
+                flex-shrink: 0;
+                text-decoration: none;
+            }
+            .m-fh-badge .fh-icon {
+                width: 22px; height: 22px;
+                background: #1a7a3c;
+                border-radius: 50%;
+                display: flex; align-items: center; justify-content: center;
+                flex-shrink: 0;
+            }
+            .m-fh-badge .fh-icon svg { width: 13px; height: 13px; fill: #fff; }
+            .m-fh-lines { display: flex; flex-direction: column; line-height: 1.2; }
+            .m-fh-lines .fh-top { font-size: 0.45rem; color: #1a7a3c; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+            .m-fh-lines .fh-bottom { font-size: 0.55rem; color: #000; font-weight: bold; }
+
+            /* Social-Icons mittig / rechts */
+            .m-sidebar-right {
+                flex: 1;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 0 5px;
+                justify-content: space-evenly;
+            }
             .m-sidebar-right a { text-decoration: none; }
-            .m-sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
+            .m-sidebar-right a i { color: #000; font-size: 1.4rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
             @keyframes ultraFlowWaveMobile { 0%{transform:scale(1);color:#000;}9.33%{transform:scale(1.4);color:var(--brand-color);}23.33%,100%{transform:scale(1);color:#000;} }
             .m-sidebar-right a:nth-child(1) i { --brand-color:#f00; animation-delay:0.0s; }
             .m-sidebar-right a:nth-child(2) i { --brand-color:#25F4EE; animation-delay:0.25s; }
@@ -301,39 +337,11 @@
             .m-sidebar-right a:nth-child(9) i { --brand-color:var(--amazon-blue); animation-delay:2.0s; }
         }
 
-        @media (max-width: 800px) and (orientation: portrait) {
-            #m-bg-fix {
-                display: block; position: fixed; top: 0; left: 0;
-                width: 100%; height: 100%; background: url('Background.jpg') no-repeat center center;
-                background-size: cover; z-index: -1;
-            }
-            #mobile-wrapper { display: flex !important; flex-direction: column; height: 100vh; overflow: hidden; }
-        }
-
         @media (orientation: landscape) and (max-height: 500px) {
-            body { background-color: transparent !important; }
-
-            #mobile-wrapper #m-bg-fix {
-                display: block !important; position: fixed !important;
-                top: 0 !important; left: 0 !important;
-                width: 100% !important; height: 100% !important;
-                background: url('Background.jpg') no-repeat center center !important;
-                background-size: cover !important; z-index: -1 !important;
-            }
-
             #mobile-wrapper .m-header { height: 60px; }
             #mobile-wrapper .m-header-logo { top: 145%; }
             #mobile-wrapper .m-menu-btn { top: 8px; left: 12px; width: 38px; height: 38px; }
-
-            #mobile-wrapper .m-sidebar {
-                top: 0 !important; left: -220px !important;
-                width: 200px !important; height: 100% !important;
-                flex-direction: column !important; justify-content: flex-start !important;
-                align-items: flex-start !important; padding: 80px 15px 20px 15px !important;
-                border-bottom: none !important; border-right: 3px solid #000 !important;
-                box-sizing: border-box !important;
-                transition: left 0.5s cubic-bezier(0.4,0,0.2,1) !important;
-            }
+            #mobile-wrapper .m-sidebar { top: 0 !important; left: -220px !important; width: 200px !important; height: 100% !important; flex-direction: column !important; justify-content: flex-start !important; align-items: flex-start !important; padding: 80px 15px 20px 15px !important; border-bottom: none !important; border-right: 3px solid #000 !important; box-sizing: border-box !important; transition: left 0.5s cubic-bezier(0.4,0,0.2,1) !important; }
             #mobile-wrapper .m-sidebar.open { left: 0 !important; top: 0 !important; }
             #mobile-wrapper .m-nav-item { flex: none !important; width: 100%; text-align: left; margin-bottom: 16px; }
             #mobile-wrapper .m-nav-item a { flex-direction: row !important; gap: 10px; font-size: 0.85rem; }
@@ -341,26 +349,59 @@
             #mobile-wrapper .mobile-tag { font-size: 0.72rem; writing-mode: horizontal-tb !important; transform: none !important; margin-top: 0; }
             #mobile-wrapper .m-epk-container { position: static !important; width: 100% !important; height: auto !important; background: transparent !important; border-left: none !important; border-top: 1px solid rgba(0,0,0,0.15) !important; padding-top: 12px !important; margin-top: auto !important; justify-content: flex-start !important; }
             #mobile-wrapper .m-epk-text { writing-mode: horizontal-tb !important; transform: none !important; font-size: 0.78rem; }
-
-            #mobile-wrapper .m-content-scroll {
-                margin-top: 65px !important; margin-bottom: 0 !important;
-                padding-right: 56px !important;
-                flex-direction: row !important;
-                justify-content: center !important; align-items: center !important;
-                gap: 16px !important; overflow-y: auto !important; flex-wrap: wrap !important;
-            }
-            #mobile-wrapper .m-shop-enter-box {
-                width: 240px !important; max-width: none !important; height: 68px !important;
-            }
-            #mobile-wrapper .m-legal-grid {
-                width: 240px !important; max-width: none !important;
-            }
-            #mobile-wrapper .m-legal-box { height: 46px !important; }
-
-            #mobile-wrapper .m-sidebar-right { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; transform: none !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-bottom: none !important; border-left: 2px solid #000 !important; border-radius: 0 !important; padding: 0 !important; gap: 0 !important; justify-content: space-evenly !important; background: rgba(255,255,255,0.2) !important; backdrop-filter: blur(3px) !important; }
+            #mobile-wrapper .m-content-scroll { padding-bottom: 10px !important; padding-right: 56px !important; }
+            #mobile-wrapper .m-footer-bar { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; border-radius: 0 !important; padding: 0 !important; gap: 0 !important; }
+            #mobile-wrapper .m-fh-badge { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 8px 0 !important; justify-content: center !important; flex-direction: column !important; gap: 2px !important; }
+            #mobile-wrapper .m-fh-lines { display: none !important; }
+            #mobile-wrapper .m-sidebar-right { flex-direction: column !important; justify-content: space-evenly !important; padding: 0 !important; }
             #mobile-wrapper .m-sidebar-right a i { font-size: 1.3rem !important; }
             #mobile-wrapper .m-id-button { display: none !important; }
-            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 260px !important; height: 38px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; font-size: 0.75rem !important; opacity: 1 !important; overflow: hidden !important; }
+            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 300px !important; height: 38px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; font-size: 0.65rem !important; opacity: 1 !important; overflow: hidden !important; }
+        }
+
+        /* ================================================================= */
+        /* ECWID SHOP WRAPPER                                                 */
+        /* ================================================================= */
+        .ecwid-shop-wrap {
+            background: var(--glass);
+            backdrop-filter: blur(8px);
+            border: 3px solid #000;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.45);
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 50px;
+            min-height: 400px;
+        }
+
+        .shop-page-title {
+            font-family: 'Special Elite', cursive;
+            font-size: clamp(0.9rem, 2vw, 1.4rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0 0 18px 0;
+            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .shop-page-title span.title-dot {
+            display: inline-block;
+            width: 10px; height: 10px;
+            background: var(--anton-red);
+            border-radius: 50%;
+            border: 2px solid #000;
+        }
+
+        #my-store-132126030 {
+            font-family: 'Special Elite', cursive !important;
+        }
+
+        @media (max-width: 800px) {
+            .ecwid-shop-wrap {
+                padding: 12px;
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -401,65 +442,52 @@
     </aside>
 
     <main>
-        <!-- Breite Shop-Eingangs-Box -->
-        <div class="d-shop-enter-box">
-            <a href="shopeingang.html">
-                <i class="fa-solid fa-cart-shopping"></i>
-                Hier geht's zum Shop
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-        </div>
-
-        <!-- Vier kleine Legal-Boxen -->
-        <div class="d-legal-row">
-            <div class="d-legal-box">
-                <a href="shopimpressum.html">
-                    <i class="fa-solid fa-building-columns"></i>
-                    Impressum
-                </a>
-            </div>
-            <div class="d-legal-box">
-                <a href="shopagb.html">
-                    <i class="fa-solid fa-file-contract"></i>
-                    AGB
-                </a>
-            </div>
-            <div class="d-legal-box">
-                <a href="shopdatenschutz.html">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    Datenschutz
-                </a>
-            </div>
-            <div class="d-legal-box">
-                <a href="shopwiderruf.html">
-                    <i class="fa-solid fa-rotate-left"></i>
-                    Widerrufs&shy;belehrung
-                </a>
-            </div>
+        <h1 class="shop-page-title"><span class="title-dot"></span> Fanartikel Shop</h1>
+        <div class="ecwid-shop-wrap">
+            <div id="my-store-132126030"></div>
         </div>
     </main>
 
-    <div style="display:block; background-color:#FBFBFB; color:#292929; border:1px solid lightgray; padding:25px; font-family:Helvetica,Arial,sans-serif; font-size:14px; font-style:normal; position:fixed; bottom:48px; left:0; width:100%; box-sizing:border-box; z-index:99;">
-        <img style="float:left; pointer-events:none; margin-right:10px" src="https://www.fairness-im-handel.de/wp-content/uploads/logo-fairness-90.png" alt="Initiative &quot;Fairness im Handel&quot;" />
-        <p style="padding-top:10px; margin:0;">Mitglied der Initiative &quot;Fairness im Handel&quot;<br/>Informationen zur Initiative: <a style="color:#ef7b00" href="https://www.fairness-im-handel.de" target="_blank">https://www.fairness-im-handel.de</a></p>
-        <div style="clear: both;"></div>
-    </div>
-
+    <!-- DESKTOP FOOTER -->
     <footer class="d-footer">
-        <div><a href="index.html">www.anton-familienpop.de</a></div>
-        <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
+        <!-- Fairness-Handel Badge -->
+        <div class="d-footer-fairness">
+            <a href="https://www.fairness-handel.de" target="_blank" rel="noopener" class="fh-badge">
+                <div class="fh-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+                        <!-- Handshake-Icon als Vereinfachung -->
+                        <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="fh-lines">
+                    <span class="fh-top">Fairness</span>
+                    <span class="fh-bottom">Handel</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Shop-Label -->
+        <div class="d-footer-shop-label">Shop</div>
+
+        <!-- Footer-Links -->
+        <nav class="d-footer-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="agb.html">AGB</a>
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="widerrufsbelehrung.html">Widerrufsbelehrung</a>
+        </nav>
     </footer>
 </div>
 
 <!-- ===================== MOBILE ===================== -->
 <div id="mobile-wrapper">
-    <div id="m-bg-fix"></div>
     <header class="m-header" id="m-header-main">
+        <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)">
+            <span></span><span></span><span></span>
+        </div>
         <img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo">
     </header>
-    <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)">
-        <span></span><span></span><span></span>
-    </div>
 
     <nav class="m-sidebar" id="m-sidebar">
         <div class="m-nav-item"><a href="index.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
@@ -469,136 +497,164 @@
         <div class="m-epk-container"><a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener" class="m-epk-text">EPK/PRESSE</a></div>
     </nav>
 
-    <div class="m-content-scroll">
-        <!-- Breite Shop-Eingangs-Box -->
-        <div class="m-shop-enter-box">
-            <a href="shopeingang.html">
-                <i class="fa-solid fa-cart-shopping"></i>
-                Hier geht's zum Shop
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-        </div>
-
-        <!-- Vier kleine Legal-Boxen (2×2 Grid) -->
-        <div class="m-legal-grid">
-            <div class="m-legal-box">
-                <a href="shopimpressum.html">
-                    <i class="fa-solid fa-building-columns"></i>
-                    Impressum
-                </a>
-            </div>
-            <div class="m-legal-box">
-                <a href="shopagb.html">
-                    <i class="fa-solid fa-file-contract"></i>
-                    AGB
-                </a>
-            </div>
-            <div class="m-legal-box">
-                <a href="shopdatenschutz.html">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    Datenschutz
-                </a>
-            </div>
-            <div class="m-legal-box">
-                <a href="shopwiderruf.html">
-                    <i class="fa-solid fa-rotate-left"></i>
-                    Widerruf
-                </a>
-            </div>
+    <div class="m-content-scroll" id="m-scroll-area">
+        <h1 class="shop-page-title"><span class="title-dot"></span> Fanartikel Shop</h1>
+        <div class="ecwid-shop-wrap">
+            <div id="my-store-132126030-mobile"></div>
         </div>
     </div>
 
+    <!-- MOBILE FOOTER BAR (Fairness + Social Icons) -->
+    <footer class="m-footer-bar">
+        <!-- Fairness-Handel Badge -->
+        <a href="https://www.fairness-handel.de" target="_blank" rel="noopener" class="m-fh-badge">
+            <div class="fh-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.5" fill="none"/>
+                </svg>
+            </div>
+            <div class="m-fh-lines">
+                <span class="fh-top">Fairness</span>
+                <span class="fh-bottom">Handel</span>
+            </div>
+        </a>
+
+        <!-- Social Icons -->
+        <div class="m-sidebar-right">
+            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
+            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
+        </div>
+    </footer>
+
+    <!-- I/D Panel (Impressum / Datenschutz etc.) -->
     <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
     <div class="m-id-panel" id="m-id-panel">
-        <a href="impressum.html">Impressum</a><span>|</span><a href="datenschutz.html">Datenschutz</a>
+        <a href="shop.html">Shop</a><span>|</span>
+        <a href="impressum.html">Impressum</a><span>|</span>
+        <a href="agb.html">AGB</a><span>|</span>
+        <a href="datenschutz.html">Datenschutz</a><span>|</span>
+        <a href="widerrufsbelehrung.html">Widerruf</a>
     </div>
-
-    <aside class="m-sidebar-right">
-        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
-    </aside>
 </div>
 
-<script>
-    /* DESKTOP MENU */
-    let dSidebarTimeout;
-    const dSidebar = document.getElementById('d-sidebar');
-    function resetDSidebarTimer() {
-        clearTimeout(dSidebarTimeout);
-        if (dSidebar && dSidebar.classList.contains('open'))
-            dSidebarTimeout = setTimeout(() => dSidebar.classList.remove('open'), 5000);
-    }
-    function toggleDesktopMenu() {
-        if (dSidebar) { dSidebar.classList.toggle('open'); if (dSidebar.classList.contains('open')) resetDSidebarTimer(); }
-    }
-    if (dSidebar) { dSidebar.addEventListener('mousemove', resetDSidebarTimer); dSidebar.addEventListener('click', resetDSidebarTimer); }
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth > 800) {
-            const btn = document.querySelector('.d-menu-btn');
-            if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains('open')) {
-                dSidebar.classList.remove('open'); clearTimeout(dSidebarTimeout);
+<!-- ===================== ECWID SCRIPT ===================== -->
+<script data-cfasync="false" type="text/javascript"
+    src="https://app.ecwid.com/script.js?132126030&data_platform=code&data_date=2026-03-26"
+    charset="utf-8"></script>
+<script type="text/javascript">
+    xProductBrowser(
+        "categoriesPerRow=3",
+        "views=grid(20,3) list(60) table(60)",
+        "categoryView=grid",
+        "searchView=list",
+        "id=my-store-132126030"
+    );
+
+    function moveEcwidToCorrectContainer() {
+        var isMobile = window.innerWidth <= 800;
+        var desktopWrap = document.getElementById('my-store-132126030');
+        var mobileWrap  = document.getElementById('my-store-132126030-mobile');
+        if (!desktopWrap || !mobileWrap) return;
+
+        if (isMobile) {
+            if (!mobileWrap.contains(desktopWrap)) {
+                mobileWrap.appendChild(desktopWrap);
+            }
+        } else {
+            var desktopTarget = document.querySelector('#desktop-wrapper .ecwid-shop-wrap');
+            if (desktopTarget && !desktopTarget.contains(desktopWrap)) {
+                desktopTarget.appendChild(desktopWrap);
             }
         }
-    });
+    }
 
-    /* MOBILE LOGIC */
-    const mSidebar = document.getElementById('m-sidebar');
-    const mMenuBtn = document.getElementById('m-menu-trigger');
-    const mIdBtn   = document.getElementById('m-id-btn');
-    const mIdPanel = document.getElementById('m-id-panel');
-    let mMenuTimeout, mIdTimeout;
+    window.addEventListener('load', moveEcwidToCorrectContainer);
+    window.addEventListener('resize', moveEcwidToCorrectContainer);
+    setTimeout(moveEcwidToCorrectContainer, 300);
+</script>
 
-    function isLandscapeMobile() { return window.innerHeight <= 500 && window.innerWidth > window.innerHeight; }
-    function mCloseAllMenus() {
-        if (mSidebar) mSidebar.classList.remove('open');
-        if (mMenuBtn) mMenuBtn.classList.remove('active');
-        clearTimeout(mMenuTimeout);
-        if (!isLandscapeMobile()) {
-            if (mIdPanel) mIdPanel.classList.remove('open');
-            if (mIdBtn)   mIdBtn.classList.remove('hidden');
-            clearTimeout(mIdTimeout);
+<!-- ===================== NAV SCRIPTS ===================== -->
+<script>
+/* DESKTOP MENU */
+let dSidebarTimeout;
+const dSidebar = document.getElementById('d-sidebar');
+function resetDSidebarTimer() {
+    clearTimeout(dSidebarTimeout);
+    if (dSidebar && dSidebar.classList.contains('open'))
+        dSidebarTimeout = setTimeout(() => dSidebar.classList.remove('open'), 5000);
+}
+function toggleDesktopMenu() {
+    if (dSidebar) { dSidebar.classList.toggle('open'); if (dSidebar.classList.contains('open')) resetDSidebarTimer(); }
+}
+if (dSidebar) { dSidebar.addEventListener('mousemove', resetDSidebarTimer); dSidebar.addEventListener('click', resetDSidebarTimer); }
+document.addEventListener('click', function(e) {
+    if (window.innerWidth > 800) {
+        const btn = document.querySelector('.d-menu-btn');
+        if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains('open')) {
+            dSidebar.classList.remove('open'); clearTimeout(dSidebarTimeout);
         }
     }
-    function mToggleMenu(e) {
-        e.stopPropagation();
-        if (mSidebar.classList.contains('open')) { mCloseAllMenus(); }
-        else { mCloseAllMenus(); mSidebar.classList.add('open'); mMenuBtn.classList.add('active'); mMenuTimeout = setTimeout(mCloseAllMenus, 5000); }
-    }
-    function mOpenIDMenu(e) {
-        e.stopPropagation(); mCloseAllMenus();
-        if (mIdBtn)   mIdBtn.classList.add('hidden');
-        if (mIdPanel) mIdPanel.classList.add('open');
-        mIdTimeout = setTimeout(mCloseAllMenus, 5000);
-    }
+});
 
-    function applyLandscapeState() {
-        if (isLandscapeMobile()) {
-            if (mIdPanel) mIdPanel.style.cssText = '';
-            if (mIdBtn)   mIdBtn.style.display = 'none';
-        } else {
-            if (mIdBtn)   mIdBtn.style.display = '';
-            if (mIdPanel) mIdPanel.classList.remove('open');
-        }
-    }
-    window.addEventListener('resize', applyLandscapeState);
-    window.addEventListener('orientationchange', () => setTimeout(applyLandscapeState, 100));
-    applyLandscapeState();
+/* MOBILE LOGIC */
+const mSidebar = document.getElementById('m-sidebar');
+const mMenuBtn = document.getElementById('m-menu-trigger');
+const mIdBtn   = document.getElementById('m-id-btn');
+const mIdPanel = document.getElementById('m-id-panel');
+let mMenuTimeout, mIdTimeout;
 
-    document.addEventListener('click', e => {
-        if (window.innerWidth <= 800 || isLandscapeMobile()) {
-            if (mSidebar && !mSidebar.contains(e.target) &&
-                mMenuBtn && !mMenuBtn.contains(e.target) &&
-                mIdPanel && !mIdPanel.contains(e.target) &&
-                mIdBtn   && !mIdBtn.contains(e.target)) mCloseAllMenus();
-        }
-    });
+function isLandscapeMobile() { return window.innerHeight <= 500 && window.innerWidth > window.innerHeight; }
+function mCloseAllMenus() {
+    if (mSidebar) mSidebar.classList.remove('open');
+    if (mMenuBtn) mMenuBtn.classList.remove('active');
+    clearTimeout(mMenuTimeout);
+    if (!isLandscapeMobile()) {
+        if (mIdPanel) mIdPanel.classList.remove('open');
+        if (mIdBtn)   mIdBtn.classList.remove('hidden');
+        clearTimeout(mIdTimeout);
+    }
+}
+function mToggleMenu(e) {
+    e.stopPropagation();
+    if (mSidebar.classList.contains('open')) { mCloseAllMenus(); }
+    else { mCloseAllMenus(); mSidebar.classList.add('open'); mMenuBtn.classList.add('active'); mMenuTimeout = setTimeout(mCloseAllMenus, 5000); }
+}
+function mOpenIDMenu(e) {
+    e.stopPropagation(); mCloseAllMenus();
+    if (mIdBtn)   mIdBtn.classList.add('hidden');
+    if (mIdPanel) mIdPanel.classList.add('open');
+    mIdTimeout = setTimeout(mCloseAllMenus, 5000);
+}
+
+function applyLandscapeState() {
+    if (isLandscapeMobile()) {
+        if (mIdPanel) mIdPanel.style.cssText = '';
+        if (mIdBtn)   mIdBtn.style.display = 'none';
+    } else {
+        if (mIdBtn)   mIdBtn.style.display = '';
+        if (mIdPanel) mIdPanel.classList.remove('open');
+    }
+}
+window.addEventListener('resize', applyLandscapeState);
+window.addEventListener('orientationchange', () => setTimeout(applyLandscapeState, 100));
+applyLandscapeState();
+
+document.addEventListener('click', e => {
+    if (window.innerWidth <= 800 || isLandscapeMobile()) {
+        if (mSidebar && !mSidebar.contains(e.target) &&
+            mMenuBtn && !mMenuBtn.contains(e.target) &&
+            mIdPanel && !mIdPanel.contains(e.target) &&
+            mIdBtn   && !mIdBtn.contains(e.target)) mCloseAllMenus();
+    }
+});
 </script>
 </body>
 </html>
