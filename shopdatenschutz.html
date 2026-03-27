@@ -69,7 +69,18 @@
             .d-sidebar-right:hover a i { animation-play-state:paused!important; transform:scale(1)!important; color:#000!important; }
             .d-sidebar-right a:hover i { color:var(--brand-color)!important; transform:scale(1.55)!important; }
 
-            main { flex: 1; padding: 95px 55px 60px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; }
+            /* ---- ZENTRIERT ---- */
+            main {
+                flex: 1;
+                padding: 95px 55px 60px 55px;
+                z-index: 5;
+                width: 100%;
+                box-sizing: border-box;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
             /* ---- DESKTOP FOOTER ---- */
             .d-footer {
