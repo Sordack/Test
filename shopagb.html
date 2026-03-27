@@ -71,38 +71,48 @@
 
             main { flex: 1; padding: 95px 55px 60px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; }
 
-            /* ---- DESKTOP FOOTER ---- */
+            /* ---- DESKTOP FOOTER (identisch shop.html) ---- */
             .d-footer {
-                width: 100%; height: 38px; padding: 0;
+                width: 100%; height: 50px; padding: 0;
                 background: rgba(255,255,255,0.75); backdrop-filter: blur(10px);
                 border-top: 1.5px solid #000; z-index: 100;
                 position: fixed; bottom: 0; left: 0;
-                display: flex; align-items: center; justify-content: space-between;
+                display: flex; align-items: center; justify-content: center;
                 box-sizing: border-box; overflow: hidden;
             }
-            .d-footer-fairness { display: flex; align-items: center; gap: 5px; padding: 0 10px; height: 100%; border-right: 1.5px solid rgba(0,0,0,0.15); flex-shrink: 0; white-space: nowrap; }
-            .d-footer-fairness .fh-badge { display: flex; align-items: center; gap: 4px; font-size: 0.6rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; color: #1a7a3c; text-decoration: none; }
-            .d-footer-fairness .fh-badge .fh-icon { width: 22px; height: 22px; background: #1a7a3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-            .d-footer-fairness .fh-badge .fh-icon svg { width: 13px; height: 13px; fill: none; }
-            .d-footer-fairness .fh-lines { display: flex; flex-direction: column; line-height: 1.2; }
-            .d-footer-fairness .fh-top { font-size: 0.55rem; color: #1a7a3c; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
-            .d-footer-fairness .fh-bottom { font-size: 0.62rem; color: #000; font-weight: bold; }
-            .d-footer-shop-label { font-size: 0.65rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #000; padding: 0 10px; flex-shrink: 0; border-right: 1.5px solid rgba(0,0,0,0.15); }
-            .d-footer-links { display: flex; align-items: center; gap: 0; padding: 0 10px; flex: 1; justify-content: flex-end; }
-            .d-footer-links a { color: #000; text-decoration: none; font-size: 0.65rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; padding: 0 8px; transition: color 0.3s; animation: footerFlash 3s ease-in-out infinite; }
-            .d-footer-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
-            .d-footer-links a:hover { color: var(--anton-red) !important; animation: none; }
-            .d-footer-links a:nth-child(1) { animation-delay: 0s; }
-            .d-footer-links a:nth-child(2) { animation-delay: 0.15s; }
-            .d-footer-links a:nth-child(3) { animation-delay: 0.30s; }
-            .d-footer-links a:nth-child(4) { animation-delay: 0.45s; }
-            @keyframes footerFlash {
-                0%   { color: #000; }
-                48%  { color: #000; }
-                50%  { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.9); }
-                52%  { color: #000; }
-                100% { color: #000; }
+            .d-footer-center {
+                display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; height: 100%;
             }
+            .d-footer-center-label {
+                font-size: 0.52rem; font-weight: bold; text-transform: uppercase;
+                letter-spacing: 2px; color: rgba(0,0,0,0.38); line-height: 1;
+                font-family: 'Special Elite', cursive;
+            }
+            .d-footer-center-links { display: flex; align-items: center; }
+            .d-footer-center-links a {
+                color: #000; text-decoration: none; font-size: 0.63rem; font-weight: bold;
+                text-transform: uppercase; letter-spacing: 0.4px; padding: 0 10px; white-space: nowrap;
+                animation: footerFlash 3s ease-in-out infinite; transition: color 0.2s;
+                font-family: 'Special Elite', cursive;
+            }
+            .d-footer-center-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.18); }
+            .d-footer-center-links a:hover { color: var(--anton-red) !important; animation: none; }
+            @keyframes footerFlash {
+                0%,46% { color: #000; }
+                50%     { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,1); }
+                54%,100%{ color: #000; }
+            }
+
+            /* Fairness standalone über dem Footer */
+            .d-footer-fairness {
+                position: fixed; bottom: 50px; left: 12px; z-index: 99; display: flex; align-items: center;
+            }
+            .d-footer-fairness a { display: flex; align-items: center; text-decoration: none; }
+            .d-footer-fairness img {
+                height: 50px; width: auto; display: block; object-fit: contain;
+                filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.18)); transition: transform 0.2s;
+            }
+            .d-footer-fairness a:hover img { transform: scale(1.06); }
         }
 
         /* ================================================================= */
@@ -114,7 +124,6 @@
 
             html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; height: 100%; overflow: hidden; }
             body { height: 100%; width: 100%; overflow: hidden; position: relative; display: flex; flex-direction: column; background: transparent; margin: 0; padding: 0; }
-
             #mobile-wrapper { display: flex !important; flex-direction: column; height: 100%; width: 100%; overflow: hidden; position: relative; }
 
             .m-header { position: relative; flex-shrink: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
@@ -124,7 +133,6 @@
             .m-menu-btn.active { background: var(--anton-yellow); }
             .m-menu-btn.active span { display: none; }
             .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
-
             .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s cubic-bezier(0.4,0,0.2,1); }
             .m-sidebar.open { top: 0 !important; }
             .m-nav-item { flex: 1; text-align: center; }
@@ -137,24 +145,18 @@
 
             .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
             .m-id-button.hidden { transform: translateX(100%); }
-            .m-id-panel { position: fixed; right: -280px; bottom: 150px; height: 45px; width: 260px; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.7rem; flex-wrap: nowrap; gap: 3px; overflow: hidden; }
+            .m-id-panel { position: fixed; right: -300px; bottom: 150px; height: 54px; width: 280px; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; overflow: hidden; padding: 4px 6px; box-sizing: border-box; }
             .m-id-panel.open { right: 0; }
-            .m-id-panel a { color: #000; text-decoration: none; text-transform: uppercase; padding: 0 3px; animation: footerFlashMobile 3s ease-in-out infinite; }
-            .m-id-panel a:nth-child(1) { animation-delay: 0s; }
-            .m-id-panel a:nth-child(3) { animation-delay: 0.2s; }
-            .m-id-panel a:nth-child(5) { animation-delay: 0.4s; }
-            .m-id-panel a:nth-child(7) { animation-delay: 0.6s; }
-            @keyframes footerFlashMobile { 0%{color:#000;} 48%{color:#000;} 50%{color:#fff;text-shadow:0 0 6px rgba(255,255,255,0.9);} 52%{color:#000;} 100%{color:#000;} }
-            .m-id-panel span { color: rgba(0,0,0,0.3); font-size: 0.6rem; }
+            .m-id-panel-label { font-size: 0.48rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; color: rgba(0,0,0,0.38); line-height: 1; font-family: 'Special Elite', cursive; }
+            .m-id-panel-links { display: flex; align-items: center; flex-wrap: nowrap; }
+            .m-id-panel-links a { color: #000; text-decoration: none; text-transform: uppercase; font-size: 0.6rem; font-weight: bold; padding: 0 5px; white-space: nowrap; animation: footerFlashMobile 3s ease-in-out infinite; font-family: 'Special Elite', cursive; }
+            .m-id-panel-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
+            @keyframes footerFlashMobile { 0%,46%{color:#000;} 50%{color:#fff;text-shadow:0 0 8px rgba(255,255,255,1);} 54%,100%{color:#000;} }
 
             .m-footer-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; box-sizing: border-box; overflow: hidden; }
-            .m-fh-badge { display: flex; align-items: center; gap: 4px; padding: 0 8px; border-right: 1.5px solid rgba(0,0,0,0.15); height: 100%; flex-shrink: 0; text-decoration: none; }
-            .m-fh-badge .fh-icon { width: 22px; height: 22px; background: #1a7a3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-            .m-fh-badge .fh-icon svg { width: 13px; height: 13px; fill: none; }
-            .m-fh-lines { display: flex; flex-direction: column; line-height: 1.2; }
-            .m-fh-lines .fh-top { font-size: 0.45rem; color: #1a7a3c; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
-            .m-fh-lines .fh-bottom { font-size: 0.55rem; color: #000; font-weight: bold; }
-            .m-sidebar-right { flex: 1; height: 100%; display: flex; flex-direction: row; align-items: center; padding: 0 5px; justify-content: space-evenly; }
+            .m-fh-logo { display: flex; align-items: center; justify-content: center; height: 100%; padding: 5px 8px; border-right: 1.5px solid rgba(0,0,0,0.15); flex-shrink: 0; text-decoration: none; }
+            .m-fh-logo img { height: 40px; width: auto; object-fit: contain; display: block; }
+            .m-sidebar-right { flex: 1; height: 100%; display: flex; flex-direction: row; align-items: center; padding: 0 4px; justify-content: space-evenly; }
             .m-sidebar-right a { text-decoration: none; }
             .m-sidebar-right a i { color: #000; font-size: 1.4rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
             @keyframes ultraFlowWaveMobile { 0%{transform:scale(1);color:#000;}9.33%{transform:scale(1.4);color:var(--brand-color);}23.33%,100%{transform:scale(1);color:#000;} }
@@ -183,16 +185,16 @@
             #mobile-wrapper .m-epk-text { writing-mode: horizontal-tb !important; transform: none !important; font-size: 0.78rem; }
             #mobile-wrapper .m-content-scroll { padding-bottom: 10px !important; padding-right: 56px !important; }
             #mobile-wrapper .m-footer-bar { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; }
-            #mobile-wrapper .m-fh-badge { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 8px 0 !important; justify-content: center !important; flex-direction: column !important; gap: 2px !important; }
-            #mobile-wrapper .m-fh-lines { display: none !important; }
+            #mobile-wrapper .m-fh-logo { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 5px 3px !important; width: 100% !important; }
+            #mobile-wrapper .m-fh-logo img { height: 22px !important; }
             #mobile-wrapper .m-sidebar-right { flex-direction: column !important; justify-content: space-evenly !important; padding: 0 !important; }
             #mobile-wrapper .m-sidebar-right a i { font-size: 1.3rem !important; }
             #mobile-wrapper .m-id-button { display: none !important; }
-            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 300px !important; height: 38px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; font-size: 0.65rem !important; opacity: 1 !important; overflow: hidden !important; }
+            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 310px !important; height: 50px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; opacity: 1 !important; overflow: hidden !important; }
         }
 
         /* ================================================================= */
-        /* CONTENT WRAPPER                                                    */
+        /* CONTENT                                                            */
         /* ================================================================= */
         .content-wrap {
             background: var(--glass);
@@ -224,9 +226,8 @@
             flex-shrink: 0;
         }
 
-        /* Legal text wrapper – resets any conflicting inherited styles */
         .legal-text-wrap {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Special Elite', cursive;
             font-size: 0.88rem;
             line-height: 1.65;
             color: #111;
@@ -238,13 +239,13 @@
             letter-spacing: 1px;
         }
 
-        /* Back-button */
         .back-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             text-decoration: none;
             color: #000;
+            font-family: 'Special Elite', cursive;
             font-size: 0.78rem;
             font-weight: bold;
             text-transform: uppercase;
@@ -309,29 +310,25 @@
         </div>
     </main>
 
-    <!-- DESKTOP FOOTER -->
+    <!-- Fairness standalone über dem Footer -->
+    <div class="d-footer-fairness">
+        <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener">
+            <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
+                 alt="Mitglied der Initiative Fairness im Handel">
+        </a>
+    </div>
+
+    <!-- Footer: nur Links, alle gleichzeitig blinkend -->
     <footer class="d-footer">
-        <div class="d-footer-fairness">
-            <a href="https://www.fairness-handel.de" target="_blank" rel="noopener" class="fh-badge">
-                <div class="fh-icon">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.5" fill="none"/>
-                    </svg>
-                </div>
-                <div class="fh-lines">
-                    <span class="fh-top">Fairness</span>
-                    <span class="fh-bottom">Handel</span>
-                </div>
-            </a>
+        <div class="d-footer-center">
+            <span class="d-footer-center-label">Shop</span>
+            <nav class="d-footer-center-links">
+                <a href="shopimpressum.html">Impressum</a>
+                <a href="shopagb.html">AGB</a>
+                <a href="shopdatenschutz.html">Datenschutz</a>
+                <a href="shopwiderruf.html">Widerrufsbelehrung</a>
+            </nav>
         </div>
-        <div class="d-footer-shop-label">Shop</div>
-        <nav class="d-footer-links">
-            <a href="shopimpressum.html">Impressum</a>
-            <a href="shopagb.html">AGB</a>
-            <a href="shopdatenschutz.html">Datenschutz</a>
-            <a href="shopwiderruf.html">Widerrufsbelehrung</a>
-        </nav>
     </footer>
 </div>
 
@@ -364,17 +361,9 @@
 
     <!-- MOBILE FOOTER BAR -->
     <footer class="m-footer-bar">
-        <a href="https://www.fairness-handel.de" target="_blank" rel="noopener" class="m-fh-badge">
-            <div class="fh-icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.5" fill="none"/>
-                </svg>
-            </div>
-            <div class="m-fh-lines">
-                <span class="fh-top">Fairness</span>
-                <span class="fh-bottom">Handel</span>
-            </div>
+        <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener" class="m-fh-logo">
+            <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
+                 alt="Mitglied der Initiative Fairness im Handel">
         </a>
         <div class="m-sidebar-right">
             <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
@@ -391,11 +380,13 @@
 
     <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
     <div class="m-id-panel" id="m-id-panel">
-        <a href="shop.html">Shop</a><span>|</span>
-        <a href="shopimpressum.html">Impressum</a><span>|</span>
-        <a href="shopagb.html">AGB</a><span>|</span>
-        <a href="shopdatenschutz.html">Datenschutz</a><span>|</span>
-        <a href="shopwiderruf.html">Widerruf</a>
+        <div class="m-id-panel-label">Shop</div>
+        <div class="m-id-panel-links">
+            <a href="shopimpressum.html">Impressum</a>
+            <a href="shopagb.html">AGB</a>
+            <a href="shopdatenschutz.html">Datenschutz</a>
+            <a href="shopwiderruf.html">Widerruf</a>
+        </div>
     </div>
 </div>
 
@@ -404,78 +395,76 @@
 
 <!-- ===================== NAV SCRIPTS ===================== -->
 <script>
-/* DESKTOP MENU */
-let dSidebarTimeout;
-const dSidebar = document.getElementById('d-sidebar');
-function resetDSidebarTimer() {
-    clearTimeout(dSidebarTimeout);
-    if (dSidebar && dSidebar.classList.contains('open'))
-        dSidebarTimeout = setTimeout(() => dSidebar.classList.remove('open'), 5000);
-}
-function toggleDesktopMenu() {
-    if (dSidebar) { dSidebar.classList.toggle('open'); if (dSidebar.classList.contains('open')) resetDSidebarTimer(); }
-}
-if (dSidebar) { dSidebar.addEventListener('mousemove', resetDSidebarTimer); dSidebar.addEventListener('click', resetDSidebarTimer); }
-document.addEventListener('click', function(e) {
-    if (window.innerWidth > 800) {
-        const btn = document.querySelector('.d-menu-btn');
-        if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains('open')) {
-            dSidebar.classList.remove('open'); clearTimeout(dSidebarTimeout);
+    let dSidebarTimeout;
+    const dSidebar = document.getElementById('d-sidebar');
+    function resetDSidebarTimer() {
+        clearTimeout(dSidebarTimeout);
+        if (dSidebar && dSidebar.classList.contains('open'))
+            dSidebarTimeout = setTimeout(() => dSidebar.classList.remove('open'), 5000);
+    }
+    function toggleDesktopMenu() {
+        if (dSidebar) { dSidebar.classList.toggle('open'); if (dSidebar.classList.contains('open')) resetDSidebarTimer(); }
+    }
+    if (dSidebar) { dSidebar.addEventListener('mousemove', resetDSidebarTimer); dSidebar.addEventListener('click', resetDSidebarTimer); }
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth > 800) {
+            const btn = document.querySelector('.d-menu-btn');
+            if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains('open')) {
+                dSidebar.classList.remove('open'); clearTimeout(dSidebarTimeout);
+            }
+        }
+    });
+
+    const mSidebar = document.getElementById('m-sidebar');
+    const mMenuBtn = document.getElementById('m-menu-trigger');
+    const mIdBtn   = document.getElementById('m-id-btn');
+    const mIdPanel = document.getElementById('m-id-panel');
+    let mMenuTimeout, mIdTimeout;
+
+    function isLandscapeMobile() { return window.innerHeight <= 500 && window.innerWidth > window.innerHeight; }
+    function mCloseAllMenus() {
+        if (mSidebar) mSidebar.classList.remove('open');
+        if (mMenuBtn) mMenuBtn.classList.remove('active');
+        clearTimeout(mMenuTimeout);
+        if (!isLandscapeMobile()) {
+            if (mIdPanel) mIdPanel.classList.remove('open');
+            if (mIdBtn)   mIdBtn.classList.remove('hidden');
+            clearTimeout(mIdTimeout);
         }
     }
-});
-
-/* MOBILE LOGIC */
-const mSidebar = document.getElementById('m-sidebar');
-const mMenuBtn = document.getElementById('m-menu-trigger');
-const mIdBtn   = document.getElementById('m-id-btn');
-const mIdPanel = document.getElementById('m-id-panel');
-let mMenuTimeout, mIdTimeout;
-
-function isLandscapeMobile() { return window.innerHeight <= 500 && window.innerWidth > window.innerHeight; }
-function mCloseAllMenus() {
-    if (mSidebar) mSidebar.classList.remove('open');
-    if (mMenuBtn) mMenuBtn.classList.remove('active');
-    clearTimeout(mMenuTimeout);
-    if (!isLandscapeMobile()) {
-        if (mIdPanel) mIdPanel.classList.remove('open');
-        if (mIdBtn)   mIdBtn.classList.remove('hidden');
-        clearTimeout(mIdTimeout);
+    function mToggleMenu(e) {
+        e.stopPropagation();
+        if (mSidebar.classList.contains('open')) { mCloseAllMenus(); }
+        else { mCloseAllMenus(); mSidebar.classList.add('open'); mMenuBtn.classList.add('active'); mMenuTimeout = setTimeout(mCloseAllMenus, 5000); }
     }
-}
-function mToggleMenu(e) {
-    e.stopPropagation();
-    if (mSidebar.classList.contains('open')) { mCloseAllMenus(); }
-    else { mCloseAllMenus(); mSidebar.classList.add('open'); mMenuBtn.classList.add('active'); mMenuTimeout = setTimeout(mCloseAllMenus, 5000); }
-}
-function mOpenIDMenu(e) {
-    e.stopPropagation(); mCloseAllMenus();
-    if (mIdBtn)   mIdBtn.classList.add('hidden');
-    if (mIdPanel) mIdPanel.classList.add('open');
-    mIdTimeout = setTimeout(mCloseAllMenus, 5000);
-}
-
-function applyLandscapeState() {
-    if (isLandscapeMobile()) {
-        if (mIdPanel) mIdPanel.style.cssText = '';
-        if (mIdBtn)   mIdBtn.style.display = 'none';
-    } else {
-        if (mIdBtn)   mIdBtn.style.display = '';
-        if (mIdPanel) mIdPanel.classList.remove('open');
+    function mOpenIDMenu(e) {
+        e.stopPropagation(); mCloseAllMenus();
+        if (mIdBtn)   mIdBtn.classList.add('hidden');
+        if (mIdPanel) mIdPanel.classList.add('open');
+        mIdTimeout = setTimeout(mCloseAllMenus, 5000);
     }
-}
-window.addEventListener('resize', applyLandscapeState);
-window.addEventListener('orientationchange', () => setTimeout(applyLandscapeState, 100));
-applyLandscapeState();
 
-document.addEventListener('click', e => {
-    if (window.innerWidth <= 800 || isLandscapeMobile()) {
-        if (mSidebar && !mSidebar.contains(e.target) &&
-            mMenuBtn && !mMenuBtn.contains(e.target) &&
-            mIdPanel && !mIdPanel.contains(e.target) &&
-            mIdBtn   && !mIdBtn.contains(e.target)) mCloseAllMenus();
+    function applyLandscapeState() {
+        if (isLandscapeMobile()) {
+            if (mIdPanel) mIdPanel.style.cssText = '';
+            if (mIdBtn)   mIdBtn.style.display = 'none';
+        } else {
+            if (mIdBtn)   mIdBtn.style.display = '';
+            if (mIdPanel) mIdPanel.classList.remove('open');
+        }
     }
-});
+    window.addEventListener('resize', applyLandscapeState);
+    window.addEventListener('orientationchange', () => setTimeout(applyLandscapeState, 100));
+    applyLandscapeState();
+
+    document.addEventListener('click', e => {
+        if (window.innerWidth <= 800 || isLandscapeMobile()) {
+            if (mSidebar && !mSidebar.contains(e.target) &&
+                mMenuBtn && !mMenuBtn.contains(e.target) &&
+                mIdPanel && !mIdPanel.contains(e.target) &&
+                mIdBtn   && !mIdBtn.contains(e.target)) mCloseAllMenus();
+        }
+    });
 </script>
 </body>
 </html>
