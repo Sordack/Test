@@ -494,8 +494,73 @@
 
     <!-- I/D Button + Panel -->
     <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <style>
+        /* Grundeinstellungen */
+        body {
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        /* Beispiel-Styling für die Sichtbarkeit der Elemente */
+        #d-sidebar {
+            position: fixed;
+            left: -250px;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background: #f4f4f4;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        #d-sidebar.open {
+            left: 0;
+        }
+
+        .m-id-panel {
+            display: none;
+            padding: 20px;
+            background: #eee;
+        }
+        .m-id-panel.open {
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .m-id-panel-links a {
+            display: block;
+            margin: 5px 0;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="d-sidebar">
+        <nav>
+            </nav>
+    </div>
+
+    <div id="m-sidebar">
+        </div>
+
+    <button class="d-menu-btn" onclick="toggleDesktopMenu()">Desktop Menu</button>
+    <button id="m-menu-trigger">Mobile Menu</button>
+    <button id="m-id-btn">Shop Info</button>
+
     <div class="m-id-panel" id="m-id-panel">
-        <div class="m-id-panel-label">Shop</div>
+        <div class="m-id-panel-label"><strong>Shop</strong></div>
         <div class="m-id-panel-links">
             <a href="shopimpressum.html">Impressum</a>
             <a href="shopagb.html">AGB</a>
@@ -503,112 +568,113 @@
             <a href="shopwiderruf.html">Widerruf</a>
         </div>
     </div>
-</div>
 
-<!-- ===================== ECWID SCRIPT ===================== -->
-<script data-cfasync="false" type="text/javascript"
-    src="https://app.ecwid.com/script.js?132126030&data_platform=code&data_date=2026-03-26"
-    charset="utf-8"></script>
-<script type="text/javascript">
-    xProductBrowser(
-        "categoriesPerRow=3",
-        "views=grid(20,3) list(60) table(60)",
-        "categoryView=grid",
-        "searchView=list",
-        "id=my-store-132126030"
-    );
+    <script>
+        /* DESKTOP MENU LOGIC */
+        let dSidebarTimeout;
+        const dSidebar = document.getElementById('d-sidebar');
 
-    function moveEcwidToCorrectContainer() {
-        var isMobile = window.innerWidth <= 800;
-        var desktopWrap = document.getElementById('my-store-132126030');
-        var mobileWrap  = document.getElementById('my-store-132126030-mobile');
-        if (!desktopWrap || !mobileWrap) return;
-        if (isMobile) {
-            if (!mobileWrap.contains(desktopWrap)) mobileWrap.appendChild(desktopWrap);
-        } else {
-            var desktopTarget = document.querySelector('#desktop-wrapper .ecwid-shop-wrap');
-            if (desktopTarget && !desktopTarget.contains(desktopWrap)) desktopTarget.appendChild(desktopWrap);
+        function resetDSidebarTimer() {
+            clearTimeout(dSidebarTimeout);
+            if (dSidebar && dSidebar.classList.contains('open')) {
+                dSidebarTimeout = setTimeout(() => dSidebar.classList.remove('open'), 5000);
+            }
         }
-    }
-    window.addEventListener('load', moveEcwidToCorrectContainer);
-    window.addEventListener('resize', moveEcwidToCorrectContainer);
-    setTimeout(moveEcwidToCorrectContainer, 300);
-</script>
 
-<!-- ===================== NAV SCRIPTS ===================== -->
-<script>
-/* DESKTOP MENU */
-let dSidebarTimeout;
-const dSidebar = document.getElementById('d-sidebar');
-function resetDSidebarTimer() {
-    clearTimeout(dSidebarTimeout);
-    if (dSidebar && dSidebar.classList.contains('open'))
-        dSidebarTimeout = setTimeout(() => dSidebar.classList.remove('open'), 5000);
-}
-function toggleDesktopMenu() {
-    if (dSidebar) { dSidebar.classList.toggle('open'); if (dSidebar.classList.contains('open')) resetDSidebarTimer(); }
-}
-if (dSidebar) { dSidebar.addEventListener('mousemove', resetDSidebarTimer); dSidebar.addEventListener('click', resetDSidebarTimer); }
-document.addEventListener('click', function(e) {
-    if (window.innerWidth > 800) {
-        const btn = document.querySelector('.d-menu-btn');
-        if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains('open')) {
-            dSidebar.classList.remove('open'); clearTimeout(dSidebarTimeout);
+        function toggleDesktopMenu() {
+            if (dSidebar) {
+                dSidebar.classList.toggle('open');
+                if (dSidebar.classList.contains('open')) resetDSidebarTimer();
+            }
         }
-    }
-});
 
-/* MOBILE LOGIC */
-const mSidebar = document.getElementById('m-sidebar');
-const mMenuBtn = document.getElementById('m-menu-trigger');
-const mIdBtn   = document.getElementById('m-id-btn');
-const mIdPanel = document.getElementById('m-id-panel');
-let mMenuTimeout, mIdTimeout;
+        if (dSidebar) {
+            dSidebar.addEventListener('mousemove', resetDSidebarTimer);
+            dSidebar.addEventListener('click', resetDSidebarTimer);
+        }
 
-function isLandscapeMobile() { return window.innerHeight <= 500 && window.innerWidth > window.innerHeight; }
-function mCloseAllMenus() {
-    if (mSidebar) mSidebar.classList.remove('open');
-    if (mMenuBtn) mMenuBtn.classList.remove('active');
-    clearTimeout(mMenuTimeout);
-    if (!isLandscapeMobile()) {
-        if (mIdPanel) mIdPanel.classList.remove('open');
-        if (mIdBtn)   mIdBtn.classList.remove('hidden');
-        clearTimeout(mIdTimeout);
-    }
-}
-function mToggleMenu(e) {
-    e.stopPropagation();
-    if (mSidebar.classList.contains('open')) { mCloseAllMenus(); }
-    else { mCloseAllMenus(); mSidebar.classList.add('open'); mMenuBtn.classList.add('active'); mMenuTimeout = setTimeout(mCloseAllMenus, 5000); }
-}
-function mOpenIDMenu(e) {
-    e.stopPropagation(); mCloseAllMenus();
-    if (mIdBtn)   mIdBtn.classList.add('hidden');
-    if (mIdPanel) mIdPanel.classList.add('open');
-    mIdTimeout = setTimeout(mCloseAllMenus, 5000);
-}
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth > 800) {
+                const btn = document.querySelector('.d-menu-btn');
+                if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains('open')) {
+                    dSidebar.classList.remove('open');
+                    clearTimeout(dSidebarTimeout);
+                }
+            }
+        });
 
-function applyLandscapeState() {
-    if (isLandscapeMobile()) {
-        if (mIdPanel) mIdPanel.style.cssText = '';
-        if (mIdBtn)   mIdBtn.style.display = 'none';
-    } else {
-        if (mIdBtn)   mIdBtn.style.display = '';
-        if (mIdPanel) mIdPanel.classList.remove('open');
-    }
-}
-window.addEventListener('resize', applyLandscapeState);
-window.addEventListener('orientationchange', () => setTimeout(applyLandscapeState, 100));
-applyLandscapeState();
+        /* MOBILE LOGIC */
+        const mSidebar = document.getElementById('m-sidebar');
+        const mMenuBtn = document.getElementById('m-menu-trigger');
+        const mIdBtn   = document.getElementById('m-id-btn');
+        const mIdPanel = document.getElementById('m-id-panel');
+        let mMenuTimeout, mIdTimeout;
 
-document.addEventListener('click', e => {
-    if (window.innerWidth <= 800 || isLandscapeMobile()) {
-        if (mSidebar && !mSidebar.contains(e.target) &&
-            mMenuBtn && !mMenuBtn.contains(e.target) &&
-            mIdPanel && !mIdPanel.contains(e.target) &&
-            mIdBtn   && !mIdBtn.contains(e.target)) mCloseAllMenus();
-    }
-});
-</script>
+        function isLandscapeMobile() { 
+            return window.innerHeight <= 500 && window.innerWidth > window.innerHeight; 
+        }
+
+        function mCloseAllMenus() {
+            if (mSidebar) mSidebar.classList.remove('open');
+            if (mMenuBtn) mMenuBtn.classList.remove('active');
+            clearTimeout(mMenuTimeout);
+            if (!isLandscapeMobile()) {
+                if (mIdPanel) mIdPanel.classList.remove('open');
+                if (mIdBtn)   mIdBtn.classList.remove('hidden');
+                clearTimeout(mIdTimeout);
+            }
+        }
+
+        function mToggleMenu(e) {
+            if (!mSidebar) return;
+            e.stopPropagation();
+            if (mSidebar.classList.contains('open')) {
+                mCloseAllMenus();
+            } else {
+                mCloseAllMenus();
+                mSidebar.classList.add('open');
+                if (mMenuBtn) mMenuBtn.classList.add('active');
+                mMenuTimeout = setTimeout(mCloseAllMenus, 5000);
+            }
+        }
+
+        function mOpenIDMenu(e) {
+            if (!mIdPanel) return;
+            e.stopPropagation();
+            mCloseAllMenus();
+            if (mIdBtn)   mIdBtn.classList.add('hidden');
+            if (mIdPanel) mIdPanel.classList.add('open');
+            mIdTimeout = setTimeout(mCloseAllMenus, 5000);
+        }
+
+        // Event Listeners für Mobile Buttons
+        if (mMenuBtn) mMenuBtn.addEventListener('click', mToggleMenu);
+        if (mIdBtn)   mIdBtn.addEventListener('click', mOpenIDMenu);
+
+        function applyLandscapeState() {
+            if (isLandscapeMobile()) {
+                if (mIdPanel) mIdPanel.style.cssText = '';
+                if (mIdBtn)   mIdBtn.style.display = 'none';
+            } else {
+                if (mIdBtn)   mIdBtn.style.display = '';
+                if (mIdPanel) mIdPanel.classList.remove('open');
+            }
+        }
+
+        window.addEventListener('resize', applyLandscapeState);
+        window.addEventListener('orientationchange', () => setTimeout(applyLandscapeState, 100));
+        applyLandscapeState();
+
+        document.addEventListener('click', e => {
+            if (window.innerWidth <= 800 || isLandscapeMobile()) {
+                if (mSidebar && !mSidebar.contains(e.target) &&
+                    mMenuBtn && !mMenuBtn.contains(e.target) &&
+                    mIdPanel && !mIdPanel.contains(e.target) &&
+                    mIdBtn   && !mIdBtn.contains(e.target)) {
+                    mCloseAllMenus();
+                }
+            }
+        });
+    </script>
 </body>
 </html>
