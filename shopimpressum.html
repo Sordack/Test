@@ -80,7 +80,7 @@
             main {
                 padding: 110px 80px 70px 80px;
                 z-index: 5; width: 100%; box-sizing: border-box;
-                display: flex; flex-direction: column; align-items: flex-start;
+                display: flex; flex-direction: column; align-items: center; /* zentriert */
             }
 
             /* ── Große Bento-Box ── */
@@ -139,10 +139,11 @@
                 margin-bottom: 18px;
                 background: rgba(255,255,255,0.5);
                 transition: background 0.2s, color 0.2s;
+                align-self: flex-start; /* Button bleibt linksbündig */
             }
             .back-btn:hover { background: var(--anton-yellow); }
 
-            /* ── Footer (identisch mit shop.html) ── */
+            /* ── Footer ── */
             .d-footer {
                 width: 100%;
                 height: 50px;
@@ -198,7 +199,6 @@
                 54%,100%{ color: #000; }
             }
 
-            /* Fairness standalone über dem Footer */
             .d-footer-fairness {
                 position: fixed;
                 bottom: 50px;
@@ -256,7 +256,6 @@
                 -webkit-overflow-scrolling: touch;
             }
 
-            /* ── Bento-Box Mobile ── */
             .m-bento-legal {
                 background: rgba(255,255,255,0.92);
                 border: 3px solid #000;
@@ -294,7 +293,6 @@
             }
             .m-bento-legal-body a { color: var(--anton-red); word-break: break-all; }
 
-            /* Zurück-Button mobile */
             .back-btn {
                 display: inline-flex;
                 align-items: center;
@@ -436,7 +434,6 @@
         </div>
     </main>
 
-    <!-- Fairness standalone über dem Footer -->
     <div class="d-footer-fairness">
         <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener">
             <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
@@ -444,7 +441,6 @@
         </a>
     </div>
 
-    <!-- Footer: nur Links, alle gleichzeitig blinkend -->
     <footer class="d-footer">
         <div class="d-footer-center">
             <span class="d-footer-center-label">Shop</span>
