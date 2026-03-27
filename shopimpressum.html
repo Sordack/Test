@@ -78,9 +78,9 @@
             .d-sidebar-right a:hover i { color:var(--brand-color)!important; transform:scale(1.55)!important; }
 
             main {
-                padding: 110px 80px 100px 80px;
+                padding: 110px 80px 70px 80px;
                 z-index: 5; width: 100%; box-sizing: border-box;
-                display: flex; justify-content: center;
+                display: flex; flex-direction: column; align-items: flex-start;
             }
 
             /* ── Große Bento-Box ── */
@@ -104,11 +104,12 @@
                 font-weight: bold;
                 text-transform: uppercase;
                 letter-spacing: 2px;
+                font-family: 'Special Elite', cursive;
             }
             .d-bento-legal-header i { font-size: 1.3rem; color: var(--anton-red); }
             .d-bento-legal-body {
                 padding: 28px 32px 32px;
-                font-family: Helvetica, Arial, sans-serif;
+                font-family: 'Special Elite', cursive;
                 font-size: 14px;
                 color: #292929;
                 line-height: 1.7;
@@ -120,9 +121,102 @@
             }
             .d-bento-legal-body a { color: var(--anton-red); }
 
-            .d-footer { width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: fixed; bottom: 0; left: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; transition: all 0.3s ease; }
-            .d-footer a:hover { color: var(--anton-yellow)!important; text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; }
+            /* ── Zurück-Button ── */
+            .back-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                text-decoration: none;
+                color: #000;
+                font-family: 'Special Elite', cursive;
+                font-size: 0.78rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                border: 2px solid #000;
+                border-radius: 6px;
+                padding: 6px 14px;
+                margin-bottom: 18px;
+                background: rgba(255,255,255,0.5);
+                transition: background 0.2s, color 0.2s;
+            }
+            .back-btn:hover { background: var(--anton-yellow); }
+
+            /* ── Footer (identisch mit shop.html) ── */
+            .d-footer {
+                width: 100%;
+                height: 50px;
+                padding: 0;
+                background: rgba(255,255,255,0.75);
+                backdrop-filter: blur(10px);
+                border-top: 1.5px solid #000;
+                z-index: 100;
+                position: fixed;
+                bottom: 0; left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+            .d-footer-center {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2px;
+                height: 100%;
+            }
+            .d-footer-center-label {
+                font-size: 0.52rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                color: rgba(0,0,0,0.38);
+                line-height: 1;
+                font-family: 'Special Elite', cursive;
+            }
+            .d-footer-center-links { display: flex; align-items: center; }
+            .d-footer-center-links a {
+                color: #000;
+                text-decoration: none;
+                font-size: 0.63rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 0.4px;
+                padding: 0 10px;
+                white-space: nowrap;
+                animation: footerFlash 3s ease-in-out infinite;
+                transition: color 0.2s;
+                font-family: 'Special Elite', cursive;
+            }
+            .d-footer-center-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.18); }
+            .d-footer-center-links a:hover { color: var(--anton-red) !important; animation: none; }
+            @keyframes footerFlash {
+                0%,46% { color: #000; }
+                50%     { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,1); }
+                54%,100%{ color: #000; }
+            }
+
+            /* Fairness standalone über dem Footer */
+            .d-footer-fairness {
+                position: fixed;
+                bottom: 50px;
+                left: 12px;
+                z-index: 99;
+                display: flex;
+                align-items: center;
+            }
+            .d-footer-fairness a { display: flex; align-items: center; text-decoration: none; }
+            .d-footer-fairness img {
+                height: 50px;
+                width: auto;
+                display: block;
+                object-fit: contain;
+                filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.18));
+                transition: transform 0.2s;
+            }
+            .d-footer-fairness a:hover img { transform: scale(1.06); }
         }
 
         /* ================================================================= */
@@ -162,7 +256,7 @@
                 -webkit-overflow-scrolling: touch;
             }
 
-            /* ── Große Bento-Box Mobile ── */
+            /* ── Bento-Box Mobile ── */
             .m-bento-legal {
                 background: rgba(255,255,255,0.92);
                 border: 3px solid #000;
@@ -182,11 +276,12 @@
                 font-weight: bold;
                 text-transform: uppercase;
                 letter-spacing: 1.5px;
+                font-family: 'Special Elite', cursive;
             }
             .m-bento-legal-header i { font-size: 1.1rem; color: var(--anton-red); }
             .m-bento-legal-body {
                 padding: 18px 16px 22px;
-                font-family: Helvetica, Arial, sans-serif;
+                font-family: 'Special Elite', cursive;
                 font-size: 13px;
                 color: #292929;
                 line-height: 1.65;
@@ -199,15 +294,52 @@
             }
             .m-bento-legal-body a { color: var(--anton-red); word-break: break-all; }
 
-            .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; }
-            .m-id-button.hidden { transform: translateX(100%); }
-            .m-id-panel { position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem; }
-            .m-id-panel.open { right: 0; }
-            .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
+            /* Zurück-Button mobile */
+            .back-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                text-decoration: none;
+                color: #000;
+                font-family: 'Special Elite', cursive;
+                font-size: 0.78rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                border: 2px solid #000;
+                border-radius: 6px;
+                padding: 6px 14px;
+                margin-bottom: 14px;
+                background: rgba(255,255,255,0.5);
+                transition: background 0.2s;
+            }
+            .back-btn:hover { background: var(--anton-yellow); }
 
-            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; padding: 0 10px; justify-content: space-evenly; }
+            .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
+            .m-id-button.hidden { transform: translateX(100%); }
+
+            .m-id-panel {
+                position: fixed; right: -300px; bottom: 150px;
+                height: 54px; width: 280px;
+                background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
+                border: 2px solid #000; border-right: none;
+                display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+                z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1);
+                border-radius: 8px 0 0 8px; overflow: hidden; padding: 4px 6px; box-sizing: border-box;
+            }
+            .m-id-panel.open { right: 0; }
+            .m-id-panel-label { font-size: 0.48rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; color: rgba(0,0,0,0.38); line-height: 1; font-family: 'Special Elite', cursive; }
+            .m-id-panel-links { display: flex; align-items: center; flex-wrap: nowrap; }
+            .m-id-panel-links a { color: #000; text-decoration: none; text-transform: uppercase; font-size: 0.6rem; font-weight: bold; padding: 0 5px; white-space: nowrap; animation: footerFlashMobile 3s ease-in-out infinite; font-family: 'Special Elite', cursive; }
+            .m-id-panel-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
+            @keyframes footerFlashMobile { 0%,46%{color:#000;} 50%{color:#fff;text-shadow:0 0 8px rgba(255,255,255,1);} 54%,100%{color:#000;} }
+
+            .m-footer-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; box-sizing: border-box; overflow: hidden; }
+            .m-fh-logo { display: flex; align-items: center; justify-content: center; height: 100%; padding: 5px 8px; border-right: 1.5px solid rgba(0,0,0,0.15); flex-shrink: 0; text-decoration: none; }
+            .m-fh-logo img { height: 40px; width: auto; object-fit: contain; display: block; }
+            .m-sidebar-right { flex: 1; height: 100%; display: flex; flex-direction: row; align-items: center; padding: 0 4px; justify-content: space-evenly; }
             .m-sidebar-right a { text-decoration: none; }
-            .m-sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
+            .m-sidebar-right a i { color: #000; font-size: 1.4rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
             @keyframes ultraFlowWaveMobile { 0%{transform:scale(1);color:#000;}9.33%{transform:scale(1.4);color:var(--brand-color);}23.33%,100%{transform:scale(1);color:#000;} }
             .m-sidebar-right a:nth-child(1) i { --brand-color:#f00; animation-delay:0.0s; }
             .m-sidebar-right a:nth-child(2) i { --brand-color:#25F4EE; animation-delay:0.25s; }
@@ -231,28 +363,11 @@
 
         @media (orientation: landscape) and (max-height: 500px) {
             body { background-color: transparent !important; }
-
-            #mobile-wrapper #m-bg-fix {
-                display: block !important; position: fixed !important;
-                top: 0 !important; left: 0 !important;
-                width: 100% !important; height: 100% !important;
-                background: url('Background.jpg') no-repeat center center !important;
-                background-size: cover !important; z-index: -1 !important;
-            }
-
+            #mobile-wrapper #m-bg-fix { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: url('Background.jpg') no-repeat center center !important; background-size: cover !important; z-index: -1 !important; }
             #mobile-wrapper .m-header { height: 60px; }
             #mobile-wrapper .m-header-logo { top: 145%; }
             #mobile-wrapper .m-menu-btn { top: 8px; left: 12px; width: 38px; height: 38px; }
-
-            #mobile-wrapper .m-sidebar {
-                top: 0 !important; left: -220px !important;
-                width: 200px !important; height: 100% !important;
-                flex-direction: column !important; justify-content: flex-start !important;
-                align-items: flex-start !important; padding: 80px 15px 20px 15px !important;
-                border-bottom: none !important; border-right: 3px solid #000 !important;
-                box-sizing: border-box !important;
-                transition: left 0.5s cubic-bezier(0.4,0,0.2,1) !important;
-            }
+            #mobile-wrapper .m-sidebar { top: 0 !important; left: -220px !important; width: 200px !important; height: 100% !important; flex-direction: column !important; justify-content: flex-start !important; align-items: flex-start !important; padding: 80px 15px 20px 15px !important; border-bottom: none !important; border-right: 3px solid #000 !important; box-sizing: border-box !important; transition: left 0.5s cubic-bezier(0.4,0,0.2,1) !important; }
             #mobile-wrapper .m-sidebar.open { left: 0 !important; top: 0 !important; }
             #mobile-wrapper .m-nav-item { flex: none !important; width: 100%; text-align: left; margin-bottom: 16px; }
             #mobile-wrapper .m-nav-item a { flex-direction: row !important; gap: 10px; font-size: 0.85rem; }
@@ -260,18 +375,14 @@
             #mobile-wrapper .mobile-tag { font-size: 0.72rem; writing-mode: horizontal-tb !important; transform: none !important; margin-top: 0; }
             #mobile-wrapper .m-epk-container { position: static !important; width: 100% !important; height: auto !important; background: transparent !important; border-left: none !important; border-top: 1px solid rgba(0,0,0,0.15) !important; padding-top: 12px !important; margin-top: auto !important; justify-content: flex-start !important; }
             #mobile-wrapper .m-epk-text { writing-mode: horizontal-tb !important; transform: none !important; font-size: 0.78rem; }
-
-            #mobile-wrapper .m-content-scroll {
-                margin-top: 62px !important;
-                margin-bottom: 0 !important;
-                padding-right: 56px !important;
-                overflow-y: auto !important;
-            }
-
-            #mobile-wrapper .m-sidebar-right { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; transform: none !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-bottom: none !important; border-left: 2px solid #000 !important; border-radius: 0 !important; padding: 0 !important; gap: 0 !important; justify-content: space-evenly !important; background: rgba(255,255,255,0.2) !important; backdrop-filter: blur(3px) !important; }
+            #mobile-wrapper .m-content-scroll { margin-top: 62px !important; margin-bottom: 0 !important; padding-right: 56px !important; overflow-y: auto !important; }
+            #mobile-wrapper .m-footer-bar { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; }
+            #mobile-wrapper .m-fh-logo { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 5px 3px !important; width: 100% !important; }
+            #mobile-wrapper .m-fh-logo img { height: 22px !important; }
+            #mobile-wrapper .m-sidebar-right { flex-direction: column !important; justify-content: space-evenly !important; padding: 0 !important; }
             #mobile-wrapper .m-sidebar-right a i { font-size: 1.3rem !important; }
             #mobile-wrapper .m-id-button { display: none !important; }
-            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 260px !important; height: 38px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; font-size: 0.75rem !important; opacity: 1 !important; overflow: hidden !important; }
+            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 310px !important; height: 50px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; opacity: 1 !important; overflow: hidden !important; }
         }
     </style>
 </head>
@@ -312,6 +423,7 @@
     </aside>
 
     <main>
+        <a href="shop.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Zurück zum Shop</a>
         <div class="d-bento-legal">
             <div class="d-bento-legal-header">
                 <i class="fa-solid fa-building-columns"></i>
@@ -324,9 +436,25 @@
         </div>
     </main>
 
+    <!-- Fairness standalone über dem Footer -->
+    <div class="d-footer-fairness">
+        <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener">
+            <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
+                 alt="Mitglied der Initiative Fairness im Handel">
+        </a>
+    </div>
+
+    <!-- Footer: nur Links, alle gleichzeitig blinkend -->
     <footer class="d-footer">
-        <div><a href="index.html">www.anton-familienpop.de</a></div>
-        <div><a href="shop.html">← Zurück zum Shop</a> | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
+        <div class="d-footer-center">
+            <span class="d-footer-center-label">Shop</span>
+            <nav class="d-footer-center-links">
+                <a href="shopimpressum.html">Impressum</a>
+                <a href="shopagb.html">AGB</a>
+                <a href="shopdatenschutz.html">Datenschutz</a>
+                <a href="shopwiderruf.html">Widerrufsbelehrung</a>
+            </nav>
+        </div>
     </footer>
 </div>
 
@@ -349,6 +477,7 @@
     </nav>
 
     <div class="m-content-scroll">
+        <a href="shop.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Zurück zum Shop</a>
         <div class="m-bento-legal">
             <div class="m-bento-legal-header">
                 <i class="fa-solid fa-building-columns"></i>
@@ -362,24 +491,37 @@
 
     <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
     <div class="m-id-panel" id="m-id-panel">
-        <a href="impressum.html">Impressum</a><span>|</span><a href="datenschutz.html">Datenschutz</a>
+        <div class="m-id-panel-label">Shop</div>
+        <div class="m-id-panel-links">
+            <a href="shopimpressum.html">Impressum</a>
+            <a href="shopagb.html">AGB</a>
+            <a href="shopdatenschutz.html">Datenschutz</a>
+            <a href="shopwiderruf.html">Widerruf</a>
+        </div>
     </div>
 
-    <aside class="m-sidebar-right">
-        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
-        <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
-        <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
-    </aside>
+    <footer class="m-footer-bar">
+        <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener" class="m-fh-logo">
+            <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
+                 alt="Mitglied der Initiative Fairness im Handel">
+        </a>
+        <div class="m-sidebar-right">
+            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
+            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
+        </div>
+    </footer>
 </div>
 
+<script src="https://www.it-recht-kanzlei.de/js/itrk-legaltext.js"></script>
+
 <script>
-    /* DESKTOP MENU */
     let dSidebarTimeout;
     const dSidebar = document.getElementById('d-sidebar');
     function resetDSidebarTimer() {
@@ -400,7 +542,6 @@
         }
     });
 
-    /* MOBILE LOGIC */
     const mSidebar = document.getElementById('m-sidebar');
     const mMenuBtn = document.getElementById('m-menu-trigger');
     const mIdBtn   = document.getElementById('m-id-btn');
