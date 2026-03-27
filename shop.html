@@ -15,7 +15,6 @@
             --amazon-blue: #00A8E1;
             --glass: rgba(255,255,255,0.63);
             --glass-light: rgba(255,255,255,0.41);
-            --glass-footer: rgba(255,255,255,0.38);
         }
 
         html, body { margin: 0; padding: 0; background-color: transparent; font-family: 'Special Elite', cursive; height: 100%; width: 100%; }
@@ -71,117 +70,90 @@
             .d-sidebar-right:hover a i { animation-play-state:paused!important; transform:scale(1)!important; color:#000!important; }
             .d-sidebar-right a:hover i { color:var(--brand-color)!important; transform:scale(1.55)!important; }
 
-            main { flex: 1; padding: 95px 55px 60px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; }
+            main { flex: 1; padding: 95px 55px 65px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; }
 
             /* ---- DESKTOP FOOTER ---- */
             .d-footer {
                 width: 100%;
-                height: 38px;
+                height: 50px;
                 padding: 0;
                 background: rgba(255,255,255,0.75);
                 backdrop-filter: blur(10px);
                 border-top: 1.5px solid #000;
                 z-index: 100;
                 position: fixed;
-                bottom: 0;
-                left: 0;
-                display: flex;
+                bottom: 0; left: 0;
+                display: grid;
+                grid-template-columns: auto 1fr auto;
                 align-items: center;
-                justify-content: space-between;
                 box-sizing: border-box;
                 overflow: hidden;
             }
 
-            /* Fairness-Handel Banner – linke Seite, kompakt */
-            .d-footer-fairness {
+            /* Links: offizielles Logo */
+            .d-footer-fh {
                 display: flex;
                 align-items: center;
-                gap: 5px;
-                padding: 0 10px;
                 height: 100%;
-                border-right: 1.5px solid rgba(0,0,0,0.15);
-                flex-shrink: 0;
-                white-space: nowrap;
-            }
-            .d-footer-fairness .fh-badge {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                font-size: 0.6rem;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                color: #1a7a3c;
-                text-decoration: none;
-            }
-            .d-footer-fairness .fh-badge .fh-icon {
-                width: 22px;
-                height: 22px;
-                background: #1a7a3c;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                padding: 0 12px;
+                border-right: 1.5px solid rgba(0,0,0,0.12);
                 flex-shrink: 0;
             }
-            .d-footer-fairness .fh-badge .fh-icon svg {
-                width: 13px; height: 13px; fill: #fff;
-            }
-            .d-footer-fairness .fh-lines {
+            .d-footer-fh a { display: flex; align-items: center; text-decoration: none; }
+            .d-footer-fh img { height: 34px; width: auto; display: block; object-fit: contain; }
+
+            /* Mitte zentriert */
+            .d-footer-center {
                 display: flex;
                 flex-direction: column;
-                line-height: 1.2;
+                align-items: center;
+                justify-content: center;
+                gap: 2px;
+                height: 100%;
             }
-            .d-footer-fairness .fh-top { font-size: 0.55rem; color: #1a7a3c; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
-            .d-footer-fairness .fh-bottom { font-size: 0.62rem; color: #000; font-weight: bold; }
-
-            /* Shop-Label */
-            .d-footer-shop-label {
-                font-size: 0.65rem;
+            .d-footer-center-label {
+                font-size: 0.52rem;
                 font-weight: bold;
                 text-transform: uppercase;
-                letter-spacing: 1px;
-                color: #000;
-                padding: 0 10px;
-                flex-shrink: 0;
-                border-right: 1.5px solid rgba(0,0,0,0.15);
+                letter-spacing: 2px;
+                color: rgba(0,0,0,0.38);
+                line-height: 1;
             }
-
-            /* Nav-Links – rechte Seite */
-            .d-footer-links {
+            .d-footer-center-links {
                 display: flex;
                 align-items: center;
-                gap: 0;
-                padding: 0 10px;
-                flex: 1;
-                justify-content: flex-end;
             }
-            .d-footer-links a {
+            .d-footer-center-links a {
                 color: #000;
                 text-decoration: none;
-                font-size: 0.65rem;
+                font-size: 0.63rem;
                 font-weight: bold;
                 text-transform: uppercase;
-                letter-spacing: 0.5px;
-                padding: 0 8px;
-                transition: color 0.3s;
+                letter-spacing: 0.4px;
+                padding: 0 10px;
+                white-space: nowrap;
                 animation: footerFlash 3s ease-in-out infinite;
+                transition: color 0.2s;
             }
-            .d-footer-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
-            .d-footer-links a:hover { color: var(--anton-red) !important; animation: none; }
-
-            /* Jeder Link bekommt einen leicht versetzten delay damit sie nacheinander aufleuchten */
-            .d-footer-links a:nth-child(1) { animation-delay: 0s; }
-            .d-footer-links a:nth-child(2) { animation-delay: 0.15s; }
-            .d-footer-links a:nth-child(3) { animation-delay: 0.30s; }
-            .d-footer-links a:nth-child(4) { animation-delay: 0.45s; }
+            .d-footer-center-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.18); }
+            .d-footer-center-links a:hover { color: var(--anton-red) !important; animation: none; }
+            .d-footer-center-links a:nth-child(1) { animation-delay: 0s; }
+            .d-footer-center-links a:nth-child(2) { animation-delay: 0.2s; }
+            .d-footer-center-links a:nth-child(3) { animation-delay: 0.4s; }
+            .d-footer-center-links a:nth-child(4) { animation-delay: 0.6s; }
 
             @keyframes footerFlash {
-                0%   { color: #000; }
-                48%  { color: #000; }
-                50%  { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.9); }
-                52%  { color: #000; }
-                100% { color: #000; }
+                0%,46% { color: #000; }
+                50%     { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,1); }
+                54%,100%{ color: #000; }
+            }
+
+            /* Rechts: Spiegel-Spacer für optische Zentrierung */
+            .d-footer-mirror {
+                height: 100%;
+                /* gleiche Breite wie .d-footer-fh: padding(24px) + img-Breite schätzen wir dynamisch.
+                   Wir geben ihr einfach die gleiche min-Breite damit grid symmetrisch bleibt. */
+                min-width: 90px;
             }
         }
 
@@ -192,32 +164,9 @@
             #desktop-wrapper { display: none !important; }
             #mobile-wrapper  { display: flex !important; flex-direction: column; }
 
-            html {
-                background: url('Background.jpg') no-repeat center center fixed;
-                background-size: cover;
-                height: 100%;
-                overflow: hidden;
-            }
-            body {
-                height: 100%;
-                width: 100%;
-                overflow: hidden;
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                background: transparent;
-                margin: 0;
-                padding: 0;
-            }
-
-            #mobile-wrapper {
-                display: flex !important;
-                flex-direction: column;
-                height: 100%;
-                width: 100%;
-                overflow: hidden;
-                position: relative;
-            }
+            html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; height: 100%; overflow: hidden; }
+            body { height: 100%; width: 100%; overflow: hidden; position: relative; display: flex; flex-direction: column; background: transparent; margin: 0; padding: 0; }
+            #mobile-wrapper { display: flex !important; flex-direction: column; height: 100%; width: 100%; overflow: hidden; position: relative; }
 
             .m-header { position: relative; flex-shrink: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
             .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
@@ -235,94 +184,37 @@
             .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
             .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
 
-            .m-content-scroll {
-                flex: 1;
-                overflow-y: scroll;
-                overflow-x: hidden;
-                -webkit-overflow-scrolling: touch;
-                overscroll-behavior: contain;
-                box-sizing: border-box;
-                padding: 10px 8px 80px 8px;
-                touch-action: pan-y;
-                position: relative;
-                z-index: 1;
-            }
+            .m-content-scroll { flex: 1; overflow-y: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; box-sizing: border-box; padding: 10px 8px 80px 8px; touch-action: pan-y; position: relative; z-index: 1; }
 
             .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
             .m-id-button.hidden { transform: translateX(100%); }
-            .m-id-panel { position: fixed; right: -280px; bottom: 150px; height: 45px; width: 260px; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.7rem; flex-wrap: nowrap; gap: 3px; overflow: hidden; }
+
+            .m-id-panel {
+                position: fixed; right: -300px; bottom: 150px;
+                height: 54px; width: 280px;
+                background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
+                border: 2px solid #000; border-right: none;
+                display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+                z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1);
+                border-radius: 8px 0 0 8px; overflow: hidden; padding: 4px 6px; box-sizing: border-box;
+            }
             .m-id-panel.open { right: 0; }
-            .m-id-panel a {
-                color: #000;
-                text-decoration: none;
-                text-transform: uppercase;
-                padding: 0 3px;
-                animation: footerFlashMobile 3s ease-in-out infinite;
-            }
-            .m-id-panel a:nth-child(1) { animation-delay: 0s; }
-            .m-id-panel a:nth-child(3) { animation-delay: 0.2s; }
-            .m-id-panel a:nth-child(5) { animation-delay: 0.4s; }
-            .m-id-panel a:nth-child(7) { animation-delay: 0.6s; }
-            @keyframes footerFlashMobile {
-                0%   { color: #000; }
-                48%  { color: #000; }
-                50%  { color: #fff; text-shadow: 0 0 6px rgba(255,255,255,0.9); }
-                52%  { color: #000; }
-                100% { color: #000; }
-            }
-            .m-id-panel span { color: rgba(0,0,0,0.3); font-size: 0.6rem; }
+            .m-id-panel-label { font-size: 0.48rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; color: rgba(0,0,0,0.38); line-height: 1; }
+            .m-id-panel-links { display: flex; align-items: center; flex-wrap: nowrap; }
+            .m-id-panel-links a { color: #000; text-decoration: none; text-transform: uppercase; font-size: 0.6rem; font-weight: bold; padding: 0 5px; white-space: nowrap; animation: footerFlashMobile 3s ease-in-out infinite; }
+            .m-id-panel-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
+            .m-id-panel-links a:nth-child(1) { animation-delay: 0s; }
+            .m-id-panel-links a:nth-child(2) { animation-delay: 0.2s; }
+            .m-id-panel-links a:nth-child(3) { animation-delay: 0.4s; }
+            .m-id-panel-links a:nth-child(4) { animation-delay: 0.6s; }
+            @keyframes footerFlashMobile { 0%,46%{color:#000;} 50%{color:#fff;text-shadow:0 0 8px rgba(255,255,255,1);} 54%,100%{color:#000;} }
 
-            /* Mobile footer: compact fairness + shop-label */
-            .m-footer-bar {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 65px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                z-index: 999;
-                background: rgba(255,255,255,0.7);
-                backdrop-filter: blur(8px);
-                border-top: 2px solid #000;
-                box-sizing: border-box;
-                overflow: hidden;
-            }
+            .m-footer-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; box-sizing: border-box; overflow: hidden; }
 
-            /* Fairness-Handel Badge links */
-            .m-fh-badge {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                padding: 0 8px;
-                border-right: 1.5px solid rgba(0,0,0,0.15);
-                height: 100%;
-                flex-shrink: 0;
-                text-decoration: none;
-            }
-            .m-fh-badge .fh-icon {
-                width: 22px; height: 22px;
-                background: #1a7a3c;
-                border-radius: 50%;
-                display: flex; align-items: center; justify-content: center;
-                flex-shrink: 0;
-            }
-            .m-fh-badge .fh-icon svg { width: 13px; height: 13px; fill: #fff; }
-            .m-fh-lines { display: flex; flex-direction: column; line-height: 1.2; }
-            .m-fh-lines .fh-top { font-size: 0.45rem; color: #1a7a3c; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
-            .m-fh-lines .fh-bottom { font-size: 0.55rem; color: #000; font-weight: bold; }
+            .m-fh-logo { display: flex; align-items: center; justify-content: center; height: 100%; padding: 5px 8px; border-right: 1.5px solid rgba(0,0,0,0.15); flex-shrink: 0; text-decoration: none; }
+            .m-fh-logo img { height: 30px; width: auto; object-fit: contain; display: block; }
 
-            /* Social-Icons mittig / rechts */
-            .m-sidebar-right {
-                flex: 1;
-                height: 100%;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                padding: 0 5px;
-                justify-content: space-evenly;
-            }
+            .m-sidebar-right { flex: 1; height: 100%; display: flex; flex-direction: row; align-items: center; padding: 0 4px; justify-content: space-evenly; }
             .m-sidebar-right a { text-decoration: none; }
             .m-sidebar-right a i { color: #000; font-size: 1.4rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
             @keyframes ultraFlowWaveMobile { 0%{transform:scale(1);color:#000;}9.33%{transform:scale(1.4);color:var(--brand-color);}23.33%,100%{transform:scale(1);color:#000;} }
@@ -350,13 +242,13 @@
             #mobile-wrapper .m-epk-container { position: static !important; width: 100% !important; height: auto !important; background: transparent !important; border-left: none !important; border-top: 1px solid rgba(0,0,0,0.15) !important; padding-top: 12px !important; margin-top: auto !important; justify-content: flex-start !important; }
             #mobile-wrapper .m-epk-text { writing-mode: horizontal-tb !important; transform: none !important; font-size: 0.78rem; }
             #mobile-wrapper .m-content-scroll { padding-bottom: 10px !important; padding-right: 56px !important; }
-            #mobile-wrapper .m-footer-bar { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; border-radius: 0 !important; padding: 0 !important; gap: 0 !important; }
-            #mobile-wrapper .m-fh-badge { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 8px 0 !important; justify-content: center !important; flex-direction: column !important; gap: 2px !important; }
-            #mobile-wrapper .m-fh-lines { display: none !important; }
+            #mobile-wrapper .m-footer-bar { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; }
+            #mobile-wrapper .m-fh-logo { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 5px 3px !important; width: 100% !important; }
+            #mobile-wrapper .m-fh-logo img { height: 22px !important; }
             #mobile-wrapper .m-sidebar-right { flex-direction: column !important; justify-content: space-evenly !important; padding: 0 !important; }
             #mobile-wrapper .m-sidebar-right a i { font-size: 1.3rem !important; }
             #mobile-wrapper .m-id-button { display: none !important; }
-            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 300px !important; height: 38px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; font-size: 0.65rem !important; opacity: 1 !important; overflow: hidden !important; }
+            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 310px !important; height: 50px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; opacity: 1 !important; overflow: hidden !important; }
         }
 
         /* ================================================================= */
@@ -392,16 +284,10 @@
             border: 2px solid #000;
         }
 
-        #my-store-132126030 {
-            font-family: 'Special Elite', cursive !important;
-        }
+        #my-store-132126030 { font-family: 'Special Elite', cursive !important; }
 
         @media (max-width: 800px) {
-            .ecwid-shop-wrap {
-                padding: 12px;
-                border-radius: 12px;
-                margin-bottom: 20px;
-            }
+            .ecwid-shop-wrap { padding: 12px; border-radius: 12px; margin-bottom: 20px; }
         }
     </style>
 </head>
@@ -450,33 +336,27 @@
 
     <!-- DESKTOP FOOTER -->
     <footer class="d-footer">
-        <!-- Fairness-Handel Badge -->
-        <div class="d-footer-fairness">
-            <a href="https://www.fairness-handel.de" target="_blank" rel="noopener" class="fh-badge">
-                <div class="fh-icon">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
-                        <!-- Handshake-Icon als Vereinfachung -->
-                        <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div class="fh-lines">
-                    <span class="fh-top">Fairness</span>
-                    <span class="fh-bottom">Handel</span>
-                </div>
+        <!-- Links: offizielles Fairness-im-Handel Logo -->
+        <div class="d-footer-fh">
+            <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener">
+                <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
+                     alt="Mitglied der Initiative Fairness im Handel">
             </a>
         </div>
 
-        <!-- Shop-Label -->
-        <div class="d-footer-shop-label">Shop</div>
+        <!-- Mitte: "Shop" + Links darunter, optisch zentriert -->
+        <div class="d-footer-center">
+            <span class="d-footer-center-label">Shop</span>
+            <nav class="d-footer-center-links">
+                <a href="shopimpressum.html">Impressum</a>
+                <a href="shopagb.html">AGB</a>
+                <a href="shopdatenschutz.html">Datenschutz</a>
+                <a href="shopwiderruf.html">Widerrufsbelehrung</a>
+            </nav>
+        </div>
 
-        <!-- Footer-Links -->
-        <nav class="d-footer-links">
-            <a href="impressum.html">Impressum</a>
-            <a href="agb.html">AGB</a>
-            <a href="datenschutz.html">Datenschutz</a>
-            <a href="widerrufsbelehrung.html">Widerrufsbelehrung</a>
-        </nav>
+        <!-- Rechts: Spiegel-Spacer (keine Inhalte, nur Balance) -->
+        <div class="d-footer-mirror"></div>
     </footer>
 </div>
 
@@ -504,23 +384,12 @@
         </div>
     </div>
 
-    <!-- MOBILE FOOTER BAR (Fairness + Social Icons) -->
+    <!-- MOBILE FOOTER BAR -->
     <footer class="m-footer-bar">
-        <!-- Fairness-Handel Badge -->
-        <a href="https://www.fairness-handel.de" target="_blank" rel="noopener" class="m-fh-badge">
-            <div class="fh-icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.5" fill="none"/>
-                </svg>
-            </div>
-            <div class="m-fh-lines">
-                <span class="fh-top">Fairness</span>
-                <span class="fh-bottom">Handel</span>
-            </div>
+        <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener" class="m-fh-logo">
+            <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
+                 alt="Mitglied der Initiative Fairness im Handel">
         </a>
-
-        <!-- Social Icons -->
         <div class="m-sidebar-right">
             <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
             <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
@@ -534,14 +403,16 @@
         </div>
     </footer>
 
-    <!-- I/D Panel (Impressum / Datenschutz etc.) -->
+    <!-- I/D Button + Panel -->
     <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
     <div class="m-id-panel" id="m-id-panel">
-        <a href="shop.html">Shop</a><span>|</span>
-        <a href="impressum.html">Impressum</a><span>|</span>
-        <a href="agb.html">AGB</a><span>|</span>
-        <a href="datenschutz.html">Datenschutz</a><span>|</span>
-        <a href="widerrufsbelehrung.html">Widerruf</a>
+        <div class="m-id-panel-label">Shop</div>
+        <div class="m-id-panel-links">
+            <a href="shopimpressum.html">Impressum</a>
+            <a href="shopagb.html">AGB</a>
+            <a href="shopdatenschutz.html">Datenschutz</a>
+            <a href="shopwiderruf.html">Widerruf</a>
+        </div>
     </div>
 </div>
 
@@ -563,19 +434,13 @@
         var desktopWrap = document.getElementById('my-store-132126030');
         var mobileWrap  = document.getElementById('my-store-132126030-mobile');
         if (!desktopWrap || !mobileWrap) return;
-
         if (isMobile) {
-            if (!mobileWrap.contains(desktopWrap)) {
-                mobileWrap.appendChild(desktopWrap);
-            }
+            if (!mobileWrap.contains(desktopWrap)) mobileWrap.appendChild(desktopWrap);
         } else {
             var desktopTarget = document.querySelector('#desktop-wrapper .ecwid-shop-wrap');
-            if (desktopTarget && !desktopTarget.contains(desktopWrap)) {
-                desktopTarget.appendChild(desktopWrap);
-            }
+            if (desktopTarget && !desktopTarget.contains(desktopWrap)) desktopTarget.appendChild(desktopWrap);
         }
     }
-
     window.addEventListener('load', moveEcwidToCorrectContainer);
     window.addEventListener('resize', moveEcwidToCorrectContainer);
     setTimeout(moveEcwidToCorrectContainer, 300);
