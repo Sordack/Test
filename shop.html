@@ -15,6 +15,7 @@
             --amazon-blue: #00A8E1;
             --glass: rgba(255,255,255,0.63);
             --glass-light: rgba(255,255,255,0.41);
+            --glass-footer: rgba(255,255,255,0.38);
         }
 
         html, body { margin: 0; padding: 0; background-color: transparent; font-family: 'Special Elite', cursive; height: 100%; width: 100%; }
@@ -70,64 +71,10 @@
             .d-sidebar-right:hover a i { animation-play-state:paused!important; transform:scale(1)!important; color:#000!important; }
             .d-sidebar-right a:hover i { color:var(--brand-color)!important; transform:scale(1.55)!important; }
 
-            main { flex: 1; padding: 95px 55px 65px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; }
-
-            .d-footer {
-                width: 100%;
-                height: 50px;
-                padding: 0;
-                background: rgba(255,255,255,0.75);
-                backdrop-filter: blur(10px);
-                border-top: 1.5px solid #000;
-                z-index: 100;
-                position: fixed;
-                bottom: 0; left: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-sizing: border-box;
-                overflow: hidden;
-            }
-            .d-footer-center {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2px;
-                height: 100%;
-            }
-            .d-footer-center-label {
-                font-size: 0.52rem;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 2px;
-                color: rgba(0,0,0,0.38);
-                line-height: 1;
-            }
-            .d-footer-center-links {
-                display: flex;
-                align-items: center;
-            }
-            .d-footer-center-links a {
-                color: #000;
-                text-decoration: none;
-                font-size: 0.63rem;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 0.4px;
-                padding: 0 10px;
-                white-space: nowrap;
-                animation: footerFlash 3s ease-in-out infinite;
-                transition: color 0.2s;
-            }
-            .d-footer-center-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.18); }
-            .d-footer-center-links a:hover { color: var(--anton-red) !important; animation: none; }
-
-            @keyframes footerFlash {
-                0%,46% { color: #000; }
-                50%     { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,1); }
-                54%,100%{ color: #000; }
-            }
+            main { flex: 1; padding: 95px 55px 60px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; }
+            .d-footer { width: 100%; padding: 12px 0; background: rgba(255,255,255,0.75); backdrop-filter: blur(10px); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: fixed; bottom: 0; left: 0; }
+            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; transition: all 0.3s ease; }
+            .d-footer a:hover { color: var(--anton-yellow)!important; text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; }
         }
 
         /* ================================================================= */
@@ -137,9 +84,32 @@
             #desktop-wrapper { display: none !important; }
             #mobile-wrapper  { display: flex !important; flex-direction: column; }
 
-            html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; height: 100%; overflow: hidden; }
-            body { height: 100%; width: 100%; overflow: hidden; position: relative; display: flex; flex-direction: column; background: transparent; margin: 0; padding: 0; }
-            #mobile-wrapper { display: flex !important; flex-direction: column; height: 100%; width: 100%; overflow: hidden; position: relative; }
+            html {
+                background: url('Background.jpg') no-repeat center center fixed;
+                background-size: cover;
+                height: 100%;
+                overflow: hidden;
+            }
+            body {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                background: transparent;
+                margin: 0;
+                padding: 0;
+            }
+
+            #mobile-wrapper {
+                display: flex !important;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+            }
 
             .m-header { position: relative; flex-shrink: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
             .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
@@ -157,35 +127,28 @@
             .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
             .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
 
-            .m-content-scroll { flex: 1; overflow-y: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; box-sizing: border-box; padding: 10px 8px 80px 8px; touch-action: pan-y; position: relative; z-index: 1; }
+            .m-content-scroll {
+                flex: 1;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+                box-sizing: border-box;
+                padding: 10px 8px 80px 8px;
+                touch-action: pan-y;
+                position: relative;
+                z-index: 1;
+            }
 
             .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
             .m-id-button.hidden { transform: translateX(100%); }
-
-            .m-id-panel {
-                position: fixed; right: -300px; bottom: 150px;
-                height: 54px; width: 280px;
-                background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
-                border: 2px solid #000; border-right: none;
-                display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-                z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1);
-                border-radius: 8px 0 0 8px; overflow: hidden; padding: 4px 6px; box-sizing: border-box;
-            }
+            .m-id-panel { position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem; }
             .m-id-panel.open { right: 0; }
-            .m-id-panel-label { font-size: 0.48rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; color: rgba(0,0,0,0.38); line-height: 1; }
-            .m-id-panel-links { display: flex; align-items: center; flex-wrap: nowrap; }
-            .m-id-panel-links a { color: #000; text-decoration: none; text-transform: uppercase; font-size: 0.6rem; font-weight: bold; padding: 0 5px; white-space: nowrap; animation: footerFlashMobile 3s ease-in-out infinite; }
-            .m-id-panel-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
-            @keyframes footerFlashMobile { 0%,46%{color:#000;} 50%{color:#fff;text-shadow:0 0 8px rgba(255,255,255,1);} 54%,100%{color:#000;} }
+            .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
 
-            .m-footer-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; box-sizing: border-box; overflow: hidden; }
-
-            .m-fh-logo { display: flex; align-items: center; justify-content: center; height: 100%; padding: 5px 8px; border-right: 1.5px solid rgba(0,0,0,0.15); flex-shrink: 0; text-decoration: none; }
-            .m-fh-logo img { height: 40px; width: auto; object-fit: contain; display: block; }
-
-            .m-sidebar-right { flex: 1; height: 100%; display: flex; flex-direction: row; align-items: center; padding: 0 4px; justify-content: space-evenly; }
+            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; padding: 0 10px; justify-content: space-evenly; flex-shrink: 0; }
             .m-sidebar-right a { text-decoration: none; }
-            .m-sidebar-right a i { color: #000; font-size: 1.4rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
+            .m-sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
             @keyframes ultraFlowWaveMobile { 0%{transform:scale(1);color:#000;}9.33%{transform:scale(1.4);color:var(--brand-color);}23.33%,100%{transform:scale(1);color:#000;} }
             .m-sidebar-right a:nth-child(1) i { --brand-color:#f00; animation-delay:0.0s; }
             .m-sidebar-right a:nth-child(2) i { --brand-color:#25F4EE; animation-delay:0.25s; }
@@ -211,139 +174,56 @@
             #mobile-wrapper .m-epk-container { position: static !important; width: 100% !important; height: auto !important; background: transparent !important; border-left: none !important; border-top: 1px solid rgba(0,0,0,0.15) !important; padding-top: 12px !important; margin-top: auto !important; justify-content: flex-start !important; }
             #mobile-wrapper .m-epk-text { writing-mode: horizontal-tb !important; transform: none !important; font-size: 0.78rem; }
             #mobile-wrapper .m-content-scroll { padding-bottom: 10px !important; padding-right: 56px !important; }
-            #mobile-wrapper .m-footer-bar { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; }
-            #mobile-wrapper .m-fh-logo { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 5px 3px !important; width: 100% !important; }
-            #mobile-wrapper .m-fh-logo img { height: 22px !important; }
-            #mobile-wrapper .m-sidebar-right { flex-direction: column !important; justify-content: space-evenly !important; padding: 0 !important; }
+            #mobile-wrapper .m-sidebar-right { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; border-radius: 0 !important; padding: 0 !important; gap: 0 !important; justify-content: space-evenly !important; background: rgba(255,255,255,0.2) !important; backdrop-filter: blur(3px) !important; }
             #mobile-wrapper .m-sidebar-right a i { font-size: 1.3rem !important; }
             #mobile-wrapper .m-id-button { display: none !important; }
-            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 310px !important; height: 50px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; opacity: 1 !important; overflow: hidden !important; }
+            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 260px !important; height: 38px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; font-size: 0.75rem !important; opacity: 1 !important; overflow: hidden !important; }
         }
 
         /* ================================================================= */
-        /* BENTO BOXES                                                        */
+        /* ECWID SHOP WRAPPER                                                 */
         /* ================================================================= */
-
-        .bento-grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 22px;
-        }
-
-        /* Fanshop-Box – 20% größer als Original (336px × 1.2 = 403px) */
-        .bento-fanshop {
+        .ecwid-shop-wrap {
             background: var(--glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             border: 3px solid #000;
-            box-shadow: 6px 6px 0 rgba(0,0,0,0.5);
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.45);
             border-radius: 18px;
-            aspect-ratio: 1 / 1;
-            max-width: 403px;
-            width: 80%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: #000;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.18s ease, box-shadow 0.18s ease;
-        }
-        .bento-fanshop:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 9px 9px 0 rgba(0,0,0,0.55);
-        }
-        .bento-fanshop::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: radial-gradient(circle, rgba(255,0,0,0.08) 0%, transparent 65%);
-            animation: bento-pulse 3s ease-in-out infinite;
-        }
-        @keyframes bento-pulse {
-            0%, 100% { opacity: 0.4; transform: scale(0.9); }
-            50%       { opacity: 1;   transform: scale(1.05); }
-        }
-        .bento-fanshop-icon {
-            font-size: clamp(2.2rem, 6vw, 3.6rem);
-            margin-bottom: 14px;
-            animation: cart-bounce 2.5s ease-in-out infinite;
-            position: relative;
-            z-index: 1;
-        }
-        @keyframes cart-bounce {
-            0%, 100% { transform: translateY(0); }
-            40%       { transform: translateY(-8px); }
-            60%       { transform: translateY(-4px); }
-        }
-        .bento-fanshop-text {
-            font-family: 'Special Elite', cursive;
-            font-size: clamp(0.72rem, 2vw, 1rem);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-align: center;
-            padding: 0 16px;
-            position: relative;
-            z-index: 1;
-            line-height: 1.5;
-        }
-        .bento-fanshop-text strong {
-            display: block;
-            font-size: clamp(0.9rem, 2.8vw, 1.35rem);
-            color: var(--anton-red);
-            letter-spacing: 4px;
-            margin-bottom: 6px;
-        }
-        .bento-fanshop-arrow {
-            margin-top: 16px;
-            font-size: clamp(0.62rem, 1.5vw, 0.82rem);
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: #000;
-            color: var(--anton-yellow);
-            padding: 7px 18px;
-            border-radius: 30px;
-            position: relative;
-            z-index: 1;
-            letter-spacing: 1px;
-            transition: background 0.2s, color 0.2s;
-        }
-        .bento-fanshop:hover .bento-fanshop-arrow {
-            background: var(--anton-red);
-            color: #fff;
+            padding: 22px;
+            margin-bottom: 50px;
+            min-height: 400px;
         }
 
-        /* Fairness-Logo innerhalb der Box */
-        .bento-fanshop-fairness {
-            margin-top: 14px;
-            position: relative;
-            z-index: 1;
+        .shop-page-title {
+            font-family: 'Special Elite', cursive;
+            font-size: clamp(0.9rem, 2vw, 1.4rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0 0 18px 0;
+            color: #000;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 10px;
         }
-        .bento-fanshop-fairness img {
-            height: 36px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.15));
-            transition: transform 0.2s;
+        .shop-page-title span.title-dot {
+            display: inline-block;
+            width: 10px; height: 10px;
+            background: var(--anton-red);
+            border-radius: 50%;
+            border: 2px solid #000;
         }
-        .bento-fanshop:hover .bento-fanshop-fairness img {
-            transform: scale(1.06);
+
+        /* Ecwid overrides to blend with Anton design */
+        #my-store-132126030 {
+            font-family: 'Special Elite', cursive !important;
         }
 
         @media (max-width: 800px) {
-            .bento-fanshop { max-width: 90%; width: 90%; }
+            .ecwid-shop-wrap {
+                padding: 12px;
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -384,34 +264,15 @@
     </aside>
 
     <main>
-        <div class="bento-grid">
-            <a href="shopeingang.html" class="bento-fanshop">
-                <div class="bento-fanshop-icon">🛍️</div>
-                <div class="bento-fanshop-text">
-                    <strong>Fanshop</strong>
-                    Hier geht's zum Fanshop von ANTON.
-                </div>
-                <div class="bento-fanshop-arrow">
-                    <i class="fa-solid fa-arrow-right"></i> Jetzt entdecken
-                </div>
-                <div class="bento-fanshop-fairness">
-                    <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
-                         alt="Mitglied der Initiative Fairness im Handel">
-                </div>
-            </a>
+        <h1 class="shop-page-title"><span class="title-dot"></span> Fanartikel Shop</h1>
+        <div class="ecwid-shop-wrap">
+            <div id="my-store-132126030"></div>
         </div>
     </main>
 
     <footer class="d-footer">
-        <div class="d-footer-center">
-            <span class="d-footer-center-label">Shop</span>
-            <nav class="d-footer-center-links">
-                <a href="shopimpressum.html">Impressum</a>
-                <a href="shopagb.html">AGB</a>
-                <a href="shopdatenschutz.html">Datenschutz</a>
-                <a href="shopwiderruf.html">Widerrufsbelehrung</a>
-            </nav>
-        </div>
+        <div><a href="index.html">www.anton-familienpop.de</a></div>
+        <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
     </footer>
 </div>
 
@@ -433,51 +294,76 @@
     </nav>
 
     <div class="m-content-scroll" id="m-scroll-area">
-        <div class="bento-grid">
-            <a href="shopeingang.html" class="bento-fanshop">
-                <div class="bento-fanshop-icon">🛍️</div>
-                <div class="bento-fanshop-text">
-                    <strong>Fanshop</strong>
-                    Hier geht's zum Fanshop von ANTON.
-                </div>
-                <div class="bento-fanshop-arrow">
-                    <i class="fa-solid fa-arrow-right"></i> Jetzt entdecken
-                </div>
-                <div class="bento-fanshop-fairness">
-                    <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
-                         alt="Mitglied der Initiative Fairness im Handel">
-                </div>
-            </a>
+        <h1 class="shop-page-title"><span class="title-dot"></span> Fanartikel Shop</h1>
+        <div class="ecwid-shop-wrap">
+            <div id="my-store-132126030-mobile">
+                <!-- Ecwid wird per JS in diesen Container verschoben (mobile) -->
+            </div>
         </div>
     </div>
 
-    <!-- MOBILE FOOTER BAR -->
-    <footer class="m-footer-bar">
-        <div class="m-sidebar-right">
-            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
-            <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
-            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
-        </div>
-    </footer>
+    <aside class="m-sidebar-right">
+        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
+    </aside>
 
-    <!-- I/D Button + Panel -->
     <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
     <div class="m-id-panel" id="m-id-panel">
-        <div class="m-id-panel-label">Shop</div>
-        <div class="m-id-panel-links">
-            <a href="shopimpressum.html">Impressum</a>
-            <a href="shopagb.html">AGB</a>
-            <a href="shopdatenschutz.html">Datenschutz</a>
-            <a href="shopwiderruf.html">Widerruf</a>
-        </div>
+        <a href="impressum.html">Impressum</a><span>|</span><a href="datenschutz.html">Datenschutz</a>
     </div>
 </div>
+
+<!-- ===================== ECWID SCRIPT ===================== -->
+<script data-cfasync="false" type="text/javascript"
+    src="https://app.ecwid.com/script.js?132126030&data_platform=code&data_date=2026-03-26"
+    charset="utf-8"></script>
+<script type="text/javascript">
+    // Ecwid kann nur EINMAL pro Seite initialisiert werden.
+    // Wir rendern in #my-store-132126030 (Desktop-Container),
+    // und verschieben den fertigen Node per JS in den Mobile-Container,
+    // wenn das Gerät mobil ist.
+
+    xProductBrowser(
+        "categoriesPerRow=3",
+        "views=grid(20,3) list(60) table(60)",
+        "categoryView=grid",
+        "searchView=list",
+        "id=my-store-132126030"
+    );
+
+    function moveEcwidToCorrectContainer() {
+        var isMobile = window.innerWidth <= 800;
+        var desktopWrap = document.getElementById('my-store-132126030');
+        var mobileWrap  = document.getElementById('my-store-132126030-mobile');
+        if (!desktopWrap || !mobileWrap) return;
+
+        if (isMobile) {
+            // Bewege den Ecwid-Node in den Mobile-Container
+            if (!mobileWrap.contains(desktopWrap)) {
+                mobileWrap.appendChild(desktopWrap);
+            }
+        } else {
+            // Bewege zurück in den Desktop-main
+            var desktopTarget = document.querySelector('#desktop-wrapper .ecwid-shop-wrap');
+            if (desktopTarget && !desktopTarget.contains(desktopWrap)) {
+                desktopTarget.appendChild(desktopWrap);
+            }
+        }
+    }
+
+    // Beim Laden und bei Resize ausführen
+    window.addEventListener('load', moveEcwidToCorrectContainer);
+    window.addEventListener('resize', moveEcwidToCorrectContainer);
+    // Sofort ausführen (nach kurzem Delay damit Ecwid Zeit hat zu initialisieren)
+    setTimeout(moveEcwidToCorrectContainer, 300);
+</script>
 
 <!-- ===================== NAV SCRIPTS ===================== -->
 <script>
