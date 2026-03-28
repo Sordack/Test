@@ -84,32 +84,10 @@
             #desktop-wrapper { display: none !important; }
             #mobile-wrapper  { display: flex !important; flex-direction: column; }
 
-            html {
-                background: url('Background.jpg') no-repeat center center fixed;
-                background-size: cover;
-                height: 100%;
-                overflow: hidden;
-            }
-            body {
-                height: 100%;
-                width: 100%;
-                overflow: hidden;
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                background: transparent;
-                margin: 0;
-                padding: 0;
-            }
+            html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; height: 100%; overflow: hidden; }
+            body { height: 100%; width: 100%; overflow: hidden; position: relative; display: flex; flex-direction: column; background: transparent; margin: 0; padding: 0; }
 
-            #mobile-wrapper {
-                display: flex !important;
-                flex-direction: column;
-                height: 100%;
-                width: 100%;
-                overflow: hidden;
-                position: relative;
-            }
+            #mobile-wrapper { display: flex !important; flex-direction: column; height: 100%; width: 100%; overflow: hidden; position: relative; }
 
             .m-header { position: relative; flex-shrink: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
             .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
@@ -127,18 +105,7 @@
             .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
             .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
 
-            .m-content-scroll {
-                flex: 1;
-                overflow-y: scroll;
-                overflow-x: hidden;
-                -webkit-overflow-scrolling: touch;
-                overscroll-behavior: contain;
-                box-sizing: border-box;
-                padding: 10px 8px 80px 8px;
-                touch-action: pan-y;
-                position: relative;
-                z-index: 1;
-            }
+            .m-content-scroll { flex: 1; overflow-y: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; box-sizing: border-box; padding: 10px 8px 80px 8px; touch-action: pan-y; position: relative; z-index: 1; }
 
             .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
             .m-id-button.hidden { transform: translateX(100%); }
@@ -213,32 +180,10 @@
             border: 2px solid #000;
         }
 
-        /* Ecwid overrides to blend with Anton design */
-        #my-store-132126030 {
-            font-family: 'Special Elite', cursive !important;
-        }
-
-        /* ================================================================= */
-        /* EMPFOHLENE PRODUKTE AUSBLENDEN                                     */
-        /* ================================================================= */
-        .ecwid .ec-storefront-v2 .ec-storefront__featured-products,
-        .ecwid .ec-storefront__featured-products,
-        .ecwid .ec-featured-products,
-        .ecwid .ec-storefront__products-wrapper,
-        .ecwid .ec-storefront-v2 .ec-storefront__products,
-        .ecwid .ec-store__content-area .ec-storefront__featured,
-        .ecwid .ec-storefront .ec-storefront__featured-products,
-        .ecwid [class*="featured-products"],
-        .ecwid [class*="featuredProducts"] {
-            display: none !important;
-        }
+        #my-store-132126030 { font-family: 'Special Elite', cursive !important; }
 
         @media (max-width: 800px) {
-            .ecwid-shop-wrap {
-                padding: 12px;
-                border-radius: 12px;
-                margin-bottom: 20px;
-            }
+            .ecwid-shop-wrap { padding: 12px; border-radius: 12px; margin-bottom: 20px; }
         }
     </style>
 </head>
@@ -311,9 +256,7 @@
     <div class="m-content-scroll" id="m-scroll-area">
         <h1 class="shop-page-title"><span class="title-dot"></span> Fanartikel Shop</h1>
         <div class="ecwid-shop-wrap">
-            <div id="my-store-132126030-mobile">
-                <!-- Ecwid wird per JS in diesen Container verschoben (mobile) -->
-            </div>
+            <div id="my-store-132126030-mobile"></div>
         </div>
     </div>
 
@@ -348,24 +291,59 @@
         "id=my-store-132126030"
     );
 
+    // ---------------------------------------------------------------
+    // MutationObserver: versteckt Empfohlene Produkte sobald sie
+    // von Ecwid in den DOM eingefügt werden
+    // ---------------------------------------------------------------
+    function hideEcwidFeatured() {
+        var store = document.getElementById('my-store-132126030');
+        if (!store) return;
+        store.querySelectorAll('*').forEach(function(el) {
+            var cls = (el.className || '').toString().toLowerCase();
+            if (
+                (cls.includes('featured') && !cls.includes('categor')) ||
+                cls.includes('ec-storefront__products') ||
+                cls.includes('products-list--home') ||
+                cls.includes('home-page__products') ||
+                cls.includes('storefront__products')
+            ) {
+                el.style.setProperty('display', 'none', 'important');
+            }
+        });
+    }
+
+    var ecwidObserver = new MutationObserver(function() {
+        hideEcwidFeatured();
+    });
+
+    function startEcwidObserver() {
+        var store = document.getElementById('my-store-132126030');
+        if (store) {
+            ecwidObserver.observe(store, { childList: true, subtree: true });
+            setTimeout(hideEcwidFeatured, 500);
+            setTimeout(hideEcwidFeatured, 1500);
+            setTimeout(hideEcwidFeatured, 3000);
+        } else {
+            setTimeout(startEcwidObserver, 200);
+        }
+    }
+    startEcwidObserver();
+
+    // ---------------------------------------------------------------
+    // Ecwid zwischen Desktop / Mobile verschieben
+    // ---------------------------------------------------------------
     function moveEcwidToCorrectContainer() {
         var isMobile = window.innerWidth <= 800;
         var desktopWrap = document.getElementById('my-store-132126030');
         var mobileWrap  = document.getElementById('my-store-132126030-mobile');
         if (!desktopWrap || !mobileWrap) return;
-
         if (isMobile) {
-            if (!mobileWrap.contains(desktopWrap)) {
-                mobileWrap.appendChild(desktopWrap);
-            }
+            if (!mobileWrap.contains(desktopWrap)) mobileWrap.appendChild(desktopWrap);
         } else {
             var desktopTarget = document.querySelector('#desktop-wrapper .ecwid-shop-wrap');
-            if (desktopTarget && !desktopTarget.contains(desktopWrap)) {
-                desktopTarget.appendChild(desktopWrap);
-            }
+            if (desktopTarget && !desktopTarget.contains(desktopWrap)) desktopTarget.appendChild(desktopWrap);
         }
     }
-
     window.addEventListener('load', moveEcwidToCorrectContainer);
     window.addEventListener('resize', moveEcwidToCorrectContainer);
     setTimeout(moveEcwidToCorrectContainer, 300);
