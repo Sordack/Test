@@ -218,6 +218,21 @@
             font-family: 'Special Elite', cursive !important;
         }
 
+        /* ================================================================= */
+        /* EMPFOHLENE PRODUKTE AUSBLENDEN                                     */
+        /* ================================================================= */
+        .ecwid .ec-storefront-v2 .ec-storefront__featured-products,
+        .ecwid .ec-storefront__featured-products,
+        .ecwid .ec-featured-products,
+        .ecwid .ec-storefront__products-wrapper,
+        .ecwid .ec-storefront-v2 .ec-storefront__products,
+        .ecwid .ec-store__content-area .ec-storefront__featured,
+        .ecwid .ec-storefront .ec-storefront__featured-products,
+        .ecwid [class*="featured-products"],
+        .ecwid [class*="featuredProducts"] {
+            display: none !important;
+        }
+
         @media (max-width: 800px) {
             .ecwid-shop-wrap {
                 padding: 12px;
@@ -325,11 +340,6 @@
     src="https://app.ecwid.com/script.js?132126030&data_platform=code&data_date=2026-03-26"
     charset="utf-8"></script>
 <script type="text/javascript">
-    // Ecwid kann nur EINMAL pro Seite initialisiert werden.
-    // Wir rendern in #my-store-132126030 (Desktop-Container),
-    // und verschieben den fertigen Node per JS in den Mobile-Container,
-    // wenn das Gerät mobil ist.
-
     xProductBrowser(
         "categoriesPerRow=3",
         "views=grid(20,3) list(60) table(60)",
@@ -345,12 +355,10 @@
         if (!desktopWrap || !mobileWrap) return;
 
         if (isMobile) {
-            // Bewege den Ecwid-Node in den Mobile-Container
             if (!mobileWrap.contains(desktopWrap)) {
                 mobileWrap.appendChild(desktopWrap);
             }
         } else {
-            // Bewege zurück in den Desktop-main
             var desktopTarget = document.querySelector('#desktop-wrapper .ecwid-shop-wrap');
             if (desktopTarget && !desktopTarget.contains(desktopWrap)) {
                 desktopTarget.appendChild(desktopWrap);
@@ -358,10 +366,8 @@
         }
     }
 
-    // Beim Laden und bei Resize ausführen
     window.addEventListener('load', moveEcwidToCorrectContainer);
     window.addEventListener('resize', moveEcwidToCorrectContainer);
-    // Sofort ausführen (nach kurzem Delay damit Ecwid Zeit hat zu initialisieren)
     setTimeout(moveEcwidToCorrectContainer, 300);
 </script>
 
