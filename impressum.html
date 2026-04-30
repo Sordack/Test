@@ -124,10 +124,11 @@
             .d-bento-legal-col {
                 flex: 1;
                 padding: 28px 32px 32px;
-                font-family: Georgia, 'Times New Roman', serif;
+                /* Vereinheitlicht: durchgehend Special Elite */
+                font-family: 'Special Elite', cursive;
                 font-size: 14px;
                 color: #292929;
-                line-height: 1.7;
+                line-height: 1.75;
                 box-sizing: border-box;
             }
             .d-bento-legal-col:first-child {
@@ -145,14 +146,38 @@
                 margin-bottom: 18px;
                 color: #000;
             }
+            /* Fließtext-Absätze */
+            .d-bento-legal-col p {
+                font-family: 'Special Elite', cursive;
+                font-size: 14px;
+                line-height: 1.75;
+                margin: 0 0 10px 0;
+                color: #292929;
+            }
+            /* strong innerhalb des Fließtexts */
+            .d-bento-legal-col strong {
+                font-family: 'Special Elite', cursive;
+                font-size: 14px;
+                letter-spacing: 0.5px;
+            }
             .d-bento-legal-col h2 {
                 font-family: 'Special Elite', cursive;
-                font-size: 1rem;
-                margin: 16px 0 6px 0;
+                font-size: 0.95rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                margin: 20px 0 8px 0;
                 color: var(--anton-red);
             }
-            .d-bento-legal-col a { color: var(--anton-red); }
-            .d-bento-legal-col .itrk-legaltext { font-size: 13px; }
+            .d-bento-legal-col a {
+                color: var(--anton-red);
+                font-family: 'Special Elite', cursive;
+                font-size: 14px;
+            }
+            .d-bento-legal-col .itrk-legaltext {
+                font-family: 'Special Elite', cursive;
+                font-size: 13px;
+                line-height: 1.75;
+            }
 
             /* ── Footer ── */
             .d-footer {
@@ -187,16 +212,6 @@
                 transition: color 0.2s;
             }
             .d-footer-site-link:hover { color: var(--anton-red); }
-            .d-footer-center-label {
-                font-size: 0.52rem;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 2px;
-                color: rgba(0,0,0,0.38);
-                line-height: 1;
-                font-family: 'Special Elite', cursive;
-                display: none;
-            }
             .d-footer-center-links { display: flex; align-items: center; }
             .d-footer-center-links a {
                 color: #000;
@@ -281,11 +296,11 @@
             }
             .m-bento-legal-header i { font-size: 1.1rem; color: var(--anton-red); }
 
-            /* Mobile: stacked columns */
+            /* Mobile: stacked columns – vereinheitlicht */
             .m-bento-legal-col {
                 padding: 18px 16px 22px;
-                font-family: Georgia, 'Times New Roman', serif;
-                font-size: 13px; color: #292929; line-height: 1.65;
+                font-family: 'Special Elite', cursive;
+                font-size: 13px; color: #292929; line-height: 1.75;
                 box-sizing: border-box;
             }
             .m-bento-legal-col:first-child {
@@ -299,11 +314,36 @@
                 text-decoration: underline; text-underline-offset: 4px;
                 margin-bottom: 14px; color: #000;
             }
+            .m-bento-legal-col p {
+                font-family: 'Special Elite', cursive;
+                font-size: 13px;
+                line-height: 1.75;
+                margin: 0 0 8px 0;
+                color: #292929;
+            }
+            .m-bento-legal-col strong {
+                font-family: 'Special Elite', cursive;
+                font-size: 13px;
+            }
             .m-bento-legal-col h2 {
                 font-family: 'Special Elite', cursive;
-                font-size: 0.95rem; margin: 14px 0 5px 0; color: var(--anton-red);
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                margin: 16px 0 6px 0;
+                color: var(--anton-red);
             }
-            .m-bento-legal-col a { color: var(--anton-red); word-break: break-all; }
+            .m-bento-legal-col a {
+                color: var(--anton-red);
+                word-break: break-all;
+                font-family: 'Special Elite', cursive;
+                font-size: 13px;
+            }
+            .m-bento-legal-col .itrk-legaltext {
+                font-family: 'Special Elite', cursive;
+                font-size: 12px;
+                line-height: 1.75;
+            }
 
             .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
             .m-id-button.hidden { transform: translateX(100%); }
