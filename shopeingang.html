@@ -148,7 +148,7 @@
         }
 
         /* ================================================================= */
-        /* ECWID SHOP WRAPPER                                                 */
+        /* ECWID SHOP WRAPPER  –  schmaler, beginnt kurz vor den Bildern     */
         /* ================================================================= */
         .ecwid-shop-wrap {
             background: var(--glass);
@@ -156,9 +156,15 @@
             border: 3px solid #000;
             box-shadow: 5px 5px 0 rgba(0,0,0,0.45);
             border-radius: 18px;
-            padding: 22px;
+            /* Weniger padding oben – beginnt kurz vor den Produktbildern */
+            padding: 8px 14px 22px 14px;
             margin-bottom: 50px;
             min-height: 400px;
+            /* Schmaler: begrenzte Maximalbreite, zentriert */
+            max-width: 860px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
         }
 
         .shop-page-title {
@@ -182,8 +188,114 @@
 
         #my-store-132126030 { font-family: 'Special Elite', cursive !important; }
 
+        /* ================================================================= */
+        /* WIDERRUF-BUTTON                                                    */
+        /* ================================================================= */
+        .widerruf-btn {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #ff4444 0%, #cc0000 55%, #990000 100%);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Special Elite', cursive;
+            /* 3D-Effekt: unterer Schatten wirkt wie Tiefe */
+            box-shadow:
+                0 4px 0 #700000,
+                0 6px 10px rgba(0,0,0,0.5),
+                inset 0 1px 2px rgba(255,140,140,0.55);
+            transition: box-shadow 0.12s ease, transform 0.12s ease;
+            outline: none;
+            margin: 8px auto 0 auto;
+        }
+
+        /* Dünner umlaufender weißer Ring – dreht sich immer */
+        .widerruf-btn::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.8);
+            border-top-color: transparent;
+            border-right-color: rgba(255,255,255,0.25);
+            animation: widerruf-ring 2.4s linear infinite;
+            pointer-events: none;
+        }
+
+        /* Stehender Restring (Schatten des Rings) */
+        .widerruf-btn::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.12);
+            pointer-events: none;
+        }
+
+        @keyframes widerruf-ring {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        /* Hover: nach unten gedrückt */
+        .widerruf-btn:hover {
+            box-shadow:
+                0 1px 0 #700000,
+                0 2px 5px rgba(0,0,0,0.45),
+                inset 0 3px 5px rgba(0,0,0,0.3);
+            transform: translateY(3px);
+        }
+        .widerruf-btn:active {
+            box-shadow:
+                0 0 0 #700000,
+                0 1px 3px rgba(0,0,0,0.4),
+                inset 0 4px 6px rgba(0,0,0,0.35);
+            transform: translateY(4px);
+        }
+
+        .widerruf-btn i {
+            font-size: 20px;
+            color: #fff;
+            pointer-events: none;
+        }
+        .widerruf-btn .widerruf-label {
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        /* Wrapper unter dem Warenkorb-Icon in der rechten Sidebar */
+        .d-sidebar-right .widerruf-wrap,
+        .m-sidebar-right .widerruf-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         @media (max-width: 800px) {
-            .ecwid-shop-wrap { padding: 12px; border-radius: 12px; margin-bottom: 20px; }
+            .ecwid-shop-wrap {
+                padding: 6px 8px 16px 8px;
+                border-radius: 12px;
+                margin-bottom: 20px;
+                max-width: 100%;
+            }
+            .widerruf-btn {
+                width: 52px;
+                height: 52px;
+            }
+            .widerruf-btn i { font-size: 17px; }
+            .widerruf-btn::before, .widerruf-btn::after { inset: -5px; }
         }
     </style>
 </head>
@@ -219,7 +331,15 @@
         <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
         <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
+        <!-- Warenkorb -->
         <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
+        <!-- Widerruf-Button direkt unter Warenkorb -->
+        <div class="widerruf-wrap">
+            <a href="widerruf.html" class="widerruf-btn" title="Widerruf">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span class="widerruf-label">Widerruf</span>
+            </a>
+        </div>
         <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
@@ -269,6 +389,13 @@
         <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
+        <!-- Widerruf-Button (Mobile) -->
+        <div class="widerruf-wrap">
+            <a href="widerruf.html" class="widerruf-btn" title="Widerruf">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span class="widerruf-label">Widerruf</span>
+            </a>
+        </div>
         <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
