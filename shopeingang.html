@@ -334,13 +334,14 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 0.5rem;
+            font-size: 0.6rem;
             color: #000;
             transition: background 0.2s, transform 0.1s, opacity 0.2s;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
-        .nav-arrow:hover { background: var(--anton-yellow); }
+        .nav-arrow:hover { background: var(--anton-yellow); color: #000; }
+        .nav-arrow:hover i { color: #000 !important; }
         .nav-arrow:active { transform: scale(0.93); }
 
         .nav-arrow--inactive {
