@@ -10,16 +10,6 @@
         :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 240px; --apple-gray: #A2AAAD; --amazon-blue: #00A8E1; }
         html, body { margin: 0; padding: 0; background-color: #ffffff; font-family: 'Special Elite', cursive; height: 100%; width: 100%; }
 
-        /* ─── DS-BOX SHARED ─── */
-        .ds-box {
-            background: rgba(255,255,255,0.95);
-            border: 3px solid #000;
-            box-shadow: 6px 6px 0 #000;
-            border-radius: 20px;
-            padding: 30px 40px;
-            box-sizing: border-box;
-        }
-
         /* ─── BENTO GRID ─── */
         .bento-grid {
             display: flex;
@@ -53,60 +43,60 @@
             box-shadow: 3px 3px 0 rgba(0,0,0,0.12);
         }
         .bento-inner {
-            padding: 30px 28px 24px 28px;
+            padding: 18px 17px 14px 17px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 1 / 0.6;
         }
         .bento-label {
-            font-size: 0.62rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             font-weight: bold;
             opacity: 0.45;
             color: #000;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
         .bento-title {
-            font-size: 2.2rem;
+            font-size: 1.35rem;
             font-family: 'Special Elite', cursive;
             font-weight: bold;
             color: #000;
             line-height: 1.05;
-            margin: 0 0 12px 0;
+            margin: 0 0 7px 0;
         }
         .bento-desc {
-            font-size: 0.58rem;
+            font-size: 0.52rem;
             color: #333;
             line-height: 1.5;
             flex: 1;
-            margin-bottom: 18px;
+            margin-bottom: 11px;
         }
         .bento-arrow {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.65rem;
+            font-size: 0.58rem;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: #000;
             border: 2px solid rgba(0,0,0,0.30);
             border-radius: 50px;
-            padding: 7px 16px;
+            padding: 5px 12px;
             background: rgba(0,0,0,0.06);
             transition: background 0.15s;
             width: fit-content;
         }
         .bento-card:hover .bento-arrow { background: rgba(0,0,0,0.11); }
         .bento-icon {
-            font-size: 2.8rem;
+            font-size: 1.7rem;
             opacity: 0.09;
             position: absolute;
-            bottom: 22px;
-            right: 24px;
+            bottom: 14px;
+            right: 16px;
             pointer-events: none;
             color: #000;
         }
@@ -205,10 +195,10 @@
             .m-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
 
             /* Mobile bento overrides */
-            .bento-grid { flex-direction: column; gap: 14px; }
+            .bento-grid { flex-direction: column; gap: 10px; }
             .bento-card { flex: none; width: 100%; }
-            .bento-inner { aspect-ratio: 1 / 1; padding: 18px 16px 16px 16px; }
-            .bento-title { font-size: 1.6rem; }
+            .bento-inner { aspect-ratio: 1 / 0.6; padding: 12px 12px 10px 12px; }
+            .bento-title { font-size: 1.1rem; }
         }
 
         /* ─── 2a. PORTRAIT ─── */
@@ -288,7 +278,7 @@
 
         <main>
             <div class="ds-wrapper">
-                <div class="ds-box" id="datenschutz-content"><!-- DS CONTENT INJECTED BY JS --></div>
+                <div id="datenschutz-content"><!-- DS CONTENT INJECTED BY JS --></div>
             </div>
         </main>
 
@@ -318,7 +308,7 @@
         </nav>
 
         <div class="m-page-scroll">
-            <div class="ds-box" id="datenschutz-content-m"><!-- DS CONTENT INJECTED BY JS --></div>
+            <div id="datenschutz-content-m"><!-- DS CONTENT INJECTED BY JS --></div>
         </div>
 
         <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
@@ -342,7 +332,7 @@
     <script>
     // ─── BENTO CONTENT ───
     var DS_HTML = `
-<p style="font-size:0.62rem;margin:0 0 20px 0;opacity:0.55;text-transform:uppercase;letter-spacing:0.12em;">Datenschutz</p>
+<p style="font-size:0.62rem;margin:0 0 14px 0;opacity:0.55;text-transform:uppercase;letter-spacing:0.12em;">Datenschutz</p>
 <div class="bento-grid">
   <a href="datenschutzweb.html" class="bento-card">
     <div class="bento-inner">
