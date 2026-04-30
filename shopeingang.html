@@ -195,8 +195,8 @@
             align-items: center;
             justify-content: center;
             gap: 3px;
-            width: 64px;
-            height: 64px;
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
             background: linear-gradient(145deg, #ff4444 0%, #cc0000 55%, #990000 100%);
             border: none;
@@ -264,11 +264,12 @@
             pointer-events: none;
         }
         .widerruf-btn .widerruf-label {
-            font-size: 8px;
+            font-size: 9px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: rgba(255,255,255,0.9);
-            line-height: 1;
+            color: rgba(255,255,255,0.95);
+            line-height: 1.2;
+            text-align: center;
             pointer-events: none;
         }
 
@@ -386,13 +387,6 @@
         <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
         <!-- Warenkorb -->
         <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
-        <!-- Widerruf-Button direkt unter Warenkorb -->
-        <div class="widerruf-wrap">
-            <a href="widerruf.html" class="widerruf-btn" title="Widerruf">
-                <i class="fa-solid fa-rotate-left"></i>
-                <span class="widerruf-label">Widerruf</span>
-            </a>
-        </div>
         <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
@@ -452,13 +446,6 @@
         <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
         <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
-        <!-- Widerruf-Button (Mobile) -->
-        <div class="widerruf-wrap">
-            <a href="widerruf.html" class="widerruf-btn" title="Widerruf">
-                <i class="fa-solid fa-rotate-left"></i>
-                <span class="widerruf-label">Widerruf</span>
-            </a>
-        </div>
         <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
     </aside>
 
@@ -514,7 +501,25 @@
 
     var ecwidObserver = new MutationObserver(function() {
         hideEcwidFeatured();
+        injectWiderrufButton();
     });
+
+    // ---------------------------------------------------------------
+    // Widerruf-Button unter dem Warenkorb-Element einsetzen
+    // ---------------------------------------------------------------
+    function injectWiderrufButton() {
+        if (document.getElementById('widerruf-inject')) return;
+        var store = document.getElementById('my-store-132126030');
+        if (!store) return;
+        // Ecwid-Warenkorb: typische Klassen
+        var cart = store.querySelector('.ec-cart-widget, .ec-minicart, [class*="cart"], [class*="Cart"]');
+        if (!cart) return;
+        var btn = document.createElement('div');
+        btn.id = 'widerruf-inject';
+        btn.style.cssText = 'display:flex;justify-content:center;margin-top:10px;';
+        btn.innerHTML = '<a href="widerruf.html" class="widerruf-btn" title="Widerruf"><span class="widerruf-label">Widerruf</span></a>';
+        cart.parentNode.insertBefore(btn, cart.nextSibling);
+    }
 
     function startEcwidObserver() {
         var store = document.getElementById('my-store-132126030');
@@ -523,6 +528,9 @@
             setTimeout(hideEcwidFeatured, 500);
             setTimeout(hideEcwidFeatured, 1500);
             setTimeout(hideEcwidFeatured, 3000);
+            setTimeout(injectWiderrufButton, 800);
+            setTimeout(injectWiderrufButton, 2000);
+            setTimeout(injectWiderrufButton, 4000);
         } else {
             setTimeout(startEcwidObserver, 200);
         }
