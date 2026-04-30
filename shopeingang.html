@@ -152,20 +152,22 @@
         /* ================================================================= */
         /* ECWID SHOP WRAPPER  –  schmaler, beginnt kurz vor den Bildern     */
         /* ================================================================= */
+        .shop-wrap-outer {
+            position: relative;
+            max-width: 430px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .ecwid-shop-wrap {
             background: var(--glass);
             backdrop-filter: blur(8px);
             border: 3px solid #000;
             box-shadow: 5px 5px 0 rgba(0,0,0,0.45);
             border-radius: 18px;
-            /* Weniger padding oben – beginnt kurz vor den Produktbildern */
             padding: 8px 14px 22px 14px;
             margin-bottom: 50px;
             min-height: 400px;
-            /* Schmaler: begrenzte Maximalbreite, zentriert */
-            max-width: 430px;
-            margin-left: auto;
-            margin-right: auto;
             box-sizing: border-box;
         }
 
@@ -195,8 +197,8 @@
             align-items: center;
             justify-content: center;
             gap: 3px;
-            width: 54px;
-            height: 54px;
+            width: 43px;
+            height: 43px;
             border-radius: 50%;
             background: linear-gradient(145deg, #ff4444 0%, #cc0000 55%, #990000 100%);
             border: none;
@@ -392,11 +394,11 @@
 
     <main>
         <h1 class="shop-page-title">Anton-Familienshop</h1>
-        <div class="ecwid-shop-wrap">
-            <div id="my-store-132126030"></div>
-        </div>
-        <div style="display:flex;justify-content:center;margin-top:14px;">
-            <a href="widerruf.html" class="widerruf-btn" title="Widerruf">
+        <div class="shop-wrap-outer">
+            <div class="ecwid-shop-wrap">
+                <div id="my-store-132126030"></div>
+            </div>
+            <a href="shopwiderruf.html" class="widerruf-btn" title="Widerruf" style="position:absolute;bottom:12px;right:calc(50% - 215px + 12px);margin:0;">
                 <span class="widerruf-label">Widerruf</span>
             </a>
         </div>
@@ -437,11 +439,11 @@
 
     <div class="m-content-scroll" id="m-scroll-area">
         <h1 class="shop-page-title">Anton-Familienshop</h1>
-        <div class="ecwid-shop-wrap">
-            <div id="my-store-132126030-mobile"></div>
-        </div>
-        <div style="display:flex;justify-content:center;margin-top:14px;">
-            <a href="widerruf.html" class="widerruf-btn" title="Widerruf">
+        <div class="shop-wrap-outer">
+            <div class="ecwid-shop-wrap">
+                <div id="my-store-132126030-mobile"></div>
+            </div>
+            <a href="shopwiderruf.html" class="widerruf-btn" title="Widerruf" style="position:absolute;bottom:12px;right:12px;margin:0;">
                 <span class="widerruf-label">Widerruf</span>
             </a>
         </div>
