@@ -188,54 +188,55 @@
         #my-store-132126030 { font-family: 'Special Elite', cursive !important; }
 
         /* ================================================================= */
-        /* ECWID – ganzes Produktbild klickbar machen                        */
+        /* ECWID – Produktbild vollständig klickbar machen                   */
         /* ================================================================= */
 
-        /* Produkt-Kachel als Positionierungs-Anker */
+        /* Produkt-Kacheln als Positionierungs-Anker */
         #my-store-132126030 .grid-product,
         #my-store-132126030 .ec-grid__cell,
         #my-store-132126030 .product-card,
-        #my-store-132126030 .ec-grid-item {
+        #my-store-132126030 .ec-grid-item,
+        #my-store-132126030 [class*="grid-product"],
+        #my-store-132126030 [class*="product-card"] {
             position: relative !important;
         }
 
-        /* Bild-Wrapper: kein Pointer-Events-Blocking */
-        #my-store-132126030 .grid-product__image-wrap,
-        #my-store-132126030 .ec-grid-item__wrap,
-        #my-store-132126030 .product-card__image,
-        #my-store-132126030 .ec-grid__cell-inner {
-            pointer-events: auto !important;
-            cursor: pointer !important;
-        }
-
-        /* Overlay-Elemente die das Bild überdecken könnten */
-        #my-store-132126030 .grid-product__image-overlay,
-        #my-store-132126030 .product-card__overlay,
-        #my-store-132126030 .ec-grid-item__overlay {
+        /* Alle Overlay-Divs über dem Bild deaktivieren */
+        #my-store-132126030 [class*="overlay"],
+        #my-store-132126030 [class*="Overlay"],
+        #my-store-132126030 [class*="hover"],
+        #my-store-132126030 [class*="Hover"] {
             pointer-events: none !important;
         }
 
-        /* Den Hauptlink auf das gesamte Bild ausdehnen */
-        #my-store-132126030 .grid-product__image-wrap a,
-        #my-store-132126030 .ec-grid-item__image a,
-        #my-store-132126030 .product-card__image a {
-            display: block !important;
-            width: 100% !important;
-            height: 100% !important;
+        /* Bild-Wrapper klickbar */
+        #my-store-132126030 [class*="image-wrap"],
+        #my-store-132126030 [class*="image_wrap"],
+        #my-store-132126030 [class*="product-image"],
+        #my-store-132126030 [class*="grid-product__image"],
+        #my-store-132126030 [class*="ec-grid-item__image"],
+        #my-store-132126030 [class*="product-card__image"] {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            position: relative !important;
+        }
+
+        /* Bilder selbst blockieren keine Events */
+        #my-store-132126030 img {
+            pointer-events: none !important;
+        }
+
+        /* Der transparente Klick-Fix-Link */
+        #my-store-132126030 .anton-img-link-fix {
             position: absolute !important;
             top: 0 !important;
             left: 0 !important;
-            z-index: 10 !important;
-        }
-
-        /* Sicherstellen dass das img selbst keine Events blockiert */
-        #my-store-132126030 .grid-product__image-wrap img,
-        #my-store-132126030 .ec-grid-item__image img,
-        #my-store-132126030 .product-card__image img {
-            pointer-events: none !important;
             width: 100% !important;
-            height: auto !important;
+            height: 100% !important;
+            z-index: 20 !important;
             display: block !important;
+            cursor: pointer !important;
+            background: transparent !important;
         }
 
         /* ================================================================= */
@@ -266,7 +267,6 @@
             margin: 8px auto 0 auto;
         }
 
-        /* Umlaufender Ring – jetzt orange */
         .widerruf-btn::before {
             content: '';
             position: absolute;
@@ -279,7 +279,6 @@
             pointer-events: none;
         }
 
-        /* Stehender Restring */
         .widerruf-btn::after {
             content: '';
             position: absolute;
@@ -315,7 +314,6 @@
             pointer-events: none;
         }
 
-        /* ── Label: fett, klein genug um in den Kreis zu passen ── */
         .widerruf-btn .widerruf-label {
             font-size: 7.5px;
             font-weight: 900;
@@ -395,7 +393,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ── Hover: gelber Hintergrund, schwarze Farbe ── */
         .nav-arrow:hover { background: var(--anton-yellow) !important; color: #000 !important; }
         .nav-arrow:hover i { color: #000 !important; }
         .nav-arrow:active { transform: scale(0.93); }
@@ -542,6 +539,9 @@
         "id=my-store-132126030"
     );
 
+    /* ---------------------------------------------------------------
+       Featured-Produkte auf der Startseite ausblenden
+    --------------------------------------------------------------- */
     function hideEcwidFeatured() {
         var store = document.getElementById('my-store-132126030');
         if (!store) return;
@@ -576,52 +576,78 @@
     }
     startEcwidObserver();
 
-    // ---------------------------------------------------------------
-    // Klickbereich der Produktbilder auf das gesamte Bild ausdehnen
-    // ---------------------------------------------------------------
+    /* ---------------------------------------------------------------
+       Produktbilder vollständig klickbar machen
+       Strategie: transparenten Link-Layer über jeden Bild-Wrapper legen
+    --------------------------------------------------------------- */
     function fixEcwidImageLinks() {
         var store = document.getElementById('my-store-132126030');
         if (!store) return;
 
-        // Alle Bild-Wrapper suchen (Ecwid-Klassen variieren je nach Theme)
-        var imageWrappers = store.querySelectorAll(
-            '[class*="image-wrap"], [class*="image_wrap"], ' +
-            '[class*="product-image"], [class*="grid-product__image"], ' +
-            '[class*="ec-grid-item__image"], [class*="product-card__image"]'
+        // Alle Produkt-Kacheln finden
+        var cards = store.querySelectorAll(
+            '[class*="grid-product"], [class*="product-card"], ' +
+            '[class*="ec-grid-item"], [class*="ec-grid__cell"]'
         );
 
-        imageWrappers.forEach(function(wrap) {
-            // Sicherstellen, dass der Wrapper relativ positioniert ist
-            var cs = window.getComputedStyle(wrap);
-            if (cs.position === 'static') {
-                wrap.style.position = 'relative';
+        cards.forEach(function(card) {
+            // Bereits gefixt?
+            if (card.querySelector('.anton-img-link-fix')) return;
+
+            // Den Produkt-Link finden (Ecwid setzt ihn auf den Titel oder Bild)
+            var productLink = card.querySelector('a[href*="#!/"]') ||
+                              card.querySelector('a[data-sku]') ||
+                              card.querySelector('[class*="image"] a') ||
+                              card.querySelector('[class*="title"] a') ||
+                              card.querySelector('a');
+
+            if (!productLink) return;
+
+            var href    = productLink.getAttribute('href');
+            var onclick = productLink.getAttribute('onclick');
+
+            // Bild-Wrapper finden
+            var imgWrap = card.querySelector(
+                '[class*="image-wrap"], [class*="image_wrap"], ' +
+                '[class*="product-image"], [class*="grid-product__image"], ' +
+                '[class*="ec-grid-item__image"], [class*="product-card__image"]'
+            );
+
+            if (!imgWrap) return;
+
+            // Sicherstellen dass imgWrap relativ positioniert ist
+            if (window.getComputedStyle(imgWrap).position === 'static') {
+                imgWrap.style.position = 'relative';
             }
 
-            // Den ersten Link im Wrapper auf 100% × 100% ausdehnen
-            var link = wrap.querySelector('a');
-            if (link) {
-                link.style.cssText +=
-                    'display:block!important;' +
-                    'position:absolute!important;' +
-                    'top:0!important;left:0!important;' +
-                    'width:100%!important;height:100%!important;' +
-                    'z-index:10!important;';
+            // Transparenten Klick-Link über das gesamte Bild legen
+            var fixLink = document.createElement('a');
+            fixLink.className = 'anton-img-link-fix';
+            fixLink.setAttribute('href', href || '#');
+            if (onclick) {
+                fixLink.setAttribute('onclick', onclick);
             }
 
-            // Bilder selbst keine Pointer-Events
-            wrap.querySelectorAll('img').forEach(function(img) {
-                img.style.pointerEvents = 'none';
+            // Klick-Event vom Original-Link kopieren
+            // (löst Ecwids eigene SPA-Navigation aus)
+            fixLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                productLink.click();
             });
+
+            imgWrap.appendChild(fixLink);
         });
     }
 
-    // Mehrmals ausführen, da Ecwid asynchron rendert
+    // Mehrfach ausführen (Ecwid rendert asynchron)
     [300, 800, 1500, 3000, 5000].forEach(function(ms) {
         setTimeout(fixEcwidImageLinks, ms);
     });
 
-    // Auch bei jeder DOM-Änderung
-    var imgFixObserver = new MutationObserver(fixEcwidImageLinks);
+    // Bei DOM-Änderungen erneut prüfen
+    var imgFixObserver = new MutationObserver(function() {
+        setTimeout(fixEcwidImageLinks, 100);
+    });
     function startImgFixObserver() {
         var store = document.getElementById('my-store-132126030');
         if (store) {
@@ -632,6 +658,9 @@
     }
     startImgFixObserver();
 
+    /* ---------------------------------------------------------------
+       Desktop / Mobile: Ecwid in den richtigen Container verschieben
+    --------------------------------------------------------------- */
     function moveEcwidToCorrectContainer() {
         var isMobile = window.innerWidth <= 800;
         var desktopWrap = document.getElementById('my-store-132126030');
