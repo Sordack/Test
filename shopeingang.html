@@ -28,8 +28,9 @@
             html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; }
             body { background: transparent; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
 
-            .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
+            .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+            .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(72px); }
+            .d-header-sub { font-family: 'Special Elite', cursive; font-size: 0.62rem; letter-spacing: 4px; text-transform: uppercase; color: #000; transform: translateY(88px); opacity: 0.75; white-space: nowrap; }
 
             .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
             .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
@@ -89,8 +90,9 @@
 
             #mobile-wrapper { display: flex !important; flex-direction: column; height: 100%; width: 100%; overflow: hidden; position: relative; }
 
-            .m-header { position: relative; flex-shrink: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .m-header { position: relative; flex-shrink: 0; width: 100%; height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+            .m-header-logo { position: absolute; top: 110%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .m-header-sub { font-family: 'Special Elite', cursive; font-size: 0.52rem; letter-spacing: 3px; text-transform: uppercase; color: #000; position: absolute; top: 68%; transform: translateY(-50%); opacity: 0.72; white-space: nowrap; }
             .m-menu-btn { position: absolute; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
             .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
             .m-menu-btn.active { background: var(--anton-yellow); }
@@ -161,7 +163,7 @@
             margin-bottom: 50px;
             min-height: 400px;
             /* Schmaler: begrenzte Maximalbreite, zentriert */
-            max-width: 860px;
+            max-width: 430px;
             margin-left: auto;
             margin-right: auto;
             box-sizing: border-box;
@@ -297,6 +299,61 @@
             .widerruf-btn i { font-size: 17px; }
             .widerruf-btn::before, .widerruf-btn::after { inset: -5px; }
         }
+
+        /* ================================================================= */
+        /* NAV-PFEILE  (Zurück / Vor)                                         */
+        /* ================================================================= */
+
+        /* --- Desktop: oben links, unter dem Menü-Button --- */
+        .nav-arrows-desktop {
+            position: fixed;
+            top: 90px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 150;
+        }
+        @media (max-width: 800px) { .nav-arrows-desktop { display: none !important; } }
+
+        /* --- Mobile: oben links, unter dem Menü-Button --- */
+        .nav-arrows-mobile {
+            position: fixed;
+            top: 88px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1300;
+        }
+        @media (min-width: 801px) { .nav-arrows-mobile { display: none !important; } }
+
+        .nav-arrow {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.72);
+            backdrop-filter: blur(6px);
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #000;
+            transition: background 0.2s, transform 0.1s, opacity 0.2s;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .nav-arrow:hover { background: var(--anton-yellow); }
+        .nav-arrow:active { transform: scale(0.93); }
+
+        .nav-arrow--inactive {
+            opacity: 0.28;
+            cursor: default;
+            pointer-events: none;
+        }
+        .nav-arrow--active { opacity: 1; pointer-events: auto; }
     </style>
 </head>
 <body>
@@ -305,6 +362,7 @@
 <div id="desktop-wrapper">
     <header class="d-header">
         <img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo">
+        <span class="d-header-sub">Familienshop</span>
     </header>
     <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
 
@@ -344,7 +402,7 @@
     </aside>
 
     <main>
-        <h1 class="shop-page-title"><span class="title-dot"></span> Fanartikel Shop</h1>
+        <h1 class="shop-page-title"><span class="title-dot"></span> Familienshop</h1>
         <div class="ecwid-shop-wrap">
             <div id="my-store-132126030"></div>
         </div>
@@ -354,6 +412,16 @@
         <div><a href="index.html">www.anton-familienpop.de</a></div>
         <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
     </footer>
+
+    <!-- Zurück / Vor – Desktop -->
+    <div class="nav-arrows-desktop">
+        <div class="nav-arrow nav-arrow--inactive" id="anton-nav-back" title="Zurück" onclick="AntonNav.goBack()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="nav-arrow nav-arrow--inactive" id="anton-nav-fwd" title="Vor" onclick="AntonNav.goForward()">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </div>
 </div>
 
 <!-- ===================== MOBILE ===================== -->
@@ -363,6 +431,7 @@
             <span></span><span></span><span></span>
         </div>
         <img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo">
+        <span class="m-header-sub">Familienshop</span>
     </header>
 
     <nav class="m-sidebar" id="m-sidebar">
@@ -374,7 +443,7 @@
     </nav>
 
     <div class="m-content-scroll" id="m-scroll-area">
-        <h1 class="shop-page-title"><span class="title-dot"></span> Fanartikel Shop</h1>
+        <h1 class="shop-page-title"><span class="title-dot"></span> Familienshop</h1>
         <div class="ecwid-shop-wrap">
             <div id="my-store-132126030-mobile"></div>
         </div>
@@ -402,6 +471,16 @@
     <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
     <div class="m-id-panel" id="m-id-panel">
         <a href="impressum.html">Impressum</a><span>|</span><a href="datenschutz.html">Datenschutz</a>
+    </div>
+
+    <!-- Zurück / Vor – Mobile -->
+    <div class="nav-arrows-mobile">
+        <div class="nav-arrow nav-arrow--inactive" id="anton-nav-back-m" title="Zurück" onclick="AntonNav.goBack()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="nav-arrow nav-arrow--inactive" id="anton-nav-fwd-m" title="Vor" onclick="AntonNav.goForward()">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
     </div>
 </div>
 
@@ -475,6 +554,9 @@
     window.addEventListener('resize', moveEcwidToCorrectContainer);
     setTimeout(moveEcwidToCorrectContainer, 300);
 </script>
+
+<!-- ===================== NAV HISTORY ===================== -->
+<script src="nav-history.js"></script>
 
 <!-- ===================== NAV SCRIPTS ===================== -->
 <script>
