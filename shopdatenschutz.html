@@ -81,7 +81,6 @@
                 align-items: center;
             }
 
-            /* ── Footer (identisch mit Impressum) ── */
             .d-footer {
                 width: 100%; height: 60px; padding: 0;
                 background: rgba(255,255,255,0.75); backdrop-filter: blur(10px);
@@ -106,10 +105,7 @@
             }
             .d-footer-center-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.18); }
             .d-footer-center-links a:hover { color: var(--anton-red); }
-            /* Widerruf-Link Glow */
-            .d-footer-center-links a.widerruf-glow {
-                animation: widerrufGlow 4s ease-in-out infinite;
-            }
+            .d-footer-center-links a.widerruf-glow { animation: widerrufGlow 4s ease-in-out infinite; }
             .d-footer-center-links a.widerruf-glow:hover { animation: none; color: var(--anton-red); }
             @keyframes widerrufGlow {
                 0%, 60%, 100% { color: #000; background: transparent; }
@@ -188,15 +184,37 @@
             .m-bento-legal-body {
                 padding: 18px 16px 22px;
                 font-family: 'Special Elite', cursive;
-                font-size: 13px; color: #292929; line-height: 1.75;
+                font-size: 13px;
+                color: #292929;
+                line-height: 1.75;
             }
             .m-bento-legal-body h1,
             .m-bento-legal-body h2,
             .m-bento-legal-body h3 {
                 font-family: 'Special Elite', cursive;
             }
-            .m-bento-legal-body h2 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--anton-red); margin: 16px 0 6px 0; }
-            .m-bento-legal-body a { color: var(--anton-red); word-break: break-all; }
+            .m-bento-legal-body h2 {
+                font-size: 0.95rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                color: var(--anton-red);
+                margin: 16px 0 6px 0;
+            }
+            .m-bento-legal-body p,
+            .m-bento-legal-body ul,
+            .m-bento-legal-body li {
+                font-family: 'Special Elite', cursive;
+                font-size: 13px;
+                line-height: 1.75;
+            }
+            .m-bento-legal-body strong {
+                font-family: 'Special Elite', cursive;
+            }
+            .m-bento-legal-body a {
+                color: var(--anton-red);
+                word-break: break-all;
+                font-family: 'Special Elite', cursive;
+            }
 
             .back-btn {
                 display: inline-flex; align-items: center; gap: 8px;
@@ -226,17 +244,13 @@
             .m-id-panel-links { display: flex; align-items: center; flex-wrap: nowrap; }
             .m-id-panel-links a { color: #000; text-decoration: none; text-transform: uppercase; font-size: 0.56rem; font-weight: bold; padding: 0 5px; white-space: nowrap; font-family: 'Special Elite', cursive; }
             .m-id-panel-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
-            /* Widerruf-Glow im ID-Panel */
-            .m-id-panel-links a.widerruf-glow {
-                animation: widerrufGlowMobile 4s ease-in-out infinite;
-            }
+            .m-id-panel-links a.widerruf-glow { animation: widerrufGlowMobile 4s ease-in-out infinite; }
             @keyframes widerrufGlowMobile {
                 0%, 60%, 100% { color: #000; background: transparent; }
                 75% { color: #000; background: var(--anton-yellow); border-radius: 2px; }
                 90% { color: #000; background: transparent; }
             }
 
-            /* Mobile Footer Bar */
             .m-footer-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; box-sizing: border-box; overflow: hidden; }
             .m-fh-logo { display: flex; align-items: center; justify-content: center; height: 100%; padding: 5px 8px; border-right: 1.5px solid rgba(0,0,0,0.15); flex-shrink: 0; text-decoration: none; }
             .m-fh-logo img { height: 40px; width: auto; object-fit: contain; display: block; }
@@ -303,7 +317,9 @@
         .d-bento-legal-body {
             padding: 28px 32px 32px;
             font-family: 'Special Elite', cursive;
-            font-size: 14px; color: #292929; line-height: 1.75;
+            font-size: 14px;
+            color: #292929;
+            line-height: 1.75;
         }
         .d-bento-legal-body h1,
         .d-bento-legal-body h2,
@@ -327,7 +343,10 @@
         .d-bento-legal-body strong {
             font-family: 'Special Elite', cursive;
         }
-        .d-bento-legal-body a { color: var(--anton-red); font-family: 'Special Elite', cursive; }
+        .d-bento-legal-body a {
+            color: var(--anton-red);
+            font-family: 'Special Elite', cursive;
+        }
 
         .back-btn {
             display: inline-flex; align-items: center; gap: 8px;
