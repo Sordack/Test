@@ -395,6 +395,11 @@
         <div class="ecwid-shop-wrap">
             <div id="my-store-132126030"></div>
         </div>
+        <div style="display:flex;justify-content:center;margin-top:14px;">
+            <a href="widerruf.html" class="widerruf-btn" title="Widerruf">
+                <span class="widerruf-label">Widerruf</span>
+            </a>
+        </div>
     </main>
 
     <footer class="d-footer">
@@ -434,6 +439,11 @@
         <h1 class="shop-page-title">Anton-Familienshop</h1>
         <div class="ecwid-shop-wrap">
             <div id="my-store-132126030-mobile"></div>
+        </div>
+        <div style="display:flex;justify-content:center;margin-top:14px;">
+            <a href="widerruf.html" class="widerruf-btn" title="Widerruf">
+                <span class="widerruf-label">Widerruf</span>
+            </a>
         </div>
     </div>
 
@@ -501,25 +511,7 @@
 
     var ecwidObserver = new MutationObserver(function() {
         hideEcwidFeatured();
-        injectWiderrufButton();
     });
-
-    // ---------------------------------------------------------------
-    // Widerruf-Button unter dem Warenkorb-Element einsetzen
-    // ---------------------------------------------------------------
-    function injectWiderrufButton() {
-        if (document.getElementById('widerruf-inject')) return;
-        var store = document.getElementById('my-store-132126030');
-        if (!store) return;
-        // Ecwid-Warenkorb: typische Klassen
-        var cart = store.querySelector('.ec-cart-widget, .ec-minicart, [class*="cart"], [class*="Cart"]');
-        if (!cart) return;
-        var btn = document.createElement('div');
-        btn.id = 'widerruf-inject';
-        btn.style.cssText = 'display:flex;justify-content:center;margin-top:10px;';
-        btn.innerHTML = '<a href="widerruf.html" class="widerruf-btn" title="Widerruf"><span class="widerruf-label">Widerruf</span></a>';
-        cart.parentNode.insertBefore(btn, cart.nextSibling);
-    }
 
     function startEcwidObserver() {
         var store = document.getElementById('my-store-132126030');
@@ -528,9 +520,6 @@
             setTimeout(hideEcwidFeatured, 500);
             setTimeout(hideEcwidFeatured, 1500);
             setTimeout(hideEcwidFeatured, 3000);
-            setTimeout(injectWiderrufButton, 800);
-            setTimeout(injectWiderrufButton, 2000);
-            setTimeout(injectWiderrufButton, 4000);
         } else {
             setTimeout(startEcwidObserver, 200);
         }
