@@ -18,9 +18,6 @@
 
         html, body { margin: 0; padding: 0; background-color: transparent; font-family: 'Special Elite', cursive; height: 100%; width: 100%; }
 
-        /* ================================================================= */
-        /* DESKTOP                                                            */
-        /* ================================================================= */
         @media (min-width: 801px) {
             #mobile-wrapper { display: none !important; }
             html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; }
@@ -69,26 +66,9 @@
             .d-sidebar-right:hover a i { animation-play-state:paused!important; transform:scale(1)!important; color:#000!important; }
             .d-sidebar-right a:hover i { color:var(--brand-color)!important; transform:scale(1.55)!important; }
 
-            main {
-                flex: 1;
-                padding: 95px 55px 60px 55px;
-                z-index: 5;
-                width: 100%;
-                box-sizing: border-box;
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
+            main { flex: 1; padding: 95px 55px 60px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; display: flex; flex-direction: column; align-items: center; }
 
-            .d-footer {
-                width: 100%; height: 50px; padding: 0;
-                background: rgba(255,255,255,0.75); backdrop-filter: blur(10px);
-                border-top: 1.5px solid #000; z-index: 100;
-                position: fixed; bottom: 0; left: 0;
-                display: flex; align-items: center; justify-content: center;
-                box-sizing: border-box; overflow: hidden;
-            }
+            .d-footer { width: 100%; height: 50px; padding: 0; background: rgba(255,255,255,0.75); backdrop-filter: blur(10px); border-top: 1.5px solid #000; z-index: 100; position: fixed; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; box-sizing: border-box; overflow: hidden; }
             .d-footer-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; height: 100%; }
             .d-footer-center-label { font-size: 0.52rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; color: rgba(0,0,0,0.38); line-height: 1; font-family: 'Special Elite', cursive; }
             .d-footer-center-links { display: flex; align-items: center; }
@@ -103,9 +83,6 @@
             .d-footer-fairness a:hover img { transform: scale(1.06); }
         }
 
-        /* ================================================================= */
-        /* MOBILE                                                             */
-        /* ================================================================= */
         @media (max-width: 800px), (orientation: landscape) and (max-height: 500px) {
             #desktop-wrapper { display: none !important; }
             #mobile-wrapper  { display: flex !important; flex-direction: column; }
@@ -129,20 +106,7 @@
             .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
             .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
 
-            /* ── FIX: Scroll-Bereich füllt den Raum zwischen Header und Footer ── */
-            .m-content-scroll {
-                position: absolute;
-                top: 80px;        /* direkt unter dem Header */
-                bottom: 65px;     /* direkt über der Footer-Bar */
-                left: 0;
-                right: 0;
-                overflow-y: auto;
-                overflow-x: hidden;
-                -webkit-overflow-scrolling: touch;
-                overscroll-behavior: contain;
-                padding: 16px 12px 24px 12px; /* extra padding-bottom damit letzter Inhalt nicht anklebt */
-                box-sizing: border-box;
-            }
+            .m-content-scroll { position: absolute; top: 80px; bottom: 65px; left: 0; right: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 16px 12px 24px 12px; box-sizing: border-box; }
 
             .m-bento-legal { background: rgba(255,255,255,0.92); border: 3px solid #000; box-shadow: 7px 7px 0 #000; border-radius: 16px; overflow: hidden; width: 100%; }
             .m-bento-legal-header { background: var(--anton-yellow); border-bottom: 3px solid #000; padding: 12px 18px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; font-family: 'Special Elite', cursive; }
@@ -192,13 +156,7 @@
             #mobile-wrapper .mobile-tag { font-size: 0.72rem; writing-mode: horizontal-tb !important; transform: none !important; margin-top: 0; }
             #mobile-wrapper .m-epk-container { position: static !important; width: 100% !important; height: auto !important; background: transparent !important; border-left: none !important; border-top: 1px solid rgba(0,0,0,0.15) !important; padding-top: 12px !important; margin-top: auto !important; justify-content: flex-start !important; }
             #mobile-wrapper .m-epk-text { writing-mode: horizontal-tb !important; transform: none !important; font-size: 0.78rem; }
-            /* Landscape: Footer wird zur rechten Sidebar → Scroll-Bereich anpassen */
-            #mobile-wrapper .m-content-scroll {
-                top: 60px !important;
-                bottom: 0 !important;
-                right: 46px !important;
-                padding-bottom: 16px !important;
-            }
+            #mobile-wrapper .m-content-scroll { top: 60px !important; bottom: 0 !important; right: 46px !important; padding-bottom: 16px !important; }
             #mobile-wrapper .m-footer-bar { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; }
             #mobile-wrapper .m-fh-logo { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 5px 3px !important; width: 100% !important; }
             #mobile-wrapper .m-fh-logo img { height: 22px !important; }
@@ -208,9 +166,7 @@
             #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 310px !important; height: 50px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; opacity: 1 !important; overflow: hidden !important; }
         }
 
-        /* ================================================================= */
-        /* CONTENT                                                            */
-        /* ================================================================= */
+        /* CONTENT */
         .content-wrap { background: var(--glass); backdrop-filter: blur(8px); border: 3px solid #000; box-shadow: 5px 5px 0 rgba(0,0,0,0.45); border-radius: 18px; padding: 28px 32px; margin-bottom: 50px; }
         .d-bento-legal { background: rgba(255,255,255,0.92); border: 4px solid #000; box-shadow: 10px 10px 0 #000; border-radius: 20px; overflow: hidden; width: 100%; max-width: 820px; }
         .d-bento-legal-header { background: var(--anton-yellow); border-bottom: 4px solid #000; padding: 16px 28px; display: flex; align-items: center; gap: 12px; font-size: 1.1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-family: 'Special Elite', cursive; }
@@ -222,77 +178,21 @@
         .back-btn:hover { background: var(--anton-yellow); }
         @media (max-width: 800px) { .content-wrap { padding: 14px 12px; border-radius: 12px; margin-bottom: 20px; } }
 
-        /* ================================================================= */
-        /* WIDERRUFSFORMULAR                                                  */
-        /* ================================================================= */
-        .wf-trennlinie {
-            border: none;
-            border-top: 3px solid #000;
-            margin: 28px 0 24px 0;
-        }
-        .wf-abschnitt-titel {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--anton-yellow);
-            border: 2px solid #000;
-            border-radius: 8px;
-            padding: 10px 16px;
-            font-family: 'Special Elite', cursive;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 18px;
-        }
+        /* WIDERRUFSFORMULAR */
+        .wf-trennlinie { border: none; border-top: 3px solid #000; margin: 28px 0 24px 0; }
+        .wf-abschnitt-titel { display: flex; align-items: center; gap: 10px; background: var(--anton-yellow); border: 2px solid #000; border-radius: 8px; padding: 10px 16px; font-family: 'Special Elite', cursive; font-size: 0.9rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 18px; }
         .wf-abschnitt-titel i { color: var(--anton-red); }
-        .wf-hinweis {
-            background: rgba(255,235,59,0.25);
-            border-left: 4px solid var(--anton-yellow);
-            border-top: 1px solid rgba(0,0,0,0.1);
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            border-right: 1px solid rgba(0,0,0,0.1);
-            padding: 12px 16px;
-            margin-bottom: 18px;
-            font-size: 13.5px;
-            line-height: 1.65;
-            color: #333;
-            font-family: 'Special Elite', cursive;
-        }
-        .wf-empfaenger {
-            background: rgba(0,0,0,0.04);
-            border: 2px solid #000;
-            border-radius: 6px;
-            padding: 12px 16px;
-            margin-bottom: 18px;
-            font-size: 13.5px;
-            line-height: 1.7;
-            font-family: 'Special Elite', cursive;
-        }
+        .wf-hinweis { background: rgba(255,235,59,0.25); border-left: 4px solid var(--anton-yellow); border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); border-right: 1px solid rgba(0,0,0,0.1); padding: 12px 16px; margin-bottom: 18px; font-size: 13.5px; line-height: 1.65; color: #333; font-family: 'Special Elite', cursive; }
+        .wf-empfaenger { background: rgba(0,0,0,0.04); border: 2px solid #000; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; font-size: 13.5px; line-height: 1.7; font-family: 'Special Elite', cursive; }
         .wf-empfaenger strong { display: block; font-size: 15px; margin-bottom: 4px; }
         .wf-intro { font-size: 13.5px; line-height: 1.7; margin-bottom: 16px; color: #333; font-family: 'Special Elite', cursive; }
         .wf-feld { margin-bottom: 14px; }
         .wf-feld label { display: block; font-size: 11px; color: #555; margin-bottom: 5px; font-family: 'Special Elite', cursive; letter-spacing: 0.08em; text-transform: uppercase; }
-        .wf-feld input {
-            width: 100%; box-sizing: border-box;
-            border: 2px solid #000; border-radius: 5px;
-            padding: 9px 12px; font-size: 14px;
-            font-family: 'Special Elite', cursive;
-            background: #fff; color: #1a1a1a;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
+        .wf-feld input { width: 100%; box-sizing: border-box; border: 2px solid #000; border-radius: 5px; padding: 9px 12px; font-size: 14px; font-family: 'Special Elite', cursive; background: #fff; color: #1a1a1a; transition: border-color 0.2s, box-shadow 0.2s; }
         .wf-feld input:focus { outline: none; border-color: var(--anton-red); box-shadow: 3px 3px 0 rgba(255,0,0,0.15); }
         .wf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .wf-fussnote { font-size: 12px; color: #888; margin: 4px 0 16px 0; font-family: 'Special Elite', cursive; }
-        .wf-btn {
-            display: block; width: 100%; padding: 13px;
-            background: #000; color: #fff;
-            border: 2px solid #000; border-radius: 5px;
-            font-size: 13px; font-family: 'Special Elite', cursive;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            cursor: pointer; transition: background 0.2s, color 0.2s;
-            box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
-        }
+        .wf-btn { display: block; width: 100%; padding: 13px; background: #000; color: #fff; border: 2px solid #000; border-radius: 5px; font-size: 13px; font-family: 'Special Elite', cursive; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; box-shadow: 4px 4px 0 rgba(0,0,0,0.3); }
         .wf-btn:hover { background: var(--anton-yellow); color: #000; border-color: #000; }
         .wf-btn:disabled { background: #999; border-color: #999; color: #fff; cursor: default; box-shadow: none; }
         .wf-success { display: none; background: #edf7ed; border: 2px solid #2e7d32; border-radius: 5px; padding: 12px 16px; margin-bottom: 12px; font-size: 13.5px; color: #2e7d32; font-family: 'Special Elite', cursive; }
@@ -303,7 +203,7 @@
 </head>
 <body>
 
-<!-- ===================== DESKTOP ===================== -->
+<!-- DESKTOP -->
 <div id="desktop-wrapper">
     <header class="d-header">
         <img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo">
@@ -367,40 +267,43 @@
 
                 <div class="wf-feld">
                     <label>Bestellte Ware / Artikelbezeichnung *</label>
-                    <input type="text" id="wf_ware" placeholder="z. B. T-Shirt Blau, Größe M" />
+                    <!-- FIX mobile: autocomplete="off" + eindeutiger name verhindert Browser-Interferenz zwischen Datumsfeldern -->
+                    <input type="text" id="wf_ware" name="wf_ware" autocomplete="off" placeholder="z. B. T-Shirt Blau, Größe M" />
                 </div>
                 <div class="wf-row">
                     <div class="wf-feld">
                         <label>Bestelldatum *</label>
-                        <input type="date" id="wf_bestelldatum" />
+                        <input type="date" id="wf_bestelldatum" name="wf_bestelldatum" autocomplete="off" />
                     </div>
                     <div class="wf-feld">
                         <label>Bestellnummer</label>
-                        <input type="text" id="wf_bestellnummer" placeholder="optional" />
+                        <input type="text" id="wf_bestellnummer" name="wf_bestellnummer" autocomplete="off" placeholder="optional" />
                     </div>
                 </div>
                 <div class="wf-feld">
                     <label>Erhalten am (Lieferdatum) *</label>
-                    <input type="date" id="wf_lieferdatum" />
+                    <input type="date" id="wf_lieferdatum" name="wf_lieferdatum" autocomplete="off" />
                 </div>
                 <div class="wf-feld">
                     <label>Name des/der Verbraucher(s) *</label>
-                    <input type="text" id="wf_name" placeholder="Vor- und Nachname" />
+                    <input type="text" id="wf_name" name="wf_name" autocomplete="name" placeholder="Vor- und Nachname" />
                 </div>
                 <div class="wf-feld">
                     <label>Anschrift des/der Verbraucher(s) *</label>
-                    <input type="text" id="wf_adresse" placeholder="Straße, Hausnummer, PLZ, Ort" />
+                    <input type="text" id="wf_adresse" name="wf_adresse" autocomplete="street-address" placeholder="Straße, Hausnummer, PLZ, Ort" />
                 </div>
                 <div class="wf-feld">
                     <label>E-Mail-Adresse *</label>
-                    <input type="email" id="wf_email" placeholder="ihre@email.de" />
+                    <input type="email" id="wf_email" name="wf_email" autocomplete="email" placeholder="ihre@email.de" />
                 </div>
                 <div class="wf-feld">
                     <label>Datum der Widerrufserklärung *</label>
-                    <input type="date" id="wf_widerrufsdatum" />
+                    <!-- FIX: min wird per JS auf heute gesetzt, Vergangenheit ist gesperrt -->
+                    <input type="date" id="wf_widerrufsdatum" name="wf_widerrufsdatum" autocomplete="off" />
                 </div>
 
-                <p class="wf-fussnote">(*) Unzutreffendes streichen.</p>
+                <!-- FIX: Text geändert zu "Pflichtfeld, bitte ausfüllen" -->
+                <p class="wf-fussnote">(*) Pflichtfeld, bitte ausfüllen.</p>
 
                 <div class="wf-success" id="wf_success">
                     ✓ Ihr Widerruf wurde erfolgreich übermittelt. Sie erhalten in Kürze eine Bestätigung.
@@ -436,7 +339,7 @@
     </footer>
 </div>
 
-<!-- ===================== MOBILE ===================== -->
+<!-- MOBILE -->
 <div id="mobile-wrapper">
     <header class="m-header" id="m-header-main">
         <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)">
@@ -483,40 +386,41 @@
 
                 <div class="wf-feld">
                     <label>Bestellte Ware / Artikelbezeichnung *</label>
-                    <input type="text" id="m_wf_ware" placeholder="z. B. T-Shirt Blau, Größe M" />
+                    <input type="text" id="m_wf_ware" name="m_wf_ware" autocomplete="off" placeholder="z. B. T-Shirt Blau, Größe M" />
                 </div>
                 <div class="wf-row">
                     <div class="wf-feld">
                         <label>Bestelldatum *</label>
-                        <input type="date" id="m_wf_bestelldatum" />
+                        <input type="date" id="m_wf_bestelldatum" name="m_wf_bestelldatum" autocomplete="off" />
                     </div>
                     <div class="wf-feld">
                         <label>Bestellnummer</label>
-                        <input type="text" id="m_wf_bestellnummer" placeholder="optional" />
+                        <input type="text" id="m_wf_bestellnummer" name="m_wf_bestellnummer" autocomplete="off" placeholder="optional" />
                     </div>
                 </div>
                 <div class="wf-feld">
                     <label>Erhalten am (Lieferdatum) *</label>
-                    <input type="date" id="m_wf_lieferdatum" />
+                    <input type="date" id="m_wf_lieferdatum" name="m_wf_lieferdatum" autocomplete="off" />
                 </div>
                 <div class="wf-feld">
                     <label>Name des/der Verbraucher(s) *</label>
-                    <input type="text" id="m_wf_name" placeholder="Vor- und Nachname" />
+                    <input type="text" id="m_wf_name" name="m_wf_name" autocomplete="name" placeholder="Vor- und Nachname" />
                 </div>
                 <div class="wf-feld">
                     <label>Anschrift des/der Verbraucher(s) *</label>
-                    <input type="text" id="m_wf_adresse" placeholder="Straße, Hausnummer, PLZ, Ort" />
+                    <input type="text" id="m_wf_adresse" name="m_wf_adresse" autocomplete="street-address" placeholder="Straße, Hausnummer, PLZ, Ort" />
                 </div>
                 <div class="wf-feld">
                     <label>E-Mail-Adresse *</label>
-                    <input type="email" id="m_wf_email" placeholder="ihre@email.de" />
+                    <input type="email" id="m_wf_email" name="m_wf_email" autocomplete="email" placeholder="ihre@email.de" />
                 </div>
                 <div class="wf-feld">
                     <label>Datum der Widerrufserklärung *</label>
-                    <input type="date" id="m_wf_widerrufsdatum" />
+                    <input type="date" id="m_wf_widerrufsdatum" name="m_wf_widerrufsdatum" autocomplete="off" />
                 </div>
 
-                <p class="wf-fussnote">(*) Unzutreffendes streichen.</p>
+                <!-- FIX: Text geändert zu "Pflichtfeld, bitte ausfüllen" -->
+                <p class="wf-fussnote">(*) Pflichtfeld, bitte ausfüllen.</p>
 
                 <div class="wf-success" id="m_wf_success">
                     ✓ Ihr Widerruf wurde erfolgreich übermittelt. Sie erhalten in Kürze eine Bestätigung.
@@ -562,10 +466,25 @@
     </div>
 </div>
 
-<!-- ===================== IT-RECHT KANZLEI ===================== -->
+<!-- IT-RECHT KANZLEI -->
 <script src="https://www.it-recht-kanzlei.de/js/itrk-legaltext.js"></script>
 
-<!-- ===================== WIDERRUFSFORMULAR LOGIK ===================== -->
+<!-- FIX: Widerrufsdatum-Felder auf heutiges Datum setzen + Vergangenheit sperren -->
+<script>
+(function () {
+    var today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+
+    // Desktop
+    var dEl = document.getElementById('wf_widerrufsdatum');
+    if (dEl) { dEl.min = today; dEl.value = today; }
+
+    // Mobile
+    var mEl = document.getElementById('m_wf_widerrufsdatum');
+    if (mEl) { mEl.min = today; mEl.value = today; }
+})();
+</script>
+
+<!-- WIDERRUFSFORMULAR LOGIK -->
 <script>
 var FORMSPREE_URL = 'https://formspree.io/f/xpqkdgjk';
 
@@ -593,6 +512,14 @@ async function wfSenden(prefix) {
         return;
     }
 
+    // Zusätzliche serverseitige Absicherung: kein Widerrufsdatum in der Vergangenheit
+    var today = new Date().toISOString().split('T')[0];
+    if (widerrufsdatum < today) {
+        errTx.textContent = 'Das Datum der Widerrufserklärung darf nicht in der Vergangenheit liegen.';
+        err.style.display = 'block';
+        return;
+    }
+
     btn.disabled    = true;
     btn.textContent = 'Wird gesendet …';
 
@@ -616,10 +543,13 @@ async function wfSenden(prefix) {
         if (res.ok) {
             ok.style.display = 'block';
             btn.textContent  = 'Widerruf gesendet ✓';
+            // Alle Felder leeren außer Widerrufsdatum (wird auf heute zurückgesetzt)
             [p+'wf_ware', p+'wf_bestelldatum', p+'wf_bestellnummer', p+'wf_lieferdatum',
-             p+'wf_name', p+'wf_adresse', p+'wf_email', p+'wf_widerrufsdatum'].forEach(function(id){
+             p+'wf_name', p+'wf_adresse', p+'wf_email'].forEach(function(id){
                 document.getElementById(id).value = '';
             });
+            var t2 = new Date().toISOString().split('T')[0];
+            document.getElementById(p + 'wf_widerrufsdatum').value = t2;
         } else { throw new Error(); }
     } catch(e) {
         errTx.textContent = 'Übermittlung fehlgeschlagen. Bitte schreiben Sie direkt an pay@fipsflake.com.';
@@ -633,7 +563,7 @@ function wfAbsenden()  { wfSenden('');  }
 function mWfAbsenden() { wfSenden('m'); }
 </script>
 
-<!-- ===================== NAV SCRIPTS ===================== -->
+<!-- NAV SCRIPTS -->
 <script>
     let dSidebarTimeout;
     const dSidebar = document.getElementById('d-sidebar');
