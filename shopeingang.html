@@ -396,7 +396,7 @@
         }
 
         /* ── Hover: gelber Hintergrund, schwarze Farbe ── */
-        .nav-arrow:hover { background: var(--anton-yellow); color: #000; }
+        .nav-arrow:hover { background: var(--anton-yellow) !important; color: #000 !important; }
         .nav-arrow:hover i { color: #000 !important; }
         .nav-arrow:active { transform: scale(0.93); }
 
@@ -463,10 +463,10 @@
 
     <!-- Zurück / Vor – Desktop -->
     <div class="nav-arrows-desktop">
-        <div class="nav-arrow nav-arrow--inactive" id="anton-nav-back" title="Zurück" onclick="AntonNav.goBack()">
+        <div class="nav-arrow nav-arrow--active" id="anton-nav-back" title="Zurück" onclick="AntonNav.goBack()">
             <i class="fa-solid fa-chevron-left"></i>
         </div>
-        <div class="nav-arrow nav-arrow--inactive" id="anton-nav-fwd" title="Vor" onclick="AntonNav.goForward()">
+        <div class="nav-arrow nav-arrow--active" id="anton-nav-fwd" title="Vor" onclick="AntonNav.goForward()">
             <i class="fa-solid fa-chevron-right"></i>
         </div>
     </div>
@@ -520,10 +520,10 @@
 
     <!-- Zurück / Vor – Mobile -->
     <div class="nav-arrows-mobile">
-        <div class="nav-arrow nav-arrow--inactive" id="anton-nav-back-m" title="Zurück" onclick="AntonNav.goBack()">
+        <div class="nav-arrow nav-arrow--active" id="anton-nav-back-m" title="Zurück" onclick="AntonNav.goBack()">
             <i class="fa-solid fa-chevron-left"></i>
         </div>
-        <div class="nav-arrow nav-arrow--inactive" id="anton-nav-fwd-m" title="Vor" onclick="AntonNav.goForward()">
+        <div class="nav-arrow nav-arrow--active" id="anton-nav-fwd-m" title="Vor" onclick="AntonNav.goForward()">
             <i class="fa-solid fa-chevron-right"></i>
         </div>
     </div>
