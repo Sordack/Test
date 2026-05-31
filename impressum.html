@@ -13,35 +13,21 @@
             --sidebar-width: 240px;
             --apple-gray: #A2AAAD;
             --amazon-blue: #00A8E1;
+            --glass: rgba(255,255,255,0.63);
         }
 
-        html, body {
-            margin: 0; padding: 0;
-            background-color: #ffffff;
-            font-family: 'Special Elite', cursive;
-            height: 100%; width: 100%;
-        }
+        html, body { margin: 0; padding: 0; background-color: transparent; font-family: 'Special Elite', cursive; height: 100%; width: 100%; }
 
         /* ================================================================= */
         /* DESKTOP                                                            */
         /* ================================================================= */
-        @media (min-width: 801px) and (min-height: 500px) {
+        @media (min-width: 801px) {
             #mobile-wrapper { display: none !important; }
-            #desktop-wrapper { display: block !important; }
-
-            body { background: #ffffff; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
-
-            #bg-layer-a, #bg-layer-b {
-                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                background-size: cover; background-position: center center;
-                background-repeat: no-repeat; background-attachment: fixed;
-                z-index: 0; transition: opacity 2s ease-in-out;
-            }
-            #bg-layer-a { background-image: url('Background.jpg'); }
-            #bg-layer-b { opacity: 0; }
+            html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; }
+            body { background: transparent; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
 
             .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
+            .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(72px); }
 
             .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
             .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
@@ -83,101 +69,7 @@
             .d-sidebar-right:hover a i { animation-play-state:paused!important; transform:scale(1)!important; color:#000!important; }
             .d-sidebar-right a:hover i { color:var(--brand-color)!important; transform:scale(1.55)!important; }
 
-            main {
-                flex: 1;
-                padding: 100px 80px 100px 80px;
-                position: relative; z-index: 5;
-                width: 100%; box-sizing: border-box;
-                display: flex; flex-direction: column; align-items: center;
-            }
-
-            /* ── Große Split-Bento-Box ── */
-            .d-bento-legal {
-                background: rgba(255,255,255,0.92);
-                border: 4px solid #000;
-                box-shadow: 10px 10px 0 #000;
-                border-radius: 20px;
-                overflow: hidden;
-                width: 100%;
-                max-width: 900px;
-            }
-            .d-bento-legal-header {
-                background: var(--anton-yellow);
-                border-bottom: 4px solid #000;
-                padding: 16px 28px;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                font-size: 1.1rem;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 2px;
-                font-family: 'Special Elite', cursive;
-            }
-            .d-bento-legal-header i { font-size: 1.3rem; color: var(--anton-red); }
-
-            /* Split body */
-            .d-bento-legal-split {
-                display: flex;
-                flex-direction: row;
-            }
-            .d-bento-legal-col {
-                flex: 1;
-                padding: 28px 32px 32px;
-                /* Vereinheitlicht: durchgehend Special Elite */
-                font-family: 'Special Elite', cursive;
-                font-size: 14px;
-                color: #292929;
-                line-height: 1.75;
-                box-sizing: border-box;
-            }
-            .d-bento-legal-col:first-child {
-                border-right: 3px solid #000;
-            }
-            .d-bento-col-label {
-                display: inline-block;
-                font-family: 'Special Elite', cursive;
-                font-size: 0.85rem;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 2px;
-                text-decoration: underline;
-                text-underline-offset: 4px;
-                margin-bottom: 18px;
-                color: #000;
-            }
-            /* Fließtext-Absätze */
-            .d-bento-legal-col p {
-                font-family: 'Special Elite', cursive;
-                font-size: 14px;
-                line-height: 1.75;
-                margin: 0 0 10px 0;
-                color: #292929;
-            }
-            /* strong innerhalb des Fließtexts */
-            .d-bento-legal-col strong {
-                font-family: 'Special Elite', cursive;
-                font-size: 14px;
-                letter-spacing: 0.5px;
-            }
-            .d-bento-legal-col h2 {
-                font-family: 'Special Elite', cursive;
-                font-size: 0.95rem;
-                text-transform: uppercase;
-                letter-spacing: 1.5px;
-                margin: 20px 0 8px 0;
-                color: var(--anton-red);
-            }
-            .d-bento-legal-col a {
-                color: var(--anton-red);
-                font-family: 'Special Elite', cursive;
-                font-size: 14px;
-            }
-            .d-bento-legal-col .itrk-legaltext {
-                font-family: 'Special Elite', cursive;
-                font-size: 13px;
-                line-height: 1.75;
-            }
+            main { flex: 1; padding: 95px 55px 80px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; display: flex; align-items: center; justify-content: center; }
 
             /* ── Footer ── */
             .d-footer {
@@ -251,17 +143,21 @@
         /* ================================================================= */
         @media (max-width: 800px), (orientation: landscape) and (max-height: 500px) {
             #desktop-wrapper { display: none !important; }
-            #mobile-wrapper  { display: block !important; }
+            #mobile-wrapper  { display: flex !important; flex-direction: column; }
 
-            body { height: 100vh; width: 100vw; overflow: hidden !important; position: fixed; display: flex; flex-direction: column; touch-action: pan-y; overscroll-behavior-x: none; }
+            html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; height: 100%; overflow: hidden; }
+            body { height: 100%; width: 100%; overflow: hidden; position: relative; display: flex; flex-direction: column; background: transparent; margin: 0; padding: 0; }
 
-            .m-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .m-header-logo { position: absolute; top: 130%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
-            .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
+            #mobile-wrapper { display: flex !important; flex-direction: column; height: 100%; width: 100%; overflow: hidden; position: relative; }
+
+            .m-header { position: relative; flex-shrink: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+            .m-header-logo { position: absolute; top: 110%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .m-menu-btn { position: absolute; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
             .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
             .m-menu-btn.active { background: var(--anton-yellow); }
             .m-menu-btn.active span { display: none; }
             .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
+
             .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s cubic-bezier(0.4,0,0.2,1); }
             .m-sidebar.open { top: 0 !important; }
             .m-nav-item { flex: 1; text-align: center; }
@@ -270,80 +166,7 @@
             .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
             .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
 
-            /* Mobile split bento */
-            .m-content-scroll {
-                position: fixed; top: 80px; bottom: 65px; left: 0; right: 0;
-                overflow-y: auto; -webkit-overflow-scrolling: touch; z-index: 5;
-                padding: 16px 12px 16px 12px; box-sizing: border-box;
-            }
-
-            .m-bento-legal {
-                background: rgba(255,255,255,0.92);
-                border: 3px solid #000;
-                box-shadow: 7px 7px 0 #000;
-                border-radius: 16px;
-                overflow: hidden;
-                width: 100%;
-            }
-            .m-bento-legal-header {
-                background: var(--anton-yellow);
-                border-bottom: 3px solid #000;
-                padding: 12px 18px;
-                display: flex; align-items: center; gap: 10px;
-                font-size: 0.9rem; font-weight: bold;
-                text-transform: uppercase; letter-spacing: 1.5px;
-                font-family: 'Special Elite', cursive;
-            }
-            .m-bento-legal-header i { font-size: 1.1rem; color: var(--anton-red); }
-
-            /* Mobile: stacked columns – vereinheitlicht */
-            .m-bento-legal-col {
-                padding: 18px 16px 22px;
-                font-family: 'Special Elite', cursive;
-                font-size: 13px; color: #292929; line-height: 1.75;
-                box-sizing: border-box;
-            }
-            .m-bento-legal-col:first-child {
-                border-bottom: 3px solid #000;
-            }
-            .m-bento-col-label {
-                display: inline-block;
-                font-family: 'Special Elite', cursive;
-                font-size: 0.82rem; font-weight: bold;
-                text-transform: uppercase; letter-spacing: 1.5px;
-                text-decoration: underline; text-underline-offset: 4px;
-                margin-bottom: 14px; color: #000;
-            }
-            .m-bento-legal-col p {
-                font-family: 'Special Elite', cursive;
-                font-size: 13px;
-                line-height: 1.75;
-                margin: 0 0 8px 0;
-                color: #292929;
-            }
-            .m-bento-legal-col strong {
-                font-family: 'Special Elite', cursive;
-                font-size: 13px;
-            }
-            .m-bento-legal-col h2 {
-                font-family: 'Special Elite', cursive;
-                font-size: 0.9rem;
-                text-transform: uppercase;
-                letter-spacing: 1.5px;
-                margin: 16px 0 6px 0;
-                color: var(--anton-red);
-            }
-            .m-bento-legal-col a {
-                color: var(--anton-red);
-                word-break: break-all;
-                font-family: 'Special Elite', cursive;
-                font-size: 13px;
-            }
-            .m-bento-legal-col .itrk-legaltext {
-                font-family: 'Special Elite', cursive;
-                font-size: 12px;
-                line-height: 1.75;
-            }
+            .m-content-scroll { flex: 1; overflow-y: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; box-sizing: border-box; padding: 10px 8px 80px 8px; touch-action: pan-y; position: relative; z-index: 1; }
 
             .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
             .m-id-button.hidden { transform: translateX(100%); }
@@ -364,6 +187,7 @@
             .m-id-panel-links a { color: #000; text-decoration: none; text-transform: uppercase; font-size: 0.56rem; font-weight: bold; padding: 0 5px; white-space: nowrap; font-family: 'Special Elite', cursive; }
             .m-id-panel-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
 
+            /* Mobile Footer Bar */
             .m-footer-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; box-sizing: border-box; overflow: hidden; }
             .m-fh-logo { display: flex; align-items: center; justify-content: center; height: 100%; padding: 5px 8px; border-right: 1.5px solid rgba(0,0,0,0.15); flex-shrink: 0; text-decoration: none; }
             .m-fh-logo img { height: 40px; width: auto; object-fit: contain; display: block; }
@@ -382,19 +206,7 @@
             .m-sidebar-right a:nth-child(9) i { --brand-color:var(--amazon-blue); animation-delay:2.0s; }
         }
 
-        @media (max-width: 800px) and (orientation: portrait) {
-            #m-bg-fix {
-                display: block; position: fixed; top: 0; left: 0;
-                width: 100%; height: 100%;
-                background: url('Background.jpg') no-repeat center center;
-                background-size: cover; z-index: -1;
-            }
-            #mobile-wrapper { display: flex !important; flex-direction: column; height: 100vh; overflow: hidden; }
-        }
-
         @media (orientation: landscape) and (max-height: 500px) {
-            body { background-color: transparent !important; }
-            #mobile-wrapper #m-bg-fix { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: url('Background.jpg') no-repeat center center !important; background-size: cover !important; z-index: -1 !important; }
             #mobile-wrapper .m-header { height: 60px; }
             #mobile-wrapper .m-header-logo { top: 145%; }
             #mobile-wrapper .m-menu-btn { top: 8px; left: 12px; width: 38px; height: 38px; }
@@ -406,7 +218,7 @@
             #mobile-wrapper .mobile-tag { font-size: 0.72rem; writing-mode: horizontal-tb !important; transform: none !important; margin-top: 0; }
             #mobile-wrapper .m-epk-container { position: static !important; width: 100% !important; height: auto !important; background: transparent !important; border-left: none !important; border-top: 1px solid rgba(0,0,0,0.15) !important; padding-top: 12px !important; margin-top: auto !important; justify-content: flex-start !important; }
             #mobile-wrapper .m-epk-text { writing-mode: horizontal-tb !important; transform: none !important; font-size: 0.78rem; }
-            #mobile-wrapper .m-content-scroll { top: 62px !important; bottom: 0 !important; right: 46px !important; padding-bottom: 6px !important; }
+            #mobile-wrapper .m-content-scroll { padding-bottom: 10px !important; padding-right: 56px !important; }
             #mobile-wrapper .m-footer-bar { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; }
             #mobile-wrapper .m-fh-logo { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 5px 3px !important; width: 100% !important; }
             #mobile-wrapper .m-fh-logo img { height: 22px !important; }
@@ -415,15 +227,158 @@
             #mobile-wrapper .m-id-button { display: none !important; }
             #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 310px !important; height: 55px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; opacity: 1 !important; overflow: hidden !important; }
         }
+
+        /* ================================================================= */
+        /* BENTO – 2 Kacheln nebeneinander (Desktop) / gestapelt (Mobile)    */
+        /* ================================================================= */
+        .ds-center-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .ds-page-title {
+            font-family: 'Special Elite', cursive;
+            font-size: clamp(0.9rem, 2vw, 1.4rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0 0 22px 0;
+            color: #000;
+            text-align: center;
+        }
+
+        .ds-bento-row {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .ds-bento-card {
+            flex: 1;
+            max-width: 430px;
+            background: var(--glass);
+            backdrop-filter: blur(8px);
+            border: 3px solid #000;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.45);
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s cubic-bezier(.4,0,.2,1);
+            cursor: pointer;
+        }
+        .ds-bento-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.55);
+        }
+        .ds-bento-card:active {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+        }
+
+        .ds-bento-header {
+            background: var(--anton-yellow);
+            border-bottom: 3px solid #000;
+            padding: 13px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .ds-bento-header i { font-size: 1.1rem; color: var(--anton-red); }
+
+        .ds-bento-body {
+            padding: 22px 22px 26px;
+            font-family: 'Special Elite', cursive;
+            font-size: 14px;
+            color: #222;
+            line-height: 1.7;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ds-bento-label {
+            display: inline-block;
+            font-family: 'Special Elite', cursive;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .ds-bento-desc {
+            flex: 1;
+            color: #333;
+            font-size: 13.5px;
+            line-height: 1.65;
+            margin: 0;
+            font-family: 'Special Elite', cursive;
+        }
+
+        .ds-bento-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 18px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.82rem;
+            font-weight: bold;
+            color: var(--anton-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 800px) {
+            .ds-bento-row { flex-direction: column; gap: 14px; }
+            .ds-bento-card { max-width: 100%; }
+            .ds-bento-label { font-size: 1.25rem; }
+        }
+
+        /* ================================================================= */
+        /* NAV-PFEILE                                                          */
+        /* ================================================================= */
+        .nav-arrows-desktop {
+            position: fixed; top: 90px; left: 20px;
+            display: flex; flex-direction: row; gap: 4px; z-index: 150;
+        }
+        @media (max-width: 800px) { .nav-arrows-desktop { display: none !important; } }
+
+        .nav-arrows-mobile {
+            position: fixed; top: 88px; left: 10px;
+            display: flex; flex-direction: row; gap: 4px; z-index: 1300;
+        }
+        @media (min-width: 801px) { .nav-arrows-mobile { display: none !important; } }
+
+        .nav-arrow {
+            width: 19px; height: 19px; border-radius: 4px;
+            background: rgba(255,255,255,0.72); backdrop-filter: blur(6px);
+            border: 1px solid #000; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 0.6rem; color: #000;
+            transition: background 0.2s, color 0.2s, transform 0.1s, opacity 0.2s;
+            user-select: none; -webkit-tap-highlight-color: transparent;
+        }
+        .nav-arrow:hover { background: var(--anton-yellow) !important; color: #000 !important; }
+        .nav-arrow:hover i { color: #000 !important; }
+        .nav-arrow:active { transform: scale(0.93); }
+        .nav-arrow--inactive { opacity: 0.28; cursor: default; pointer-events: none; }
+        .nav-arrow--active { opacity: 1; pointer-events: auto; }
     </style>
 </head>
 <body>
 
 <!-- ===================== DESKTOP ===================== -->
 <div id="desktop-wrapper">
-    <div id="bg-layer-a"></div>
-    <div id="bg-layer-b"></div>
-
     <header class="d-header">
         <img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo">
     </header>
@@ -457,34 +412,34 @@
     </aside>
 
     <main>
-        <div class="d-bento-legal">
-            <div class="d-bento-legal-header">
-                <i class="fa-solid fa-building-columns"></i>
-                Impressum
-            </div>
-            <div class="d-bento-legal-split">
-                <!-- Linke Spalte: Webseite -->
-                <div class="d-bento-legal-col">
-                    <span class="d-bento-col-label">Webseite</span>
-                    <div>
-                        <strong>Angaben gemäß § 5 TMG:</strong><br><br>
-                        <a href="index.html">www.anton-familienpop.de</a><br>
-                        FF Achtzehnfünf<br>
-                        Inhaberin Katharina Horn<br>
-                        Karl-Liebknecht-Strasse 15<br>
-                        14612 Falkensee<br><br>
-                        <strong>Kontakt:</strong><br>
-                        Telefon: 030/34080992<br>
-                        E-Mail: <a href="mailto:info@anton-familienpop.de">info@anton-familienpop.de</a>
+        <div class="ds-center-wrap">
+            <h1 class="ds-page-title">Impressum</h1>
+            <div class="ds-bento-row">
+
+                <a href="websiteimpressum.html" class="ds-bento-card">
+                    <div class="ds-bento-header">
+                        <i class="fa-solid fa-globe"></i>
+                        Impressum
                     </div>
-                    <h2>Haftungsausschluss</h2>
-                    <p style="margin:0;">Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
-                </div>
-                <!-- Rechte Spalte: Shop -->
-                <div class="d-bento-legal-col">
-                    <span class="d-bento-col-label">Shop</span>
-                    <div class="itrk-legaltext" data-itrk-legaltext-url="https://itrk.legal/1wta.0.15yp-de-iframe.html"></div>
-                </div>
+                    <div class="ds-bento-body">
+                        <span class="ds-bento-label">Webseite</span>
+                        <p class="ds-bento-desc">Pflichtangaben gemäß § 5 TMG, Kontaktdaten und Haftungsausschluss für das Onlineangebot.</p>
+                        <span class="ds-bento-link"><i class="fa-solid fa-arrow-right"></i> Zum Impressum</span>
+                    </div>
+                </a>
+
+                <a href="shopimpressum.html" class="ds-bento-card">
+                    <div class="ds-bento-header">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Impressum
+                    </div>
+                    <div class="ds-bento-body">
+                        <span class="ds-bento-label">Shop</span>
+                        <p class="ds-bento-desc">Impressumsangaben für den Shop-Bereich inklusive Handelsregister, Umsatzsteuer-ID und Streitbeilegung.</p>
+                        <span class="ds-bento-link"><i class="fa-solid fa-arrow-right"></i> Zum Impressum</span>
+                    </div>
+                </a>
+
             </div>
         </div>
     </main>
@@ -507,17 +462,25 @@
             </nav>
         </div>
     </footer>
+
+    <div class="nav-arrows-desktop">
+        <div class="nav-arrow nav-arrow--active" title="Zurück" onclick="AntonNav.goBack()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="nav-arrow nav-arrow--active" title="Vor" onclick="AntonNav.goForward()">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </div>
 </div>
 
 <!-- ===================== MOBILE ===================== -->
 <div id="mobile-wrapper">
-    <div id="m-bg-fix"></div>
     <header class="m-header" id="m-header-main">
+        <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)">
+            <span></span><span></span><span></span>
+        </div>
         <img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo">
     </header>
-    <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)">
-        <span></span><span></span><span></span>
-    </div>
 
     <nav class="m-sidebar" id="m-sidebar">
         <div class="m-nav-item"><a href="index.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
@@ -527,34 +490,34 @@
         <div class="m-epk-container"><a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener" class="m-epk-text">EPK/PRESSE</a></div>
     </nav>
 
-    <div class="m-content-scroll">
-        <div class="m-bento-legal">
-            <div class="m-bento-legal-header">
-                <i class="fa-solid fa-building-columns"></i>
-                Impressum
-            </div>
-            <!-- Mobile: Webseite oben -->
-            <div class="m-bento-legal-col">
-                <span class="m-bento-col-label">Webseite</span>
-                <div>
-                    <strong>Angaben gemäß § 5 TMG:</strong><br><br>
-                    <a href="index.html">www.anton-familienpop.de</a><br>
-                    FF Achtzehnfünf<br>
-                    Inhaberin Katharina Horn<br>
-                    Karl-Liebknecht-Strasse 15<br>
-                    14612 Falkensee<br><br>
-                    <strong>Kontakt:</strong><br>
-                    Telefon: 030/34080992<br>
-                    E-Mail: <a href="mailto:info@anton-familienpop.de">info@anton-familienpop.de</a>
+    <div class="m-content-scroll" id="m-scroll-area">
+        <h1 class="ds-page-title">Impressum</h1>
+        <div class="ds-bento-row">
+
+            <a href="websiteimpressum.html" class="ds-bento-card">
+                <div class="ds-bento-header">
+                    <i class="fa-solid fa-globe"></i>
+                    Impressum
                 </div>
-                <h2>Haftungsausschluss</h2>
-                <p style="margin:0;">Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
-            </div>
-            <!-- Mobile: Shop unten -->
-            <div class="m-bento-legal-col">
-                <span class="m-bento-col-label">Shop</span>
-                <div class="itrk-legaltext" data-itrk-legaltext-url="https://itrk.legal/1wta.0.15yp-de-iframe.html"></div>
-            </div>
+                <div class="ds-bento-body">
+                    <span class="ds-bento-label">Webseite</span>
+                    <p class="ds-bento-desc">Pflichtangaben gemäß § 5 TMG, Kontaktdaten und Haftungsausschluss für das Onlineangebot.</p>
+                    <span class="ds-bento-link"><i class="fa-solid fa-arrow-right"></i> Zum Impressum</span>
+                </div>
+            </a>
+
+            <a href="shopimpressum.html" class="ds-bento-card">
+                <div class="ds-bento-header">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Impressum
+                </div>
+                <div class="ds-bento-body">
+                    <span class="ds-bento-label">Shop</span>
+                    <p class="ds-bento-desc">Impressumsangaben für den Shop-Bereich inklusive Handelsregister, Umsatzsteuer-ID und Streitbeilegung.</p>
+                    <span class="ds-bento-link"><i class="fa-solid fa-arrow-right"></i> Zum Impressum</span>
+                </div>
+            </a>
+
         </div>
     </div>
 
@@ -586,9 +549,18 @@
             <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
         </div>
     </footer>
+
+    <div class="nav-arrows-mobile">
+        <div class="nav-arrow nav-arrow--active" title="Zurück" onclick="AntonNav.goBack()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="nav-arrow nav-arrow--active" title="Vor" onclick="AntonNav.goForward()">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </div>
 </div>
 
-<script src="https://www.it-recht-kanzlei.de/js/itrk-legaltext.js"></script>
+<script src="nav-history.js"></script>
 
 <script>
     /* ── Desktop Sidebar ── */
@@ -662,33 +634,6 @@
                 mIdBtn   && !mIdBtn.contains(e.target)) mCloseAllMenus();
         }
     });
-
-    /* ── Dynamic Background ── */
-    (function() {
-        var now = new Date(), hour = now.getHours(), month = now.getMonth();
-        function getSeason(m) { if (m>=2&&m<=4) return 'fruehling'; if (m>=5&&m<=7) return 'sommer'; if (m>=8&&m<=10) return 'herbst'; return 'winter'; }
-        function getDaytime(h) { if (h>=5&&h<10) return 'morgen'; if (h>=10&&h<18) return 'tag'; if (h>=18&&h<22) return 'abend'; return 'nacht'; }
-        var filename = 'bg-' + getSeason(month) + '-' + getDaytime(hour) + '.jpg';
-        function setBackground(src, fallback) {
-            var isDesktop = window.innerWidth > 800;
-            if (isDesktop) {
-                var layerA = document.getElementById('bg-layer-a'), layerB = document.getElementById('bg-layer-b');
-                if (!layerA) return;
-                var img = new Image();
-                img.onload = function() { layerA.style.backgroundImage = "url('" + src + "')"; layerA.style.opacity = '1'; if (layerB) layerB.style.opacity = '0'; };
-                img.onerror = function() { if (fallback) { layerA.style.backgroundImage = "url('" + fallback + "')"; layerA.style.opacity = '1'; } };
-                img.src = src;
-            } else {
-                var mBgEl = document.getElementById('m-bg-fix');
-                if (!mBgEl) return;
-                var img2 = new Image();
-                img2.onload = function() { mBgEl.style.backgroundImage = "url('" + src + "')"; };
-                img2.onerror = function() { if (fallback) mBgEl.style.backgroundImage = "url('" + fallback + "')"; };
-                img2.src = src;
-            }
-        }
-        setBackground(filename, 'Background.jpg');
-    })();
 </script>
 </body>
 </html>
