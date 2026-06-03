@@ -293,24 +293,34 @@
         /* ================================================================= */
         /* ECWID – ganzes Produktbild klickbar machen                        */
         /* ================================================================= */
+
+        /* Kachel als Positionierungs-Anker, overflow visible damit           */
+        /* Warenkorb-Button nicht abgeschnitten wird                          */
         #my-store-132126030 .grid-product,
         #my-store-132126030 .ec-grid__cell,
         #my-store-132126030 .product-card,
         #my-store-132126030 .ec-grid-item {
             position: relative !important;
+            overflow: visible !important;
         }
+
+        /* Bild-Wrapper klickbar + overflow:hidden damit Link nicht übersteht */
         #my-store-132126030 .grid-product__image-wrap,
         #my-store-132126030 .ec-grid-item__wrap,
         #my-store-132126030 .product-card__image,
         #my-store-132126030 .ec-grid__cell-inner {
             pointer-events: auto !important;
             cursor: pointer !important;
+            overflow: hidden !important;
         }
+
         #my-store-132126030 .grid-product__image-overlay,
         #my-store-132126030 .product-card__overlay,
         #my-store-132126030 .ec-grid-item__overlay {
             pointer-events: none !important;
         }
+
+        /* Link nur innerhalb des Bild-Wrappers ausdehnen */
         #my-store-132126030 .grid-product__image-wrap a,
         #my-store-132126030 .ec-grid-item__image a,
         #my-store-132126030 .product-card__image a {
@@ -322,6 +332,7 @@
             left: 0 !important;
             z-index: 10 !important;
         }
+
         #my-store-132126030 .grid-product__image-wrap img,
         #my-store-132126030 .ec-grid-item__image img,
         #my-store-132126030 .product-card__image img {
