@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | KONZERTE</title>
+    <title>ANTON | KONTAKT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
@@ -16,159 +16,41 @@
         }
 
         html, body {
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
+            margin: 0; padding: 0;
+            background-color: transparent;
             font-family: 'Special Elite', cursive;
-            height: 100%;
-            width: 100%;
+            height: 100%; width: 100%;
         }
 
-        .construction-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 500;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 
-        .construction-overlay::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: repeating-linear-gradient(
-                -45deg,
-                rgba(255, 235, 59, 0.18) 0px,
-                rgba(255, 235, 59, 0.18) 30px,
-                rgba(0, 0, 0, 0.07) 30px,
-                rgba(0, 0, 0, 0.07) 60px
-            );
-        }
-
-        .construction-banner {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
-            pointer-events: none;
-            padding: 0 20px;
-        }
-
-        .tape {
-            width: min(700px, 90vw);
-            height: 46px;
-            background: repeating-linear-gradient(
-                90deg,
-                #ffeb3b 0px, #ffeb3b 40px,
-                #000 40px, #000 80px
-            );
-            border: 3px solid #000;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.35);
-            transform: rotate(-1.5deg);
-        }
-
-        .tape.tape-bottom {
-            transform: rotate(1.5deg);
-        }
-
-        .construction-sign {
-            background: #ffeb3b;
-            border: 5px solid #000;
-            box-shadow: 8px 8px 0 #000;
-            border-radius: 16px;
-            padding: 28px 36px;
-            text-align: center;
-            max-width: min(560px, 88vw);
-            position: relative;
-        }
-
-        .construction-sign::before {
-            content: '';
-            position: absolute;
-            top: 8px; left: 8px; right: 8px; bottom: 8px;
-            border: 2px dashed rgba(0,0,0,0.25);
-            border-radius: 10px;
-            pointer-events: none;
-        }
-
-        .sign-icon {
-            font-size: 3.2rem;
-            display: block;
-            margin-bottom: 10px;
-            animation: wobble 2.5s ease-in-out infinite;
-        }
-
-        @keyframes wobble {
-            0%, 100% { transform: rotate(-4deg); }
-            50%       { transform: rotate(4deg); }
-        }
-
-        .sign-text {
-            font-size: clamp(1rem, 3.5vw, 1.35rem);
-            font-weight: bold;
-            color: #000;
-            line-height: 1.4;
-        }
-
-        #desktop-wrapper main,
-        #desktop-wrapper .d-footer {
-            filter: blur(4px);
-            pointer-events: none;
-            user-select: none;
-        }
-
-        @media (min-width: 801px) {
+        /* ================================================================= */
+        /* 1. DESKTOP                                                         */
+        /* ================================================================= */
+        @media (min-width: 801px) and (min-height: 500px) {
             #mobile-wrapper { display: none !important; }
+            #desktop-wrapper { display: block !important; }
 
-            html { height: 100%; }
+            html { background-color: transparent !important; }
 
             body {
-                background: #ffffff url('Background.jpg') no-repeat center center fixed;
+                background: url('Background.jpg') no-repeat center center fixed;
                 background-size: cover !important;
-                overflow-x: hidden;
-                overflow-y: auto;
-                min-height: 100%;
+                background-color: transparent !important;
+                overflow-x: hidden; overflow-y: auto;
+                min-height: 100vh;
             }
 
-            .d-header {
-                position: fixed; top: 0; width: 100%; height: 80px;
-                display: flex; justify-content: center; align-items: center;
-                z-index: 100; background: rgba(255, 255, 255, 0.8);
-                backdrop-filter: blur(10px); border-bottom: 2px solid #000;
-            }
-
-            .d-header-logo {
-                max-height: 285px;
-                width: auto;
-                object-fit: contain;
-                filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
-                transform: translateY(82px);
-            }
-
-            .d-menu-btn {
-                position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer;
-                z-index: 610; background: #000; color: #fff; width: 45px; height: 45px;
-                display: flex; align-items: center; justify-content: center;
-                border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000;
-                overflow: hidden;
-            }
+            .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+            .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
+            .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
             .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
             .d-menu-btn span { transition: opacity 0.2s; }
             .d-menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
             .d-menu-btn:hover span { opacity: 0; }
             .d-menu-btn:hover::after { opacity: 1; }
-
-            .d-sidebar-left {
-                position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width);
-                background: rgba(255, 235, 59, 0.98); z-index: 600; display: flex;
-                flex-direction: column; padding: 100px 15px 30px 15px;
-                transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box;
-            }
+            .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255,235,59,0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
             .d-sidebar-left.open { left: 0; }
-
             .d-nav-item { margin-bottom: 20px; width: 100%; }
             .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
             .d-sidebar-left a:hover { color: var(--anton-red); }
@@ -183,217 +65,428 @@
             .d-submenu a i { margin-right: 10px; width: 18px; text-align: center; }
             .d-nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
             .d-nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
-
-            .d-sidebar-right {
-                position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px;
-                display: flex; flex-direction: column; align-items: center; gap: 15px;
-                z-index: 999; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px);
-                padding: 25px 0; border-radius: 20px 0 0 20px;
-            }
-            .d-sidebar-right a { text-decoration: none; }
-            .d-sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
-
-            @keyframes ultraFlowWave {
-                0%           { transform: scale(1);    color: #000; }
-                9.33%        { transform: scale(1.55); color: var(--brand-color); }
-                23.33%, 100% { transform: scale(1);    color: #000; }
-            }
-
-            .d-sidebar-right a:nth-child(1) i  { --brand-color: #f00;               animation-delay: 0.0s;  }
-            .d-sidebar-right a:nth-child(2) i  { --brand-color: #25F4EE;            animation-delay: 0.25s; }
-            .d-sidebar-right a:nth-child(3) i  { --brand-color: #E1306C;            animation-delay: 0.5s;  }
-            .d-sidebar-right a:nth-child(4) i  { --brand-color: #25D366;            animation-delay: 0.75s; }
-            .d-sidebar-right a:nth-child(5) i  { --brand-color: #1877F2;            animation-delay: 1.0s;  }
-            .d-sidebar-right a:nth-child(6) i  { --brand-color: #1DB954;            animation-delay: 1.25s; }
-            .d-sidebar-right a:nth-child(7) i  { --brand-color: var(--apple-gray);  animation-delay: 1.5s;  }
-            .d-sidebar-right a:nth-child(8) i  { --brand-color: #f00;               animation-delay: 1.75s; }
-            .d-sidebar-right a:nth-child(9) i  { --brand-color: var(--amazon-blue); animation-delay: 2.0s;  }
+            .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255,255,255,0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+            .d-sidebar-right a i { color: #000; font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; }
+            @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+            .d-sidebar-right a:nth-child(1) i { --brand-color: #f00;               animation-delay: 0.0s; }
+            .d-sidebar-right a:nth-child(2) i { --brand-color: #25F4EE;            animation-delay: 0.25s; }
+            .d-sidebar-right a:nth-child(3) i { --brand-color: #E1306C;            animation-delay: 0.5s; }
+            .d-sidebar-right a:nth-child(4) i { --brand-color: #25D366;            animation-delay: 0.75s; }
+            .d-sidebar-right a:nth-child(5) i { --brand-color: #1877F2;            animation-delay: 1.0s; }
+            .d-sidebar-right a:nth-child(6) i { --brand-color: #1DB954;            animation-delay: 1.25s; }
+            .d-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray);  animation-delay: 1.5s; }
+            .d-sidebar-right a:nth-child(8) i { --brand-color: #f00;               animation-delay: 1.75s; }
+            .d-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
             .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
             .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-            .construction-overlay { z-index: 400; }
-
-            main {
-                padding: 110px 80px 100px 80px;
-                max-width: 1100px;
-                margin: 0 auto;
-                z-index: 10;
-                width: 100%;
-                box-sizing: border-box;
-            }
+            main { padding: 110px 80px 100px 80px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
             .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-            .bento-box {
-                background: rgba(255, 255, 255, 0.95); border: 3px solid #000;
-                box-shadow: 6px 6px 0 #000; padding: 30px; border-radius: 20px;
-                transition: all 0.3s ease; text-decoration: none; color: inherit;
-                display: flex; flex-direction: column; justify-content: center; text-align: center;
-            }
+            .bento-box { background: rgba(255,255,255,0.95); border: 3px solid #000; box-shadow: 6px 6px 0 #000; padding: 30px; border-radius: 20px; transition: all 0.3s ease; color: inherit; display: flex; flex-direction: column; justify-content: center; text-align: center; }
             .bento-box:hover { transform: translateY(-5px); background: var(--anton-yellow); }
+            .bento-box-booking, .bento-box-booking:hover { background-color: transparent !important; }
             .bento-box h2 { margin: 0 0 10px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.5rem; }
+            .bento-box p { margin: 0 0 10px 0; }
             .box-full { grid-column: span 2; }
 
-            .d-footer {
-                width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95);
-                border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem;
-                z-index: 550; position: fixed; bottom: 0; left: 0;
+            /* ── BOOKING BOX Desktop ── */
+            .bento-box-booking {
+                position: relative;
+                overflow: hidden;
+                padding: 0;
+                background-image: url('Milchsalon-Logo.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-color: transparent;
+                cursor: pointer;
+                min-height: 200px;
+                border: 3px solid #000;
+                box-shadow: 6px 6px 0 #000;
+                border-radius: 20px;
             }
+            /* Weißes Overlay */
+            .bento-box-booking .booking-overlay {
+                position: absolute;
+                inset: 0;
+                background: rgba(255,255,255,0.35);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                padding: 30px;
+                transition: opacity 0.4s ease;
+                z-index: 1;
+                text-align: center;
+            }
+            .bento-box-booking .booking-overlay h2 {
+                margin: 0 0 8px 0;
+                color: var(--anton-red);
+                text-transform: uppercase;
+                font-size: 1.5rem;
+            }
+            .bento-box-booking .booking-overlay p { margin: 0 0 8px 0; }
+            .bento-box-booking .booking-overlay .booking-link { font-weight: bold; }
+
+            /* "Jetzt buchen" – versteckt, erscheint beim Hover oben */
+            .bento-box-booking .booking-hover-text {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                padding-top: 30px;
+                z-index: 2;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                font-size: 1.5rem;
+                font-family: 'Special Elite', cursive;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: var(--anton-red);
+                letter-spacing: 4px;
+                pointer-events: none;
+            }
+
+            /* Hover: Overlay ausblenden, Hintergrundbild sichtbar – KEIN Text, KEIN gelber Hintergrund */
+            .bento-box-booking:hover {
+                transform: translateY(-5px);
+                background-color: #000 !important;
+                background-image: url('Milchsalon-Logo.jpg') !important;
+                background-size: cover !important;
+                background-position: center center !important;
+            }
+            .bento-box-booking:hover .booking-overlay { opacity: 0; }
+            .bento-box-booking:hover .booking-hover-text { opacity: 1; }
+
+            .contact-form { display: flex; flex-direction: column; gap: 15px; text-align: left; }
+            .contact-form input, .contact-form textarea { font-family: 'Special Elite', cursive; padding: 12px; border: 2px solid #000; border-radius: 10px; background: #fff; font-size: 1rem; outline: none; }
+            .contact-form input:focus, .contact-form textarea:focus { background: var(--anton-yellow); }
+            .contact-form button { font-family: 'Special Elite', cursive; background: #000; color: #fff; padding: 15px; border: none; border-radius: 10px; cursor: pointer; text-transform: uppercase; font-weight: bold; font-size: 1rem; transition: all 0.3s ease; }
+            .contact-form button:hover { background: var(--anton-red); transform: scale(1.02); }
+
+            .d-footer { width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: fixed; bottom: 0; left: 0; }
             .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; transition: all 0.3s ease; }
-            .d-footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+            .d-footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; }
         }
 
-        @media (max-width: 800px) {
+        /* ================================================================= */
+        /* 2. MOBILE BASIS – Portrait UND Landscape                           */
+        /* ================================================================= */
+        @media (max-width: 800px), (orientation: landscape) and (max-height: 500px) {
             #desktop-wrapper { display: none !important; }
+            #mobile-wrapper  { display: block !important; }
 
-            body {
-                height: 100vh; width: 100vw; overflow: hidden !important;
-                position: fixed; display: flex; flex-direction: column; touch-action: pan-y;
-                overscroll-behavior-x: none;
-            }
-
-            #m-bg-fix {
-                display: block; position: fixed; top: 0; left: -100%;
-                width: 300%; height: 100%; background: url('Background.jpg') no-repeat center center;
-                background-size: cover; z-index: -1; will-change: transform;
-            }
-
-            .m-header {
-                position: fixed; top: 0; width: 100%; height: 80px;
-                display: flex; justify-content: center; align-items: center;
-                z-index: 1000; background: rgba(255, 255, 255, 0.8);
-                backdrop-filter: blur(10px); border-bottom: 2px solid #000;
-                transition: transform 0.6s ease-in-out;
-            }
-            .m-header-logo {
-                position: absolute; top: 120%; transform: translateY(-50%);
-                max-height: 185px; width: auto;
-                filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
-            }
-
-            .m-menu-btn {
-                position: fixed; top: 18px; left: 15px; z-index: 1500;
-                background: #000; width: 45px; height: 45px; border-radius: 5px;
-                display: flex; flex-direction: column; align-items: center; justify-content: center;
-                gap: 5px; cursor: pointer; border: 2px solid #000;
-            }
+            .m-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; transition: transform 0.6s ease-in-out; }
+            .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .m-menu-btn { position: fixed; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
             .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
             .m-menu-btn.active { background: var(--anton-yellow); }
             .m-menu-btn.active span { display: none; }
             .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
-
-            .m-sidebar {
-                position: fixed; left: 0; top: -120px; width: 100%; height: 95px;
-                background: var(--anton-yellow); z-index: 1100; display: flex;
-                flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box;
-                border-bottom: 3px solid #000; justify-content: space-between;
-                align-items: center; transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            }
+            .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s cubic-bezier(0.4,0,0.2,1); }
             .m-sidebar.open { top: 0 !important; }
-
             .m-nav-item { flex: 1; text-align: center; }
             .m-nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
             .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
+            .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
+            .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
 
-            .m-epk-container {
-                position: absolute; right: 0; top: 0; height: 100%; width: 45px;
-                background: #fff; border-left: 3px solid #000;
-                display: flex; align-items: center; justify-content: center;
-            }
-            .m-epk-text {
-                writing-mode: vertical-rl; transform: rotate(180deg);
-                font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none;
-            }
-
-            .m-content-scroll {
-                flex: 1; margin-top: 80px; margin-bottom: 65px;
-                overflow-y: auto; padding: 20px 15px;
-                -webkit-overflow-scrolling: touch; box-sizing: border-box;
-                filter: blur(4px); pointer-events: none; user-select: none;
-            }
-
-            .m-bento-grid { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-            .m-bento-box {
-                background: rgba(255, 255, 255, 0.92); border: 3px solid #000;
-                box-shadow: 5px 5px 0 #000; padding: 20px; border-radius: 16px;
-            }
-            .m-bento-box h2 { margin: 0 0 8px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.2rem; }
-            .m-bento-box p { margin: 0; font-size: 0.9rem; }
-
-            .construction-overlay { z-index: 800; }
-            .m-menu-btn     { z-index: 1500; }
-            .m-sidebar      { z-index: 1100; }
-            .m-sidebar-right{ z-index: 999;  }
-            .m-id-button,
-            .m-id-panel     { z-index: 1300; }
-
-            .tape { height: 36px; }
-            .sign-text { font-size: clamp(0.85rem, 3vw, 1.1rem); }
-
-            .m-id-button {
-                position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px;
-                background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(4px);
-                border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px;
-                display: flex; align-items: center; justify-content: center;
-                z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000;
-                cursor: pointer; transition: transform 0.4s ease-in-out;
-                font-family: 'Special Elite', cursive;
-            }
+            .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
             .m-id-button.hidden { transform: translateX(100%); }
-
-            .m-id-panel {
-                position: fixed; right: -250px; bottom: 150px; height: 45px; width: 230px;
-                background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px);
-                border: 2px solid #000; border-right: none;
-                display: flex; align-items: center; justify-content: center;
-                z-index: 1299; transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-                border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem;
-            }
+            .m-id-panel { position: fixed; right: -270px; bottom: 150px; height: 45px; width: 250px; background: rgba(255,255,255,0.35); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem; overflow: hidden; }
             .m-id-panel.open { right: 0; }
             .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
 
-            .m-sidebar-right {
-                position: fixed; bottom: 0; left: 0; width: 100%; height: 65px;
-                display: flex; flex-direction: row; align-items: center;
-                z-index: 999; background: rgba(255, 255, 255, 0.7);
-                backdrop-filter: blur(8px); border-top: 2px solid #000;
-                padding: 0 10px; justify-content: space-evenly;
-            }
-            .m-sidebar-right a { text-decoration: none; }
+            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; padding: 0 10px; justify-content: space-evenly; }
             .m-sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
+            @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
+            .m-sidebar-right a:nth-child(1) i { --brand-color: #f00;               animation-delay: 0.0s; }
+            .m-sidebar-right a:nth-child(2) i { --brand-color: #25F4EE;            animation-delay: 0.25s; }
+            .m-sidebar-right a:nth-child(3) i { --brand-color: #E1306C;            animation-delay: 0.5s; }
+            .m-sidebar-right a:nth-child(4) i { --brand-color: #25D366;            animation-delay: 0.75s; }
+            .m-sidebar-right a:nth-child(5) i { --brand-color: #1877F2;            animation-delay: 1.0s; }
+            .m-sidebar-right a:nth-child(6) i { --brand-color: #1DB954;            animation-delay: 1.25s; }
+            .m-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray);  animation-delay: 1.5s; }
+            .m-sidebar-right a:nth-child(8) i { --brand-color: #f00;               animation-delay: 1.75s; }
+            .m-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
+        }
 
-            @keyframes ultraFlowWaveMobile {
-                0%           { transform: scale(1);   color: #000; }
-                9.33%        { transform: scale(1.4); color: var(--brand-color); }
-                23.33%, 100% { transform: scale(1);   color: #000; }
+        /* ================================================================= */
+        /* 2a. MOBILE PORTRAIT                                                */
+        /* ================================================================= */
+        @media (max-width: 800px) and (orientation: portrait) {
+            body { height: 100dvh; width: 100vw; overflow: hidden !important; position: static; display: flex; flex-direction: column; touch-action: pan-y; overscroll-behavior-x: none; }
+            #m-bg-fix { display: block; position: fixed; top: 0; left: -100%; width: 300%; height: 100%; background: url('Background.jpg') no-repeat center center; background-size: cover; z-index: -1; will-change: transform; }
+
+            .m-content-scroll { flex: 1; min-height: 0; margin-top: 80px; margin-bottom: 65px; overflow-y: auto; padding: 20px 15px; -webkit-overflow-scrolling: touch; box-sizing: border-box; }
+
+            .m-bento-grid { display: flex; flex-direction: column; gap: 15px; }
+            .m-bento-box { background: rgba(255,255,255,0.92); border: 3px solid #000; box-shadow: 5px 5px 0 #000; padding: 20px; border-radius: 16px; }
+            .m-bento-box h2 { margin: 0 0 8px 0; color: var(--anton-red); text-transform: uppercase; font-size: 1.2rem; }
+            .m-bento-box p { margin: 0 0 10px 0; font-size: 0.9rem; }
+            .m-bento-box a { color: #000; font-weight: bold; font-size: 0.9rem; }
+
+            /* ── BOOKING BOX Mobile Portrait ── */
+            .m-bento-box-booking {
+                position: relative;
+                overflow: hidden;
+                padding: 0 !important;
+                background-image: url('Milchsalon-Logo.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                min-height: 160px;
+                cursor: pointer;
+            }
+            .m-bento-box-booking .booking-overlay {
+                position: absolute;
+                inset: 0;
+                background: rgba(255,255,255,0.35);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+                padding: 20px;
+                transition: opacity 0.4s ease;
+                z-index: 1;
+                text-align: center;
+            }
+            .m-bento-box-booking .booking-overlay h2 {
+                margin: 0 0 6px 0;
+                color: var(--anton-red);
+                text-transform: uppercase;
+                font-size: 1.2rem;
+            }
+            .m-bento-box-booking .booking-overlay p { margin: 0 0 6px 0; font-size: 0.9rem; }
+            .m-bento-box-booking .booking-hover-text {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 2;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                font-size: 1.2rem;
+                font-family: 'Special Elite', cursive;
+                font-weight: normal;
+                text-transform: uppercase;
+                color: var(--anton-red);
+                letter-spacing: 3px;
+                pointer-events: none;
+            }
+            /* Tap-Zustand für Mobile: Overlay weg, kein Text, nur Bild */
+            .m-bento-box-booking.tapped .booking-overlay { opacity: 0; }
+            .m-bento-box-booking.tapped .booking-hover-text { opacity: 0; }
+
+            .contact-form { display: flex; flex-direction: column; gap: 12px; }
+            .contact-form input, .contact-form textarea { font-family: 'Special Elite', cursive; padding: 12px; border: 2px solid #000; border-radius: 10px; background: #fff; font-size: 1rem; outline: none; box-sizing: border-box; width: 100%; }
+            .contact-form input:focus, .contact-form textarea:focus { background: var(--anton-yellow); }
+            .contact-form button { font-family: 'Special Elite', cursive; background: #000; color: #fff; padding: 14px; border: none; border-radius: 10px; cursor: pointer; text-transform: uppercase; font-weight: bold; font-size: 1rem; }
+            .contact-form button:active { background: var(--anton-red); }
+        }
+
+        /* ================================================================= */
+        /* 3. MOBILE LANDSCAPE                                                */
+        /* ================================================================= */
+        @media (orientation: landscape) and (max-height: 500px) {
+
+            body { background-color: transparent !important; overflow-y: auto !important; position: static !important; height: auto !important; }
+            #mobile-wrapper { overflow-y: auto !important; }
+
+            #mobile-wrapper #m-bg-fix {
+                display: block !important; position: fixed !important;
+                top: 0 !important; left: 0 !important;
+                width: 100% !important; height: 100% !important;
+                background: url('Background.jpg') no-repeat center center !important;
+                background-size: cover !important; z-index: -1 !important;
+                will-change: unset !important; transform: none !important;
             }
 
-            .m-sidebar-right a:nth-child(1) i  { --brand-color: #f00;               animation-delay: 0.0s;  }
-            .m-sidebar-right a:nth-child(2) i  { --brand-color: #25F4EE;            animation-delay: 0.25s; }
-            .m-sidebar-right a:nth-child(3) i  { --brand-color: #E1306C;            animation-delay: 0.5s;  }
-            .m-sidebar-right a:nth-child(4) i  { --brand-color: #25D366;            animation-delay: 0.75s; }
-            .m-sidebar-right a:nth-child(5) i  { --brand-color: #1877F2;            animation-delay: 1.0s;  }
-            .m-sidebar-right a:nth-child(6) i  { --brand-color: #1DB954;            animation-delay: 1.25s; }
-            .m-sidebar-right a:nth-child(7) i  { --brand-color: var(--apple-gray);  animation-delay: 1.5s;  }
-            .m-sidebar-right a:nth-child(8) i  { --brand-color: #f00;               animation-delay: 1.75s; }
-            .m-sidebar-right a:nth-child(9) i  { --brand-color: var(--amazon-blue); animation-delay: 2.0s;  }
+            #mobile-wrapper .m-header { height: 50px !important; }
+            #mobile-wrapper .m-header-logo { top: 145% !important; max-height: 150px !important; }
+            #mobile-wrapper .m-menu-btn { top: 6px !important; left: 10px !important; width: 36px !important; height: 36px !important; }
+
+            #mobile-wrapper .m-sidebar {
+                top: 0 !important; left: -190px !important;
+                width: 175px !important; height: 100% !important;
+                flex-direction: column !important;
+                justify-content: flex-start !important; align-items: flex-start !important;
+                padding: 60px 12px 15px 12px !important;
+                border-bottom: none !important; border-right: 3px solid #000 !important;
+                box-sizing: border-box !important;
+                transition: left 0.5s cubic-bezier(0.4,0,0.2,1) !important;
+                overflow-y: auto !important;
+            }
+            #mobile-wrapper .m-sidebar.open { left: 0 !important; top: 0 !important; }
+            #mobile-wrapper .m-nav-item { flex: none !important; width: 100%; text-align: left; margin-bottom: 12px; }
+            #mobile-wrapper .m-nav-item a { flex-direction: row !important; gap: 8px; font-size: 0.8rem; }
+            #mobile-wrapper .m-nav-item a i { font-size: 0.9rem; width: 18px; text-align: center; }
+            #mobile-wrapper .mobile-tag { font-size: 0.68rem; writing-mode: horizontal-tb !important; transform: none !important; margin-top: 0; }
+            #mobile-wrapper .m-epk-container { position: static !important; width: 100% !important; height: auto !important; background: transparent !important; border-left: none !important; border-top: 1px solid rgba(0,0,0,0.15) !important; padding-top: 10px !important; margin-top: auto !important; justify-content: flex-start !important; }
+            #mobile-wrapper .m-epk-text { writing-mode: horizontal-tb !important; transform: none !important; font-size: 0.75rem; }
+
+            #mobile-wrapper .m-content-scroll {
+                display: block !important;
+                position: fixed !important;
+                top: 50px !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 42px !important;
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                padding: 8px 40px 34px 40px !important;
+                box-sizing: border-box !important;
+                margin: 0 !important;
+                background: transparent !important;
+            }
+
+            #mobile-wrapper .m-bento-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                grid-template-rows: auto auto !important;
+                gap: 8px !important;
+                align-items: start !important;
+                width: 80% !important;
+                margin: 0 auto !important;
+            }
+            #mobile-wrapper .m-bento-box-booking { grid-column: 1 !important; grid-row: 1 !important; }
+            #mobile-wrapper .m-bento-box-presse  { grid-column: 2 !important; grid-row: 1 !important; }
+            #mobile-wrapper .m-bento-box-form    { grid-column: 1 / -1 !important; grid-row: 2 !important; }
+
+            #mobile-wrapper .m-bento-box {
+                background: rgba(255,255,255,0.92) !important;
+                border: 2px solid #000 !important;
+                box-shadow: 3px 3px 0 #000 !important;
+                border-radius: 10px !important;
+                padding: 10px 12px !important;
+                box-sizing: border-box !important;
+            }
+
+            /* ── BOOKING BOX Landscape ── */
+            #mobile-wrapper .m-bento-box-booking {
+                position: relative !important;
+                overflow: hidden !important;
+                padding: 0 !important;
+                background-image: url('Milchsalon-Logo.jpg') !important;
+                background-size: cover !important;
+                background-repeat: no-repeat !important;
+                background-position: center center !important;
+                background-color: rgba(255,255,255,0.92) !important;
+                min-height: 90px !important;
+                cursor: pointer !important;
+            }
+            #mobile-wrapper .m-bento-box-booking .booking-overlay {
+                position: absolute !important;
+                inset: 0 !important;
+                background: rgba(255,255,255,0.35) !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 3px !important;
+                padding: 8px 10px !important;
+                transition: opacity 0.4s ease !important;
+                z-index: 1 !important;
+                text-align: center !important;
+            }
+            #mobile-wrapper .m-bento-box-booking .booking-hover-text {
+                position: absolute !important;
+                inset: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                z-index: 2 !important;
+                opacity: 0 !important;
+                transition: opacity 0.4s ease !important;
+                font-size: 0.82rem !important;
+                font-family: 'Special Elite', cursive !important;
+                font-weight: normal !important;
+                text-transform: uppercase !important;
+                color: var(--anton-red) !important;
+                letter-spacing: 2px !important;
+                pointer-events: none !important;
+            }
+            /* Tap-Zustand Landscape: Overlay weg, kein Text, nur Bild */
+            #mobile-wrapper .m-bento-box-booking.tapped .booking-overlay { opacity: 0 !important; }
+            #mobile-wrapper .m-bento-box-booking.tapped .booking-hover-text { opacity: 0 !important; }
+
+            #mobile-wrapper .m-bento-box h2 { font-size: 0.82rem !important; margin: 0 0 4px 0 !important; color: var(--anton-red) !important; text-transform: uppercase !important; }
+            #mobile-wrapper .m-bento-box p  { font-size: 0.68rem !important; margin: 0 0 5px 0 !important; line-height: 1.35 !important; }
+            #mobile-wrapper .m-bento-box a  { font-size: 0.7rem !important; font-weight: bold !important; }
+
+            #mobile-wrapper .contact-form {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 8px !important;
+            }
+            #mobile-wrapper .contact-form input {
+                padding: 9px 11px !important; font-size: 0.82rem !important;
+                border: 2px solid #000 !important; border-radius: 8px !important;
+                background: #fff !important; font-family: 'Special Elite', cursive !important;
+                outline: none !important; box-sizing: border-box !important; width: 100% !important;
+            }
+            #mobile-wrapper .contact-form input:focus { background: var(--anton-yellow) !important; }
+            #mobile-wrapper .contact-form textarea {
+                grid-column: 1 / -1 !important;
+                padding: 9px 11px !important; font-size: 0.82rem !important;
+                border: 2px solid #000 !important; border-radius: 8px !important;
+                background: #fff !important; font-family: 'Special Elite', cursive !important;
+                outline: none !important; box-sizing: border-box !important;
+                width: 100% !important; resize: none !important;
+                height: 110px !important;
+            }
+            #mobile-wrapper .contact-form textarea:focus { background: var(--anton-yellow) !important; }
+            #mobile-wrapper .contact-form button {
+                grid-column: 1 / -1 !important;
+                font-family: 'Special Elite', cursive !important;
+                background: #000 !important; color: #fff !important;
+                padding: 10px !important; border: none !important;
+                border-radius: 8px !important; cursor: pointer !important;
+                text-transform: uppercase !important; font-weight: bold !important;
+                font-size: 0.82rem !important;
+            }
+
+            #mobile-wrapper .m-sidebar-right {
+                position: fixed !important; top: 0 !important; bottom: 0 !important;
+                left: auto !important; right: 0 !important;
+                width: 42px !important; height: 100% !important;
+                flex-direction: column !important;
+                border-top: none !important; border-bottom: none !important;
+                border-left: 2px solid #000 !important; border-radius: 0 !important;
+                padding: 0 !important; gap: 0 !important;
+                justify-content: space-evenly !important;
+                background: rgba(255,255,255,0.2) !important;
+                backdrop-filter: blur(3px) !important;
+            }
+            #mobile-wrapper .m-sidebar-right a { flex: 1 !important; display: flex !important; align-items: center !important; justify-content: center !important; width: 100% !important; }
+            #mobile-wrapper .m-sidebar-right a i { font-size: 1.0rem !important; }
+
+            #mobile-wrapper .m-id-button { display: none !important; }
+            #mobile-wrapper .m-id-panel {
+                position: fixed !important; bottom: 0 !important;
+                left: 50% !important; right: auto !important;
+                transform: translateX(-50%) !important;
+                width: 200px !important; height: 30px !important;
+                border-radius: 8px 8px 0 0 !important;
+                border: 2px solid #000 !important; border-bottom: none !important;
+                background: rgba(255,255,255,0.35) !important;
+                backdrop-filter: blur(8px) !important;
+                font-size: 0.68rem !important; opacity: 1 !important;
+                display: flex !important; align-items: center !important; justify-content: center !important;
+                transition: none !important;
+            }
+            #mobile-wrapper .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
         }
     </style>
 </head>
 <body>
 
-    <div class="construction-overlay">
-        <div class="construction-banner">
-            <div class="tape"></div>
-            <div class="construction-sign">
-                <span class="sign-icon">🎤</span>
-                <p class="sign-text">
-                    Bald fertig! Dann gibt's ordentlich was auf die Ohren UND Augen 😉
-                </p>
-            </div>
-            <div class="tape tape-bottom"></div>
-        </div>
-    </div>
-
+    <!-- ======================== DESKTOP ======================== -->
     <div id="desktop-wrapper">
         <header class="d-header">
             <img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo">
@@ -407,7 +500,7 @@
                 <div class="d-submenu">
                     <a href="uebermich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
                     <a href="veroffentlichungen.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
-                    <a href="konzerte.html" style="color: var(--anton-red); font-weight: bold;"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
+                    <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
                 </div>
             </div>
             <div class="d-nav-item"><a href="shop.html"><span class="d-nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
@@ -429,18 +522,31 @@
 
         <main>
             <div class="bento-grid">
-                <div class="bento-box box-full">
-                    <h2>Tour 2026</h2>
-                    <p>Erlebe Anton live auf der Bühne! Hier findest du alle aktuellen Termine.</p>
-                </div>
-                <div class="bento-box">
-                    <h2>Nächste Show</h2>
-                    <p>Infos zu Ort, Zeit und Tickets folgen in Kürze.</p>
-                </div>
-                <a href="kontakt.html" class="bento-box">
-                    <h2>Booking</h2>
-                    <p>Du möchtest Anton für dein Event buchen? Melde dich hier.</p>
+
+                <!-- BOOKING BOX – Desktop (FIXED: mailto statt Cloudflare-Link) -->
+                <a href="mailto:post@milchsalon.de" class="bento-box bento-box-booking">
+                    <div class="booking-overlay">
+                        <h2>Booking</h2>
+                        <p>Du möchtest Anton live erleben? Wir freuen uns auf deine Anfrage für Konzerte und Events.</p>
+                        <span class="booking-link">Anfrage senden</span>
+                    </div>
+                    <div class="booking-hover-text">Jetzt buchen</div>
                 </a>
+
+                <div class="bento-box">
+                    <h2>Presse</h2>
+                    <p>Pressematerial, Fotos und Interview-Anfragen findest du im geschützten Bereich unter <a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener" style="color:var(--anton-red); font-weight:bold; text-decoration:underline;">EPK / Presse</a>.</p>
+                </div>
+                <div class="bento-box box-full">
+                    <h2>Schreib mir</h2>
+                    <form class="contact-form" id="d-contact-form">
+                        <input type="text" name="name" id="d-name" placeholder="Dein Name" required>
+                        <input type="email" name="email" id="d-email" placeholder="Deine E-Mail Adresse" required>
+                        <input type="text" name="subject" id="d-subject" placeholder="Betreff">
+                        <textarea name="message" id="d-message" rows="5" placeholder="Deine Nachricht an Anton..." required></textarea>
+                        <button type="submit">Nachricht Absenden</button>
+                    </form>
+                </div>
             </div>
         </main>
 
@@ -450,6 +556,7 @@
         </footer>
     </div>
 
+    <!-- ======================== MOBILE ======================== -->
     <div id="mobile-wrapper">
         <div id="m-bg-fix"></div>
 
@@ -470,17 +577,30 @@
 
         <div class="m-content-scroll">
             <div class="m-bento-grid">
-                <div class="m-bento-box">
-                    <h2>Tour 2026</h2>
-                    <p>Erlebe Anton live auf der Bühne!</p>
+
+                <!-- BOOKING BOX – Mobile (FIXED: mailto statt Cloudflare-Link) -->
+                <a href="mailto:post@milchsalon.de" class="m-bento-box m-bento-box-booking" id="m-booking-box">
+                    <div class="booking-overlay">
+                        <h2>Booking</h2>
+                        <p>Du möchtest Anton live erleben? Wir freuen uns auf deine Anfrage für Konzerte und Events.</p>
+                        <span style="font-weight:bold; font-size:0.9rem; color:#000;">Anfrage senden</span>
+                    </div>
+                    <div class="booking-hover-text">Jetzt buchen</div>
+                </a>
+
+                <div class="m-bento-box m-bento-box-presse">
+                    <h2>Presse</h2>
+                    <p>Pressematerial, Fotos und Interview-Anfragen findest du im geschützten Bereich unter <a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener" style="color:var(--anton-red); font-weight:bold;">EPK / Presse</a>.</p>
                 </div>
-                <div class="m-bento-box">
-                    <h2>Nächste Show</h2>
-                    <p>Infos zu Ort, Zeit und Tickets folgen in Kürze.</p>
-                </div>
-                <div class="m-bento-box">
-                    <h2>Booking</h2>
-                    <p>Du möchtest Anton für dein Event buchen? Melde dich hier.</p>
+                <div class="m-bento-box m-bento-box-form">
+                    <h2>Schreib mir</h2>
+                    <form class="contact-form" id="m-contact-form">
+                        <input type="text" name="name" id="m-name" placeholder="Dein Name" required>
+                        <input type="email" name="email" id="m-email" placeholder="Deine E-Mail Adresse" required>
+                        <input type="text" name="subject" id="m-subject" placeholder="Betreff">
+                        <textarea name="message" id="m-message" rows="3" placeholder="Deine Nachricht an Anton..." required></textarea>
+                        <button type="submit">Nachricht Absenden</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -504,38 +624,38 @@
     </div>
 
     <script>
+        /* ── DESKTOP ── */
         let dSidebarTimeout;
         const dSidebar = document.getElementById('d-sidebar');
-
-        function resetDSidebarTimer() {
-            clearTimeout(dSidebarTimeout);
-            if (dSidebar && dSidebar.classList.contains('open')) {
-                dSidebarTimeout = setTimeout(() => dSidebar.classList.remove('open'), 5000);
-            }
-        }
-
-        function toggleDesktopMenu() {
-            if (dSidebar) {
-                dSidebar.classList.toggle('open');
-                if (dSidebar.classList.contains('open')) resetDSidebarTimer();
-            }
-        }
-
-        if (dSidebar) {
-            dSidebar.addEventListener('mousemove', resetDSidebarTimer);
-            dSidebar.addEventListener('click', resetDSidebarTimer);
-        }
-
+        function resetDSidebarTimer() { clearTimeout(dSidebarTimeout); if (dSidebar && dSidebar.classList.contains('open')) dSidebarTimeout = setTimeout(() => dSidebar.classList.remove('open'), 5000); }
+        function toggleDesktopMenu() { if (dSidebar) { dSidebar.classList.toggle('open'); if (dSidebar.classList.contains('open')) resetDSidebarTimer(); } }
+        if (dSidebar) { dSidebar.addEventListener('mousemove', resetDSidebarTimer); dSidebar.addEventListener('click', resetDSidebarTimer); }
         document.addEventListener('click', function(e) {
             if (window.innerWidth > 800) {
                 const btn = document.querySelector('.d-menu-btn');
-                if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains('open')) {
-                    dSidebar.classList.remove('open');
-                    clearTimeout(dSidebarTimeout);
-                }
+                if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains('open')) { dSidebar.classList.remove('open'); clearTimeout(dSidebarTimeout); }
             }
         });
 
+        /* ── MOBILE BOOKING BOX: erster Tap zeigt nur das Bild, zweiter navigiert ── */
+        const mBookingBox = document.getElementById('m-booking-box');
+        if (mBookingBox) {
+            let tapped = false;
+            mBookingBox.addEventListener('touchstart', function(e) {
+                if (!tapped) {
+                    e.preventDefault();
+                    tapped = true;
+                    this.classList.add('tapped');
+                    setTimeout(() => {
+                        tapped = false;
+                        this.classList.remove('tapped');
+                    }, 2500);
+                }
+                // zweiter Tap: kein preventDefault → Link wird ausgeführt
+            }, { passive: false });
+        }
+
+        /* ── MOBILE ── */
         const mSidebar = document.getElementById('m-sidebar');
         const mMenuBtn = document.getElementById('m-menu-trigger');
         const mIdBtn   = document.getElementById('m-id-btn');
@@ -543,79 +663,102 @@
         const mBg      = document.getElementById('m-bg-fix');
         let mMenuTimeout, mIdTimeout;
 
-        function mCloseAllMenus() {
-            if (mSidebar)  mSidebar.classList.remove('open');
-            if (mMenuBtn)  mMenuBtn.classList.remove('active');
-            if (mMenuTimeout) clearTimeout(mMenuTimeout);
-            if (mIdPanel)  mIdPanel.classList.remove('open');
-            if (mIdBtn)    mIdBtn.classList.remove('hidden');
-            if (mIdTimeout) clearTimeout(mIdTimeout);
-        }
+        function isLandscapeMobile() { return window.innerHeight <= 500 && window.innerWidth > window.innerHeight; }
 
-        function mToggleMenu(e) {
-            e.stopPropagation();
-            if (mSidebar.classList.contains('open')) {
-                mCloseAllMenus();
-            } else {
-                mCloseAllMenus();
-                mSidebar.classList.add('open');
-                mMenuBtn.classList.add('active');
-                mMenuTimeout = setTimeout(mCloseAllMenus, 5000);
+        function mCloseAllMenus() {
+            if (mSidebar) mSidebar.classList.remove('open');
+            if (mMenuBtn) mMenuBtn.classList.remove('active');
+            clearTimeout(mMenuTimeout);
+            if (!isLandscapeMobile()) {
+                if (mIdPanel) mIdPanel.classList.remove('open');
+                if (mIdBtn)   mIdBtn.classList.remove('hidden');
+                clearTimeout(mIdTimeout);
             }
         }
-
-        function mOpenIDMenu(e) {
+        function mToggleMenu(e) {
             e.stopPropagation();
-            mCloseAllMenus();
+            if (mSidebar.classList.contains('open')) { mCloseAllMenus(); }
+            else { mCloseAllMenus(); mSidebar.classList.add('open'); mMenuBtn.classList.add('active'); mMenuTimeout = setTimeout(mCloseAllMenus, 5000); }
+        }
+        function mOpenIDMenu(e) {
+            e.stopPropagation(); mCloseAllMenus();
             if (mIdBtn)   mIdBtn.classList.add('hidden');
             if (mIdPanel) mIdPanel.classList.add('open');
             mIdTimeout = setTimeout(mCloseAllMenus, 5000);
         }
 
+        function applyLandscapeState() {
+            if (isLandscapeMobile()) {
+                if (mIdPanel) mIdPanel.style.cssText = '';
+                if (mIdBtn)   mIdBtn.style.display = 'none';
+            } else {
+                if (mIdBtn)   mIdBtn.style.display = '';
+                if (mIdPanel) mIdPanel.classList.remove('open');
+            }
+        }
+        window.addEventListener('resize', applyLandscapeState);
+        window.addEventListener('orientationchange', () => setTimeout(applyLandscapeState, 100));
+        applyLandscapeState();
+
         let touchStartX = 0, touchStartY = 0, currentTranslateX = 0;
-
-        document.addEventListener('touchstart', e => {
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-
+        document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; }, { passive: true });
         document.addEventListener('touchmove', e => {
-            if (window.innerWidth <= 800) {
+            if (window.innerWidth <= 800 && !isLandscapeMobile()) {
                 const diffX = e.touches[0].clientX - touchStartX;
                 const diffY = e.touches[0].clientY - touchStartY;
-                if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) {
-                    if (mSidebar && !mSidebar.contains(e.target)) mCloseAllMenus();
-                }
+                if (Math.abs(diffX) > 10 || Math.abs(diffY) > 10) { if (mSidebar && !mSidebar.contains(e.target)) mCloseAllMenus(); }
                 if (Math.abs(diffX) > Math.abs(diffY)) {
                     let newX = currentTranslateX + diffX;
                     const limit = window.innerWidth;
-                    if (newX >  limit) newX =  limit;
-                    if (newX < -limit) newX = -limit;
+                    if (newX > limit) newX = limit; if (newX < -limit) newX = -limit;
                     if (mBg) mBg.style.transform = `translateX(${newX}px)`;
                 }
             }
         }, { passive: true });
-
         document.addEventListener('touchend', () => {
-            if (window.innerWidth <= 800 && mBg) {
-                const matrix = new WebKitCSSMatrix(window.getComputedStyle(mBg).transform);
-                currentTranslateX = matrix.m41;
+            if (window.innerWidth <= 800 && !isLandscapeMobile() && mBg) {
+                try { const M = window.DOMMatrix || window.WebKitCSSMatrix; if (M) currentTranslateX = new M(window.getComputedStyle(mBg).transform).m41; } catch(e) { currentTranslateX = 0; }
             }
         }, { passive: true });
-
         document.addEventListener('click', e => {
-            if (window.innerWidth <= 800) {
-                if (mSidebar && !mSidebar.contains(e.target) &&
-                    mMenuBtn && !mMenuBtn.contains(e.target) &&
-                    mIdPanel && !mIdPanel.contains(e.target) &&
-                    mIdBtn   && !mIdBtn.contains(e.target)) mCloseAllMenus();
+            if (window.innerWidth <= 800 || isLandscapeMobile()) {
+                if (mSidebar && !mSidebar.contains(e.target) && mMenuBtn && !mMenuBtn.contains(e.target) &&
+                    mIdPanel && !mIdPanel.contains(e.target) && mIdBtn && !mIdBtn.contains(e.target)) mCloseAllMenus();
             }
+        });
+
+        /* ── KONTAKTFORMULAR → mailto ── */
+        function bindMailtoForm(formId, nameId, emailId, subjectId, messageId) {
+            const form = document.getElementById(formId);
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name    = document.getElementById(nameId).value.trim();
+                const email   = document.getElementById(emailId).value.trim();
+                const subject = document.getElementById(subjectId).value.trim();
+                const message = document.getElementById(messageId).value.trim();
+                const body = `Name: ${name}\nE-Mail: ${email}\n\n${message}`;
+                const mailtoLink = `mailto:post@milchsalon.de`
+                    + `?subject=${encodeURIComponent(subject || 'Nachricht von ' + name)}`
+                    + `&body=${encodeURIComponent(body)}`;
+                window.location.href = mailtoLink;
+            });
+        }
+        bindMailtoForm('d-contact-form', 'd-name', 'd-email', 'd-subject', 'd-message');
+        bindMailtoForm('m-contact-form', 'm-name', 'm-email', 'm-subject', 'm-message');
+
+        document.querySelectorAll(".contact-form input, .contact-form textarea").forEach(el => {
+            el.addEventListener("focus", () => {
+                setTimeout(() => { el.scrollIntoView({ behavior: "smooth", block: "center" }); }, 350);
+            });
         });
 
         setTimeout(() => {
             const mh = document.getElementById('m-header-main');
-            if (mh && window.innerWidth <= 800) mh.style.transform = 'translateY(-100%)';
-        }, 3000);
+            if (mh && (window.innerWidth <= 800 || isLandscapeMobile())) {
+                mh.style.transform = 'translateY(0)';
+            }
+        }, 100);
     </script>
 </body>
 </html>
