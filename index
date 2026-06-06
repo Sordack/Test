@@ -310,11 +310,11 @@
         </header>
         <div class="d-menu-btn" id="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
 
-        <a href="veroffentlichungen.html" class="invisible-box box-ertappt"></a>
-        <a href="neuesingle.html" class="invisible-box box-mitte"></a>
-        <a href="veroffentlichungen.html" class="invisible-box box-pause"></a>
-        <a href="veroffentlichungen.html" class="invisible-box box-pause2"></a>
-        <a href="veroffentlichungen.html" class="invisible-box box-pause3"></a>
+        <a href="veroffentlichungen" class="invisible-box box-ertappt"></a>
+        <a href="neuesingle" class="invisible-box box-mitte"></a>
+        <a href="veroffentlichungen" class="invisible-box box-pause"></a>
+        <a href="veroffentlichungen" class="invisible-box box-pause2"></a>
+        <a href="veroffentlichungen" class="invisible-box box-pause3"></a>
 
         <div class="d-news-box">
             <h3>Neuigkeiten</h3>
@@ -323,17 +323,17 @@
         </div>
 
         <nav class="d-sidebar-left" id="d-sidebar">
-            <div class="d-nav-item"><a href="index.html"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
+            <div class="d-nav-item"><a href="index"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
             <div class="d-nav-item">
-                <a href="meinemusik.html"><span class="d-nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="d-arrow-wrapper"><i class="fa-solid fa-caret-down d-submenu-indicator"></i></div></a>
+                <a href="meinemusik"><span class="d-nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="d-arrow-wrapper"><i class="fa-solid fa-caret-down d-submenu-indicator"></i></div></a>
                 <div class="d-submenu">
-                    <a href="uebermich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
-                    <a href="veroffentlichungen.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
-                    <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
+                    <a href="uebermich"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
+                    <a href="veroffentlichungen"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
+                    <a href="konzerte"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
                 </div>
             </div>
-            <div class="d-nav-item"><a href="shop.html"><span class="d-nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
-            <div class="d-nav-item"><a href="kontakt.html"><span class="d-nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
+            <div class="d-nav-item"><a href="shop"><span class="d-nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
+            <div class="d-nav-item"><a href="kontakt"><span class="d-nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
             <div class="d-nav-item d-nav-item-epk"><a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener"><span class="d-nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a></div>
         </nav>
 
@@ -361,12 +361,12 @@
 
         <footer class="d-footer">
             <div class="d-footer-center">
-                <a href="index.html" class="d-footer-site-link">www.anton-familienpop.de</a>
+                <a href="index" class="d-footer-site-link">www.anton-familienpop.de</a>
                 <nav class="d-footer-center-links">
-                    <a href="impressum.html">Impressum</a>
-                    <a href="datenschutz.html">Datenschutz</a>
-                    <a href="shopagb.html">AGB</a>
-                    <a href="shopwiderruf.html">Widerruf</a>
+                    <a href="impressum">Impressum</a>
+                    <a href="datenschutz">Datenschutz</a>
+                    <a href="shopagb">AGB</a>
+                    <a href="shopwiderruf">Widerruf</a>
                 </nav>
             </div>
         </footer>
@@ -388,32 +388,32 @@
         <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)"><span></span><span></span><span></span></div>
 
         <nav class="m-sidebar" id="m-sidebar">
-            <div class="m-nav-item"><a href="index.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
+            <div class="m-nav-item"><a href="index"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
             <div class="m-nav-item" id="m-musik-item">
-                <a href="meinemusik.html" class="m-musik-link"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a>
+                <a href="meinemusik" class="m-musik-link"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a>
                 <button class="m-sub-toggle" onclick="mToggleSubMenu(event)">
                     <i class="fa-solid fa-music"></i>
                     <span class="mobile-tag">Musik</span>
                     <i class="fa-solid fa-caret-down m-sub-arrow"></i>
                 </button>
                 <div class="m-submenu">
-                    <a href="uebermich.html"><i class="fa-regular fa-face-smile"></i> Über mich</a>
-                    <a href="veroffentlichungen.html"><i class="fa-solid fa-volume-high"></i> Veröffentlichungen</a>
-                    <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
+                    <a href="uebermich"><i class="fa-regular fa-face-smile"></i> Über mich</a>
+                    <a href="veroffentlichungen"><i class="fa-solid fa-volume-high"></i> Veröffentlichungen</a>
+                    <a href="konzerte"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
                 </div>
             </div>
-            <div class="m-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
-            <div class="m-nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></a></div>
+            <div class="m-nav-item"><a href="shop"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
+            <div class="m-nav-item"><a href="kontakt"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></a></div>
             <div class="m-epk-container"><a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener" class="m-epk-text">EPK/PRESSE</a></div>
         </nav>
 
         <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
 
-        <a href="veroffentlichungen.html" class="invisible-box box-ertappt"></a>
-        <a href="neuesingle.html" class="invisible-box box-mitte"></a>
-        <a href="veroffentlichungen.html" class="invisible-box box-pause"></a>
-        <a href="veroffentlichungen.html" class="invisible-box box-pause2"></a>
-        <a href="veroffentlichungen.html" class="invisible-box box-pause3"></a>
+        <a href="veroffentlichungen" class="invisible-box box-ertappt"></a>
+        <a href="neuesingle" class="invisible-box box-mitte"></a>
+        <a href="veroffentlichungen" class="invisible-box box-pause"></a>
+        <a href="veroffentlichungen" class="invisible-box box-pause2"></a>
+        <a href="veroffentlichungen" class="invisible-box box-pause3"></a>
 
         <div class="m-news-box">
             <h3>Neuigkeiten</h3>
@@ -423,12 +423,12 @@
 
         <!-- Mobile ID-Panel (aktualisiert) -->
         <div class="m-id-panel" id="m-id-panel">
-            <a href="index.html" class="m-id-panel-site">www.anton-familienpop.de</a>
+            <a href="index" class="m-id-panel-site">www.anton-familienpop.de</a>
             <div class="m-id-panel-links">
-                <a href="impressum.html">Impressum</a>
-                <a href="datenschutz.html">Datenschutz</a>
-                <a href="shopagb.html">AGB</a>
-                <a href="shopwiderruf.html">Widerruf</a>
+                <a href="impressum">Impressum</a>
+                <a href="datenschutz">Datenschutz</a>
+                <a href="shopagb">AGB</a>
+                <a href="shopwiderruf">Widerruf</a>
             </div>
         </div>
 
