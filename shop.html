@@ -1,6 +1,66 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+<style>
+  /* ==========================================================================
+     ECWID STARTER-TRICK: AUSVERKAUFT-EFFEKT FÜR PRODUKT-ID: 819271340
+     ========================================================================== */
+
+  /* --- 1. IN DER PRODUKTÜBERSICHT (RASTER) --- */
+
+  /* Macht das Produkt im Raster unanklickbar und leicht transparent */
+  .ec-size .ec-store .grid-product--id-819271340 {
+      pointer-events: none; /* Verhindert das Öffnen der Detailseite */
+  }
+  
+  .ec-size .ec-store .grid-product--id-819271340 .grid-product__wrap {
+      opacity: 0.5; /* Macht das Bild grau/blass */
+  }
+
+  /* Erzeugt einen eigenen "AUSVERKAUFT"-Schriftzug über dem Bild */
+  .ec-size .ec-store .grid-product--id-819271340 .grid-product__image-wrap::before {
+      content: "AUSVERKAUFT";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-10deg);
+      background-color: #000000; /* Schwarzer Balken */
+      color: #ffffff;            /* Weiße Schrift */
+      padding: 8px 16px;
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 1px;
+      z-style: 10;
+      border-radius: 4px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  /* Blendet den "Jetzt kaufen"-Button im Raster aus, falls Ecwid ihn anzeigt */
+  .ec-size .ec-store .grid-product--id-123456789 .grid-product__buy-now {
+      display: none !important;
+  }
+
+
+  /* --- 2. SICHERHEITSHALBER: AUF DER DETAILSEITE (Falls jemand direkt dorthin verlinkt) --- */
+
+  /* Blendet den "In den Warenkorb"-Button komplett aus */
+  .ec-store__product-page--819271340 .details-product-purchase__controls {
+      display: none !important;
+  }
+  
+  /* Blendet eine Nachricht auf der Detailseite ein, dass der Artikel weg ist */
+  .ec-store__product-page--819271340 .product-details__sidebar::before {
+      content: "Dieser Artikel ist aktuell ausverkauft.";
+      display: block;
+      color: #ff0000;
+      font-weight: bold;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ff0000;
+      background-color: #fff55;
+      text-align: center;
+  }
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ANTON | SHOP</title>
