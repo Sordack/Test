@@ -90,8 +90,13 @@
             body { height: 100%; width: 100%; overflow: hidden; position: relative; display: flex; flex-direction: column; background: transparent; margin: 0; padding: 0; }
             #mobile-wrapper { display: flex !important; flex-direction: column; height: 100%; width: 100%; overflow: hidden; position: relative; }
 
-            .m-header { position: relative; flex-shrink: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .m-header-logo { max-height: 50px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+              .m-header { position: relative; flex-shrink: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+
+            /* Logo-Stack Mobile */
+            .m-header-logo-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0px; height: 70px; }
+            .m-header-logo { max-height: 42px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .m-header-sub { height: 16px; width: auto; object-fit: contain; display: block; }
+            
             .m-menu-btn { position: absolute; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
             .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
             .m-menu-btn.active { background: var(--anton-yellow); }
