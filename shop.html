@@ -284,6 +284,25 @@
         .nav-arrow:active { transform: scale(0.93); }
         .nav-arrow--inactive { opacity: 0.28; cursor: default; pointer-events: none; }
         .nav-arrow--active { opacity: 1; pointer-events: auto; }
+/* KORREKTUR: Ecwid Warenkorb-Button in Smaragdgrün erzwingen */
+        .ec-size .ec-store .form-control--primary .form-control__button,
+        .ecwid-btn--primary, 
+        button.ec-cart-widget__button,
+        .ec-store .form-control__button {
+            background-color: #2ecc71 !important; /* Smaragdgrün */
+            color: #ffffff !important;            /* Textfarbe Weiß */
+            opacity: 1 !important;                /* Keine Transparenz */
+            background-image: none !important;    /* Entfernt evtl. transparente Verläufe */
+        }
+
+        /* Hover-Zustand beim Drüberfahren */
+        .ec-size .ec-store .form-control--primary .form-control__button:hover,
+        .ecwid-btn--primary:hover,
+        button.ec-cart-widget__button:hover,
+        .ec-store .form-control__button:hover {
+            background-color: #27ae60 !important; /* Dunkleres Waldgrün beim Hovern */
+            opacity: 1 !important;
+        }
     </style>
 </head>
 <body>
