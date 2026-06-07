@@ -3,40 +3,44 @@
 <head>
 <style>
   /* ==========================================================================
-     ECWID HOVER-TRICK: AUSVERKAUFT-BILD BEI MAUSKONTAKT (PRODUKT-ID: 819271340)
+     ECWID HOVER-TRICK (KORRIGIERT): HOVER AKTIV, ABER LINK DEAKTIVIERT
+     PRODUKT-ID: 819271340
      ========================================================================== */
 
-  /* 1. IM PRODUKTRASTER (ÜBERSICHT) */
-  
-  /* Deaktiviert die Klickfunktion komplett – das Produkt friert im Raster ein */
-  .ec-size .ec-store .grid-product--id-819271340 {
+  /* 1. Klickfunktion im Raster blockieren */
+  /* Wir blockieren den Link im Inneren, damit man die Seite nicht öffnen kann */
+  .ec-size .ec-store .grid-product--id-819271340 a.grid-product__image-link,
+  .ec-size .ec-store .grid-product--id-819271340 a.grid-product__title {
       pointer-events: none !important;
+      cursor: default !important;
   }
 
-  /* Der Hover-Effekt auf dem Bilder-Container */
-  .ec-size .ec-store .grid-product--id-819271340 .grid-product__image-wrap:hover .ec-img-ready {
-      /* Blendet das originale Produktbild aus, sobald man drüberhovert */
+  /* 2. Der funktionierende Hover-Effekt auf dem Produkt-Container */
+  /* Sobald die Maus über das Produkt fährt, blenden wir das Originalbild aus */
+  .ec-size .ec-store .grid-product--id-819271340:hover .ec-img-ready {
       opacity: 0 !important;
   }
 
-  .ec-size .ec-store .grid-product--id-819271340 .grid-product__image-wrap:hover {
-      /* Setzt dein bearbeitetes, ausgegrautes "Ausverkauft"-Bild als neuen Hintergrund */
+  /* Hier legen wir dein ausverkauftes Bild als Hover-Hintergrund fest */
+  .ec-size .ec-store .grid-product--id-123456789 .grid-product__image-wrap {
+      transition: background 0.2s ease-in-out;
+  }
+
+  .ec-size .ec-store .grid-product--id-819271340:hover .grid-product__image-wrap {
       background-image: url('DEINE_HOCHGELADENE_BILD_URL.jpg') !important;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
   }
 
-  /* Blendet den "Jetzt kaufen"-Button im Raster sicherheitshalber komplett aus */
-  .ec-size .ec-store .grid-product--id-819271340 .grid-product__buy-now {
+  /* 3. Button-Sicherung */
+  /* Blendet den "Jetzt kaufen"-Button im Raster komplett aus */
+  .ec-size .ec-store .grid-product--id-123456789 .grid-product__buy-now {
       display: none !important;
   }
 
-
-  /* 2. ERGÄNZUNG FÜR DIE DETAILSEITE (Falls der Link direkt aufgerufen wird) */
-  
-  /* Verhindert den Kauf auf der Artikelseite */
-  .ec-store__product-page--819271340 .details-product-purchase__controls {
+  /* 4. Detailseiten-Schutz */
+  .ec-store__product-page--123456789 .details-product-purchase__controls {
       display: none !important;
   }
 </style>
