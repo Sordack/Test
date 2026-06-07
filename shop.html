@@ -303,6 +303,26 @@
             background-color: #27ae60 !important; /* Dunkleres Waldgrün beim Hovern */
             opacity: 1 !important;
         }
+        /* KORREKTUR: Den Warenkorb-Button im Hauptmenü grün färben (Nicht transparent) */
+        .ecwid-minicart,
+        .ec-cart-widget,
+        .ec-cart-widget__button,
+        .ecwid-minicart-caption,
+        div[data-ecwid-widget="minicart"] {
+            background-color: #2ecc71 !important; /* Dein gewünschtes Smaragdgrün */
+            color: #ffffff !important;            /* Text-/Icon-Farbe Weiß */
+            opacity: 1 !important;                /* Keine Transparenz */
+            border-radius: 4px;                   /* Leicht abgerundete Ecken, falls gewünscht */
+        }
+
+        /* Hover-Effekt für den Menü-Warenkorb */
+        .ecwid-minicart:hover,
+        .ec-cart-widget:hover,
+        .ec-cart-widget__button:hover,
+        div[data-ecwid-widget="minicart"]:hover {
+            background-color: #27ae60 !important; /* Dunkleres Waldgrün beim Hovern */
+            opacity: 1 !important;
+        }
     </style>
 </head>
 <body>
