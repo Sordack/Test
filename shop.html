@@ -20,7 +20,7 @@
 
   /* Das neue "Ausverkauft"-Bild als Hover-Hintergrund einblenden */
   .ec-size .ec-store .grid-product--id-839552085:hover .grid-product__image-wrap {
-      background-image: url('DEINE_HOCHGELADENE_BILD_URL.jpg') !important;
+      background-image: url('https://anton-familienpop.de/img/Design_ohne_Titel_20260604_135043_0000_Kopie_ausverkauft.jpg') !important;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -73,7 +73,7 @@
 
   .warteliste-btn {
       width: 100%;
-      background-color: #ff0000; /* Schönes, klares Rot passend zum Banner */
+      background-color: #ff0000;
       color: #ffffff;
       border: none;
       padding: 14px;
@@ -89,7 +89,6 @@
       background-color: #cc0000;
   }
 </style>
-
 <div class="warteliste-container">
   <h3>Größe ausverkauft? Jetzt vormerken!</h3>
   <p style="font-size: 14px; color: #555555; line-height: 1.4; margin-bottom: 20px;">
@@ -545,7 +544,36 @@
                 <div class="ecwid-shop-wrap">
                     <div id="my-store-132126030"></div>
                 </div>
-         
+         <div class="warteliste-container">
+  <h3>Größe ausverkauft? Jetzt vormerken!</h3>
+  <p style="font-size: 14px; color: #555555; line-height: 1.4; margin-bottom: 20px;">
+    Trage einfach deine E-Mail-Adresse und deine Wunschgröße ein. Du wirst sofort informiert, sobald der Artikel wieder im Familienshop verfügbar ist.
+  </p>
+  
+  <form action="https://formspree.io/f/mbdeooaz" method="POST">
+    
+    <label for="email" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 14px;">Deine E-Mail-Adresse:</label>
+    <input type="email" name="email" id="email" class="warteliste-field" placeholder="name@beispiel.de" required>
+    
+    <label for="groese" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 14px;">Gewünschte Größe:</label>
+    <select name="groese" id="groese" class="warteliste-field" required>
+      <option value="" disabled selected>Bitte Größe wählen...</option>
+      <option value="104/110">104 / 110 (Kids)</option>
+      <option value="116/122">116 / 122 (Kids)</option>
+      <option value="128/134">128 / 134 (Kids)</option>
+      <option value="S">S (Erwachsene)</option>
+      <option value="M">M (Erwachsene)</option>
+      <option value="L">L (Erwachsene)</option>
+      <option value="XL">XL (Erwachsene)</option>
+    </select>
+    
+    <input type="hidden" name="_next" value="https://anton-familienpop.de/danke.html">
+    
+    <input type="hidden" name="produkt" value="Anton Regenbogen-Design Hoodie">
+
+    <button type="submit" class="warteliste-btn">Erinnerung aktivieren</button>
+  </form>
+</div>
           </div><!-- /.shop-layout -->
     </main>
 
