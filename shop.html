@@ -4,22 +4,37 @@
 <style>
   /* --- RASTER-ANSICHT (PRODUKT-ID: 839552085) --- */
   
-  /* Klick im Raster sperren */
+  /* Klick im Raster für alle Geräte sperren */
   .ec-size .ec-store .grid-product--id-839552085 a.grid-product__image-link,
   .ec-size .ec-store .grid-product--id-839552085 a.grid-product__title {
       pointer-events: none !important;
       cursor: default !important;
   }
 
-  /* Hover-Bildtausch im Raster */
-  .ec-size .ec-store .grid-product--id-839552085:hover .ec-img-ready {
-      opacity: 0 !important;
+  /* DESKTOP-LOGIK (Bildtausch nur bei Maus-Hover) */
+  @media (min-width: 768px) {
+      .ec-size .ec-store .grid-product--id-839552085:hover .ec-img-ready {
+          opacity: 0 !important;
+      }
+      .ec-size .ec-store .grid-product--id-839552085:hover .grid-product__image-wrap {
+          background-image: url('https://anton-familienpop.de/img/Design_ohne_Titel_20260604_135043_0000_Kopie_ausverkauft.jpg') !important;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+      }
   }
-  .ec-size .ec-store .grid-product--id-839552085:hover .grid-product__image-wrap {
-      background-image: url('https://anton-familienpop.de/img/Design_ohne_Titel_20260604_135043_0000_Kopie_ausverkauft.jpg') !important;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+
+  /* MOBIL-LOGIK (Smartphone/Tablet: "Ausverkauft"-Bild DAUERHAFT anzeigen) */
+  @media (max-width: 767px) {
+      .ec-size .ec-store .grid-product--id-839552085 .ec-img-ready {
+          opacity: 0 !important; /* Versteckt das Originalbild permanent auf dem Handy */
+      }
+      .ec-size .ec-store .grid-product--id-839552085 .grid-product__image-wrap {
+          background-image: url('https://anton-familienpop.de/img/Design_ohne_Titel_20260604_135043_0000_Kopie_ausverkauft.jpg') !important;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+      }
   }
 
   /* --- DETAIL-ANSICHT (PRODUKT-ID: 839552085) --- */
@@ -29,13 +44,15 @@
       display: none !important;
   }
 
-  /* Unser neuer Ersatz-Button im Ecwid-Design */
+  /* Unser neuer Ersatz-Button (Mobil bricht er sauber um oder nutzt die volle Breite) */
   .custom-ausverkauft-trigger {
       display: inline-block;
-      background-color: #ff0000; /* Auffälliges Rot analog zum Banner */
+      width: 100%; /* Nutzt mobil den Platz optimal aus */
+      max-width: 380px;
+      background-color: #ff0000;
       color: #ffffff;
       border: none;
-      padding: 14px 24px;
+      padding: 15px 20px;
       font-weight: bold;
       text-transform: uppercase;
       font-size: 15px;
@@ -44,6 +61,8 @@
       margin-top: 15px;
       transition: background 0.2s ease-in-out;
       font-family: Arial, sans-serif;
+      box-sizing: border-box;
+      text-align: center;
   }
 
   .custom-ausverkauft-trigger:hover {
@@ -53,140 +72,158 @@
 
   /* --- POP-UP (MODAL) STYLING --- */
 
-  /* Der abdunkelnde Hintergrund */
   .warteliste-modal {
-      display: none; /* Standardmäßig unsichtbar */
+      display: none;
       position: fixed;
-      z-index: 99999; /* Über allen Ecwid-Elementen */
+      z-index: 99999;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Halbtransparentes Schwarz */
-      backdrop-filter: blur(3px); /* Leichte Unschärfe im Hintergrund */
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(3px);
       align-items: center;
       justify-content: center;
   }
 
-  /* Das eigentliche Fenster */
+  /* Das Fenster passt sich flexibel kleineren Handy-Bildschirmen an */
   .warteliste-modal-content {
       background-color: #ffffff;
-      padding: 30px;
+      padding: 25px;
       border-radius: 8px;
-      max-width: 450px;
-      width: 90%;
+      max-width: 420px;
+      width: 92%; /* Lässt links und rechts am Handy-Rand einen kleinen Puffer */
       box-sizing: border-box;
       position: relative;
       font-family: Arial, sans-serif;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      animation: modalFadeIn 0.3s ease-out;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      animation: modalFadeIn 0.25s ease-out;
   }
 
   @keyframes modalFadeIn {
-      from { transform: translateY(-20px); opacity: 0; }
+      from { transform: translateY(-15px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
   }
 
-  /* Schließen-Button (X) */
+  /* Schließen-Button (Groß genug zum Tippen auf dem Handy) */
   .warteliste-modal-close {
       position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 28px;
+      top: 12px;
+      right: 18px;
+      font-size: 32px;
       font-weight: bold;
       color: #aaaaaa;
       cursor: pointer;
-      transition: color 0.2s;
   }
 
-  .warteliste-modal-close:hover {
-      color: #333333;
-  }
-
-  /* Formular-Felder */
+  /* Formular-Elemente innerhalb des Pop-ups */
   .warteliste-modal h3 {
       margin-top: 0;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #111111;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       text-transform: uppercase;
   }
 
   .warteliste-modal p {
-      font-size: 14px;
+      font-size: 13px;
       color: #555555;
       line-height: 1.4;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
   }
 
   .warteliste-field {
       width: 100%;
       padding: 12px;
-      margin-bottom: 15px;
-<div class="warteliste-container">
-  <h3>Größe ausverkauft? Jetzt vormerken!</h3>
-  <p style="font-size: 14px; color: #555555; line-height: 1.4; margin-bottom: 20px;">
-    Trage einfach deine E-Mail-Adresse und deine Wunschgröße ein. Wir schicken dir eine Bestätigung und informieren dich sofort, sobald der Artikel wieder im Familienshop verfügbar ist.
-  </p>
-  
-  <form action="https://formspree.io/f/mbdeooaz" method="POST">
-    
-    <label for="email" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 14px;">Deine E-Mail-Adresse:</label>
-    <input type="email" name="email" id="email" class="warteliste-field" placeholder="name@beispiel.de" required>
-    
-    <label for="groese" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 14px;">Gewünschte Größe:</label>
-    <select name="groese" id="groese" class="warteliste-field" required>
-      <option value="" disabled selected>Bitte Größe wählen...</option>
-      <option value="104/110">104 / 110 (Kids)</option>
-      <option value="116/122">116 / 122 (Kids)</option>
-      <option value="128/134">128 / 134 (Kids)</option>
-      <option value="S">S (Erwachsene)</option>
-      <option value="M">M (Erwachsene)</option>
-      <option value="L">L (Erwachsene)</option>
-      <option value="XL">XL (Erwachsene)</option>
-    </select>
-    
-    <input type="hidden" name="produkt" value="Anton Regenbogen-Design Hoodie">
+      margin-bottom: 12px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px; /* 16px verhindert, dass iOS/Safari beim Antippen des Feldes unschön reinzoomt */
+  }
 
-    <button type="submit" class="warteliste-btn">Erinnerung aktivieren</button>
-  </form>
-</div>
-<div class="warteliste-container">
-  <h3>Ausverkauft? Jetzt vormerken lassen!</h3>
-  <p style="font-size: 14px; color: #666;">Trage dich ein und wir informieren dich sofort, sobald der Artikel wieder da ist.</p>
-  
-  <form action="HIER_KOMMT_DER_LINK_DES_DIENSTES_REIN" method="POST">
-    
-    <label for="email" style="display:block; margin-bottom:5px; font-weight:bold;">Deine E-Mail-Adresse:</label>
-    <input type="email" name="email" id="email" class="warteliste-field" placeholder="name@beispiel.de" required>
-    
-    <label for="groese" style="display:block; margin-bottom:5px; font-weight:bold;">Gewünschte Größe:</label>
-    <select name="groese" id="groese" class="warteliste-field" required>
-      <option value="" disabled selected>Bitte Größe wählen...</option>
-      <option value="104/110">104 / 110 (Kids)</option>
-      <option value="116/122">116 / 122 (Kids)</option>
-      <option value="128/134">128 / 134 (Kids)</option>
-      <option value="S">S (Erwachsene)</option>
-      <option value="M">M (Erwachsene)</option>
-      <option value="L">L (Erwachsene)</option>
-      <option value="XL">XL (Erwachsene)</option>
-    </select>
-    
-    <input type="hidden" name="produkt" value="Anton Regenbogen Hoodie">
+  .warteliste-field:focus {
+      border-color: #ff0000;
+      outline: none;
+  }
 
-    <button type="submit" class="warteliste-btn">Erinnerung aktivieren</button>
-  </form>
+  .warteliste-btn {
+      width: 100%;
+      background-color: #ff0000;
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 15px;
+  }
+</style>
+
+<div class="ec-store__product-page--839552085" style="display: block; text-align: left;">
+  <button type="button" class="custom-ausverkauft-trigger" onclick="openWartelisteModal()">
+    Größe ausverkauft? Vormerken lassen
+  </button>
 </div>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ANTON | SHOP</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
-    <style>
+
+<div id="wartelisteModal" class="warteliste-modal" onclick="closeWartelisteModalOnOutsideClick(event)">
+  <div class="warteliste-modal-content">
+    <span class="warteliste-modal-close" onclick="closeWartelisteModal()">&times;</span>
+    
+    <h3>Größe ausverkauft? Jetzt vormerken!</h3>
+    <p>
+      Trage einfach deine E-Mail-Adresse und deine Wunschgröße ein. Du wirst sofort informiert, sobald der Artikel wieder im Familienshop verfügbar ist.
+    </p>
+    
+    <form action="https://formspree.io/f/mbdeooaz" method="POST">
+      
+      <label for="email" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 13px;">Deine E-Mail-Adresse:</label>
+      <input type="email" name="email" id="email" class="warteliste-field" placeholder="name@beispiel.de" required>
+      
+      <label for="groese" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 13px;">Gewünschte Größe:</label>
+      <select name="groese" id="groese" class="warteliste-field" required>
+        <option value="" disabled selected>Bitte Größe wählen...</option>
+        <option value="104/110">104 / 110 (Kids)</option>
+        <option value="116/122">116 / 122 (Kids)</option>
+        <option value="128/134">128 / 134 (Kids)</option>
+        <option value="S">S (Erwachsene)</option>
+        <option value="M">M (Erwachsene)</option>
+        <option value="L">L (Erwachsene)</option>
+        <option value="XL">XL (Erwachsene)</option>
+      </select>
+      
+      <input type="hidden" name="_next" value="https://anton-familienpop.de/danke.html">
+      <input type="hidden" name="produkt" value="Anton Regenbogen-Design Hoodie">
+
+      <button type="submit" class="warteliste-btn">Erinnerung aktivieren</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  var modal = document.getElementById("wartelisteModal");
+
+  function openWartelisteModal() {
+      modal.style.display = "flex";
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+      // Setzt den Body-Hintergrund global fest, wie abgesprochen
+      document.body.style.backgroundColor = "#ffffff";
+  });
+
+  function closeWartelisteModal() {
+      modal.style.display = "none";
+  }
+
+  function closeWartelisteModalOnOutsideClick(event) {
+      if (event.target === modal) {
+          modal.style.display = "none";
+      }
+  }
+</script>
         :root {
             --anton-red: #ff0000;
             --anton-yellow: #ffeb3b;
