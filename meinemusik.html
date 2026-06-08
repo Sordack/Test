@@ -22,59 +22,18 @@
             height: 100%; width: 100%;
         }
 
-        @media (min-width: 801px) {
-            #mobile-wrapper { display: none !important; }
+@media (min-width: 801px) {
+    #mobile-wrapper { display: none !important; }
+    html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; }
+    body { background: transparent; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
 
-            html { background-color: transparent !important; }
-            body { 
-                background: url('Background.jpg') no-repeat center center fixed; 
-                background-size: cover !important;
-                background-color: transparent !important;
-                overflow-x: hidden;
-            }
-            
-            .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
-            .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
-            .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
-            .d-menu-btn span { transition: opacity 0.2s; }
-            .d-menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
-            .d-menu-btn:hover span { opacity: 0; }
-            .d-menu-btn:hover::after { opacity: 1; }
-            .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255,235,59,0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
-            .d-sidebar-left.open { left: 0; }
-            .d-nav-item { margin-bottom: 20px; width: 100%; }
-            .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
-            .d-sidebar-left a:hover { color: var(--anton-red); }
-            .d-nav-label { display: flex; align-items: center; width: 100%; }
-            .d-nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
-            .d-arrow-wrapper { margin-left: auto; padding-right: 5px; }
-            .d-submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
-            .d-nav-item:hover .d-submenu-indicator { transform: rotate(180deg); }
-            .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
-            .d-nav-item:hover .d-submenu { display: flex; }
-            .d-submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
-            .d-submenu a i { margin-right: 10px; width: 18px; text-align: center; }
-            .d-nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
-            .d-nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
-            .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255,255,255,0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-            .d-sidebar-right a { text-decoration: none; }
-            .d-sidebar-right a i { color: #000; font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; }
-            @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
-            .d-sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
-            .d-sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
-            .d-sidebar-right a:nth-child(3) i { --brand-color: #E1306C; animation-delay: 0.5s; }
-            .d-sidebar-right a:nth-child(4) i { --brand-color: #25D366; animation-delay: 0.75s; }
-            .d-sidebar-right a:nth-child(5) i { --brand-color: #1877F2; animation-delay: 1.0s; }
-            .d-sidebar-right a:nth-child(6) i { --brand-color: #1DB954; animation-delay: 1.25s; }
-            .d-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
-            .d-sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
-            .d-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
-            .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
-            .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
+    .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+    .d-header-logo { max-height: 50px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
 
-            main { padding: 180px 80px 100px 80px; z-index: 5; width: 100%; box-sizing: border-box; display: flex; justify-content: center; gap: 40px; align-items: center; }
-
+    .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; }
+    .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
+    .d-menu-btn span { transition: opacity 0.2s; }
+    .d-menu-btn::after { content: ''; position: absolute; width: 30px; height: 30px; background: url('data:image/png;base64,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车载1V0d3dPBYC2trZrnldVVakAUFNT05Kenq4iqhXJ4ySzYrFYKD//1heIqFfz0KP1IwBqOBwWl/suT1SZBwN5ojn0nt4c75BYNVrTS7Li4uLjZrNZ7z4SSUSE6urqHXa7nQFcFaOEDW3OAQBcMKmg48SJE24gsYXF19U5OTl6DpGwBtCx+Xw+xsQJEy9qD5J1UgGw3++/cvDgQW/85MOIAEhmsxnBYPVzHpcrFsdHaIokSRwIBDo3b95cmGDMGGmrT0uXLl3qcDgMpZY67/n5+V+itLT0LU0CRoJ3JC0tjZctW7YSACVJDoTJZMLyhuVrCyYXXEh3OAbzaQLbbXb2er1cWVn5i5a9e/1GwGokCSEwe9aslvjzpSRNISKeUVp6ElVVVf9kNpuNSioihODysrLX9V2OJMwJAGBmZ0NDw/Ly8vIfFRcV75s+ffpzdXV1f799+7YZeupsBKy+/3b4─ KONZERTE BOX – Desktop ── */
             .d-bento-box { background: rgba(255,255,255,0.90); border: 4px solid #000; box-shadow: 10px 10px 0 #000; padding: 0; flex: 1; max-width: 240px; height: 180px; border-radius: 20px; overflow: hidden; transition: all 0.3s ease; cursor: pointer; display: flex; }
             .d-bento-box:hover { transform: scale(1.05); background: var(--anton-yellow); }
             .d-bento-box a { text-decoration: none; color: #000; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; text-align: center; padding: 10px; font-size: 1.1rem; }
