@@ -2,113 +2,89 @@
 <html lang="de">
 <head>
 <style>
-  /* ==========================================================================
-     REPARATUR-CODE: STABILES DESKTOP- & MOBIL-DESIGN (PRODUKT-ID: 839552085)
-     ========================================================================== */
-
-  /* Globale Vorgabe: Hintergrund bleibt absolut weiß */
-  body {
-      background-color: #ffffff !important;
+  /* 1. Normalen Ecwid-Kaufknopf für dieses Produkt unsichtbar machen */
+  .ec-store__product-page--123456789 .details-product-purchase__controls {
+      display: none !important;
   }
 
-  /* 1. RASTER-ANSICHT (PC & MOBIL) */
-
-  /* Klickfunktion auf das ausverkaufte Produkt im Raster blockieren */
-  .ec-size .ec-store .grid-product--id-839552085 a.grid-product__image-link,
-  .ec-size .ec-store .grid-product--id-839552085 a.grid-product__title {
-      pointer-events: none !important;
-      cursor: default !important;
+  /* Styling für dein neues Wartelisten-Formular */
+  .warteliste-container {
+      background-color: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      max-width: 400px;
   }
 
-  /* Am PC: Das originale Bild beim Hovern verstecken */
-  @media (min-width: 768px) {
-      .ec-size .ec-store .grid-product--id-839552085:hover .ec-img-ready {
-          opacity: 0 !important;
-      }
-      .ec-size .ec-store .grid-product--id-839552085:hover .grid-product__image-wrap {
-          background-image: url('https://anton-familienpop.de/img/Design_ohne_Titel_20260604_135043_0000_Kopie_ausverkauft.jpg') !important;
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-      }
+  .warteliste-container h3 {
+      margin-top: 0;
+      color: #333;
+      font-size: 18px;
   }
 
-  /* Am Handy: Das ausverkaufte Bild dauerhaft anzeigen (da kein Hover möglich) */
-  @media (max-width: 767px) {
-      .ec-size .ec-store .grid-product--id-839552085 .ec-img-ready {
-          opacity: 0 !important;
-      }
-      .ec-size .ec-store .grid-product--id-839552085 .grid-product__image-wrap {
-          background-image: url('https://anton-familienpop.de/img/Design_ohne_Titel_20260604_135043_0000_Kopie_ausverkauft.jpg') !important;
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-      }
+  .warteliste-field {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+  }
+
+  .warteliste-btn {
+      width: 100%;
+      background-color: #ff0000; /* Auffällige Farbe für den Button */
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s;
+  }
+
+  .warteliste-btn:hover {
+      background-color: #cc0000;
   }
 </style>
 
-<div class="ec-store__product-page--839552085" style="display: block; text-align: left;">
-  <button type="button" class="custom-ausverkauft-trigger" onclick="openWartelisteModal()">
-    Größe ausverkauft? Vormerken lassen
-  </button>
-</div>
-
-<div id="wartelisteModal" class="warteliste-modal" onclick="closeWartelisteModalOnOutsideClick(event)">
-  <div class="warteliste-modal-content">
-    <span class="warteliste-modal-close" onclick="closeWartelisteModal()">&times;</span>
+<div class="warteliste-container">
+  <h3>Ausverkauft? Jetzt vormerken lassen!</h3>
+  <p style="font-size: 14px; color: #666;">Trage dich ein und wir informieren dich sofort, sobald der Artikel wieder da ist.</p>
+  
+  <form action="HIER_KOMMT_DER_LINK_DES_DIENSTES_REIN" method="POST">
     
-    <h3>Größe ausverkauft? Jetzt vormerken!</h3>
-    <p>
-      Trage einfach deine E-Mail-Adresse und deine Wunschgröße ein. Du wirst sofort informiert, sobald der Artikel wieder im Familienshop verfügbar ist.
-    </p>
+    <label for="email" style="display:block; margin-bottom:5px; font-weight:bold;">Deine E-Mail-Adresse:</label>
+    <input type="email" name="email" id="email" class="warteliste-field" placeholder="name@beispiel.de" required>
     
-    <form action="https://formspree.io/f/mbdeooaz" method="POST">
-      
-      <label for="email" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 13px;">Deine E-Mail-Adresse:</label>
-      <input type="email" name="email" id="email" class="warteliste-field" placeholder="name@beispiel.de" required>
-      
-      <label for="groese" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 13px;">Gewünschte Größe:</label>
-      <select name="groese" id="groese" class="warteliste-field" required>
-        <option value="" disabled selected>Bitte Größe wählen...</option>
-        <option value="104/110">104 / 110 (Kids)</option>
-        <option value="116/122">116 / 122 (Kids)</option>
-        <option value="128/134">128 / 134 (Kids)</option>
-        <option value="S">S (Erwachsene)</option>
-        <option value="M">M (Erwachsene)</option>
-        <option value="L">L (Erwachsene)</option>
-        <option value="XL">XL (Erwachsene)</option>
-      </select>
-      
-      <input type="hidden" name="_next" value="https://anton-familienpop.de/danke.html">
-      <input type="hidden" name="produkt" value="Anton Regenbogen-Design Hoodie">
+    <label for="groese" style="display:block; margin-bottom:5px; font-weight:bold;">Gewünschte Größe:</label>
+    <select name="groese" id="groese" class="warteliste-field" required>
+      <option value="" disabled selected>Bitte Größe wählen...</option>
+      <option value="104/110">104 / 110 (Kids)</option>
+      <option value="116/122">116 / 122 (Kids)</option>
+      <option value="128/134">128 / 134 (Kids)</option>
+      <option value="S">S (Erwachsene)</option>
+      <option value="M">M (Erwachsene)</option>
+      <option value="L">L (Erwachsene)</option>
+      <option value="XL">XL (Erwachsene)</option>
+    </select>
+    
+    <input type="hidden" name="produkt" value="Anton Regenbogen Hoodie">
 
-      <button type="submit" class="warteliste-btn">Erinnerung aktivieren</button>
-    </form>
-  </div>
+    <button type="submit" class="warteliste-btn">Erinnerung aktivieren</button>
+  </form>
 </div>
-
-<script>
-  var modal = document.getElementById("wartelisteModal");
-
-  function openWartelisteModal() {
-      modal.style.display = "flex";
-  }
-
-  document.addEventListener("DOMContentLoaded", function() {
-      // Setzt den Body-Hintergrund global fest, wie abgesprochen
-      document.body.style.backgroundColor = "#ffffff";
-  });
-
-  function closeWartelisteModal() {
-      modal.style.display = "none";
-  }
-
-  function closeWartelisteModalOnOutsideClick(event) {
-      if (event.target === modal) {
-          modal.style.display = "none";
-      }
-  }
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ANTON | SHOP</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap&subset=latin-ext" rel="stylesheet">
+    <style>
         :root {
             --anton-red: #ff0000;
             --anton-yellow: #ffeb3b;
@@ -501,36 +477,7 @@
                 <div class="ecwid-shop-wrap">
                     <div id="my-store-132126030"></div>
                 </div>
-         <div class="warteliste-container">
-  <h3>Größe ausverkauft? Jetzt vormerken!</h3>
-  <p style="font-size: 14px; color: #555555; line-height: 1.4; margin-bottom: 20px;">
-    Trage einfach deine E-Mail-Adresse und deine Wunschgröße ein. Du wirst sofort informiert, sobald der Artikel wieder im Familienshop verfügbar ist.
-  </p>
-  
-  <form action="https://formspree.io/f/mbdeooaz" method="POST">
-    
-    <label for="email" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 14px;">Deine E-Mail-Adresse:</label>
-    <input type="email" name="email" id="email" class="warteliste-field" placeholder="name@beispiel.de" required>
-    
-    <label for="groese" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 14px;">Gewünschte Größe:</label>
-    <select name="groese" id="groese" class="warteliste-field" required>
-      <option value="" disabled selected>Bitte Größe wählen...</option>
-      <option value="104/110">104 / 110 (Kids)</option>
-      <option value="116/122">116 / 122 (Kids)</option>
-      <option value="128/134">128 / 134 (Kids)</option>
-      <option value="S">S (Erwachsene)</option>
-      <option value="M">M (Erwachsene)</option>
-      <option value="L">L (Erwachsene)</option>
-      <option value="XL">XL (Erwachsene)</option>
-    </select>
-    
-    <input type="hidden" name="_next" value="https://anton-familienpop.de/danke.html">
-    
-    <input type="hidden" name="produkt" value="Anton Regenbogen-Design Hoodie">
-
-    <button type="submit" class="warteliste-btn">Erinnerung aktivieren</button>
-  </form>
-</div>
+         
           </div><!-- /.shop-layout -->
     </main>
 
