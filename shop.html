@@ -2,23 +2,19 @@
 <html lang="de">
 <head>
 <style>
-  /* ==========================================================================
-     1. RASTER-ANSICHT (Klick sperren & Hover-Bild aktivieren)
-     ========================================================================== */
-
-  /* Klickfunktion auf das Produkt im Raster komplett blockieren */
+  /* --- RASTER-ANSICHT (PRODUKT-ID: 839552085) --- */
+  
+  /* Klick im Raster sperren */
   .ec-size .ec-store .grid-product--id-839552085 a.grid-product__image-link,
   .ec-size .ec-store .grid-product--id-839552085 a.grid-product__title {
       pointer-events: none !important;
       cursor: default !important;
   }
 
-  /* Sobald die Maus über das Produkt fährt, das originale Bild unsichtbar machen */
+  /* Hover-Bildtausch im Raster */
   .ec-size .ec-store .grid-product--id-839552085:hover .ec-img-ready {
       opacity: 0 !important;
   }
-
-  /* Das neue "Ausverkauft"-Bild als Hover-Hintergrund einblenden */
   .ec-size .ec-store .grid-product--id-839552085:hover .grid-product__image-wrap {
       background-image: url('https://anton-familienpop.de/img/Design_ohne_Titel_20260604_135043_0000_Kopie_ausverkauft.jpg') !important;
       background-size: cover;
@@ -26,69 +22,108 @@
       background-repeat: no-repeat;
   }
 
-  /* ==========================================================================
-     2. DETAIL-ANSICHT (Kauf sperren & Warteliste stylen)
-     ========================================================================== */
+  /* --- DETAIL-ANSICHT (PRODUKT-ID: 839552085) --- */
 
-  /* Normalen Ecwid-Kaufknopf und Mengenwähler auf der Detailseite unsichtbar machen */
+  /* Originalen Ecwid-Kaufknopf unsichtbar machen */
   .ec-store__product-page--839552085 .details-product-purchase__controls {
       display: none !important;
   }
 
-  /* Styling für dein neues Formspree-Wartelisten-Formular */
-  .warteliste-container {
-      background-color: #ffffff;
-      border: 2px solid #e0e0e0;
-      padding: 25px;
-      border-radius: 8px;
-      margin: 20px auto;
-      max-width: 450px;
-      font-family: Arial, sans-serif;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  }
-
-  .warteliste-container h3 {
-      margin-top: 0;
-      color: #111111;
-      font-size: 19px;
+  /* Unser neuer Ersatz-Button im Ecwid-Design */
+  .custom-ausverkauft-trigger {
+      display: inline-block;
+      background-color: #ff0000; /* Auffälliges Rot analog zum Banner */
+      color: #ffffff;
+      border: none;
+      padding: 14px 24px;
       font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-size: 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.2s ease-in-out;
+      font-family: Arial, sans-serif;
+  }
+
+  .custom-ausverkauft-trigger:hover {
+      background-color: #cc0000;
+  }
+
+
+  /* --- POP-UP (MODAL) STYLING --- */
+
+  /* Der abdunkelnde Hintergrund */
+  .warteliste-modal {
+      display: none; /* Standardmäßig unsichtbar */
+      position: fixed;
+      z-index: 99999; /* Über allen Ecwid-Elementen */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Halbtransparentes Schwarz */
+      backdrop-filter: blur(3px); /* Leichte Unschärfe im Hintergrund */
+      align-items: center;
+      justify-content: center;
+  }
+
+  /* Das eigentliche Fenster */
+  .warteliste-modal-content {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 450px;
+      width: 90%;
+      box-sizing: border-box;
+      position: relative;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: modalFadeIn 0.3s ease-out;
+  }
+
+  @keyframes modalFadeIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+  }
+
+  /* Schließen-Button (X) */
+  .warteliste-modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #aaaaaa;
+      cursor: pointer;
+      transition: color 0.2s;
+  }
+
+  .warteliste-modal-close:hover {
+      color: #333333;
+  }
+
+  /* Formular-Felder */
+  .warteliste-modal h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #111111;
+      font-size: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+  }
+
+  .warteliste-modal p {
+      font-size: 14px;
+      color: #555555;
+      line-height: 1.4;
+      margin-bottom: 20px;
   }
 
   .warteliste-field {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
-      border: 1px solid #cccccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      font-size: 14px;
-  }
-
-  .warteliste-field:focus {
-      border-color: #ff0000;
-      outline: none;
-  }
-
-  .warteliste-btn {
-      width: 100%;
-      background-color: #ff0000;
-      color: #ffffff;
-      border: none;
-      padding: 14px;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 15px;
-      transition: background 0.2s ease-in-out;
-  }
-
-  .warteliste-btn:hover {
-      background-color: #cc0000;
-  }
-</style>
 <div class="warteliste-container">
   <h3>Größe ausverkauft? Jetzt vormerken!</h3>
   <p style="font-size: 14px; color: #555555; line-height: 1.4; margin-bottom: 20px;">
