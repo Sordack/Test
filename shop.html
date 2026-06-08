@@ -2,47 +2,87 @@
 <html lang="de">
 <head>
 <style>
-  /* 1. Normalen Ecwid-Kaufknopf für dieses Produkt unsichtbar machen */
-  .ec-store__product-page--123456789 .details-product-purchase__controls {
+  /* ==========================================================================
+     1. RASTER-ANSICHT (Klick sperren & Hover-Bild aktivieren)
+     ========================================================================== */
+
+  /* Klickfunktion auf das Produkt im Raster komplett blockieren */
+  .ec-size .ec-store .grid-product--id-839552085 a.grid-product__image-link,
+  .ec-size .ec-store .grid-product--id-839552085 a.grid-product__title {
+      pointer-events: none !important;
+      cursor: default !important;
+  }
+
+  /* Sobald die Maus über das Produkt fährt, das originale Bild unsichtbar machen */
+  .ec-size .ec-store .grid-product--id-839552085:hover .ec-img-ready {
+      opacity: 0 !important;
+  }
+
+  /* Das neue "Ausverkauft"-Bild als Hover-Hintergrund einblenden */
+  .ec-size .ec-store .grid-product--id-839552085:hover .grid-product__image-wrap {
+      background-image: url('DEINE_HOCHGELADENE_BILD_URL.jpg') !important;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+
+  /* ==========================================================================
+     2. DETAIL-ANSICHT (Kauf sperren & Warteliste stylen)
+     ========================================================================== */
+
+  /* Normalen Ecwid-Kaufknopf und Mengenwähler auf der Detailseite unsichtbar machen */
+  .ec-store__product-page--839552085 .details-product-purchase__controls {
       display: none !important;
   }
 
-  /* Styling für dein neues Wartelisten-Formular */
+  /* Styling für dein neues Formspree-Wartelisten-Formular */
   .warteliste-container {
-      background-color: #f9f9f9;
-      border: 1px solid #e0e0e0;
-      padding: 20px;
+      background-color: #ffffff;
+      border: 2px solid #e0e0e0;
+      padding: 25px;
       border-radius: 8px;
-      margin-top: 20px;
-      max-width: 400px;
+      margin: 20px auto;
+      max-width: 450px;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
 
   .warteliste-container h3 {
       margin-top: 0;
-      color: #333;
-      font-size: 18px;
+      color: #111111;
+      font-size: 19px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
   }
 
   .warteliste-field {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 12px;
-      border: 1px solid #ccc;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #cccccc;
       border-radius: 4px;
       box-sizing: border-box;
+      font-size: 14px;
+  }
+
+  .warteliste-field:focus {
+      border-color: #ff0000;
+      outline: none;
   }
 
   .warteliste-btn {
       width: 100%;
-      background-color: #ff0000; /* Auffällige Farbe für den Button */
+      background-color: #ff0000; /* Schönes, klares Rot passend zum Banner */
       color: #ffffff;
       border: none;
-      padding: 12px;
+      padding: 14px;
       font-weight: bold;
+      text-transform: uppercase;
       border-radius: 4px;
       cursor: pointer;
-      font-size: 16px;
-      transition: background 0.2s;
+      font-size: 15px;
+      transition: background 0.2s ease-in-out;
   }
 
   .warteliste-btn:hover {
@@ -50,6 +90,34 @@
   }
 </style>
 
+<div class="warteliste-container">
+  <h3>Größe ausverkauft? Jetzt vormerken!</h3>
+  <p style="font-size: 14px; color: #555555; line-height: 1.4; margin-bottom: 20px;">
+    Trage einfach deine E-Mail-Adresse und deine Wunschgröße ein. Wir schicken dir eine Bestätigung und informieren dich sofort, sobald der Artikel wieder im Familienshop verfügbar ist.
+  </p>
+  
+  <form action="https://formspree.io/f/DEIN_FORMSPREE_HASH_PRODUKT_ID" method="POST">
+    
+    <label for="email" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 14px;">Deine E-Mail-Adresse:</label>
+    <input type="email" name="email" id="email" class="warteliste-field" placeholder="name@beispiel.de" required>
+    
+    <label for="groese" style="display:block; margin-bottom:6px; font-weight:bold; color: #333333; font-size: 14px;">Gewünschte Größe:</label>
+    <select name="groese" id="groese" class="warteliste-field" required>
+      <option value="" disabled selected>Bitte Größe wählen...</option>
+      <option value="104/110">104 / 110 (Kids)</option>
+      <option value="116/122">116 / 122 (Kids)</option>
+      <option value="128/134">128 / 134 (Kids)</option>
+      <option value="S">S (Erwachsene)</option>
+      <option value="M">M (Erwachsene)</option>
+      <option value="L">L (Erwachsene)</option>
+      <option value="XL">XL (Erwachsene)</option>
+    </select>
+    
+    <input type="hidden" name="produkt" value="Anton Regenbogen-Design Hoodie">
+
+    <button type="submit" class="warteliste-btn">Erinnerung aktivieren</button>
+  </form>
+</div>
 <div class="warteliste-container">
   <h3>Ausverkauft? Jetzt vormerken lassen!</h3>
   <p style="font-size: 14px; color: #666;">Trage dich ein und wir informieren dich sofort, sobald der Artikel wieder da ist.</p>
