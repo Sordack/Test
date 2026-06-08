@@ -2,48 +2,80 @@
 <html lang="de">
 <head>
 <style>
-  /* ==========================================================================
-     ECWID HOVER-TRICK (KORRIGIERT): HOVER AKTIV, ABER LINK DEAKTIVIERT
-     PRODUKT-ID: 819271340
-     ========================================================================== */
-
-  /* 1. Klickfunktion im Raster blockieren */
-  /* Wir blockieren den Link im Inneren, damit man die Seite nicht öffnen kann */
-  .ec-size .ec-store .grid-product--id-819271340 a.grid-product__image-link,
-  .ec-size .ec-store .grid-product--id-819271340 a.grid-product__title {
-      pointer-events: none !important;
-      cursor: default !important;
-  }
-
-  /* 2. Der funktionierende Hover-Effekt auf dem Produkt-Container */
-  /* Sobald die Maus über das Produkt fährt, blenden wir das Originalbild aus */
-  .ec-size .ec-store .grid-product--id-819271340:hover .ec-img-ready {
-      opacity: 0 !important;
-  }
-
-  /* Hier legen wir dein ausverkauftes Bild als Hover-Hintergrund fest */
-  .ec-size .ec-store .grid-product--id-123456789 .grid-product__image-wrap {
-      transition: background 0.2s ease-in-out;
-  }
-
-  .ec-size .ec-store .grid-product--id-819271340:hover .grid-product__image-wrap {
-      background-image: url('DEINE_HOCHGELADENE_BILD_URL.jpg') !important;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-  }
-
-  /* 3. Button-Sicherung */
-  /* Blendet den "Jetzt kaufen"-Button im Raster komplett aus */
-  .ec-size .ec-store .grid-product--id-123456789 .grid-product__buy-now {
-      display: none !important;
-  }
-
-  /* 4. Detailseiten-Schutz */
+  /* 1. Normalen Ecwid-Kaufknopf für dieses Produkt unsichtbar machen */
   .ec-store__product-page--123456789 .details-product-purchase__controls {
       display: none !important;
   }
+
+  /* Styling für dein neues Wartelisten-Formular */
+  .warteliste-container {
+      background-color: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      max-width: 400px;
+  }
+
+  .warteliste-container h3 {
+      margin-top: 0;
+      color: #333;
+      font-size: 18px;
+  }
+
+  .warteliste-field {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+  }
+
+  .warteliste-btn {
+      width: 100%;
+      background-color: #ff0000; /* Auffällige Farbe für den Button */
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s;
+  }
+
+  .warteliste-btn:hover {
+      background-color: #cc0000;
+  }
 </style>
+
+<div class="warteliste-container">
+  <h3>Ausverkauft? Jetzt vormerken lassen!</h3>
+  <p style="font-size: 14px; color: #666;">Trage dich ein und wir informieren dich sofort, sobald der Artikel wieder da ist.</p>
+  
+  <form action="HIER_KOMMT_DER_LINK_DES_DIENSTES_REIN" method="POST">
+    
+    <label for="email" style="display:block; margin-bottom:5px; font-weight:bold;">Deine E-Mail-Adresse:</label>
+    <input type="email" name="email" id="email" class="warteliste-field" placeholder="name@beispiel.de" required>
+    
+    <label for="groese" style="display:block; margin-bottom:5px; font-weight:bold;">Gewünschte Größe:</label>
+    <select name="groese" id="groese" class="warteliste-field" required>
+      <option value="" disabled selected>Bitte Größe wählen...</option>
+      <option value="104/110">104 / 110 (Kids)</option>
+      <option value="116/122">116 / 122 (Kids)</option>
+      <option value="128/134">128 / 134 (Kids)</option>
+      <option value="S">S (Erwachsene)</option>
+      <option value="M">M (Erwachsene)</option>
+      <option value="L">L (Erwachsene)</option>
+      <option value="XL">XL (Erwachsene)</option>
+    </select>
+    
+    <input type="hidden" name="produkt" value="Anton Regenbogen Hoodie">
+
+    <button type="submit" class="warteliste-btn">Erinnerung aktivieren</button>
+  </form>
+</div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ANTON | SHOP</title>
