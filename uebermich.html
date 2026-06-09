@@ -1,4 +1,3 @@
-cat > /home/claude/uebermich.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -10,7 +9,7 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
     <style>
         :root { --anton-red: #ff0000; --anton-yellow: #ffeb3b; --sidebar-width: 240px; --apple-gray: #A2AAAD; --amazon-blue: #00A8E1; }
 
-        html, body { margin: 0; padding: 0; background-color: #ffffff; font-family: 'Special Elite', cursive; height: 100%; width: 100%; }
+        html, body { margin: 0; padding: 0; background-color: #fff; font-family: 'Special Elite', cursive; width: 100%; }
 
         a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 
@@ -18,26 +17,23 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
             #mobile-wrapper { display: none !important; }
             #desktop-wrapper { display: block !important; }
 
-            body { background: #ffffff; overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; min-height: 100vh; }
+            html { background-color: transparent !important; }
 
-            #bg-layer-a, #bg-layer-b {
-                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                background-size: cover; background-position: center center;
-                background-repeat: no-repeat; background-attachment: fixed;
-                z-index: 0; transition: opacity 2s ease-in-out;
+            body {
+                background: url('Background.jpg') no-repeat center center fixed;
+                background-size: cover !important;
+                background-color: transparent !important;
+                overflow-x: hidden; overflow-y: auto;
             }
-            #bg-layer-a { background-image: url('Background.jpg'); }
-            #bg-layer-b { opacity: 0; }
 
             .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
-            .d-header-logo { max-height: 50px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .d-header-logo { max-height: 285px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); transform: translateY(82px); }
             .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; overflow: hidden; }
             .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
             .d-menu-btn span { transition: opacity 0.2s; }
-            .d-menu-btn::after { content: ''; position: absolute; width: 30px; height: 30px; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAARkUlEQVR4nM1beXRUZZb/3e+9Si2pCqkkFVKRrJCFyBIkyJLmFNAgYQehZBOCtBKPyNhgg47L1AnCgT6OijpjH1Dcuhlngh7xHEaaaRQKh6M4jI0OA+NGCxIXtoQlZKn33p0/6r3Kg1SSV2zd95x3Aq/eu9+9v+/e797vfvcBN5AYTMFgUAoGg1ICrwkAciAQkIPBoMTMdKPku1FEusLdKr1z587Mt7e8Xfraa6+Vfrb3Mx8zO5KSkuI9KgKBgPw3DUYoFBIAZPM9ZrY/9thjty1dunQUM0v6PQKAXbt29ayoqPg5NyeX8/PyOS8391xJccn3ZWVl/zlq1Kg3Zs6cufzhhx8edeLEiXSbzWZmK+lj/W2QrpBk+r9z2bJld4waNep3ZX3Lvs3IyODiomJ+5ZVX8gAgFArJALBly+ZCv9+vAWAAxl8GwLIsc3JyMmekp3PvwsJTw4YN//fqu6t/tX//oSwhYrr/9YEw+/aWLVsKJ02Y9FRxcfHXGRnpbLPJhkJaenp62+rVq4uAdgDefPPNgpxevVqJiCUhNCFIIyIVgAIgol+qzoNTUlK4oKDg9JgxYzavW7dusCTFhpYA3FzX0JEnAAiHw/6JVVXP5OXln7fb7YbSKgERIYRCROzz+ZRQKNQHAAKBgAwAmzZtKsjOzm4DwER0mQWYL/03Rb9YkiTOzs5WR48e/frGjRtLr5DpxpMx6w6HAwsXLry3qE/RTybFI9FZJLPw1wRAJ2CwLMucl5fXNH3q9BAzy2beN5JkAKirqysYMXzEf6Smes2Kd1AiHgBmF+jVq1dCAJj4sgFEcnIyV1RU7N+wYcMAs4xWKRGzkQEoyx54YNqTjz/+6Sf7PxnX2Nig6MJ0GaIozi8OhwOmBS0hYmYAkIiIm5qalAMHDty+YcOGfdXV1YuEIAUJrAtWJZCJSAnODP7dO9u2bfvy668zNE1TiahLxbnDP9opEokQxUMmAdLHlgGo3333nfv9999/bdq06U/Jsqwiqlu3A1gBQBZCKFOnTv3NB7s/eP6HH35QdZOV9Jm4KvLYbAprmnbVDC4niYj41KlTyp49e56YPHniczabzRIIXQIQCARkEJQpU6Y8vHfv3qfPnj2rEJFg5oRsVwgBu90OADh8+DADgJaUpOhh77oQMxMRyQ0NDZHwnr2/njRh0guSJKnoJiPtVJFAICCHw2GlemH1kn379v1jQ0ODQkQJ5ebGg0QERPVHUL/ncrlAV7kGdEbMDCKyNTQ2Rj7a99GyadOmPQpA6So6xJUgGAxK4XBYWRMKDdv94e6XTp8+rSaqvEFExCBS7ToCW/X7ly5dgqp2aQCa7moJETNDEiSfOXNG2bdv37olS5bMDofDiuUNma6kaGhoSB04cOB3iIadWEZm9dKFbwPAvXr14pdffvmyMPjWW2/l5+TkWAmDikgwTJpkVgsKCs5v3ry5EABZSpaCwaAkSRLGjh37e1tSEiOakiY0OPQY7XQ4OC8378L48eNfqT9wwGUWoq6urqATADRJknjIkCH7i4qKvktOTr6MZ4IgKEIIHjFixAf6LrNrKzDM5P7775/s82UaCU7CCQqR4Pz8gotTp05du3379jxzvDcDkGsCwDROxOPx8Pz582cxszsYDD5aUFh4Vgih87Yuj8Evzevl6urq+8w6xiMCIJjZ3u/Wfl8j6oOWTV+Q0AAobrebhw8d/qfNv9tcZuIdG9QMQF5uXjwLiLjdbh4/fvwi453XX3+997Bhw/7ocrkSBkESUVcoKSo5dfjw4XQAFHctM1bKYDC41O12J2T6uo+qvgwfz5gxY43T6TTYdkiUDACiu8G4LhBJ8Xi4qqqqmpkpEAg4gGjmOHHixN96vV7LlklELKLPRewOO4+fMGG9WVegPQpQOBxWmdn1P198serixYtMRJZiFBGxxqylp6eLcXeMW7Jt27Ynmpubha6oMVsdqLGxMU4UaMfK7XYnGy4VCoVES0uLtHPnzkdGjRq1JiUlRWZmpdtMkhlaNDRKrS2t/H9Hjty/b+e+zHA4rFw2MQYid911170ej9vygkMUnTGv18tzZ899SGdnQxfZl2EBL7zwQkFWVlanLjB39twVZtmMtFeSJIwbN+45wx2syGnwdTqdPH369JVmvgIAwuGwZrMl4ciRI/deuHAx7ozFIwJUl9MpDx069J/q3q57fvDgwTa0u06XryqK0vX0XZElExEzs6qqqrR3797l/fv3/1AIIVnNJolINDc38zfffHMPM8vhcFgFQIapak89tbr/yZMnK/SHu00aiEjTGKKoqPjIjh07fqOqqnTgwAGlq1eCwaC0fft2CQCrqqp2acJxskQi4lAoxK2trbR06dJ78/PzzzEziU7c7EqOAPjkyZN9V61aNRwAB4NBAX3WUFVV9bjT6bS0+Bm+mZGRwStWrBgPdB1ezAmIEALMTDt27Cjx+/0RdOIC8+fOv8wFzGRy2V97PJ5EXCGSlJTE48aNe1pnFXUDm82Gfv0GhGEx4SAihYi4oqJir16x7VZ5ZhYLFy6cNXTo0D/07Vt6pHfv3iecDjsL6iikx+PhWTNmPdAZAGgP2Y7S0tKjukzdhmyiqG4DBpTv1xOj6MRwA6cWFhQ2xJmNzi7F6/VyTU3NNADU2WbDUP7ZZ5+9dfDgwZ+kpqayOXwJAlOcWXK73Txt2rSaLgCI3Z80adKTCViuRgDn5+dd2r17d1aMWU1Nze2ZmT4GoBn1vC6YqAC4uLj4GDPbTTMSV/n169ffWlLS97ShHKIWpuKKUjjaXSvidrs5ODO4tCsADJdb/cTq/pmZPTVEEzcrbqCmp6XxkiVLRgO6CbQ0tZS1NLciKljX6wkza0II+P3+PUKIVkTN/8qXqLa2Fswsb63b+ocvvzySjmjyIuvPd1uokGW5y9re1q1bNQB48qknj6Sleb/U+V0WOjpZY7XWtjY0NTUVQxcEJ+pP5LS0tnY13mXkcrng9/s/ZmYEAoEOwwQCAQmANmfOnLv/cvSbchFNiGzdV5Daf29pa2mx8LAkhFBSU1IPEhGY+TIAOhsuEomgvr6+F6ADcO7CuWRV7SqCRUkPW8LpdCInJ+cIAGRmZnYYJhwOsyzL+Pbo0XmN584zCWsFSkNgIoIsy91mooFAgJgZ3nTvV52cKcZVI6IoUFW1DxFBCCHgcDgK9PJcd4IyolGDMzIyfgCAsrKyDuYPQI1EIvbTp06VaMykMVGi9cPWVusmabfb6w0ArCDNmgZN0zySJEUBEALJ3Sdv7SRJEnu93u7GkiKRiK2bZ+ILyMyXLl3qzgVilJySQpKeOHWbggKQwGAijZkhmBnEpElEENYLXqq+AMYj1sdpzsjI+Mkyx3YSdrud/H7/GSC+i11JSmsrg61Xz4gEiLmVmSFUVUVLW9u3shBgtgQgt7W12Y4ePerr4jmJiLiHp8ensizzlYtT54IRAyB3svv8fffd9xkA1NXVdfvuuXPnslrbIlaGAAAWguB2uaIAAICmKOet7H51P1abm5tx7NixIgDYs2dPhxeDwSADwKDBg95ITU0lXTkr/BWbzUa9+/T+t0AgcAo6kJ09Hw6HQUQ4d+58SWtbW7f8DSIhcKGp6afYujR96vSVVrMpABFZlnnsmLHP6Pw6i9dCkiRUVla+ph+etnZW3NSVbAPAffr0+fGdd97xw1oRk5hZlJaWfg6L6TCASHJyMk+dPHVFjMu82fMm90jpYXUfoALgAQMGHNQPOzqbWiNflysrR2719ugREyDOpQkhuHfv3j+vXLnyNqD7427j9w0bNhSZNlVWMkHF4/Hw4oULp8aYrV27tszv96uwkE7qv2v+rKzIPz/3XF90MVN6EYPsdjtmB2c/VFxcWp+SksKSJMV4uVwuzs7O5srKynf18nWXO0uDjBR55owZyxPcxWr+LL/29Nq17TVLZnYWFvauB8BCiO53VUNDE6XDwxKqqZ8zCdEKkX2g83pg2Jzjn7oqKiucHDhz4Rnl5+cbJkyc/+ts1a24z+oAsNjoY1iX179fvECyav/FMaUmpeR8DSQiB22+//R1ZkjQi6hZJ3Ze1vLy8C3V1dbmw5q+XzWqcRVFY7fIwAF+0aNE8b2qqJdeNAoCIJIQ2fPjwf9XHl2PMZgdnL0qsuBA9dKisrHxXlmVL3Rl6lVdGdOGUofcDJtLeYpxcMXOPoqKiegCasF6+V7ypqbxgwYIFMSCNwT/e9XHPnJyci1GkLB9FKV6vlxcvXjwfQKy6dCNp8ODBNiEE7hh7xytJ0ZMri7Mf1Sk/P7/xq8++8gExMAG0u8Hb+oOWzgSMnp283LwL69atG3SjQTB4V99d/au0tDRGYockEUmSeOTIkW/p5t/uksaq++CDD471+TIYgGqVcaxAUlLy08YXN/Y3CXrdWtf0mbIBQE1NzdysrCxD+UQOTVWfz8crV64cadbZTIKZqby8/BMiYiKyZlogliWhSoK4qKjolFEkRXvL7DVRrH4vJCxYsGBxdna2hugEWVZeECmCiIdUDPlQjzYd1xxD2GXLlt2R6fNFEbYEAFgWxLIUtYQsv59nzZr190ZrLACRaNNzKBQS5kWVmVPGjh37Unp6OqO9b8Cq8gxAyeqZxY8/8vgvzLrGI8lms2HIkCE7hRCWrSAGhh4e3W43Dxp026fLly+vMlpjDDBg6gQ3rkAgIJuiQwwoZpYWL168oKys7Ct9wUto5nUAlKSkJB49avRbkiR1nWQZHaDPP/18mX5wmaifXdbD5/P5uKKiYteSJUvmHTp0KMtK1cZhd+C9994rmDNnzrLygeWf6YehiS545vVJLSkuPhsOh/2Ik2t0MMtgMCht3bpVnTFjxiO7du1af+HChQgBNu5W9A6kASBBRKmpqfCmpjb6Mnv+2eP2/HdaRtqxHj3Sj0BR4HQ5kyKRSOrJMyd7Xjh/PvfsmYahP/78Y3ljY6Pr4sWLQHTWKdHGLL1GGMnIyLDdeeed8zdt2vQvhm7dvotoCxxVVlbusskyE0jfbFhHH7r/6W4UcyWjE9zrTWOv18tpadG/LpeLbTab+X3FSnob7zJ2l3a7nceNHbdZkqTE2mgNV9i9e3dG//79v9aZJtyicoVQRp+vuRPc6A4330/Y7S4fByyRiMiyjYcPG/4RMyfhajrKjcVizZo15fn5+eeuBwg34yJCRAjBAwcO+t/jx4+nAdfQSW6AsGLFil8YIODqmqZuguJRsyci7t+v36Ft27ZlX5PyBhm+U1tbO7SsrOx7vVkpoeapm6C8BiBit9t50KBBn+7atasnYK2ukBAI7777bk5FRcUnegHiqhep66y8AkBLS0vj0aNH/56Z3ddVeYMMhszs+OWYX27yRbNFwxquetG6BsVjm7ZbbrlFmXPXnIcTLKokTgZjSZJQU1Mz49aysr84HI4OQCQaLq9WcY/Hw+Xl5QdWrVo1QhdR3IxP62JfiTFz6oQJE9bn5uZeNMXwCBFZ3k1aVdqcTzidTi4qKvpx9uzZDxmfyyDBL0Wumcw+9uqrrxaNHTPmpfz8gnMup8sQ3JgpRQfEspvoCqto7ydgQdEvx/r06VM/bcq02oMHD2Ya4/81P5+LWQMRYfv27XlTpkx5rF+/fn/u2bMnO51O1qOGcRlKdXXFFlZJktjj8XBOTs7FioqKP86bN29RY2Oj1xhcn4RrMvnr4i+hUEjU1tYSosKDmWn1P6yu+PyLz0fX/1Q/8uzZs/0uXbqU29LcLBRVRVtbGzRVjfbZqRrADLvDAZvNBpskw+F0tDhdruM+n++/CgsL/zR+/Pg999xzz7FIJHb8JTGzUcK/JrquC0YoFBJ79uwR4XA41mwgyzIikYj9xRdfLDh48OAtqqoWff/998lNTU0uR5LDQRLZFEVR0tLSTqWnp5+XJOmrqqqq4zNnzqwXQiimY3URDAaprq7uuih+o4lMRY1ricdSolXjROlmfXJKoVCIDh8+TCdPnjS+ODXGZgAIBAIAosfhZWVlXFtba6wbN5T+H31trWj91PvzAAAAAElFTkSuQmCC') no-repeat center center; background-size: contain; opacity: 0; transition: opacity 0.2s; }
+            .d-menu-btn::after { content: 'A'; position: absolute; font-weight: bold; font-size: 28px; opacity: 0; transition: opacity 0.2s; }
             .d-menu-btn:hover span { opacity: 0; }
             .d-menu-btn:hover::after { opacity: 1; }
-
             .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255,235,59,0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
             .d-sidebar-left.open { left: 0; }
             .d-nav-item { margin-bottom: 20px; width: 100%; }
@@ -54,9 +50,8 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
             .d-submenu a i { margin-right: 10px; width: 18px; text-align: center; }
             .d-nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
             .d-nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
-
             .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255,255,255,0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
-            .d-sidebar-right a i { color: #000; font-size: 1.2rem; transition: transform 0.4s ease-in-out, color 0.4s ease-in-out; animation: ultraFlowWave 6s linear infinite; }
+            .d-sidebar-right a i { color: #000; font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; }
             @keyframes ultraFlowWave { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.55); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
             .d-sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
             .d-sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
@@ -70,9 +65,8 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
             .d-sidebar-right:hover a i { animation-play-state: paused !important; transform: scale(1) !important; color: #000 !important; }
             .d-sidebar-right a:hover i { color: var(--brand-color) !important; transform: scale(1.55) !important; }
 
-            main { flex: 1; padding: 110px 80px 100px 80px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; z-index: 5; }
+            main { padding: 110px 80px 100px 80px; max-width: 1100px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
-            /* ── Seitenspezifisch: Über mich ── */
             .detail-bento {
                 display: flex; gap: 40px; align-items: flex-start;
                 background: rgba(255,255,255,0.95); border: 3px solid #000;
@@ -84,41 +78,14 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
             .album-text p { margin: 0 0 12px 0; font-size: 0.95rem; line-height: 1.6; }
             .album-text p.intro { font-size: 1.05rem; font-weight: bold; color: var(--anton-red); }
 
-            /* ── Footer ── */
-            .d-footer {
-                width: 100%; height: 60px; padding: 0;
-                background: rgba(255,255,255,0.75); backdrop-filter: blur(10px);
-                border-top: 1.5px solid #000; z-index: 100;
-                position: fixed; bottom: 0; left: 0;
-                display: flex; align-items: center; justify-content: center;
-                box-sizing: border-box;
-            }
-            .d-footer-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 100%; }
-            .d-footer-site-link { font-size: 0.68rem; font-family: 'Special Elite', cursive; font-weight: bold; color: #000; text-decoration: none; transition: color 0.2s; }
-            .d-footer-site-link:hover { color: var(--anton-red); }
-            .d-footer-center-links { display: flex; align-items: center; }
-            .d-footer-center-links a { color: #000; text-decoration: none; font-size: 0.63rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.4px; padding: 0 10px; white-space: nowrap; transition: color 0.2s; font-family: 'Special Elite', cursive; }
-            .d-footer-center-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.18); }
-            .d-footer-center-links a:hover { color: var(--anton-red); }
-
-            /* ── Fairness-Logo ── */
-            .d-footer-fairness { position: fixed; bottom: 60px; left: 12px; z-index: 99; display: flex; align-items: center; }
-            .d-footer-fairness a { display: flex; align-items: center; text-decoration: none; }
-            .d-footer-fairness img { height: 50px; width: auto; display: block; object-fit: contain; filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.18)); transition: transform 0.2s; }
-            .d-footer-fairness a:hover img { transform: scale(1.06); }
-
-            /* ── Nav-Pfeile ── */
-            .nav-arrows-desktop { position: fixed; top: 90px; left: 20px; display: flex; flex-direction: row; gap: 4px; z-index: 150; }
-            .nav-arrow { width: 19px; height: 19px; border-radius: 4px; background: rgba(255,255,255,0.72); backdrop-filter: blur(6px); border: 1px solid #000; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.6rem; color: #000; transition: background 0.2s, color 0.2s, transform 0.1s; user-select: none; -webkit-tap-highlight-color: transparent; }
-            .nav-arrow:hover { background: var(--anton-yellow); color: #000; }
-            .nav-arrow:active { transform: scale(0.93); }
+            .d-footer { width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95); border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem; z-index: 100; position: fixed; bottom: 0; left: 0; }
+            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; transition: all 0.3s ease; }
+            .d-footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; }
         }
 
         @media (max-width: 800px), (orientation: landscape) and (max-height: 500px) {
             #desktop-wrapper { display: none !important; }
             #mobile-wrapper  { display: block !important; }
-
-            body { height: 100vh; width: 100vw; overflow: hidden !important; position: fixed; display: flex; flex-direction: column; touch-action: pan-y; overscroll-behavior-x: none; }
 
             .m-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; transition: transform 0.6s ease-in-out; }
             .m-header-logo { position: absolute; top: 120%; transform: translateY(-50%); max-height: 185px; width: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
@@ -126,35 +93,24 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
             .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
             .m-menu-btn.active { background: var(--anton-yellow); }
             .m-menu-btn.active span { display: none; }
-            .m-menu-btn.active::after { content: ''; display: block; width: 30px; height: 30px; background: url('data:image/png;base64,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') no-repeat center center; background-size: contain; }
+            .m-menu-btn.active::after { content: 'A'; color: #000; font-weight: bold; font-size: 28px; }
 
             .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s cubic-bezier(0.4,0,0.2,1); }
             .m-sidebar.open { top: 0 !important; }
             .m-nav-item { flex: 1; text-align: center; }
             .m-nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
             .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
-            .m-musik-link { display: flex; }
-            .m-sub-toggle { display: none; }
-            .m-submenu { display: none; }
             .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
             .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
 
-            .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; }
+            .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
             .m-id-button.hidden { transform: translateX(100%); }
-            .m-id-panel { position: fixed; right: -300px; bottom: 150px; height: 60px; width: 290px; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; overflow: hidden; padding: 4px 6px; box-sizing: border-box; }
+            .m-id-panel { position: fixed; right: -270px; bottom: 150px; height: 45px; width: 250px; background: rgba(255,255,255,0.35); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; align-items: center; justify-content: center; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem; overflow: hidden; }
             .m-id-panel.open { right: 0; }
-            .m-id-panel-site { font-size: 0.58rem; font-weight: bold; color: #000; text-decoration: none; font-family: 'Special Elite', cursive; }
-            .m-id-panel-site:hover { color: var(--anton-red); }
-            .m-id-panel-links { display: flex; align-items: center; flex-wrap: nowrap; }
-            .m-id-panel-links a { color: #000; text-decoration: none; text-transform: uppercase; font-size: 0.56rem; font-weight: bold; padding: 0 5px; white-space: nowrap; font-family: 'Special Elite', cursive; }
-            .m-id-panel-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
+            .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
 
-            /* Mobile Footer Bar */
-            .m-footer-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; box-sizing: border-box; overflow: hidden; }
-            .m-fh-logo { display: flex; align-items: center; justify-content: center; height: 100%; padding: 5px 8px; border-right: 1.5px solid rgba(0,0,0,0.15); flex-shrink: 0; text-decoration: none; }
-            .m-fh-logo img { height: 40px; width: auto; object-fit: contain; display: block; }
-            .m-sidebar-right { flex: 1; height: 100%; display: flex; flex-direction: row; align-items: center; padding: 0 4px; justify-content: space-evenly; }
-            .m-sidebar-right a i { color: #000; font-size: 1.4rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
+            .m-sidebar-right { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; padding: 0 10px; justify-content: space-evenly; }
+            .m-sidebar-right a i { color: #000; font-size: 1.5rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
             @keyframes ultraFlowWaveMobile { 0% { transform: scale(1); color: #000; } 9.33% { transform: scale(1.4); color: var(--brand-color); } 23.33%, 100% { transform: scale(1); color: #000; } }
             .m-sidebar-right a:nth-child(1) i { --brand-color: #f00; animation-delay: 0.0s; }
             .m-sidebar-right a:nth-child(2) i { --brand-color: #25F4EE; animation-delay: 0.25s; }
@@ -165,14 +121,14 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
             .m-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray); animation-delay: 1.5s; }
             .m-sidebar-right a:nth-child(8) i { --brand-color: #f00; animation-delay: 1.75s; }
             .m-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
+        }
 
-            /* Nav-Pfeile Mobile */
-            .nav-arrows-mobile { position: fixed; top: 88px; left: 10px; display: flex; flex-direction: row; gap: 4px; z-index: 1300; }
-            .nav-arrow { width: 19px; height: 19px; border-radius: 4px; background: rgba(255,255,255,0.72); backdrop-filter: blur(6px); border: 1px solid #000; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.6rem; color: #000; transition: background 0.2s, color 0.2s, transform 0.1s; user-select: none; -webkit-tap-highlight-color: transparent; }
-            .nav-arrow:hover { background: var(--anton-yellow); }
-            .nav-arrow:active { transform: scale(0.93); }
+        @media (max-width: 800px) and (orientation: portrait) {
+            body { height: 100vh; width: 100vw; overflow: hidden !important; position: fixed; display: flex; flex-direction: column; touch-action: pan-y; overscroll-behavior-x: none; }
+            #m-bg-fix { display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('Background.jpg') no-repeat center center; background-size: cover; z-index: -1; }
 
-            /* Seitenspezifisch Mobile */
+            #mobile-wrapper { display: flex !important; flex-direction: column; height: 100vh; overflow: hidden; }
+
             .m-content-scroll { flex: 1; min-height: 0; margin-top: 80px; margin-bottom: 65px; overflow-y: auto !important; -webkit-overflow-scrolling: touch; padding: 20px 15px; box-sizing: border-box; }
 
             .detail-bento {
@@ -199,41 +155,79 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
             .album-text p { margin: 0 0 8px 0; font-size: 0.86rem; line-height: 1.5; }
         }
 
-        @media (max-width: 800px) and (orientation: portrait) {
-            #m-bg-fix { display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('Background.jpg') no-repeat center center; background-size: cover; z-index: -1; }
-            #mobile-wrapper { display: flex !important; flex-direction: column; height: 100vh; overflow: hidden; }
-            body { height: 100vh; width: 100vw; overflow: hidden !important; position: fixed; display: flex; flex-direction: column; }
-        }
-
         @media (orientation: landscape) and (max-height: 500px) {
+
             body { overflow-y: auto !important; position: static !important; height: auto !important; }
 
-            #mobile-wrapper #m-bg-fix { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: url('Background.jpg') no-repeat center center !important; background-size: cover !important; z-index: -1 !important; will-change: unset !important; transform: none !important; }
+            #mobile-wrapper #m-bg-fix {
+                display: block !important; position: fixed !important;
+                top: 0 !important; left: 0 !important;
+                width: 100% !important; height: 100% !important;
+                background: url('Background.jpg') no-repeat center center !important;
+                background-size: cover !important; z-index: -1 !important;
+                will-change: unset !important; transform: none !important;
+            }
 
             #mobile-wrapper .m-header { height: 60px !important; }
             #mobile-wrapper .m-header-logo { top: 145% !important; }
             #mobile-wrapper .m-menu-btn { top: 8px !important; left: 12px !important; width: 38px !important; height: 38px !important; }
-            #mobile-wrapper .m-sidebar { top: 0 !important; left: -220px !important; width: 200px !important; height: 100% !important; flex-direction: column !important; justify-content: flex-start !important; align-items: flex-start !important; padding: 80px 15px 20px 15px !important; border-bottom: none !important; border-right: 3px solid #000 !important; box-sizing: border-box !important; transition: left 0.5s cubic-bezier(0.4,0,0.2,1) !important; }
+
+            #mobile-wrapper .m-sidebar {
+                top: 0 !important; left: -220px !important;
+                width: 200px !important; height: 100% !important;
+                flex-direction: column !important;
+                justify-content: flex-start !important; align-items: flex-start !important;
+                padding: 80px 15px 20px 15px !important;
+                border-bottom: none !important; border-right: 3px solid #000 !important;
+                box-sizing: border-box !important;
+                transition: left 0.5s cubic-bezier(0.4,0,0.2,1) !important;
+            }
             #mobile-wrapper .m-sidebar.open { left: 0 !important; top: 0 !important; }
             #mobile-wrapper .m-nav-item { flex: none !important; width: 100%; text-align: left; margin-bottom: 16px; }
             #mobile-wrapper .m-nav-item a { flex-direction: row !important; gap: 10px; font-size: 0.85rem; }
             #mobile-wrapper .m-nav-item a i { font-size: 1rem; width: 22px; text-align: center; }
             #mobile-wrapper .mobile-tag { font-size: 0.72rem; writing-mode: horizontal-tb !important; transform: none !important; margin-top: 0; }
-            #mobile-wrapper .m-musik-link { display: none !important; }
-            #mobile-wrapper .m-sub-toggle { display: flex !important; background: none; border: none; padding: 0; cursor: pointer; font-family: 'Special Elite', cursive; align-items: center; gap: 10px; font-size: 0.85rem; color: #000; width: 100%; }
-            #mobile-wrapper .m-sub-arrow { margin-left: auto; font-size: 0.7rem; transition: transform 0.3s; }
-            #mobile-wrapper .m-nav-item.sub-open .m-sub-arrow { transform: rotate(180deg); }
-            #mobile-wrapper .m-submenu { display: none; flex-direction: column; padding-left: 28px; margin-top: 6px; gap: 8px; }
-            #mobile-wrapper .m-submenu a { font-size: 0.75rem !important; color: #000 !important; text-decoration: none !important; display: flex !important; align-items: center !important; gap: 8px !important; flex-direction: row !important; }
-            #mobile-wrapper .m-nav-item.sub-open > .m-submenu { display: flex !important; }
             #mobile-wrapper .m-epk-container { position: static !important; width: 100% !important; height: auto !important; background: transparent !important; border-left: none !important; border-top: 1px solid rgba(0,0,0,0.15) !important; padding-top: 12px !important; margin-top: auto !important; justify-content: flex-start !important; }
             #mobile-wrapper .m-epk-text { writing-mode: horizontal-tb !important; transform: none !important; font-size: 0.78rem; }
 
-            #mobile-wrapper .m-content-scroll { display: block !important; position: static !important; margin-top: 60px !important; margin-bottom: 0 !important; padding: 8px 52px 60px 10px !important; overflow-y: auto !important; flex: none !important; box-sizing: border-box !important; height: calc(100vh - 60px) !important; }
+            body { background-color: transparent !important; }
 
-            #mobile-wrapper .detail-bento { display: flex !important; flex-direction: row !important; gap: 16px !important; align-items: flex-start !important; background: rgba(255,255,255,0.88) !important; border: 2px solid #000 !important; box-shadow: 3px 3px 0 #000 !important; border-radius: 12px !important; padding: 12px !important; width: 90% !important; margin: 0 auto !important; box-sizing: border-box !important; }
-            #mobile-wrapper .image-container { flex-shrink: 0 !important; width: auto !important; }
-            #mobile-wrapper .album-cover { width: 110px !important; border: 2px solid #000 !important; border-radius: 8px !important; box-shadow: 3px 3px 0 #000 !important; }
+            #mobile-wrapper .m-content-scroll {
+                display: block !important;
+                position: static !important;
+                margin-top: 60px !important;
+                margin-bottom: 0 !important;
+                padding: 8px 52px 60px 10px !important;
+                overflow-y: auto !important;
+                flex: none !important;
+                box-sizing: border-box !important;
+                background: transparent !important;
+                height: calc(100vh - 60px) !important;
+            }
+
+            #mobile-wrapper .detail-bento {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 16px !important;
+                align-items: flex-start !important;
+                background: rgba(255,255,255,0.88) !important;
+                border: 2px solid #000 !important;
+                box-shadow: 3px 3px 0 #000 !important;
+                border-radius: 12px !important;
+                padding: 12px !important;
+                width: 90% !important;
+                margin: 0 auto !important;
+                box-sizing: border-box !important;
+                overflow: visible !important;
+            }
+            #mobile-wrapper .image-container {
+                flex-shrink: 0 !important; width: auto !important;
+            }
+            #mobile-wrapper .album-cover {
+                width: 110px !important;
+                border: 2px solid #000 !important; border-radius: 8px !important;
+                box-shadow: 3px 3px 0 #000 !important;
+            }
             #mobile-wrapper .album-cover img { width: 100% !important; height: auto !important; display: block !important; }
             #mobile-wrapper .m-intro-col   { display: none !important; }
             #mobile-wrapper .m-first-para  { display: none !important; }
@@ -246,27 +240,44 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
             #mobile-wrapper .album-text p:nth-of-type(3) { display: block !important; }
             #mobile-wrapper .album-text p:nth-of-type(4) { display: block !important; }
 
-            #mobile-wrapper .m-footer-bar { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; }
-            #mobile-wrapper .m-fh-logo { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 5px 3px !important; width: 100% !important; }
-            #mobile-wrapper .m-fh-logo img { height: 22px !important; }
-            #mobile-wrapper .m-sidebar-right { flex-direction: column !important; justify-content: space-evenly !important; padding: 0 !important; }
+            #mobile-wrapper .m-sidebar-right {
+                position: fixed !important; top: 0 !important; bottom: 0 !important;
+                left: auto !important; right: 0 !important;
+                width: 46px !important; height: 100% !important;
+                flex-direction: column !important;
+                border-top: none !important; border-bottom: none !important;
+                border-left: 2px solid #000 !important; border-radius: 0 !important;
+                padding: 0 !important; gap: 0 !important;
+                justify-content: space-evenly !important;
+                background: rgba(255,255,255,0.2) !important;
+                backdrop-filter: blur(3px) !important;
+            }
+            #mobile-wrapper .m-sidebar-right a { flex: 1 !important; display: flex !important; align-items: center !important; justify-content: center !important; width: 100% !important; }
             #mobile-wrapper .m-sidebar-right a i { font-size: 1.1rem !important; }
 
             #mobile-wrapper .m-id-button { display: none !important; }
-            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 310px !important; height: 55px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; opacity: 1 !important; overflow: hidden !important; }
-            #mobile-wrapper { overflow-y: auto !important; }
+            #mobile-wrapper .m-id-panel {
+                position: fixed !important; bottom: 0 !important;
+                left: 50% !important; right: auto !important;
+                transform: translateX(-50%) !important;
+                width: 220px !important; height: 34px !important;
+                border-radius: 8px 8px 0 0 !important;
+                border: 2px solid #000 !important; border-bottom: none !important;
+                background: rgba(255,255,255,0.35) !important;
+                backdrop-filter: blur(8px) !important;
+                font-size: 0.72rem !important; opacity: 1 !important;
+                display: flex !important; align-items: center !important; justify-content: center !important;
+                transition: none !important;
+            }
+            #mobile-wrapper .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
         }
     </style>
 </head>
 <body>
 
     <div id="desktop-wrapper">
-        <div id="bg-layer-a"></div>
-        <div id="bg-layer-b"></div>
-        <header class="d-header">
-            <img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo">
-        </header>
-        <div class="d-menu-btn" id="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
+        <header class="d-header"><img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo"></header>
+        <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
 
         <nav class="d-sidebar-left" id="d-sidebar">
             <div class="d-nav-item"><a href="index"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
@@ -332,35 +343,15 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
             </div>
         </main>
 
-        <!-- Fairness-Logo -->
-        <div class="d-footer-fairness">
-            <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener">
-                <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
-                     alt="Mitglied der Initiative Fairness im Handel">
-            </a>
-        </div>
-
         <footer class="d-footer">
-            <div class="d-footer-center">
-                <a href="index" class="d-footer-site-link">www.anton-familienpop.de</a>
-                <nav class="d-footer-center-links">
-                    <a href="impressum">Impressum</a>
-                    <a href="datenschutz">Datenschutz</a>
-                    <a href="shopagb">AGB</a>
-                    <a href="shopwiderruf">Widerruf</a>
-                </nav>
-            </div>
+            <div><a href="index">www.anton-familienpop.de</a></div>
+            <div><a href="impressum">Impressum</a> | <a href="datenschutz">Datenschutz</a></div>
         </footer>
-
-        <!-- Nav-Pfeile Desktop -->
-        <div class="nav-arrows-desktop">
-            <div class="nav-arrow" title="Zurück" onclick="history.back()"><i class="fa-solid fa-chevron-left"></i></div>
-            <div class="nav-arrow" title="Vor" onclick="history.forward()"><i class="fa-solid fa-chevron-right"></i></div>
-        </div>
     </div>
 
     <div id="mobile-wrapper">
         <div id="m-bg-fix"></div>
+
         <header class="m-header" id="m-header-main">
             <img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo">
         </header>
@@ -370,19 +361,7 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
 
         <nav class="m-sidebar" id="m-sidebar">
             <div class="m-nav-item"><a href="index"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
-            <div class="m-nav-item" id="m-musik-item">
-                <a href="meinemusik" class="m-musik-link"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a>
-                <button class="m-sub-toggle" onclick="mToggleSubMenu(event)">
-                    <i class="fa-solid fa-music"></i>
-                    <span class="mobile-tag">Musik</span>
-                    <i class="fa-solid fa-caret-down m-sub-arrow"></i>
-                </button>
-                <div class="m-submenu">
-                    <a href="uebermich"><i class="fa-regular fa-face-smile"></i> Über mich</a>
-                    <a href="veroffentlichungen"><i class="fa-solid fa-volume-high"></i> Veröffentlichungen</a>
-                    <a href="konzerte"><i class="fa-solid fa-microphone-lines"></i> Konzerte</a>
-                </div>
-            </div>
+            <div class="m-nav-item"><a href="meinemusik"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
             <div class="m-nav-item"><a href="shop"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
             <div class="m-nav-item"><a href="kontakt"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></a></div>
             <div class="m-epk-container"><a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener" class="m-epk-text">EPK/PRESSE</a></div>
@@ -415,63 +394,33 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
         </div>
 
         <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
-
-        <!-- Mobile ID-Panel -->
         <div class="m-id-panel" id="m-id-panel">
-            <a href="index" class="m-id-panel-site">www.anton-familienpop.de</a>
-            <div class="m-id-panel-links">
-                <a href="impressum">Impressum</a>
-                <a href="datenschutz">Datenschutz</a>
-                <a href="shopagb">AGB</a>
-                <a href="shopwiderruf">Widerruf</a>
-            </div>
+            <a href="impressum">Impressum</a><span>|</span><a href="datenschutz">Datenschutz</a>
         </div>
 
-        <!-- Mobile Footer Bar -->
-        <footer class="m-footer-bar">
-            <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener" class="m-fh-logo">
-                <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
-                     alt="Mitglied der Initiative Fairness im Handel">
-            </a>
-            <div class="m-sidebar-right">
-                <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
-                <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
-                <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
-                <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
-            </div>
-        </footer>
-
-        <!-- Nav-Pfeile Mobile -->
-        <div class="nav-arrows-mobile">
-            <div class="nav-arrow" title="Zurück" onclick="history.back()"><i class="fa-solid fa-chevron-left"></i></div>
-            <div class="nav-arrow" title="Vor" onclick="history.forward()"><i class="fa-solid fa-chevron-right"></i></div>
-        </div>
+        <aside class="m-sidebar-right">
+            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
+            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
+        </aside>
     </div>
 
     <script>
         let dSidebarTimeout;
         const dSidebar = document.getElementById('d-sidebar');
-
-        function resetDSidebarTimer() {
-            clearTimeout(dSidebarTimeout);
-            if (dSidebar && dSidebar.classList.contains('open'))
-                dSidebarTimeout = setTimeout(() => { dSidebar.classList.remove('open'); }, 5000);
-        }
-        function toggleDesktopMenu() {
-            if (dSidebar) { dSidebar.classList.toggle('open'); if (dSidebar.classList.contains('open')) resetDSidebarTimer(); }
-        }
+        function resetDSidebarTimer() { clearTimeout(dSidebarTimeout); if (dSidebar && dSidebar.classList.contains('open')) dSidebarTimeout = setTimeout(() => dSidebar.classList.remove('open'), 5000); }
+        function toggleDesktopMenu() { if (dSidebar) { dSidebar.classList.toggle('open'); if (dSidebar.classList.contains('open')) resetDSidebarTimer(); } }
         if (dSidebar) { dSidebar.addEventListener('mousemove', resetDSidebarTimer); dSidebar.addEventListener('click', resetDSidebarTimer); }
         document.addEventListener('click', function(e) {
             if (window.innerWidth > 800) {
-                const btn = document.getElementById('d-menu-btn');
-                if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains('open')) {
-                    dSidebar.classList.remove('open'); clearTimeout(dSidebarTimeout);
-                }
+                const btn = document.querySelector('.d-menu-btn');
+                if (dSidebar && !dSidebar.contains(e.target) && btn && !btn.contains(e.target) && dSidebar.classList.contains('open')) { dSidebar.classList.remove('open'); clearTimeout(dSidebarTimeout); }
             }
         });
 
@@ -487,22 +436,17 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
         function mCloseAllMenus() {
             if (mSidebar) mSidebar.classList.remove('open');
             if (mMenuBtn) mMenuBtn.classList.remove('active');
-            if (mMenuTimeout) clearTimeout(mMenuTimeout);
+            clearTimeout(mMenuTimeout);
             if (!isLandscapeMobile()) {
                 if (mIdPanel) mIdPanel.classList.remove('open');
                 if (mIdBtn)   mIdBtn.classList.remove('hidden');
-                if (mIdTimeout) clearTimeout(mIdTimeout);
+                clearTimeout(mIdTimeout);
             }
         }
         function mToggleMenu(e) {
             e.stopPropagation();
             if (mSidebar.classList.contains('open')) { mCloseAllMenus(); }
             else { mCloseAllMenus(); mSidebar.classList.add('open'); mMenuBtn.classList.add('active'); mMenuTimeout = setTimeout(mCloseAllMenus, 5000); }
-        }
-        function mToggleSubMenu(e) {
-            e.stopPropagation();
-            const item = document.getElementById('m-musik-item');
-            if (item) item.classList.toggle('sub-open');
         }
         function mOpenIDMenu(e) {
             e.stopPropagation(); mCloseAllMenus();
@@ -524,55 +468,16 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
         window.addEventListener('orientationchange', () => setTimeout(applyLandscapeState, 100));
         applyLandscapeState();
 
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', e => {
             if (window.innerWidth <= 800 || isLandscapeMobile()) {
                 if (mSidebar && !mSidebar.contains(e.target) && mMenuBtn && !mMenuBtn.contains(e.target) &&
                     mIdPanel && !mIdPanel.contains(e.target) && mIdBtn && !mIdBtn.contains(e.target)) mCloseAllMenus();
             }
         });
 
-        (function() {
-            const now   = new Date();
-            const hour  = now.getHours();
-            const month = now.getMonth();
-            function getSeason(m) {
-                if (m >= 2 && m <= 4) return 'fruehling';
-                if (m >= 5 && m <= 7) return 'sommer';
-                if (m >= 8 && m <= 10) return 'herbst';
-                return 'winter';
-            }
-            function getDaytime(h) {
-                if (h >= 5  && h < 10) return 'morgen';
-                if (h >= 10 && h < 18) return 'tag';
-                if (h >= 18 && h < 22) return 'abend';
-                return 'nacht';
-            }
-            const filename = `bg-${getSeason(month)}-${getDaytime(hour)}.jpg`;
-            function setBackground(src, fallback) {
-                const isDesktop = window.innerWidth > 800;
-                if (isDesktop) {
-                    const layerA = document.getElementById('bg-layer-a');
-                    const layerB = document.getElementById('bg-layer-b');
-                    if (!layerA) return;
-                    const img = new Image();
-                    img.onload = function() { layerA.style.backgroundImage = `url('${src}')`; layerA.style.opacity = '1'; if (layerB) layerB.style.opacity = '0'; };
-                    img.onerror = function() { if (fallback) { layerA.style.backgroundImage = `url('${fallback}')`; layerA.style.opacity = '1'; } };
-                    img.src = src;
-                } else {
-                    const mBgEl = document.getElementById('m-bg-fix');
-                    if (!mBgEl) return;
-                    const img = new Image();
-                    img.onload  = function() { mBgEl.style.backgroundImage = `url('${src}')`; };
-                    img.onerror = function() { if (fallback) mBgEl.style.backgroundImage = `url('${fallback}')`; };
-                    img.src = src;
-                }
-            }
-            setBackground(filename, 'Background.jpg');
-        })();
-
         setTimeout(() => {
             const mh = document.getElementById('m-header-main');
-            const isLandscape = window.innerHeight <= 500 && window.innerWidth > window.innerHeight;
+            const isLandscape = isLandscapeMobile();
             if (mh && (window.innerWidth <= 800 || isLandscape)) {
                 mh.style.transform = 'translateY(0)';
                 setTimeout(() => { mh.style.transform = 'translateY(-100%)'; }, 3000);
@@ -581,4 +486,3 @@ cat > /home/claude/uebermich.html << 'HTMLEOF'
     </script>
 </body>
 </html>
-HTMLEOF
