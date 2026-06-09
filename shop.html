@@ -31,10 +31,953 @@
             html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; }
             body { background: transparent; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
 
-            .d-header { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+            .d-header { position: fixed; top: 0; width: 100%; height: 150px; display: flex; justify-content: center; align-items: center; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
 
             .d-header-logo-wrap { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 2px; height: 85px; }
             .d-header-logo { max-height: 42px; width: auto; object-fit: contain; display: block; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .d-header-sub { height: 38px; width: auto; object-fit: contain; display: block; filter: brightness(0) saturate(100%) invert(27%) sepia(100%) saturate(7000%) hue-rotate(0deg) brightness(90%) contrast(110%); }
+
+            .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; }
+            .d-menu-btn:hover { background: var(--anton-yellow); color: #000; }
+            .d-menu-btn span { transition: opacity 0.2s; }
+            .d-menu-btn::after { content: ''; position: absolute; width: 30px; height: 30px; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAAEbCAYAAADeVOE9AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAADTklEQVR4nO3UsQ2AQADEsMD+O0NzO/AS9gSpclVPwO/dXwcAZzADoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6CqFy97AzUbxwARAAAAAElFTkSuQmCC') no-repeat center center; background-size: contain; background-size: contain; opacity: 0; transition: opacity 0.2s; }
+            .d-menu-btn:hover span { opacity: 0; }
+            .d-menu-btn:hover::after { opacity: 1; }
+
+            .d-sidebar-left { position: fixed; top: 0; bottom: 0; left: -300px; width: var(--sidebar-width); background: rgba(255,235,59,0.98); z-index: 200; display: flex; flex-direction: column; padding: 100px 15px 30px 15px; transition: left 0.4s ease-in-out; border-right: 2px solid #000; box-sizing: border-box; }
+            .d-sidebar-left.open { left: 0; }
+            .d-nav-item { margin-bottom: 20px; width: 100%; }
+            .d-sidebar-left a { display: flex; align-items: center; color: #000; text-decoration: none; font-size: 1.1rem; width: 100%; transition: color 0.3s; }
+            .d-sidebar-left a:hover { color: var(--anton-red); }
+            .d-nav-label { display: flex; align-items: center; width: 100%; }
+            .d-nav-label i.main-icon { width: 30px; text-align: center; margin-right: 10px; }
+            .d-arrow-wrapper { margin-left: auto; padding-right: 5px; }
+            .d-submenu-indicator { font-size: 0.8rem; transition: transform 0.3s; }
+            .d-nav-item:hover .d-submenu-indicator { transform: rotate(180deg); }
+            .d-submenu { display: none; flex-direction: column; padding-left: 35px; margin-top: 10px; width: 100%; box-sizing: border-box; }
+            .d-nav-item:hover .d-submenu { display: flex; }
+            .d-submenu a { font-size: 0.85rem; margin-bottom: 12px; white-space: nowrap; justify-content: flex-start; padding-top: 4px; }
+            .d-submenu a i { margin-right: 10px; width: 18px; text-align: center; }
+            .d-nav-item-epk { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; }
+            .d-nav-item-epk a { color: var(--anton-red) !important; font-weight: bold; }
+
+            .d-sidebar-right { position: fixed; top: 50%; right: 0; transform: translateY(-50%); width: 50px; display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 999; background: rgba(255,255,255,0.2); backdrop-filter: blur(3px); padding: 25px 0; border-radius: 20px 0 0 20px; }
+            .d-sidebar-right a { text-decoration: none; }
+            .d-sidebar-right a i { color: #000; font-size: 1.2rem; animation: ultraFlowWave 6s linear infinite; }
+            @keyframes ultraFlowWave { 0%{transform:scale(1);color:#000;}9.33%{transform:scale(1.55);color:var(--brand-color);}23.33%,100%{transform:scale(1);color:#000;} }
+            .d-sidebar-right a:nth-child(1) i { --brand-color:#f00; animation-delay:0.0s; }
+            .d-sidebar-right a:nth-child(2) i { --brand-color:#25F4EE; animation-delay:0.25s; }
+            .d-sidebar-right a:nth-child(3) i { --brand-color:#E1306C; animation-delay:0.5s; }
+            .d-sidebar-right a:nth-child(4) i { --brand-color:#25D366; animation-delay:0.75s; }
+            .d-sidebar-right a:nth-child(5) i { --brand-color:#1877F2; animation-delay:1.0s; }
+            .d-sidebar-right a:nth-child(6) i { --brand-color:#1DB954; animation-delay:1.25s; }
+            .d-sidebar-right a:nth-child(7) i { --brand-color:var(--apple-gray); animation-delay:1.5s; }
+            .d-sidebar-right a:nth-child(8) i { --brand-color:#f00; animation-delay:1.75s; }
+            .d-sidebar-right a:nth-child(9) i { --brand-color:var(--amazon-blue); animation-delay:2.0s; }
+            .d-sidebar-right:hover a i { animation-play-state:paused!important; transform:scale(1)!important; color:#000!important; }
+            .d-sidebar-right a:hover i { color:var(--brand-color)!important; transform:scale(1.55)!important; }
+
+            main { flex: 1; padding: 165px 55px 80px 55px; z-index: 5; width: 100%; box-sizing: border-box; position: relative; }
+
+            .d-footer { width: 100%; height: 60px; padding: 0; background: rgba(255,255,255,0.75); backdrop-filter: blur(10px); border-top: 1.5px solid #000; z-index: 100; position: fixed; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; box-sizing: border-box; }
+            .d-footer-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 100%; }
+            .d-footer-site-link { font-size: 0.68rem; font-family: 'Special Elite', cursive; font-weight: bold; color: #000; text-decoration: none; transition: color 0.2s; }
+            .d-footer-site-link:hover { color: var(--anton-red); }
+            .d-footer-center-links { display: flex; align-items: center; }
+            .d-footer-center-links a { color: #000; text-decoration: none; font-size: 0.63rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.4px; padding: 0 10px; white-space: nowrap; transition: color 0.2s; font-family: 'Special Elite', cursive; }
+            .d-footer-center-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.18); }
+            .d-footer-center-links a:hover { color: var(--anton-red); }
+
+            .d-footer-fairness { position: fixed; bottom: 60px; left: 12px; z-index: 99; display: flex; align-items: center; }
+            .d-footer-fairness a { display: flex; align-items: center; text-decoration: none; }
+            .d-footer-fairness img { height: 50px; width: auto; display: block; object-fit: contain; filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.18)); transition: transform 0.2s; }
+            .d-footer-fairness a:hover img { transform: scale(1.06); }
+        }
+
+        /* ================================================================= */
+        /* MOBILE                                                             */
+        /* ================================================================= */
+        @media (max-width: 800px), (orientation: landscape) and (max-height: 500px) {
+            #desktop-wrapper { display: none !important; }
+            #mobile-wrapper  { display: flex !important; flex-direction: column; }
+
+            html { background: url('Background.jpg') no-repeat center center fixed; background-size: cover; height: 100%; overflow: hidden; }
+            body { height: 100%; width: 100%; overflow: hidden; position: relative; display: flex; flex-direction: column; background: transparent; margin: 0; padding: 0; }
+
+            #mobile-wrapper { display: flex !important; flex-direction: column; height: 100%; width: 100%; overflow: hidden; position: relative; }
+
+            .m-header { position: relative; flex-shrink: 0; width: 100%; height: 140px; display: flex; justify-content: center; align-items: center; z-index: 1000; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border-bottom: 2px solid #000; }
+
+            .m-header-logo-wrap { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 2px; height: 85px; }
+            .m-header-logo { max-height: 42px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
+            .m-header-sub { height: 30px; width: auto; object-fit: contain; display: block; filter: brightness(0) saturate(100%) invert(27%) sepia(100%) saturate(7000%) hue-rotate(0deg) brightness(90%) contrast(110%); }
+
+            .m-menu-btn { position: absolute; top: 18px; left: 15px; z-index: 1500; background: #000; width: 45px; height: 45px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 2px solid #000; }
+            .m-menu-btn span { display: block; width: 22px; height: 3px; background: #fff; transition: 0.3s; }
+            .m-menu-btn.active { background: var(--anton-yellow); z-index: 1500; }
+            .m-menu-btn.active span { display: none; }
+            .m-menu-btn.active::after { content: ''; display: block; width: 30px; height: 30px; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAAEbCAYAAADeVOE9AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAADTklEQVR4nO3UsQ2AQADEsMD+O0NzO/AS9gSpclVPwO/dXwcAZzADoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6AyA2DMAKjMABgzACozAMYMgMoMgDEDoDIDYMwAqMwAGDMAKjMAxgyAygyAMQOgMgNgzACozAAYMwAqMwDGDIDKDIAxA6CqFy97AzUbxwARAAAAAElFTkSuQmCC') no-repeat center center; background-size: contain; background-size: contain; }
+
+            .m-sidebar { position: fixed; left: 0; top: -120px; width: 100%; height: 95px; background: var(--anton-yellow); z-index: 1100; display: flex; flex-direction: row; padding: 0 55px 0 75px; box-sizing: border-box; border-bottom: 3px solid #000; justify-content: space-between; align-items: center; transition: top 0.5s cubic-bezier(0.4,0,0.2,1); }
+            .m-sidebar.open { top: 0 !important; }
+            .m-nav-item { flex: 1; text-align: center; }
+            .m-nav-item a { text-decoration: none; color: #000; display: flex; flex-direction: column; align-items: center; }
+            .mobile-tag { font-size: 0.55rem; text-transform: uppercase; font-weight: bold; margin-top: 4px; }
+            .m-epk-container { position: absolute; right: 0; top: 0; height: 100%; width: 45px; background: #fff; border-left: 3px solid #000; display: flex; align-items: center; justify-content: center; }
+            .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
+
+            .m-content-scroll { flex: 1; overflow-y: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; box-sizing: border-box; padding: 10px 8px 80px 8px; touch-action: pan-y; position: relative; z-index: 1; }
+
+            .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
+            .m-id-button.hidden { transform: translateX(100%); }
+
+            .m-id-panel { position: fixed; right: -300px; bottom: 150px; height: 60px; width: 290px; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border: 2px solid #000; border-right: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1); border-radius: 8px 0 0 8px; overflow: hidden; padding: 4px 6px; box-sizing: border-box; }
+            .m-id-panel.open { right: 0; }
+            .m-id-panel-site { font-size: 0.58rem; font-weight: bold; color: #000; text-decoration: none; font-family: 'Special Elite', cursive; }
+            .m-id-panel-site:hover { color: var(--anton-red); }
+            .m-id-panel-links { display: flex; align-items: center; flex-wrap: nowrap; }
+            .m-id-panel-links a { color: #000; text-decoration: none; text-transform: uppercase; font-size: 0.56rem; font-weight: bold; padding: 0 5px; white-space: nowrap; font-family: 'Special Elite', cursive; }
+            .m-id-panel-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
+
+            .m-footer-bar { position: fixed; bottom: 0; left: 0; width: 100%; height: 65px; display: flex; flex-direction: row; align-items: center; z-index: 999; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); border-top: 2px solid #000; box-sizing: border-box; overflow: hidden; }
+            .m-fh-logo { display: flex; align-items: center; justify-content: center; height: 100%; padding: 5px 8px; border-right: 1.5px solid rgba(0,0,0,0.15); flex-shrink: 0; text-decoration: none; }
+            .m-fh-logo img { height: 40px; width: auto; object-fit: contain; display: block; }
+            .m-sidebar-right { flex: 1; height: 100%; display: flex; flex-direction: row; align-items: center; padding: 0 4px; justify-content: space-evenly; }
+            .m-sidebar-right a { text-decoration: none; }
+            .m-sidebar-right a i { color: #000; font-size: 1.4rem; display: inline-block; animation: ultraFlowWaveMobile 6s linear infinite; }
+            @keyframes ultraFlowWaveMobile { 0%{transform:scale(1);color:#000;}9.33%{transform:scale(1.4);color:var(--brand-color);}23.33%,100%{transform:scale(1);color:#000;} }
+            .m-sidebar-right a:nth-child(1) i { --brand-color:#f00; animation-delay:0.0s; }
+            .m-sidebar-right a:nth-child(2) i { --brand-color:#25F4EE; animation-delay:0.25s; }
+            .m-sidebar-right a:nth-child(3) i { --brand-color:#E1306C; animation-delay:0.5s; }
+            .m-sidebar-right a:nth-child(4) i { --brand-color:#25D366; animation-delay:0.75s; }
+            .m-sidebar-right a:nth-child(5) i { --brand-color:#1877F2; animation-delay:1.0s; }
+            .m-sidebar-right a:nth-child(6) i { --brand-color:#1DB954; animation-delay:1.25s; }
+            .m-sidebar-right a:nth-child(7) i { --brand-color:var(--apple-gray); animation-delay:1.5s; }
+            .m-sidebar-right a:nth-child(8) i { --brand-color:#f00; animation-delay:1.75s; }
+            .m-sidebar-right a:nth-child(9) i { --brand-color:var(--amazon-blue); animation-delay:2.0s; }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            #mobile-wrapper .m-header { height: 60px; }
+            #mobile-wrapper .m-menu-btn { top: 8px; left: 12px; width: 38px; height: 38px; }
+            #mobile-wrapper .m-sidebar { top: 0 !important; left: -220px !important; width: 200px !important; height: 100% !important; flex-direction: column !important; justify-content: flex-start !important; align-items: flex-start !important; padding: 80px 15px 20px 15px !important; border-bottom: none !important; border-right: 3px solid #000 !important; box-sizing: border-box !important; transition: left 0.5s cubic-bezier(0.4,0,0.2,1) !important; }
+            #mobile-wrapper .m-sidebar.open { left: 0 !important; top: 0 !important; }
+            #mobile-wrapper .m-nav-item { flex: none !important; width: 100%; text-align: left; margin-bottom: 16px; }
+            #mobile-wrapper .m-nav-item a { flex-direction: row !important; gap: 10px; font-size: 0.85rem; }
+            #mobile-wrapper .m-nav-item a i { font-size: 1rem; width: 22px; text-align: center; }
+            #mobile-wrapper .mobile-tag { font-size: 0.72rem; writing-mode: horizontal-tb !important; transform: none !important; margin-top: 0; }
+            #mobile-wrapper .m-epk-container { position: static !important; width: 100% !important; height: auto !important; background: transparent !important; border-left: none !important; border-top: 1px solid rgba(0,0,0,0.15) !important; padding-top: 12px !important; margin-top: auto !important; justify-content: flex-start !important; }
+            #mobile-wrapper .m-epk-text { writing-mode: horizontal-tb !important; transform: none !important; font-size: 0.78rem; }
+            #mobile-wrapper .m-content-scroll { padding-bottom: 10px !important; padding-right: 56px !important; }
+            #mobile-wrapper .m-footer-bar { position: fixed !important; top: 0 !important; bottom: 0 !important; left: auto !important; right: 0 !important; width: 46px !important; height: 100% !important; flex-direction: column !important; border-top: none !important; border-left: 2px solid #000 !important; }
+            #mobile-wrapper .m-fh-logo { border-right: none !important; border-bottom: 1.5px solid rgba(0,0,0,0.15) !important; padding: 5px 3px !important; width: 100% !important; }
+            #mobile-wrapper .m-fh-logo img { height: 22px !important; }
+            #mobile-wrapper .m-sidebar-right { flex-direction: column !important; justify-content: space-evenly !important; padding: 0 !important; }
+            #mobile-wrapper .m-sidebar-right a i { font-size: 1.3rem !important; }
+            #mobile-wrapper .m-id-button { display: none !important; }
+            #mobile-wrapper .m-id-panel { position: fixed !important; bottom: -4px !important; left: 50% !important; right: auto !important; transform: translateX(calc(-50% - 23px)) !important; width: 310px !important; height: 55px !important; border-radius: 10px 10px 0 0 !important; border: 2px solid #000 !important; background: rgba(255,255,255,0.35) !important; backdrop-filter: blur(8px) !important; opacity: 1 !important; overflow: hidden !important; }
+        }
+
+        /* ================================================================= */
+        /* SHOP LAYOUT MIT BENTOBOXEN                                         */
+        /* ================================================================= */
+        .shop-layout {
+            display: flex;
+            align-items: stretch;
+            gap: 14px;
+            justify-content: center;
+        }
+
+        .shop-wrap-outer {
+            position: relative;
+            width: 430px;
+            flex-shrink: 0;
+        }
+
+        .ecwid-shop-wrap {
+            background: var(--glass);
+            backdrop-filter: blur(8px);
+            border: 3px solid #000;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.45);
+            border-radius: 18px;
+            padding: 60px 14px 22px 14px;
+            margin-bottom: 50px;
+            min-height: 400px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        #my-store-132126030 .grid-product,
+        #my-store-132126030 .ec-grid__cell,
+        #my-store-132126030 .product-card,
+        #my-store-132126030 .ec-grid-item {
+            max-width: 100% !important;
+            overflow: hidden !important;
+        }
+
+        .shop-page-title { display: none !important; }
+
+        #my-store-132126030 { font-family: 'Special Elite', cursive !important; }
+
+        /* ================================================================= */
+        /* PRODUKTBESCHREIBUNG – Schrift vereinheitlichen                     */
+        /* ================================================================= */
+        #my-store-132126030 .product-description h1,
+        #my-store-132126030 .product-description h2,
+        #my-store-132126030 .product-description h3,
+        #my-store-132126030 .product-description h4,
+        #my-store-132126030 .product-description h5,
+        #my-store-132126030 .product-description h6,
+        #my-store-132126030 [class*="product-description"] h1,
+        #my-store-132126030 [class*="product-description"] h2,
+        #my-store-132126030 [class*="product-description"] h3,
+        #my-store-132126030 [class*="product-description"] h4,
+        #my-store-132126030 [class*="ec-page-body"] h1,
+        #my-store-132126030 [class*="ec-page-body"] h2,
+        #my-store-132126030 [class*="ec-page-body"] h3,
+        #my-store-132126030 [class*="ec-page-body"] h4 {
+            font-size: 0.9rem !important;
+            font-weight: bold !important;
+            font-family: 'Special Elite', cursive !important;
+            margin: 6px 0 4px 0 !important;
+            line-height: 1.4 !important;
+        }
+
+        #my-store-132126030 .product-description p,
+        #my-store-132126030 .product-description li,
+        #my-store-132126030 .product-description strong,
+        #my-store-132126030 [class*="product-description"] p,
+        #my-store-132126030 [class*="product-description"] li,
+        #my-store-132126030 [class*="product-description"] strong,
+        #my-store-132126030 [class*="ec-page-body"] p,
+        #my-store-132126030 [class*="ec-page-body"] strong {
+            font-size: 0.85rem !important;
+            font-family: 'Special Elite', cursive !important;
+            line-height: 1.5 !important;
+        }
+
+        #my-store-132126030 .ec-breadcrumbs,
+        #my-store-132126030 .breadcrumb,
+        #my-store-132126030 [class*="breadcrumb"],
+        #my-store-132126030 [class*="Breadcrumb"],
+        #my-store-132126030 .ec-storefront__breadcrumbs,
+        #my-store-132126030 .ec-page-title,
+        #my-store-132126030 [class*="page-title"],
+        #my-store-132126030 [class*="PageTitle"],
+        #my-store-132126030 .ec-storefront-title,
+        #my-store-132126030 [class*="storefront-title"],
+        #my-store-132126030 .ec-storefront__title { display: none !important; }
+
+        #my-store-132126030 .grid-product,
+        #my-store-132126030 .ec-grid__cell,
+        #my-store-132126030 .product-card,
+        #my-store-132126030 .ec-grid-item { position: relative !important; }
+        #my-store-132126030 .grid-product__image-overlay,
+        #my-store-132126030 .product-card__overlay,
+        #my-store-132126030 .ec-grid-item__overlay { pointer-events: none !important; }
+
+        /* ================================================================= */
+        /* BENTOBOX-SPALTEN                                                   */
+        /* ================================================================= */
+        .bento-col {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 88px;
+            flex-shrink: 0;
+            align-self: stretch;
+        }
+
+        .bento-box {
+            background: var(--glass);
+            backdrop-filter: blur(8px);
+            border: 2.5px solid #000;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.38);
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 12px 6px;
+            text-decoration: none;
+            color: #000;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.58rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            line-height: 1.25;
+            flex: 1;
+            transition: background 0.2s, transform 0.12s, box-shadow 0.12s;
+        }
+
+        .bento-box:hover {
+            background: var(--anton-yellow);
+            transform: translate(-1px, -1px);
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.48);
+        }
+
+        .bento-box:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+
+        .bento-box i {
+            font-size: 1.4rem;
+            display: block;
+            line-height: 1;
+        }
+
+        @media (max-width: 800px) {
+            .shop-layout { display: block; }
+            .bento-col  { display: none; }
+            .shop-wrap-outer {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* ================================================================= */
+        /* WIDERRUF-BUTTON                                                    */
+        /* ================================================================= */
+        .widerruf-btn {
+            position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+            width: 43px; height: 43px; border-radius: 50%;
+            background: linear-gradient(145deg, #ff4444 0%, #cc0000 55%, #990000 100%);
+            border: none; cursor: pointer; text-decoration: none; color: #fff; font-family: 'Special Elite', cursive;
+            box-shadow: 0 4px 0 #700000, 0 6px 10px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,140,80,0.55);
+            transition: box-shadow 0.12s ease, transform 0.12s ease; outline: none; margin: 8px auto 0 auto;
+        }
+        .widerruf-btn::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid rgba(255,160,30,0.9); border-top-color: transparent; border-right-color: rgba(255,160,30,0.25); animation: widerruf-ring 2.4s linear infinite; pointer-events: none; }
+        .widerruf-btn::after { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid rgba(255,120,0,0.15); pointer-events: none; }
+        @keyframes widerruf-ring { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .widerruf-btn:hover { box-shadow: 0 1px 0 #700000, 0 2px 5px rgba(0,0,0,0.45), inset 0 3px 5px rgba(0,0,0,0.3); transform: translateY(3px); }
+        .widerruf-btn:active { box-shadow: 0 0 0 #700000, 0 1px 3px rgba(0,0,0,0.4), inset 0 4px 6px rgba(0,0,0,0.35); transform: translateY(4px); }
+        .widerruf-btn i { font-size: 14px; color: #fff; pointer-events: none; }
+        .widerruf-btn .widerruf-label { font-size: 7.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3px; color: rgba(255,255,255,0.97); line-height: 1.15; text-align: center; pointer-events: none; white-space: nowrap; }
+
+        @media (max-width: 800px) {
+            .ecwid-shop-wrap { padding: 55px 8px 16px 8px; border-radius: 12px; margin-bottom: 20px; max-width: 100%; overflow: hidden; }
+            .widerruf-btn { width: 52px; height: 52px; }
+            .widerruf-btn i { font-size: 15px; }
+            .widerruf-btn .widerruf-label { font-size: 8px; }
+            .widerruf-btn::before, .widerruf-btn::after { inset: -5px; }
+        }
+
+        /* ================================================================= */
+        /* NAV-PFEILE                                                         */
+        /* ================================================================= */
+        .nav-arrows-desktop { position: fixed; top: 90px; left: 20px; display: flex; flex-direction: row; gap: 4px; z-index: 150; }
+        @media (max-width: 800px) { .nav-arrows-desktop { display: none !important; } }
+        .nav-arrows-mobile { position: fixed; top: 88px; left: 10px; display: flex; flex-direction: row; gap: 4px; z-index: 1300; }
+        @media (min-width: 801px) { .nav-arrows-mobile { display: none !important; } }
+        .nav-arrow { width: 19px; height: 19px; border-radius: 4px; background: rgba(255,255,255,0.72); backdrop-filter: blur(6px); border: 1px solid #000; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.6rem; color: #000; transition: background 0.2s, color 0.2s, transform 0.1s, opacity 0.2s; user-select: none; -webkit-tap-highlight-color: transparent; }
+        .nav-arrow:hover { background: var(--anton-yellow) !important; color: #000 !important; }
+        .nav-arrow:hover i { color: #000 !important; }
+        .nav-arrow:active { transform: scale(0.93); }
+        .nav-arrow--inactive { opacity: 0.28; cursor: default; pointer-events: none; }
+        .nav-arrow--active { opacity: 1; pointer-events: auto; }
+
+        /* ================================================================= */
+        /* WARTELISTE – Overlay über Warenkorb-Button                        */
+        /* ================================================================= */
+
+        /* Wrapper: absolut oben in der ecwid-shop-wrap, über dem Produktbild */
+        .wl-widget {
+            position: absolute;
+            top: 60px;
+            left: 14px;
+            right: 14px;
+            z-index: 20;
+            font-family: 'Special Elite', cursive;
+        }
+
+        /* Roter Toggle-Button – oben, volle Breite */
+        .wl-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: var(--anton-red);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 14px 20px;
+            font-family: 'Special Elite', cursive;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+        .wl-toggle:hover { background: #cc0000; }
+        .wl-toggle i { font-size: 1rem; }
+
+        /* Aufklapp-Panel – öffnet sich nach unten */
+        .wl-panel {
+            display: none;
+            flex-direction: column;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--anton-red);
+            border-radius: 0 0 10px 10px;
+            padding: 16px 16px 14px;
+            margin-top: 0;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+        }
+        .wl-panel.open { display: flex; }
+
+        .wl-panel h3 {
+            margin: 0 0 4px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.95rem; color: var(--anton-red);
+            display: flex; align-items: center; gap: 6px;
+        }
+        .wl-panel > p {
+            margin: 0 0 10px;
+            font-size: 0.72rem; color: #555;
+            font-family: 'Special Elite', cursive;
+        }
+        .wl-panel label {
+            display: block;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.7rem; font-weight: 700;
+            margin-bottom: 3px; color: #000;
+        }
+        .wl-field {
+            width: 100%; padding: 7px 9px; margin-bottom: 8px;
+            border: 1.5px solid #ccc; border-radius: 5px;
+            box-sizing: border-box; font-family: 'Special Elite', cursive;
+            font-size: 0.78rem; outline: none; transition: border-color 0.2s;
+        }
+        .wl-field:focus { border-color: var(--anton-red); }
+        .wl-submit {
+            width: 100%; background: #000; color: #fff;
+            border: none; padding: 9px; font-weight: 700;
+            border-radius: 5px; cursor: pointer;
+            font-size: 0.8rem; font-family: 'Special Elite', cursive;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            transition: background 0.2s;
+        }
+        .wl-submit:hover { background: #333; }
+
+        @media (max-width: 800px) {
+            .wl-widget { top: 55px; left: 8px; right: 8px; }
+            .wl-toggle { font-size: 0.85rem; padding: 12px 14px; }
+        }
+
+        /* Ecwid-Warenkorb-Button ausblenden wenn Wartelisten-Produkt aktiv */
+        /* Trifft alle bekannten Ecwid-Klassen für den Kaufbutton            */
+        body.wl-aktiv .ec-store button[class*="btn-main"],
+        body.wl-aktiv .ec-store button[class*="btn--primary"],
+        body.wl-aktiv .ec-store button[class*="purchase"],
+        body.wl-aktiv .ec-store button[class*="add-to-bag"],
+        body.wl-aktiv .ec-store button[class*="add-to-cart"],
+        body.wl-aktiv .ec-store [class*="details-product-purchase__checkout"],
+        body.wl-aktiv .ec-store [class*="product-details-module__btn"],
+        body.wl-aktiv [class*="details-product-purchase"] button,
+        body.wl-aktiv [class*="product__buy-now"] {
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===================== DESKTOP ===================== -->
+<div id="desktop-wrapper">
+    <header class="d-header">
+        <div class="d-header-logo-wrap">
+            <img src="data:image/png;base64,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" alt="ANTON Familienshop" class="d-header-logo" style="height:144px;width:auto;">
+        </div>
+    </header>
+    <div class="d-menu-btn" id="d-menu-btn" onclick="toggleDesktopMenu()"><span>&#9776;</span></div>
+
+    <nav class="d-sidebar-left" id="d-sidebar">
+        <div class="d-nav-item"><a href="index.html"><span class="d-nav-label"><i class="fa-solid fa-house main-icon"></i> START</span></a></div>
+        <div class="d-nav-item">
+            <a href="meinemusik.html"><span class="d-nav-label"><i class="fa-solid fa-music main-icon"></i> MEINE MUSIK</span><div class="d-arrow-wrapper"><i class="fa-solid fa-caret-down d-submenu-indicator"></i></div></a>
+            <div class="d-submenu">
+                <a href="uebermich.html"><i class="fa-regular fa-face-smile"></i> ÜBER MICH</a>
+                <a href="veroffentlichungen.html"><i class="fa-solid fa-volume-high"></i> VERÖFFENTLICHUNGEN</a>
+                <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
+            </div>
+        </div>
+        <div class="d-nav-item"><a href="shop.html"><span class="d-nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
+        <div class="d-nav-item"><a href="kontakt.html"><span class="d-nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
+        <div class="d-nav-item d-nav-item-epk"><a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener"><span class="d-nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a></div>
+    </nav>
+
+    <aside class="d-sidebar-right">
+        <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
+        <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
+        <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
+    </aside>
+
+    <main>
+        <h1 class="shop-page-title">Anton-Familienshop</h1>
+
+        <div class="shop-layout">
+            <div class="shop-wrap-outer">
+
+                <div class="ecwid-shop-wrap" style="position:relative;">
+                    <div id="my-store-132126030"></div>
+
+                    <!-- WARTELISTE – absolut über dem Produktbild -->
+                    <div id="wl-widget-desktop" class="wl-widget" style="display:none;">
+                        <button class="wl-toggle" onclick="antonWLToggle('desktop')">
+                            <i class="fa-solid fa-bell"></i> Nachschub anfordern
+                        </button>
+                        <div class="wl-panel" id="wl-panel-desktop">
+                            <h3><i class="fa-solid fa-bell"></i> Nachschub anfordern</h3>
+                            <p>Trag dich ein – wir geben unser Bestes, so schnell wie möglich Nachschub zu besorgen. Keiner soll leer ausgehen!</p>
+                            <div id="wl-success-desktop" style="display:none; text-align:center; padding: 16px 0;">
+                                <div style="font-size:2rem; margin-bottom:8px;">🎉</div>
+                                <strong style="font-size:0.95rem; color:var(--anton-red);">Anfrage eingegangen!</strong>
+                                <p style="font-size:0.78rem; color:#555; margin:6px 0 0;">Wir melden uns sobald der Nachschub da ist. Versprochen!</p>
+                            </div>
+                            <form id="wl-form-desktop" onsubmit="antonWLSubmit(event,'desktop')">
+                                <input type="hidden" name="_subject" value="Nachschub-Anfrage: Shirt">
+                                <input type="hidden" name="_language" value="de">
+                                <label for="wl-email-d">E-Mail-Adresse:</label>
+                                <input type="email" name="email" id="wl-email-d" class="wl-field" placeholder="name@beispiel.de" required>
+                                <label for="wl-farbe-d">Farbe:</label>
+                                <select name="farbe" id="wl-farbe-d" class="wl-field" required>
+                                    <option value="" disabled selected>Bitte Farbe wählen…</option>
+                                    <option value="Weiß">Weiß</option>
+                                    <option value="Schwarz">Schwarz</option>
+                                </select>
+                                <label for="wl-groese-d">Größe:</label>
+                                <select name="groese" id="wl-groese-d" class="wl-field" required>
+                                    <option value="" disabled selected>Bitte Größe wählen…</option>
+                                    <option value="110">110</option>
+                                    <option value="116">116</option>
+                                    <option value="122">122</option>
+                                    <option value="128">128</option>
+                                    <option value="134">134</option>
+                                    <option value="140">140</option>
+                                    <option value="146">146</option>
+                                    <option value="152">152</option>
+                                    <option value="158">158</option>
+                                    <option value="164">164</option>
+                                    <option value="XS (Kids/Erwachsene)">XS (Kids/Erwachsene)</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                                <input type="hidden" name="produkt" id="wl-produkt-d" value="">
+                                <button type="submit" class="wl-submit">✉ Nachschub anfordern</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /WARTELISTE -->
+                </div>
+
+                <a href="shopwiderruf.html" class="widerruf-btn" title="Widerruf" style="position:absolute;bottom:12px;right:12px;margin:0;">
+                    <span class="widerruf-label">Widerruf</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <div class="d-footer-fairness">
+        <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener">
+            <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png" alt="Mitglied der Initiative Fairness im Handel">
+        </a>
+    </div>
+
+    <footer class="d-footer">
+        <div class="d-footer-center">
+            <a href="index.html" class="d-footer-site-link">www.anton-familienpop.de</a>
+            <nav class="d-footer-center-links">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+                <a href="shopagb.html">AGB</a>
+                <a href="shopwiderruf.html">Widerruf</a>
+            </nav>
+        </div>
+    </footer>
+
+    <div class="nav-arrows-desktop">
+        <div class="nav-arrow nav-arrow--active" title="Zurück" onclick="AntonNav.goBack()"><i class="fa-solid fa-chevron-left"></i></div>
+        <div class="nav-arrow nav-arrow--active" title="Vor" onclick="AntonNav.goForward()"><i class="fa-solid fa-chevron-right"></i></div>
+    </div>
+</div>
+
+<!-- ===================== MOBILE ===================== -->
+<div id="mobile-wrapper">
+    <header class="m-header" id="m-header-main">
+        <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="m-header-logo-wrap">
+            <img src="data:image/png;base64,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" alt="ANTON Familienshop" class="m-header-logo" style="height:130px;width:auto;">
+        </div>
+    </header>
+
+    <nav class="m-sidebar" id="m-sidebar">
+        <div class="m-nav-item"><a href="index.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
+        <div class="m-nav-item"><a href="meinemusik.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
+        <div class="m-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
+        <div class="m-nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></a></div>
+        <div class="m-epk-container"><a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener" class="m-epk-text">EPK/PRESSE</a></div>
+    </nav>
+
+    <div class="m-content-scroll" id="m-scroll-area">
+        <h1 class="shop-page-title">Anton-Familienshop</h1>
+        <div class="shop-wrap-outer">
+
+            <div class="ecwid-shop-wrap" style="position:relative;">
+                <div id="my-store-132126030-mobile"></div>
+
+                <!-- WARTELISTE MOBIL – absolut über dem Produktbild -->
+                <div id="wl-widget-mobile" class="wl-widget" style="display:none;">
+                    <button class="wl-toggle" onclick="antonWLToggle('mobile')">
+                        <i class="fa-solid fa-bell"></i> Nachschub anfordern
+                    </button>
+                    <div class="wl-panel" id="wl-panel-mobile">
+                        <h3><i class="fa-solid fa-bell"></i> Nachschub anfordern</h3>
+                        <p>Trag dich ein – wir geben unser Bestes, so schnell wie möglich Nachschub zu besorgen. Keiner soll leer ausgehen!</p>
+                        <div id="wl-success-mobile" style="display:none; text-align:center; padding: 16px 0;">
+                            <div style="font-size:2rem; margin-bottom:8px;">🎉</div>
+                            <strong style="font-size:0.95rem; color:var(--anton-red);">Anfrage eingegangen!</strong>
+                            <p style="font-size:0.78rem; color:#555; margin:6px 0 0;">Wir melden uns sobald der Nachschub da ist. Versprochen!</p>
+                        </div>
+                        <form id="wl-form-mobile" onsubmit="antonWLSubmit(event,'mobile')">
+                            <input type="hidden" name="_subject" value="Nachschub-Anfrage: Shirt">
+                            <input type="hidden" name="_language" value="de">
+                            <label for="wl-email-m">E-Mail-Adresse:</label>
+                            <input type="email" name="email" id="wl-email-m" class="wl-field" placeholder="name@beispiel.de" required>
+                            <label for="wl-farbe-m">Farbe:</label>
+                            <select name="farbe" id="wl-farbe-m" class="wl-field" required>
+                                <option value="" disabled selected>Bitte Farbe wählen…</option>
+                                <option value="Weiß">Weiß</option>
+                                <option value="Schwarz">Schwarz</option>
+                            </select>
+                            <label for="wl-groese-m">Größe:</label>
+                            <select name="groese" id="wl-groese-m" class="wl-field" required>
+                                <option value="" disabled selected>Bitte Größe wählen…</option>
+                                <option value="110">110</option>
+                                <option value="116">116</option>
+                                <option value="122">122</option>
+                                <option value="128">128</option>
+                                <option value="134">134</option>
+                                <option value="140">140</option>
+                                <option value="146">146</option>
+                                <option value="152">152</option>
+                                <option value="158">158</option>
+                                <option value="164">164</option>
+                                <option value="XS (Kids/Erwachsene)">XS (Kids/Erwachsene)</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                            <input type="hidden" name="produkt" id="wl-produkt-m" value="">
+                            <button type="submit" class="wl-submit">✉ Nachschub anfordern</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /WARTELISTE MOBIL -->
+            </div>
+            <a href="shopwiderruf.html" class="widerruf-btn" title="Widerruf" style="position:absolute;bottom:12px;right:12px;margin:0;">
+                <span class="widerruf-label">Widerruf</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
+    <div class="m-id-panel" id="m-id-panel">
+        <a href="index.html" class="m-id-panel-site">www.anton-familienpop.de</a>
+        <div class="m-id-panel-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="shopagb.html">AGB</a>
+            <a href="shopwiderruf.html">Widerruf</a>
+        </div>
+    </div>
+
+    <footer class="m-footer-bar">
+        <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener" class="m-fh-logo">
+            <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png" alt="Mitglied der Initiative Fairness im Handel">
+        </a>
+        <div class="m-sidebar-right">
+            <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://whatsapp.com/channel/0029Vb6WrdZInlqHDsgTp21e" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/Anton.Familienpop/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://open.spotify.com/intl-de/artist/4W56IJDi1Hn7IAYXXQkYte" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
+            <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
+        </div>
+    </footer>
+
+    <div class="nav-arrows-mobile">
+        <div class="nav-arrow nav-arrow--active" title="Zurück" onclick="AntonNav.goBack()"><i class="fa-solid fa-chevron-left"></i></div>
+        <div class="nav-arrow nav-arrow--active" title="Vor" onclick="AntonNav.goForward()"><i class="fa-solid fa-chevron-right"></i></div>
+    </div>
+</div>
+
+<!-- ===================== ECWID SCRIPT ===================== -->
+<script data-cfasync="false" type="text/javascript"
+    src="https://app.ecwid.com/script.js?132126030&data_platform=code&data_date=2026-03-26"
+    charset="utf-8"></script>
+<script type="text/javascript">
+    xProductBrowser(
+        "categoriesPerRow=3",
+        "views=grid(20,3) list(60) table(60)",
+        "categoryView=grid",
+        "searchView=list",
+        "id=my-store-132126030"
+    );
+
+    function hideEcwidFeatured() {
+        var store = document.getElementById('my-store-132126030');
+        if (!store) return;
+        store.querySelectorAll('*').forEach(function(el) {
+            var cls = (el.className || '').toString().toLowerCase();
+            if (
+                (cls.includes('featured') && !cls.includes('categor')) ||
+                cls.includes('ec-storefront__products') ||
+                cls.includes('products-list--home') ||
+                cls.includes('home-page__products') ||
+                cls.includes('storefront__products')
+            ) {
+                el.style.setProperty('display', 'none', 'important');
+            }
+            if (cls.includes('ec-grid') || cls.includes('grid-product') ||
+                cls.includes('product-card') || cls.includes('ec-store__content')) {
+                el.style.setProperty('max-width', '100%', 'important');
+                el.style.setProperty('box-sizing', 'border-box', 'important');
+            }
+        });
+        var wrap = store.closest ? store.closest('.ecwid-shop-wrap') : null;
+        if (wrap) wrap.style.overflow = 'hidden';
+    }
+
+    var ecwidObserver = new MutationObserver(function() { hideEcwidFeatured(); });
+    function startEcwidObserver() {
+        var store = document.getElementById('my-store-132126030');
+        if (store) {
+            ecwidObserver.observe(store, { childList: true, subtree: true });
+            setTimeout(hideEcwidFeatured, 500);
+            setTimeout(hideEcwidFeatured, 1500);
+            setTimeout(hideEcwidFeatured, 3000);
+        } else { setTimeout(startEcwidObserver, 200); }
+    }
+    startEcwidObserver();
+
+    function moveEcwidToCorrectContainer() {
+        var isMobile = window.innerWidth <= 800;
+        var desktopWrap = document.getElementById('my-store-132126030');
+        var mobileWrap  = document.getElementById('my-store-132126030-mobile');
+        if (!desktopWrap || !mobileWrap) return;
+        if (isMobile) {
+            if (!mobileWrap.contains(desktopWrap)) mobileWrap.appendChild(desktopWrap);
+        } else {
+            var desktopTarget = document.querySelector('#desktop-wrapper .ecwid-shop-wrap');
+            if (desktopTarget && !desktopTarget.contains(desktopWrap)) desktopTarget.appendChild(desktopWrap);
+        }
+    }
+    window.addEventListener('load', moveEcwidToCorrectContainer);
+    window.addEventListener('resize', moveEcwidToCorrectContainer);
+    setTimeout(moveEcwidToCorrectContainer, 300);
+</script>
+
+<!-- ===================== WARTELISTE (nur auf definierten Produkten) ===================== -->
+<script>
+(function () {
+
+    // ---------------------------------------------------------------
+    // KONFIGURATION – hier anpassen
+    // ---------------------------------------------------------------
+    var WARTELISTE_PRODUKTE = {
+        819271340: "Hoodie ANTON Streetart",
+        839552085: "Anton Regenbogen Hoodie",
+        132126030: "Anton Regenbogen Hoodie"   // <-- Produktnamen ggf. anpassen
+    };
+    // ---------------------------------------------------------------
+
+    function zeigeWidget(produktName) {
+        // body-Klasse setzen → versteckt Ecwid-Kaufbutton per CSS
+        document.body.classList.add('wl-aktiv');
+        // Produktname ins hidden-field schreiben
+        ['wl-produkt-d', 'wl-produkt-m'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.value = produktName;
+        });
+        // Beide Widgets einblenden (CSS zeigt jeweils nur das passende)
+        ['wl-widget-desktop', 'wl-widget-mobile'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = 'block';
+        });
+        // Panel schließen wenn man ein neues Produkt öffnet
+        ['wl-panel-desktop', 'wl-panel-mobile'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.classList.remove('open');
+        });
+    }
+
+    function verbergeWidget() {
+        // body-Klasse entfernen → Ecwid-Kaufbutton wieder sichtbar
+        document.body.classList.remove('wl-aktiv');
+        ['wl-widget-desktop', 'wl-widget-mobile'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
+    }
+
+    // Ecwid-Seitenwechsel abhorchen
+    function handleEcwidPage(page) {
+        if (page.type === 'PRODUCT' && WARTELISTE_PRODUKTE[page.productId]) {
+            zeigeWidget(WARTELISTE_PRODUKTE[page.productId]);
+        } else {
+            verbergeWidget();
+        }
+    }
+
+    function initEcwidHook() {
+        if (typeof Ecwid !== 'undefined' && Ecwid.OnPageLoaded) {
+            Ecwid.OnPageLoaded.add(handleEcwidPage);
+        } else {
+            setTimeout(initEcwidHook, 300);
+        }
+    }
+
+    initEcwidHook();
+
+})();
+
+// Toggle-Funktion für den Aufklapp-Button
+function antonWLToggle(which) {
+    var panel = document.getElementById('wl-panel-' + which);
+    if (panel) panel.classList.toggle('open');
+}
+
+// Submit via fetch – kein Seitenwechsel, Danke-Meldung direkt im Panel
+function antonWLSubmit(e, which) {
+    e.preventDefault();
+    var form = document.getElementById('wl-form-' + which);
+    var btn  = form.querySelector('.wl-submit');
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet…';
+
+    fetch('https://formspree.io/f/mbdeooaz', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(function(r) {
+        if (r.ok) {
+            form.style.display = 'none';
+            document.getElementById('wl-success-' + which).style.display = 'block';
+        } else {
+            btn.disabled = false;
+            btn.textContent = '✉ Nachschub anfordern';
+            alert('Etwas ist schiefgelaufen – bitte versuche es nochmal.');
+        }
+    })
+    .catch(function() {
+        btn.disabled = false;
+        btn.textContent = '✉ Nachschub anfordern';
+        alert('Keine Verbindung – bitte versuche es nochmal.');
+    });
+}
+</script>
+
+<!-- ===================== NAV HISTORY ===================== -->
+<script src="nav-history.js"></script>
+
+<!-- ===================== NAV SCRIPTS ===================== -->
+<script>
+    var dSidebarTimeout;
+    var dSidebar = document.getElementById('d-sidebar');
+    function resetDSidebarTimer() {
+        clearTimeout(dSidebarTimeout);
+        if (dSidebar && dSidebar.classList.contains('open'))
+            dSidebarTimeout = setTimeout(function(){ dSidebar.classList.remove('open'); }, 5000);
+    }
+    function toggleDesktopMenu() {
+        if (dSidebar) { dSidebar.classList.toggle('open'); if (dSidebar.classList.contains('open')) resetDSidebarTimer(); }
+    }
+    if (dSidebar) { dSidebar.addEventListener('mousemove', resetDSidebarTimer); dSidebar.addEventListener('click', resetDSidebarTimer); }
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth > 800) {
+            var btn = document.getElementById('d-menu-btn');
+            if (dSidebar && btn && !dSidebar.contains(e.target) && !btn.contains(e.target) && dSidebar.classList.contains('open')) {
+                dSidebar.classList.remove('open'); clearTimeout(dSidebarTimeout);
+            }
+        }
+    });
+
+    var mSidebar = document.getElementById('m-sidebar');
+    var mMenuBtn = document.getElementById('m-menu-trigger');
+    var mIdBtn   = document.getElementById('m-id-btn');
+    var mIdPanel = document.getElementById('m-id-panel');
+    var mMenuTimeout, mIdTimeout;
+
+    function isLandscapeMobile() { return window.innerHeight <= 500 && window.innerWidth > window.innerHeight; }
+    function mCloseAllMenus() {
+        if (mSidebar) mSidebar.classList.remove('open');
+        if (mMenuBtn) mMenuBtn.classList.remove('active');
+        clearTimeout(mMenuTimeout);
+        if (!isLandscapeMobile()) {
+            if (mIdPanel) mIdPanel.classList.remove('open');
+            if (mIdBtn)   mIdBtn.classList.remove('hidden');
+            clearTimeout(mIdTimeout);
+        }
+    }
+    function mToggleMenu(e) {
+        e.stopPropagation();
+        if (mSidebar.classList.contains('open')) { mCloseAllMenus(); }
+        else { mCloseAllMenus(); mSidebar.classList.add('open'); mMenuBtn.classList.add('active'); mMenuTimeout = setTimeout(mCloseAllMenus, 5000); }
+    }
+    function mOpenIDMenu(e) {
+        e.stopPropagation(); mCloseAllMenus();
+        if (mIdBtn)   mIdBtn.classList.add('hidden');
+        if (mIdPanel) mIdPanel.classList.add('open');
+        mIdTimeout = setTimeout(mCloseAllMenus, 5000);
+    }
+    function applyLandscapeState() {
+        if (isLandscapeMobile()) {
+            if (mIdPanel) mIdPanel.style.cssText = '';
+            if (mIdBtn)   mIdBtn.style.display = 'none';
+        } else {
+            if (mIdBtn)   mIdBtn.style.display = '';
+            if (mIdPanel) mIdPanel.classList.remove('open');
+        }
+    }
+    window.addEventListener('resize', applyLandscapeState);
+    window.addEventListener('orientationchange', function(){ setTimeout(applyLandscapeState, 100); });
+    applyLandscapeState();
+
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 800 || isLandscapeMobile()) {
+            if (mSidebar && !mSidebar.contains(e.target) &&
+                mMenuBtn && !mMenuBtn.contains(e.target) &&
+                mIdPanel && !mIdPanel.contains(e.target) &&
+                mIdBtn   && !mIdBtn.contains(e.target)) mCloseAllMenus();
+        }
+    });
+</script>
+</body>
+</html>            .d-header-logo { max-height: 42px; width: auto; object-fit: contain; display: block; filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%); }
             .d-header-sub { height: 38px; width: auto; object-fit: contain; display: block; filter: brightness(0) saturate(100%) invert(27%) sepia(100%) saturate(7000%) hue-rotate(0deg) brightness(90%) contrast(110%); }
 
             .d-menu-btn { position: fixed; top: 18px; left: 20px; font-size: 24px; cursor: pointer; z-index: 210; background: #000; color: #fff; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease; border: 2px solid #000; }
