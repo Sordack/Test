@@ -44,7 +44,7 @@
                 backdrop-filter: blur(10px); border-bottom: 2px solid #000;
             }
             .d-header-logo {
-                max-height: 285px; width: auto; object-fit: contain;
+                max-height: 50px; width: auto; object-fit: contain;
                 filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
                 transform: translateY(82px);
             }
@@ -122,16 +122,72 @@
             .album-text { color: #000; line-height: 1.7; font-size: 1.15rem; }
             .album-text p { margin-bottom: 20px; }
             .album-text p:last-child { margin-bottom: 0; }
-
+            /* ── Footer ── */
             .d-footer {
-                width: 100%; padding: 15px 0; background: rgba(255,255,255,0.95);
-                border-top: 1.5px solid #000; text-align: center; font-size: 0.75rem;
-                z-index: 100; position: fixed; bottom: 0; left: 0;
-                display: flex; flex-direction: column; align-items: center; gap: 4px;
+                width: 100%;
+                height: 60px;
+                padding: 0;
+                background: rgba(255,255,255,0.75);
+                backdrop-filter: blur(10px);
+                border-top: 1.5px solid #000;
+                z-index: 100;
+                position: fixed;
+                bottom: 0; left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-sizing: border-box;
             }
-            .d-footer a { color: #000; text-decoration: none; margin: 0 12px; font-weight: bold; transition: all 0.3s ease; }
-            .d-footer a:hover { color: var(--anton-yellow) !important; text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000; }
-        }
+            .d-footer-center {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                height: 100%;
+            }
+            .d-footer-site-link {
+                font-size: 0.68rem;
+                font-family: 'Special Elite', cursive;
+                font-weight: bold;
+                color: #000;
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+            .d-footer-site-link:hover { color: var(--anton-red); }
+            .d-footer-center-links { display: flex; align-items: center; }
+            .d-footer-center-links a {
+                color: #000;
+                text-decoration: none;
+                font-size: 0.63rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 0.4px;
+                padding: 0 10px;
+                white-space: nowrap;
+                transition: color 0.2s;
+                font-family: 'Special Elite', cursive;
+            }
+            .d-footer-center-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.18); }
+            .d-footer-center-links a:hover { color: var(--anton-red); }
+
+            .d-footer-fairness {
+                position: fixed;
+                bottom: 60px;
+                left: 12px;
+                z-index: 99;
+                display: flex;
+                align-items: center;
+            }
+            .d-footer-fairness a { display: flex; align-items: center; text-decoration: none; }
+            .d-footer-fairness img {
+                height: 50px; width: auto; display: block;
+                object-fit: contain;
+                filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.18));
+                transition: transform 0.2s;
+            }
+            .d-footer-fairness a:hover img { transform: scale(1.06); }
+}
 
         @media (max-width: 800px), (orientation: landscape) and (max-height: 500px) {
             #desktop-wrapper { display: none !important; }
@@ -145,8 +201,7 @@
                 transition: transform 0.6s ease-in-out;
             }
             .m-header-logo {
-                position: absolute; top: 120%; transform: translateY(-50%);
-                max-height: 185px; width: auto;
+                max-height: 42px; width: auto;
                 filter: brightness(0) saturate(100%) invert(13%) sepia(95%) saturate(7408%) hue-rotate(359deg) brightness(97%) contrast(113%);
             }
             .m-menu-btn {
@@ -177,27 +232,24 @@
                 display: flex; align-items: center; justify-content: center;
             }
             .m-epk-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.7rem; color: var(--anton-red); font-weight: bold; text-decoration: none; }
-
-            .m-id-button {
-                position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px;
-                background: rgba(255,255,255,0.4); backdrop-filter: blur(4px);
-                border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px;
-                display: flex; align-items: center; justify-content: center;
-                z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000;
-                cursor: pointer; transition: transform 0.4s ease-in-out;
-                font-family: 'Special Elite', cursive;
-            }
+                        .m-id-button { position: fixed; right: 0; bottom: 150px; width: 38px; height: 38px; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border: 2px solid #000; border-right: none; border-radius: 6px 0 0 6px; display: flex; align-items: center; justify-content: center; z-index: 1300; font-weight: bold; font-size: 0.85rem; color: #000; cursor: pointer; transition: transform 0.4s ease-in-out; font-family: 'Special Elite', cursive; }
             .m-id-button.hidden { transform: translateX(100%); }
+
             .m-id-panel {
-                position: fixed; right: -270px; bottom: 150px; height: 45px; width: 250px;
-                background: rgba(255,255,255,0.35); backdrop-filter: blur(8px);
+                position: fixed; right: -300px; bottom: 150px;
+                height: 60px; width: 290px;
+                background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
                 border: 2px solid #000; border-right: none;
-                display: flex; align-items: center; justify-content: center;
+                display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
                 z-index: 1299; transition: right 0.5s cubic-bezier(0.4,0,0.2,1);
-                border-radius: 8px 0 0 8px; font-weight: bold; font-size: 0.85rem; overflow: hidden;
+                border-radius: 8px 0 0 8px; overflow: hidden; padding: 4px 6px; box-sizing: border-box;
             }
             .m-id-panel.open { right: 0; }
-            .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
+            .m-id-panel-site { font-size: 0.58rem; font-weight: bold; color: #000; text-decoration: none; font-family: 'Special Elite', cursive; }
+            .m-id-panel-site:hover { color: var(--anton-red); }
+            .m-id-panel-links { display: flex; align-items: center; flex-wrap: nowrap; }
+            .m-id-panel-links a { color: #000; text-decoration: none; text-transform: uppercase; font-size: 0.56rem; font-weight: bold; padding: 0 5px; white-space: nowrap; font-family: 'Special Elite', cursive; }
+            .m-id-panel-links a:not(:last-child) { border-right: 1px solid rgba(0,0,0,0.2); }
 
             .m-sidebar-right {
                 position: fixed; bottom: 0; left: 0; width: 100%; height: 65px;
@@ -212,15 +264,6 @@
                 9.33%        { transform: scale(1.4); color: var(--brand-color); }
                 23.33%, 100% { transform: scale(1);   color: #000; }
             }
-            .m-sidebar-right a:nth-child(1) i { --brand-color: #f00;               animation-delay: 0.0s; }
-            .m-sidebar-right a:nth-child(2) i { --brand-color: #25F4EE;            animation-delay: 0.25s; }
-            .m-sidebar-right a:nth-child(3) i { --brand-color: #E1306C;            animation-delay: 0.5s; }
-            .m-sidebar-right a:nth-child(4) i { --brand-color: #25D366;            animation-delay: 0.75s; }
-            .m-sidebar-right a:nth-child(5) i { --brand-color: #1877F2;            animation-delay: 1.0s; }
-            .m-sidebar-right a:nth-child(6) i { --brand-color: #1DB954;            animation-delay: 1.25s; }
-            .m-sidebar-right a:nth-child(7) i { --brand-color: var(--apple-gray);  animation-delay: 1.5s; }
-            .m-sidebar-right a:nth-child(8) i { --brand-color: #f00;               animation-delay: 1.75s; }
-            .m-sidebar-right a:nth-child(9) i { --brand-color: var(--amazon-blue); animation-delay: 2.0s; }
         }
 
         @media (max-width: 800px) and (orientation: portrait) {
@@ -280,7 +323,7 @@
             }
 
             #mobile-wrapper .m-header { height: 50px !important; }
-            #mobile-wrapper .m-header-logo { top: 145% !important; max-height: 150px !important; }
+            #mobile-wrapper .m-header-logo { !important; max-height: 42px !important; }
             #mobile-wrapper .m-menu-btn { top: 6px !important; left: 10px !important; width: 36px !important; height: 36px !important; }
 
             #mobile-wrapper .m-sidebar {
@@ -400,13 +443,38 @@
             }
             #mobile-wrapper .m-id-panel a { color: #000; text-decoration: none; margin: 0 8px; text-transform: uppercase; }
         }
+            .nav-arrows-desktop {
+            position: fixed; top: 90px; left: 20px;
+            display: flex; flex-direction: row; gap: 4px; z-index: 150;
+        }
+        @media (max-width: 800px) { .nav-arrows-desktop { display: none !important; } }
+
+        .nav-arrows-mobile {
+            position: fixed; top: 88px; left: 10px;
+            display: flex; flex-direction: row; gap: 4px; z-index: 1300;
+        }
+        @media (min-width: 801px) { .nav-arrows-mobile { display: none !important; } }
+
+        .nav-arrow {
+            width: 19px; height: 19px; border-radius: 4px;
+            background: rgba(255,255,255,0.72); backdrop-filter: blur(6px);
+            border: 1px solid #000; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 0.6rem; color: #000;
+            transition: background 0.2s, color 0.2s, transform 0.1s, opacity 0.2s;
+            user-select: none; -webkit-tap-highlight-color: transparent;
+        }
+        .nav-arrow:hover { background: var(--anton-yellow) !important; color: #000 !important; }
+        .nav-arrow:hover i { color: #000 !important; }
+        .nav-arrow:active { transform: scale(0.93); }
+        .nav-arrow--inactive { opacity: 0.28; cursor: default; pointer-events: none; }
+        .nav-arrow--active { opacity: 1; pointer-events: auto; }
     </style>
 </head>
 <body>
 
     <div id="desktop-wrapper">
         <header class="d-header">
-            <img src="Antonlogo.png" alt="ANTON Logo" class="d-header-logo">
+            <img src="Balkonienlogo.png?v=1" alt="ANTON Logo" class="d-header-logo">
         </header>
         <div class="d-menu-btn" onclick="toggleDesktopMenu()"><span>☰</span></div>
 
@@ -420,7 +488,14 @@
                     <a href="konzerte.html"><i class="fa-solid fa-microphone-lines"></i> KONZERTE</a>
                 </div>
             </div>
-            <div class="d-nav-item"><a href="shop.html"><span class="d-nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span></a></div>
+            <div class="d-nav-item">
+                <a href="shop"><span class="d-nav-label"><i class="fa-solid fa-cart-shopping main-icon"></i> SHOP</span><div class="d-arrow-wrapper"><i class="fa-solid fa-caret-down d-submenu-indicator"></i></div></a>
+                <div class="d-submenu">
+                    <a href="shop"><i class="fa-solid fa-store"></i> SHOP</a>
+                    <a href="shopagb"><i class="fa-solid fa-file-contract"></i> AGB</a>
+                    <a href="shopwiderruf"><i class="fa-solid fa-rotate-left"></i> WIDERRUF</a>
+                </div>
+            </div>
             <div class="d-nav-item"><a href="kontakt.html"><span class="d-nav-label"><i class="fa-solid fa-envelope main-icon"></i> KONTAKT</span></a></div>
             <div class="d-nav-item d-nav-item-epk"><a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener"><span class="d-nav-label"><i class="fa-solid fa-bullhorn main-icon"></i> EPK / PRESSE</span></a></div>
         </nav>
@@ -441,33 +516,56 @@
             <div class="detail-bento">
                 <div class="image-container">
                     <div class="album-cover">
-                        <img src="Hunger.JPG" alt="Hunger – neue Single">
+                        <img src="Balkonien.jpg" alt="Balkonien – neue Single">
                     </div>
                     <div class="image-source">Quelltext-/bild: ROCKIN´DICE Audiomanufaktur</div>
                 </div>
                 <div class="album-text">
-                    <p>Hat dein Magen schon mal so richtig geknurrt? Keinen Appetit, sondern knallharter Kohldampf?</p>
-                    <p>Dann kennst du ihn, den Riesenhunger! Sogar Blumenkohl und Fisch verlieren ihren Schrecken und werden zu annehmbaren Möglichkeiten.</p>
-                    <p>Aber Antons „Riesenhunger" ist kein Song über Essen. Sondern über diesen Zustand, in dem alles andere kurz egal ist, wenn der Kopf Pause macht und der Bauch übernimmt.</p>
-                    <p>Mit „Riesenhunger" veröffentlicht Anton die erste Single aus dem kommenden Album TON AN. Und schafft Platz für Lautstärke, für Meinung, für Ausleben. Für die Überzeugung, dass Kinder ihre eigene Stimme haben und man die nicht runterregeln muss, sondern aufdrehen darf.</p>
-                    <p>Anton ist nicht der Typ, der erklärt, sondern der, der vormacht. Locker, witzig und klar. Cool genug, um Raum zu lassen.</p>
-                    <p>Riesenhunger ist das Gegenteil von „gleich" und grüßt alle von uns, die schon mal hungrig wurden, bevor sie es wollten.</p>
+                    <p>Hast du schon gepackt? Sonnencreme, Luftmatratze, gute Laune – und trotzdem keinen Meter weit gefahren?</p>
+                    <p>Dann willkommen in Balkonien! Dem schönsten Urlaubsort der Welt: zu Hause. Hier wird der Balkon zum Strand und das Planschbecken zum eigenen Pool.</p>
+                    <p>Antons „Balkonien" ist eine kleine Liebeserklärung an die Ferien direkt vor der eigenen Tür. An das Hotel zu Hause – mit Indoorpool in der Wanne und Schwimmbecken auf dem Balkon.</p>
+                    <p>Kein Stau, kein Kofferchaos, kein Flieger. Nur Sonne, Eis und das Gefühl, dass die schönste Zeit oft die ist, die man einfach gemeinsam verbringt.</p>
+                    <p>Anton macht daraus einen Sommergruß zum Mitsingen – locker, warm und mit einem Augenzwinkern. Urlaubsstimmung gibt's hier ganz ohne Anreise.</p>
+                    <p>Balkonien grüßt alle, die wissen: Manchmal liegt das Paradies nur eine Balkontür weit weg.</p>
                     <p>#Familienpop eben.</p>
                 </div>
             </div>
         </main>
 
-        <footer class="d-footer">
-            <div><a href="index.html">www.anton-familienpop.de</a></div>
-            <div><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
-        </footer>
+            <div class="d-footer-fairness">
+        <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener">
+            <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
+                 alt="Mitglied der Initiative Fairness im Handel">
+        </a>
+    </div>
+
+    <footer class="d-footer">
+        <div class="d-footer-center">
+            <a href="index.html" class="d-footer-site-link">www.anton-familienpop.de</a>
+            <nav class="d-footer-center-links">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+                <a href="shopagb.html">AGB</a>
+                <a href="shopwiderruf.html">Widerruf</a>
+            </nav>
+        </div>
+    </footer>
+
+    <div class="nav-arrows-desktop">
+        <div class="nav-arrow nav-arrow--active" title="Zurück" onclick="AntonNav.goBack()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="nav-arrow nav-arrow--active" title="Vor" onclick="AntonNav.goForward()">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </div>
     </div>
 
     <div id="mobile-wrapper">
         <div id="m-bg-fix"></div>
 
         <header class="m-header" id="m-header-main">
-            <img src="Antonlogo.png" alt="ANTON Logo" class="m-header-logo">
+            <img src="Balkonienlogo.png?v=1" alt="ANTON Logo" class="m-header-logo">
         </header>
         <div class="m-menu-btn" id="m-menu-trigger" onclick="mToggleMenu(event)">
             <span></span><span></span><span></span>
@@ -476,7 +574,19 @@
         <nav class="m-sidebar" id="m-sidebar">
             <div class="m-nav-item"><a href="index.html"><i class="fa-solid fa-house"></i><span class="mobile-tag">Start</span></a></div>
             <div class="m-nav-item"><a href="veroffentlichungen.html"><i class="fa-solid fa-music"></i><span class="mobile-tag">Musik</span></a></div>
-            <div class="m-nav-item"><a href="shop.html"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a></div>
+            <div class="m-nav-item" id="m-shop-item">
+                <a href="shop" class="m-shop-link"><i class="fa-solid fa-cart-shopping"></i><span class="mobile-tag">Shop</span></a>
+                <button class="m-sub-toggle" onclick="mToggleSubMenu(event)">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="mobile-tag">Shop</span>
+                    <i class="fa-solid fa-caret-down m-sub-arrow"></i>
+                </button>
+                <div class="m-submenu">
+                    <a href="shop"><i class="fa-solid fa-store"></i> Shop</a>
+                    <a href="shopagb"><i class="fa-solid fa-file-contract"></i> AGB</a>
+                    <a href="shopwiderruf"><i class="fa-solid fa-rotate-left"></i> Widerruf</a>
+                </div>
+            </div>
             <div class="m-nav-item"><a href="kontakt.html"><i class="fa-solid fa-envelope"></i><span class="mobile-tag">Kontakt</span></a></div>
             <div class="m-epk-container"><a href="https://www.dropbox.com/scl/fo/uaqmqoexqsd3do0sy4fni/AG1t5A5kO9ciFFuF1Ecyh8U?rlkey=amb618zoq017jjk54914jlnkb&e=1&st=b6s5qhal&dl=0" target="_blank" rel="noopener" class="m-epk-text">EPK/PRESSE</a></div>
         </nav>
@@ -484,27 +594,38 @@
         <div class="m-content-scroll">
             <div class="m-detail-bento">
                 <div class="m-album-cover">
-                    <img src="Hunger.JPG" alt="Hunger – neue Single">
+                    <img src="Balkonien.jpg" alt="Balkonien – neue Single">
                 </div>
 
                 <div class="m-album-text">
-                    <p>Hat dein Magen schon mal so richtig geknurrt? Kein Appetit, sondern knallharter Kohldampf?</p>
-                    <p>Dann kennst du ihn, den Riesenhunger! Sogar Blumenkohl und Fisch verlieren ihren Schrecken und werden zu annehmbaren Möglichkeiten.</p>
-                    <p>Aber Antons „Riesenhunger" ist kein Song über Essen. Sondern über diesen Zustand, in dem alles andere kurz egal ist, wenn der Kopf Pause macht und der Bauch übernimmt.</p>
-                    <p>Mit „Riesenhunger" veröffentlicht Anton die erste Single aus dem kommenden Album TON AN. Und schafft Platz für Lautstärke, für Meinung, für Ausleben. Für die Überzeugung, dass Kinder ihre eigene Stimme haben und man die nicht runterregeln muss, sondern aufdrehen darf.</p>
-                    <p>Anton ist nicht der Typ, der erklärt, sondern der, der vormacht. Locker, witzig und klar. Cool genug, um Raum zu lassen.</p>
-                    <p>Riesenhunger ist das Gegenteil von „gleich" und grüßt alle von uns, die schon mal hungrig wurden, bevor sie es wollten.</p>
+                    <p>Hast du schon gepackt? Sonnencreme, Luftmatratze, gute Laune – und trotzdem keinen Meter weit gefahren?</p>
+                    <p>Dann willkommen in Balkonien! Dem schönsten Urlaubsort der Welt: zu Hause. Hier wird der Balkon zum Strand und das Planschbecken zum eigenen Pool.</p>
+                    <p>Antons „Balkonien" ist eine kleine Liebeserklärung an die Ferien direkt vor der eigenen Tür. An das Hotel zu Hause – mit Indoorpool in der Wanne und Schwimmbecken auf dem Balkon.</p>
+                    <p>Kein Stau, kein Kofferchaos, kein Flieger. Nur Sonne, Eis und das Gefühl, dass die schönste Zeit oft die ist, die man einfach gemeinsam verbringt.</p>
+                    <p>Anton macht daraus einen Sommergruß zum Mitsingen – locker, warm und mit einem Augenzwinkern. Urlaubsstimmung gibt's hier ganz ohne Anreise.</p>
+                    <p>Balkonien grüßt alle, die wissen: Manchmal liegt das Paradies nur eine Balkontür weit weg.</p>
                     <p>#Familienpop eben.</p>
                 </div>
             </div>
         </div>
 
-        <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
-        <div class="m-id-panel" id="m-id-panel">
-            <a href="impressum.html">Impressum</a><span>|</span><a href="datenschutz.html">Datenschutz</a>
+            <div class="m-id-button" id="m-id-btn" onclick="mOpenIDMenu(event)">I/D</div>
+    <div class="m-id-panel" id="m-id-panel">
+        <a href="index.html" class="m-id-panel-site">www.anton-familienpop.de</a>
+        <div class="m-id-panel-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="shopagb.html">AGB</a>
+            <a href="shopwiderruf.html">Widerruf</a>
         </div>
+    </div>
 
-        <aside class="m-sidebar-right">
+            <footer class="m-footer-bar">
+        <a href="https://www.fairness-im-handel.de" target="_blank" rel="noopener" class="m-fh-logo">
+            <img src="https://www.fairness-im-handel.de/wp-content/uploads/fairness-logo220.png"
+                 alt="Mitglied der Initiative Fairness im Handel">
+        </a>
+        <div class="m-sidebar-right">
             <a href="https://www.youtube.com/@antonmusikvevo3861" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
             <a href="https://www.tiktok.com/@anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
             <a href="https://www.instagram.com/anton.familienpop" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
@@ -514,10 +635,22 @@
             <a href="https://music.apple.com/de/artist/anton/1687546783" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i></a>
             <a href="https://music.youtube.com/channel/UCv-LSCzk64M7Ri9pkzqsiQg" target="_blank" rel="noopener"><i class="fa-solid fa-circle-play"></i></a>
             <a href="https://music.amazon.de/artists/B0GF2ZR9RR" target="_blank" rel="noopener"><i class="fa-brands fa-amazon"></i></a>
-        </aside>
+        </div>
+    </footer>
+
+    <div class="nav-arrows-mobile">
+        <div class="nav-arrow nav-arrow--active" title="Zurück" onclick="AntonNav.goBack()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="nav-arrow nav-arrow--active" title="Vor" onclick="AntonNav.goForward()">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </div>
     </div>
 
-    <script>
+    <script src="nav-history.js"></script>
+
+<script>
         let dSidebarTimeout;
         const dSidebar = document.getElementById('d-sidebar');
 
@@ -569,6 +702,11 @@
             if (mIdPanel) mIdPanel.classList.add('open');
             mIdTimeout = setTimeout(mCloseAllMenus, 5000);
         }
+    function mToggleSubMenu(e) {
+        e.stopPropagation();
+        const item = e.currentTarget.closest('.m-nav-item');
+        if (item) item.classList.toggle('sub-open');
+    }
 
         function applyLandscapeState() {
             if (isLandscapeMobile()) {
